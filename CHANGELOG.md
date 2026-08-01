@@ -4,6 +4,36 @@
 
 ---
 
+## [v2.9.11] — 2026-08-01 (🌐 النشر التلقائي السحابي على GitHub Actions)
+
+### ✨ النشر التلقائي يعمل حتى لو الجهاز مغلق
+
+**المشكلة:** كان النشر اليومي للمدونة يعتمد على Task Scheduler محلي — لا يعمل والجهاز مغلق أو غير موصل.
+
+**الحل:** نقل النشر إلى GitHub Actions (مجاني) في ريبو `ahmdmansoor2/digital-lawyer-platform`:
+
+- **نظامان للنشر متوازيان** (كليهما مفعّل، لا يتعارضان):
+  - `daily-blog-post.yml` — 5 منشورات يومياً (06,09,12,15,18 UTC) عبر `auto-publisher.cjs` بمواضيع ثابتة وصور.
+  - `daily-blog-publish.yml` — منشور يومي (07:00 UTC) عبر `daily-publish.cjs` بتوليد محتوى فريد من Gemini.
+- كلاهما يكتب لـ `public/blog/` + `index.html` بعلامات إدراج مختلفة، ويتجنبان التكرار عبر السجل الموحد (`loadUnifiedLog` يدمج `scripts/published-log.json` + `scripts/blog-publisher/published-log.json`).
+- **Secrets على GitHub:** `GEMINI_API_KEY` + `FIREBASE_TOKEN` (refresh token من configstore firebase-tools).
+- الـ workflow يلتزم تلقائياً (commit) بالملفات المنشورة ويدفعها للريبو.
+
+### 🐛 إصلاحات رئيسية
+- **Fix نموذج Gemini:** `gemini-2.5-flash` كان يرجع 404 → تغيير إلى `gemini-flash-latest` (في `daily-publish.cjs` + OCR في `server.ts`).
+- **Fix اختيار الموضوع:** `pickTopic` كان يستقبل السجل كله بدل `publishedSlugs` → تكرر نشر نفس الموضوع. أُصلح باستخدام `loadUnifiedLog()`.
+- **Fix مزامنة dist:** الـ publish يكتب لـ `public/blog/` لكن `firebase.json` ينشر من `dist` → أُضيفت `syncBlogToDist()` قبل الـ deploy.
+- **Fix ترميز العربية:** جميع ملفات `src/` تعرضت لـ CP1256 corruption → أُصلحت (43 ملفاً) + إصلاح `run-daily.ps1` (UTF-8 BOM + `$PSScriptRoot` بدل المسارات العربية).
+
+### 📦 التحقق التشغيلي (تم اختباره فعلياً)
+- تشغيل `workflow_dispatch` على النظامين → نجحا، وظهرت مقالات جديدة حية:
+  - `labor-rights-termination.html` (من القديم)
+  - `divorce-procedures-egypt.html` (من الجديد/Gemini — 290 سطراً)
+- **10 مقالات حية** على `justice-91571.web.app/blog/` جميعها HTTP 200.
+- الريبو الخاص أصبح PRIVATE ودفعه الأولى نظيف (بدون dist-fresh الضخم).
+
+---
+
 ## [v2.9.8] — 2026-07-24 (🚨 EMERGENCY: Backup Restore Fix)
 
 ### 🐛 Bug Fix: فشل استعادة النسخة الاحتياطية بعد v2.9.7
