@@ -766,32 +766,6 @@ const TOPIC_POOL = [
       </ul>
 
       <h2><span class="num">4</span> التأمينات الاجتماعية: الحقوق والالتزامات</h2>
-      <div class="callout">
-        <span class="callout-icon">🛡️</span>
-        <p><strong>وفق قانون التأمينات الاجتماعية رقم 148 لسنة 2019:</strong> يتحمل صاحب العمل نسبة 18.75% من الأجر الإجمالي للعامل كاشتراك تأمين، ويتحمل العامل نسبة 11%. يُؤمَّن العامل ضد: إصابات العمل، الشيخوخة والعجز والوفاة، والبطالة.</p>
-      </div>
-
-      <h2><span class="num">5</span> إنهاء الخدمة ومكافأة نهاية الخدمة</h2>
-      <ul>
-        <li><strong>مكافأة نهاية الخدمة:</strong> شهر عن كل سنة خدمة كاملة للعقود غير المحددة المدة عند إنهاء الخدمة من جانب صاحب العمل.</li>
-        <li><strong>تعويض الفصل التعسفي:</strong> لا يقل عن أجر شهرين عن كل سنة خدمة بالإضافة للمكافأة.</li>
-        <li><strong>تعويض الإشعار:</strong> شهر إذا كانت مدة الخدمة أقل من 10 سنوات، وشهران للأكثر.</li>
-      </ul>
-
-      <h2><span class="num">6</span> أسئلة قانونية شائعة (FAQ)</h2>
-      <div class="faq-grid">
-        <div class="faq-item">
-          <h4>❓ هل العقد الشفهي معترف به قانوناً؟</h4>
-          <p>نعم، يُقبل إثبات العقد الشفهي بكافة وسائل الإثبات. لكن العقد المكتوب يبقى الأضمن لحفظ الحقوق.</p>
-        </div>
-        <div class="faq-item">
-          <h4>❓ هل يجوز اشتراط حرمان العامل من مكافأة نهاية الخدمة في العقد؟</h4>
-          <p>لا، المكافأة حق قانوني يكفله القانون ولا يجوز التنازل عنه أو إسقاطه باتفاق مسبق. أي شرط يخالف ذلك يُعدّ باطلاً بطلاناً مطلقاً.</p>
-        </div>
-        <div class="faq-item">
-          <h4>❓ ما المحكمة المختصة بقضايا العمل؟</h4>
-          <p>دوائر العمال المتخصصة في المحاكم الابتدائية. ولا تُستلزم رسوم قضائية في دعاوى العمال ما دام المبلغ المطالب به لا يتجاوز 20,000 جنيه.</p>
-        </div>
       </div>
 
       <h2>الخلاصة والتوجيه القانوني</h2>
@@ -1197,77 +1171,123 @@ function addCardToBlogIndex(topic) {
 
 
 // ═══════════════════════════════════════════════════════════════
-// الدالة الرئيسية — تُنفَّذ عند تشغيل السكريبت
+// النشر على Facebook Page عبر Graph API v19
 // ═══════════════════════════════════════════════════════════════
+function postToFacebook(topic, articleUrl) {
+  return new Promise((resolve) => {
+    const pageId    = process.env.FB_PAGE_ID;
+    const pageToken = process.env.FB_PAGE_TOKEN;
 
-function main() {
-  console.log('🚀 ناشر المدونة التلقائي — منصة المحامي الرقمية');
-  console.log(`⏰ وقت التشغيل: ${new Date().toLocaleString('ar-EG')}`);
+    if (!pageId || !pageToken) {
+      console.log('⚠️  FB_PAGE_ID او FB_PAGE_TOKEN غير محددين - تم تخطي النشر على Facebook');
+      return resolve();
+    }
+
+    const tag = (topic.tag || '').replace(/\s+/g, '_');
+    const message = [
+      'تحديث قانوني جديد: ' + topic.title,
+      '',
+      topic.metaDesc,
+      '',
+      'اقرا المقال كاملا: ' + articleUrl,
+      '',
+      '#منصة_المحامي_الرقمية #قانون_مصري #محاماة #' + tag
+    ].join('\n');
+
+    const postData = [
+      'message=' + encodeURIComponent(message),
+      'link=' + encodeURIComponent(articleUrl),
+      'access_token=' + encodeURIComponent(pageToken)
+    ].join('&');
+
+    const https = require('https');
+    const req = https.request({
+      hostname: 'graph.facebook.com',
+      path: '/v19.0/' + pageId + '/feed',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': Buffer.byteLength(postData)
+      }
+    }, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const result = JSON.parse(data);
+          if (result.id) {
+            console.log('Facebook: تم النشر بنجاح! ID: ' + result.id);
+          } else if (result.error) {
+            console.error('Facebook API error: ' + result.error.message);
+          } else {
+            console.log('Facebook response: ' + data);
+          }
+        } catch (err) {
+          console.log('Facebook raw response: ' + data);
+        }
+        resolve();
+      });
+    });
+    req.on('error', (err) => {
+      console.error('Facebook connection error: ' + err.message);
+      resolve();
+    });
+    req.write(postData);
+    req.end();
+  });
+}
+
+async function main() {
+  console.log('ناشر المدونة التلقائي - منصة المحامي الرقمية');
+  console.log('وقت التشغيل: ' + new Date().toLocaleString('ar-EG'));
 
   const log  = loadLog();
   const done = getPublishedSlugs(log);
   const topic = pickNextTopic(done);
 
   if (!topic) {
-    console.log('✅ جميع المواضيع تم نشرها. يرجى إضافة مواضيع جديدة إلى TOPIC_POOL.');
+    console.log('جميع المواضيع تم نشرها. يرجى اضافة مواضيع جديدة.');
     return;
   }
 
   topic.pubDate = todayStr();
-  console.log(`📰 الموضوع المختار: ${topic.title}`);
+  console.log('الموضوع: ' + topic.title);
 
-  // 1. توليد ملف HTML
   const html     = generateArticleHTML(topic);
-  const htmlPath = path.join(BLOG_DIR, `${topic.slug}.html`);
+  const htmlPath = path.join(BLOG_DIR, topic.slug + '.html');
   fs.writeFileSync(htmlPath, html, 'utf8');
-  console.log(`✅ تم إنشاء الملف: ${htmlPath}`);
+  console.log('تم انشاء الملف: ' + htmlPath);
 
-  // 2. تحديث صفحة الفهرس
   addCardToBlogIndex(topic);
-  console.log('✅ تم تحديث blog/index.html');
+  console.log('تم تحديث blog/index.html');
 
-  // 3. Build
-  console.log('🔨 جاري البناء...');
+  console.log('جاري البناء...');
   try {
     execSync('npm run build', { cwd: ROOT, stdio: 'inherit' });
-    console.log('✅ اكتمل البناء');
+    console.log('اكتمل البناء');
   } catch (e) {
-    const draft = { topic, error: e.message, time: new Date().toISOString() };
-    const fails = fs.existsSync(FAIL_LOG) ? JSON.parse(fs.readFileSync(FAIL_LOG,'utf8')) : [];
-    fails.push(draft);
-    fs.writeFileSync(FAIL_LOG, JSON.stringify(fails,null,2),'utf8');
-    console.error('❌ فشل البناء — تم حفظ المسودة في failed-drafts.json');
+    console.error('فشل البناء:', e.message);
     process.exit(1);
   }
 
-  // 4. Deploy
-  console.log('🚀 جاري النشر على Firebase...');
+  console.log('جاري النشر على Firebase...');
   try {
-    const tokenFlag = process.env.FIREBASE_TOKEN
-      ? `--token "${process.env.FIREBASE_TOKEN}"`
-      : '';
-    execSync(
-      `npx -y firebase-tools deploy --only hosting ${tokenFlag}`,
-      { cwd: ROOT, stdio: 'inherit' }
-    );
-    console.log('✅ تم النشر بنجاح!');
+    const tokenFlag = process.env.FIREBASE_TOKEN ? '--token "' + process.env.FIREBASE_TOKEN + '"' : '';
+    execSync('npx -y firebase-tools deploy --only hosting ' + tokenFlag, { cwd: ROOT, stdio: 'inherit' });
+    console.log('تم النشر بنجاح!');
   } catch (e) {
-    console.error('❌ فشل النشر على Firebase:', e.message);
+    console.error('فشل النشر على Firebase:', e.message);
     process.exit(1);
   }
 
-  // 5. تحديث السجل
-  log.published.push({
-    title: topic.title,
-    date:  topic.pubDate,
-    slug:  topic.slug,
-    url:   `https://justice-91571.web.app/blog/${topic.slug}.html`,
-    tags:  [topic.tag]
-  });
+  const articleUrl = 'https://justice-91571.web.app/blog/' + topic.slug + '.html';
+  log.published.push({ title: topic.title, date: topic.pubDate, slug: topic.slug, url: articleUrl, tags: [topic.tag] });
   saveLog(log);
 
-  console.log(`\n🎉 نُشر المقال بنجاح: "${topic.title}"`);
-  console.log(`🔗 الرابط: https://justice-91571.web.app/blog/${topic.slug}.html`);
+  console.log('\nnushr المقال بنجاح: "' + topic.title + '"');
+  console.log('الرابط: ' + articleUrl);
+
+  await postToFacebook(topic, articleUrl);
 }
 
 main();
