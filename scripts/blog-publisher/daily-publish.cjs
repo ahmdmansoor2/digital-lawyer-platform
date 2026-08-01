@@ -30,6 +30,8 @@ const BASE_URL = 'https://justice-91571.web.app';
 const ARTICLES_PER_RUN = 5; // عدد المقالات المنشورة في كل تشغيل
 const MIN_WORDS = 3000; // الحد الأدنى لعدد كلمات المقال
 const IMAGE_MODEL = 'gemini-2.5-flash-image'; // Nano Banana
+// نموذج النص الرئيسي — gemini-3.5-flash له حصة مجانية منفصلة عن 3.6-flash
+const TEXT_MODEL = process.env.TEXT_MODEL || 'gemini-3.5-flash';
 
 dotenv.config({ path: path.join(ROOT, '.env') });
 
@@ -249,6 +251,13 @@ function articlePrompt(topic, usedTitles, existingSections, usedHeadings) {
     ? `\nأكمل الأقسام من حيث توقفت، أضف ${Math.max(5, 14 - existingSections.length)} أقساماً جديدة غير مكررة.`
     : '';
 
+  // في التوليد الأول نلزم النموذج بعدد أكبر من الأقسام لإنتاج مقال كامل من دفعة واحدة
+  const initialSectionsHint = existingSections && existingSections.length ? '' : `
+10. في هذه الاستجابة الأولية اكتب فحسب 14 قسماً كاملة من الأقسام (heading + paragraphs + list لكل قسم)،
+    ولا تكتب قسم "الخلاصة" ولا "خاتمة" بعد — ستُستكمل الأقسام الباقية لاحقاً.
+11. لا تقصّر الفقرات: كل فقرة من 4-6 جمل مكتملة المعنى، وكل قسم من 3-4 فقرات.
+    الهدف أن يصل هذا الجزء الأول وحده إلى 1800 كلمة على الأقل.`;
+
   return `${SYSTEM_ROLE}
 اكتب مقالاً قانونياً شاملاً جديداً باللغة العربية الفصحى المبسطة حول الموضوع التالي:
 
@@ -271,7 +280,8 @@ function articlePrompt(topic, usedTitles, existingSections, usedHeadings) {
    - conclusion: خاتمة عملية بنصيحة قابلة للتنفيذ
 7. في النهاية أضف دعوة لاستخدام منصة المحامي الرقمية بشكل طبيعي داخل النص (مرة واحدة فقط).
 8. مقالك يجب ألا يكرر هذه المواضيع المنشورة سابقاً: ${usedTopics}.
-9. أجب بحصة JSON كاملة واحدة.${headingsHint}${structureHint}
+9. أجب بحصة JSON كاملة واحدة.
+${initialSectionsHint}${headingsHint}${structureHint}
 
 أجب حصراً بصيغة JSON بالبنية التالية بدون أي نص إضافي خارج JSON:
 {
@@ -287,21 +297,59 @@ function articlePrompt(topic, usedTitles, existingSections, usedHeadings) {
 }
 
 // استدعاء واحد؛ يرجع JSON محللاً (لا يطبق حد الكلمات — يطبقه المستدعي).
+// يعيد المحاولة على أخطاء JSON/الشبكة حتى 3 مرات قبل أن يفشل.
 async function generateArticle(ai, topic, usedTitles, existingSections, usedHeadings) {
-  const prompt = articlePrompt(topic, usedTitles, existingSections, usedHeadings);
-  const response = await ai.models.generateContent({
-    model: 'gemini-flash-latest',
-    contents: [{ text: prompt }],
-    config: {
-      responseMimeType: 'application/json',
-      // رفع حد الإخراج لأقصى قيمة للسماح بمقالات طويلة (32768 طوكناً تقريباً)
-      generationConfig: { maxOutputTokens: 32768, temperature: 0.8 },
-    },
-  });
+  let lastErr;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const prompt = articlePrompt(topic, usedTitles, existingSections, usedHeadings);
+      const response = await ai.models.generateContent({
+        model: TEXT_MODEL,
+        contents: [{ text: prompt }],
+        config: {
+          responseMimeType: 'application/json',
+          // رفع حد الإخراج لأقصى قيمة للسماح بمقالات طويلة (32768 طوكناً تقريباً)
+          generationConfig: { maxOutputTokens: 32768, temperature: 0.8 },
+        },
+      });
 
-  const text = response.text;
-  if (!text) throw new Error('Gemini لم يُرجع نصاً');
-  return JSON.parse(text);
+      const text = response.text;
+      if (!text) throw new Error('Gemini لم يُرجع نصاً');
+      return safeParseJson(text);
+    } catch (err) {
+      lastErr = err;
+      const msg = String(err.message || '');
+      const isTransient = msg.includes('JSON') || msg.includes('fetch failed') || msg.includes('ECONNRESET') || msg.includes('ETIMEDOUT') || msg.includes('429');
+      if (attempt < 3 && isTransient) {
+        console.log(`[publish] استدعاء JSON فشل (محاولة ${attempt}/3): ${msg.slice(0, 100)}`);
+        await new Promise(r => setTimeout(r, 10000 * attempt));
+        continue;
+      }
+      throw lastErr;
+    }
+  }
+  throw lastErr;
+}
+
+// تحليل JSON مرن: يجرب التحليل المباشر، فإن فشل يستخرج أول كائن JSON مكتمل من النص
+// (يحمي من محتوى زائد بعد JSON أو JSON مبتور بالخلف).
+function safeParseJson(text) {
+  const str = String(text).trim();
+  try {
+    return JSON.parse(str);
+  } catch (_) {
+    const start = str.indexOf('{');
+    const end = str.lastIndexOf('}');
+    if (start >= 0 && end > start) {
+      const candidate = str.slice(start, end + 1);
+      try {
+        return JSON.parse(candidate);
+      } catch (err) {
+        throw new Error(`JSON غير صالح من Gemini: ${err.message}`);
+      }
+    }
+    throw new Error('لم يُعثر على كائن JSON في رد Gemini');
+  }
 }
 
 // توليد مقال طويل مع توسعات حتى يصل إلى MIN_WORDS كلمة.
@@ -317,7 +365,14 @@ async function generateLongArticle(ai, topic, usedTitles) {
   while (words < MIN_WORDS && rounds < 4) {
     rounds++;
     console.log(`[publish] ${topic.slug}: ${words} كلمة — جولة توسعة ${rounds}/4...`);
-    const extra = await generateArticle(ai, topic, usedTitles, data.sections, Array.from(usedHeadings));
+    let extra;
+    try {
+      extra = await generateArticle(ai, topic, usedTitles, data.sections, Array.from(usedHeadings));
+    } catch (expandErr) {
+      // فشل التوسعة لا يفقد الأقسام المتراكمة — نحتفظ بما وصلنا إليه ونواصل.
+      console.log(`[publish] التوسعة فشلت بعد 3 محاولات (${String(expandErr.message).slice(0, 90)}). الاحتفاظ بما تراكم: ${words} كلمة.`);
+      break;
+    }
     if (!Array.isArray(extra.sections) || extra.sections.length === 0) {
       console.log('[publish] التوسعة لم تُرجع أقساماً جديدة، إيقاف المحاولة.');
       break;
@@ -345,7 +400,14 @@ async function generateLongArticle(ai, topic, usedTitles) {
 }
 
 // ── استدعاء Gemini مع إعادة محاولة ────────────────────────────────────────
-async function generateWithRetry(ai, topic, usedTitles, maxAttempts = 4) {
+// اكتشاف خطأ الحصة اليومية (429 DailyQuota): لا يعيد المحاولة — الحصة لن تجدد
+// قبل منتصف الليل. يُرمى خطأ مميز يتوقف عنده النشر كاملاً.
+function isDailyQuotaError(msg) {
+  return /RESOURCE_EXHAUSTED|GenerateRequestsPerDay|quotaValue|daily quota|quota.?limit/i.test(msg || '') &&
+         (msg || '').includes('429');
+}
+
+async function generateWithRetry(ai, topic, usedTitles, maxAttempts = 2) {
   let lastErr;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
@@ -354,8 +416,16 @@ async function generateWithRetry(ai, topic, usedTitles, maxAttempts = 4) {
       lastErr = err;
       const msg = (err && (err.message || String(err))) || '';
       console.log(`[publish] محاولة ${attempt}/${maxAttempts} فشلت: ${String(msg).slice(0, 140)}`);
-      if (msg.includes('429') || msg.includes('quota') || msg.includes('fetch failed') || msg.includes('ECONNRESET') || msg.includes('ETIMEDOUT')) {
-        const waitMs = 15000 * attempt;
+      // الحصة اليومية منتهية — لا جدوى من إعادة المحاولة، أوقف المقالات كلها.
+      if (isDailyQuotaError(msg)) {
+        const qerr = new Error('الحصة اليومية لـ Gemini انتهت (20 طلباً/يوم على الحساب المجاني). ' +
+          'أعد التشغيل بعد منتصف الليل أو فعّل الفوترة.');
+        qerr.dailyQuota = true;
+        throw qerr;
+      }
+      // أخطاء مؤقتة فقط (شبكة / rate limit قصير): أعد المحاولة بانتظار متزايد.
+      if (msg.includes('fetch failed') || msg.includes('ECONNRESET') || msg.includes('ETIMEDOUT') || msg.includes('429')) {
+        const waitMs = 20000 * attempt;
         console.log(`[publish] انتظار ${waitMs / 1000} ثانية ثم إعادة المحاولة...`);
         await new Promise(r => setTimeout(r, waitMs));
         continue;
