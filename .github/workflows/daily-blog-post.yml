@@ -1,50 +1,44 @@
-name: 🤖 نشر مقال قانوني يومي
+name: 🤖 نشر المقالات القانونية (5 مرات يومياً)
 
 on:
   schedule:
-    # 9:00 صباحاً بتوقيت القاهرة (UTC+3) = 06:00 UTC
-    - cron: '0 6 * * *'
+    # 9:00 ص، 12:00 ظ، 3:00 ع، 6:00 م، 9:00 م (توقيت القاهرة UTC+3)
+    - cron: '0 6,9,12,15,18 * * *'
   workflow_dispatch:
-    # يسمح بالتشغيل اليدوي من GitHub في أي وقت
 
 jobs:
   daily-publish:
-    name: نشر المقال اليومي
+    name: نشر مقال تفصيلي جديد
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # للـ commit والـ push
+      contents: write
 
     steps:
-      # ─── 1. سحب الكود ───────────────────────────────────────────────
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      # ─── 2. إعداد Node.js ───────────────────────────────────────────
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
 
-      # ─── 3. تثبيت المكتبات ──────────────────────────────────────────
       - name: Install dependencies
         run: npm ci
 
-      # ─── 4. تشغيل سكريبت النشر التلقائي ────────────────────────────
       - name: Run Auto-Publisher
         run: node scripts/auto-publisher.cjs
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           CI: true
 
-      # ─── 5. حفظ التغييرات في الـ repository ─────────────────────────
       - name: Commit & Push changes
         run: |
-          git config user.name  "Legal Blog Bot 🤖"
+          git config user.name  "Legal Content Editor 🤖"
           git config user.email "bot@justice-91571.web.app"
           git add scripts/published-log.json public/blog/
-          git diff --staged --quiet || git commit -m "🤖 Auto-publish: $(date +'%Y-%m-%d') — مقال قانوني جديد"
+          git diff --staged --quiet || git commit -m "🤖 Auto-publish: $(date +'%Y-%m-%d %H:%M') — مقال قانوني تفصيلي جديد"
           git push

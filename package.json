@@ -41,7 +41,10 @@
     "electron:dev": "electron . --dev",
     "electron:build": "vite build && electron-builder",
     "build:desktop": "npm run electron:build && powershell -Command \"Copy-Item -LiteralPath 'dist-desktop\\منصة المحامي الرقمية 2.9.10.exe' -Destination ([Environment]::GetFolderPath('Desktop')+'\\منصة المحامي الرقمية 2.9.10.exe') -Force; Copy-Item -LiteralPath 'dist-desktop\\منصة المحامي الرقمية Setup 2.9.10.exe' -Destination ([Environment]::GetFolderPath('Desktop')+'\\منصة المحامي الرقمية Setup 2.9.10.exe') -Force\"",
-    "build:license": "electron-builder --projectDir license-generator-app --config electron-builder.json && powershell -Command \"Copy-Item -LiteralPath 'license-generator-app\\dist-desktop\\مولد تراخيص المحامي الرقمية 1.0.0.exe' -Destination ([Environment]::GetFolderPath('Desktop')+'\\مولد تراخيص المحامي الرقمية 1.0.0.exe') -Force\""
+    "build:license": "electron-builder --projectDir license-generator-app --config electron-builder.json && powershell -Command \"Copy-Item -LiteralPath 'license-generator-app\\dist-desktop\\مولد تراخيص المحامي الرقمية 1.0.0.exe' -Destination ([Environment]::GetFolderPath('Desktop')+'\\مولد تراخيص المحامي الرقمية 1.0.0.exe') -Force\"",
+    "blog:publish": "node scripts/blog-publisher/daily-publish.cjs",
+    "blog:dry-run": "node scripts/blog-publisher/daily-publish.cjs --dry-run",
+    "blog:setup-task": "powershell -ExecutionPolicy Bypass -File scripts/blog-publisher/install-task.ps1"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
