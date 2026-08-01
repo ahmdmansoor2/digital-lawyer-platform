@@ -2,13 +2,15 @@
 /**
  * daily-publish.cjs — النشر اليومي التلقائي للمدونة القانونية
  * - يقرأ قائمة المواضيع الجاهزة + سجل النشر
- * - يختار موضوعاً لم يُنشر بعد
- * - يولّد المقال عبر Gemini (GEMINI_API_KEY من .env)
- * - يبني صفحة HTML كاملة بنسق المدونة الحالي
+ * - ينشر 5 مواضيع يومياً (لم تُنشر بعد) — يغطي أعلى عمليات البحث في القانون المصري
+ * - يولّد المقال عبر Gemini (GEMINI_API_KEY من .env) — لا يقل عن 3000 كلمة
+ * - يولّد صورة توضيحية لكل مقال عبر Nano Banana (gemini-2.5-flash-image)
+ *   مع fallback تلقائي إلى SVG احترافي مُصمَّم محلياً إن كانت الصور محجوبة (quota)
+ * - يبني صفحة HTML كاملة بنسق المدونة الحالي مع إرفاق الصورة
  * - يحدّث index.html و published-log.json
  * - ينشر على Firebase Hosting
  *
- * التشغيل: node scripts/blog-publisher/daily-publish.cjs
+ * التشغيل: node scripts/blog-publisher/daily-publish.cjs [--dry-run]
  */
 
 const fs = require('fs');
@@ -19,11 +21,15 @@ const { GoogleGenAI, Type } = require('@google/genai');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const BLOG_DIR = path.join(ROOT, 'public', 'blog');
+const IMG_DIR = path.join(BLOG_DIR, 'images');
 const TOPICS_FILE = path.join(__dirname, 'topics.json');
 const LOG_FILE = path.join(__dirname, 'published-log.json');
 // السجلّ الرئيسي المختوم باليدوي — يُزامن مع LOG_FILE لتفادي انفصال السجلّين
 const LEGACY_LOG_FILE = path.join(ROOT, 'scripts', 'published-log.json');
 const BASE_URL = 'https://justice-91571.web.app';
+const ARTICLES_PER_RUN = 5; // عدد المقالات المنشورة في كل تشغيل
+const MIN_WORDS = 3000; // الحد الأدنى لعدد كلمات المقال
+const IMAGE_MODEL = 'gemini-2.5-flash-image'; // Nano Banana
 
 dotenv.config({ path: path.join(ROOT, '.env') });
 
@@ -101,42 +107,171 @@ function writeLogBoth(localLog) {
   writeJson(LEGACY_LOG_FILE, { published: Array.from(legacyBySlug.values()) });
 }
 
-// ── اختيار الموضوع ────────────────────────────────────────────────────────
-// قبلت سابقاً log كاملاً؛ الآن تقبل publishedSlugs (Set) الموحّد من loadUnifiedLog.
-function pickTopic(topics, publishedSlugs) {
-  const set = publishedSlugs instanceof Set ? publishedSlugs : new Set([]);
-  const available = topics.evergreen.filter(t => !set.has(t.slug));
-  if (available.length === 0) return null;
-  // rotate deterministically:older unused topics first
-  return available[0];
+// ── عدّ كلمات المحتوى العربي (نص أو مصفوفة نصوص) ──────────────────────────
+function countWords(content) {
+  const texts = [];
+  if (typeof content === 'string') texts.push(content);
+  else if (Array.isArray(content)) texts.push(...content);
+  for (const t of texts) {
+    if (typeof t !== 'string') continue;
+    // احسب الكلمات العربية واللاتينية والأرقام كوحدات
+    const matches = t.match(/[\u0600-\u06FF]+|[A-Za-z0-9]+/g);
+    if (matches) return matches.length;
+  }
+  return 0;
 }
 
-// ── توليد المقال عبر Gemini ───────────────────────────────────────────────
-async function generateArticle(ai, topic, usedTitles) {
-  const usedTopics = (usedTitles || []).join(' | ');
+// ── حساب عدد كلمات المقال كاملاً (كل الحقول) ──────────────────────────────
+function articleWordCount(data) {
+  let total = countWords(data.title) + countWords(data.metaDescription) + countWords(data.intro);
+  for (const sec of data.sections || []) {
+    total += countWords(sec.heading) + countWords(sec.paragraphs) + countWords(sec.list);
+  }
+  total += countWords(data.tip) + countWords(data.conclusion);
+  return total;
+}
 
-  const prompt = `أنت محرر محتوى قانوني مصري خبير في منصة "المحامي الرقمية" (منصة لإدارة مكاتب المحاماة في مصر).
-اكتب مقالاً قانونياً جديداً باللغة العربية الفصحى المبسطة حول الموضوع التالي:
+// ── توليد صورة توضيحية عبر Nano Banana (gemini-2.5-flash-image) ───────────
+// تحاول التوليد عبر النموذج؛ إن مُنعت (quota 429 / billing) تُرجع null
+// ليستخدم المتصل الـ fallback المحلي (SVG).
+async function generateImage(ai, topic, data) {
+  const imagePrompt = `ارسم صورة توضيحية احترافية بلون واحد مسطح (flat illustration) بجودة عالية للموضوع القانوني المصري التالي:
+الموضوع: ${topic.title}
+التصنيف: ${topic.category}
+الأسلوب: رسوم توضيحية حديثة (flat design) بخلفية متدرجة داكنة (كحلي/بنفسجي)، أيقونات قانونية واضحة (ميزان، أوراق، أعمدة محكمة)، ألوان نابضة، بدون أي نصوص أو حروف مكتوبة في الصورة.`;
+
+  const resp = await ai.models.generateContent({
+    model: IMAGE_MODEL,
+    contents: [{ text: imagePrompt }],
+    config: {
+      responseModalities: ['IMAGE', 'TEXT'],
+      imageConfig: { aspectRatio: '16:9', imageSize: '1K' },
+    },
+  });
+
+  const parts = (resp.candidates?.[0]?.content?.parts) || [];
+  const img = parts.find(p => p.inlineData && p.inlineData.data);
+  if (!img) return null;
+  const buf = Buffer.from(img.inlineData.data, 'base64');
+  if (buf.length < 5000) return null; // صورة تالفة/فارغة
+  return buf;
+}
+
+// ── توليد SVG احترافي محلياً (fallback بلا تكلفة) ──────────────────────────
+// يُصمَّم بنسق المدونة الداكن مع لون الغلاف الخاص بالموضوع وأيقونة فريدة.
+const SVG_PALETTES = {
+  amber:   ['#f59e0b', '#b45309', '#78350f'],
+  indigo:  ['#6366f1', '#4f46e5', '#312e81'],
+  cyan:    ['#06b6d4', '#0891b2', '#164e63'],
+  purple:  ['#a855f7', '#7c3aed', '#4c1d95'],
+  emerald: ['#10b981', '#059669', '#064e3b'],
+};
+const SVG_ICONS = ['⚖️', '📜', '🏛️', '📄', '🔒', '💼', '🏠', '💵', '🛒', '🚗', '🏢', '👶', '💔', '⏳', '™️', '🌍'];
+
+function hexToRgb(hex) {
+  const h = hex.replace('#', '');
+  return `${parseInt(h.slice(0, 2), 16)},${parseInt(h.slice(2, 4), 16)},${parseInt(h.slice(4, 6), 16)}`;
+}
+
+function generateSvgImage(topic) {
+  const pal = SVG_PALETTES[topic.coverClass] || SVG_PALETTES.indigo;
+  const icon = topic.icon || '⚖️';
+  const rgb = hexToRgb(pal[0]);
+  const slugSafe = (topic.slug || 'article').replace(/[^\w-]/g, '-');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:${pal[2]}"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:${pal[0]};stop-opacity:0.55"/>
+      <stop offset="100%" style="stop-color:${pal[0]};stop-opacity:0.05"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="50%" cy="42%" r="45%">
+      <stop offset="0%" style="stop-color:${pal[0]};stop-opacity:0.28"/>
+      <stop offset="100%" style="stop-color:${pal[0]};stop-opacity:0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="rgba(${rgb},0.5)"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#halo)"/>
+  <g opacity="0.07">
+    <circle cx="180" cy="540" r="260" fill="none" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="180" cy="540" r="180" fill="none" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1020" cy="120" r="260" fill="none" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="1020" cy="120" r="180" fill="none" stroke="#fff" stroke-width="1.5"/>
+  </g>
+  <rect x="470" y="210" width="260" height="260" rx="60" fill="url(#glow)" filter="url(#shadow)"/>
+  <rect x="470" y="210" width="260" height="260" rx="60" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+  <text x="600" y="382" font-size="150" text-anchor="middle" dominant-baseline="central">${icon}</text>
+  <rect x="300" y="520" width="600" height="4" rx="2" fill="${pal[0]}" opacity="0.6"/>
+  <text x="600" y="570" font-size="34" font-weight="700" fill="#e2e8f0" text-anchor="middle" font-family="Cairo, sans-serif">${topic.title}</text>
+  <text x="600" y="612" font-size="20" fill="#94a3b8" text-anchor="middle" font-family="Cairo, sans-serif">منصة المحامي الرقمية • ${topic.category}</text>
+</svg>`;
+  return { svg, ext: 'svg', mime: 'image/svg+xml' };
+}
+
+// ── حفظ صورة المقال (حقيقية أو SVG) وإرجاع مسارها النسبي ───────────────────
+function saveArticleImage(bufOrSvg, topic, slug, index) {
+  fs.mkdirSync(IMG_DIR, { recursive: true });
+  const filename = `${slug}${index > 1 ? `-${index}` : ''}`;
+  if (bufOrSvg && Buffer.isBuffer(bufOrSvg)) {
+    const file = path.join(IMG_DIR, `${filename}.jpg`);
+    fs.writeFileSync(file, bufOrSvg);
+    return `/blog/images/${filename}.jpg`;
+  }
+  const file = path.join(IMG_DIR, `${filename}.svg`);
+  fs.writeFileSync(file, bufOrSvg.svg, 'utf8');
+  return `/blog/images/${filename}.svg`;
+}
+
+// ── اختيار المواضيع ───────────────────────────────────────────────────────
+// ترجع المواضيع غير المنشورة بترتيب ثابت (أقدمها أولاً) وعددها ناتج الإصدار.
+function pickTopics(topics, publishedSlugs, count) {
+  const set = publishedSlugs instanceof Set ? publishedSlugs : new Set([]);
+  const available = topics.evergreen.filter(t => !set.has(t.slug));
+  return available.slice(0, count);
+}
+
+// ── توليد المقال عبر Gemini (≥ MIN_WORDS كلمة) ─────────────────────────────
+const SYSTEM_ROLE = `أنت محرر محتوى قانوني مصري خبير في منصة "المحامي الرقمية" (منصة لإدارة مكاتب المحاماة في مصر).`;
+
+function articlePrompt(topic, usedTitles, existingSections, usedHeadings) {
+  const usedTopics = (usedTitles || []).join(' | ');
+  const headingsHint = (usedHeadings || []).length
+    ? `\nالعناوين المستخدمة سابقاً (لا تكررها): ${usedHeadings.join(' | ')}`
+    : '';
+
+  const structureHint = existingSections && existingSections.length
+    ? `\nأكمل الأقسام من حيث توقفت، أضف ${Math.max(5, 14 - existingSections.length)} أقساماً جديدة غير مكررة.`
+    : '';
+
+  return `${SYSTEM_ROLE}
+اكتب مقالاً قانونياً شاملاً جديداً باللغة العربية الفصحى المبسطة حول الموضوع التالي:
 
 الموضوع: ${topic.title}
 التصنيف: ${topic.category}
 كلمات مفتاحية مستهدفة: ${topic.keywords.join('، ')}
 
 القواعد الصارمة:
-1. المقال قانوني بحت ومرتبط بالقانون المصري تحديداً.
-2. الطول: 800–1200 كلمة.
+1. المقال قانوني بحت ومرتبط بالقانون المصري تحديداً (نصوص وسوابق وممارسة عملية).
+2. الطول: لا يقل إطلاقاً عن 3000 كلمة — اكتب مقالاً موسعاً وعميقاً.
 3. اللغة عربية فصحى مبسطة بأسلوب صحفي/قانوني يسهل فهمه لغير المتخصصين.
 4. لا تخترع أرقام مواد أو أرقام قوانين أو تواريخ غير متأكد منها — إذا لم تكن متأكداً اذكر الفكرة العامة دون رقم مادة.
 5. أعد الصياغة بأسلوبك الخاص تماماً، لا تنسخ من أي مصدر.
 6. البنية:
    - title: عنوان جذاب يبدأ بكلمة مفتاحية رئيسية
    - metaDescription: وصف SEO بحد أقصى 160 حرفاً
-   - intro: مقدمة تشويقية من 2-3 أسطر
-   - sections: من 5 إلى 7 أقسام، كل قسم بعنوان (heading) وفقرات (paragraphs: array of strings) واختيارياً list (array of strings)
-   - tip: نصيحة عملية قابلة للتنفيذ (سطر إلى سطرين)
+   - intro: مقدمة تشويقية من 3-4 أسطر
+   - sections: من 12 إلى 16 قسماً، كل قسم بعنوان (heading) وفقرات (paragraphs: array of strings — كل فقرة من 3-5 جمل) واختيارياً list (array of strings — من 4-8 عناصر)
+   - tip: نصيحة عملية قابلة للتنفيذ (سطران إلى ثلاثة أسطر)
    - conclusion: خاتمة عملية بنصيحة قابلة للتنفيذ
 7. في النهاية أضف دعوة لاستخدام منصة المحامي الرقمية بشكل طبيعي داخل النص (مرة واحدة فقط).
 8. مقالك يجب ألا يكرر هذه المواضيع المنشورة سابقاً: ${usedTopics}.
+9. أجب بحصة JSON كاملة واحدة.${headingsHint}${structureHint}
 
 أجب حصراً بصيغة JSON بالبنية التالية بدون أي نص إضافي خارج JSON:
 {
@@ -149,12 +284,18 @@ async function generateArticle(ai, topic, usedTitles) {
   "tip": "...",
   "conclusion": "..."
 }`;
+}
 
+// استدعاء واحد؛ يرجع JSON محللاً (لا يطبق حد الكلمات — يطبقه المستدعي).
+async function generateArticle(ai, topic, usedTitles, existingSections, usedHeadings) {
+  const prompt = articlePrompt(topic, usedTitles, existingSections, usedHeadings);
   const response = await ai.models.generateContent({
     model: 'gemini-flash-latest',
     contents: [{ text: prompt }],
     config: {
       responseMimeType: 'application/json',
+      // رفع حد الإخراج لأقصى قيمة للسماح بمقالات طويلة (32768 طوكناً تقريباً)
+      generationConfig: { maxOutputTokens: 32768, temperature: 0.8 },
     },
   });
 
@@ -163,12 +304,52 @@ async function generateArticle(ai, topic, usedTitles) {
   return JSON.parse(text);
 }
 
+// توليد مقال طويل مع توسعات حتى يصل إلى MIN_WORDS كلمة.
+async function generateLongArticle(ai, topic, usedTitles) {
+  let data = await generateArticle(ai, topic, usedTitles);
+  if (!data.title || !Array.isArray(data.sections)) throw new Error('بنية المقال المولّد غير صالحة');
+
+  let words = articleWordCount(data);
+  const usedHeadings = new Set(data.sections.map(s => s.heading).filter(Boolean));
+
+  // توسعة متكررة حتى الوصول للحد الأدنى من الكلمات (بحد أقصى 4 جولات)
+  let rounds = 0;
+  while (words < MIN_WORDS && rounds < 4) {
+    rounds++;
+    console.log(`[publish] ${topic.slug}: ${words} كلمة — جولة توسعة ${rounds}/4...`);
+    const extra = await generateArticle(ai, topic, usedTitles, data.sections, Array.from(usedHeadings));
+    if (!Array.isArray(extra.sections) || extra.sections.length === 0) {
+      console.log('[publish] التوسعة لم تُرجع أقساماً جديدة، إيقاف المحاولة.');
+      break;
+    }
+    const before = data.sections.length;
+    for (const sec of extra.sections) {
+      const h = sec.heading || '';
+      if (h && usedHeadings.has(h)) continue; // تجنّب تكرار العناوين
+      data.sections.push(sec);
+      if (h) usedHeadings.add(h);
+    }
+    if (data.sections.length === before) {
+      console.log('[publish] التوسعة أعادت عناوين مكررة فقط — إيقاف.');
+      break;
+    }
+    if (extra.title && !data.title) data.title = extra.title;
+    if (extra.metaDescription && !data.metaDescription) data.metaDescription = extra.metaDescription;
+    if (extra.tip && !data.tip) data.tip = extra.tip;
+    if (extra.conclusion && !data.conclusion) data.conclusion = extra.conclusion;
+    words = articleWordCount(data);
+  }
+
+  console.log(`[publish] ${topic.slug}: اكتمل المقال بـ ${words} كلمة (${data.sections.length} قسماً).`);
+  return { data, words };
+}
+
 // ── استدعاء Gemini مع إعادة محاولة ────────────────────────────────────────
 async function generateWithRetry(ai, topic, usedTitles, maxAttempts = 4) {
   let lastErr;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
-      return await generateArticle(ai, topic, usedTitles);
+      return await generateLongArticle(ai, topic, usedTitles);
     } catch (err) {
       lastErr = err;
       const msg = (err && (err.message || String(err))) || '';
@@ -186,17 +367,28 @@ async function generateWithRetry(ai, topic, usedTitles, maxAttempts = 4) {
 }
 
 // ── بناء HTML المقال (نسق مطابق لبقية المدونة) ───────────────────────────
-function buildArticleHtml(data, topic, meta) {
+function buildArticleHtml(data, topic, meta, heroImagePath) {
   const canonical = `${BASE_URL}/blog/${topic.slug}.html`;
   const dateLabel = meta.dateLabel;
+  const heroImage = heroImagePath
+    ? `<div class="article-hero-img"><img src="${heroImagePath}" alt="${data.title}" loading="eager" width="1200" height="675" /></div>`
+    : '';
+
+  // أدرج صورة inline بعد القسم الثالث تقريباً لإثراء المقال
+  const inlineImage = heroImagePath
+    ? `\n\n      <div class="article-inline-img"><img src="${heroImagePath}" alt="${data.title}" loading="lazy" /></div>`
+    : '';
+
   const sectionsHtml = data.sections.map((sec, i) => {
     const paragraphs = (sec.paragraphs || []).map(p => `      <p>${p}</p>`).join('\n');
     const list = sec.list && sec.list.length
       ? `      <ul>\n${sec.list.map(li => `        <li><strong>${li}</strong></li>`).join('\n')}\n      </ul>`
       : '';
+    // أضف صورة inline بين القسم الثالث والرابع (مرة واحدة)
+    const midImage = (i === 2 && inlineImage) ? inlineImage : '';
     return `      <h2><span class="num">${i + 1}</span> ${sec.heading}</h2>
 ${paragraphs}
-${list}`;
+${list}${midImage}`;
   }).join('\n\n');
 
   const articleCardCss = `
@@ -234,6 +426,9 @@ ${list}`;
     .breadcrumbs .sep { color: var(--muted); opacity: 0.4; }
     .breadcrumbs .current { color: #e2e8f0; font-weight: 800; }
     .article-hero { max-width: 860px; margin: 0 auto; padding: 40px 24px 32px; }
+    .article-hero-img { max-width: 860px; margin: 0 auto; padding: 0 24px 8px; }
+    .article-hero-img img, .article-inline-img img { width: 100%; height: auto; border-radius: 20px; border: 1px solid rgba(148,163,184,0.18); box-shadow: 0 12px 40px rgba(0,0,0,0.35); display: block; }
+    .article-inline-img { max-width: 860px; margin: 28px auto; padding: 0 24px; }
     .article-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 999px; background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3); color: #a5b4fc; font-size: 11px; font-weight: 800; margin-bottom: 20px; }
     .article-hero h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 900; line-height: 1.3; margin-bottom: 20px; color: #fff; }
     .article-meta { display: flex; align-items: center; gap: 20px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
@@ -337,18 +532,9 @@ ${list}`;
       <span>✍️ فريق منصة المحامي الرقمية</span>
       <span>⏱️ ${Math.max(4, Math.round(data.intro.length / 350 + data.sections.length * 0.6))} دقائق قراءة</span>
     </div>
-
-    <div class="ad-slot ad-slot--top" role="complementary" aria-label="إعلان">
-      <span class="ad-label">إعلان</span>
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-7725405859334364"
-           data-ad-slot="2168039898"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
   </div>
+
+  ${heroImage}
 
   <div class="article-container">
     <article class="article-card">
@@ -513,7 +699,9 @@ async function main() {
   const now = cairoNow();
   const { log, publishedSlugs, published } = loadUnifiedLog();
   const topics = readJson(TOPICS_FILE, { evergreen: [] });
-  const topic = pickTopic(topics, publishedSlugs);
+
+  // اختيار مواضيع اليوم (ARTICLES_PER_RUN موضوعاً)
+  const pickedTopics = pickTopics(topics, publishedSlugs, ARTICLES_PER_RUN);
 
   // وضع المحاكاة: يُرجع ما سيُنشر دون كتابة ملفات ولا deploy
   if (process.argv.includes('--dry-run')) {
@@ -521,23 +709,24 @@ async function main() {
     console.log('[dry-run] التاريخ:', now.dateStr);
     console.log('[dry-run] المنطقة الزمنية: Africa/Cairo (UTC+2)');
     console.log('[dry-run] إجمالي المواضيع المنشورة:', published.length);
+    console.log('[dry-run] عدد المقالات المستهدفة هذا التشغيل:', ARTICLES_PER_RUN);
     console.log('[dry-run] مواضيع متبقية في topics.json:', topics.evergreen.filter(t => !publishedSlugs.has(t.slug)).length);
-    if (topic) {
-      console.log('[dry-run] سيُنشر:', topic.title, '— slug:', topic.slug);
-      console.log('[dry-run] التصنيف:', topic.category);
-      console.log('[dry-run] الكلمات المفتاحية:', topic.keywords.join('، '));
-    } else {
+    pickedTopics.forEach((t, i) => {
+      console.log(`[dry-run]   ${i + 1}. ${t.title} — slug: ${t.slug} (${t.category})`);
+    });
+    if (pickedTopics.length === 0) {
       console.log('[dry-run] ⚠️  لا يوجد موضوع جديد متاح.');
     }
     console.log('[dry-run] GEMINI_API_KEY موجود؟', !!GEMINI_API_KEY);
+    console.log('[dry-run] الحد الأدنى لعدد الكلمات:', MIN_WORDS);
+    console.log('[dry-run] نموذج الصور:', IMAGE_MODEL, '(fallback: SVG محلي)');
     console.log('[dry-run] === لم يُكتب أي ملف ولا نُشر أي شيء ===');
     process.exit(0);
   }
 
-  if (!topic) {
+  if (pickedTopics.length === 0) {
     console.log('[publish] ⚠️  لم يتبقَّ موضوع جديد في topics.json.');
     console.log('[publish] → أعد تعبئة scripts/blog-publisher/topics.json بمواضيع Evergreen جديدة.');
-    console.log('[publish]   ابقي عند 12-20 موضوعًا في القائمة لتفادي النفاد.');
     log.skipped.push({ date: now.dateStr, reason: 'no_new_topic' });
     log.last_run = now.iso;
     writeLogBoth(log);
@@ -545,9 +734,9 @@ async function main() {
   }
 
   if (!GEMINI_API_KEY) {
-    const draft = saveDraft(null, topic, 'GEMINI_API_KEY غير موجود في .env');
+    const draft = saveDraft(null, pickedTopics[0], 'GEMINI_API_KEY غير موجود في .env');
     console.error('[publish] خطأ: مفتاح GEMINI_API_KEY غير موجود في .env. حُفظت مسودة عند: ' + draft);
-    log.skipped.push({ date: now.dateStr, slug: topic.slug, reason: 'missing_api_key', draft });
+    log.skipped.push({ date: now.dateStr, slug: pickedTopics[0].slug, reason: 'missing_api_key', draft });
     log.last_run = now.iso;
     writeLogBoth(log);
     process.exit(1);
@@ -556,45 +745,96 @@ async function main() {
   const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
   const usedTitles = published.map(p => p.title);
 
-  try {
-    console.log(`[publish] جاري توليد المقال: ${topic.title} (${now.dateStr})`);
-    const data = await generateWithRetry(ai, topic, usedTitles);
+  console.log(`[publish] === بدء نشر ${pickedTopics.length} مقالاً في ${now.dateStr} ===`);
+  const publishedNow = [];
 
-    // تحقق أساسي من البنية
-    if (!data.title || !data.intro || !Array.isArray(data.sections) || data.sections.length < 4) {
-      throw new Error('المقال المولّد غير مكتمل البنية');
+  for (let i = 0; i < pickedTopics.length; i++) {
+    const topic = pickedTopics[i];
+    console.log(`\n[publish] (${i + 1}/${pickedTopics.length}) جاري توليد: ${topic.title}`);
+    try {
+      // 1. توليد المقال الطويل (≥ MIN_WORDS كلمة)
+      const { data, words } = await generateWithRetry(ai, topic, usedTitles);
+
+      if (!data.title || !data.intro || !Array.isArray(data.sections) || data.sections.length < 4) {
+        throw new Error('المقال المولّد غير مكتمل البنية');
+      }
+
+      // 2. توليد الصورة: Nano Banana أولاً، ثم fallback إلى SVG محلي
+      let heroImagePath = null;
+      let imageSource = 'svg';
+      try {
+        console.log(`[publish] ${topic.slug}: محاولة توليد صورة عبر ${IMAGE_MODEL}...`);
+        const imgBuf = await generateImage(ai, topic, data);
+        if (imgBuf) {
+          heroImagePath = saveArticleImage(imgBuf, topic, topic.slug, 1);
+          imageSource = 'nano-banana';
+        } else {
+          throw new Error('استجابة الصورة فارغة');
+        }
+      } catch (imgErr) {
+        const msg = (imgErr && (imgErr.message || String(imgErr))) || '';
+        console.log(`[publish] ${topic.slug}: توليد الصورة لم ينجح (${String(msg).slice(0, 90)}). استخدام SVG محلي.`);
+        const svg = generateSvgImage(topic);
+        heroImagePath = saveArticleImage(svg, topic, topic.slug, 1);
+        imageSource = 'svg';
+      }
+
+      // 3. بناء HTML مع الصورة
+      const meta = { dateStr: now.dateStr, dateLabel: now.dateLabel };
+      const articleHtml = buildArticleHtml(data, topic, meta, heroImagePath);
+      const articleFile = path.join(BLOG_DIR, `${topic.slug}.html`);
+      fs.writeFileSync(articleFile, articleHtml, 'utf8');
+      console.log(`[publish] تم إنشاء ملف المقال: ${articleFile} (${words} كلمة، صورة: ${imageSource})`);
+
+      addCardToIndex(topic, data, meta);
+      console.log('[publish] تم تحديث index.html');
+
+      usedTitles.push(data.title);
+      publishedNow.push(topic.slug);
+      log.published.push({
+        title: data.title,
+        date: now.dateStr,
+        slug: topic.slug,
+        url: `${BASE_URL}/blog/${topic.slug}.html`,
+        tags: topic.keywords.slice(0, 3),
+        words,
+        image: imageSource,
+      });
+
+      // مهلة قصيرة بين المقالات لتفادي ضغط الـ API
+      if (i < pickedTopics.length - 1) {
+        const delay = 8000;
+        console.log(`[publish] انتظار ${delay / 1000} ثانية بين المقالات...`);
+        await new Promise(r => setTimeout(r, delay));
+      }
+    } catch (err) {
+      console.error(`[publish] خطأ في مقال ${topic.slug}:`, err.message);
+      const draft = saveDraft(null, topic, err.message);
+      log.skipped.push({ date: now.dateStr, slug: topic.slug, reason: err.message, draft });
+      console.error('[publish] حُفظت مسودة للمراجعة اليدوية عند:', draft);
     }
+  }
 
-    const meta = { dateStr: now.dateStr, dateLabel: now.dateLabel };
-    const articleHtml = buildArticleHtml(data, topic, meta);
-    const articleFile = path.join(BLOG_DIR, `${topic.slug}.html`);
-    fs.writeFileSync(articleFile, articleHtml, 'utf8');
-    console.log('[publish] تم إنشاء ملف المقال:', articleFile);
+  log.last_run = now.iso;
+  writeLogBoth(log);
 
-    addCardToIndex(topic, data, meta);
-    console.log('[publish] تم تحديث index.html');
-
-    log.published.push({
-      title: data.title,
-      date: now.dateStr,
-      slug: topic.slug,
-      url: `${BASE_URL}/blog/${topic.slug}.html`,
-      tags: topic.keywords.slice(0, 3),
-    });
-    log.last_run = now.iso;
-    writeLogBoth(log);
-
-    deploy();
-    console.log('[publish] ✅ تم النشر بنجاح:', topic.slug);
-    console.log('[publish] الرابط:', `${BASE_URL}/blog/${topic.slug}.html`);
-  } catch (err) {
-    console.error('[publish] خطأ:', err.message);
-    const draft = saveDraft(null, topic, err.message);
-    log.skipped.push({ date: now.dateStr, slug: topic.slug, reason: err.message, draft });
-    log.last_run = now.iso;
-    writeLogBoth(log);
-    console.error('[publish] حُفظت مسودة للمراجعة اليدوية عند:', draft);
+  if (publishedNow.length === 0) {
+    console.error('[publish] ⚠️  لم يُنشر أي مقال في هذا التشغيل.');
     process.exit(1);
+  }
+
+  // 4. نشر على Firebase (مرة واحدة بعد كل المقالات)
+  console.log(`\n[publish] === نشر ${publishedNow.length} مقالاً على Firebase ===`);
+  try {
+    deploy();
+  } catch (err) {
+    console.error('[publish] فشل النشر على Firebase:', err.message);
+    process.exit(1);
+  }
+
+  console.log(`[publish] ✅ اكتمل نشر ${publishedNow.length} مقالات بنجاح:`);
+  for (const slug of publishedNow) {
+    console.log(`[publish]   - ${BASE_URL}/blog/${slug}.html`);
   }
 }
 
