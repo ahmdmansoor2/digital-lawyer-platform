@@ -67,9 +67,19 @@
         "أنصبة الورثة",
         "قانون الميراث"
       ]
+    },
+    {
+      "title": "إجراءات الطلاق في مصر: دليلك الشامل بين التوثيق الودي ومحكمة الأسرة",
+      "date": "2026-08-01",
+      "slug": "divorce-procedures-egypt",
+      "url": "https://justice-91571.web.app/blog/divorce-procedures-egypt.html",
+      "tags": [
+        "إجراءات الطلاق",
+        "دعوى الطلاق",
+        "محكمة الأسرة"
+      ]
     }
   ],
-  "last_run": "2026-08-01T10:21:45.420Z",
   "skipped": [
     {
       "date": "2026-08-01",
@@ -89,5 +99,6 @@
       "reason": "المقال المولّد غير مكتمل البنية",
       "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\late-tenant-payment-1785571748334.json"
     }
-  ]
+  ],
+  "last_run": "2026-08-01T11:51:25.241Z"
 }
