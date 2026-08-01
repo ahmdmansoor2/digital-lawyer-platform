@@ -944,6 +944,24 @@ async function main() {
   for (const slug of publishedNow) {
     console.log(`[publish]   - ${BASE_URL}/blog/${slug}.html`);
   }
+
+  // 5. نشر نفس المقالات على صفحة فيسبوك (اختياري — يتطلب FB_PAGE_TOKEN)
+  //    السكربت يقرأ من published-log.json (المُحدَّث أعلاه) ويقسم النص الطويل.
+  if (process.env.FB_PAGE_TOKEN) {
+    console.log(`\n[publish] === مشاركة المقالات على فيسبوك ===`);
+    try {
+      execSync('node scripts/blog-publisher/facebook-publish.cjs', {
+        cwd: ROOT,
+        stdio: 'inherit',
+        env: { ...process.env },
+      });
+    } catch (fbErr) {
+      // فشل الفيسبوك لا يكسر النشر — يُسجل ويُكمل
+      console.error('[publish] تحذير: فشل النشر على فيسبوك (يمكن تشغيله لاحقاً يدوياً).');
+    }
+  } else {
+    console.log('\n[publish] ⏭️  لم يُشارك على فيسبوك: FB_PAGE_TOKEN غير مضبوط. أضِفه في .env أو GitHub Secrets.');
+  }
 }
 
 main().catch(err => {

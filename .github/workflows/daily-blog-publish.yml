@@ -15,6 +15,8 @@ jobs:
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+      FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
       ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
     steps:
       - name: Checkout
@@ -36,6 +38,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/blog scripts/blog-publisher/published-log.json scripts/published-log.json
+          git add public/blog scripts/blog-publisher/published-log.json scripts/blog-publisher/facebook-published-log.json scripts/published-log.json
           git diff --cached --quiet && echo "no changes to commit" || git commit -m "chore(blog): auto-publish daily article"
           git push
