@@ -143,6 +143,76 @@
       ],
       "words": 1585,
       "image": "svg"
+    },
+    {
+      "title": "رجوع الشيك في القانون المصري: الدليل القانوني الشامل للإجراءات والعقوبات وطرق التحصيل",
+      "date": "2026-08-01",
+      "slug": "cheque-return-egypt",
+      "url": "https://justice-91571.web.app/blog/cheque-return-egypt.html",
+      "tags": [
+        "رجوع الشيك",
+        "الشيك بدون رصيد",
+        "دعوى الشيك"
+      ],
+      "words": 3581,
+      "image": "svg",
+      "model": "gemini-3-flash-preview"
+    },
+    {
+      "title": "التوكيل الرسمي في مصر: الدليل القانوني الشامل للأنواع والشروط والمخاطر وطرق الإلغاء 2024",
+      "date": "2026-08-01",
+      "slug": "power-of-attorney-egypt",
+      "url": "https://justice-91571.web.app/blog/power-of-attorney-egypt.html",
+      "tags": [
+        "التوكيل الرسمي",
+        "أنواع التوكيلات",
+        "التوكيل الخاص"
+      ],
+      "words": 3362,
+      "image": "svg",
+      "model": "gemini-3-flash-preview"
+    },
+    {
+      "title": "الحضانة في مصر: الدليل القانوني الشامل للأم والأب في ضوء أحكام محكمة الأسرة",
+      "date": "2026-08-01",
+      "slug": "child-custody-egypt",
+      "url": "https://justice-91571.web.app/blog/child-custody-egypt.html",
+      "tags": [
+        "الحضانة في مصر",
+        "حضانة الأطفال",
+        "قانون الأحوال الشخصية"
+      ],
+      "words": 3260,
+      "image": "svg",
+      "model": "gemini-3-flash-preview"
+    },
+    {
+      "title": "زيادة الأجرة في القانون المصري: الدليل القانوني الشامل للملاك والمستأجرين",
+      "date": "2026-08-01",
+      "slug": "rent-increase-egypt",
+      "url": "https://justice-91571.web.app/blog/rent-increase-egypt.html",
+      "tags": [
+        "زيادة الأجرة",
+        "الإيجار الجديد",
+        "الإيجار القديم"
+      ],
+      "words": 3550,
+      "image": "svg",
+      "model": "gemini-3-flash-preview"
+    },
+    {
+      "title": "فترة التجربة في قانون العمل المصري: دليل شامل لحقوق الموظف وضمانات صاحب العمل",
+      "date": "2026-08-01",
+      "slug": "trial-period-rights",
+      "url": "https://justice-91571.web.app/blog/trial-period-rights.html",
+      "tags": [
+        "فترة التجربة",
+        "عقد العمل",
+        "إنهاء التجربة"
+      ],
+      "words": 2559,
+      "image": "svg",
+      "model": "gemini-flash-lite-latest"
     }
   ],
   "skipped": [
@@ -225,5 +295,5 @@
       "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\child-custody-egypt-1785581807609.json"
     }
   ],
-  "last_run": "2026-08-01T12:48:17.830Z"
+  "last_run": "2026-08-01T14:09:37.803Z"
 }

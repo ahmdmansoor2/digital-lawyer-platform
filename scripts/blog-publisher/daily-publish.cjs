@@ -30,8 +30,27 @@ const BASE_URL = 'https://justice-91571.web.app';
 const ARTICLES_PER_RUN = 5; // عدد المقالات المنشورة في كل تشغيل
 const MIN_WORDS = 3000; // الحد الأدنى لعدد كلمات المقال
 const IMAGE_MODEL = 'gemini-2.5-flash-image'; // Nano Banana
-// نموذج النص الرئيسي — gemini-3.5-flash له حصة مجانية منفصلة عن 3.6-flash
-const TEXT_MODEL = process.env.TEXT_MODEL || 'gemini-3.5-flash';
+// نماذج النص المدعومة — كل نموذج له حصة مجانية يومية منفصلة، نوزّع الطلبات
+// بينهم بالتناوب لرفع الطاقة الكلية اليومية (20 طلباً × عدد النماذج).
+const TEXT_MODELS = [
+  process.env.TEXT_MODEL || 'gemini-3.5-flash',
+  'gemini-3-flash-preview',
+  'gemini-flash-lite-latest',
+  'gemini-3.1-flash-lite-preview',
+];
+// مؤشر النموذج الحالي: 0..TEXT_MODELS.length-1
+let textModelIdx = 0;
+
+function currentTextModel() {
+  return TEXT_MODELS[textModelIdx % TEXT_MODELS.length];
+}
+
+// الانتقال للنموذج التالي في القائمة (يُستدعى عند استنفاد حصة النموذج الحالي)
+function advanceTextModel() {
+  textModelIdx = (textModelIdx + 1) % TEXT_MODELS.length;
+  console.log(`[publish] ⚠️  التحويل إلى نموذج النص: ${currentTextModel()}`);
+  return currentTextModel();
+}
 
 dotenv.config({ path: path.join(ROOT, '.env') });
 
@@ -298,35 +317,49 @@ ${initialSectionsHint}${headingsHint}${structureHint}
 
 // استدعاء واحد؛ يرجع JSON محللاً (لا يطبق حد الكلمات — يطبقه المستدعي).
 // يعيد المحاولة على أخطاء JSON/الشبكة حتى 3 مرات قبل أن يفشل.
+// عند استنفاد حصة نموذج (429) ينتقل للنموذج التالي تلقائياً ويجرب مجدداً.
 async function generateArticle(ai, topic, usedTitles, existingSections, usedHeadings) {
   let lastErr;
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    try {
-      const prompt = articlePrompt(topic, usedTitles, existingSections, usedHeadings);
-      const response = await ai.models.generateContent({
-        model: TEXT_MODEL,
-        contents: [{ text: prompt }],
-        config: {
-          responseMimeType: 'application/json',
-          // رفع حد الإخراج لأقصى قيمة للسماح بمقالات طويلة (32768 طوكناً تقريباً)
-          generationConfig: { maxOutputTokens: 32768, temperature: 0.8 },
-        },
-      });
+  // محاولة على عدة نماذج: لكل نموذج حتى 3 محاولات، ثم ننتقل للنموذج التالي
+  const modelsTried = new Set();
+  for (let round = 0; round < TEXT_MODELS.length; round++) {
+    const model = currentTextModel();
+    modelsTried.add(model);
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      try {
+        const prompt = articlePrompt(topic, usedTitles, existingSections, usedHeadings);
+        const response = await ai.models.generateContent({
+          model,
+          contents: [{ text: prompt }],
+          config: {
+            responseMimeType: 'application/json',
+            // رفع حد الإخراج لأقصى قيمة للسماح بمقالات طويلة (32768 طوكناً تقريباً)
+            generationConfig: { maxOutputTokens: 32768, temperature: 0.8 },
+          },
+        });
 
-      const text = response.text;
-      if (!text) throw new Error('Gemini لم يُرجع نصاً');
-      return safeParseJson(text);
-    } catch (err) {
-      lastErr = err;
-      const msg = String(err.message || '');
-      const isTransient = msg.includes('JSON') || msg.includes('fetch failed') || msg.includes('ECONNRESET') || msg.includes('ETIMEDOUT') || msg.includes('429');
-      if (attempt < 3 && isTransient) {
-        console.log(`[publish] استدعاء JSON فشل (محاولة ${attempt}/3): ${msg.slice(0, 100)}`);
-        await new Promise(r => setTimeout(r, 10000 * attempt));
-        continue;
+        const text = response.text;
+        if (!text) throw new Error('Gemini لم يُرجع نصاً');
+        return { data: safeParseJson(text), model };
+      } catch (err) {
+        lastErr = err;
+        const msg = String(err.message || '');
+        // استنفاد الحصة: انتقل فوراً للنموذج التالي دون انتظار (الحصة اليومية لا تتجدد).
+        if (msg.includes('429') || isDailyQuotaError(msg)) {
+          console.log(`[publish] الحصة استُنفدت على ${model} — تجربة نموذج آخر.`);
+          advanceTextModel();
+          break; // اكسر حلقة المحاولات لهذا النموذج وانتقل للتالي
+        }
+        const isTransient = msg.includes('JSON') || msg.includes('fetch failed') || msg.includes('ECONNRESET') || msg.includes('ETIMEDOUT');
+        if (attempt < 3 && isTransient) {
+          console.log(`[publish] استدعاء JSON فشل على ${model} (محاولة ${attempt}/3): ${msg.slice(0, 100)}`);
+          await new Promise(r => setTimeout(r, 10000 * attempt));
+          continue;
+        }
+        break; // خطأ غير قابل للاسترجاع: جرب النموذج التالي
       }
-      throw lastErr;
     }
+    if (modelsTried.size === TEXT_MODELS.length) break;
   }
   throw lastErr;
 }
@@ -354,7 +387,9 @@ function safeParseJson(text) {
 
 // توليد مقال طويل مع توسعات حتى يصل إلى MIN_WORDS كلمة.
 async function generateLongArticle(ai, topic, usedTitles) {
-  let data = await generateArticle(ai, topic, usedTitles);
+  const first = await generateArticle(ai, topic, usedTitles);
+  let data = first.data;
+  let usedModel = first.model;
   if (!data.title || !Array.isArray(data.sections)) throw new Error('بنية المقال المولّد غير صالحة');
 
   let words = articleWordCount(data);
@@ -367,10 +402,12 @@ async function generateLongArticle(ai, topic, usedTitles) {
     console.log(`[publish] ${topic.slug}: ${words} كلمة — جولة توسعة ${rounds}/4...`);
     let extra;
     try {
-      extra = await generateArticle(ai, topic, usedTitles, data.sections, Array.from(usedHeadings));
+      const res = await generateArticle(ai, topic, usedTitles, data.sections, Array.from(usedHeadings));
+      extra = res.data;
+      usedModel = res.model;
     } catch (expandErr) {
       // فشل التوسعة لا يفقد الأقسام المتراكمة — نحتفظ بما وصلنا إليه ونواصل.
-      console.log(`[publish] التوسعة فشلت بعد 3 محاولات (${String(expandErr.message).slice(0, 90)}). الاحتفاظ بما تراكم: ${words} كلمة.`);
+      console.log(`[publish] التوسعة فشلت (${String(expandErr.message).slice(0, 90)}). الاحتفاظ بما تراكم: ${words} كلمة.`);
       break;
     }
     if (!Array.isArray(extra.sections) || extra.sections.length === 0) {
@@ -395,8 +432,8 @@ async function generateLongArticle(ai, topic, usedTitles) {
     words = articleWordCount(data);
   }
 
-  console.log(`[publish] ${topic.slug}: اكتمل المقال بـ ${words} كلمة (${data.sections.length} قسماً).`);
-  return { data, words };
+  console.log(`[publish] ${topic.slug}: اكتمل المقال بـ ${words} كلمة (${data.sections.length} قسماً) عبر ${usedModel}.`);
+  return { data, words, model: usedModel };
 }
 
 // ── استدعاء Gemini مع إعادة محاولة ────────────────────────────────────────
@@ -823,7 +860,7 @@ async function main() {
     console.log(`\n[publish] (${i + 1}/${pickedTopics.length}) جاري توليد: ${topic.title}`);
     try {
       // 1. توليد المقال الطويل (≥ MIN_WORDS كلمة)
-      const { data, words } = await generateWithRetry(ai, topic, usedTitles);
+      const { data, words, model } = await generateWithRetry(ai, topic, usedTitles);
 
       if (!data.title || !data.intro || !Array.isArray(data.sections) || data.sections.length < 4) {
         throw new Error('المقال المولّد غير مكتمل البنية');
@@ -869,6 +906,7 @@ async function main() {
         tags: topic.keywords.slice(0, 3),
         words,
         image: imageSource,
+        model: model || 'unknown',
       });
 
       // مهلة قصيرة بين المقالات لتفادي ضغط الـ API
