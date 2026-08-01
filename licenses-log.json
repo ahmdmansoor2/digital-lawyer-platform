@@ -1,0 +1,20 @@
+[
+  {
+    "id": "90796C34BE80",
+    "customer": "أحمد منصور",
+    "plan": "pro",
+    "issuedAt": 1783246168951,
+    "expiresAt": 1814782168951,
+    "maxCases": 9999,
+    "maxFiles": 9999,
+    "features": [
+      "basic",
+      "ai",
+      "library",
+      "print"
+    ],
+    "licenseKey": "LAWPRO-9079-6C34-BE80-KF6Y",
+    "expiresDate": "٥‏/٧‏/٢٠٢٧",
+    "generatedAt": "2026-07-05T10:09:28.977Z"
+  }
+]

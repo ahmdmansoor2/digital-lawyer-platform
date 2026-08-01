@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المدونة القانونية - منصة المحامي الرقمية</title>
+  <meta name="description" content="مقالات ونصائح قانونية للمحامين المصريين: إدارة القضايا، تنظيم المكتب، التكنولوجيا القانونية، وأفضل الممارسات في المهنة." />
+  <meta name="keywords" content="مدونة قانونية, نصائح محامين, إدارة مكتب محاماة, تكنولوجيا قانونية, مقالات قانونية مصر" />
+  <link rel="canonical" href="https://justice-91571.web.app/blog/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="المدونة القانونية - منصة المحامي الرقمية" />
+  <meta property="og:description" content="نصائح وأدوات لإدارة مكتب المحاماة باحترافية" />
+  <meta property="og:url" content="https://justice-91571.web.app/blog/" />
+  <meta property="og:site_name" content="منصة المحامي الرقمية" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a;
+      --border: rgba(148,163,184,0.12);
+      --indigo: #6366f1;
+      --purple: #7c3aed;
+      --emerald: #10b981;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --card-bg: rgba(15,23,42,0.7);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.7;
+      background-image:
+        radial-gradient(ellipse at 70% 0%, rgba(99,102,241,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 80%, rgba(124,58,237,0.12) 0%, transparent 50%),
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,23,42,0.82);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 24px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--indigo), var(--purple));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; box-shadow: 0 4px 20px rgba(99,102,241,0.35);
+    }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-name { font-size: 15px; font-weight: 900; color: #fff; line-height: 1.2; }
+    .logo-sub { font-size: 10px; color: var(--emerald); font-weight: 700; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
+    .nav-cta {
+      padding: 9px 22px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--indigo), var(--purple));
+      color: #fff; font-size: 12px; font-weight: 900; text-decoration: none;
+      box-shadow: 0 4px 16px rgba(99,102,241,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(99,102,241,0.45); }
+
+    /* HERO */
+    .hero {
+      max-width: 860px; margin: 0 auto;
+      padding: 72px 24px 56px; text-align: center;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 18px; border-radius: 999px;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.3);
+      color: #a5b4fc; font-size: 11px; font-weight: 800;
+      margin-bottom: 24px;
+    }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #a5b4fc; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.2; margin-bottom: 20px;
+      background: linear-gradient(135deg, #e2e8f0 0%, #a5b4fc 50%, #c084fc 100%);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p { font-size: 17px; color: var(--muted); max-width: 600px; margin: 0 auto; font-weight: 600; }
+
+    /* SECTION */
+    .section { max-width: 1100px; margin: 0 auto; padding: 0 24px 64px; }
+
+    /* POSTS GRID */
+    .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+    .post-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 22px; overflow: hidden;
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      display: flex; flex-direction: column;
+      text-decoration: none; color: inherit;
+    }
+    .post-card:hover { transform: translateY(-4px); border-color: rgba(99,102,241,0.4); box-shadow: 0 16px 48px rgba(0,0,0,0.25); }
+    .post-cover {
+      height: 160px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .post-cover.indigo { background: linear-gradient(135deg, var(--indigo), var(--purple), #ec4899); }
+    .post-cover.amber { background: linear-gradient(135deg, #f59e0b, #ea580c, #dc2626); }
+    .post-cover.cyan { background: linear-gradient(135deg, #06b6d4, #2563eb, var(--indigo)); }
+    .post-cover-icon { font-size: 56px; opacity: 0.5; }
+    .post-cover-tag {
+      position: absolute; top: 14px; right: 14px;
+      padding: 5px 14px; border-radius: 999px;
+      background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff; font-size: 10px; font-weight: 800;
+    }
+    .post-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+    .post-meta { display: flex; align-items: center; gap: 12px; font-size: 11px; color: var(--muted); margin-bottom: 12px; }
+    .post-meta span { display: flex; align-items: center; gap: 4px; }
+    .post-card h3 { font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 10px; line-height: 1.5; }
+    .post-card p { font-size: 12px; color: var(--muted); line-height: 1.7; flex: 1; margin-bottom: 16px; }
+    .post-cta {
+      font-size: 12px; font-weight: 800; color: var(--indigo);
+      display: flex; align-items: center; gap: 6px;
+      transition: gap 0.2s;
+    }
+    .post-card:hover .post-cta { gap: 10px; }
+
+    /* INFO CARD */
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      margin-bottom: 32px;
+    }
+    .info-card h2 { font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .info-card h2::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--indigo); }
+    .info-card p { font-size: 14px; color: var(--muted); line-height: 1.9; margin-bottom: 12px; }
+    .info-card p:last-child { margin-bottom: 0; }
+    .info-card strong { color: #fff; }
+
+    /* CTA */
+    .cta-section { text-align: center; padding: 0 24px 80px; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 48px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--emerald), #0891b2, var(--indigo));
+      color: #fff; font-size: 15px; font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 8px 32px rgba(16,185,129,0.25);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(16,185,129,0.4); }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); background: rgba(15,23,42,0.95); padding: 56px 24px 32px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .footer-logo-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .footer-logo-name { font-size: 15px; font-weight: 900; color: #fff; }
+    .footer-desc { font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 280px; }
+    .footer-email { font-size: 12px; color: var(--indigo); margin-top: 10px; font-weight: 700; }
+    .footer-email a { color: var(--indigo); text-decoration: none; }
+    .footer-col h4 { font-size: 13px; font-weight: 800; color: #e2e8f0; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--indigo); }
+    .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
+
+    /* BREADCRUMBS */
+    .breadcrumbs {
+      max-width: 1200px; margin: 0 auto;
+      padding: 14px 24px 0;
+      font-size: 12px; color: var(--muted);
+      display: flex; align-items: center; gap: 8px;
+      flex-wrap: wrap;
+    }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; transition: color 0.2s; font-weight: 700; }
+    .breadcrumbs a:hover { color: var(--indigo); }
+    .breadcrumbs .current { color: var(--text); font-weight: 800; }
+    .breadcrumbs .sep { color: var(--muted); opacity: 0.4; font-size: 10px; }
+
+    /* ADSENSE SLOTS */
+    .ad-slot { margin: 28px auto; max-width: 100%; text-align: center; min-height: 90px; }
+    .ad-slot--top { margin-top: 8px; margin-bottom: 36px; }
+    .ad-slot--inline { margin: 40px auto; }
+    .ad-slot--bottom { margin: 36px auto 8px; }
+    .ad-label { display: block; font-size: 10px; color: var(--muted); text-align: center; margin-bottom: 6px; letter-spacing: 0.5px; font-weight: 700; }
+    .ad-fallback { display: inline-block; padding: 22px 26px; background: rgba(15,23,42,0.5); border: 1px dashed rgba(99,102,241,0.3); border-radius: 14px; color: var(--muted); font-size: 12px; max-width: 728px; }
+    .ad-fallback strong { color: var(--indigo); }
+
+    @media (max-width: 900px) { .posts-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 640px) {
+      .posts-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .nav-links { display: none; }
+    }
+  
+    .post-cover.purple { background: linear-gradient(135deg, #a855f7, #ec4899); }
+
+    .post-cover--image {
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      position: relative;
+    }
+    .post-cover--image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 100%);
+      pointer-events: none;
+    }
+    .post-cover--image .post-cover-tag {
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(8px);
+      background: rgba(0,0,0,0.4) !important;
+    }
+</style>
+</head>
+<body>
+  
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="logo-icon">⚖️</div>
+        <div class="logo-text">
+          <span class="logo-name">منصة المحامي الرقمية</span>
+          <span class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="/">الرئيسية</a>
+        <a href="/about.html">عن المنصة</a>
+        <a href="/features.html">المميزات</a>
+        <a href="/pricing.html">مجانية بالكامل</a>
+        <a href="/blog/" class="active">المدونة</a>
+        <a href="/contact.html">تواصل معنا</a>
+      </div>
+      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
+    </div>
+  </nav>
+  <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><span class="current">المدونة</span></nav>
+
+  <div class="hero">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      مقالات جديدة كل أسبوعين
+    </div>
+    <h1>المدونة القانونية</h1>
+    <p>نصائح عملية وأدوات عصرية لكل محامٍ مصري يسعى لتطوير مكتبه ومهنته — من إدارة القضايا إلى التكنولوجيا القانونية.</p>
+  </div>
+
+  <!-- TOP AD -->
+  <div class="ad-slot ad-slot--top" role="complementary" aria-label="إعلان">
+    <span class="ad-label">إعلان</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7725405859334364"
+         data-ad-slot="2168039898"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="section">
+
+    <div class="posts-grid">
+
+      <a href="/blog/inheritance-shares-egypt.html" class="post-card">
+        <div class="post-cover indigo">
+          <span class="post-cover-icon">⚖️</span>
+          <span class="post-cover-tag">الميراث</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📅 ١ أغسطس ٢٠٢٦</span>
+            <span>⏱️ 5 دقائق</span>
+          </div>
+          <h3>الميراث في مصر: دليل شامل وفهم بسيط لقواعد أنصبة الورثة وقسمة التركة</h3>
+          <p>تعرف على القواعد الأساسية للميراث في مصر، كيفية توزيع أنصبة الورثة الشرعية، وشروط قسمة التركة وفقاً للقانون المصري بأسلوب صحفي يسهل فهمه للجميع.</p>
+          <div class="post-cta">اقرأ المقال ←</div>
+        </div>
+      </a>
+
+      <a href="/blog/late-tenant-payment.html" class="post-card">
+        <div class="post-cover amber">
+          <span class="post-cover-icon">🏠</span>
+          <span class="post-cover-tag">قانون الإيجارات</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📅 ١ أغسطس ٢٠٢٦</span>
+            <span>⏱️ 5 دقائق</span>
+          </div>
+          <h3>تأخر سداد الإيجار في القانون المصري: الدليل القانوني الكامل لإجراءات الإخلاء واسترداد الحقوق</h3>
+          <p>تعرّف على الإجراءات القانونية عند تأخر المستأجر عن سداد الإيجار في مصر، وكيفية إرسال التكليف بالوفاء ورفع دعوى إخلاء واستصدار حكم إخلاء نهائي.</p>
+          <div class="post-cta">اقرأ المقال ←</div>
+        </div>
+      </a>
+
+      <a href="/blog/legal-practice-tips.html" class="post-card">
+        <div class="post-cover indigo">
+          <span class="post-cover-icon">🏛️</span>
+          <span class="post-cover-tag">إدارة المكتب</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📅 25 يوليو 2026</span>
+            <span>⏱️ 5 دقائق</span>
+          </div>
+          <h3>10 نصائح ذهبية لإدارة مكتب المحاماة باحترافية</h3>
+          <p>اكتشف أهم الممارسات التي يتبعها كبار المحامين في تنظيم ملفاتهم، إدارة وقتهم، وبناء علاقات قوية مع موكليهم.</p>
+          <div class="post-cta">اقرأ المقال ←</div>
+        </div>
+      </a>
+
+      <a href="/blog/case-management-guide.html" class="post-card">
+        <div class="post-cover amber">
+          <span class="post-cover-icon">📋</span>
+          <span class="post-cover-tag">إدارة القضايا</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📅 23 يوليو 2026</span>
+            <span>⏱️ 8 دقائق</span>
+          </div>
+          <h3>الدليل الشامل لإدارة القضايا: من القيد إلى الحكم</h3>
+          <p>كيف تنظم قضاياك من لحظة استلامها حتى صدور الحكم، مع نصائح عملية لتجنب الأخطاء الشائعة التي تكلف الوقت والمال.</p>
+          <div class="post-cta">اقرأ المقال ←</div>
+        </div>
+      </a>
+
+      <a href="/blog/tech-for-lawyers.html" class="post-card">
+        <div class="post-cover cyan">
+          <span class="post-cover-icon">💻</span>
+          <span class="post-cover-tag">تكنولوجيا</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📅 20 يوليو 2026</span>
+            <span>⏱️ 6 دقائق</span>
+          </div>
+          <h3>التكنولوجيا القانونية: لماذا المحامي الذكي هو المحامي الناجح؟</h3>
+          <p>كيف أحدثت التكنولوجيا تحولاً في مهنة المحاماة، وما هي الأدوات التي لا غنى عنها لكل محامٍ عصري في 2026.</p>
+          <div class="post-cta">اقرأ المقال ←</div>
+        </div>
+      </a>
+
+      <a href="/blog/courtroom-advocacy.html" class="post-card">
+        <div class="post-cover purple">
+          <span class="post-cover-icon">⚖️</span>
+          <span class="post-cover-tag">فن المرافعة</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📅 28 يوليو 2026</span>
+            <span>⏱️ 7 دقائق</span>
+          </div>
+          <h3>فن المرافعة أمام المحاكم: دليلك الشامل للاحتراف</h3>
+          <p>دليل شامل لإتقان فن المرافعة: التحضير، فنون الإقناع، لغة الجسد، والتعامل مع الأسئلة المفاجئة من القاضي.</p>
+          <div class="post-cta">اقرأ المقال ←</div>
+        </div>
+      </a>
+
+      <a href="/blog/law-firm-marketing.html" class="post-card">
+        <div class="post-cover cyan">
+          <span class="post-cover-icon">📢</span>
+          <span class="post-cover-tag">التسويق</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📅 30 يوليو 2026</span>
+            <span>⏱️ 7 دقائق</span>
+          </div>
+          <h3>التسويق لمكتب المحاماة: كيف تجذب موكلك بدون إعلانات مكلفة</h3>
+          <p>استراتيجيات عملية لتسويق مكتبك القانوني: Google Business، المدونة، السوشيال ميديا، وقياس العائد.</p>
+          <div class="post-cta">اقرأ المقال ←</div>
+        </div>
+      </a>
+
+      <!-- NEW_CARD_ANCHOR -->
+    </div><!-- /posts-grid -->
+
+    <div class="info-card">
+      <h2>لماذا هذه المدونة؟</h2>
+      <p>نؤمن في <strong>منصة المحامي الرقمية</strong> أن نجاح المحامي لا يعتمد فقط على معرفته القانونية، بل أيضاً على <strong>تنظيم وقته</strong>، <strong>إدارة ملفاته</strong> بطريقة يسهل الوصول إليها، <strong>متابعة موكليه</strong> بشكل فعّال، و<strong>تبني الأدوات الحديثة</strong> التي توفر وقته وجهده.</p>
+      <p>في هذه المدونة، نشاركك خلاصة خبراتنا العملية مع المحامين المصريين، ونقدم لك نصائح مجربة وأدوات مبتكرة تساعدك على الارتقاء بممارستك المهنية. ننشر مقالاً جديداً كل يوم — تابعنا للبقاء على اطلاع.</p>
+    </div>
+
+  </div>
+
+  
+  <!-- BOTTOM AD -->
+  <div class="ad-slot ad-slot--bottom" role="complementary" aria-label="إعلان">
+    <span class="ad-label">إعلان</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7725405859334364"
+         data-ad-slot="2168039898"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+<div class="cta-section">
+    <a href="/" class="cta-btn">ابدأ استخدام المنصة مجاناً 🚀</a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon">⚖️</div>
+            <span class="footer-logo-name">منصة المحامي الرقمية</span>
+          </div>
+          <p class="footer-desc">النظام البرمجي المتكامل والمجاني لإدارة مكاتب المحاماة في جمهورية مصر العربية.</p>
+          <p class="footer-email">التواصل: <a href="mailto:ahmdmansoor222@gmail.com">ahmdmansoor222@gmail.com</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>أقسام المنصة</h4>
+          <ul>
+            <li><a href="/">الرئيسية</a></li>
+            <li><a href="/about.html">عن المنصة</a></li>
+            <li><a href="/features.html">المميزات</a></li>
+            <li><a href="/pricing.html">مجانية بالكامل</a></li>
+            <li><a href="/blog/">المدونة القانونية</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>السياسات والتواصل</h4>
+          <ul>
+            <li><a href="/privacy.html">سياسة الخصوصية</a></li>
+            <li><a href="/terms.html">شروط الاستخدام</a></li>
+            <li><a href="/contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 منصة المحامي الرقمية — جميع الحقوق محفوظة</span>
+        <span>خدمة مجانية للمحامين والقانونيين في مصر</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      try {
+        var p = new URLSearchParams(window.location.search);
+        if (p.get('from') === 'app') {
+          var cta = document.querySelector('.nav-cta');
+          if (cta) {
+            cta.innerHTML = '← العودة إلى لوحة التحكم';
+            cta.setAttribute('aria-label', 'العودة إلى لوحة التحكم');
+          }
+        }
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>

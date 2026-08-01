@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>مولّد تراخيص منصة المحامي الرقمية</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    html, body {
+      font-family: 'Cairo', 'IBM Plex Sans Arabic', sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+    .glass {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    .card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(148, 163, 184, 0.15);
+    }
+    .glow-indigo { box-shadow: 0 0 30px -5px rgba(99, 102, 241, 0.3); }
+    .glow-rose { box-shadow: 0 0 30px -5px rgba(244, 63, 94, 0.3); }
+    .glow-emerald { box-shadow: 0 0 30px -5px rgba(16, 185, 129, 0.3); }
+    .mono { font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace; }
+    .gradient-text {
+      background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #f472b6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+    .scrollbar::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.4); }
+    .scrollbar::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.4); border-radius: 4px; }
+    .scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.6); }
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      box-shadow: 0 4px 14px -3px rgba(99, 102, 241, 0.5);
+      transition: all 0.2s;
+    }
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px -3px rgba(99, 102, 241, 0.7);
+    }
+    .btn-danger {
+      background: linear-gradient(135deg, #ef4444 0%, #f43f5e 100%);
+    }
+    .btn-success {
+      background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%);
+    }
+    input, select, textarea {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      color: #f1f5f9;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+    .toast {
+      animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; transform: translateY(-10px); }
+    }
+    .fade-out { animation: fadeOut 0.3s forwards; }
+    .tab-btn.active {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      color: white;
+      box-shadow: 0 4px 14px -3px rgba(99, 102, 241, 0.5);
+    }
+    .status-valid { color: #10b981; }
+    .status-invalid { color: #ef4444; }
+    .status-warning { color: #f59e0b; }
+    .row-hover:hover { background: rgba(99, 102, 241, 0.08); }
+  </style>
+</head>
+<body class="text-slate-100">
+  <div id="app" class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="glass border-b border-indigo-500/20 px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center glow-indigo">
+          <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-lg font-black gradient-text">مولّد تراخيص منصة المحامي الرقمية</h1>
+          <p class="text-[10px] text-slate-400 font-bold">إصدار احترافي — متوافق مع نظام الترخيص المُدمج v2</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <div id="status-pill" class="text-[10px] font-bold px-3 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+          ✓ متصل بالخدمة المحلية
+        </div>
+        <div class="text-[10px] font-bold px-3 py-1.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+          🔐 RSA + HMAC-SHA256
+        </div>
+      </div>
+    </header>
+
+    <!-- Tabs -->
+    <nav class="flex gap-2 px-6 pt-4 border-b border-slate-800">
+      <button data-tab="generate" class="tab-btn active px-4 py-2 rounded-t-lg text-xs font-bold text-slate-300 transition">⚡ توليد مفتاح</button>
+      <button data-tab="verify" class="tab-btn px-4 py-2 rounded-t-lg text-xs font-bold text-slate-300 transition">✓ تحقق من مفتاح</button>
+      <button data-tab="records" class="tab-btn px-4 py-2 rounded-t-lg text-xs font-bold text-slate-300 transition">📋 السجل <span id="records-count" class="bg-rose-500/30 text-rose-300 px-1.5 rounded-full mr-1">0</span></button>
+      <button data-tab="batch" class="tab-btn px-4 py-2 rounded-t-lg text-xs font-bold text-slate-300 transition">📦 توليد دفعة</button>
+      <button data-tab="about" class="tab-btn px-4 py-2 rounded-t-lg text-xs font-bold text-slate-300 transition">ℹ️ معلومات</button>
+    </nav>
+
+    <!-- Content -->
+    <main class="flex-1 p-6 scrollbar overflow-y-auto">
+
+      <!-- ========== TAB: Generate ========== -->
+      <section data-section="generate" class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <!-- Form -->
+        <div class="lg:col-span-2 card rounded-2xl p-5 space-y-4">
+          <div class="flex items-center gap-2 pb-2 border-b border-slate-700">
+            <h2 class="text-sm font-black text-white">بيانات الترخيص الجديد</h2>
+            <span class="text-[10px] text-slate-400">— املأ الحقول ثم اضغط "توليد المفتاح"</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-[11px] font-bold text-slate-400 mb-1">اسم العميل / الشركة *</label>
+              <input id="f-customer" placeholder="مثال: مكتب المحامي أحمد منصور" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-slate-400 mb-1">Customer Key (معرّف فريد) *</label>
+              <input id="f-key" placeholder="مثال: AHMED-001" class="mono" dir="ltr" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-slate-400 mb-1">Machine ID (اتركه فارغاً للسماح بأي جهاز)</label>
+              <div class="flex gap-2">
+                <input id="f-machine" placeholder="32 hex chars — اختياري" class="mono flex-1" dir="ltr" />
+                <button id="btn-fetch-machine" type="button" class="text-[10px] font-bold px-2 py-1 bg-slate-700 hover:bg-slate-600 rounded">📋 من هذا الجهاز</button>
+                <button id="btn-clear-machine" type="button" class="text-[10px] font-bold px-2 py-1 bg-slate-700 hover:bg-slate-600 rounded">✕</button>
+              </div>
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-slate-400 mb-1">المدة بالأيام *</label>
+              <div class="flex gap-2">
+                <input id="f-duration" type="number" min="1" value="365" class="mono flex-1" dir="ltr" />
+                <button data-preset="30" type="button" class="preset-btn text-[10px] font-bold px-2 py-1 bg-slate-700 hover:bg-slate-600 rounded">شهر</button>
+                <button data-preset="90" type="button" class="preset-btn text-[10px] font-bold px-2 py-1 bg-slate-700 hover:bg-slate-600 rounded">ربع</button>
+                <button data-preset="180" type="button" class="preset-btn text-[10px] font-bold px-2 py-1 bg-slate-700 hover:bg-slate-600 rounded">نصف</button>
+                <button data-preset="365" type="button" class="preset-btn text-[10px] font-bold px-2 py-1 bg-slate-700 hover:bg-slate-600 rounded">سنة</button>
+                <button data-preset="3650" type="button" class="preset-btn text-[10px] font-bold px-2 py-1 bg-slate-700 hover:bg-slate-600 rounded">10 سنوات</button>
+              </div>
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-slate-400 mb-1">الحد الأقصى للمستخدمين</label>
+              <input id="f-maxusers" type="number" value="-1" min="-1" class="mono" dir="ltr" />
+              <p class="text-[10px] text-slate-500 mt-1">-1 = غير محدود</p>
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-slate-400 mb-1">الميزات (features)</label>
+              <select id="f-features">
+                <option value="full">كامل (full)</option>
+                <option value="basic">أساسي (basic)</option>
+                <option value="professional">احترافي (professional)</option>
+                <option value="enterprise">مؤسسات (enterprise)</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-[11px] font-bold text-slate-400 mb-1">ملاحظات داخلية</label>
+              <textarea id="f-notes" rows="2" placeholder="مثال: طلبية من تاريخ 2024-12-01، رقم الفاتورة INV-101..."></textarea>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 pt-3 border-t border-slate-700">
+            <button id="btn-generate" class="btn-primary text-white font-black text-sm px-6 py-3 rounded-xl flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+              توليد المفتاح
+            </button>
+            <button id="btn-reset-form" type="button" class="text-[11px] text-slate-400 hover:text-slate-200 underline">مسح الحقول</button>
+            <span class="text-[10px] text-slate-500 mr-auto">* حقول إلزامية</span>
+          </div>
+        </div>
+
+        <!-- Result -->
+        <div class="card rounded-2xl p-5 space-y-3">
+          <div class="flex items-center gap-2 pb-2 border-b border-slate-700">
+            <h2 class="text-sm font-black text-white">المفتاح المُولَّد</h2>
+          </div>
+          <div id="result-empty" class="text-center py-10 text-slate-500">
+            <svg class="w-12 h-12 mx-auto text-slate-700 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" /></svg>
+            <p class="text-xs">اضغط "توليد المفتاح" لعرض المفتاح هنا</p>
+          </div>
+          <div id="result-card" class="hidden space-y-3">
+            <div class="bg-slate-950/80 border border-indigo-500/30 rounded-lg p-3">
+              <p class="text-[10px] font-bold text-indigo-300 mb-1">التوكن (أرسله للعميل)</p>
+              <div id="result-token" class="mono text-[11px] text-white break-all leading-relaxed"></div>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-[11px]">
+              <div class="bg-slate-900/60 rounded p-2">
+                <span class="text-slate-400">العميل:</span>
+                <span id="result-customer" class="font-bold text-white mr-1"></span>
+              </div>
+              <div class="bg-slate-900/60 rounded p-2">
+                <span class="text-slate-400">المعرّف:</span>
+                <span id="result-key" class="font-bold text-white mr-1 mono"></span>
+              </div>
+              <div class="bg-slate-900/60 rounded p-2">
+                <span class="text-slate-400">الانتهاء:</span>
+                <span id="result-expires" class="font-bold text-white mr-1"></span>
+              </div>
+              <div class="bg-slate-900/60 rounded p-2">
+                <span class="text-slate-400">المدة:</span>
+                <span id="result-duration" class="font-bold text-white mr-1"></span>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <button id="btn-copy-token" class="btn-primary flex-1 text-white font-bold text-xs py-2.5 rounded-lg">📋 نسخ المفتاح</button>
+              <button id="btn-verify-now" class="btn-success flex-1 text-white font-bold text-xs py-2.5 rounded-lg">✓ تحقق منه</button>
+              <button id="btn-save-record" class="flex-1 bg-slate-700 hover:bg-slate-600 text-white font-bold text-xs py-2.5 rounded-lg">💾 حفظ في السجل</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== TAB: Verify ========== -->
+      <section data-section="verify" class="hidden max-w-3xl mx-auto">
+        <div class="card rounded-2xl p-6 space-y-4">
+          <div class="flex items-center gap-2 pb-2 border-b border-slate-700">
+            <h2 class="text-sm font-black text-white">التحقق من مفتاح ترخيص</h2>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-400 mb-1">التوكن</label>
+            <textarea id="verify-token" rows="4" placeholder="الصق المفتاح هنا..." class="mono text-[11px]" dir="ltr"></textarea>
+          </div>
+          <button id="btn-verify" class="btn-primary text-white font-black text-sm px-6 py-2.5 rounded-xl">تحقق الآن</button>
+          <div id="verify-result" class="hidden"></div>
+        </div>
+      </section>
+
+      <!-- ========== TAB: Records ========== -->
+      <section data-section="records" class="hidden">
+        <div class="card rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between pb-2 border-b border-slate-700 flex-wrap gap-2">
+            <h2 class="text-sm font-black text-white">📋 سجل التراخيص المُولَّدة</h2>
+            <div class="flex items-center gap-2">
+              <input id="records-search" placeholder="🔍 بحث..." class="text-xs w-48" />
+              <button id="btn-export-json" class="text-[10px] font-bold px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg">📥 JSON</button>
+              <button id="btn-export-csv" class="text-[10px] font-bold px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg">📊 CSV</button>
+              <button id="btn-export-txt" class="text-[10px] font-bold px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg">📄 TXT</button>
+              <button id="btn-clear-all" class="text-[10px] font-bold px-3 py-1.5 bg-rose-600 hover:bg-rose-500 text-white rounded-lg">🧹 مسح الكل</button>
+            </div>
+          </div>
+          <div id="records-table" class="overflow-x-auto max-h-[600px] overflow-y-auto scrollbar"></div>
+        </div>
+      </section>
+
+      <!-- ========== TAB: Batch ========== -->
+      <section data-section="batch" class="hidden">
+        <div class="card rounded-2xl p-5 space-y-4">
+          <div class="flex items-center gap-2 pb-2 border-b border-slate-700">
+            <h2 class="text-sm font-black text-white">📦 توليد دفعة واحدة</h2>
+            <span class="text-[10px] text-slate-400">— أدخل بيانات كل عميل في سطر: name,key,durationDays,machineId(اختياري)</span>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-slate-400 mb-1">قائمة العملاء (CSV بدون رؤوس)</label>
+            <textarea id="batch-input" rows="10" class="mono text-[11px]" dir="ltr" placeholder="مكتب المحامي أحمد,AHMED-001,365,&#10;مكتب سارة,SARA-002,180,&#10;شركة محمد,MOHAMED-003,90,abc123machineid&#10;"></textarea>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="btn-batch-generate" class="btn-primary text-white font-black text-sm px-6 py-2.5 rounded-xl">توليد الكل</button>
+            <button id="btn-batch-template" class="text-[11px] font-bold px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg">📋 إدراج قالب</button>
+          </div>
+          <div id="batch-results" class="space-y-2"></div>
+        </div>
+      </section>
+
+      <!-- ========== TAB: About ========== -->
+      <section data-section="about" class="hidden">
+        <div class="max-w-3xl mx-auto card rounded-2xl p-6 space-y-4">
+          <h2 class="text-base font-black gradient-text">مولّد تراخيص منصة المحامي الرقمية v2</h2>
+          <p class="text-xs text-slate-300 leading-relaxed">أداة احترافية لتوليد مفاتيح ترخيص رقمية موقّعة بـ HMAC-SHA256 متوافقة مع نظام الترخيص المُدمج في منصة المحامي الرقمية (electron/main.cjs).</p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px]">
+            <div class="bg-slate-900/60 rounded-lg p-3">
+              <p class="font-bold text-indigo-300 mb-1">🔐 خوارزمية التوقيع</p>
+              <p>HMAC-SHA256 مع المفتاح السري المشترك (LICENSE_SECRET)</p>
+            </div>
+            <div class="bg-slate-900/60 rounded-lg p-3">
+              <p class="font-bold text-indigo-300 mb-1">📦 تنسيق التوكن</p>
+              <p class="mono text-[10px] break-all">payload_base64url.SIG_FIRST_16_UPPERCASE</p>
+            </div>
+            <div class="bg-slate-900/60 rounded-lg p-3">
+              <p class="font-bold text-indigo-300 mb-1">🛡️ ربط الجهاز</p>
+              <p>sha256(hostname + platform + cpu + arch)</p>
+            </div>
+            <div class="bg-slate-900/60 rounded-lg p-3">
+              <p class="font-bold text-indigo-300 mb-1">💾 حفظ السجل</p>
+              <p>%APPDATA%\license-generator\generated-licenses.json</p>
+            </div>
+          </div>
+
+          <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-3 text-[11px] text-amber-200">
+            <p class="font-bold mb-1">⚠️ تنبيه أمني</p>
+            <p>المفتاح السري مُدمج في الكود (موجود في electron/main.cjs) ومجزّأ إلى 3 parts عبر hex escapes لمنع الهندسة العكسية السهلة. لا تنشر هذا البرنامج على الإنترنت — استخدمه فقط على جهازك الموثوق.</p>
+          </div>
+
+          <button id="btn-reveal-secret" class="text-[11px] font-bold px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg">👁️ عرض المفتاح السري (للمطورين فقط)</button>
+          <div id="secret-display" class="hidden bg-slate-950 border border-rose-500/30 rounded-lg p-3 mt-2">
+            <p class="text-[10px] font-bold text-rose-300 mb-1 mono break-all" id="secret-value"></p>
+            <p class="text-[10px] text-slate-500 mt-1">⚠️ هذا المفتاح موجود في electron/main.cjs (سطر LICENSE_SECRET). تأكد أنه متطابق وإلا لن يقبل البرنامج المفاتيح المُولَّدة.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Toast container -->
+    <div id="toast-container" class="fixed top-4 left-1/2 -translate-x-1/2 z-50 space-y-2"></div>
+
+    <!-- Confirm Modal -->
+    <div id="confirm-modal" class="hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-slate-900 border border-slate-700 rounded-2xl p-6 w-full max-w-md shadow-2xl">
+        <h3 id="confirm-title" class="text-base font-black text-white mb-2"></h3>
+        <p id="confirm-message" class="text-xs text-slate-300 mb-5 leading-relaxed whitespace-pre-line"></p>
+        <div class="flex gap-2">
+          <button id="confirm-cancel" class="flex-1 bg-slate-700 hover:bg-slate-600 text-slate-100 text-xs font-bold py-2.5 rounded-xl">إلغاء</button>
+          <button id="confirm-ok" class="flex-1 btn-primary text-white text-xs font-bold py-2.5 rounded-xl">تأكيد</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

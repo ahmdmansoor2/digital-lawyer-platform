@@ -1,0 +1,6 @@
+{
+  "name": "نظام إدارة مكتب المحاماة",
+  "description": "برنامج احترافي متكامل لإدارة مكاتب المحاماة في مصر يشمل إدارة القضايا، الأجندة وجدول الجلسات، حسابات الموكلين والأتعاب، وصيغ العقود والدعاوى طبقاً للقانون المصري.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

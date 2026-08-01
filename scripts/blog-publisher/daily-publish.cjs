@@ -1,0 +1,604 @@
+#!/usr/bin/env node
+/**
+ * daily-publish.cjs — النشر اليومي التلقائي للمدونة القانونية
+ * - يقرأ قائمة المواضيع الجاهزة + سجل النشر
+ * - يختار موضوعاً لم يُنشر بعد
+ * - يولّد المقال عبر Gemini (GEMINI_API_KEY من .env)
+ * - يبني صفحة HTML كاملة بنسق المدونة الحالي
+ * - يحدّث index.html و published-log.json
+ * - ينشر على Firebase Hosting
+ *
+ * التشغيل: node scripts/blog-publisher/daily-publish.cjs
+ */
+
+const fs = require('fs');
+const path = require('path');
+const { execSync } = require('child_process');
+const dotenv = require('dotenv');
+const { GoogleGenAI, Type } = require('@google/genai');
+
+const ROOT = path.resolve(__dirname, '..', '..');
+const BLOG_DIR = path.join(ROOT, 'public', 'blog');
+const TOPICS_FILE = path.join(__dirname, 'topics.json');
+const LOG_FILE = path.join(__dirname, 'published-log.json');
+// السجلّ الرئيسي المختوم باليدوي — يُزامن مع LOG_FILE لتفادي انفصال السجلّين
+const LEGACY_LOG_FILE = path.join(ROOT, 'scripts', 'published-log.json');
+const BASE_URL = 'https://justice-91571.web.app';
+
+dotenv.config({ path: path.join(ROOT, '.env') });
+
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const CAIRO_OFFSET = 120; // دقائق (UTC+2)
+
+// ── التاريخ بتوقيت القاهرة ────────────────────────────────────────────────
+function cairoNow() {
+  const now = new Date(Date.now() + CAIRO_OFFSET * 60000);
+  return {
+    iso: now.toISOString(),
+    dateStr: now.toISOString().slice(0, 10),
+    dateLabel: now.toLocaleDateString('ar-EG', {
+      timeZone: 'Africa/Cairo',
+      year: 'numeric', month: 'long', day: 'numeric',
+    }),
+  };
+}
+
+// ── أدوات JSON آمنة ───────────────────────────────────────────────────────
+function readJson(file, fallback) {
+  try {
+    const raw = fs.readFileSync(file, 'utf8');
+    return JSON.parse(raw);
+  } catch {
+    return fallback;
+  }
+}
+function writeJson(file, data) {
+  fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf8');
+}
+
+// ── مزامنة السجلّين: دمج published عبر slug مع إبقاء آخر نسخة فريدة ─────────
+// السجلّان: LOG_FILE (مصدر السكربت) و LEGACY_LOG_FILE (المكتوب يدويًا قديمًا).
+// المطلوب: مجموعة موحّدة من slugs المنشورة، تُستخدم لتفادي التكرار.
+function loadUnifiedLog() {
+  const local = readJson(LOG_FILE, { published: [], skipped: [] });
+  const legacy = readJson(LEGACY_LOG_FILE, { published: [] });
+
+  // تهيئة آمنة للمفاتيح الناقصة
+  if (!Array.isArray(local.published)) local.published = [];
+  if (!Array.isArray(local.skipped)) local.skipped = [];
+  if (!Array.isArray(legacy.published)) legacy.published = [];
+  if (typeof local.last_run !== 'string') local.last_run = null;
+
+  // دمج published: استخدم slug كمفتاح، آخر نسخة تفوز
+  const bySlug = new Map();
+  for (const entry of [...legacy.published, ...local.published]) {
+    if (entry && typeof entry.slug === 'string') bySlug.set(entry.slug, entry);
+  }
+  const unified = Array.from(bySlug.values());
+
+  return {
+    log: local,
+    publishedSlugs: new Set(unified.map(e => e.slug)),
+    published: unified,
+  };
+}
+
+// ── كتابة السجلّ في كلا المسارين لتفادي الانفصال مستقبلًا ─────────────────
+function writeLogBoth(localLog) {
+  // أعِد بناء النسخة المحلية بشكل آمن
+  const safeLocal = {
+    published: localLog.published || [],
+    skipped: localLog.skipped || [],
+    last_run: localLog.last_run || null,
+  };
+  writeJson(LOG_FILE, safeLocal);
+
+  // اكتب نسخة موحّدة في LEGACY_LOG_FILE مع preserve أي مفاتيح يدوية
+  const legacy = readJson(LEGACY_LOG_FILE, { published: [] });
+  const legacyBySlug = new Map();
+  for (const e of legacy.published) if (e && e.slug) legacyBySlug.set(e.slug, e);
+  for (const e of safeLocal.published) if (e && e.slug) legacyBySlug.set(e.slug, e);
+  writeJson(LEGACY_LOG_FILE, { published: Array.from(legacyBySlug.values()) });
+}
+
+// ── اختيار الموضوع ────────────────────────────────────────────────────────
+// قبلت سابقاً log كاملاً؛ الآن تقبل publishedSlugs (Set) الموحّد من loadUnifiedLog.
+function pickTopic(topics, publishedSlugs) {
+  const set = publishedSlugs instanceof Set ? publishedSlugs : new Set([]);
+  const available = topics.evergreen.filter(t => !set.has(t.slug));
+  if (available.length === 0) return null;
+  // rotate deterministically:older unused topics first
+  return available[0];
+}
+
+// ── توليد المقال عبر Gemini ───────────────────────────────────────────────
+async function generateArticle(ai, topic, usedTitles) {
+  const usedTopics = (usedTitles || []).join(' | ');
+
+  const prompt = `أنت محرر محتوى قانوني مصري خبير في منصة "المحامي الرقمية" (منصة لإدارة مكاتب المحاماة في مصر).
+اكتب مقالاً قانونياً جديداً باللغة العربية الفصحى المبسطة حول الموضوع التالي:
+
+الموضوع: ${topic.title}
+التصنيف: ${topic.category}
+كلمات مفتاحية مستهدفة: ${topic.keywords.join('، ')}
+
+القواعد الصارمة:
+1. المقال قانوني بحت ومرتبط بالقانون المصري تحديداً.
+2. الطول: 800–1200 كلمة.
+3. اللغة عربية فصحى مبسطة بأسلوب صحفي/قانوني يسهل فهمه لغير المتخصصين.
+4. لا تخترع أرقام مواد أو أرقام قوانين أو تواريخ غير متأكد منها — إذا لم تكن متأكداً اذكر الفكرة العامة دون رقم مادة.
+5. أعد الصياغة بأسلوبك الخاص تماماً، لا تنسخ من أي مصدر.
+6. البنية:
+   - title: عنوان جذاب يبدأ بكلمة مفتاحية رئيسية
+   - metaDescription: وصف SEO بحد أقصى 160 حرفاً
+   - intro: مقدمة تشويقية من 2-3 أسطر
+   - sections: من 5 إلى 7 أقسام، كل قسم بعنوان (heading) وفقرات (paragraphs: array of strings) واختيارياً list (array of strings)
+   - tip: نصيحة عملية قابلة للتنفيذ (سطر إلى سطرين)
+   - conclusion: خاتمة عملية بنصيحة قابلة للتنفيذ
+7. في النهاية أضف دعوة لاستخدام منصة المحامي الرقمية بشكل طبيعي داخل النص (مرة واحدة فقط).
+8. مقالك يجب ألا يكرر هذه المواضيع المنشورة سابقاً: ${usedTopics}.
+
+أجب حصراً بصيغة JSON بالبنية التالية بدون أي نص إضافي خارج JSON:
+{
+  "title": "...",
+  "metaDescription": "...",
+  "intro": "...",
+  "sections": [
+    { "heading": "...", "paragraphs": ["..."], "list": ["..."] }
+  ],
+  "tip": "...",
+  "conclusion": "..."
+}`;
+
+  const response = await ai.models.generateContent({
+    model: 'gemini-flash-latest',
+    contents: [{ text: prompt }],
+    config: {
+      responseMimeType: 'application/json',
+    },
+  });
+
+  const text = response.text;
+  if (!text) throw new Error('Gemini لم يُرجع نصاً');
+  return JSON.parse(text);
+}
+
+// ── استدعاء Gemini مع إعادة محاولة ────────────────────────────────────────
+async function generateWithRetry(ai, topic, usedTitles, maxAttempts = 4) {
+  let lastErr;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      return await generateArticle(ai, topic, usedTitles);
+    } catch (err) {
+      lastErr = err;
+      const msg = (err && (err.message || String(err))) || '';
+      console.log(`[publish] محاولة ${attempt}/${maxAttempts} فشلت: ${String(msg).slice(0, 140)}`);
+      if (msg.includes('429') || msg.includes('quota') || msg.includes('fetch failed') || msg.includes('ECONNRESET') || msg.includes('ETIMEDOUT')) {
+        const waitMs = 15000 * attempt;
+        console.log(`[publish] انتظار ${waitMs / 1000} ثانية ثم إعادة المحاولة...`);
+        await new Promise(r => setTimeout(r, waitMs));
+        continue;
+      }
+      break;
+    }
+  }
+  throw lastErr;
+}
+
+// ── بناء HTML المقال (نسق مطابق لبقية المدونة) ───────────────────────────
+function buildArticleHtml(data, topic, meta) {
+  const canonical = `${BASE_URL}/blog/${topic.slug}.html`;
+  const dateLabel = meta.dateLabel;
+  const sectionsHtml = data.sections.map((sec, i) => {
+    const paragraphs = (sec.paragraphs || []).map(p => `      <p>${p}</p>`).join('\n');
+    const list = sec.list && sec.list.length
+      ? `      <ul>\n${sec.list.map(li => `        <li><strong>${li}</strong></li>`).join('\n')}\n      </ul>`
+      : '';
+    return `      <h2><span class="num">${i + 1}</span> ${sec.heading}</h2>
+${paragraphs}
+${list}`;
+  }).join('\n\n');
+
+  const articleCardCss = `
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a; --border: rgba(148,163,184,0.12);
+      --indigo: #6366f1; --purple: #7c3aed; --emerald: #10b981; --cyan: #06b6d4; --amber: #f59e0b;
+      --text: #f1f5f9; --muted: #94a3b8; --card-bg: rgba(15,23,42,0.75);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg); color: var(--text);
+      min-height: 100vh; line-height: 1.9;
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.15) 0%, transparent 60%),
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 100% 100%, 48px 48px, 48px 48px;
+    }
+    nav.main-nav { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 20px rgba(99,102,241,0.35); }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-name { font-size: 15px; font-weight: 900; color: #fff; line-height: 1.2; }
+    .logo-sub { font-size: 10px; color: var(--emerald); font-weight: 700; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
+    .nav-cta { padding: 9px 22px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); color: #fff; font-size: 12px; font-weight: 900; text-decoration: none; box-shadow: 0 4px 16px rgba(99,102,241,0.3); }
+    .breadcrumbs { max-width: 860px; margin: 16px auto 0; padding: 0 24px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; font-weight: 700; }
+    .breadcrumbs a:hover { color: var(--indigo); }
+    .breadcrumbs .sep { color: var(--muted); opacity: 0.4; }
+    .breadcrumbs .current { color: #e2e8f0; font-weight: 800; }
+    .article-hero { max-width: 860px; margin: 0 auto; padding: 40px 24px 32px; }
+    .article-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 999px; background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3); color: #a5b4fc; font-size: 11px; font-weight: 800; margin-bottom: 20px; }
+    .article-hero h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 900; line-height: 1.3; margin-bottom: 20px; color: #fff; }
+    .article-meta { display: flex; align-items: center; gap: 20px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
+    .article-container { max-width: 860px; margin: 0 auto; padding: 0 24px 64px; }
+    .article-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; padding: 48px 44px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 8px 40px rgba(0,0,0,0.25); }
+    .article-card h2 { font-size: 22px; font-weight: 900; color: #fff; margin: 40px 0 16px; display: flex; align-items: center; gap: 12px; line-height: 1.4; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+    .article-card h2:first-of-type { margin-top: 0; }
+    .article-card h2 .num { color: #a5b4fc; font-size: 13px; background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3); padding: 2px 10px; border-radius: 999px; flex-shrink: 0; }
+    .article-card h3 { font-size: 18px; font-weight: 800; color: #e2e8f0; margin: 28px 0 12px; }
+    .article-card p { font-size: 15px; color: #cbd5e1; line-height: 1.95; margin-bottom: 16px; }
+    .article-card strong { color: #fff; font-weight: 800; }
+    .article-card ul { margin: 16px 0 24px; padding-right: 20px; list-style-position: outside; }
+    .article-card li { font-size: 14px; color: #cbd5e1; line-height: 1.9; margin-bottom: 10px; }
+    .article-card li strong { color: #a5b4fc; }
+    .highlight { background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(124,58,237,0.08)); border: 1px solid rgba(99,102,241,0.3); border-radius: 16px; padding: 24px 28px; margin: 24px 0 32px; }
+    .highlight p { color: #f1f5f9; margin-bottom: 0; font-size: 16px; font-weight: 700; line-height: 1.8; }
+    .callout { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.3); border-radius: 16px; padding: 20px 24px; margin: 28px 0; display: flex; gap: 14px; align-items: flex-start; }
+    .callout-icon { font-size: 24px; flex-shrink: 0; }
+    .callout p { margin-bottom: 0; color: #6ee7b7; font-size: 14px; }
+    .callout p strong { color: #fff; }
+    .disclaimer { background: rgba(148,163,184,0.08); border: 1px solid rgba(148,163,184,0.2); border-radius: 14px; padding: 18px 22px; margin: 32px 0 0; }
+    .disclaimer p { margin-bottom: 0; font-size: 12px; color: var(--muted); line-height: 1.8; }
+    .back-link { text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .back-link a { display: inline-flex; align-items: center; gap: 8px; color: var(--indigo); font-size: 13px; font-weight: 800; text-decoration: none; padding: 10px 24px; border-radius: 12px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3); }
+    .cta-section { text-align: center; padding: 0 24px 64px; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 48px; border-radius: 16px; background: linear-gradient(135deg, var(--emerald), #0891b2, var(--indigo)); color: #fff; font-size: 15px; font-weight: 900; text-decoration: none; box-shadow: 0 8px 32px rgba(16,185,129,0.25); }
+    footer { border-top: 1px solid var(--border); background: rgba(15,23,42,0.95); padding: 56px 24px 32px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .footer-logo-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .footer-logo-name { font-size: 15px; font-weight: 900; color: #fff; }
+    .footer-desc { font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 280px; }
+    .footer-email { font-size: 12px; color: var(--indigo); margin-top: 10px; font-weight: 700; }
+    .footer-email a { color: var(--indigo); text-decoration: none; }
+    .footer-col h4 { font-size: 13px; font-weight: 800; color: #e2e8f0; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul a { font-size: 12px; color: var(--muted); text-decoration: none; }
+    .footer-col ul a:hover { color: var(--indigo); }
+    .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
+    @media (max-width: 768px) { .article-card { padding: 28px 20px; } .footer-grid { grid-template-columns: 1fr; gap: 28px; } .nav-links { display: none; } }
+  `;
+
+  return `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${data.title} - منصة المحامي الرقمية</title>
+  <meta name="description" content="${data.metaDescription}" />
+  <meta name="keywords" content="${topic.keywords.join(', ')}" />
+  <link rel="canonical" href="${canonical}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="${data.title}" />
+  <meta property="og:description" content="${data.metaDescription}" />
+  <meta property="og:url" content="${canonical}" />
+  <meta property="og:site_name" content="منصة المحامي الرقمية" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
+  <style>${articleCardCss}</style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="logo-icon">⚖️</div>
+        <div class="logo-text">
+          <span class="logo-name">منصة المحامي الرقمية</span>
+          <span class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="/">الرئيسية</a>
+        <a href="/about.html">عن المنصة</a>
+        <a href="/features.html">المميزات</a>
+        <a href="/pricing.html">مجانية بالكامل</a>
+        <a href="/blog/" class="active">المدونة</a>
+        <a href="/contact.html">تواصل معنا</a>
+      </div>
+      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
+    </div>
+  </nav>
+
+  <nav class="breadcrumbs" aria-label="مسار التنقل">
+    <a href="/">الرئيسية</a>
+    <span class="sep">‹</span>
+    <a href="/blog/">المدونة القانونية</a>
+    <span class="sep">‹</span>
+    <span class="current">${topic.category}</span>
+  </nav>
+
+  <div class="article-hero">
+    <div class="article-badge">📌 ${topic.category}</div>
+    <h1>${data.title}</h1>
+    <div class="article-meta">
+      <span>📅 ${dateLabel}</span>
+      <span>✍️ فريق منصة المحامي الرقمية</span>
+      <span>⏱️ ${Math.max(4, Math.round(data.intro.length / 350 + data.sections.length * 0.6))} دقائق قراءة</span>
+    </div>
+
+    <div class="ad-slot ad-slot--top" role="complementary" aria-label="إعلان">
+      <span class="ad-label">إعلان</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7725405859334364"
+           data-ad-slot="2168039898"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+
+  <div class="article-container">
+    <article class="article-card">
+      <div class="highlight">
+        <p>${data.intro}</p>
+      </div>
+
+${sectionsHtml}
+
+      <div class="callout">
+        <span class="callout-icon">💡</span>
+        <p><strong>نصيحة عملية:</strong> ${data.tip}</p>
+      </div>
+
+      <h2>الخلاصة</h2>
+      <p>${data.conclusion}</p>
+
+      <div class="disclaimer">
+        <p>هذا المقال لأغراض التوعية القانونية العامة ولا يغني عن استشارة محامٍ متخصص.</p>
+      </div>
+
+      <div class="back-link">
+        <a href="/blog/">← العودة للمدونة القانونية</a>
+      </div>
+    </article>
+  </div>
+
+  <div class="ad-slot ad-slot--bottom" role="complementary" aria-label="إعلان">
+    <span class="ad-label">إعلان</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7725405859334364"
+         data-ad-slot="2168039898"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="cta-section">
+    <a href="/" class="cta-btn">ابدأ استخدام المنصة مجاناً الآن 🚀</a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon">⚖️</div>
+            <span class="footer-logo-name">منصة المحامي الرقمية</span>
+          </div>
+          <p class="footer-desc">النظام البرمجي المتكامل والمجاني لإدارة مكاتب المحاماة في جمهورية مصر العربية.</p>
+          <p class="footer-email">التواصل: <a href="mailto:ahmdmansoor222@gmail.com">ahmdmansoor222@gmail.com</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>أقسام المنصة</h4>
+          <ul>
+            <li><a href="/">الرئيسية</a></li>
+            <li><a href="/about.html">عن المنصة</a></li>
+            <li><a href="/features.html">المميزات</a></li>
+            <li><a href="/pricing.html">مجانية بالكامل</a></li>
+            <li><a href="/blog/">المدونة القانونية</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>السياسات والتواصل</h4>
+          <ul>
+            <li><a href="/privacy.html">سياسة الخصوصية</a></li>
+            <li><a href="/terms.html">شروط الاستخدام</a></li>
+            <li><a href="/contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 منصة المحامي الرقمية — جميع الحقوق محفوظة</span>
+        <span>خدمة مجانية للمحامين والقانونيين في مصر</span>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .ad-slot { margin: 32px auto; max-width: 100%; text-align: center; min-height: 90px; }
+    .ad-slot--top { margin-top: 8px; margin-bottom: 32px; }
+    .ad-slot--bottom { margin: 32px auto 8px; }
+    .ad-label { display: block; font-size: 10px; color: var(--muted); text-align: center; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.5px; }
+  </style>
+</body>
+</html>
+`;
+}
+
+// ── تحديث بطاقة في index.html ─────────────────────────────────────────────
+function addCardToIndex(topic, data, meta) {
+  const indexPath = path.join(BLOG_DIR, 'index.html');
+  let html = fs.readFileSync(indexPath, 'utf8');
+
+  const card = `      <a href="/blog/${topic.slug}.html" class="post-card">
+        <div class="post-cover ${topic.coverClass || 'indigo'}">
+          <span class="post-cover-icon">${topic.icon || '📌'}</span>
+          <span class="post-cover-tag">${topic.category}</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📅 ${meta.dateLabel}</span>
+            <span>⏱️ 5 دقائق</span>
+          </div>
+          <h3>${data.title}</h3>
+          <p>${data.metaDescription}</p>
+          <div class="post-cta">اقرأ المقال ←</div>
+        </div>
+      </a>`;
+
+  const gridEnd = '    </div>\n\n    <div class="info-card">';
+  if (!html.includes(`/blog/${topic.slug}.html`)) {
+    if (html.includes(gridEnd)) {
+      html = html.replace(gridEnd, card + '\n\n' + gridEnd);
+    } else {
+      // fallback: insert right after <div class="posts-grid">
+      html = html.replace('<div class="posts-grid">', '<div class="posts-grid">\n\n' + card);
+    }
+    fs.writeFileSync(indexPath, html, 'utf8');
+  }
+  return true;
+}
+
+// ── مزامنة المدونة إلى dist (لأن firebase.json ينشر من dist) ──────────────
+function syncBlogToDist() {
+  const DIST_BLOG = path.join(ROOT, 'dist', 'blog');
+  if (!fs.existsSync(DIST_BLOG)) fs.mkdirSync(DIST_BLOG, { recursive: true });
+  for (const file of fs.readdirSync(BLOG_DIR)) {
+    const src = path.join(BLOG_DIR, file);
+    const dst = path.join(DIST_BLOG, file);
+    if (fs.statSync(src).isDirectory()) {
+      fs.cpSync(src, dst, { recursive: true, force: true });
+    } else {
+      fs.copyFileSync(src, dst);
+    }
+  }
+  console.log('[publish] تمت مزامنة المدونة إلى dist/blog');
+}
+
+// ── النشر على Firebase ────────────────────────────────────────────────────
+function deploy() {
+  syncBlogToDist();
+  execSync('npx firebase deploy --only hosting', {
+    cwd: ROOT,
+    stdio: 'inherit',
+    env: { ...process.env, FORCE_COLOR: '1' },
+  });
+}
+
+// ── الحفظ كمسودة عند الفشل ────────────────────────────────────────────────
+function saveDraft(data, topic, reason) {
+  const draftsDir = path.join(ROOT, 'scripts', 'blog-publisher', 'drafts');
+  fs.mkdirSync(draftsDir, { recursive: true });
+  const file = path.join(draftsDir, `${topic.slug}-${Date.now()}.json`);
+  fs.writeFileSync(file, JSON.stringify({ topic, data, reason, failedAt: new Date().toISOString() }, null, 2), 'utf8');
+  return file;
+}
+
+// ── MAIN ──────────────────────────────────────────────────────────────────
+async function main() {
+  const now = cairoNow();
+  const { log, publishedSlugs, published } = loadUnifiedLog();
+  const topics = readJson(TOPICS_FILE, { evergreen: [] });
+  const topic = pickTopic(topics, publishedSlugs);
+
+  // وضع المحاكاة: يُرجع ما سيُنشر دون كتابة ملفات ولا deploy
+  if (process.argv.includes('--dry-run')) {
+    console.log('[dry-run] === معاينة النشر بدون تنفيذ ===');
+    console.log('[dry-run] التاريخ:', now.dateStr);
+    console.log('[dry-run] المنطقة الزمنية: Africa/Cairo (UTC+2)');
+    console.log('[dry-run] إجمالي المواضيع المنشورة:', published.length);
+    console.log('[dry-run] مواضيع متبقية في topics.json:', topics.evergreen.filter(t => !publishedSlugs.has(t.slug)).length);
+    if (topic) {
+      console.log('[dry-run] سيُنشر:', topic.title, '— slug:', topic.slug);
+      console.log('[dry-run] التصنيف:', topic.category);
+      console.log('[dry-run] الكلمات المفتاحية:', topic.keywords.join('، '));
+    } else {
+      console.log('[dry-run] ⚠️  لا يوجد موضوع جديد متاح.');
+    }
+    console.log('[dry-run] GEMINI_API_KEY موجود؟', !!GEMINI_API_KEY);
+    console.log('[dry-run] === لم يُكتب أي ملف ولا نُشر أي شيء ===');
+    process.exit(0);
+  }
+
+  if (!topic) {
+    console.log('[publish] ⚠️  لم يتبقَّ موضوع جديد في topics.json.');
+    console.log('[publish] → أعد تعبئة scripts/blog-publisher/topics.json بمواضيع Evergreen جديدة.');
+    console.log('[publish]   ابقي عند 12-20 موضوعًا في القائمة لتفادي النفاد.');
+    log.skipped.push({ date: now.dateStr, reason: 'no_new_topic' });
+    log.last_run = now.iso;
+    writeLogBoth(log);
+    process.exit(0);
+  }
+
+  if (!GEMINI_API_KEY) {
+    const draft = saveDraft(null, topic, 'GEMINI_API_KEY غير موجود في .env');
+    console.error('[publish] خطأ: مفتاح GEMINI_API_KEY غير موجود في .env. حُفظت مسودة عند: ' + draft);
+    log.skipped.push({ date: now.dateStr, slug: topic.slug, reason: 'missing_api_key', draft });
+    log.last_run = now.iso;
+    writeLogBoth(log);
+    process.exit(1);
+  }
+
+  const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+  const usedTitles = published.map(p => p.title);
+
+  try {
+    console.log(`[publish] جاري توليد المقال: ${topic.title} (${now.dateStr})`);
+    const data = await generateWithRetry(ai, topic, usedTitles);
+
+    // تحقق أساسي من البنية
+    if (!data.title || !data.intro || !Array.isArray(data.sections) || data.sections.length < 4) {
+      throw new Error('المقال المولّد غير مكتمل البنية');
+    }
+
+    const meta = { dateStr: now.dateStr, dateLabel: now.dateLabel };
+    const articleHtml = buildArticleHtml(data, topic, meta);
+    const articleFile = path.join(BLOG_DIR, `${topic.slug}.html`);
+    fs.writeFileSync(articleFile, articleHtml, 'utf8');
+    console.log('[publish] تم إنشاء ملف المقال:', articleFile);
+
+    addCardToIndex(topic, data, meta);
+    console.log('[publish] تم تحديث index.html');
+
+    log.published.push({
+      title: data.title,
+      date: now.dateStr,
+      slug: topic.slug,
+      url: `${BASE_URL}/blog/${topic.slug}.html`,
+      tags: topic.keywords.slice(0, 3),
+    });
+    log.last_run = now.iso;
+    writeLogBoth(log);
+
+    deploy();
+    console.log('[publish] ✅ تم النشر بنجاح:', topic.slug);
+    console.log('[publish] الرابط:', `${BASE_URL}/blog/${topic.slug}.html`);
+  } catch (err) {
+    console.error('[publish] خطأ:', err.message);
+    const draft = saveDraft(null, topic, err.message);
+    log.skipped.push({ date: now.dateStr, slug: topic.slug, reason: err.message, draft });
+    log.last_run = now.iso;
+    writeLogBoth(log);
+    console.error('[publish] حُفظت مسودة للمراجعة اليدوية عند:', draft);
+    process.exit(1);
+  }
+}
+
+main().catch(err => {
+  console.error('[publish] فشل غير متوقع:', err);
+  process.exit(1);
+});

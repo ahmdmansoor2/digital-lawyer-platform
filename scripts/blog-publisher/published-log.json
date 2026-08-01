@@ -1,0 +1,93 @@
+{
+  "published": [
+    {
+      "title": "10 نصائح ذهبية لإدارة مكتب المحاماة باحترافية",
+      "date": "2026-07-25",
+      "slug": "legal-practice-tips",
+      "url": "https://justice-91571.web.app/blog/legal-practice-tips.html",
+      "tags": [
+        "إدارة المكتب",
+        "نصائح"
+      ]
+    },
+    {
+      "title": "الدليل الشامل لإدارة القضايا: من القيد إلى الحكم",
+      "date": "2026-07-23",
+      "slug": "case-management-guide",
+      "url": "https://justice-91571.web.app/blog/case-management-guide.html",
+      "tags": [
+        "إدارة القضايا"
+      ]
+    },
+    {
+      "title": "التكنولوجيا القانونية: لماذا المحامي الذكي هو المحامي الناجح؟",
+      "date": "2026-07-20",
+      "slug": "tech-for-lawyers",
+      "url": "https://justice-91571.web.app/blog/tech-for-lawyers.html",
+      "tags": [
+        "تكنولوجيا"
+      ]
+    },
+    {
+      "title": "فن المرافعة أمام المحاكم: دليلك الشامل للاحتراف",
+      "date": "2026-07-28",
+      "slug": "courtroom-advocacy",
+      "url": "https://justice-91571.web.app/blog/courtroom-advocacy.html",
+      "tags": [
+        "فن المرافعة"
+      ]
+    },
+    {
+      "title": "التسويق لمكتب المحاماة: كيف تجذب موكلك بدون إعلانات مكلفة",
+      "date": "2026-07-30",
+      "slug": "law-firm-marketing",
+      "url": "https://justice-91571.web.app/blog/law-firm-marketing.html",
+      "tags": [
+        "التسويق"
+      ]
+    },
+    {
+      "title": "تأخر سداد الإيجار في القانون المصري: الإجراءات القانونية واستصدار حكم إخلاء",
+      "date": "2026-08-01",
+      "slug": "late-tenant-payment",
+      "url": "https://justice-91571.web.app/blog/late-tenant-payment.html",
+      "tags": [
+        "إخلاء مستأجر",
+        "تأخر سداد الإيجار",
+        "قانون الإيجارات مصر"
+      ]
+    },
+    {
+      "title": "الميراث في مصر: دليل شامل وفهم بسيط لقواعد أنصبة الورثة وقسمة التركة",
+      "date": "2026-08-01",
+      "slug": "inheritance-shares-egypt",
+      "url": "https://justice-91571.web.app/blog/inheritance-shares-egypt.html",
+      "tags": [
+        "الميراث في مصر",
+        "أنصبة الورثة",
+        "قانون الميراث"
+      ]
+    }
+  ],
+  "last_run": "2026-08-01T10:21:45.420Z",
+  "skipped": [
+    {
+      "date": "2026-08-01",
+      "slug": "late-tenant-payment",
+      "reason": "{\"error\":{\"code\":404,\"message\":\"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use a newer model for the latest features and improvements.\",\"status\":\"NOT_FOUND\"}}",
+      "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\late-tenant-payment-1785571677895.json"
+    },
+    {
+      "date": "2026-08-01",
+      "slug": "late-tenant-payment",
+      "reason": "fetch failed",
+      "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\late-tenant-payment-1785571713305.json"
+    },
+    {
+      "date": "2026-08-01",
+      "slug": "late-tenant-payment",
+      "reason": "المقال المولّد غير مكتمل البنية",
+      "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\late-tenant-payment-1785571748334.json"
+    }
+  ]
+}

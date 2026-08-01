@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مولّد مفاتيح الترخيص — منصة المحامي الرقمية</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(135deg, #060810 0%, #0d1025 60%, #07090f 100%);
+      min-height: 100vh;
+      color: #e2e8f0;
+      padding: 24px 16px;
+    }
+
+    .container { max-width: 760px; margin: 0 auto; }
+
+    /* ─── Header ─── */
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+      padding: 28px;
+      background: linear-gradient(145deg, #111827, #0f1420);
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #6366f1, #8b5cf6, #06b6d4);
+    }
+    .header-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 14px;
+      box-shadow: 0 8px 32px rgba(99,102,241,0.4);
+    }
+    .header h1 { font-size: 22px; font-weight: 900; color: #fff; }
+    .header p { font-size: 12px; color: #64748b; margin-top: 4px; }
+
+    /* ─── Card ─── */
+    .card {
+      background: linear-gradient(145deg, #111827, #0f1420);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+    .card-title {
+      font-size: 13px;
+      font-weight: 900;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* ─── Form fields ─── */
+    .field { margin-bottom: 18px; }
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 7px;
+    }
+    input, select {
+      width: 100%;
+      background: rgba(15,20,35,0.8);
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 12px;
+      padding: 11px 14px;
+      color: #e2e8f0;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus { border-color: rgba(99,102,241,0.6); box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+    input::placeholder { color: #334155; }
+    select option { background: #1e293b; }
+
+    /* ─── Plans grid ─── */
+    .plans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .plan-card {
+      padding: 14px;
+      border-radius: 14px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      user-select: none;
+    }
+    .plan-card:hover { transform: translateY(-2px); }
+    .plan-card.selected { border-color: var(--color); background: color-mix(in srgb, var(--color) 10%, transparent); }
+    .plan-card:not(.selected) { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.07); }
+    .plan-icon { font-size: 22px; margin-bottom: 6px; }
+    .plan-name { font-size: 13px; font-weight: 900; }
+    .plan-desc { font-size: 10px; color: #64748b; margin-top: 3px; }
+
+    /* ─── Duration presets ─── */
+    .duration-presets { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .preset-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: 'Tajawal', sans-serif;
+    }
+    .preset-btn:hover { background: rgba(99,102,241,0.15); border-color: rgba(99,102,241,0.4); color: #c7d2fe; }
+
+    /* ─── Generate button ─── */
+    .generate-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      border: none;
+      border-radius: 14px;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+      font-family: 'Tajawal', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .generate-btn:hover { transform: translateY(-1px); box-shadow: 0 12px 32px rgba(99,102,241,0.45); }
+    .generate-btn:active { transform: translateY(0); }
+
+    /* ─── Result area ─── */
+    .result-card {
+      display: none;
+      background: linear-gradient(145deg, #0a1628, #071020);
+      border: 1px solid rgba(16,185,129,0.25);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(16,185,129,0.05) inset;
+    }
+    .result-card.show { display: block; }
+
+    .result-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .result-check {
+      width: 40px; height: 40px;
+      background: rgba(16,185,129,0.12);
+      border: 1px solid rgba(16,185,129,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .result-title { font-size: 15px; font-weight: 900; color: #fff; }
+    .result-sub { font-size: 11px; color: #64748b; }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+      margin-bottom: 8px;
+      font-size: 12px;
+    }
+    .result-row-label { color: #64748b; font-weight: 700; }
+    .result-row-value { color: #e2e8f0; font-weight: 700; }
+
+    .token-area {
+      margin-top: 18px;
+    }
+    .token-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748b;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .token-box {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(99,102,241,0.2);
+      border-radius: 12px;
+      padding: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #a5b4fc;
+      word-break: break-all;
+      line-height: 1.6;
+      min-height: 80px;
+      position: relative;
+    }
+
+    .actions { display: flex; gap: 10px; margin-top: 14px; }
+    .action-btn {
+      flex: 1;
+      padding: 11px;
+      border-radius: 12px;
+      border: none;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn-copy { background: rgba(99,102,241,0.15); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.3); }
+    .btn-copy:hover { background: rgba(99,102,241,0.25); }
+    .btn-copy.copied { background: rgba(16,185,129,0.15); color: #6ee7b7; border-color: rgba(16,185,129,0.3); }
+    .btn-email { background: rgba(6,182,212,0.12); color: #67e8f9; border: 1px solid rgba(6,182,212,0.25); }
+    .btn-email:hover { background: rgba(6,182,212,0.22); }
+
+    /* ─── Log section ─── */
+    .log-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .log-list { list-style: none; space-y: 8px; }
+    .log-item {
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .log-item-info { flex: 1; min-width: 0; }
+    .log-item-name { font-size: 13px; font-weight: 700; color: #e2e8f0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .log-item-meta { font-size: 10px; color: #475569; margin-top: 2px; }
+    .log-item-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+    .badge-pro { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+    .badge-firm { background: rgba(6,182,212,0.12); color: #67e8f9; }
+    .badge-trial { background: rgba(100,116,139,0.15); color: #94a3b8; }
+    .badge-enterprise { background: rgba(245,158,11,0.12); color: #fcd34d; }
+
+    .empty-log { text-align: center; padding: 32px; color: #334155; font-size: 12px; }
+
+    .clear-btn {
+      font-size: 11px;
+      font-weight: 700;
+      color: #ef4444;
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 8px;
+      padding: 5px 12px;
+      cursor: pointer;
+      font-family: 'Tajawal', sans-serif;
+      transition: all 0.15s;
+    }
+    .clear-btn:hover { background: rgba(239,68,68,0.15); }
+
+    .divider { height: 1px; background: rgba(255,255,255,0.04); margin: 4px 0 20px; }
+
+    /* ─── Glow orbs ─── */
+    .orb {
+      position: fixed; border-radius: 50%; pointer-events: none;
+      filter: blur(80px); opacity: 0.06; z-index: -1;
+    }
+    .orb-1 { width: 400px; height: 400px; background: #6366f1; top: -100px; right: -100px; }
+    .orb-2 { width: 300px; height: 300px; background: #8b5cf6; bottom: -80px; left: -80px; }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-icon">⚖️</div>
+      <h1>مولّد مفاتيح الترخيص</h1>
+      <p>منصة المحامي الرقمية — أداة إدارة الاشتراكات التجارية</p>
+    </div>
+
+    <!-- Generator Card -->
+    <div class="card">
+      <div class="card-title">📋 بيانات الترخيص الجديد</div>
+
+      <!-- Customer name -->
+      <div class="field">
+        <label>👤 اسم العميل / المكتب</label>
+        <input type="text" id="customerName" placeholder="مثال: مكتب أحمد منصور للمحاماة" />
+      </div>
+
+      <!-- Plan selection -->
+      <div class="field">
+        <label>📦 الخطة</label>
+        <div class="plans-grid" id="plansGrid">
+          <div class="plan-card selected" data-plan="trial" style="--color:#64748b" onclick="selectPlan(this)">
+            <div class="plan-icon">⭐</div>
+            <div class="plan-name" style="color:#94a3b8">تجريبي</div>
+            <div class="plan-desc">5 قضايا · 10 ملفات</div>
+          </div>
+          <div class="plan-card" data-plan="pro" style="--color:#6366f1" onclick="selectPlan(this)">
+            <div class="plan-icon">⚡</div>
+            <div class="plan-name" style="color:#a5b4fc">محامي Pro</div>
+            <div class="plan-desc">غير محدود + AI</div>
+          </div>
+          <div class="plan-card" data-plan="firm" style="--color:#0ea5e9" onclick="selectPlan(this)">
+            <div class="plan-icon">👥</div>
+            <div class="plan-name" style="color:#7dd3fc">مكتب المحاماة</div>
+            <div class="plan-desc">فريق كامل + تقارير</div>
+          </div>
+          <div class="plan-card" data-plan="enterprise" style="--color:#f59e0b" onclick="selectPlan(this)">
+            <div class="plan-icon">🏢</div>
+            <div class="plan-name" style="color:#fcd34d">مؤسسة</div>
+            <div class="plan-desc">كل المميزات + دعم</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Duration -->
+      <div class="field">
+        <label>📅 مدة الترخيص (بالأيام)</label>
+        <input type="number" id="daysInput" value="365" min="1" max="9999" />
+        <div class="duration-presets">
+          <button class="preset-btn" onclick="setDays(7)">7 أيام تجريبية</button>
+          <button class="preset-btn" onclick="setDays(30)">شهر</button>
+          <button class="preset-btn" onclick="setDays(90)">3 أشهر</button>
+          <button class="preset-btn" onclick="setDays(180)">6 أشهر</button>
+          <button class="preset-btn" onclick="setDays(365)">سنة كاملة</button>
+          <button class="preset-btn" onclick="setDays(9999)">مدى الحياة</button>
+        </div>
+      </div>
+
+      <button class="generate-btn" onclick="generateLicense()">
+        🔑 توليد رمز التفعيل
+      </button>
+    </div>
+
+    <!-- Result -->
+    <div class="result-card" id="resultCard">
+      <div class="result-header">
+        <div class="result-check">✅</div>
+        <div>
+          <div class="result-title">تم توليد الترخيص بنجاح</div>
+          <div class="result-sub" id="resultSub">—</div>
+        </div>
+      </div>
+
+      <div id="resultInfo"></div>
+
+      <div class="token-area">
+        <div class="token-label">🔐 رمز التفعيل — أرسل هذا للعميل عبر البريد</div>
+        <div class="token-box" id="tokenBox">—</div>
+      </div>
+
+      <div class="actions">
+        <button class="action-btn btn-copy" id="copyBtn" onclick="copyToken()">
+          📋 نسخ رمز التفعيل
+        </button>
+        <button class="action-btn btn-email" onclick="sendEmail()">
+          ✉️ إرسال بالبريد
+        </button>
+      </div>
+    </div>
+
+    <!-- Log -->
+    <div class="card">
+      <div class="log-header">
+        <div class="card-title" style="margin-bottom:0">📜 سجل الترخيصات المولّدة</div>
+        <button class="clear-btn" onclick="clearLog()">🗑 مسح السجل</button>
+      </div>
+      <div class="divider"></div>
+      <ul class="log-list" id="logList">
+        <li class="empty-log">لم يتم توليد أي ترخيص بعد</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // ─── SECRET KEY — يجب أن يطابق ما في main.cjs ───────────────────────────
+    const SECRET = 'YOUR_SUPER_SECRET_KEY_CHANGE_THIS_2024_LAWYER_PLATFORM';
+
+    const PLANS = {
+      trial:      { label: 'تجريبي',       maxCases: 5,    maxFiles: 10,   features: ['basic'] },
+      pro:        { label: 'محامي Pro',    maxCases: 9999, maxFiles: 9999, features: ['basic','ai','library','print'] },
+      firm:       { label: 'مكتب',         maxCases: 9999, maxFiles: 9999, features: ['basic','ai','library','print','team'] },
+      enterprise: { label: 'مؤسسة',       maxCases: 9999, maxFiles: 9999, features: ['all'] },
+    };
+
+    const BADGE_CLASS = { trial: 'badge-trial', pro: 'badge-pro', firm: 'badge-firm', enterprise: 'badge-enterprise' };
+
+    let selectedPlan = 'trial';
+    let currentToken = '';
+    let currentCustomer = '';
+
+    // ─── HMAC-SHA256 using WebCrypto ─────────────────────────────────────────
+    async function hmacSha256Base64url(key, data) {
+      const enc = new TextEncoder();
+      const keyMat = await crypto.subtle.importKey(
+        'raw', enc.encode(key),
+        { name: 'HMAC', hash: 'SHA-256' },
+        false, ['sign']
+      );
+      const sig = await crypto.subtle.sign('HMAC', keyMat, enc.encode(data));
+      const bytes = new Uint8Array(sig);
+      let binary = '';
+      bytes.forEach(b => binary += String.fromCharCode(b));
+      return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
+
+    function base64url(str) {
+      return btoa(unescape(encodeURIComponent(str)))
+        .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    }
+
+    function randomHex(len) {
+      const arr = new Uint8Array(len);
+      crypto.getRandomValues(arr);
+      return Array.from(arr, b => b.toString(16).padStart(2, '0')).join('').toUpperCase().slice(0, len * 2);
+    }
+
+    async function generateLicense() {
+      const name = document.getElementById('customerName').value.trim();
+      const days = parseInt(document.getElementById('daysInput').value, 10);
+
+      if (!name) { alert('الرجاء إدخال اسم العميل'); return; }
+      if (!days || days < 1) { alert('الرجاء إدخال عدد أيام صحيح'); return; }
+
+      const plan = PLANS[selectedPlan];
+      const now = Date.now();
+      const expiresAt = now + days * 24 * 60 * 60 * 1000;
+      const licenseId = randomHex(6);
+
+      const payload = {
+        id: licenseId,
+        customer: name,
+        plan: selectedPlan,
+        issuedAt: now,
+        expiresAt,
+        maxCases: plan.maxCases,
+        maxFiles: plan.maxFiles,
+        features: plan.features,
+      };
+
+      const payloadB64 = base64url(JSON.stringify(payload));
+      const fullSig = await hmacSha256Base64url(SECRET, payloadB64);
+      const signature = fullSig.substring(0, 16).toUpperCase();
+      const token = `${payloadB64}.${signature}`;
+
+      currentToken = token;
+      currentCustomer = name;
+
+      // Show result
+      const expiresDate = new Date(expiresAt).toLocaleDateString('ar-EG');
+      document.getElementById('resultSub').textContent = `${name} — خطة ${plan.label} — تنتهي ${expiresDate}`;
+      document.getElementById('tokenBox').textContent = token;
+      document.getElementById('resultInfo').innerHTML = `
+        <div class="result-row">
+          <span class="result-row-label">العميل</span>
+          <span class="result-row-value">${name}</span>
+        </div>
+        <div class="result-row">
+          <span class="result-row-label">الخطة</span>
+          <span class="result-row-value">${plan.label}</span>
+        </div>
+        <div class="result-row">
+          <span class="result-row-label">المدة</span>
+          <span class="result-row-value">${days === 9999 ? 'مدى الحياة' : days + ' يوم'}</span>
+        </div>
+        <div class="result-row">
+          <span class="result-row-label">تنتهي في</span>
+          <span class="result-row-value">${expiresDate}</span>
+        </div>
+        <div class="result-row">
+          <span class="result-row-label">معرّف الترخيص</span>
+          <span class="result-row-value" style="font-family: monospace; font-size:11px">LAWPRO-${licenseId}</span>
+        </div>
+      `;
+
+      const resultCard = document.getElementById('resultCard');
+      resultCard.classList.add('show');
+      resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Reset copy btn
+      const copyBtn = document.getElementById('copyBtn');
+      copyBtn.classList.remove('copied');
+      copyBtn.textContent = '📋 نسخ رمز التفعيل';
+
+      // Save to local log
+      saveToLog({ name, plan: selectedPlan, planLabel: plan.label, days, expiresDate, licenseId, token, generatedAt: new Date().toLocaleString('ar-EG') });
+    }
+
+    async function copyToken() {
+      if (!currentToken) return;
+      try {
+        await navigator.clipboard.writeText(currentToken);
+        const btn = document.getElementById('copyBtn');
+        btn.classList.add('copied');
+        btn.textContent = '✅ تم النسخ!';
+        setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '📋 نسخ رمز التفعيل'; }, 3000);
+      } catch {
+        const box = document.getElementById('tokenBox');
+        const range = document.createRange();
+        range.selectNode(box);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+      }
+    }
+
+    function sendEmail() {
+      if (!currentToken || !currentCustomer) return;
+      const subject = encodeURIComponent('رمز تفعيل منصة المحامي الرقمية');
+      const body = encodeURIComponent(
+        `السيد/ة ${currentCustomer}،\n\nشكراً لاشتراككم في منصة المحامي الرقمية.\n\nرمز تفعيل ترخيصكم:\n\n${currentToken}\n\nطريقة التفعيل:\n1. افتح التطبيق\n2. الصق رمز التفعيل في الحقل المخصص\n3. اضغط "تفعيل الترخيص"\n\nللدعم الفني: support@lawyerdigital.com`
+      );
+      window.open(`mailto:?subject=${subject}&body=${body}`);
+    }
+
+    function selectPlan(el) {
+      document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedPlan = el.dataset.plan;
+    }
+
+    function setDays(n) {
+      document.getElementById('daysInput').value = n;
+    }
+
+    // ─── Local log ─────────────────────────────────────────────────────────────
+    function saveToLog(entry) {
+      const existing = JSON.parse(localStorage.getItem('licenseLog') || '[]');
+      existing.unshift(entry);
+      localStorage.setItem('licenseLog', JSON.stringify(existing.slice(0, 100)));
+      renderLog();
+    }
+
+    function renderLog() {
+      const log = JSON.parse(localStorage.getItem('licenseLog') || '[]');
+      const list = document.getElementById('logList');
+      if (!log.length) {
+        list.innerHTML = '<li class="empty-log">لم يتم توليد أي ترخيص بعد</li>';
+        return;
+      }
+      list.innerHTML = log.map(e => `
+        <li class="log-item">
+          <div class="log-item-info">
+            <div class="log-item-name">${e.name}</div>
+            <div class="log-item-meta">📅 ${e.expiresDate} · ⏱ ${e.days === 9999 ? 'مدى الحياة' : e.days + ' يوم'} · 🔑 LAWPRO-${e.licenseId}</div>
+            <div class="log-item-meta" style="color:#2d3748">تم التوليد: ${e.generatedAt}</div>
+          </div>
+          <span class="log-item-badge ${BADGE_CLASS[e.plan] || 'badge-trial'}">${e.planLabel}</span>
+        </li>
+      `).join('');
+    }
+
+    function clearLog() {
+      if (!confirm('هل تريد مسح سجل الترخيصات؟')) return;
+      localStorage.removeItem('licenseLog');
+      renderLog();
+    }
+
+    // init
+    renderLog();
+  </script>
+</body>
+</html>

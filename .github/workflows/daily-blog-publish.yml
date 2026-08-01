@@ -1,0 +1,41 @@
+name: Daily Blog Publish
+
+on:
+  schedule:
+    # 09:00 بتوقيت القاهرة (UTC+2) = 07:00 UTC — كل يوم
+    - cron: '0 7 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Publish daily article
+        run: node scripts/blog-publisher/daily-publish.cjs
+
+      - name: Commit published changes back
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/blog scripts/blog-publisher/published-log.json scripts/published-log.json
+          git diff --cached --quiet && echo "no changes to commit" || git commit -m "chore(blog): auto-publish daily article"
+          git push

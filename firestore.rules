@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── UID المدير الوحيد ─────────────────────────────────────────────
+    function isAdmin() {
+      return request.auth != null && request.auth.uid == 'IlX9UsOjr3cJMH09crj2JTHhRmh1';
+    }
+
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    // ── اشتراكات: المستخدم ينشئ trial، المدير يفعّل/يلغي، الكل يقرأ ──
+    // v2.9.10: split write into create (user can create own trial) + update/delete (admin only)
+    match /subscriptions/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isOwner(userId) && request.resource.data.status == 'trial';
+      allow update, delete: if isAdmin();
+    }
+
+    // ── بيانات المستخدم: كل مستخدم يملك بياناته، المدير يقرأ الكل ─────
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow write: if isOwner(userId) || isAdmin();
+
+      match /{subcollection}/{docId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow write: if isOwner(userId);
+      }
+    }
+
+    match /users/{userId}/{document=**} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow write: if isOwner(userId);
+    }
+
+    // ── منع أي وصول غير مُصرَّح به ──────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+﻿node_modules/
+dist/
+dist-*/
+dist-desktop/
+dist-desktop-old/
+dist-fresh/
+*.exe
+*.dll
+*.pdb
+*.log
+*.tmp
+.env

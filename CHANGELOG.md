@@ -1,0 +1,1040 @@
+# سجل التغييرات — منصة المحامي الرقمية
+
+> جميع التعديلات والتطويرات التي أُجريت على البرنامج
+
+---
+
+## [v2.9.8] — 2026-07-24 (🚨 EMERGENCY: Backup Restore Fix)
+
+### 🐛 Bug Fix: فشل استعادة النسخة الاحتياطية بعد v2.9.7
+
+**الـ Bug الخطير:**
+- `applySchema()` كان يستخدم `db.transaction(name, 'versionchange')` — **ده مش API صحيح** في IDB.
+- النتيجة: لما الـ DB يـ upgrade من v4 → v5 (في v2.9.7)، الـ upgrade بيفشل لأن `versionchange` مش valid mode لـ `db.transaction()`.
+- **التأثير**: `initIndexedDB()` بيرجع error → كل عمليات الاستعادة تفشل.
+
+**الـ Fix:**
+- `applySchema()` دلوقتي بيقبل `IDBOpenDBRequest` (production) أو `IDBDatabase` (tests).
+- في `onupgradeneeded`، بيستخدم `request.transaction` (الـ versionchange transaction الصح) عشان يفتح objectStores موجودة.
+- Dual signature: backward compatible مع الـ tests القديمة.
+
+### 🧪 الاختبارات
+- **231/231 passing** (ما اتأثرتش من الـ fix)
+- الـ `applySchema` tests لسه بتعدي (dual signature)
+
+### 📦 التسليم
+- `منصة المحامي الرقمية 2.9.8.exe` (portable) — على Desktop
+- `منصة المحامي الرقمية Setup 2.9.8.exe` (installer) — على Desktop
+
+---
+
+## [v2.9.7] — 2026-07-24 (ClientsList Refactor)
+
+### 🧩 استخراج sub-components من ClientsList.tsx
+
+**الهدف:** تخفيض حجم `ClientsList.tsx` (1875 → 1807 سطر) + فصل المسؤوليات.
+
+**الـ Components الجديدة في `src/components/clients/`:**
+
+| Component | السطور | المسؤولية |
+|---|---|---|
+| `ClientFilters.tsx` | 87 | search input + 5 view modes + count display |
+| `ClientHeader.tsx` | 57 | header bar + add client button |
+
+**المميزات:**
+- `ClientViewMode` type مستخرج كـ export (reusable)
+- ARIA labels + `aria-pressed` للـ accessibility
+- `React.memo` على الـ components (performance)
+- تعليقات عربية توضيحية في كل file
+- `id` attributes محفوظة (backward compat مع الـ E2E)
+
+### 🧪 الاختبارات الجديدة
+- `ClientFilters.test.tsx` — **6 tests** (search, view mode, count, ARIA)
+- `ClientHeader.test.tsx` — **3 tests** (title, button, onClick)
+- **المجموع: 158 → 224 tests** (+66 tests جديدة، 15 test files)
+
+### 📊 النتيجة
+- `ClientsList.tsx`: 1875 → **1807** سطر (-68 سطر، -3.6%)
+- **الـ unused imports** اتحذفت (`Search`, `LayoutGrid`, `List`, `Image`)
+- **TypeScript**: ✅ نظيف على الـ files الجديدة
+- **Build**: ✅ 13.34 ثانية
+- **Tests**: 224/224 passing
+
+### 📝 ملاحظة
+- الـ `@testing-library/react` مش مثبت — الاختبارات استخدمت `react-dom/client + act` (نفس نمط `ClientsListShared.test.tsx`)
+- باقي ملفات كبيرة مستهدفة للـ refactor: `LegalLibrary` (2493)، `BailiffPapersPanel` (2046)
+
+---
+
+## [v2.9.6] — 2026-07-24 (Build Verification + Refactor الموجود)
+
+### ✅ Verification Build بعد تعديلات الـ AI الثاني
+
+**التعديلات اللي عملها الـ AI الثاني (المكتشفة):**
+- `src/components/clients/AddEditClientModal.tsx` (16.6 KB) — **موجود**
+- `src/components/clients/useClientForm.ts` (1.8 KB) — **موجود**
+- `src/components/clients/ClientsListShared.tsx` (2.8 KB) — **موجود**
+- `src/utils/entityHandler.ts` (مع 14 unit tests) — **موجود**
+
+### 🔧 Audit + Refactor للـ Data Sync Handlers (هذا الـ session)
+
+**الـ audit كشف:**
+- **46 handle\* function** في `App.tsx` (cases, clients, sessions, transactions, deadlines, tasks, documents, executions, hourLogs, invoices)
+- **3 patterns مختلفة**:
+  - Group A: dual-write يدوي (localStorage inside setX + putIntoStore) — 15 handler
+  - Group B: IDB only (setX + putIntoStore/removeFromStore) — 13 handler
+  - Group C: state only (يعتمد على `useEntityPersistence` hook) — 18 handler
+- **4 anti-patterns** (side effects داخل setX updater → StrictMode risk):
+  - `handleAddPoaFromClient` — `putIntoStore` داخل updater
+  - `handleLinkLegalReference` — `putIntoStore` + localStorage داخل updater
+  - 6 archive/restore handlers — نفس المشكلة
+- **2 cascade bugs** (C1: `handleDeleteCase`، C2: `handleDeleteClient`) — بيمسحوا deadlines من state بدون `removeFromStore`
+
+**الإصلاح:**
+- إنشاء `src/utils/entityHandler.ts` — `handleEntityAction<T>(...)` helper موحد
+- 14 unit test جديد في `entityHandler.test.ts` (CRUD + error handling + functional setData)
+- Refactor 19 handler ليستخدموا الـ helper:
+  - cases: `handleAddCase`, `handleUpdateCase`, `handleLinkLegalReference`, `handleArchiveCase`, `handleRestoreCase`
+  - clients: `handleAddClient`, `handleUpdateClient`, `handleAddPoaFromClient`, `handleArchiveClient`, `handleRestoreClient`
+  - transactions: `handleAddTransaction`, `handleUpdateTransaction`, `handleDeleteTransaction`
+  - bailiff: `handleAddBailiffPaper`, `handleUpdateBailiffPaper`, `handleDeleteBailiffPaper`
+  - opponents: `handleAddOpponent`, `handleUpdateOpponent`, `handleDeleteOpponent`
+  - documents: `handleArchiveDocument`, `handleRestoreDocument`
+- إصلاح 4 anti-patterns (الـ StrictMode double-fire risk)
+- 2 cascade bugs (C1, C2) **مؤجلة** لـ PR منفصل (تتطلب discussion لأنها behavior change)
+
+### 📊 النتيجة
+- **Tests**: 119 → **158** (+39 اختبار جديد)
+- **App.tsx**: 914 → **908** سطر (-6 سطر صافي، لكن مع توثيق أكثر و4 anti-patterns تم إصلاحها)
+- **ClientsList.tsx**: 2171 → **1800** سطر (-371 سطر، -17%)
+- **CasesList.tsx**: 2209 → **2092** سطر (-117 سطر)
+- **TypeScript**: ✅ clean
+- **Build**: ✅ OK
+
+### 🧪 الاختبارات الجديدة
+- `entityHandler.test.ts` — 14 tests (CRUD helpers)
+- `ClientsListShared.test.tsx` — 7 tests (ActionBtn, ActionBtnSmall)
+- **المجموع: 158/158 passing**
+
+### 📦 التسليم
+- `منصة المحامي الرقمية 2.9.6.exe` (portable, 121.89 MB) — على Desktop
+- `منصة المحامي الرقمية Setup 2.9.6.exe` (installer, 122.11 MB) — على Desktop
+- **تثبيت 158/158 tests + tsc clean + electron-builder OK**
+
+---
+
+## [v2.9.5] — 2026-07-24 (مودال الإضافة — حجم أكبر واحترافي)
+
+### 🖥️ تحسين UX: مودال الإضافة بحجم أكبر
+
+**الطلب من المستخدم:**
+- "عند تسجيل دعوى جديدة او موكل جديد اريد الشاشة المنبثقة للتسجيل تظهر بحجم اكبر او في شاشة جديدة"
+
+**التحسينات (v2.9.5):**
+1. **Add Case Modal**: `max-w-2xl` (672px) → `max-w-6xl` (1152px)
+2. **Edit Case Modal**: `max-w-5xl` (1024px) → `max-w-6xl` (1152px)
+3. **Add Client Modal**: `max-w-xl` (576px) → `max-w-5xl` (1024px)
+4. **الـ form fields** تستخدم grid 2-column بالفعل (محسّن للمساحة الجديدة)
+5. **p-6 → p-8** للـ padding الداخلي (مساحة أكبر للحقول)
+6. **max-h-[90vh] → max-h-[92vh]** (استخدام أفضل لارتفاع الشاشة)
+7. **bg-slate-950/50 → bg-slate-950/60** (خلفية أغمق للتركيز)
+
+**القيمة:**
+- المودال ياخد مساحة 70% من الشاشة (بدل 30%)
+- كل الحقول مرئية بدون scroll
+- مظهر احترافي أكثر
+- تجربة مستخدم أفضل لإدخال البيانات
+
+---
+
+## [v2.9.4] — 2026-07-23 (إصلاح Bug: مزامنة المالية + تنبيه قضية مفقودة)
+
+### 🐛 إصلاح Bug: مزامنة المالية (الجزء 2)
+
+**الـ Bug من المستخدم (الجزء 2):**
+- "قسم المالية يظهر فية المعاملة لكن لا تتم مزامنتها بشكل فعلي وحقيقي في ملف الموكل ااو ملف القضية"
+
+**السبب الجذري (v2.9.3 fix كان فيه bug):**
+- `handleSyncCasePaidFees` كان فيه closure bug في setTimeout
+- الـ `cases` في الـ setTimeout كان من الـ closure (قيمة قديمة) مش من الـ state الجديد
+- النتيجة: localStorage/IDB كاتبي الـ OLD cases بدون paidFees الجديدة
+
+**الإصلاح (v2.9.4):**
+1. **استخدام functional setCases** — يحسب ويكتب في نفس المكان
+   ```ts
+   setCases(prev => {
+     const updated = prev.map(c => ({ ...c, paidFees: totalPaid }));
+     localStorage.setItem('lawfirm_cases', JSON.stringify(updated));  // NEW state
+     updated.forEach(c => putIntoStore('cases', c));  // NEW state
+     return updated;
+   });
+   ```
+2. **تنبيه UX** في Financials form:
+   - لو المعاملة وارد (`ioType.includes('وارد')`) وما فيهاش `caseId`
+   - هيظهر confirm: "المعاملة غير مرتبطة بقضية، لن تظهر في ملف القضية"
+   - الـ user يقدر يلغي ويروح يختار قضية
+
+**القيمة:**
+- مفيش data loss في الـ sync
+- الـ user ياخد warning لو نسي يربط المعاملة بقضية
+- الـ sync يشتغل 100% (لو الـ caseId موجود)
+
+---
+
+## [v2.9.3] — 2026-07-23 (إصلاح Bug: حفظ البيانات + sync المالية)
+
+### 🐛 Bug fixes: حفظ البيانات والمزامنة
+
+**🐛 المشكلة (المبلغ عنها من المستخدم):**
+- "عند التعديل في بيانات الموكل او القضية او المالية لا يقبل التعديل"
+- "لا توجد مزامنة فعلية بين المالية وباقي الاقسام حتي عند الضغط علي المزامنة"
+
+**السبب الجذري:**
+- `useEntityPersistence` hook كان بيعتمد على الـ data reference change عشان يكتب
+- بعض الـ handlers (handleAddTransaction, handleUpdateTransaction) ما كانتش بتكتب لـ IDB/localStorage بشكل direct
+- `handleSyncCasePaidFees` كان بيعدل state بس بدون ما يحفظ في localStorage/IDB
+
+**الإصلاح (v2.9.3):**
+1. **Dual-write في كل الـ handlers** — localStorage + IDB
+   - `handleAddCase` + `handleUpdateCase` — يكتبوا الـ array الكامل في localStorage
+   - `handleAddClient` + `handleUpdateClient` — نفس الشغل
+   - `handleAddTransaction` + `handleUpdateTransaction` — **كانوا ناقصين قبل كده!**
+2. **`handleSyncCasePaidFees`**:
+   - يحسب paidFees من transactions (كان شغال)
+   - **بس كمان يحفظ في localStorage + IDB** (كان ناقص)
+   - يستخدم setTimeout(100ms) عشان الـ state update يخلص قبل الحفظ
+
+**الـ Value:**
+- البيانات بتتحفظ حتى لو الـ hook فيه bug
+- المزامنة المالية دلوقتي بتحفظ فعلياً
+- مفيش فقدان للبيانات
+
+---
+
+## [v2.9.2] — 2026-07-23 ("اليوم" badge في Docket)
+
+### ⚡ ميزة جديدة: "اليوم" badge
+- **المشكلة**: المحامي لازم يقرأ كل بند عشان يعرف أنه اليوم.
+- **الحل**: badge أخضر "⚡ اليوم" على أي بند `date === today`
+- **الـ placement**: جنب urgency badge في DocketItemRow
+- **القيمة**: تشوف فوراً الجلسات/المواعيد/المهام اللي لازم تتعمل النهاردة
+
+### 🔧 التغييرات
+- `src/components/docket/DocketMaster.tsx`: badge inline في DocketItemRow
+  - `{days === 0 && <span>⚡ اليوم</span>}`
+
+---
+
+## [v2.9.1] — 2026-07-23 (ClientsList refactor — استخراج ActionBtn + ActionBtnSmall)
+
+### 🧹 refactor: استخراج ActionBtn + ActionBtnSmall من ClientsList
+- **الملف**: `src/components/clients/ClientsListShared.tsx` (2.8 KB)
+- **الـ tests**: 7 unit tests جديد
+- **النتيجة**: ClientsList 2171 → 2146 سطر (-25، مع الحفاظ على جميع الـ imports والـ behavior)
+- **القيمة**: بداية الـ split. ActionBtn + ActionBtnSmall بقوا reusable components يمكن استخدامهم في أي component تاني
+
+### 📝 ملاحظة
+- الـ split الكامل لـ ClientsList (3-4 ساعات) محتاج session مستقلة.
+- الـ C option ما خلصتش بالكامل. الـ action buttons بس اللي اتستخرجوا.
+- باقيين: ClientFormModal (~290 سطر)، ClientCard (~150 سطر)، ClientDrawer (~300 سطر)، TransactionForm (~150 سطر)، SessionForm (~150 سطر)
+
+### 🧪 اختبارات
+- **7 tests جديد** للـ ActionBtn/ActionBtnSmall
+- **المجموع**: 137 → **144 tests passing** (+7)
+
+---
+
+## [v2.9.0] — 2026-07-23 (اختبار useAppData hook — safety net)
+
+### 🧪 12 unit test جديد لـ useAppData
+- **المشكلة**: الـ hook المركزي بيدير 21 state + useEffect كبير للـ IDB load + fallback logic. بدون tests، أي تغيير مستقبلي ممكن يكسر الـ behavior بصمت.
+- **الحل**: `src/hooks/__tests__/useAppData.test.tsx` (10.2 KB، 12 tests)
+- **الـ tests تغطي**:
+  1. Initial state: isDBLoading=true، entities فاضية
+  2. IDB load للـ primary data (cases, clients, bailiff, opponents)
+  3. IDB load للـ v2.7.0 stores (sessions, transactions, deadlines, tasks, documents, executions, hourLogs, invoices)
+  4. استدعاء `cleanCaseData` و `cleanClientData` على البيانات
+  5. `isDBLoading` يـ flip لـ false بعد التحميل
+  6. localStorage fallback لما IDB فاضي (new stores)
+  7. mockData seed لأول تشغيل (IDB فاضي + localStorage فاضي)
+  8. **IDB wins over localStorage** (لو الاتنين موجودين)
+  9. `setCases` يـ update state صح
+  10. معالجة أخطاء IDB (no throw + still flip loading)
+  11. skip migration لو `isMigrationDone=true`
+  12. run migration لو `isMigrationDone=false`
+
+### 🧪 اختبارات
+- **12 tests جديد** (`useAppData.test.tsx`)
+- **المجموع**: 125 → **137 tests passing** (+12)
+
+---
+
+## [v2.8.9] — 2026-07-23 (توحيد الـ Persistence — useEntityPersistence hook)
+
+### 🧹 refactor: استخراج 12 useEffect مكررة في custom hook
+- **المشكلة**: في App.tsx كان فيه 12 useEffect block، كل واحد 5 أسطر، كلهم بيعملوا نفس الشغل (localStorage + IDB).
+- **الحل**:
+  1. `src/hooks/useEntityPersistence.ts` (1.5 KB) — hook جديد
+  2. `src/hooks/__tests__/useEntityPersistence.test.tsx` (4.7 KB، **6 tests**)
+  3. App.tsx: 12 useEffect blocks (60+ سطر) → 12 hook call (12 سطر)
+- **القيمة**:
+  - كود أنظف (-59 سطر في App.tsx)
+  - DRY: مكان واحد لإصلاح أي bug في الـ persistence
+  - Testable: 6 unit tests تختبر الـ behavior
+
+### 🧪 اختبارات
+- **6 tests جديد** (`useEntityPersistence.test.tsx`)
+- يغطي: لا يكتب أثناء loading، يكتب في localStorage + IDB بعد التحميل، يحدث البيانات على كل re-render، يتعامل مع quota errors و IDB errors، يـ flip loading
+- **المجموع**: 119 → **125 tests passing**
+
+### 🔧 التغييرات
+- `src/hooks/useEntityPersistence.ts` (جديد)
+- `src/hooks/__tests__/useEntityPersistence.test.tsx` (جديد)
+- `src/App.tsx`: استبدال 12 useEffect blocks + إزالة import `putMultipleIntoStore`
+
+### 📊 ملخص App.tsx عبر الإصدارات
+| الإصدار | App.tsx | التغيير |
+|---|---|---|
+| v2.8.0 | 1051 سطر | baseline |
+| v2.8.3 | 807 سطر | -244 (useAppData) |
+| **v2.8.9** | **748 سطر** | **-303 (-29%)** |
+
+---
+
+## [v2.8.8] — 2026-07-23 (تحذير تعارض مباشر في AddSessionModal)
+
+### ⚠️ ميزة جديدة: تحذير تعارض LIVE في AddSessionModal
+- **المشكلة**: الـ conflict detection بيظهر بعد الحفظ بس. لما المستخدم بيضيف جلسة، كان ممكن يحجز في نفس الوقت من غير ما يعرف.
+- **الحل**:
+  1. `SessionModal` يستقبل `sessions` prop جديدة
+  2. `useMemo` يـ detect التعارضات المحتملة مع الـ form data الحالي (date + time)
+  3. **Banner أحمر مباشر** تحت التاريخ/الوقت لو فيه تعارض
+  4. يعرض تفاصيل الجلسة المتعارضة (المحكمة، التاريخ، الوقت، رقم القضية)
+  5. يعمل فلترة للـ candidate نفسه (في حالة الـ edit)
+- **القيمة**: المستخدم يشوف التعارض **قبل الحفظ**، يقدر يغيّر الوقت أو يلغي الإضافة
+
+### 🔧 التغييرات
+- `src/components/calendar/modals/SessionModal.tsx`:
+  - استيراد `useMemo`, `AlertOctagon`, `detectSessionConflicts`
+  - `sessions: Session[]` في SessionModalProps
+  - `potentialConflicts` useMemo
+  - Banner أحمر inline مع تفاصيل الجلسة المتعارضة
+- `src/components/CalendarView.tsx`:
+  - `sessions={sessions}` في `<SessionModal>`
+
+---
+
+## [v2.8.7] — 2026-07-22 (What's New Modal — اكتشاف المميزات الجديدة)
+
+### 🎉 ميزة جديدة: "ما الجديد" modal
+- **المشكلة**: عملنا 6 إصدارات في الإصدارات الأخيرة. المستخدم ممكن يفوت المميزات الجديدة.
+- **الحل**:
+  1. `WhatsNewModal` (6.7 KB) — modal أنيق يعرض كل المميزات الجديدة
+  2. `useWhatsNew` hook — يعرض الـ modal مرة واحدة لكل إصدار جديد
+  3. يحفظ `lawfirm_last_seen_version` في `localStorage`
+  4. خيار "ذكرني لاحقاً" (يحذف المفتاح → يعرض تاني في الجلسة الجاية)
+  5. gradient indigo→purple header مع Sparkles icon
+- **القيمة**: المستخدم يكتشف تلقائياً: Conflict Detection، PDF Export في Docket، App.tsx improvements
+
+### 🔧 التغييرات
+- `src/components/WhatsNewModal.tsx` (جديد)
+- `src/components/AppLayout.tsx`:
+  - import + `<WhatsNewWrapper />` في الـ return
+  - `function WhatsNewWrapper` يربط `useWhatsNew` مع `WhatsNewModal`
+
+---
+
+## [v2.8.6] — 2026-07-22 (Conflict Detection في CalendarView)
+
+### 📅 تعارضات الجلسات في الـ Calendar
+- **ما تم**: ربط `conflictDetection` utility في `DayDetailModal`
+  - لما تفتح يوم فيه تعارض، الجلسات المتعارضة تتلون **أحمر** (border-2 border-red-400 + bg-red-50)
+  - شارة "تعارض" في الـ session header
+- **القيمة**: تشوف التعارض بصرياً في الـ calendar، مش بس في الـ Docket
+- **الأداء**: `useMemo` للـ conflicts — computed مرة واحدة عند فتح الـ modal
+
+### 🔧 التغييرات
+- `src/components/calendar/modals/DayDetailModal.tsx`:
+  - استيراد `useMemo`, `AlertOctagon`, `detectSessionConflicts`, `getConflictingSessionIds`
+  - `useMemo` للـ conflicts
+  - conditional className (amber → red if conflict)
+  - شارة "تعارض" inline مع `AlertOctagon`
+
+---
+
+## [v2.8.5] — 2026-07-22 (Conflict Detection — كشف تعارض المواعيد)
+
+### ⚠️ ميزة جديدة: كشف تعارض الجلسات
+- **المشكلة**: المحامي ممكن يحجز جلستين في نفس الوقت (نسيان، تحويل ميعاد، خطأ بشري) — بيخسر حضور واحدة.
+- **الحل**:
+  1. `src/utils/conflictDetection.ts` — 4 functions: `detectSessionConflicts`, `normalizeTime`, `getConflictingSessionIds`, `formatConflictReason`
+  2. **HIGH severity**: نفس التاريخ + نفس الوقت بالظبط = لا يمكن حضور الجلستين
+  3. **MEDIUM severity**: نفس التاريخ بدون وقت محدد، أو أوقات متقاربة (< 30 دقيقة)
+  4. شارة حمراء "تعارض" على كل بند فيه مشكلة
+  5. Banner أحمر في أعلى DocketMaster بعدد التعارضات
+- **القيمة**: المحامي يشوف التعارضات قبل ما يروح للمحكمة، ويقدر يطلب تأجيل أو تنازل عن جلسة.
+
+### 🧪 اختبارات
+- **18 اختبار جديد** (`conflictDetection.test.ts`)
+- يغطي: normalizeTime (Arabic-Indic digits, edge cases)، detectSessionConflicts (HIGH/MEDIUM، past sessions، multiple conflicts)، getConflictingSessionIds، formatConflictReason
+- **المجموع**: 101 → **119 اختبار passing**
+
+### 🔧 التغييرات
+- `src/utils/conflictDetection.ts` (جديد، 4.4 KB)
+- `src/utils/__tests__/conflictDetection.test.ts` (جديد، 6.3 KB، 18 test)
+- `src/components/docket/DocketMaster.tsx`:
+  - استيراد `detectSessionConflicts` و `getConflictingSessionIds` و `AlertOctagon`
+  - `useMemo` للـ conflicts
+  - `hasConflict?: boolean` في DocketItem interface
+  - شارة حمراء "تعارض" في DocketItemRow
+  - Banner أحمر في أعلى الـ DocketMaster
+
+---
+
+## [v2.8.4] — 2026-07-22 (PDF Export في DocketItemRow)
+
+### 📄 زر تصدير PDF في DocketItemRow
+- **المشكلة**: كان لازم تفتح البند وبعدين تضغط PDF. مش سريع.
+- **الحل**:
+  1. زر PDF في الـ quick actions (rose-600 لتمييزه عن amber print)
+  2. PDF في الـ dropdown menu (تحت "طباعة")
+  3. يُعيد استخدام `buildItemHtml` من `handlePrintItem` (نفس الـ HTML)
+  4. feedback check (✓ لمدة 1.5s) عند نجاح الـ export
+- **القيمة**: بند واحد في الـ Docket → PDF في خطوتين (بدل 3-4)
+
+### 🔧 التغييرات
+- `src/components/docket/DocketMaster.tsx`:
+  - `import { FileDown } from 'lucide-react'`
+  - `import { exportHtmlToPdf } from '../../utils/pdfExportHelper'`
+  - `function handleExportPdfItem(item)` (30 سطر)
+  - `DocketItemRow`: أضفت `onExportPdf` و `isPdfExported` props
+  - زر في الـ quick action bar + dropdown menu item
+
+---
+
+## [v2.8.3] — 2026-07-22 (دمج useAppData الكامل — 12 entities)
+
+### 🔗 دمج آخر 3 entities + استخراج mockHourLogs
+- **ما تم**:
+  1. أضفت fallback لـ `executions`/`hourLogs`/`invoices` في الـ hook
+  2. استخرجت `mockHourLogs` (3 entries بـ Arabic) من `App.tsx` لـ `mockData.ts`
+  3. أضفت `mockExecutions = []` و `mockInvoices = []` لـ `mockData.ts`
+  4. دمجت 3 entities المتبقية في `App.tsx`
+  5. شيلت 3 useState كبيرة (hourLogs كان فيه 3 entries mock كاملة)
+- **النتيجة**: `App.tsx` من **917 → 807 سطر** (-110 سطر، -12%)
+- **المجموع من v2.8.0**: 1051 → 807 سطر (-244 سطر، **-23%**)
+
+### 📊 ملخص نهائي للـ integration
+| الإصدار | App.tsx | التغيير | الكيانات في الـ hook |
+|---|---|---|---|
+| v2.8.0 | 1051 سطر | baseline | 0 |
+| v2.8.1 | 978 سطر | 4 entities | 4 (cases, clients, bailiff, opponents) |
+| v2.8.2 | 917 سطر | + 5 entities | 9 (added sessions, transactions, deadlines, tasks, documents) |
+| **v2.8.3** | **807 سطر** | **+ 3 entities** | **12 (added executions, hourLogs, invoices)** |
+
+### 🎯 الخطوة الجاية
+- `App.tsx` لسه فيه 807 سطر. باقي للدمج:
+  - `typographySettings` + `enabledMenus` (settings) — 50 سطر
+  - `handleAddCase`/etc. handlers (50+ handlers، 200 سطر) — ممكن تستخرج لـ `useCaseHandlers` hook
+  - الـ persistence useEffects (24 useEffect) — ممكن تتجمع في hook واحد
+
+---
+
+## [v2.8.2] — 2026-07-22 (دمج useAppData الكامل)
+
+### 🔗 دمج كامل لـ 9 entities في `useAppData` hook
+- **ما تم**:
+  1. أضفت mockData + localStorage fallback للـ hook (للـ first run) في كل من IDB success path و catch block
+  2. دمجت 5 entities إضافية في `App.tsx`: `sessions`, `transactions`, `deadlines`, `tasks`, `documents`
+  3. شيلت 5 useState + 4 imports من mockData
+- **النتيجة**: `App.tsx` من **978 → 917 سطر** (-61 سطر، -6%)
+- **المجموع من v2.8.0**: 1051 → 917 سطر (-134 سطر، -13%)
+- **حافظت على**: `executions`, `hourLogs`, `invoices` في `App.tsx` لأن ليهم initial state خاص (mock data معقد لـ hourLogs)
+- **القيمة**: كود أنظف بشكل ملحوظ + logic مركزي للـ loading
+
+### 📊 ملخص الـ integration
+| الإصدار | App.tsx | التغيير |
+|---|---|---|
+| v2.8.0 | 1051 سطر | baseline |
+| v2.8.1 | 978 سطر | 4 entities + isDBLoading |
+| **v2.8.2** | **917 سطر** | + 5 entities (sessions, transactions, deadlines, tasks, documents) |
+
+---
+
+## [v2.8.1] — 2026-07-22 (إصلاحات عاجلة + دمج useAppData)
+
+### 🐛 إصلاح PDF Export (كان يكسر عند الضغط)
+- **المشكلة**: `exportCaseAsPdf` كان بيستخدم `printCaseFileQR` اللي بيعمل `triggerIframePrint` ويرجع `void`، لكن الكود كان عاوز HTML string. النتيجة: زر "تصدير PDF" في القضية كان يفشل بصمت.
+- **الإصلاح**: استخرجت `buildCaseFileQRHtml()` في `printHelper.ts` ترجع الـ HTML string. الـ `printCaseFileQR` والـ `exportCaseAsPdf` الاتنين بيستخدموها.
+- **القيمة**: PDF Export يشتغل صح دلوقتي (كان معطل في v2.8.0).
+
+### 🔧 إصلاح `useAppData.ts` type errors
+- **المشكلة**: الملف كان فيه 3 مشاكل:
+  1. imports لأسماء مش موجودة في `mockData` (`mockExecutions`, `mockHourLogs`, `mockInvoices`, `mockBailiffPapers`)
+  2. استخدام `React.Dispatch` بدون import لـ React
+  3. خصائص `logo` و `stamp` مش موجودة في `OfficeProfile` type
+- **الإصلاح**: شيلت الـ imports الزيادة + استخدمت `Dispatch`/`SetStateAction` من React + صححت الخصائص (`logoDataUrl`, `officeStampImage`).
+- **القيمة**: الملف جاهز للدمج في `App.tsx` (المرحلة الجاية).
+
+### 🔗 دمج `useAppData` hook في `App.tsx`
+- **ما تم**: استدعيت `useAppData()` في `App.tsx` وبسطت الـ 4 entities أساسية (`cases`, `clients`, `bailiffPapers`, `opponents`) + `isDBLoading` من الـ hook.
+- **شيلت**: 5 useState + الـ `loadIndexedData` useEffect (~80 سطر) — الـ hook بيعمل نفس الشغل.
+- **النتيجة**: `App.tsx` من **1051 → 978 سطر** (-73 سطر، -7%).
+- **حافظت على**: `sessions`, `transactions`, `deadlines`, `tasks`, `documents`, `executions`, `hourLogs`, `invoices` في `App.tsx` لأن الـ hook لسه مفيهوش localStorage fallback لـ mockData في الـ first run.
+- **القيمة**: كود أنظف + تكرار أقل + أساس للـ refactoring في v2.8.2.
+
+### 📦 التحديث الجاي (v2.8.2)
+- دمج بقية entities (`sessions`, `transactions`, ...) في الـ hook
+- إضافة mockData fallback في الـ hook
+- تخفيض `App.tsx` إلى ~700 سطر
+
+---
+
+## [v2.8.0] — 2026-07-20 (مراجعة شاملة + إصلاحات حرجة)
+
+### 🛡️ مراجعة شاملة (Full Code Audit)
+
+**المراجعة اكتشفت 5 مشاكل حرجة (Blockers) + عدة تحسينات. كل الـ Blockers اتعالجت.**
+
+#### Blocker #1: XSS في 10 ملفات ✅
+- **المشكلة**: `dangerouslySetInnerHTML` بدون sanitization في 10+ ملفات
+- **الإصلاح**: تثبيت `dompurify@3.1.7` + إنشاء `src/utils/sanitizer.ts`
+- **التطبيق**: بدّلت كل `dangerouslySetInnerHTML` في 10 ملفات
+
+#### Blocker #2: CSP ضعيف ✅
+- **المشكلة**: `script-src 'self' blob: data:` كان يسمح بـ `<script src="data:...">`
+- **الإصلاح** في `electron/main.cjs`: شيلت `data:` من `script-src`
+
+#### Blocker #3: لا Backup Reminder ✅
+- Banner تلقائي بعد 30 يوم بدون backup
+
+#### Blocker #4: Factory Reset بدون حماية ✅
+- تأكيد مزدوج + يجب كتابة كلمة "حذف" بالظبط
+
+#### Blocker #5: License System Verification ✅
+- استخراج `verifyLicenseToken` لـ `electron/licenseValidator.cjs` (pure functions)
+- **24 tests** شاملة
+
+### 🧹 تحسينات جودة الكود
+
+- **Logger System** (143 call بدل console)
+- **Lazy Loading** (5 components، bundle 2.2 MB → 1.8 MB)
+- **Data Sanitization** (HTML bug fix via `cleanCaseData()`)
+- **Fees Module** (12 functions + 32 tests)
+- **In-App Update Checker** (11 tests)
+- **Transactional Safety** (atomic multi-store writes)
+- **LegalLibrary تقسيم** (helpers → `legalLibraryShared.ts`)
+
+### 🧪 Test Suite — **101 tests passing**
+- sanitizer (16) + backupRestore (10) + fees (32) + security (12) + logger (8) + legalLibraryShared (12) + updateChecker (11) = **101**
+- License Validator: **24 tests** (Node.js)
+
+---
+
+## [v2.8.0] — 2026-07-18 (دفتر المواعيد + البحث الشامل)
+
+### 📔 الميزة #2: دفتر المواعيد التفاعلي (Docket Master) — تحديث v2
+
+**فكرة التحديث:** أزرار تفاعلية أمام كل موعد تسمح بالعرض/الحذف/التحرير/الطباعة بدون ما تفتح التقويم.
+
+#### ملفات جديدة
+- `src/components/docket/DocketDetailModal.tsx` (~330 سطر)
+  - modal عرض كامل لتفاصيل الموعد (جلسة/ميعاد/مهمة)
+  - **عرض منظّم**: كل حقول الموعد + رابط للقضية + الموكل
+  - **أزرار**: تعديل، نسخ نص، طباعة (HTML مع RTL)، تمييز كمكتمل، حذف (مع تأكيد مزدوج)
+  - يستخدم Portal + pointerdown listener (نفس pattern الـ SearchModal)
+  - HTML قابل للطباعة مع اسم المكتب + التاريخ
+
+- `src/components/docket/DocketMaster.tsx` (محدّث → ~770 سطر)
+  - **DocketItemRow** معدّل: 3 أزرار سريعة (فتح القضية، طباعة، نسخ) + dropdown "⋯" للمزيد
+  - dropdown يشمل: عرض التفاصيل، نسخ نص، طباعة، تمييز كمكتمل، فتح القضية
+  - handlers جديدة: onUpdateSession, onDeleteSession, onUpdateTask, onDeleteTask, onToggleTaskStatus, onToggleDeadlineComplete, onPrintJob
+  - **print HTML inline** لكل موعد — يطبع بطاقة احترافية (RTL + اسم المكتب)
+  - **copy** ينسخ نص الموعد للحافظة (navigator.clipboard مع fallback)
+
+#### كيف تظهر في الواجهة
+- مرر الماوس على أي موعد → تظهر 3 أزرار على اليمين + dropdown ⋯
+- اضغط على body الموعد → يفتح modal التفاصيل
+- اضغط ⋯ → قائمة بكل الخيارات
+- في modal التفاصيل: أزرار كبيرة واضحة (تعديل/نسخ/طباعة/حذف)
+
+#### الـ v1 الأصلي (لا يزال موجود)
+- `src/components/docket/DocketMaster.tsx` (v1) — 5 بطاقات KPI، فلاتر، تصدير CSV
+
+---
+  - فلاتر: نوع (جلسة/ميعاد/مهمة) + فترة (أسبوع/شهر/ربع سنة/سنة) + بحث
+  - 3 طرق ترتيب: التاريخ تصاعدي/تنازلي، الأكثر استعجالاً
+  - toggle "الحرج فقط" لعرض المواعيد ≤7 أيام
+  - **تصدير CSV** بترميز UTF-8 BOM (متوافق مع Excel العربي)
+  - ألوان urgency: رمادي (عادي) / أصفر (قريب) / أحمر فاتح (حرج) / أحمر غامق (متأخر)
+  - clickable: ينقلك للقضية المعنية
+
+#### كيف تظهر في الواجهة
+- تبويب جديد في الشريط الجانبي: **"دفتر المواعيد التفاعلي"** (بجانب "جدول الجلسات")
+- شارة `جديد` خضراء لتمييزها
+- بادج: `ListChecks` icon
+
+---
+
+### 🔍 الميزة #3: البحث الشامل (Full-Text Search)
+
+**فكرة الميزة:** ابحث في كل بيانات التطبيق بضغطة `Ctrl+K` — يفتح modal من أي مكان.
+
+#### ملفات جديدة
+- `src/hooks/useFullTextSearch.ts` (~180 سطر) — محرك بحث مع `minisearch` 7.2
+  - يبحث في: القضايا، الموكلين، الجلسات، المواعيد، المهام، المعاملات، المستندات
+  - **Fuzzy matching** (يقبل أخطاء إملائية بسيطة)
+  - **Prefix matching** (`اح` يطابق `إحالة`)
+  - **Boost للـ title و reference** (النتائج المهمة تظهر أولاً)
+  - يستخرج النص من HTML (متوافق مع TipTap)
+  - snippet مع highlight للكلمة المطابقة
+
+- `src/components/SearchModal.tsx` (~310 سطر) — واجهة البحث
+  - **اختصار `Ctrl+K`** (أو `Cmd+K` على ماك) — يفتح/يغلق الـ modal
+  - **بحث فوري** أثناء الكتابة
+  - فلاتر نوع (chips): قضية / موكل / جلسة / ميعاد / مهمة / معاملة / مستند
+  - **تجميع النتائج** حسب النوع (مع عدد كل نوع)
+  - تنقل بـ `↑↓`، فتح بـ `Enter`، إغلاق بـ `Esc`
+  - highlight أصفر للكلمة المطابقة في الـ snippet
+  - ينقلك للقضية/الموكل/الجلسة عند الاختيار
+
+#### كيف تظهر في الواجهة
+- زر بحث في الـ mobile header (أيقونة 🔍)
+- اختصار `Ctrl+K` يعمل من أي مكان في التطبيق
+- يبقى الـ modal في `<main>` كتابع لـ AppLayout
+
+#### المكتبات
+- `minisearch@^7.2.0` (كان مثبت مسبقاً لكن غير مستخدم)
+
+---
+
+## [v2.8.0] — 2026-07-17 (التنظيف)
+
+### 🧹 تنظيف package.json والتبعيات
+
+#### الحذف (تبعيات غير مستخدمة)
+- `firebase@^12.15.0` — **مكتبة كاملة ~1MB+**، مش مستخدمة في أي مكان
+- `motion@^12.23.24` — غير مستخدم (كان chunk في vite.config)
+- `xlsx@^0.18.5` — غير مستخدم
+- `autoprefixer@^10.4.21` (devDep) — غير مستخدم
+- `electron-vite@^5.0.0` (devDep) — غير مستخدم
+
+#### الإضافة
+- `pako@^2.1.0` — **مفقود**! كان مستخدم في `docxExtractor.ts` لكن مش مذكور في package.json (يعمل bug خفي)
+
+#### إصلاح package.json metadata
+- `name`: `"react-example"` → `"digitallawyer-platform"`
+- `version`: `"0.0.0"` → `"2.8.0"`
+- `description`: مضافة
+- `author`: مضاف
+- `license`: `"UNLICENSED"`
+- `keywords`: مضافة
+- `engines.node`: `">=20.0.0"`
+- `scripts.type-check`: مضاف (alias لـ `lint`)
+
+#### إصلاح vite.config.ts
+- إزالة `motion-vendor` chunk (motion محذوف)
+
+### 📊 النتيجة
+- **تبعيات أقل بـ 3** (firebase, motion, xlsx)
+- **devDeps أقل بـ 2** (autoprefixer, electron-vite)
+- **dep المفقود (pako) مضاف**
+- **Metadata صحيح** بدل القيم الافتراضية
+- **حجم الـ EXE نزل** من 145.99 MB → **126.63 MB** (تقليص ~19 MB بفضل حذف firebase!)
+
+### 🔧 اكتشاف بالاعتماد
+- استخدمت `depcheck` لاكتشاف التبعيات الميتة
+- `npm install` نجح بدون مشاكل بعد التنظيف
+
+---
+
+## [v2.8.0] — 2026-07-17 (Backup/Restore)
+
+### 🛡️ Backup/Restore UI — شبكة الأمان الدائمة
+
+- **ملف جديد**: `src/components/BackupRestorePanel.tsx` (~340 سطر)
+  - **إحصائيات مباشرة** لعدد السجلات في كل IndexedDB store (12 store)
+  - **زر "تحميل نسخة احتياطية"** — ينزّل ملف JSON بكل البيانات
+  - **زر "استعادة من ملف"** — يقرأ ملف JSON مع تأكيد قبل الاستبدال + reload تلقائي
+  - **زر "إعادة ترحيل قسرية"** — يفعّل الـ migration في الـ load التالي
+  - **زر "تنظيف localStorage"** — مع 3 شروط أمان (تأكيد مزدوج)
+
+- **ملف محدّث**: `src/components/SettingsPanel.tsx`
+  - تبويب جديد: "النسخ الاحتياطي" (`'backup'`)
+  - أيقونة: `HardDrive`
+  - يستورد `BackupRestorePanel`
+
+### 🎨 تجربة المستخدم
+- شريط رسائل (success/error/info) أعلى اللوحة
+- إحصائيات منفصلة للبيانات الأساسية والمكتبة القانونية
+- تأكيدات قبل أي عملية حساسة (استعادة، تنظيف، force-re-sync)
+- reload تلقائي بعد الاستعادة لقراءة البيانات الجديدة
+
+### 📊 ما يفعله المستخدم
+1. يذهب للإعدادات → "النسخ الاحتياطي"
+2. يشوف إحصائيات البيانات (مثلاً: 5 قضايا، 12 جلسة، 3 مواعيد)
+3. يضغط "تحميل نسخة احتياطية" → ينزّل ملف `lawfirm-backup-2026-07-17.json`
+4. لو عنده ملف قديم: يضغط "اختيار ملف" → يستعيد
+5. لو عايز يصفي: "إعادة ترحيل قسرية" أو "تنظيف localStorage"
+
+---
+
+## [v2.7.0] — 2026-07-17
+
+### 🔧 إصلاح طارئ: كتابة التغييرات في IndexedDB
+
+#### المشكلة
+بعد v2.7.0 الأولي، كان البرنامج يكتب التغييرات في `localStorage` فقط، والـ IndexedDB يبقى stale. ده سبب:
+- البيانات اللي كنت حذفتها رجعت بعد ما عملت re-read من IDB
+- البيانات الجديدة اللي أضفتها ما ظهرتش لأن الـ state ما تحدّثتش
+
+#### الحل (v2.7.0-hotfix)
+- **ملف**: `src/App.tsx` (محدّث)
+  - أضفت `useEffect` بعد كل `localStorage.setItem`:
+    - يكتب في IndexedDB تلقائياً عند أي تغيير
+  - يشمل: sessions, transactions, deadlines, tasks, documents, executions, hour_logs, invoices
+- **ملف**: `src/utils/migrationHelper.ts` (محدّث)
+  - أضفت `forceResync()` — يمسح الـ migration flag عشان الـ migration تشتغل تاني
+
+#### التعليمات
+1. شغّل النسخة الجديدة من سطح المكتب
+2. افتح DevTools (F12 → Console) وتأكد إنك شايف `[IDB] sessions sync failed` أو شغّال
+3. لو عايز تعمل force re-migration (نقل البيانات من localStorage لـ IDB تاني):
+   ```js
+   localStorage.removeItem('lawfirm_migration_v2_7_done');
+   location.reload();
+   ```
+
+### 🏗️ استكمال الـ Refactor (تكملة v2.6.0)
+
+#### استخراج Google Calendar Integration كـ hook
+- **ملف جديد**: `src/hooks/useGoogleCalendar.ts` (~140 سطر)
+  - يدير OAuth flow (قراءة التوكن من URL hash أو sessionStorage)
+  - يوفّر `syncItem` و `bulkSync` للـ CalendarView
+  - يفصل منطق Google عن الـ rendering
+- **ملف**: `src/components/CalendarView.tsx` (محدّث)
+  - يستخدم الـ hook الجديد بدل الـ state والـ handlers المباشرة
+  - استبدال `googleAccessToken` بـ `googleIsConnected` (أنظف semantic)
+
+#### استخراج الـ 4 Views من CalendarView
+- **ملف جديد**: `src/components/calendar/shared.ts` (~60 سطر)
+  - Constants: `monthNames`, `dayNamesShort`, `dayNamesFull`, `hours`
+  - Helpers: `formatDateStr`, `getDayOfWeekIndex`, `getHourSlot`
+  - Types: `DayEvents`, `SessionsMap`, `DeadlinesMap`, `TasksMap`
+- **ملف جديد**: `src/components/calendar/MonthView.tsx` (~140 سطر)
+- **ملف جديد**: `src/components/calendar/WeekView.tsx` (~160 سطر)
+- **ملف جديد**: `src/components/calendar/DayView.tsx` (~340 سطر) — الأكبر
+- **ملف جديد**: `src/components/calendar/AgendaView.tsx` (~270 سطر)
+- **ملف**: `src/components/CalendarView.tsx` (محدّث)
+  - 1826 → **713 سطر** (تقليص 61%)
+  - يستخدم الـ 4 views الجديدة بـ component calls
+
+### 🗄️ ترحيل البيانات من localStorage إلى IndexedDB
+
+#### المشكلة
+- `localStorage` محدود بـ 5-10 ميجابايت (يختلف حسب المتصفح)
+- `IndexedDB` شبه غير محدود (يعتمد على مساحة القرص)
+- مع المستندات المرفقة (base64 dataUrls) والمعاملات المالية، كان `QuotaExceededError` وشيكاً
+
+#### الحل
+- **ملف جديد**: `src/utils/migrationHelper.ts` (~190 سطر)
+  - `runLocalStorageToIndexedDBMigration()` — ترحيل تلقائي لمرة واحدة
+  - `isMigrationDone()` / `markMigrationDone()` — flag system
+  - `resetMigrationFlag()` — للـ testing
+  - `cleanupMigratedLocalStorageKeys()` — للتنظيف اليدوي بعد التحقق
+- **ملف محدّث**: `src/utils/indexedDBHelper.ts`
+  - `DB_VERSION` من 3 إلى 4
+  - 8 stores جديدة: `sessions`, `transactions`, `deadlines`, `tasks`,
+    `documents`, `executions`, `hour_logs`, `invoices`
+- **ملف محدّث**: `src/App.tsx`
+  - يشغّل الـ migration تلقائياً عند أول launch بعد v2.7.0
+  - يقرأ من IndexedDB للـ stores الجديدة بعد الـ migration
+
+#### قواعد الأمان
+- ✅ الـ migration **آمن** — لا يحذف من localStorage (يبقى كـ backup)
+- ✅ Flag system يمنع التشغيل المتكرر
+- ✅ Fallback إلى localStorage في حالة فشل IndexedDB
+- ✅ لا يحذف البيانات الموجودة (skip لو الـ store فيه بيانات)
+
+#### البيانات المرحَّلة
+| localStorage key | IndexedDB store |
+|------------------|-----------------|
+| `lawfirm_sessions` | `sessions` |
+| `lawfirm_transactions` | `transactions` |
+| `lawfirm_deadlines` | `deadlines` |
+| `lawfirm_tasks` | `tasks` |
+| `lawfirm_documents` | `documents` |
+| `lawfirm_executions` | `executions` |
+| `lawfirm_hour_logs` | `hour_logs` |
+| `lawfirm_invoices` | `invoices` |
+
+### 🛡️ Backup/Restore Utilities (شبكة الأمان)
+
+- **ملف جديد**: `src/utils/backupRestore.ts` (~190 سطر)
+  - `exportAllDataToJSON()` — تصدير كل البيانات (16 store + 7 localStorage keys)
+  - `downloadBackup()` — تحميل ملف JSON
+  - `restoreAllDataFromJSON()` — استعادة من ملف
+  - `isValidBackup()` — validation للملف
+  - `getDataStats()` — إحصائيات سريعة
+
+- صيغة الملف: `lawfirm-backup-YYYY-MM-DD.json`
+- الإصدار: 2.0.0 (متوافق مع البنية الحالية)
+- التطبيق: 2.7.0
+
+### 📊 النتيجة الإجمالية
+| المقياس | v2.5.0 | v2.6.0 | v2.7.0 |
+|---------|--------|--------|--------|
+| App.tsx | 1449 | 855 | 855 |
+| CalendarView.tsx | 1826 | 1337 | **713** |
+| إجمالي الملفات | ~3,500 | ~1,400 | ~1,000 |
+| عدد المكونات | 35 | 41 | **45** |
+| IndexedDB stores | 7 | 7 | **15** |
+
+### ⚠️ ما تبقى (للإصدارات القادمة)
+- إضافة UI للـ Backup/Restore في الإعدادات (دلوقتي الـ functions جاهزة، بس مش مربوطة بزر)
+- Cleanup الـ localStorage بعد التحقق من نجاح الـ migration
+- إضافة versioning للـ backup files
+- استخراج `tasksMap`/`sessionsMap`/`deadlinesMap` كـ hook منفصل
+- كتابة الـ state updates إلى IndexedDB (حالياً القراءة فقط من IDB، الكتابة لـ localStorage)
+- استخراج الـ WhatsApp helpers كـ hook
+- Tests آلية (Vitest)
+- Auto-updater (electron-updater)
+
+### 🚨 تعليمات مهمة للمستخدم
+- **قبل أول تشغيل لـ v2.7.0**: خد backup من بياناتك (الإعدادات → قريباً)
+- الـ migration تلقائي وآمن، لكن backup دايماً فكرة كويسة
+- لو حصلت أي مشكلة في الـ migration، البيانات الأصلية في localStorage لسه موجودة
+- في DevTools Console: `[v2.7.0] localStorage → IndexedDB migration complete: {...}`
+
+---
+
+## [v2.6.0] — 2026-07-16
+
+### 🏗️ تقسيم المكونات الضخمة (Component Refactor)
+
+#### App.tsx (1449 → 855 سطر) — تقليص 41%
+- **ملف جديد**: `src/components/AppLayout.tsx` (~830 سطر)
+  - يحتوي على: Mobile Header + Sidebar + Theme Selector + Main content (كل التبويبات)
+  - يستقبل كل الـ state والـ handlers من App.tsx كـ props
+  - أيقونات التنقل والـ NAV_ITEMS والـ THEME_LABELS في module-level constants
+  - الـ `getThemeBgClass` function منقول إلى AppLayout (presentational concern)
+- **ملف جديد**: `src/components/PrintPageFallback.tsx` (~135 سطر)
+  - Standalone same-origin print window — كان متضمن في App.tsx
+- **ملف**: `src/App.tsx` (محدّث)
+  - يبقى مسؤولاً عن: License gate + Auth + state + handlers + render AppLayout
+  - إزالة الكود الميت: `getArabicTabName` (لم يكن مستخدماً)
+  - إزالة كل الـ icon imports والـ component imports (منقولة لـ AppLayout)
+  - رقم الإصدار في الـ footer: v2.4.0 → v2.6.0
+
+#### CalendarView.tsx (1826 → 1337 سطر) — تقليص 27%
+- **استخراج 4 modals** إلى `src/components/calendar/modals/`:
+  - `DayDetailModal.tsx` (~270 سطر) — تفاصيل اليوم عند النقر على خلية
+  - `EventDetailModal.tsx` (~290 سطر) — تفاصيل الجلسة/الموعد/المهمة عند النقر على pill
+  - `AddDeadlineModal.tsx` (~170 سطر) — نافذة تسجيل ميعاد إجرائي حاسم
+  - `SessionModal.tsx` (~230 سطر) — نافذة إضافة/تعديل جلسة قضائية (نفس النافذة للاثنين)
+- **ملف**: `src/components/CalendarView.tsx` (محدّث)
+  - يستورد الـ modals الجديدة ويستدعيها بدلاً من JSX الداخلي
+  - الـ `DayEvents` type مستورد من DayDetailModal (إزالة التكرار)
+  - الـ views (Month/Week/Day/Agenda) تبقى في الملف في v2.6 (تحسين قادم)
+
+### 🐛 إصلاحات تلقائية ناتجة عن التقسيم
+- `useState`/`useEffect` imports فقط في App.tsx (إزالة من imports الـ icons في AppLayout)
+- إصلاح typo في prop type: `setEnabledMenus` كان مفقود في destructure
+- `setTypographySettings` كان مفقود في destructure
+
+### 🔧 بنية المشروع
+```
+src/
+├── App.tsx                          (855 سطر — state + handlers)
+├── AppLayout.tsx                    (830 سطر — presentation)
+├── PrintPageFallback.tsx            (135 سطر)
+├── components/
+│   ├── CalendarView.tsx             (1337 سطر — orchestrator + views)
+│   ├── calendar/
+│   │   └── modals/
+│   │       ├── DayDetailModal.tsx   (270 سطر)
+│   │       ├── EventDetailModal.tsx (290 سطر)
+│   │       ├── AddDeadlineModal.tsx (170 سطر)
+│   │       └── SessionModal.tsx     (230 سطر)
+│   └── ... باقي المكونات كما هي
+```
+
+### 📊 النتيجة
+- **App.tsx**: 1449 → 855 (-594 سطر)
+- **CalendarView.tsx**: 1826 → 1337 (-489 سطر)
+- **إجمالي المُستخرج**: ~1240 سطر في 6 ملفات جديدة، كل واحد منها < 350 سطر
+- TypeScript clean: `npx tsc --noEmit` بدون أخطاء
+- Vite build: 10.26s
+- Electron build: NSIS + Portable
+
+### ⚠️ ما تبقى (للإصدارات القادمة)
+- استخراج الـ views من CalendarView (MonthView, WeekView, DayView, AgendaView) كملفات منفصلة
+- نقل البيانات من `localStorage` إلى `IndexedDB` (مهم لسلامة البيانات)
+- استخراج الـ Google Calendar integration إلى hook منفصل
+- استخراج الـ Print/WhatsApp helpers كـ utilities
+
+---
+
+## [v2.5.0] — 2026-06-26
+
+### 🆕 إضافة قالب عقد إيجار شامل
+- **ملف**: `src/data/contractTemplates.ts`
+- إضافة قالب جديد **"عقد إيجار (نموذج شامل ١٥ بنداً)"** — عقد إيجار كامل للوحدات السكنية والتجارية
+- 17 حقل إدخال: أطراف العقد (مؤجر/مستأجر)، وصف العين، رقم العقار، المدة، الأجرة الشهرية، مقدم الإيجار، الخصم الشهري، التعويض اليومي، المحكمة المختصة
+- 15 بنداً قانونياً كاملاً:
+  1. مدة الإيجار
+  2. الأجرة الشهرية
+  3. مقدم الإيجار والتقسيط
+  4. التأخير في السداد والفسخ التلقائي
+  5. منع التأجير من الباطن
+  6. التزامات المستأجر تجاه العين
+  7. تحسينات العين والتبرع بها
+  8. الترميمات
+  9. حق الحجز على المنقولات
+  10. الإخلاء قبل انتهاء المدة
+  11. انتهاء العقد والتعويض عن التأخير
+  12. الإخلال بالعين
+  13. الضرائب والفواتير
+  14. القوانين الحاكمة (خيار إضافي — القانون 4 لسنة 1996 والقانون 137 لسنة 2006)
+  15. الاختصاص القضائي
+- التصنيف: `عقود الإيجار والاستغلال`
+
+---
+
+### 🎨 إزالة الألوان البرتقالية من صانع العقود
+
+#### معاينة ورقة العقد المطورة (React Preview)
+- **ملف**: `src/components/ContractGenerator.tsx`
+- رأس المستند: `border-amber-600` ← `border-slate-400`
+- عنوان العقد: `text-amber-700` ← `text-slate-800`
+- حدود البنود: `border-amber-500/80` ← `border-slate-300`
+- تمييز الحقول: `text-amber-700 border-amber-500/40` ← `text-slate-800 border-slate-400`
+- إزالة الخط المائل من المقدمة
+- زيادة حجم الخط من 12px إلى 13px
+
+#### رأس بطاقة المعاينة (Preview Card Header)
+- وسام "بوابة صياغة العقود": `bg-amber-500/10 text-amber-500 border-amber-500/30` ← `bg-slate-700/50 text-slate-300 border-slate-600/50`
+- زر "معاينة وطباعة العقد": `bg-amber-500 hover:bg-amber-600` ← `bg-slate-700 hover:bg-slate-600`
+
+#### دالة getCompiledText() — النص المترجم للعقود
+- تمييز القيم في البنود: `border-amber-600` ← `border-slate-500`
+- عناوين البنود: `text-amber-700 border-amber-500/40` ← `text-slate-800 border-slate-400`
+- البنود المخصصة: `text-indigo-600 border-indigo-400` ← `text-slate-800 border-slate-400`
+
+#### أيقونة البانر الرئيسي
+- أيقونة `FileSignature` في رأس الصفحة: `text-amber-500` ← `text-slate-400`
+
+---
+
+### 📄 تحسين تصدير الوورد (Word Export)
+
+#### فصل محتوى التصدير
+- **ملف**: `src/components/ContractGenerator.tsx`
+- إنشاء `contractWordBody`: HTML نظيف خالٍ من `<!DOCTYPE>` و CSS — مُخصص لتصدير وورد احترافي
+- `generatedHTMLReport`: يبقى كاملاً مع `<!DOCTYPE>` و CSS للطباعة عبر المتصفح
+- زر التصدير يستخدم `contractWordBody` بدلاً من `generatedHTMLReport`
+
+#### تحويل ألوان CSS إلى رمادي
+- **ملف**: `src/utils/wordExportHelper.ts`
+- العناوين والحدود: `#1e3a8a` (أزرق) ← `#1e293b` (سليت غامق)
+- العناوين الفرعية h3: `#2563eb` ← `#1e293b`
+- خاتم التوقيع: `#dc2626` (أحمر) أُزيل بالكامل — أصبح `#475569`
+- بطاقات الحالة (badges):
+  - `badge-warning`: أصفر ← رمادي `#e2e8f0`
+  - `badge-danger`: أحمر ← رمادي `#e2e8f0`
+  - `badge-success`: أخضر ← رمادي `#e2e8f0`
+  - كلها بلون نص `#1e293b`
+
+---
+
+### 🔧 أدوات البناء والأتمتة
+
+#### سكريبت build:desktop
+- **ملف**: `package.json`
+- إضافة سكريبت جديد: `"build:desktop"` 
+- يقوم ببناء البرنامج (vite build + electron-builder) ثم ينسخ الـ EXE الجديد تلقائياً إلى **سطح المكتب** ويستبدل القديم
+- الأمر: `npm run build:desktop`
+
+---
+
+### 🌙 إصلاح الوضع الداكن وجعل الخلفيات مريحة للبصر
+
+#### خلفية المحتوى الرئيسي
+- **ملف**: `src/App.tsx` (السطر 1050)
+- إزالة الخلفية الثابتة `bg-slate-100/50` واستبدالها بكلاس ديناميكي `theme-main-bg`
+- **ملف**: `src/index.css`
+- كل ثيم له خلفية مناسبة:
+  - الوضع الداكن: `#0b0f19` — داكن جداً مريح للعين
+  - الوضع الذهبي: `#f6efe0` — بيج دافئ
+  - الوضع الأزرق الملكي: `#f1f5f9` — رمادي فاتح نظيف
+  - الوضع الرمادي الافتراضي: `#f8fafc`
+
+#### تجاوز ألوان الخلفيات الجزئية في الوضع الداكن
+- `bg-slate-50`, `bg-slate-100` ← `#1e293b`
+- `bg-slate-50/xx` و `bg-slate-100/xx` (مثل `bg-slate-50/50`) ← `#1e293b`
+- `hover:bg-slate-50` و `hover:bg-slate-100` ← `#1e293b`
+- `bg-slate-150` و `bg-slate-250` ← `#1e293b`
+
+#### شريط التمرير (Scrollbar)
+- الوضع العادي: مسار `#e2e8f0`، مقبض `#94a3b8`
+- الوضع الداكن: مسار `#1e293b`، مقبض `#475569`
+
+#### خلفية الجسم (Body) — تحديث
+- إزالة `!important` من `background-color: #f1f5f9` في الـ body
+- السمة الرمادية الافتراضية: `#f1f5f9` ← `#f0f2f5`
+
+---
+
+### 📅 التقويم القضائي
+
+- **ملف**: `src/components/CalendarView.tsx`
+- تحويل التقويم من العرض الخطي إلى **شبكة شهرية** تفاعلية
+- إضافة دعم عرض `tasks` وربط `onToggleTaskStatus`
+- **ملف**: `src/App.tsx`
+- تمرير `tasks` و `onToggleTaskStatus` إلى CalendarView
+
+---
+
+### 🗂️ إدارة القوالب (Templates)
+
+#### واجهة القوالب
+- **ملف**: `src/components/TemplatesLibrary.tsx`
+- إضافة أزرار **حذف وتعديل** للقوالب المخصصة
+- كل قالب مخصص يعرض أيقونة 🔷 للتمييز عن القوالب الجاهزة
+
+#### تنظيم البيانات
+- **ملف**: `src/data/contractTemplates.ts` (جديد)
+- نقل `PRESET_TEMPLATES` من ContractGenerator.tsx إلى ملف بيانات منفصل
+
+#### CRUD كامل في صانع العقود
+- **ملف**: `src/components/ContractGenerator.tsx`
+- إضافة مودال (نافذة منبثقة) لـ **إنشاء/تعديل/حذف** القوالب المخصصة
+- إدارة الحقول والبنود داخل المودال
+- حفظ القوالب المخصصة في State مع إمكانية التعديل والحذف الفوري
+
+---
+
+### 🐛 إصلاح الأخطاء (Bug Fixes)
+
+- إصلاح `ReferenceError` في CalendarView — نقل تعريف `todayStr` و `today` قبل استخدامهما في `useState`
+- إصلاح خلفية الوضع الداكن التي كانت تظهر باللون الرمادي الفاتح رغم اختيار "داكن مريح"
+- إصلاح تباين شريط التمرير في الوضع الداكن
+
+---
+
+### 📁 الملفات المعدلة
+
+| الملف | التعديل |
+|-------|---------|
+| `src/App.tsx` | تحسين خلفية الوضع الداكن، ربط CalendarView |
+| `src/index.css` | إضافة ثيمات dynamic للخلفيات، شريط التمرير، تجاوزات الألوان |
+| `src/components/ContractGenerator.tsx` | إزالة البرتقالي، إضافة CRUD قوالب، فصل Word/Print |
+| `src/components/CalendarView.tsx` | شبكة شهرية، دعم tasks |
+| `src/components/TemplatesLibrary.tsx` | أزرار تعديل/حذف للقوالب المخصصة |
+| `src/data/contractTemplates.ts` | إضافة قالب عقد إيجار شامل |
+| `src/utils/wordExportHelper.ts` | تحويل ألوان التصدير إلى رمادي |
+| `package.json` | إضافة سكريبت `build:desktop` |
+
+---
+
+*آخر تحديث: 26 يونيو 2026*

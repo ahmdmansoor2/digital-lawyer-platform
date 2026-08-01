@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الدليل الشامل لإدارة القضايا: من القيد إلى الحكم - منصة المحامي الرقمية</title>
+  <meta name="description" content="دليل عملي شامل لإدارة القضايا من لحظة قيدها حتى صدور الحكم. نصائح لتجنب الأخطاء الشائعة في إدارة القضايا." />
+  <meta name="keywords" content="إدارة قضايا, قيد قضية, محامي, جلسات, حكم, محكمة" />
+  <link rel="canonical" href="https://justice-91571.web.app/blog/case-management-guide.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="الدليل الشامل لإدارة القضايا: من القيد إلى الحكم" />
+  <meta property="og:description" content="من القيد إلى الحكم: كيف تنظم قضاياك باحترافية وتتجنب الأخطاء الشائعة" />
+  <meta property="og:url" content="https://justice-91571.web.app/blog/case-management-guide.html" />
+  <meta property="og:site_name" content="منصة المحامي الرقمية" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a; --border: rgba(148,163,184,0.12);
+      --indigo: #6366f1; --purple: #7c3aed; --emerald: #10b981; --cyan: #06b6d4; --amber: #f59e0b;
+      --text: #f1f5f9; --muted: #94a3b8; --card-bg: rgba(15,23,42,0.75);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg); color: var(--text);
+      min-height: 100vh; line-height: 1.9;
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(245,158,11,0.15) 0%, transparent 60%),
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 100% 100%, 48px 48px, 48px 48px;
+    }
+
+    /* NAV BAR */
+    nav.main-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,23,42,0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--amber), #f97316); display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 20px rgba(245,158,11,0.35); transition: transform 0.2s; }
+    .nav-logo:hover .logo-icon { transform: scale(1.07); }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-name { font-size: 15px; font-weight: 900; color: #fff; line-height: 1.2; }
+    .logo-sub { font-size: 10px; color: var(--emerald); font-weight: 700; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--amber); }
+    .nav-cta { padding: 9px 22px; border-radius: 10px; background: linear-gradient(135deg, var(--amber), #f97316); color: #fff; font-size: 12px; font-weight: 900; text-decoration: none; box-shadow: 0 4px 16px rgba(245,158,11,0.3); transition: transform 0.2s, box-shadow 0.2s; }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(245,158,11,0.45); }
+
+    /* BREADCRUMBS */
+    .breadcrumbs { max-width: 860px; margin: 16px auto 0; padding: 0 24px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; font-weight: 700; transition: color 0.2s; }
+    .breadcrumbs a:hover { color: var(--amber); }
+    .breadcrumbs .sep { color: var(--muted); opacity: 0.4; font-size: 10px; }
+    .breadcrumbs .current { color: #e2e8f0; font-weight: 800; }
+
+    /* HERO & TITLE */
+    .article-hero { max-width: 860px; margin: 0 auto; padding: 40px 24px 32px; }
+    .article-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 999px; background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); color: #fbbf24; font-size: 11px; font-weight: 800; margin-bottom: 20px; }
+    .article-hero h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 900; line-height: 1.3; margin-bottom: 20px; color: #fff; }
+    .article-meta { display: flex; align-items: center; gap: 20px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* CONTAINER & ARTICLE BODY */
+    .article-container { max-width: 860px; margin: 0 auto; padding: 0 24px 64px; }
+    .article-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; padding: 48px 44px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 8px 40px rgba(0,0,0,0.25); }
+
+    .article-card h2 { font-size: 22px; font-weight: 900; color: #fff; margin: 40px 0 16px; display: flex; align-items: center; gap: 12px; line-height: 1.4; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+    .article-card h2:first-of-type { margin-top: 0; }
+    .article-card h2 .num { color: #fbbf24; font-size: 13px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3); padding: 2px 10px; border-radius: 999px; flex-shrink: 0; }
+
+    .article-card h3 { font-size: 18px; font-weight: 800; color: #e2e8f0; margin: 28px 0 12px; }
+    .article-card p { font-size: 15px; color: #cbd5e1; line-height: 1.95; margin-bottom: 16px; }
+    .article-card strong { color: #fff; font-weight: 800; }
+
+    .article-card ul, .article-card ol { margin: 16px 0 24px; padding-right: 20px; list-style-position: outside; }
+    .article-card li { font-size: 14px; color: #cbd5e1; line-height: 1.9; margin-bottom: 10px; }
+    .article-card li strong { color: #fbbf24; }
+
+    /* HIGHLIGHT & CALLOUT BOXES */
+    .highlight { background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(234,88,12,0.08)); border: 1px solid rgba(245,158,11,0.3); border-radius: 16px; padding: 24px 28px; margin: 24px 0 32px; }
+    .highlight p { color: #f1f5f9; margin-bottom: 0; font-size: 16px; font-weight: 700; line-height: 1.8; }
+
+    .callout { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.3); border-radius: 16px; padding: 20px 24px; margin: 28px 0; display: flex; gap: 14px; align-items: flex-start; }
+    .callout-icon { font-size: 24px; flex-shrink: 0; }
+    .callout p { margin-bottom: 0; color: #fca5a5; font-size: 14px; }
+    .callout p strong { color: #fff; }
+
+    /* STAGES (STEPS) */
+    .stage { background: rgba(30,41,59,0.6); border: 1px solid var(--border); border-right: 4px solid var(--amber); border-radius: 16px; padding: 24px; margin: 20px 0; }
+    .stage-title { font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .stage p { margin-bottom: 8px; font-size: 14px; color: #cbd5e1; }
+    .stage p:last-child { margin-bottom: 0; }
+
+    /* CHECKLIST */
+    .checklist { list-style: none !important; padding-right: 0 !important; }
+    .checklist li { position: relative; padding-right: 32px; margin-bottom: 12px; }
+    .checklist li::before { content: '✓'; position: absolute; right: 0; top: 2px; width: 22px; height: 22px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); border-radius: 50%; color: #fbbf24; font-weight: 900; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+
+    /* BACK LINK & CTA */
+    .back-link { text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .back-link a { display: inline-flex; align-items: center; gap: 8px; color: #fbbf24; font-size: 13px; font-weight: 800; text-decoration: none; padding: 10px 24px; border-radius: 12px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); transition: all 0.2s; }
+    .back-link a:hover { background: rgba(245,158,11,0.2); transform: translateX(-3px); }
+
+    .cta-section { text-align: center; padding: 0 24px 64px; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 48px; border-radius: 16px; background: linear-gradient(135deg, var(--emerald), #0891b2, var(--indigo)); color: #fff; font-size: 15px; font-weight: 900; text-decoration: none; box-shadow: 0 8px 32px rgba(16,185,129,0.25); transition: transform 0.2s, box-shadow 0.2s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(16,185,129,0.4); }
+
+    /* ADSENSE SLOTS */
+    .ad-slot { margin: 32px auto; max-width: 100%; text-align: center; min-height: 90px; }
+    .ad-slot--top { margin-top: 8px; margin-bottom: 32px; }
+    .ad-slot--bottom { margin: 32px auto 8px; }
+    .ad-label { display: block; font-size: 10px; color: var(--muted); text-align: center; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.5px; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); background: rgba(15,23,42,0.95); padding: 56px 24px 32px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .footer-logo-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .footer-logo-name { font-size: 15px; font-weight: 900; color: #fff; }
+    .footer-desc { font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 280px; }
+    .footer-email { font-size: 12px; color: var(--indigo); margin-top: 10px; font-weight: 700; }
+    .footer-email a { color: var(--indigo); text-decoration: none; }
+    .footer-email a:hover { text-decoration: underline; }
+    .footer-col h4 { font-size: 13px; font-weight: 800; color: #e2e8f0; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--indigo); }
+    .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
+
+    @media (max-width: 768px) {
+      .article-card { padding: 28px 20px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="logo-icon">📋</div>
+        <div class="logo-text">
+          <span class="logo-name">منصة المحامي الرقمية</span>
+          <span class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="/">الرئيسية</a>
+        <a href="/about.html">عن المنصة</a>
+        <a href="/features.html">المميزات</a>
+        <a href="/pricing.html">مجانية بالكامل</a>
+        <a href="/blog/" class="active">المدونة</a>
+        <a href="/contact.html">تواصل معنا</a>
+      </div>
+      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
+    </div>
+  </nav>
+
+  <nav class="breadcrumbs" aria-label="مسار التنقل">
+    <a href="/">الرئيسية</a>
+    <span class="sep">‹</span>
+    <a href="/blog/">المدونة القانونية</a>
+    <span class="sep">‹</span>
+    <span class="current">الدليل الشامل لإدارة القضايا</span>
+  </nav>
+
+  <div class="article-hero">
+    <div class="article-badge">📋 إدارة القضايا</div>
+    <h1>الدليل الشامل لإدارة القضايا: من القيد إلى الحكم</h1>
+    <div class="article-meta">
+      <span>📅 23 يوليو 2026</span>
+      <span>✍️ فريق منصة المحامي الرقمية</span>
+      <span>⏱️ 8 دقائق قراءة</span>
+    </div>
+
+    <!-- TOP AD -->
+    <div class="ad-slot ad-slot--top" role="complementary" aria-label="إعلان">
+      <span class="ad-label">إعلان</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7725405859334364"
+           data-ad-slot="2168039898"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+
+  <div class="article-container">
+    <article class="article-card">
+      <div class="highlight">
+        <p>إدارة القضايا فن وعلم في آن واحد. في هذا الدليل، نأخذك في رحلة كاملة من لحظة استلام القضية حتى صدور الحكم، مع نصائح عملية لتجنب الأخطاء الشائعة.</p>
+      </div>
+
+      <h2>المرحلة الأولى: استلام القضية وتحضيرها</h2>
+
+      <div class="stage">
+        <div class="stage-title">📋 الخطوة 1: الاجتماع بالموكل</div>
+        <p>قبل قبول أي قضية، اجتمع بالموكل واستمع لروايته كاملة. دوّن:</p>
+        <p>• الوقائع بالتفصيل مع التواريخ والمحاضر</p>
+        <p>• الأطراف المعنية (الخصوم والشهود)</p>
+        <p>• المستندات والأدلة المتوفرة</p>
+        <p>• النتيجة المرجوة والميزانية المتاحة</p>
+      </div>
+
+      <div class="stage">
+        <div class="stage-title">📝 الخطوة 2: تقييم جدوى القضية</div>
+        <p>قبل الالتزام بالدفاع، قيّم:</p>
+        <p>• قوة الأدلة المتوفرة والسوابق القضائية المشابهة</p>
+        <p>• التكلفة المتوقعة مقابل الفائدة الحقيقية للموكل</p>
+        <p>• احتمالية النجاح الواقعية والمدة الزمنية المتوقعة</p>
+      </div>
+
+      <div class="callout">
+        <span class="callout-icon">⚠️</span>
+        <p><strong>تحذير:</strong> لا تتعهد بالنتيجة النهائيّة. أخبر الموكل بأنك ستبذل أقصى جهدك، لكن النتيجة في يد القضاء. هذه ليست فقط أخلاقيات المهنة، بل حماية لك من نزاعات الأتعاب لاحقاً.</p>
+      </div>
+
+      <h2>المرحلة الثانية: قيد القضية وتأسيسها</h2>
+
+      <div class="stage">
+        <div class="stage-title">🏛️ الخطوة 3: قيد الدعوى</div>
+        <p>بعد قبول القضية، انتقل لقيدها رسمياً: إعداد صحيفة الدعوى بدقة، تجميع المستندات المؤيدة، سداد الرسوم القضائية، قيد الدعوى في قلم الكتاب، واستلام صورة الإعلان.</p>
+      </div>
+
+      <p><strong>نصيحة عملية:</strong> أنشئ ملفاً رقمياً للقضية من اليوم الأول يحتوي على رقم القضية، المحكمة، الدائرة، أسماء الخصوم ووكلائهم، تاريخ كل إجراء قائم، نسخ من كل المذكرات والمستندات، وصور من إعلانات الجلسات.</p>
+
+      <h2>المرحلة الثالثة: إدارة الجلسات</h2>
+
+      <div class="stage">
+        <div class="stage-title">📅 الخطوة 4: التحضير لكل جلسة</div>
+        <p>قبل كل جلسة بأسبوع على الأقل: راجع ملف القضية كاملاً، حدد المطلوب منك في هذه الجلسة، جهّز المستندات التي ستقدمها، ناقش الاستراتيجية مع الموكل إن لزم، وتأكد من حضور الشهود إن وُجدوا.</p>
+      </div>
+
+      <p><strong>قاعدة ذهبية:</strong> في صباح يوم الجلسة، راجع ملف القضية لمدة 30 دقيقة قبل الذهاب للمحكمة. هذه العادة البسيطة توفر عليك أخطاء مكلفة.</p>
+
+      <h2>المرحلة الرابعة: إعداد المذكرات</h2>
+
+      <div class="stage">
+        <div class="stage-title">📄 الخطوة 5: كتابة المذكرة</div>
+        <p>المذكرة الجيدة تتبع هذا الهيكل:</p>
+        <p>• <strong>المقدمة:</strong> ملخص القضية وطلباتك الجوهرية</p>
+        <p>• <strong>الوقائع:</strong> سرد واضح ومرتب زمنياً</p>
+        <p>• <strong>الدفاع:</strong> الدفوع الشكلية أولاً ثم الموضوعية</p>
+        <p>• <strong>الحجج القانونية:</strong> نصوص القوانين واجتهادات قضائية</p>
+        <p>• <strong>الطلبات:</strong> بشكل واضح ومحدد</p>
+      </div>
+
+      <p><strong>أخطاء شائعة يجب تجنبها:</strong></p>
+      <ul>
+        <li>المذكرات الطويلة جداً (المحكمة ليس لديها وقت لقراءة 50 صفحة)</li>
+        <li>الحجج غير المرتبة (ابدأ بالأهم)</li>
+        <li>عدم الاستشهاد بالسوابق القضائية المعتمدة</li>
+        <li>اللغة المعقدة (كن واضحاً ومباشراً)</li>
+        <li>عدم ذكر الأساس القانوني لكل طلب</li>
+      </ul>
+
+      <h2>المرحلة الخامسة: إدارة المرحلة التنفيذية</h2>
+
+      <p>كثير من القضايا تُحكم لصالحك لكنك <strong>تفشل في تنفيذ الحكم</strong>. تنفيذ الأحكام فن منفصل:</p>
+
+      <div class="stage">
+        <div class="stage-title">⚖️ الخطوة 6: متابعة التنفيذ</div>
+        <p>بعد صدور الحكم النهائي: تأكد من إعلان الحكم للخصم، احصل على الصيغة التنفيذية، قدّم طلب التنفيذ في الوقت المناسب، تابع إجراءات التنفيذ مع المحضر، ووثّق كل خطوة.</p>
+      </div>
+
+      <h2>المرحلة السادسة: إنهاء القضية</h2>
+
+      <div class="stage">
+        <div class="stage-title">✅ الخطوة 7: إغلاق الملف</div>
+        <p>عند انتهاء القضية (حكم نهائي أو صصلح أو تنازل): أرشفة كل المستندات بشكل منظم، كتابة ملخص بنتيجة القضية، تسليم الموكل مستنداته الأصلية، استيفاء الأتعاب المتفق عليها، والحصول على براءة ذمة من الموكل.</p>
+      </div>
+
+      <h2>قائمة مراجعة سريعة</h2>
+
+      <p>اطبع هذه القائمة والصقها على مكتبك:</p>
+
+      <ul class="checklist">
+        <li>هل سجّلت بيانات القضية كاملة في النظام؟</li>
+        <li>هل ربطت القضية بالموكل والخصوم؟</li>
+        <li>هل حددت الجلسات القادمة في التقويم؟</li>
+        <li>هل أبلغت الموكل بآخر التطورات؟</li>
+        <li>هل جهزت المستندات للجلسة القادمة؟</li>
+        <li>هل راجعت الملف كاملاً قبل الجلسة؟</li>
+      </ul>
+
+      <h2>الخلاصة</h2>
+
+      <p>إدارة القضايا الجيدة <strong>تحمي حقوق موكليك، تحفظ سمعتك، وتزيد دخلك</strong>. المحامي المنظم يجد وقتاً لقضايا أكثر، ويحقق نتائج أفضل، وينام مرتاح البال.</p>
+
+      <p>ابدأ اليوم بتطبيق خطوة واحدة من هذا الدليل، وستلاحظ الفرق خلال أسابيع قليلة.</p>
+
+      <div class="back-link">
+        <a href="/blog/">← العودة للمدونة القانونية</a>
+      </div>
+    </article>
+  </div>
+
+  <!-- BOTTOM AD -->
+  <div class="ad-slot ad-slot--bottom" role="complementary" aria-label="إعلان">
+    <span class="ad-label">إعلان</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7725405859334364"
+         data-ad-slot="2168039898"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="cta-section">
+    <a href="/" class="cta-btn">ابدأ استخدام المنصة مجاناً الآن 🚀</a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon">⚖️</div>
+            <span class="footer-logo-name">منصة المحامي الرقمية</span>
+          </div>
+          <p class="footer-desc">النظام البرمجي المتكامل والمجاني لإدارة مكاتب المحاماة في جمهورية مصر العربية.</p>
+          <p class="footer-email">التواصل: <a href="mailto:ahmdmansoor222@gmail.com">ahmdmansoor222@gmail.com</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>أقسام المنصة</h4>
+          <ul>
+            <li><a href="/">الرئيسية</a></li>
+            <li><a href="/about.html">عن المنصة</a></li>
+            <li><a href="/features.html">المميزات</a></li>
+            <li><a href="/pricing.html">مجانية بالكامل</a></li>
+            <li><a href="/blog/">المدونة القانونية</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>السياسات والتواصل</h4>
+          <ul>
+            <li><a href="/privacy.html">سياسة الخصوصية</a></li>
+            <li><a href="/terms.html">شروط الاستخدام</a></li>
+            <li><a href="/contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 منصة المحامي الرقمية — جميع الحقوق محفوظة</span>
+        <span>خدمة مجانية للمحامين والقانونيين في مصر</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

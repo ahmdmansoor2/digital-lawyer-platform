@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عن المنصة - منصة المحامي الرقمية</title>
+  <meta name="description" content="تعرّف على منصة المحامي الرقمية - النظام المتكامل والمجاني 100% لإدارة مكاتب المحاماة في مصر." />
+  <meta name="keywords" content="عن المنصة, محامي, قضايا, نظام إدارة, محاماة, مصر, برنامج محاماة مجاني" />
+  <link rel="canonical" href="https://justice-91571.web.app/about.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="عن المنصة - منصة المحامي الرقمية" />
+  <meta property="og:description" content="نظام متكامل ومجاني لإدارة مكاتب المحاماة في جمهورية مصر العربية." />
+  <meta property="og:url" content="https://justice-91571.web.app/about.html" />
+  <meta property="og:site_name" content="منصة المحامي الرقمية" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a;
+      --bg2: #1e293b;
+      --bg3: rgba(30,41,59,0.6);
+      --border: rgba(148,163,184,0.12);
+      --indigo: #6366f1;
+      --purple: #7c3aed;
+      --emerald: #10b981;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --card-bg: rgba(15,23,42,0.7);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.7;
+      background-image:
+        radial-gradient(ellipse at 70% 0%, rgba(99,102,241,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 80%, rgba(124,58,237,0.12) 0%, transparent 50%),
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,23,42,0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--indigo), var(--purple));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; box-shadow: 0 4px 20px rgba(99,102,241,0.35);
+      transition: transform 0.2s;
+    }
+    .nav-logo:hover .logo-icon { transform: scale(1.07); }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-name { font-size: 15px; font-weight: 900; color: #fff; line-height: 1.2; }
+    .logo-sub { font-size: 10px; color: var(--emerald); font-weight: 700; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      font-size: 13px; font-weight: 700; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
+    .nav-cta {
+      padding: 9px 22px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--indigo), var(--purple));
+      color: #fff; font-size: 12px; font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(99,102,241,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(99,102,241,0.45); }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 860px; margin: 0 auto;
+      padding: 72px 24px 48px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 18px; border-radius: 999px;
+      background: rgba(16,185,129,0.1);
+      border: 1px solid rgba(16,185,129,0.3);
+      color: var(--emerald); font-size: 11px; font-weight: 800;
+      margin-bottom: 24px;
+    }
+    .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--emerald);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900; line-height: 1.2; margin-bottom: 20px;
+      background: linear-gradient(135deg, #e2e8f0 0%, #a5b4fc 50%, #c084fc 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 17px; color: var(--muted); max-width: 600px; margin: 0 auto; font-weight: 600;
+    }
+
+    /* ── CARDS ── */
+    .section { max-width: 1100px; margin: 0 auto; padding: 0 24px 64px; }
+
+    .vision-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 48px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      margin-bottom: 40px;
+      display: flex; align-items: flex-start; gap: 28px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    }
+    .vision-card::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: rgba(99,102,241,0.08);
+      filter: blur(40px); pointer-events: none;
+    }
+    .vision-icon {
+      width: 60px; height: 60px; border-radius: 16px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--indigo), var(--purple));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 4px 20px rgba(99,102,241,0.3);
+    }
+    .vision-content h2 { font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 10px; }
+    .vision-content p { font-size: 14px; color: var(--muted); line-height: 1.8; }
+    .vision-content strong { color: var(--emerald); font-weight: 800; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; }
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px;
+      backdrop-filter: blur(12px);
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .info-card:hover { border-color: rgba(99,102,241,0.4); transform: translateY(-3px); }
+    .info-card .card-icon {
+      width: 48px; height: 48px; border-radius: 14px; margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: center; font-size: 22px;
+    }
+    .icon-purple { background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3); }
+    .icon-emerald { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); }
+    .icon-indigo { background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3); }
+    .info-card h3 { font-size: 17px; font-weight: 900; color: #fff; margin-bottom: 12px; }
+    .info-card p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+
+    .features-grid {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px; padding: 40px;
+      backdrop-filter: blur(16px);
+      margin-bottom: 40px;
+    }
+    .features-grid h3 {
+      font-size: 20px; font-weight: 900; color: #fff;
+      margin-bottom: 28px; display: flex; align-items: center; gap: 12px;
+    }
+    .section-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--indigo); }
+    .feat-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .feat-item {
+      padding: 18px 20px; border-radius: 14px;
+      background: rgba(30,41,59,0.6);
+      border: 1px solid rgba(148,163,184,0.08);
+      transition: border-color 0.2s;
+    }
+    .feat-item:hover { border-color: rgba(99,102,241,0.3); }
+    .feat-item .feat-label {
+      font-size: 13px; font-weight: 800; margin-bottom: 6px;
+      color: #a5b4fc;
+    }
+    .feat-item p { font-size: 11px; color: var(--muted); line-height: 1.6; }
+    .feat-item.emerald .feat-label { color: #6ee7b7; }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center; padding: 0 24px 80px;
+    }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 48px; border-radius: 14px;
+      background: linear-gradient(135deg, var(--emerald), #0891b2, var(--indigo));
+      color: #fff; font-size: 15px; font-weight: 900;
+      text-decoration: none;
+      box-shadow: 0 8px 32px rgba(16,185,129,0.25);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(16,185,129,0.4); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      background: rgba(15,23,42,0.95);
+      padding: 56px 24px 32px;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+    .footer-brand .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .footer-logo-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--indigo), var(--purple));
+      display: flex; align-items: center; justify-content: center; font-size: 16px;
+    }
+    .footer-logo-name { font-size: 15px; font-weight: 900; color: #fff; }
+    .footer-desc { font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 280px; }
+    .footer-email { font-size: 12px; color: var(--indigo); margin-top: 10px; font-weight: 700; }
+    .footer-email a { color: var(--indigo); text-decoration: none; }
+    .footer-email a:hover { text-decoration: underline; }
+    .footer-col h4 { font-size: 13px; font-weight: 800; color: #e2e8f0; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--indigo); }
+    .footer-bottom {
+      border-top: 1px solid rgba(148,163,184,0.08);
+      padding-top: 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 11px; color: rgba(148,163,184,0.5);
+    }
+
+
+    /* BREADCRUMBS */
+    .breadcrumbs {
+      max-width: 1200px; margin: 0 auto;
+      padding: 14px 24px 0;
+      font-size: 12px; color: var(--muted);
+      display: flex; align-items: center; gap: 8px;
+      flex-wrap: wrap;
+    }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; transition: color 0.2s; font-weight: 700; }
+    .breadcrumbs a:hover { color: var(--indigo); }
+    .breadcrumbs .current { color: var(--text); font-weight: 800; }
+    .breadcrumbs .sep { color: var(--muted); opacity: 0.4; font-size: 10px; }
+
+
+    /* ADSENSE SLOTS */
+    .ad-slot { margin: 28px auto; max-width: 100%; text-align: center; min-height: 90px; }
+    .ad-slot--top { margin-top: 8px; margin-bottom: 36px; }
+    .ad-slot--inline { margin: 40px auto; }
+    .ad-slot--bottom { margin: 36px auto 8px; }
+    .ad-label { display: block; font-size: 10px; color: var(--muted); text-align: center; margin-bottom: 6px; letter-spacing: 0.5px; font-weight: 700; }
+    .ad-fallback { display: inline-block; padding: 22px 26px; background: rgba(15,23,42,0.5); border: 1px dashed rgba(99,102,241,0.3); border-radius: 14px; color: var(--muted); font-size: 12px; max-width: 728px; }
+    .ad-fallback strong { color: var(--indigo); }
+
+    @media (max-width: 768px) {
+      .two-col { grid-template-columns: 1fr; }
+      .feat-items { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .nav-links { display: none; }
+      .vision-card { flex-direction: column; padding: 28px; }
+    }
+    @media (max-width: 480px) {
+      .feat-items { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  
+
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="logo-icon">⚖️</div>
+        <div class="logo-text">
+          <span class="logo-name">منصة المحامي الرقمية</span>
+          <span class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="/">الرئيسية</a>
+        <a href="/about.html" class="active">عن المنصة</a>
+        <a href="/features.html">المميزات</a>
+        <a href="/pricing.html">مجانية بالكامل</a>
+        <a href="/blog/">المدونة</a>
+        <a href="/contact.html">تواصل معنا</a>
+      </div>
+      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
+    </div>
+  </nav>
+  <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><span class="current">عن المنصة</span></nav>
+
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      منصة مجانية بالكامل 100% لكل المحامين في مصر
+    </div>
+    <h1>عن منصة المحامي الرقمية</h1>
+    <p>المنصة المتكاملة الأولى المصممة خصيصاً للمحامين والقانونيين المصريين لإدارة كافة أعمال المكتب باحترافية وسهولة تامة.</p>
+  </div>
+
+
+  <!-- TOP AD -->
+  <div class="ad-slot ad-slot--top" role="complementary" aria-label="إعلان">
+    <span class="ad-label">إعلان</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7725405859334364"
+         data-ad-slot="2168039898"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- Main Content -->
+  <div class="section">
+
+    <!-- Vision Card -->
+    <div class="vision-card">
+      <div class="vision-icon">⚡</div>
+      <div class="vision-content">
+        <h2>رؤيتنا ورسالتنا</h2>
+        <p>نسعى إلى رقمنة مهنة المحاماة في مصر بالكامل وتمكين كل محامٍ ومكتب محاماة من العمل بأحدث الوسائل التكنولوجية، مع الحفاظ التام على خصوصية البيانات وحمايتها. نقدم النظام بشكل <strong>مجاني 100%</strong> لخدمة مجتمع المحامين دون استثناء.</p>
+      </div>
+    </div>
+
+    <!-- Two Column -->
+    <div class="two-col">
+      <div class="info-card">
+        <div class="card-icon icon-purple">🎯</div>
+        <h3>قصة نشأة المنصة</h3>
+        <p>بدأت فكرة المنصة من واقع العمل القانوني اليومي وملاحظة المعاناة الحقيقية في تتبع أوراق المحضرين والجلسات والماليات عبر الملفات الورقية القديمة. صُممت المنصة لتجمع كافة أدوات المحامي في مكان واحد منظم وآمن.</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon icon-emerald">🛡️</div>
+        <h3>الخصوصية والأمان أولاً</h3>
+        <p>بيانات موكليك وقضاياك هي ملكك الفردي فقط. تتبع المنصة أعلى معايير العزلة والتشفير، حيث تُخزن سجلاتك سحابياً بحسابك الخاص دون السماح لأي طرف خارجي بالاطلاع عليها.</p>
+      </div>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="features-grid">
+      <h3>
+        <span class="section-dot"></span>
+        أبرز ما يقدمه نظام المحامي الرقمي
+      </h3>
+      <div class="feat-items">
+        <div class="feat-item">
+          <div class="feat-label">📁 إدارة القضايا والموكلين</div>
+          <p>سجل متكامل لكل قضية وموكل من القيد حتى الحكم.</p>
+        </div>
+        <div class="feat-item">
+          <div class="feat-label">📅 جدول الجلسات التفاعلي</div>
+          <p>تقويم للجلسات مع طباعة الكشوف والتنبيهات.</p>
+        </div>
+        <div class="feat-item">
+          <div class="feat-label">📜 أوراق المحضرين والتنفيذ</div>
+          <p>متابعة الإعلانات القضائية وإجراءات التنفيذ خطوة بخطوة.</p>
+        </div>
+        <div class="feat-item">
+          <div class="feat-label">🧮 حاسبة الرسوم والمواريث</div>
+          <p>حساب رسوم الدعاوى وتقسيم التركات وفق أحكام الشريعة.</p>
+        </div>
+        <div class="feat-item">
+          <div class="feat-label">📚 المكتبة القانونية</div>
+          <p>قواعد قانونية، أحكام محكمة النقض وصيغ العقود.</p>
+        </div>
+        <div class="feat-item emerald">
+          <div class="feat-label">🎁 مجاني 100% بدون حدود</div>
+          <p>بدون اشتراكات، بدون رسوم خفية، مدى الحياة.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  
+  <!-- BOTTOM AD -->
+  <div class="ad-slot ad-slot--bottom" role="complementary" aria-label="إعلان">
+    <span class="ad-label">إعلان</span>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7725405859334364"
+         data-ad-slot="2168039898"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+<div class="cta-section">
+    <a href="/" class="cta-btn">ابدأ استخدام المنصة الآن مجاناً 🚀</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon">⚖️</div>
+            <span class="footer-logo-name">منصة المحامي الرقمية</span>
+          </div>
+          <p class="footer-desc">النظام البرمجي المتكامل والمجاني لإدارة مكاتب المحاماة في جمهورية مصر العربية.</p>
+          <p class="footer-email">التواصل: <a href="mailto:ahmdmansoor222@gmail.com">ahmdmansoor222@gmail.com</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>أقسام المنصة</h4>
+          <ul>
+            <li><a href="/">الرئيسية</a></li>
+            <li><a href="/about.html">عن المنصة</a></li>
+            <li><a href="/features.html">المميزات</a></li>
+            <li><a href="/pricing.html">مجانية بالكامل</a></li>
+            <li><a href="/blog/">المدونة القانونية</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>السياسات والتواصل</h4>
+          <ul>
+            <li><a href="/privacy.html">سياسة الخصوصية</a></li>
+            <li><a href="/terms.html">شروط الاستخدام</a></li>
+            <li><a href="/contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 منصة المحامي الرقمية — جميع الحقوق محفوظة</span>
+        <span>خدمة مجانية للمحامين والقانونيين في مصر</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    (function() {
+      try {
+        var p = new URLSearchParams(window.location.search);
+        if (p.get('from') === 'app') {
+          var cta = document.querySelector('.nav-cta');
+          if (cta) {
+            cta.innerHTML = '← العودة إلى لوحة التحكم';
+            cta.setAttribute('aria-label', 'العودة إلى لوحة التحكم');
+          }
+        }
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>
