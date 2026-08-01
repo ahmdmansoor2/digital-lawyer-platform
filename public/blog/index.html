@@ -234,6 +234,15 @@
       backdrop-filter: blur(8px);
       background: rgba(0,0,0,0.4) !important;
     }
+
+    .post-cover-img {
+      width: 100%; height: 100%; object-fit: cover;
+      display: block; transition: transform 0.4s ease;
+    }
+    .post-card:hover .post-cover-img {
+      transform: scale(1.06);
+    }
+  
 </style>
 </head>
 <body>
@@ -286,9 +295,25 @@
 
     <div class="posts-grid">
 
+      <a href="/blog/employment-contract-termination.html" class="post-card">
+        <div class="post-cover">
+          <img src="/blog/assets/consumer-protection.jpg" alt="قانون العمل" class="post-cover-img" />
+          <span class="post-cover-tag">قانون العمل</span>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📅 ١ أغسطس ٢٠٢٦</span>
+            <span>⏱️ 5 دقائق</span>
+          </div>
+          <h3>إنهاء عقد العمل في القانون المصري: الدليل الشامل للحقوق والالتزامات للعمال وأصحاب الأعمال</h3>
+          <p>دليل قانوني مفصل حول إنهاء عقد العمل في قانون العمل المصري. تعرف على أنواع الإنهاء، مهلة الأخطار، الحقوق المالية، والالتزامات القانونية لكل طرف.</p>
+          <div class="post-cta">اقرأ المقال ←</div>
+        </div>
+      </a>
+
       <a href="/blog/divorce-procedures-egypt.html" class="post-card">
-        <div class="post-cover purple">
-          <span class="post-cover-icon">💔</span>
+        <div class="post-cover">
+          <img src="/blog/assets/family-law.jpg" alt="قانون الأسرة" class="post-cover-img" />
           <span class="post-cover-tag">قانون الأسرة</span>
         </div>
         <div class="post-body">
@@ -303,8 +328,8 @@
       </a>
 
       <a href="/blog/inheritance-shares-egypt.html" class="post-card">
-        <div class="post-cover indigo">
-          <span class="post-cover-icon">⚖️</span>
+        <div class="post-cover">
+          <img src="/blog/assets/inheritance.jpg" alt="الميراث" class="post-cover-img" />
           <span class="post-cover-tag">الميراث</span>
         </div>
         <div class="post-body">
@@ -319,8 +344,8 @@
       </a>
 
       <a href="/blog/late-tenant-payment.html" class="post-card">
-        <div class="post-cover amber">
-          <span class="post-cover-icon">🏠</span>
+        <div class="post-cover">
+          <img src="/blog/assets/real-estate.jpg" alt="قانون الإيجارات" class="post-cover-img" />
           <span class="post-cover-tag">قانون الإيجارات</span>
         </div>
         <div class="post-body">
@@ -335,8 +360,8 @@
       </a>
 
       <a href="/blog/legal-practice-tips.html" class="post-card">
-        <div class="post-cover indigo">
-          <span class="post-cover-icon">🏛️</span>
+        <div class="post-cover">
+          <img src="/blog/assets/company.jpg" alt="إدارة المكتب" class="post-cover-img" />
           <span class="post-cover-tag">إدارة المكتب</span>
         </div>
         <div class="post-body">
@@ -351,8 +376,8 @@
       </a>
 
       <a href="/blog/case-management-guide.html" class="post-card">
-        <div class="post-cover amber">
-          <span class="post-cover-icon">📋</span>
+        <div class="post-cover">
+          <img src="/blog/assets/company.jpg" alt="إدارة القضايا" class="post-cover-img" />
           <span class="post-cover-tag">إدارة القضايا</span>
         </div>
         <div class="post-body">
@@ -367,8 +392,8 @@
       </a>
 
       <a href="/blog/tech-for-lawyers.html" class="post-card">
-        <div class="post-cover cyan">
-          <span class="post-cover-icon">💻</span>
+        <div class="post-cover">
+          <img src="/blog/assets/company.jpg" alt="تكنولوجيا" class="post-cover-img" />
           <span class="post-cover-tag">تكنولوجيا</span>
         </div>
         <div class="post-body">
@@ -383,8 +408,8 @@
       </a>
 
       <a href="/blog/courtroom-advocacy.html" class="post-card">
-        <div class="post-cover purple">
-          <span class="post-cover-icon">⚖️</span>
+        <div class="post-cover">
+          <img src="/blog/assets/company.jpg" alt="فن المرافعة" class="post-cover-img" />
           <span class="post-cover-tag">فن المرافعة</span>
         </div>
         <div class="post-body">
@@ -399,8 +424,8 @@
       </a>
 
       <a href="/blog/law-firm-marketing.html" class="post-card">
-        <div class="post-cover cyan">
-          <span class="post-cover-icon">📢</span>
+        <div class="post-cover">
+          <img src="/blog/assets/company.jpg" alt="التسويق" class="post-cover-img" />
           <span class="post-cover-tag">التسويق</span>
         </div>
         <div class="post-body">
@@ -415,8 +440,8 @@
       </a>
 
       <a href="/blog/labor-rights-termination.html" class="post-card">
-        <div class="post-cover indigo">
-          <span class="post-cover-icon">⚖️</span>
+        <div class="post-cover">
+          <img src="/blog/assets/consumer-protection.jpg" alt="قانون العمل" class="post-cover-img" />
           <span class="post-cover-tag">قانون العمل</span>
         </div>
         <div class="post-body">
@@ -431,8 +456,8 @@
       </a>
 
       <a href="/blog/inheritance-law-egypt.html" class="post-card">
-        <div class="post-cover cyan">
-          <span class="post-cover-icon">📜</span>
+        <div class="post-cover">
+          <img src="/blog/assets/inheritance.jpg" alt="قانون الميراث" class="post-cover-img" />
           <span class="post-cover-tag">قانون الميراث</span>
         </div>
         <div class="post-body">
@@ -447,8 +472,8 @@
       </a>
 
       <a href="/blog/company-incorporation-egypt.html" class="post-card">
-        <div class="post-cover emerald">
-          <span class="post-cover-icon">🏢</span>
+        <div class="post-cover">
+          <img src="/blog/assets/company.jpg" alt="قانون الشركات" class="post-cover-img" />
           <span class="post-cover-tag">قانون الشركات</span>
         </div>
         <div class="post-body">
@@ -463,8 +488,8 @@
       </a>
 
       <a href="/blog/consumer-protection-egypt.html" class="post-card">
-        <div class="post-cover cyan">
-          <span class="post-cover-icon">🛒</span>
+        <div class="post-cover">
+          <img src="/blog/assets/consumer-protection.jpg" alt="حقوق المستهلك" class="post-cover-img" />
           <span class="post-cover-tag">حقوق المستهلك</span>
         </div>
         <div class="post-body">
@@ -479,8 +504,8 @@
       </a>
 
       <a href="/blog/real-estate-contract-risks.html" class="post-card">
-        <div class="post-cover amber">
-          <span class="post-cover-icon">🏗️</span>
+        <div class="post-cover">
+          <img src="/blog/assets/real-estate.jpg" alt="عقود العقارات" class="post-cover-img" />
           <span class="post-cover-tag">عقود العقارات</span>
         </div>
         <div class="post-body">
@@ -495,8 +520,8 @@
       </a>
 
       <a href="/blog/criminal-defense-rights.html" class="post-card">
-        <div class="post-cover indigo">
-          <span class="post-cover-icon">🔒</span>
+        <div class="post-cover">
+          <img src="/blog/assets/civil-compensation.jpg" alt="الدفاع الجنائي" class="post-cover-img" />
           <span class="post-cover-tag">الدفاع الجنائي</span>
         </div>
         <div class="post-body">
@@ -511,8 +536,8 @@
       </a>
 
       <a href="/blog/debt-collection-egypt.html" class="post-card">
-        <div class="post-cover amber">
-          <span class="post-cover-icon">💳</span>
+        <div class="post-cover">
+          <img src="/blog/assets/civil-compensation.jpg" alt="التنفيذ وتحصيل الديون" class="post-cover-img" />
           <span class="post-cover-tag">التنفيذ وتحصيل الديون</span>
         </div>
         <div class="post-body">
@@ -527,8 +552,8 @@
       </a>
 
       <a href="/blog/administrative-appeals-egypt.html" class="post-card">
-        <div class="post-cover purple">
-          <span class="post-cover-icon">🏛️</span>
+        <div class="post-cover">
+          <img src="/blog/assets/company.jpg" alt="القانون الإداري" class="post-cover-img" />
           <span class="post-cover-tag">القانون الإداري</span>
         </div>
         <div class="post-body">
@@ -543,8 +568,8 @@
       </a>
 
       <a href="/blog/civil-compensation-lawsuits.html" class="post-card">
-        <div class="post-cover emerald">
-          <span class="post-cover-icon">⚖️</span>
+        <div class="post-cover">
+          <img src="/blog/assets/civil-compensation.jpg" alt="التعويض المدني" class="post-cover-img" />
           <span class="post-cover-tag">التعويض المدني</span>
         </div>
         <div class="post-body">

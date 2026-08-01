@@ -709,129 +709,186 @@ const TOPIC_POOL = [
         </div>
         <div class="faq-item">
           <h4>❓ ماذا لو أسهم المضرور في إحداث الضرر؟</h4>
-          <p>تنص المادة 216 من القانون المدني على أن خطأ المضرور يُخفف التعويض بحسب جسامة هذا الخطأ. وقد يُسقط التعويض كلياً إذا كان خطأ المضرور هو السبب الوحيد للضرر.</p>
-        </div>
-      </div>
-
-      <h2>الخلاصة والتوجيه القانوني</h2>
-      <p>دعوى التعويض المدني سلاح قانوني فعّال لاسترداد حقك من كل من تسبب في إلحاق الضرر بك سواء كان شخصاً طبيعياً أو اعتبارياً. الوقت عامل حاسم — ابدأ فور وقوع الضرر بتوثيق الأدلة والتواصل مع محامٍ متخصص.</p>
-      <p><em>هذا المقال لأغراض التوعية القانونية العامة ولا يغني عن استشارة محامٍ متخصص.</em></p>
-    `
-  },
-
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  {
-    slug: 'cybercrime-law-egypt',
-    tag: 'الجرائم الإلكترونية',
-    coverColor: 'cyan',
-    coverIcon: '🔐',
-    readTime: '16',
-    pubDate: '',
-    title: 'الموسوعة القانونية للجرائم الإلكترونية في مصر: القانون 175 لسنة 2018',
-    metaDesc: 'دليل قانوني موسع 3000+ كلمة يشرح قانون مكافحة جرائم تقنية المعلومات رقم 175 لسنة 2018: جرائم الابتزاز، الاحتيال الإلكتروني، التشهير، والعقوبات المقررة.',
-    keywords: 'قانون الجرائم الإلكترونية مصر, قانون 175 لسنة 2018, ابتزاز إلكتروني, احتيال إلكتروني, تشهير الكتروني',
-    body: `
-      <div class="highlight">
-        <p>في ظل التحول الرقمي الهائل، باتت الجرائم الإلكترونية تهديداً حقيقياً تواجهه الشركات والأفراد يومياً. القانون المصري رقم 175 لسنة 2018 المعدّل يُجرّم صور متعددة من الاعتداءات الرقمية بعقوبات صارمة قد تصل إلى السجن المشدد. هذا الدليل يكشف كل ما تحتاج معرفته لحماية نفسك رقمياً وقانونياً.</p>
-      </div>
-
+          <p>تنص المادة 216 من القانون المدني على أن خطأ المضرور يُخفف التعويض بحسب جسامة ه�  let articleBody = topic.body;
+  if (!articleBody.includes('article-image-box')) {
+    const imgUrl = getImageForTopic(topic);
+    const imageBoxHtml = `
       <div class="article-image-box">
-        <img src="/blog/assets/company.jpg" alt="الجرائم الإلكترونية وقانون تقنية المعلومات في مصر" />
-        <div class="article-image-caption">رسم توضيحي: الجرائم الإلكترونية والعقوبات المقررة قانوناً في مصر</div>
-      </div>
+        <img src="${imgUrl}" alt="${topic.title}" />
+        <div class="article-image-caption">رسم توضيحي: ${topic.title}</div>
+      </div>`;
+    if (articleBody.includes('<h2>')) {
+      articleBody = articleBody.replace('<h2>', imageBoxHtml + '\n\n<h2>');
+    } else {
+      articleBody = imageBoxHtml + articleBody;
+    }
+  }
 
-      <h2><span class="num">1</span> الإطار التشريعي — القانون 175 لسنة 2018</h2>
-      <p>صدر قانون مكافحة جرائم تقنية المعلومات رقم 175 لسنة 2018 ليُجرّم الاعتداءات الرقمية ويضع منظومة عقابية متكاملة. يُطبَّق القانون على كل فعل يقع داخل مصر أو ينتج أثره فيها حتى لو ارتُكب من الخارج، مما يمنح القضاء المصري صلاحية محاكمة مرتكبيه.</p>
-
-      <h2><span class="num">2</span> أبرز الجرائم المنصوص عليها وعقوباتها</h2>
-      <div class="stage">
-        <div class="stage-title">⚖️ جدول الجرائم والعقوبات (القانون 175 لسنة 2018)</div>
-        <p>🔴 <strong>الابتزاز الإلكتروني (المادة 25):</strong> تهديد شخص بنشر محتوى يمسّ شرفه أو خصوصيته لانتزاع مبالغ أو خدمات. العقوبة: السجن لا تقل عن سنتين وغرامة لا تقل عن 100,000 جنيه.</p>
-        <p>🔴 <strong>الاحتيال الإلكتروني (المادة 23):</strong> استخدام الشبكات المعلوماتية بقصد الاستيلاء على أموال الغير بالخداع. العقوبة: الحبس لا تقل عن سنة وغرامة لا تقل عن 50,000 جنيه.</p>
-        <p>🔴 <strong>التشهير والقذف الإلكتروني (المادة 26):</strong> نشر محتوى يمسّ الشرف والاعتبار عبر الإنترنت. العقوبة: السجن لا تزيد عن سنتين أو غرامة لا تقل عن 100,000 جنيه.</p>
-        <p>🔴 <strong>الاختراق غير المشروع للأنظمة (المادة 14):</strong> الدخول غير المأذون به لأي نظام معلوماتي. العقوبة: السجن لا تقل عن سنة وغرامة بين 50,000 و200,000 جنيه.</p>
-        <p>🔴 <strong>انتهاك الخصوصية (المادة 45):</strong> التقاط أو نشر صور ومحادثات خاصة دون إذن. العقوبة: الحبس لا تقل عن 6 أشهر وغرامة لا تقل عن 50,000 جنيه.</p>
-      </div>
-
-      <h2><span class="num">3</span> الإجراءات القانونية لرفع البلاغات الجنائية الإلكترونية</h2>
-      <ol>
-        <li><strong>الإبلاغ الفوري:</strong> التوجه لأقرب مركز شرطة أو مباشرةً لنيابة الجرائم الإلكترونية (النيابة المتخصصة).</li>
-        <li><strong>حفظ الأدلة الرقمية:</strong> التقاط صور شاشة (Screenshots)، حفظ روابط URL، تسجيل المحادثات، واستخراج كشف حساب البنك في حالات الاحتيال.</li>
-        <li><strong>طلب التحفظ على البيانات:</strong> تطلب النيابة من مزودي الخدمة (Meta, Google, Telecom Egypt) تجميد بيانات الحساب المشتبه به.</li>
-        <li><strong>طلب الإيقاف والحجب:</strong> يحق للمتضرر طلب إيقاف المحتوى الضار فوراً كإجراء مؤقت ريثما يُفصل في الدعوى.</li>
-      </ol>
-
-      <h2><span class="num">4</span> حماية المؤسسات والشركات من الجرائم الإلكترونية</h2>
-      <p>تُلزم اللائحة التنفيذية للقانون كل شركة تتعامل مع بيانات عملائها بـ:</p>
-      <ul>
-        <li>وضع سياسة خصوصية واضحة ومعتمدة.</li>
-        <li>تعيين مسؤول حماية بيانات (DPO) إذا تجاوزت حجماً معيناً.</li>
-        <li>الإبلاغ الفوري عن أي اختراق يطال بيانات المستخدمين خلال 72 ساعة.</li>
-        <li>عدم الاحتفاظ بالبيانات لفترة أطول من الغرض المحدد.</li>
-      </ul>
-
-      <h2><span class="num">5</span> دور المحكمة الجنائية الإلكترونية المتخصصة</h2>
-      <div class="callout">
-        <span class="callout-icon">🏛️</span>
-        <p><strong>أنشأت مصر دوائر جنائية متخصصة لجرائم المعلومات</strong> تتميز بقضاة مؤهلين للفصل في القضايا الرقمية المعقدة بكفاءة عالية. معدل إصدار الأحكام في هذه القضايا أسرع بكثير من القضايا التقليدية نظراً لطبيعة الأدلة الرقمية الواضحة.</p>
-      </div>
-
-      <h2><span class="num">6</span> أسئلة قانونية شائعة (FAQ)</h2>
-      <div class="faq-grid">
-        <div class="faq-item">
-          <h4>❓ هل يُعاقب على مشاركة الصور الخاصة بدون إذن حتى لو جاءت من الضحية نفسها في البداية؟</h4>
-          <p>نعم. مشاركة أي صورة أو مقطع خاص دون موافقة صاحبه تُشكّل جريمة انتهاك خصوصية مكتملة الأركان بصرف النظر عن طريقة الحصول عليها.</p>
+  return `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${topic.title} - منصة المحامي الرقمية</title>
+  <meta name="description" content="${topic.metaDesc}" />
+  <meta name="keywords" content="${topic.keywords}" />
+  <link rel="canonical" href="https://justice-91571.web.app/blog/${topic.slug}.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="${topic.title}" />
+  <meta property="og:description" content="${topic.metaDesc}" />
+  <meta property="og:url" content="https://justice-91571.web.app/blog/${topic.slug}.html" />
+  <meta property="og:site_name" content="منصة المحامي الرقمية" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a; --border: rgba(148,163,184,0.12);
+      --indigo: #6366f1; --purple: #7c3aed; --emerald: #10b981; --cyan: #06b6d4;
+      --accent: ${accent.color}; --accent-light: ${accent.light};
+      --text: #f1f5f9; --muted: #94a3b8; --card-bg: rgba(15,23,42,0.75);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg); color: var(--text);
+      min-height: 100vh; line-height: 1.9;
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(${accent.rgb},0.15) 0%, transparent 60%),
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+      background-size: 100% 100%, 48px 48px, 48px 48px;
+    }
+    nav.main-nav { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--indigo)); display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 20px rgba(${accent.rgb},0.35); transition: transform 0.2s; }
+    .nav-logo:hover .logo-icon { transform: scale(1.07); }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-name { font-size: 15px; font-weight: 900; color: #fff; line-height: 1.2; }
+    .logo-sub { font-size: 10px; color: var(--emerald); font-weight: 700; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent-light); }
+    .nav-cta { padding: 9px 22px; border-radius: 10px; background: linear-gradient(135deg, var(--accent), var(--indigo)); color: #fff; font-size: 12px; font-weight: 900; text-decoration: none; box-shadow: 0 4px 16px rgba(${accent.rgb},0.3); transition: transform 0.2s, box-shadow 0.2s; }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(${accent.rgb},0.45); }
+    .breadcrumbs { max-width: 860px; margin: 16px auto 0; padding: 0 24px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; font-weight: 700; transition: color 0.2s; }
+    .breadcrumbs a:hover { color: var(--accent-light); }
+    .breadcrumbs .sep { opacity: 0.4; font-size: 10px; }
+    .breadcrumbs .current { color: #e2e8f0; font-weight: 800; }
+    .article-hero { max-width: 860px; margin: 0 auto; padding: 40px 24px 32px; }
+    .article-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 999px; background: rgba(${accent.rgb},0.12); border: 1px solid rgba(${accent.rgb},0.3); color: var(--accent-light); font-size: 11px; font-weight: 800; margin-bottom: 20px; }
+    .article-hero h1 { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 900; line-height: 1.3; margin-bottom: 20px; color: #fff; }
+    .article-meta { display: flex; align-items: center; gap: 20px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+    .article-meta span { display: flex; align-items: center; gap: 6px; }
+    .article-container { max-width: 860px; margin: 0 auto; padding: 0 24px 64px; }
+    .article-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; padding: 48px 44px; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 8px 40px rgba(0,0,0,0.25); }
+    .article-card h2 { font-size: 22px; font-weight: 900; color: #fff; margin: 40px 0 16px; display: flex; align-items: center; gap: 12px; line-height: 1.4; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+    .article-card h2:first-of-type { margin-top: 0; }
+    .article-card h2 .num { color: var(--accent-light); font-size: 13px; background: rgba(${accent.rgb},0.15); border: 1px solid rgba(${accent.rgb},0.3); padding: 2px 10px; border-radius: 999px; flex-shrink: 0; }
+    .article-card h3 { font-size: 18px; font-weight: 800; color: #e2e8f0; margin: 28px 0 12px; }
+    .article-card p { font-size: 15px; color: #cbd5e1; line-height: 1.95; margin-bottom: 16px; }
+    .article-card strong { color: #fff; font-weight: 800; }
+    .article-card ul, .article-card ol { margin: 16px 0 24px; padding-right: 20px; list-style-position: outside; }
+    .article-card li { font-size: 14px; color: #cbd5e1; line-height: 1.9; margin-bottom: 10px; }
+    .article-card li strong { color: var(--accent-light); }
+    .highlight { background: linear-gradient(135deg, rgba(${accent.rgb},0.12), rgba(99,102,241,0.08)); border: 1px solid rgba(${accent.rgb},0.3); border-radius: 16px; padding: 24px 28px; margin: 24px 0 32px; }
+    .highlight p { color: #f1f5f9; margin-bottom: 0; font-size: 16px; font-weight: 700; line-height: 1.8; }
+    .callout { background: rgba(${accent.rgb},0.08); border: 1px solid rgba(${accent.rgb},0.3); border-radius: 16px; padding: 20px 24px; margin: 28px 0; display: flex; gap: 14px; align-items: flex-start; }
+    .callout-icon { font-size: 24px; flex-shrink: 0; }
+    .callout p { margin-bottom: 0; color: var(--accent-light); font-size: 14px; }
+    .callout p strong { color: #fff; }
+    .article-image-box { margin: 32px 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 12px 32px rgba(0,0,0,0.35); background: #000; }
+    .article-image-box img { width: 100%; height: auto; display: block; object-fit: cover; max-height: 420px; }
+    .article-image-caption { padding: 12px 18px; font-size: 12px; color: var(--muted); text-align: center; background: rgba(15,23,42,0.9); font-weight: 700; border-top: 1px solid var(--border); }
+    .faq-grid { display: flex; flex-direction: column; gap: 16px; margin: 24px 0; }
+    .faq-item { background: rgba(30,41,59,0.5); border: 1px solid var(--border); border-radius: 16px; padding: 20px 24px; }
+    .faq-item h4 { font-size: 15px; font-weight: 800; color: var(--accent-light); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .faq-item p { margin-bottom: 0; font-size: 14px; color: #cbd5e1; }
+    .back-link { text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .back-link a { display: inline-flex; align-items: center; gap: 8px; color: var(--accent-light); font-size: 13px; font-weight: 800; text-decoration: none; padding: 10px 24px; border-radius: 12px; background: rgba(${accent.rgb},0.1); border: 1px solid rgba(${accent.rgb},0.3); transition: all 0.2s; }
+    .back-link a:hover { background: rgba(${accent.rgb},0.2); transform: translateX(-3px); }
+    .cta-section { text-align: center; padding: 0 24px 64px; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 48px; border-radius: 16px; background: linear-gradient(135deg, var(--emerald), #0891b2, var(--indigo)); color: #fff; font-size: 15px; font-weight: 900; text-decoration: none; box-shadow: 0 8px 32px rgba(16,185,129,0.25); transition: transform 0.2s, box-shadow 0.2s; }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(16,185,129,0.4); }
+    .ad-slot { margin: 32px auto; max-width: 100%; text-align: center; min-height: 90px; }
+    .ad-slot--top { margin-top: 8px; margin-bottom: 32px; }
+    .ad-slot--bottom { margin: 32px auto 8px; }
+    .ad-label { display: block; font-size: 10px; color: var(--muted); text-align: center; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.5px; }
+    footer { border-top: 1px solid var(--border); background: rgba(15,23,42,0.95); padding: 56px 24px 32px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .footer-logo-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .footer-logo-name { font-size: 15px; font-weight: 900; color: #fff; }
+    .footer-desc { font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 280px; }
+    .footer-email { font-size: 12px; color: var(--indigo); margin-top: 10px; font-weight: 700; }
+    .footer-email a { color: var(--indigo); text-decoration: none; }
+    .footer-email a:hover { text-decoration: underline; }
+    .footer-col h4 { font-size: 13px; font-weight: 800; color: #e2e8f0; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--indigo); }
+    .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
+    @media (max-width: 768px) { .article-card { padding: 28px 20px; } .footer-grid { grid-template-columns: 1fr; gap: 28px; } .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+  <nav class="main-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="logo-icon">${topic.coverIcon}</div>
+        <div class="logo-text">
+          <span class="logo-name">منصة المحامي الرقمية</span>
+          <span class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</span>
         </div>
-        <div class="faq-item">
-          <h4>❓ هل يقع الابتزاز الإلكتروني حتى لو لم يُرسل المبلغ؟</h4>
-          <p>نعم. الجريمة تقع بمجرد توجيه التهديد وطلب المنفعة، بصرف النظر عن تحقق النتيجة أو رفض الضحية الاستجابة.</p>
-        </div>
-        <div class="faq-item">
-          <h4>❓ كيف يُثبت الاحتيال الإلكتروني إذا كان الجاني يستخدم حسابات وهمية؟</h4>
-          <p>تستطيع النيابة العامة بأوامر قضائية الحصول على بيانات الـ IP والـ MAC Address من مزودي الخدمة، مما يكشف هوية الجاني الحقيقية حتى لو استخدم أسماء وهمية.</p>
-        </div>
+      </a>
+      <div class="nav-links">
+        <a href="/">الرئيسية</a>
+        <a href="/about.html">عن المنصة</a>
+        <a href="/features.html">المميزات</a>
+        <a href="/pricing.html">مجانية بالكامل</a>
+        <a href="/blog/" class="active">المدونة</a>
+        <a href="/contact.html">تواصل معنا</a>
       </div>
+      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
+    </div>
+  </nav>
 
-      <h2>الخلاصة والتوجيه القانوني</h2>
-      <p>التوثيق الفوري والإبلاغ السريع هما مفتاح النجاح في قضايا الجرائم الإلكترونية. لا تستسلم للمبتز ولا تدفع المبالغ المطلوبة — توجه فوراً للشرطة والنيابة مع محامٍ متخصص في قضايا تقنية المعلومات.</p>
-      <p><em>هذا المقال لأغراض التوعية القانونية العامة ولا يغني عن استشارة محامٍ متخصص.</em></p>
-    `
-  },
+  <nav class="breadcrumbs" aria-label="مسار التنقل">
+    <a href="/">الرئيسية</a>
+    <span class="sep">‹</span>
+    <a href="/blog/">المدونة القانونية</a>
+    <span class="sep">‹</span>
+    <span class="current">${topic.tag}</span>
+  </nav>
 
-  // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  {
-    slug: 'traffic-accidents-compensation',
-    tag: 'حوادث المرور',
-    coverColor: 'amber',
-    coverIcon: '🚗',
-    readTime: '16',
-    pubDate: '',
-    title: 'دليل التعويض القانوني في حوادث المرور المصرية 2026: حقوقك وإجراءاتك',
-    metaDesc: 'كل ما تحتاج معرفته عن التعويض في حوادث السيارات بمصر: المسؤولية القانونية، شركات التأمين، الدعاوى الجنائية والمدنية، وأحكام محكمة النقض.',
-    keywords: 'تعويض حوادث مرور مصر, تأمين سيارات, مسؤولية حوادث سيارات, دعوى حادث, قانون المرور المصري',
-    body: `
-      <div class="highlight">
-        <p>حوادث المرور من أكثر القضايا الجنائية والمدنية شيوعاً في المحاكم المصرية. بين التعويض من شركة التأمين، والدعوى الجنائية، وقضايا الفصل التعسفي، وتعويضات الوفاة — يمر المتضررون بمتاهة قانونية دون دليل. هذا المقال هو دليلك الشامل للخروج من هذه المتاهة بكامل حقوقك.</p>
+  <div class="article-hero">
+    <div class="article-badge">${topic.coverIcon} ${topic.tag}</div>
+    <h1>${topic.title}</h1>
+    <div class="article-meta">
+      <span>📅 ${dateAr}</span>
+      <span>✍️ فريق منصة المحامي الرقمية</span>
+      <span>⏱️ ${topic.readTime} دقائق قراءة</span>
+    </div>
+    <div class="ad-slot ad-slot--top" role="complementary" aria-label="إعلان">
+      <span class="ad-label">إعلان</span>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7725405859334364" data-ad-slot="2168039898" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+
+  <div class="article-container">
+    <article class="article-card">
+      ${articleBody}
+      <div class="back-link">
+        <a href="/blog/">← العودة للمدونة القانونية</a>
       </div>
-
-      <div class="article-image-box">
-        <img src="/blog/assets/real-estate.jpg" alt="تعويض حوادث المرور في مصر" />
-        <div class="article-image-caption">رسم توضيحي: منظومة التعويض القانوني في حوادث المرور وفق القانون المصري</div>
-      </div>
-
-      <h2><span class="num">1</span> الإطار القانوني لحوادث المرور</h2>
-      <p>تُنظّم حوادث المرور في مصر ثلاثة أطر قانونية متكاملة:</p>
-      <ul>
-        <li><strong>قانون المرور رقم 66 لسنة 1973:</strong> يُحدد قواعد السلامة المرورية والمخالفات والعقوبات الجزائية.</li>
-        <li><strong>قانون التأمين الإلزامي (القانون رقم 72 لسنة 2007):</strong> يُلزم كل مركبة بتأمين إلزامي على المسؤولية المدنية ضد الغير.</li>
-        <li><strong>القانون المدني رقم 131 لسنة 1948:</strong> يُنظّم دعاوى التعويض المدني عن الأضرار الناجمة عن الحوادث.</li>
-      </ul>
-
-      <h2><span class="num">2</span> المسؤولية القانونية في حوادث المرور</h2>
-      <div class="stage">
-        <div class="stage-title">⚖️ تحديد المسؤولية في الحوادث</div>
-        <p>✅ <strong>مسؤولية السائق:</strong> يسأل السائق جنائياً ومدنياً إذا ثبت خطؤه بمحضر المرور وتحقيقات النيابة.</p>
-        <p>✅ <strong>مسؤولية مالك السيارة:</strong> يسأل المالك مسؤولية مدنية حتى لو لم يكن يقود وقت الحادث، وذلك بوصفه حارساً للشيء وفق المادة 178 من القانون المدني.</p>
+    </article>
+  </div>.</p>
         <p>✅ <strong>شركة التأمين:</strong> تُلزم بالتعويض في حدود وثيقة التأمين الإلزامي، وللمضرور الرجوع عليها مباشرة.</p>
         <p>⚠️ <strong>حالات انتفاء المسؤولية:</strong> القوة القاهرة، خطأ المضرور نفسه، أو فعل الغير المقطوع.</p>
       </div>
@@ -1312,14 +1369,26 @@ function generateArticleHTML(topic) {
 // تحديث صفحة index.html للمدونة
 // ═══════════════════════════════════════════════════════════════
 
+function getImageForTopic(topic) {
+  if (topic.image) return topic.image;
+  const tag = topic.tag || '';
+  if (tag.includes('ميراث')) return '/blog/assets/inheritance.jpg';
+  if (tag.includes('أسرة') || tag.includes('طلاق')) return '/blog/assets/family-law.jpg';
+  if (tag.includes('إيجار') || tag.includes('عقار') || tag.includes('مرور')) return '/blog/assets/real-estate.jpg';
+  if (tag.includes('مستهلك') || tag.includes('عمل') || tag.includes('ديون')) return '/blog/assets/consumer-protection.jpg';
+  if (tag.includes('تعويض') || tag.includes('دفاع') || tag.includes('مرافعة')) return '/blog/assets/civil-compensation.jpg';
+  return '/blog/assets/company.jpg';
+}
+
 function addCardToBlogIndex(topic) {
   let html = fs.readFileSync(BLOG_INDEX, 'utf8');
 
   const ANCHOR = '<!-- NEW_CARD_ANCHOR -->';
+  const imgUrl = getImageForTopic(topic);
 
   const cardHTML = `<a href="/blog/${topic.slug}.html" class="post-card">
-        <div class="post-cover ${topic.coverColor}">
-          <span class="post-cover-icon">${topic.coverIcon}</span>
+        <div class="post-cover">
+          <img src="${imgUrl}" alt="${topic.title}" class="post-cover-img" />
           <span class="post-cover-tag">${topic.tag}</span>
         </div>
         <div class="post-body">
