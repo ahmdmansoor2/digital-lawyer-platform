@@ -199,6 +199,17 @@ function generateSvgImage(topic) {
   const icon = topic.icon || '⚖️';
   const rgb = hexToRgb(pal[0]);
   const slugSafe = (topic.slug || 'article').replace(/[^\w-]/g, '-');
+  // ميزان العدالة مرسوم بشكل متجهي (متسق العرض على كل المنصات — بدل الأيقونة emoji)
+  const scaleVector = `<g transform="translate(600,340)" fill="none" stroke="#e2e8f0" stroke-width="6" stroke-linecap="round">
+    <line x1="0" y1="8" x2="0" y2="120"/>
+    <path d="M0 8 L-88 -52 M0 8 L88 -52 M0 8 L0 -70" stroke-width="7"/>
+    <circle cx="0" cy="-78" r="10" fill="none" stroke="#fbbf24" stroke-width="6"/>
+    <path d="M-78 -56 q-14 -18 0 -36 q14 18 0 36 Z" fill="${pal[0]}"/>
+    <path d="M78 -56 q-14 -18 0 -36 q14 18 0 36 Z" fill="${pal[0]}"/>
+    <path d="M-88 -52 l-14 6 M-78 -56 l-14 6 M88 -52 l14 6 M78 -56 l14 6" stroke-width="4" opacity="0.6"/>
+    <path d="M0 120 l-70 26 M0 120 l70 26" stroke-width="5"/>
+    <path d="M-70 146 l-4 16 M-60 140 l-4 16 M70 146 l4 16 M60 140 l4 16" stroke-width="4" opacity="0.7"/>
+  </g>`;
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -225,12 +236,12 @@ function generateSvgImage(topic) {
     <circle cx="1020" cy="120" r="260" fill="none" stroke="#fff" stroke-width="1.5"/>
     <circle cx="1020" cy="120" r="180" fill="none" stroke="#fff" stroke-width="1.5"/>
   </g>
-  <rect x="470" y="210" width="260" height="260" rx="60" fill="url(#glow)" filter="url(#shadow)"/>
-  <rect x="470" y="210" width="260" height="260" rx="60" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
-  <text x="600" y="382" font-size="150" text-anchor="middle" dominant-baseline="central">${icon}</text>
-  <rect x="300" y="520" width="600" height="4" rx="2" fill="${pal[0]}" opacity="0.6"/>
-  <text x="600" y="570" font-size="34" font-weight="700" fill="#e2e8f0" text-anchor="middle" font-family="Cairo, sans-serif">${topic.title}</text>
-  <text x="600" y="612" font-size="20" fill="#94a3b8" text-anchor="middle" font-family="Cairo, sans-serif">منصة المحامي الرقمية • ${topic.category}</text>
+  <rect x="400" y="140" width="400" height="430" rx="48" fill="url(#glow)" filter="url(#shadow)"/>
+  <rect x="400" y="140" width="400" height="430" rx="48" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+  ${scaleVector}
+  <rect x="300" y="600" width="600" height="4" rx="2" fill="${pal[0]}" opacity="0.6"/>
+  <text x="600" y="34" font-size="26" font-weight="700" fill="${pal[0]}" text-anchor="middle" font-family="Cairo, sans-serif" letter-spacing="2">منصة المحامي الرقمية</text>
+  <text x="600" y="648" font-size="32" font-weight="700" fill="#e2e8f0" text-anchor="middle" font-family="Cairo, sans-serif">${topic.title}</text>
 </svg>`;
   return { svg, ext: 'svg', mime: 'image/svg+xml' };
 }
