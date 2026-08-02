@@ -896,6 +896,9 @@ function generateArticleHTML(topic) {
   <meta property="og:title" content="${topic.title}" />
   <meta property="og:description" content="${topic.metaDesc}" />
   <meta property="og:url" content="https://justice-91571.web.app/blog/${topic.slug}.html" />
+  <meta property="og:image" content="https://justice-91571.web.app${getImageForTopic(topic)}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="منصة المحامي الرقمية" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

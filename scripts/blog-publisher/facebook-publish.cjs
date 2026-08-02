@@ -148,9 +148,12 @@ function splitIntoParts(text, maxChars = FB_MAX_CHARS) {
 }
 
 // ── نشر جزء على الفيسبوك (Graph API v19.0) ───────────────────────────────
-async function postToFacebook(message, pageId, token, isPart, partInfo) {
+async function postToFacebook(message, pageId, token, isPart, partInfo, articleUrl, imageUrl) {
   const url = `https://graph.facebook.com/v19.0/${pageId}/feed`;
-  const body = new URLSearchParams({ message, access_token: token });
+  const bodyParams = { message, access_token: token };
+  if (articleUrl) bodyParams.link = articleUrl;
+  if (imageUrl) bodyParams.picture = imageUrl;
+  const body = new URLSearchParams(bodyParams);
 
   const resp = await fetch(url, { method: 'POST', body });
   const data = await resp.json().catch(() => ({}));
@@ -208,7 +211,8 @@ async function publishArticleToFacebook(article, token, pageId) {
       ? `${FB_PREAMBLE}\n📄 ${title} — الجزء ${i + 1}/${partCount}\n\n${part}`
       : `${FB_PREAMBLE}\n${part}`;
     try {
-      const id = await postToFacebook(header, pageId, token, partCount > 1, { i: i + 1, total: partCount });
+      const imageUrl = `https://justice-91571.web.app${getImageForSlug(slug)}`;
+      const id = await postToFacebook(header, pageId, token, partCount > 1, { i: i + 1, total: partCount }, url, imageUrl);
       postedIds.push(id);
       console.log(`[fb]   ✓ جزء ${i + 1}/${partCount} → post id ${id}`);
     } catch (err) {
