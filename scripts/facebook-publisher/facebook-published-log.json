@@ -28,6 +28,27 @@
       "duration": "1د 14ث",
       "size": 14871105,
       "publishedAt": "2026-08-02T20:36:11.468Z"
+    },
+    {
+      "topicId": "trend-cybercrime-extortion-laws-egypt",
+      "title": "عقوبة الابتزاز والجرائم الإلكترونية في مصر وكيفية الإبلاغ عنها",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الجرائم الإلكترونية",
+        "#الابتزاز الإلكتروني مصر",
+        "#مباحث النت"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cybercrime-extortion-laws-egypt.mp4",
+      "videoId": "1092937523393393",
+      "permalink": "https://www.facebook.com/reel/1092937523393393",
+      "source": "trending-topics.json",
+      "duration": "1د 18ث",
+      "size": 20691842,
+      "publishedAt": "2026-08-02T21:22:49.397Z"
     }
   ]
 }
