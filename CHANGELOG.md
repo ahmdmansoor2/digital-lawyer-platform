@@ -4,6 +4,42 @@
 
 ---
 
+## [v2.9.17] — 2026-08-02 (🎬 ريلز فيسبوك تلقائية: 5 يومياً من ترندات جوجل بدون جهاز)
+
+### 🤖 أتمتة كاملة لريلز فيسبوك على GitHub Actions
+- Workflow جديد `.github/workflows/daily-reels.yml`: **5 ريلز يومياً** (9:05 ص، 12:05 ظ، 3:05 ع، 6:05 م، 9:05 م بالقاهرة) — كل تشغيل ينشر ريلز واحد من `trending-topics.json` (ترندات جوجل الحقيقية لمصر) + مقالات المدونة + مواضيع `topics.json`.
+- يعمل بالكامل في السحاب — **الجهاز لا يحتاج أن يكون مفتوحاً** — بعد دفعة واحدة للملفات.
+- سجل `facebook-published-log.json` يُلتزم ويُرفع بعد كل نشر لتفادي تكرار نفس الموضوع.
+- نفس `ffmpeg-static` (مبني بـ libass) + خطوط Noto العربية (`fonts-noto-core`) على الـ runner.
+
+### 🌐 خط عربي ديناميكي (Windows + Linux)
+- `video-composer.cjs`: عائلة الخط و`fontsdir` في ASS تُشتق تلقائياً من الخط المُكتشف عبر `findArabicFont()` — Tahoma على ويندوز، Noto على السحاب — بدل "Tahoma" الثابت.
+- `ASS_DIR` أصبح `os.tmpdir()/opencode` بدل المسار الثابت `C:/WINDOWS/TEMP` (كان سيكسر الرندر على Linux).
+
+### 🧹 نظافة
+- `scripts/facebook-publisher/output/` أُضيف لـ `.gitignore` (لا تُلتزم ملفات MP4 الضخمة).
+
+---
+
+## [v2.9.16] — 2026-08-02 (🎬 ربط TikTok بالنشر اليومي: ترندات جوجل + مقالات المدونة)
+
+### 🔗 تكامل `scripts/tiktok-publisher/` مع النظام المتوازي
+- **الوضع الافتراضي الجديد** لـ `tiktok-publish.cjs` يجمع المواضيع من **ترندات جوجل (`trending-topics.json`)** + **أحدث مقالات المدونة (`published-log.json`)** + مواضيع `topics.json` اليدوية — بتداخل Round-robin (ترند ثم مقال) وبحذف المكرر الذي سبق نشره.
+- كل مصدر يُوسم في السجل (`source: trending-topics.json / blog / topics.json`) لسهولة التتبّع.
+- حماية `main()` بشرط `require.main === module` حتى لا يُشغَّل السكربت عن طريق الخطأ عند استيراده.
+
+### 🖼️ صور المشاهد: Pollinations بدل Imagen المحجوب
+- أولوية جديدة لتوليد صور المشاهد: **Pexels → Pollinations.ai (مجاني 9:16) → Gemini Imagen → SVG** — لأن Imagen (Nano Banana) محجوب بـ quota 429.
+- صور Pollinations تُعاد تحجيمها بـ `sharp` إلى 1080×1920 (مقاس TikTok).
+
+### 🤖 جدولة على GitHub Actions
+- Workflow جديد `.github/workflows/daily-tiktok.yml`: فيديو قانوني يومياً 9:00 م بتوقيت القاهرة.
+- دعم **توليد `tiktok-tokens.json` من env** (`oauth-handler.cjs import`) — يشغّل المستخدم `login` مرة واحدة محلياً ثم يرفع قيم التوكنز كـ GitHub Secrets.
+- **تدوير refresh_token تلقائياً**: الملف يُلتزم ويُرفع بعد كل تشغيل (لا يحتاج PAT لتحديث secrets).
+- تثبيت خطوط Noto العربية (`fonts-noto-core`) على الـ runner للكابشن داخل الفيديو + مسارات الخطوط أُضيفت في `video-composer.cjs`.
+
+---
+
 ## [v2.9.15] — 2026-08-02 (🔎 مواضيع من ترندات جوجل + صور ذكاء اصطناعي مخصصة)
 
 ### 🔎 مصادر المواضيع: ترندات Google الحقيقية لمصر

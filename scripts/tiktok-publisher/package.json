@@ -1,0 +1,9 @@
+{
+  "name": "tiktok-publisher",
+  "private": true,
+  "version": "1.0.0",
+  "description": "ناشر يومي للفيديوهات على TikTok (ترندات + مقالات)",
+  "dependencies": {
+    "selfsigned": "^2.4.1"
+  }
+}

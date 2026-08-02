@@ -10,3 +10,5 @@ dist-fresh/
 *.log
 *.tmp
 .env
+scripts/tiktok-publisher/output/
+scripts/facebook-publisher/output/

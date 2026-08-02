@@ -976,6 +976,48 @@ async function main() {
   } else {
     console.log('\n[publish] ⏭️  لم يُشارك على فيسبوك: FB_PAGE_TOKEN غير مضبوط. أضِفه في .env أو GitHub Secrets.');
   }
+
+  // 6. توليد فيديو TikTok من آخر مقال منشور (اختياري — يتطلب إعداد tiktok-publisher)
+  //    يتم التفعيل عبر TIKTOK_AUTO=1 في البيئة. السكربت يحوّل آخر مقال لفيديو.
+  if (process.env.TIKTOK_AUTO === '1' && publishedNow.length > 0) {
+    console.log(`\n[publish] === توليد فيديو TikTok من آخر مقال ===`);
+    const lastSlug = publishedNow[publishedNow.length - 1];
+    try {
+      execSync(`node scripts/tiktok-publisher/tiktok-publish.cjs --article ${lastSlug} --dry-run`, {
+        cwd: ROOT,
+        stdio: 'inherit',
+        env: { ...process.env },
+        timeout: 300_000, // 5 دقايق
+      });
+      console.log(`[publish] ✓ تم توليد فيديو TikTok من: ${lastSlug}`);
+    } catch (ttErr) {
+      console.error(`[publish] تحذير: فشل توليد فيديو TikTok لـ ${lastSlug}: ${ttErr.message?.substring(0, 200)}`);
+      console.error('[publish] → يمكن تشغيله يدوياً: node scripts/tiktok-publisher/tiktok-publish.cjs --article ' + lastSlug);
+    }
+  } else if (process.env.TIKTOK_AUTO !== '1') {
+    console.log('\n[publish] ⏭️  لم يُولّد فيديو TikTok: TIKTOK_AUTO=1 غير مضبوط. أضِفها في .env لو عايز التفعيل.');
+  }
+
+  // 7. توليد ونشر Reel على Facebook من آخر مقال (اختياري — يتطلب FB_APP_ID + FB_PAGE_ID)
+  //    يتم التفعيل عبر REELS_AUTO=1 في البيئة. ينشر تلقائياً على صفحة Facebook.
+  if (process.env.REELS_AUTO === '1' && publishedNow.length > 0) {
+    console.log(`\n[publish] === توليد ونشر Reel على Facebook ===`);
+    const lastSlug = publishedNow[publishedNow.length - 1];
+    try {
+      execSync(`node scripts/facebook-reels/reels-publish.cjs --article ${lastSlug} --dry-run`, {
+        cwd: ROOT,
+        stdio: 'inherit',
+        env: { ...process.env },
+        timeout: 300_000,
+      });
+      console.log(`[publish] ✓ تم توليد Reel لـ: ${lastSlug}`);
+      console.log('[publish] 💡 شغّل بدون --dry-run للنشر الفعلي بعد التجربة.');
+    } catch (reelErr) {
+      console.error(`[publish] تحذير: فشل توليد Reel لـ ${lastSlug}: ${reelErr.message?.substring(0, 200)}`);
+    }
+  } else if (process.env.REELS_AUTO !== '1') {
+    console.log('\n[publish] ⏭️  لم يُنشر Reel: REELS_AUTO=1 غير مضبوط. أضِفها في .env لو عايز التفعيل.');
+  }
 }
 
 main().catch(err => {

@@ -1,0 +1,33 @@
+{
+  "entries": [
+    {
+      "topicId": "trend-bounced-checks-laws-egypt",
+      "title": "عقوبة الشيك بدون رصيد في القانون المصري",
+      "videoId": "1753330282486895",
+      "permalink": "https://www.facebook.com/reel/1753330282486895",
+      "source": "trending-topics.json",
+      "publishedAt": "2026-08-02T14:31:02.720Z"
+    },
+    {
+      "topicId": "blog-real-estate-fraud",
+      "title": "الاحتيال العقاري في مصر: كيف تحمي نفسك قبل شراء شقة؟ - منصة المحامي الرقمية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#السوق",
+        "#العقاري",
+        "#هائلة"
+      ],
+      "videoPath": "D:\\قانوني 7\\scripts\\facebook-publisher\\output\\fb-blog-real-estate-fraud.mp4",
+      "videoId": "1666905641046895",
+      "permalink": "https://www.facebook.com/reel/1666905641046895",
+      "source": "blog",
+      "duration": "1د 14ث",
+      "size": 14871105,
+      "publishedAt": "2026-08-02T20:36:11.468Z"
+    }
+  ]
+}
