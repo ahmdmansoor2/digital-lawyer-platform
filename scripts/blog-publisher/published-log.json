@@ -283,6 +283,76 @@
       "words": 3116,
       "image": "svg",
       "model": "gemini-flash-lite-latest"
+    },
+    {
+      "title": "تأمين الإيجار في القانون المصري: الدليل القانوني الشامل لاسترداد التأمين وضوابط مصادرته",
+      "date": "2026-08-02",
+      "slug": "rental-deposit-rights",
+      "url": "https://justice-91571.web.app/blog/rental-deposit-rights.html",
+      "tags": [
+        "تأمين الإيجار",
+        "استرداد التأمين",
+        "شروط التأمين"
+      ],
+      "words": 3006,
+      "image": "svg",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "ديون المتوفى وتأثيرها على توزيع التركة: دليل شامل للأولوية القانونية والشرعية في القانون المصري",
+      "date": "2026-08-02",
+      "slug": "inheritance-debt-priority",
+      "url": "https://justice-91571.web.app/blog/inheritance-debt-priority.html",
+      "tags": [
+        "ديون المتوفى",
+        "توزيع التركة",
+        "الورثة"
+      ],
+      "words": 3637,
+      "image": "svg",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "المحكمة الاقتصادية: للدعاوى الصغيرة والمتوسطة في مصر وكيفية إدارتها بنجاح",
+      "date": "2026-08-02",
+      "slug": "small-claims-court",
+      "url": "https://justice-91571.web.app/blog/small-claims-court.html",
+      "tags": [
+        "المحكمة الاقتصادية",
+        "دعاوى صغيرة",
+        "المنازعات التجارية"
+      ],
+      "words": 3076,
+      "image": "svg",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "التحرش الوظيفي في مكان العمل: الحماية القانونية للموظف وحقوق المرأة في مصر",
+      "date": "2026-08-02",
+      "slug": "workplace-harassment-law",
+      "url": "https://justice-91571.web.app/blog/workplace-harassment-law.html",
+      "tags": [
+        "التحرش الوظيفي",
+        "حقوق المرأة في العمل",
+        "فصل تعسفي"
+      ],
+      "words": 3199,
+      "image": "svg",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "الاحتيال العقاري في مصر: كيف تحمي نفسك وأموالك قبل شراء شقة؟",
+      "date": "2026-08-02",
+      "slug": "real-estate-fraud",
+      "url": "https://justice-91571.web.app/blog/real-estate-fraud.html",
+      "tags": [
+        "الاحتيال العقاري",
+        "بيع وحدات وهمية",
+        "حماية المشتري"
+      ],
+      "words": 4412,
+      "image": "svg",
+      "model": "gemini-3.5-flash"
     }
   ],
   "skipped": [
@@ -365,5 +435,5 @@
       "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\child-custody-egypt-1785581807609.json"
     }
   ],
-  "last_run": "2026-08-02T08:00:02.693Z"
+  "last_run": "2026-08-02T11:09:56.534Z"
 }
