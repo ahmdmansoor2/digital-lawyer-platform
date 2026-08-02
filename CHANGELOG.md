@@ -16,6 +16,13 @@
 - `video-composer.cjs`: عائلة الخط و`fontsdir` في ASS تُشتق تلقائياً من الخط المُكتشف عبر `findArabicFont()` — Tahoma على ويندوز، Noto على السحاب — بدل "Tahoma" الثابت.
 - `ASS_DIR` أصبح `os.tmpdir()/opencode` بدل المسار الثابت `C:/WINDOWS/TEMP` (كان سيكسر الرندر على Linux).
 
+### 🐛 إصلاح خطأ التركيب على ffmpeg 7.0.2 (johnvansickle) في السحاب
+- **السبب:** رندر السحاب يستخدم `ffmpeg 7.0.2-static` (وليس 6.1.1 المحلي) الذي يفشل بـ `The inputs needs to be a constant frame rate; current rate of 1/0 is invalid` عند أول `xfade` — لأن `setpts` كان آخر فلتر في كل سلسلة مشهد، ولا تنقل بعض البناءات معدل الإطارات عبره.
+- **الحل الجذري:** ترتيب السلسلة أصبح `scale,crop,setpts,fps=30,format` — كل مدخل xfade ينتهي بـ `fps=30` مباشرة (معدل إطارات معروف 30/1) + `-fps_mode cfr` على المخرج.
+- **حماية إضافية:** لو فشل `xfade` لأي سبب → fallback تلقائي إلى تركيب `concat` بلا ترانزيشن، فلا يتوقف النشر أبداً.
+- `reel-publisher.cjs` يفشل الـ job في GitHub Actions لو فشل النشر (بدل نجاح صامت) + خطوة تشخيص تطبع نسخة ffmpeg في CI.
+- **✅ تشغيل التحقق الفعلي (2026-08-02 21:22):** ريلز "عقوبة الابتزاز والجرائم الإلكترونية" نُشر فعلاً على صفحة فيسبوك (video_id 1092937523393393) والسجل رُفع (commit `6914186`).
+
 ### 🧹 نظافة
 - `scripts/facebook-publisher/output/` أُضيف لـ `.gitignore` (لا تُلتزم ملفات MP4 الضخمة).
 
