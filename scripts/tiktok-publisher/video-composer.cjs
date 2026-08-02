@@ -280,21 +280,24 @@ async function composeVideo(args) {
   if (subtitles.length) console.log(`[composer] 🎤 Captions: ${Math.ceil(subtitles.length / 3)} block`);
 
   // ─── بناء filter_complex ────────────────────────────────────────────────
-  const filters = [];
+  // قاعدة ثابتة: كل سلسلة مشهد تنتهي بـ fps=30,format=yuv420p (و setpts قبلها)،
+  // فيكون معدل إطارات مدخلات xfade معروفاً (30/1) — بعض البناءات (BtbN/Linux)
+  // لا تنقل معدل الإطارات عبر setpts فتفشل xfade بـ "current rate of 1/0 is invalid"
   const inputs = [];
+  const sceneChainFilters = [];
+  const sceneOuts = [];
   let lastVideoLabel = null;
+  const shiftSecFor = (idx) => sceneStartTimes[idx] - idx * TRANSITION_DUR;
 
-  // 1) كل مشهد: input → base (فيديو/صورة) → shift زمني → xfade
-  //    (النصوص العربية تُرسم بعد التركيب عبر ASS لضمان التشكيل الصحيح — ليست drawtext)
   const tempFiles = [];
   for (let idx = 0; idx < validScenes.length; idx++) {
     const scene = validScenes[idx];
     const dur = scene.duration_sec || 6;
     const fps = FPS;
     const frames = Math.ceil(dur * fps);
-    const baseLabel = `v${idx}`;
     const outLabel = `v${idx}o`;
     const isVideo = scene.videoPath && fs.existsSync(scene.videoPath);
+    const shiftPart = `setpts=PTS-STARTPTS+${shiftSecFor(idx)}/TB,`;
 
     if (isVideo) {
       // توحيد المقطع إلى المدة المطلوبة (loop إن قصُر، trim إن طال)
@@ -303,75 +306,79 @@ async function composeVideo(args) {
       normalizeVideoClip(ffmpeg, scene.videoPath, dur, tempVideo);
       tempFiles.push(tempVideo);
       inputs.push('-t', String(dur), '-i', tempVideo);
-      filters.push(
+      sceneChainFilters.push(
         `[${idx}:v]` +
         `scale=${OUTPUT_W}:${OUTPUT_H}:force_original_aspect_ratio=increase,` +
         `crop=${OUTPUT_W}:${OUTPUT_H},` +
+        shiftPart +
         `fps=${fps},` +
         `format=yuv420p` +
-        `[${baseLabel}]`
+        `[${outLabel}]`
       );
     } else {
       inputs.push('-loop', '1', '-t', String(dur), '-i', scene.imagePath);
       // Base: loop + scale + Ken Burns
-      filters.push(
+      sceneChainFilters.push(
         `[${idx}:v]` +
         `loop=loop=${frames - 1}:size=1:start=0,` +
         `scale=${OUTPUT_W}:${OUTPUT_H}:force_original_aspect_ratio=increase,` +
         `crop=${OUTPUT_W}:${OUTPUT_H},` +
         `zoompan=z='min(zoom+0.0008,1.12)':d=${frames}:s=${OUTPUT_W}x${OUTPUT_H},` +
+        shiftPart +
         `fps=${fps},` +
         `format=yuv420p` +
-        `[${baseLabel}]`
+        `[${outLabel}]`
       );
     }
-
-    // إزاحة PTS إلى الزمن المطلق
-    // shift_idx = مجموع مدد المشاهد قبله − idx × مدة الترانزيشن (تعويض الـ fades)
-    const shiftSec = sceneStartTimes[idx] - idx * TRANSITION_DUR;
-    filters.push(
-      `[${baseLabel}]` +
-      `setpts=PTS-STARTPTS+${shiftSec}/TB` +
-      `[${outLabel}]`
-    );
+    sceneOuts.push(outLabel);
     lastVideoLabel = outLabel;
   }
 
-  // 2) Concat كل المشاهد (مع xfade transitions لو أكثر من مشهد)
-  if (validScenes.length === 1) {
-    filters.push(`[${lastVideoLabel}]copy[outv]`);
-  } else {
-    // xfade chain: v0o + v1o → v01, v01 + v2o → v012, ...
-    // offset للانتقال k = shift_k (نفس إزاحة المشهد k) — يضمن اكتمال الفيديو بلا قطع
-    // نمرر كل مخرج xfade عبر fps ثابت — بعض إصدارات ffmpeg (7.x) لا تنقل معدل
-    // الإطارات عبر xfade فيفشل التالي بـ "The inputs needs to be a constant frame rate"
-    let chainLabel = 'v0o';
-    for (let idx = 1; idx < validScenes.length; idx++) {
-      const isLast = idx === validScenes.length - 1;
-      const rawLabel = isLast ? 'outr' : `chainr${idx}`;
-      const offset = sceneStartTimes[idx] - idx * TRANSITION_DUR;
-      filters.push(
-        `[${chainLabel}][v${idx}o]` +
-        `xfade=transition=fade:duration=${TRANSITION_DUR}:offset=${offset.toFixed(2)}` +
-        `[${rawLabel}]`
-      );
-      const nextLabel = isLast ? 'outv' : `chain${idx}`;
-      filters.push(`[${rawLabel}]fps=${FPS}[${nextLabel}]`);
-      chainLabel = nextLabel;
-    }
-  }
-
-  // 3) رسم العناوين والكابشنز العربية عبر libass (تشكيل سليم — لا رموز)
+  // 3) فلتر رسم العناوين والكابشنز العربية عبر libass (تشكيل سليم — لا رموز)
+  let assFilter = null;
   if (subtitles.length || validScenes.some(s => s.on_screen_text)) {
     const assPath = buildAssFile(validScenes, subtitles, sceneStartTimes, path.join(ASS_DIR, `caption-${Date.now()}.ass`), { fontName: assFontName });
     // هروب مزدوج للنقطتين: graph parser يفك مستوى، وfilter parser يفك الثاني
     const escAss = assPath.replace(/\\/g, '/').replace(/:/g, '\\\\:');
     const escFonts = assFontsDir.replace(/\\/g, '/').replace(/:/g, '\\\\:');
-    filters.push(`[outv]ass=filename=${escAss}:fontsdir=${escFonts}[outv]`);
+    assFilter = `[outv]ass=filename=${escAss}:fontsdir=${escFonts}[outv]`;
     console.log(`[composer] ✍️ رسم النصوص العربية عبر libass (${validScenes.filter(s => s.on_screen_text).length} عنوان + ${subtitles.length} كلمة)`);
   }
 
-  const filterComplex = filters.join(';');
+  // 2) بناء الـ concat/transition graph وإلحاق فلتر الـ ASS
+  const withAss = (chain) => (assFilter ? [...chain, assFilter] : chain);
+  const buildXfadeGraph = () => {
+    const f = [...sceneChainFilters];
+    if (validScenes.length === 1) {
+      f.push(`[${lastVideoLabel}]copy[outv]`);
+    } else {
+      // xfade chain: v0o + v1o → chain1، ... — offset للانتقال k = shift_k
+      // نمرر كل مخرج xfade عبر fps ثابت ضماناً لتطبيع معدل الإطارات للسلسلة
+      let chainLabel = 'v0o';
+      for (let idx = 1; idx < validScenes.length; idx++) {
+        const isLast = idx === validScenes.length - 1;
+        const rawLabel = isLast ? 'outr' : `chainr${idx}`;
+        f.push(
+          `[${chainLabel}][v${idx}o]` +
+          `xfade=transition=fade:duration=${TRANSITION_DUR}:offset=${shiftSecFor(idx).toFixed(2)}` +
+          `[${rawLabel}]`
+        );
+        const nextLabel = isLast ? 'outv' : `chain${idx}`;
+        f.push(`[${rawLabel}]fps=${FPS}[${nextLabel}]`);
+        chainLabel = nextLabel;
+      }
+    }
+    return withAss(f).join(';');
+  };
+  const buildConcatGraph = () => {
+    const f = [...sceneChainFilters];
+    if (validScenes.length === 1) {
+      f.push(`[${lastVideoLabel}]copy[outv]`);
+    } else {
+      f.push(`${sceneOuts.map(l => `[${l}]`).join('')}concat=n=${validScenes.length}:v=1:a=0[outv]`);
+    }
+    return withAss(f).join(';');
+  };
 
   // ─── تجميع الـ inputs النهائية ──────────────────────────────────────────
   const audioIdx = validScenes.length;
@@ -380,40 +387,54 @@ async function composeVideo(args) {
   const musicPath = pickBackgroundMusic();
   const musicIdx = musicPath ? audioIdx + 1 : null;
 
-  const cmdArgs = [
-    ...inputs,
-    '-i', audioPath,
-    ...(musicPath ? ['-i', musicPath] : []),
-    '-filter_complex', filterComplex,
-    '-map', '[outv]',
-    '-map', `${audioIdx}:a:0?`,
-    '-c:v', 'libx264',
-    '-preset', 'fast',
-    '-crf', '23',
-    '-c:a', 'aac',
-    '-b:a', '128k',
-    '-ar', '44100',
-    '-pix_fmt', 'yuv420p',
-    '-shortest',
-    '-movflags', '+faststart',
-    '-y',
-    outputPath,
-  ];
+  const runFfmpeg = (filterComplex) => {
+    const cmdArgs = [
+      ...inputs,
+      '-i', audioPath,
+      ...(musicPath ? ['-i', musicPath] : []),
+      '-filter_complex', filterComplex,
+      '-map', '[outv]',
+      '-map', `${audioIdx}:a:0?`,
+      '-c:v', 'libx264',
+      '-preset', 'fast',
+      '-crf', '23',
+      '-c:a', 'aac',
+      '-b:a', '128k',
+      '-ar', '44100',
+      '-pix_fmt', 'yuv420p',
+      '-fps_mode', 'cfr',
+      '-shortest',
+      '-movflags', '+faststart',
+      '-y',
+      outputPath,
+    ];
+    console.log(`[composer] ffmpeg جاري العمل... (${validScenes.length} مشاهد، ${subtitles.length} كلمة)`);
+    console.log(`[composer] FILTER_DEBUG ${filterComplex.length} حرف :: ${filterComplex.slice(0, 500)}...`);
+    try {
+      execFileSync(ffmpeg, cmdArgs, { stdio: ['ignore', 'pipe', 'pipe'], timeout: 300_000 });
+    } catch (e) {
+      const stderr = (e.stderr?.toString() || e.message || '');
+      const tail = stderr.split('\n').slice(-15).join('\n');
+      throw new Error(`فشل ffmpeg:\n${tail}\n─── cmd ───\nffmpeg ${cmdArgs.join(' ').slice(0, 1200)}`);
+    }
+  };
 
-  // ─── موسيقى (mix منفصل لو موجودة) ─────────────────────────────────────
-  if (musicPath) {
-    const musicFilter = `[${audioIdx}:a]volume=1.0[amain];[${musicIdx}:a]volume=0.12,aloop=loop=-1:size=2e+09,atrim=duration=${actualDuration.toFixed(2)}[amusic];[amain][amusic]amix=inputs=2:duration=first:dropout_transition=0[aout]`;
-    // أعد بناء الـ filters بإضافة الموسيقى
-    // (تبسيط: نضع الموسيقى كـ post-process)
-  }
-
-  console.log(`[composer] ffmpeg جاري العمل... (${validScenes.length} مشاهد، ${subtitles.length} كلمة)`);
+  let filterComplex;
   try {
-    execFileSync(ffmpeg, cmdArgs, { stdio: ['ignore', 'pipe', 'pipe'], timeout: 300_000 });
-  } catch (e) {
-    const stderr = (e.stderr?.toString() || e.message || '');
-    const tail = stderr.split('\n').slice(-15).join('\n');
-    throw new Error(`فشل ffmpeg:\n${tail}\n─── cmd ───\nffmpeg ${cmdArgs.join(' ').slice(0, 1200)}`);
+    filterComplex = buildXfadeGraph();
+    runFfmpeg(filterComplex);
+  } catch (err) {
+    if (validScenes.length > 1) {
+      console.warn(`[composer] ⚠️ xfade فشل — نعود إلى concat بلا ترانزيشن:\n${err.message.split('\n')[0]}`);
+      filterComplex = buildConcatGraph();
+      try {
+        runFfmpeg(filterComplex);
+      } catch (err2) {
+        throw err2;
+      }
+    } else {
+      throw err;
+    }
   }
 
   // تنظيف ملفات التوحيد المؤقتة
