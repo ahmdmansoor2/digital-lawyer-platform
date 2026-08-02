@@ -1171,72 +1171,12 @@ function addCardToBlogIndex(topic) {
 
 
 // ═══════════════════════════════════════════════════════════════
-// النشر على Facebook Page عبر Graph API v19
+// النشر على Facebook يتم الآن عبر سكربت موحّد:
+//   scripts/blog-publisher/facebook-publish.cjs
+// يقرأ هذا السكربت السجلّين (هذا السجل + سجل النظام الجديد) فينشر
+// كل مقال جديد مرة واحدة فقط دون تكرار — أُزيلت الدالة القديمة هنا
+// لتفادي النشر المزدوج.
 // ═══════════════════════════════════════════════════════════════
-function postToFacebook(topic, articleUrl) {
-  return new Promise((resolve) => {
-    const pageId    = process.env.FB_PAGE_ID;
-    const pageToken = process.env.FB_PAGE_TOKEN;
-
-    if (!pageId || !pageToken) {
-      console.log('⚠️  FB_PAGE_ID او FB_PAGE_TOKEN غير محددين - تم تخطي النشر على Facebook');
-      return resolve();
-    }
-
-    const tag = (topic.tag || '').replace(/\s+/g, '_');
-    const message = [
-      'تحديث قانوني جديد: ' + topic.title,
-      '',
-      topic.metaDesc,
-      '',
-      'اقرا المقال كاملا: ' + articleUrl,
-      '',
-      '#منصة_المحامي_الرقمية #قانون_مصري #محاماة #' + tag
-    ].join('\n');
-
-    const postData = [
-      'message=' + encodeURIComponent(message),
-      'link=' + encodeURIComponent(articleUrl),
-      'access_token=' + encodeURIComponent(pageToken)
-    ].join('&');
-
-    const https = require('https');
-    const req = https.request({
-      hostname: 'graph.facebook.com',
-      path: '/v19.0/' + pageId + '/feed',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': Buffer.byteLength(postData)
-      }
-    }, (res) => {
-      let data = '';
-      res.on('data', chunk => data += chunk);
-      res.on('end', () => {
-        try {
-          const result = JSON.parse(data);
-          if (result.id) {
-            console.log('Facebook: تم النشر بنجاح! ID: ' + result.id);
-          } else if (result.error) {
-            console.error('Facebook API error: ' + result.error.message);
-          } else {
-            console.log('Facebook response: ' + data);
-          }
-        } catch (err) {
-          console.log('Facebook raw response: ' + data);
-        }
-        resolve();
-      });
-    });
-    req.on('error', (err) => {
-      console.error('Facebook connection error: ' + err.message);
-      resolve();
-    });
-    req.write(postData);
-    req.end();
-  });
-}
-
 async function main() {
   console.log('ناشر المدونة التلقائي - منصة المحامي الرقمية');
   console.log('وقت التشغيل: ' + new Date().toLocaleString('ar-EG'));
@@ -1287,7 +1227,8 @@ async function main() {
   console.log('\nnushr المقال بنجاح: "' + topic.title + '"');
   console.log('الرابط: ' + articleUrl);
 
-  await postToFacebook(topic, articleUrl);
+  // النشر على فيسبوك يتم عبر سكربت facebook-publish.cjs (يقرأ السجلّين)
+  console.log('سيتم النشر على فيسبوك عبر facebook-publish.cjs (السكربت الموحّد).');
 }
 
 main();

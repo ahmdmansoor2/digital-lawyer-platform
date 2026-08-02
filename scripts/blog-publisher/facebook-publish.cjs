@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 /**
  * facebook-publish.cjs — النشر اليومي التلقائي لمقالات المدونة على صفحة فيسبوك
- * - يقرأ المقالات المنشورة اليوم من published-log.json
+ * - يقرأ المقالات المنشورة اليوم من سجلّي النشر (القديم + الجديد) ويوحّدهما
  * - ينشر نص كل مقال كاملاً على صفحة الفيسبوك (نفس الموضوعات/نفس الكيفية)
  * - يقسم النص الطويل إلى أجزاء متسلسلة إن تجاوز حد الفيسبوك
  * - يتجنب إعادة نشر مقال نُشر سابقاً عبر facebook-published-log.json
+ * - سقف يومي (10) + سقف لكل تشغيل (5) لمنع إغراق الصفحة
+ *
+ * المصادر (موحّدة):
+ *   scripts/published-log.json              (النظام القديم — auto-publisher.cjs)
+ *   scripts/blog-publisher/published-log.json (النظام الجديد — daily-publish.cjs)
  *
  * المتطلبات (من .env أو متغيرات البيئة):
  *   FB_PAGE_ID    — معرّف صفحة الفيسبوك
@@ -22,6 +27,7 @@ const dotenv = require('dotenv');
 const ROOT = path.resolve(__dirname, '..', '..');
 const BLOG_DIR = path.join(ROOT, 'public', 'blog');
 const PUBLISHED_LOG = path.join(__dirname, 'published-log.json');
+const OLD_PUBLISHED_LOG = path.join(ROOT, 'scripts', 'published-log.json');
 const FB_LOG = path.join(__dirname, 'facebook-published-log.json');
 const BASE_URL = 'https://justice-91571.web.app';
 
@@ -224,18 +230,34 @@ async function main() {
     }
   }
 
-  const publishedLog = readJson(PUBLISHED_LOG, { published: [] });
+  // اقرأ سجلّي النشر (القديم + الجديد) وادمجهما، مع تفضيل السجل الجديد عند تكرار slug.
+  const oldLog = readJson(OLD_PUBLISHED_LOG, { published: [] });
+  const newLog = readJson(PUBLISHED_LOG, { published: [] });
+  const mergedBySlug = new Map();
+  for (const a of oldLog.published) mergedBySlug.set(a.slug, a);
+  for (const a of newLog.published) mergedBySlug.set(a.slug, a);
+  const allArticles = [...mergedBySlug.values()];
+
   const fbLog = readJson(FB_LOG, { published: [] });
   const alreadyPosted = new Set(fbLog.published.map(p => p.slug));
   const today = new Date(Date.now() + 120 * 60000).toISOString().slice(0, 10);
 
+  // سقف يومي (10 منشورات) لتفادي إغراق الصفحة لو تراكمت مقالات قديمة بتاريخ اليوم.
+  const FB_MAX_POSTS_PER_DAY = 10;
+  const postedToday = fbLog.published.filter(p => p.date === today).length;
+  const remainingToday = Math.max(0, FB_MAX_POSTS_PER_DAY - postedToday);
+  if (remainingToday <= 0) {
+    console.log(`[fb] بلغنا سقف اليوم (${FB_MAX_POSTS_PER_DAY} منشورات) — تخطي.`);
+    process.exit(0);
+  }
+
   // المقالات المنشورة اليوم (آخرها أولاً) — نفس مواضيع المدونة.
-  // نلتقط آخر 5 مقالات فقط (نفس عدد تشغيل واحد) لتجنب إغراق الصفحة دفعة أولى.
+  // نلتقط آخر 5 مقالات فقط (نفس عدد تشغيل واحد) مع احترام السقف اليومي.
   const MAX_FB_POSTS = 5;
-  const todayArticles = publishedLog.published
+  const todayArticles = allArticles
     .filter(a => a.date === today)
     .filter(a => !alreadyPosted.has(a.slug))
-    .slice(-MAX_FB_POSTS);
+    .slice(-Math.min(MAX_FB_POSTS, remainingToday));
 
   if (todayArticles.length === 0) {
     console.log(`[fb] لا توجد مقالات جديدة لليوم (${today}) — كل المقالات نُشرت على فيسبوك مسبقاً.`);

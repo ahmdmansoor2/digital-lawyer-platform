@@ -33,6 +33,11 @@ jobs:
         run: node scripts/auto-publisher.cjs
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          CI: true
+
+      - name: Publish to Facebook (unified)
+        run: node scripts/blog-publisher/facebook-publish.cjs
+        env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           CI: true
@@ -41,6 +46,6 @@ jobs:
         run: |
           git config user.name  "Legal Content Editor 🤖"
           git config user.email "bot@justice-91571.web.app"
-          git add scripts/published-log.json public/blog/
+          git add scripts/published-log.json scripts/blog-publisher/facebook-published-log.json public/blog/
           git diff --staged --quiet || git commit -m "🤖 Auto-publish: $(date +'%Y-%m-%d %H:%M') — مقال قانوني تفصيلي جديد"
           git push
