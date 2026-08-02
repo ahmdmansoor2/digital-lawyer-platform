@@ -162,16 +162,25 @@ async function postToFacebook(message, pageId, token, isPart, partInfo) {
   return data.id;
 }
 
-// ── الحصول على معرّف الصفحة تلقائياً من الاسم إن لم يُعطَ مباشرة ─────────
-async function resolvePageId(pageIdOrName, token) {
-  if (/^\d+$/.test(String(pageIdOrName))) return pageIdOrName;
+// ── الحصول على معرّف وتوكن الصفحة تلقائياً من الاسم إن لم يُعطَ مباشرة ─────
+// يُفضَّل دائماً استخدام توكن الصفحة (من /me/accounts) بدلاً من توكن المستخدم
+// عند النشر — بعض الصفحات ترفض النشر بتوكن المستخدم حتى لو كان من Administrator.
+async function resolvePage(pageIdOrName, token) {
+  if (/^\d+$/.test(String(pageIdOrName))) {
+    // معرّف رقمي صريح — نجرّب النشر بتوكن الصفحة أولاً ثم نستعلم عن توكن الصفحة
+    const accountsUrl = `https://graph.facebook.com/v19.0/me/accounts?access_token=${token}`;
+    const accResp = await fetch(accountsUrl).catch(() => null);
+    const accData = accResp ? await accResp.json().catch(() => ({})) : {};
+    const found = (accData.data || []).find(p => String(p.id) === String(pageIdOrName));
+    return { id: String(pageIdOrName), token: (found && found.access_token) || token };
+  }
   const url = `https://graph.facebook.com/v19.0/me/accounts?access_token=${token}`;
   const resp = await fetch(url);
   const data = await resp.json().catch(() => ({}));
   const pages = data.data || [];
   const found = pages.find(p => p.name === pageIdOrName) || pages.find(p => String(p.id) === String(pageIdOrName));
   if (!found) throw new Error('لم يتم العثور على الصفحة. تحقق من FB_PAGE_ID أو الاسم.');
-  return found.id;
+  return { id: found.id, token: found.access_token || token };
 }
 
 // ── نشر مقال كامل (قد يكون عدة أجزاء) ─────────────────────────────────────
@@ -273,13 +282,15 @@ async function main() {
     process.exit(0);
   }
 
-  // تحويل الاسم لمعرّف لو لزم
-  const pageId = await resolvePageId(FB_PAGE_ID, FB_PAGE_TOKEN);
+  // تحويل الاسم لمعرّف وتوكن الصفحة لو لزم
+  const page = await resolvePage(FB_PAGE_ID, FB_PAGE_TOKEN);
+  const pageId = page.id;
+  const pageToken = page.token;
 
   const results = [];
   for (const article of todayArticles) {
     try {
-      const res = await publishArticleToFacebook(article, FB_PAGE_TOKEN, pageId);
+      const res = await publishArticleToFacebook(article, pageToken, pageId);
       if (res.status === 'published') {
         fbLog.published.push({
           slug: article.slug,

@@ -321,6 +321,90 @@
       "words": 2559,
       "image": "svg",
       "model": "gemini-flash-lite-latest"
+    },
+    {
+      "title": "زيادة الأجرة في القانون المصري: الدليل القانوني الشامل للملاك والمستأجرين",
+      "date": "2026-08-01",
+      "slug": "rent-increase-egypt",
+      "url": "https://justice-91571.web.app/blog/rent-increase-egypt.html",
+      "tags": [
+        "زيادة الأجرة",
+        "الإيجار الجديد",
+        "الإيجار القديم"
+      ],
+      "words": 3550,
+      "image": "svg",
+      "model": "gemini-3-flash-preview"
+    },
+    {
+      "title": "تقادم الديون في القانون المصري: متى يسقط حق المطالبة؟",
+      "date": "2026-08-02",
+      "slug": "debt-statute-limitations",
+      "url": "https://justice-91571.web.app/blog/debt-statute-limitations.html",
+      "tags": [
+        "تقادم الديون",
+        "سقوط الحق",
+        "المدة القانونية"
+      ],
+      "words": 3364,
+      "image": "svg",
+      "model": "gemini-flash-lite-latest"
+    },
+    {
+      "title": "التظلم الإداري في مصر: الدليل القانوني الشامل لقرارات الإدارة العامة",
+      "date": "2026-08-02",
+      "slug": "administrative-grievance",
+      "url": "https://justice-91571.web.app/blog/administrative-grievance.html",
+      "tags": [
+        "التظلم الإداري",
+        "مجلس الدولة",
+        "قرارات إدارية"
+      ],
+      "words": 2374,
+      "image": "svg",
+      "model": "gemini-flash-lite-latest"
+    },
+    {
+      "title": "الطلاق للضرر والخلع في مصر: الدليل الشامل للحصول على حقوقك القانونية أمام محكمة الأسرة",
+      "date": "2026-08-02",
+      "slug": "khul-divorce-procedure",
+      "url": "https://justice-91571.web.app/blog/khul-divorce-procedure.html",
+      "tags": [
+        "الطلاق للضرر",
+        "الخلع",
+        "محكمة الأسرة"
+      ],
+      "words": 2983,
+      "image": "svg",
+      "model": "gemini-flash-lite-latest"
+    },
+    {
+      "title": "الإعسار والمصلح القضائي: إنقاذ التاجر من الديون المتراكمة في القانون التجاري المصري",
+      "date": "2026-08-02",
+      "slug": "bankruptcy-judicial-settlement",
+      "url": "https://justice-91571.web.app/blog/bankruptcy-judicial-settlement.html",
+      "tags": [
+        "الإعسار",
+        "المصلح القضائي",
+        "التفليس"
+      ],
+      "words": 2431,
+      "image": "svg",
+      "model": "gemini-flash-lite-latest"
+    },
+    {
+      "title": "حق المؤلف على المحتوى الرقمي: حماية المدونين وصناع المحتوى في القانون المصري",
+      "date": "2026-08-02",
+      "slug": "digital-copyright",
+      "url": "https://justice-91571.web.app/blog/digital-copyright.html",
+      "tags": [
+        "حق المؤلف",
+        "المحتوى الرقمي",
+        "حماية الملكية الفكرية"
+      ],
+      "words": 3116,
+      "image": "svg",
+      "model": "gemini-flash-lite-latest"
     }
   ]
 }
