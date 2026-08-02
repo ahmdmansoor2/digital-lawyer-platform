@@ -151,8 +151,8 @@ function splitIntoParts(text, maxChars = FB_MAX_CHARS) {
 async function postToFacebook(message, pageId, token, isPart, partInfo, articleUrl, imageUrl) {
   const url = `https://graph.facebook.com/v19.0/${pageId}/feed`;
   const bodyParams = { message, access_token: token };
+  // نرفق رابط المقال (وليس picture) — فيسبوك يلتقط صورة og:image تلقائياً من الصفحة.
   if (articleUrl) bodyParams.link = articleUrl;
-  if (imageUrl) bodyParams.picture = imageUrl;
   const body = new URLSearchParams(bodyParams);
 
   const resp = await fetch(url, { method: 'POST', body });
@@ -186,6 +186,26 @@ async function resolvePage(pageIdOrName, token) {
   return { id: found.id, token: found.access_token || token };
 }
 
+// ── إيجاد صورة الغلاف لمقال عبر slug ─────────────────────────────────────
+// يبحث في public/blog/images عن صورة باسم {slug}.* (svg/png/jpg/webp).
+function getImageForSlug(slug) {
+  try {
+    const imagesDir = path.join(BLOG_DIR, 'images');
+    if (!fs.existsSync(imagesDir)) return null;
+    const base = ['svg', 'png', 'jpg', 'jpeg', 'webp', 'gif'];
+    const file = fs.readdirSync(imagesDir).find(f => {
+      const dot = f.lastIndexOf('.');
+      if (dot < 0) return false;
+      const name = f.slice(0, dot);
+      const ext = f.slice(dot + 1).toLowerCase();
+      return name === slug && base.includes(ext);
+    });
+    return file ? `/blog/images/${file}` : null;
+  } catch {
+    return null;
+  }
+}
+
 // ── نشر مقال كامل (قد يكون عدة أجزاء) ─────────────────────────────────────
 async function publishArticleToFacebook(article, token, pageId) {
   const slug = article.slug;
@@ -211,7 +231,8 @@ async function publishArticleToFacebook(article, token, pageId) {
       ? `${FB_PREAMBLE}\n📄 ${title} — الجزء ${i + 1}/${partCount}\n\n${part}`
       : `${FB_PREAMBLE}\n${part}`;
     try {
-      const imageUrl = `https://justice-91571.web.app${getImageForSlug(slug)}`;
+      const imgRel = getImageForSlug(slug);
+      const imageUrl = imgRel ? `https://justice-91571.web.app${imgRel}` : null;
       const id = await postToFacebook(header, pageId, token, partCount > 1, { i: i + 1, total: partCount }, url, imageUrl);
       postedIds.push(id);
       console.log(`[fb]   ✓ جزء ${i + 1}/${partCount} → post id ${id}`);
@@ -255,8 +276,9 @@ async function main() {
   const alreadyPosted = new Set(fbLog.published.map(p => p.slug));
   const today = new Date(Date.now() + 120 * 60000).toISOString().slice(0, 10);
 
-  // سقف يومي (10 منشورات) لتفادي إغراق الصفحة لو تراكمت مقالات قديمة بتاريخ اليوم.
-  const FB_MAX_POSTS_PER_DAY = 10;
+  // سقف يومي (15 منشوراً) لتفادي إغراق الصفحة لو تراكمت مقالات قديمة بتاريخ اليوم.
+  // 15 = 5 من النظام الجديد + 5 من النظام القديم + 5 مقالات Gemini اليومية.
+  const FB_MAX_POSTS_PER_DAY = 15;
   const postedToday = fbLog.published.filter(p => p.date === today).length;
   const remainingToday = Math.max(0, FB_MAX_POSTS_PER_DAY - postedToday);
   if (remainingToday <= 0) {

@@ -285,7 +285,7 @@
       "model": "gemini-flash-lite-latest"
     },
     {
-      "title": "تأمين الإيجار في القانون المصري: الدليل القانوني الشامل لاسترداد التأمين وضوابط مصادرته",
+      "title": "تأمين الإيجار في القانون المصري: الدليل القانوني الشامل لحقوق المستأجر وضمانات المؤجر",
       "date": "2026-08-02",
       "slug": "rental-deposit-rights",
       "url": "https://justice-91571.web.app/blog/rental-deposit-rights.html",
@@ -294,12 +294,12 @@
         "استرداد التأمين",
         "شروط التأمين"
       ],
-      "words": 3006,
+      "words": 3172,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-flash-lite-latest"
     },
     {
-      "title": "ديون المتوفى وتأثيرها على توزيع التركة: دليل شامل للأولوية القانونية والشرعية في القانون المصري",
+      "title": "ديون المتوفى قبل توزيع التركة: الدليل القانوني الشامل لأولوية سداد الحقوق في القانون المصري",
       "date": "2026-08-02",
       "slug": "inheritance-debt-priority",
       "url": "https://justice-91571.web.app/blog/inheritance-debt-priority.html",
@@ -308,12 +308,12 @@
         "توزيع التركة",
         "الورثة"
       ],
-      "words": 3637,
+      "words": 2787,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-flash-lite-latest"
     },
     {
-      "title": "المحكمة الاقتصادية: للدعاوى الصغيرة والمتوسطة في مصر وكيفية إدارتها بنجاح",
+      "title": "المحكمة الاقتصادية: للدعاوى الصغيرة والمتوسطة في مصر ودورها في سرعة التقاضي",
       "date": "2026-08-02",
       "slug": "small-claims-court",
       "url": "https://justice-91571.web.app/blog/small-claims-court.html",
@@ -322,12 +322,12 @@
         "دعاوى صغيرة",
         "المنازعات التجارية"
       ],
-      "words": 3076,
+      "words": 2921,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-flash-lite-latest"
     },
     {
-      "title": "التحرش الوظيفي في مكان العمل: الحماية القانونية للموظف وحقوق المرأة في مصر",
+      "title": "التحرش الوظيفي في القانون المصري: الدليل الشامل لحماية الموظف وضمان حقوق المرأة في العمل",
       "date": "2026-08-02",
       "slug": "workplace-harassment-law",
       "url": "https://justice-91571.web.app/blog/workplace-harassment-law.html",
@@ -336,12 +336,12 @@
         "حقوق المرأة في العمل",
         "فصل تعسفي"
       ],
-      "words": 3199,
+      "words": 2788,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-flash-lite-latest"
     },
     {
-      "title": "الاحتيال العقاري في مصر: كيف تحمي نفسك وأموالك قبل شراء شقة؟",
+      "title": "الاحتيال العقاري في مصر: كيف تحمي نفسك قبل شراء شقة؟",
       "date": "2026-08-02",
       "slug": "real-estate-fraud",
       "url": "https://justice-91571.web.app/blog/real-estate-fraud.html",
@@ -350,9 +350,9 @@
         "بيع وحدات وهمية",
         "حماية المشتري"
       ],
-      "words": 4412,
+      "words": 1750,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-flash-lite-latest"
     }
   ],
   "skipped": [
@@ -435,5 +435,5 @@
       "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\child-custody-egypt-1785581807609.json"
     }
   ],
-  "last_run": "2026-08-02T11:09:56.534Z"
+  "last_run": "2026-08-02T11:58:15.313Z"
 }

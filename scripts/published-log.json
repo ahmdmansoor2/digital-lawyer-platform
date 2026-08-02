@@ -407,7 +407,67 @@
       "model": "gemini-flash-lite-latest"
     },
     {
-      "title": "تأمين الإيجار في القانون المصري: الدليل القانوني الشامل لاسترداد التأمين وضوابط مصادرته",
+      "title": "عقوبة الشيك بدون رصيد في القانون المصري وكيفية التصالح فيه",
+      "date": "2026-08-02",
+      "slug": "bounced-checks-laws-egypt",
+      "url": "https://justice-91571.web.app/blog/bounced-checks-laws-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/bounced-checks-laws-egypt.jpg",
+      "tags": [
+        "القانون الجنائي"
+      ],
+      "words": 1892,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبة الابتزاز والجرائم الإلكترونية في مصر وكيفية الإبلاغ عنها",
+      "date": "2026-08-02",
+      "slug": "cybercrime-extortion-laws-egypt",
+      "url": "https://justice-91571.web.app/blog/cybercrime-extortion-laws-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/cybercrime-extortion-laws-egypt.jpg",
+      "tags": [
+        "الجرائم الإلكترونية"
+      ],
+      "words": 2581,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "ضريبة التصرفات العقارية في مصر: طرق الحساب وحالات الإعفاء",
+      "date": "2026-08-02",
+      "slug": "real-estate-disposal-tax-egypt",
+      "url": "https://justice-91571.web.app/blog/real-estate-disposal-tax-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/real-estate-disposal-tax-egypt.jpg",
+      "tags": [
+        "الضرائب"
+      ],
+      "words": 1770,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "خطوات وشروط تسجيل العقارات والشقق بالشهر العقاري في مصر",
+      "date": "2026-08-02",
+      "slug": "shahr-aqary-registration-procedures",
+      "url": "https://justice-91571.web.app/blog/shahr-aqary-registration-procedures.html",
+      "image": "https://justice-91571.web.app/blog/images/shahr-aqary-registration-procedures.jpg",
+      "tags": [
+        "الشهر العقاري"
+      ],
+      "words": 1963,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "إجراءات دعوى الخلع في القانون المصري للشروط والأوراق المطلوبة",
+      "date": "2026-08-02",
+      "slug": "khul-divorce-procedures-egypt",
+      "url": "https://justice-91571.web.app/blog/khul-divorce-procedures-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/khul-divorce-procedures-egypt.jpg",
+      "tags": [
+        "الأحوال الشخصية"
+      ],
+      "words": 2122,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "تأمين الإيجار في القانون المصري: الدليل القانوني الشامل لحقوق المستأجر وضمانات المؤجر",
       "date": "2026-08-02",
       "slug": "rental-deposit-rights",
       "url": "https://justice-91571.web.app/blog/rental-deposit-rights.html",
@@ -416,12 +476,12 @@
         "استرداد التأمين",
         "شروط التأمين"
       ],
-      "words": 3006,
+      "words": 3172,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-flash-lite-latest"
     },
     {
-      "title": "ديون المتوفى وتأثيرها على توزيع التركة: دليل شامل للأولوية القانونية والشرعية في القانون المصري",
+      "title": "ديون المتوفى قبل توزيع التركة: الدليل القانوني الشامل لأولوية سداد الحقوق في القانون المصري",
       "date": "2026-08-02",
       "slug": "inheritance-debt-priority",
       "url": "https://justice-91571.web.app/blog/inheritance-debt-priority.html",
@@ -430,12 +490,12 @@
         "توزيع التركة",
         "الورثة"
       ],
-      "words": 3637,
+      "words": 2787,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-flash-lite-latest"
     },
     {
-      "title": "المحكمة الاقتصادية: للدعاوى الصغيرة والمتوسطة في مصر وكيفية إدارتها بنجاح",
+      "title": "المحكمة الاقتصادية: للدعاوى الصغيرة والمتوسطة في مصر ودورها في سرعة التقاضي",
       "date": "2026-08-02",
       "slug": "small-claims-court",
       "url": "https://justice-91571.web.app/blog/small-claims-court.html",
@@ -444,12 +504,12 @@
         "دعاوى صغيرة",
         "المنازعات التجارية"
       ],
-      "words": 3076,
+      "words": 2921,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-flash-lite-latest"
     },
     {
-      "title": "التحرش الوظيفي في مكان العمل: الحماية القانونية للموظف وحقوق المرأة في مصر",
+      "title": "التحرش الوظيفي في القانون المصري: الدليل الشامل لحماية الموظف وضمان حقوق المرأة في العمل",
       "date": "2026-08-02",
       "slug": "workplace-harassment-law",
       "url": "https://justice-91571.web.app/blog/workplace-harassment-law.html",
@@ -458,12 +518,12 @@
         "حقوق المرأة في العمل",
         "فصل تعسفي"
       ],
-      "words": 3199,
+      "words": 2788,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-flash-lite-latest"
     },
     {
-      "title": "الاحتيال العقاري في مصر: كيف تحمي نفسك وأموالك قبل شراء شقة؟",
+      "title": "الاحتيال العقاري في مصر: كيف تحمي نفسك قبل شراء شقة؟",
       "date": "2026-08-02",
       "slug": "real-estate-fraud",
       "url": "https://justice-91571.web.app/blog/real-estate-fraud.html",
@@ -472,9 +532,9 @@
         "بيع وحدات وهمية",
         "حماية المشتري"
       ],
-      "words": 4412,
+      "words": 1750,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-flash-lite-latest"
     }
   ]
 }

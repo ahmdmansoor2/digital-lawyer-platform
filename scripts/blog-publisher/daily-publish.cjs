@@ -594,6 +594,9 @@ ${list}${midImage}`;
   <meta property="og:description" content="${data.metaDescription}" />
   <meta property="og:url" content="${canonical}" />
   <meta property="og:site_name" content="منصة المحامي الرقمية" />
+  ${heroImagePath ? `<meta property="og:image" content="${BASE_URL}${heroImagePath}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="${BASE_URL}${heroImagePath}" />` : ''}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">

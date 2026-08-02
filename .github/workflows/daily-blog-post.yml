@@ -1,4 +1,4 @@
-name: 🤖 نشر المقالات القانونية (5 مرات يومياً)
+name: 🤖 الناشر الذكي — مقالات قانونية يومية (5 مرات يومياً)
 
 on:
   schedule:
@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  daily-publish:
-    name: نشر مقال تفصيلي جديد
+  smart-publish:
+    name: نشر ذكي متوازي (مدونة + Facebook)
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -29,23 +29,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Auto-Publisher
-        run: node scripts/auto-publisher.cjs
+      - name: Run Smart Publisher (Blog + Facebook in parallel)
+        run: node scripts/smart-publisher.cjs
         env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          CI: true
-
-      - name: Publish to Facebook (unified)
-        run: node scripts/blog-publisher/facebook-publish.cjs
-        env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           CI: true
 
       - name: Commit & Push changes
         run: |
-          git config user.name  "Legal Content Editor 🤖"
+          git config user.name  "Smart Legal Publisher 🤖"
           git config user.email "bot@justice-91571.web.app"
-          git add scripts/published-log.json scripts/blog-publisher/facebook-published-log.json public/blog/
-          git diff --staged --quiet || git commit -m "🤖 Auto-publish: $(date +'%Y-%m-%d %H:%M') — مقال قانوني تفصيلي جديد"
+          git add scripts/published-log.json scripts/trending-topics.json scripts/blog-publisher/facebook-published-log.json public/blog/
+          git diff --staged --quiet || git commit -m "🤖 Smart-publish: $(date +'%Y-%m-%d %H:%M') — مقالات قانونية + صور ذكاء اصطناعي"
           git push
