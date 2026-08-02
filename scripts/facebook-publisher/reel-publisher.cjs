@@ -261,6 +261,11 @@ async function main() {
   console.log(`\n${'═'.repeat(60)}`);
   console.log(`📊 الملخص: ${successCount} نجح | ${failCount} فشل | ${selected.length} إجمالي`);
   console.log(`${'═'.repeat(60)}`);
+
+  // لو فشل كل شيء في وضع النشر الفعلي → يفشل الـ job في GitHub Actions
+  if (!opts.dryRun && successCount === 0 && selected.length > 0) {
+    process.exit(1);
+  }
 }
 
 if (require.main === module) {

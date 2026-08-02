@@ -343,16 +343,21 @@ async function composeVideo(args) {
   } else {
     // xfade chain: v0o + v1o → v01, v01 + v2o → v012, ...
     // offset للانتقال k = shift_k (نفس إزاحة المشهد k) — يضمن اكتمال الفيديو بلا قطع
+    // نمرر كل مخرج xfade عبر fps ثابت — بعض إصدارات ffmpeg (7.x) لا تنقل معدل
+    // الإطارات عبر xfade فيفشل التالي بـ "The inputs needs to be a constant frame rate"
     let chainLabel = 'v0o';
     for (let idx = 1; idx < validScenes.length; idx++) {
-      const otherLabel = idx === validScenes.length - 1 ? 'outv' : `chain${idx}`;
+      const isLast = idx === validScenes.length - 1;
+      const rawLabel = isLast ? 'outr' : `chainr${idx}`;
       const offset = sceneStartTimes[idx] - idx * TRANSITION_DUR;
       filters.push(
         `[${chainLabel}][v${idx}o]` +
         `xfade=transition=fade:duration=${TRANSITION_DUR}:offset=${offset.toFixed(2)}` +
-        `[${otherLabel}]`
+        `[${rawLabel}]`
       );
-      chainLabel = otherLabel;
+      const nextLabel = isLast ? 'outv' : `chain${idx}`;
+      filters.push(`[${rawLabel}]fps=${FPS}[${nextLabel}]`);
+      chainLabel = nextLabel;
     }
   }
 
