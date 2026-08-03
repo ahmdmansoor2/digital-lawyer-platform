@@ -50,3 +50,5 @@ jobs:
         run: |
           npm run build
           npx firebase deploy --only hosting --token "$FIREBASE_TOKEN" --non-interactive
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

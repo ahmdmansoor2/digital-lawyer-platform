@@ -2,8 +2,8 @@ name: Daily Health Monitor
 
 on:
   schedule:
-    # 21:45 بتوقيت القاهرة (19:45 UTC) — بعد اكتمال كل عمليات النشر اليومية
-    - cron: '45 19 * * *'
+    # 9:00 صباحاً بتوقيت القاهرة (06:00 UTC في الصيف UTC+3) — تقرير يومي جاهز مع بداية العمل
+    - cron: '0 6 * * *'
   workflow_dispatch: {}
 
 permissions:

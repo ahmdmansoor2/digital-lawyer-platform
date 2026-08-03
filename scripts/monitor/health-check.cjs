@@ -300,7 +300,8 @@ async function checkFacebook(todayArticles) {
     const fbCount = posts.length;
     const expectedParts = todayArticles.reduce((s, a) => s + (a.parts || Math.max(1, Math.ceil(a.words / 1200))), 0);
     if (fbCount === 0) {
-      find(c, 'error', `نُشر ${todayArticles.length} مقالاً اليوم على المدونة لكن لا توجد أي منشورات فيسبوك لها`);
+      const late = new Date().getUTCHours() >= 19;
+      find(c, late ? 'error' : 'warn', `نُشر ${todayArticles.length} مقالاً اليوم على المدونة لكن لا توجد أي منشورات فيسبوك لها`);
     } else if (fbCount < todayArticles.length) {
       find(c, 'warn', `مقالات اليوم على المدونة (${todayArticles.length}) أكثر من منشورات فيسبوك (${fbCount})`);
     }
