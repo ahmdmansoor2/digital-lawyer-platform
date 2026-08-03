@@ -51,6 +51,15 @@ const PAGES = [
     bgGlow: 'rgba(6,182,212,0.25)',
   },
   {
+    href: '/pillars/?from=app',
+    label: 'المراجع القانونية الشاملة',
+    desc: 'أدلة قانونية متعمّقة في القانون المصري — مرجع شامل للمحامين والمستشارين القانونيين',
+    icon: Scale,
+    tone: 'indigo',
+    gradient: 'from-indigo-500 to-purple-600',
+    bgGlow: 'rgba(99,102,241,0.25)',
+  },
+  {
     href: '/contact.html?from=app',
     label: 'تواصل معنا',
     desc: 'لأي استفسار أو دعم فني، فريقنا متاح للمساعدة عبر البريد الإلكتروني',
