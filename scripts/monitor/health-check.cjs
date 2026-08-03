@@ -336,8 +336,11 @@ async function checkGithubRuns() {
   const today = cairoDate();
   try {
     const headers = GH_TOKEN ? { Authorization: `Bearer ${GH_TOKEN}` } : {};
-    const { status, data } = await getJson(`https://api.github.com/repos/${GH_REPO}/actions/runs?per_page=25`, headers);
+    const url = `https://api.github.com/repos/${GH_REPO}/actions/runs?per_page=25`;
+    const { status, data } = await getJson(url, headers);
+    console.log(`[gh-debug] token=${GH_TOKEN ? 'set(' + GH_TOKEN.length + ')' : 'MISSING'} url=${url} status=${status}`);
     if (status !== 200) {
+      console.log(`[gh-debug] body=${JSON.stringify(data).slice(0, 300)}`);
       find(c, 'warn', `لا يمكن الوصول لسجل GitHub Actions (${status}) — يلزم GITHUB_TOKEN`);
       return;
     }
