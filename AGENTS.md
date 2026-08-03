@@ -166,3 +166,25 @@ src/
 ### المتبقي
 - 3 رموز U+00A9 (©) و U+00B1 (±) في `LegalLibrary.tsx`, `SmartScanner.tsx`, `security.ts`, `wordExportHelper.ts` — **شرعية** (ليست تالفة)
 - مطلوب من المستخدم: تشغيل `منصة المحامي الرقمية 0.0.0.exe` الجديد من `dist-desktop/` (وليس القديم من سطح المكتب)
+
+---
+
+## حالة الجلسة الحالية: Session 4 — نظام المراقبة اليومي + أتمتة سحابية كاملة (مكتمل)
+
+### ما أُنجز
+1. **نظام مراقبة يومي شامل** `scripts/monitor/health-check.cjs` — 7 فحوصات (الموقع، المدونة + og:image، sitemap، فيسبوك + ريلز، GitHub Actions، مطابقة السجلّ مع الحي) → تقرير `reports/health/<التاريخ>.md` + `latest.json` + فتح GitHub Issue عند الأخطاء.
+2. **`daily-health-monitor.yml`** — يومياً **9:00 صباحاً القاهرة** (06:00 UTC) + تشغيل يدوي. GITHUB_TOKEN يُمرَّر صراحةً (`secrets.GITHUB_TOKEN`) + إذن `actions: read`. فحص تطابق اليوم مع فيسبوك مرفوع من error→warn قبل 19 UTC (منع إنذار كاذب صباحي).
+3. **إصلاح فشل النشر (run #14):** خطوة `Build & Deploy` في `daily-blog-post.yml` كانت بلا `env: FIREBASE_TOKEN` → أُضيف. تم التحقق من نجاح الـ deploy.
+4. **`generate-sitemap.cjs`** (57 رابطاً) مربوط بنهاية `daily-publish.cjs`.
+5. **إيقاف المهام المحلية المجدولة** (كانت تسبب ازدواجاً وتداخلاً مع CI):
+   - `DailyBlogPublish` → `Disabled` (كان يشغّل `daily-publish.cjs` يومياً 9ص)
+   - `MohwamiDigital-BlogPublisher` → `Disabled` (كان يشغّل `auto-publisher.cjs` يومياً 9ص)
+   - إعادة التفعيل عند الحاجة: `Enable-ScheduledTask -TaskName "DailyBlogPublish","MohwamiDigital-BlogPublisher"`
+6. **التحقق من الاستمرارية مع الجهاز مغلق:** كل 5 workflows على `runs-on: ubuntu-latest` (سحاب GitHub، 0 رنر محلي)، كل الـ secrets مضبوطة (FB_PAGE_ID/TOKEN, FIREBASE_TOKEN, GEMINI_API_KEY, PEXELS_API_KEY)، `package-lock.json` ملتزم. الـ reports اليومية تُدفع تلقائياً فتمنع تعطيل cron بقاعدة الـ 60 يوم.
+
+### المتبقي / تنبيهات
+- **Issue #1** مفتوح (سجل فشل run #14) — يُغلق يدوياً بعد الاطلاع.
+- **22 غلاف SVG** لمقالات قديمة (تحذير معلوماتي فقط في المراقب) — يُنصح بتحويلها JPG لاحقاً.
+- **الموعد 9ص ثابت على 06:00 UTC** — في الشتاء (UTC+2) سيصبح 8ص. إن أُريد 9ص ثابتاً طول العام، يُضبط في أكتوبر.
+- ملفات غير ملتزمة متروكة: `scripts/seo/`, `scripts/facebook-reels/`, صور `test_*.jpg`, `public/googlec03a96f2162c19b9.html` (تحقق GSC).
+- الـ repo متزامن عند `52cc3a2`. التوكن يُستخرج من Windows Credential Manager عند الحاجة.
