@@ -423,6 +423,20 @@
       "words": 1414,
       "image": "svg",
       "model": "gemini-flash-lite-latest"
+    },
+    {
+      "title": "دعوى إخلاء المستأجر: الدليل القانوني الشامل للإجراءات والمستندات وأسباب الرفض في القانون المصري",
+      "date": "2026-08-03",
+      "slug": "rent-eviction-cases",
+      "url": "https://justice-91571.web.app/blog/rent-eviction-cases.html",
+      "tags": [
+        "دعوى الإخلاء",
+        "إخلاء مستأجر",
+        "المحكمة الجزئية"
+      ],
+      "words": 2492,
+      "image": "pollinations",
+      "model": "gemini-flash-lite-latest"
     }
   ],
   "skipped": [
@@ -505,5 +519,5 @@
       "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\child-custody-egypt-1785581807609.json"
     }
   ],
-  "last_run": "2026-08-03T18:56:26.303Z"
+  "last_run": "2026-08-03T19:32:49.477Z"
 }
