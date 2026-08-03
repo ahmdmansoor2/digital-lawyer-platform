@@ -1,11 +1,11 @@
 {
   "date": "2026-08-03",
-  "generatedAt": "2026-08-03T18:16:50.801Z",
-  "status": "warn",
+  "generatedAt": "2026-08-03T18:38:00.092Z",
+  "status": "error",
   "blogArticles": 55,
   "fbPosts": 41,
   "reels": 2,
-  "ghRuns": null,
+  "ghRuns": 10,
   "checks": [
     {
       "name": "site_root",
@@ -28,8 +28,8 @@
     {
       "name": "sitemap",
       "label": "الاستضافة: خريطة الموقع sitemap.xml",
-      "status": "ok",
-      "findings": 0
+      "status": "warn",
+      "findings": 1
     },
     {
       "name": "facebook",
@@ -40,7 +40,7 @@
     {
       "name": "github_runs",
       "label": "GitHub: نتائج تشغيل الـ workflows اليومية",
-      "status": "warn",
+      "status": "error",
       "findings": 1
     },
     {
