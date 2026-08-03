@@ -535,6 +535,66 @@
       "words": 1750,
       "image": "svg",
       "model": "gemini-flash-lite-latest"
+    },
+    {
+      "title": "عقوبات التجارة في النقد الأجنبي بالسوق السوداء وفقاً للقانون المصري",
+      "date": "2026-08-03",
+      "slug": "foreign-currency-illegal-trading-egypt",
+      "url": "https://justice-91571.web.app/blog/foreign-currency-illegal-trading-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/foreign-currency-illegal-trading-egypt.jpg",
+      "tags": [
+        "جرائم مالية"
+      ],
+      "words": 2123,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "المسؤولية الجنائية والمدنية في حوادث انهيار العقارات وتراخيص البناء",
+      "date": "2026-08-03",
+      "slug": "building-collapse-liability-egypt",
+      "url": "https://justice-91571.web.app/blog/building-collapse-liability-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/building-collapse-liability-egypt.jpg",
+      "tags": [
+        "عقارات وقضايا"
+      ],
+      "words": 1718,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "أحكام القوة القاهرة والظروف الطارئة في العقود طبقاً للقانون المدني المصري",
+      "date": "2026-08-03",
+      "slug": "force-majeure-clause-egyptian-law",
+      "url": "https://justice-91571.web.app/blog/force-majeure-clause-egyptian-law.html",
+      "image": "https://justice-91571.web.app/blog/images/force-majeure-clause-egyptian-law.jpg",
+      "tags": [
+        "قانون مدني"
+      ],
+      "words": 2365,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "حقوق العامل في الإجازات الرسمية واحتساب أجر العمل الإضافي في مصر",
+      "date": "2026-08-03",
+      "slug": "official-holidays-overtime-labor-law-egypt",
+      "url": "https://justice-91571.web.app/blog/official-holidays-overtime-labor-law-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/official-holidays-overtime-labor-law-egypt.jpg",
+      "tags": [
+        "قانون العمل"
+      ],
+      "words": 1962,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبة السب والقذف الإلكتروني وشروط تقديم بلاغ مباحث النت في مصر",
+      "date": "2026-08-03",
+      "slug": "cybercrime-defamation-laws-egypt",
+      "url": "https://justice-91571.web.app/blog/cybercrime-defamation-laws-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/cybercrime-defamation-laws-egypt.jpg",
+      "tags": [
+        "جرائم إلكترونية"
+      ],
+      "words": 1343,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
