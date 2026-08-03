@@ -595,6 +595,76 @@
       ],
       "words": 1343,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "إثبات النسب بـ تحليل الـ DNA: شروطه وحجيته في القانون المصري بالتفصيل",
+      "date": "2026-08-03",
+      "slug": "paternity-dna-test",
+      "url": "https://justice-91571.web.app/blog/paternity-dna-test.html",
+      "tags": [
+        "إثبات النسب",
+        "تحليل الحمض النووي",
+        "DNA"
+      ],
+      "words": 3447,
+      "image": "svg",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "التهرب الضريبي في مصر: العقوبات الصارمة وكيف تتجنبه بالسبل القانونية المشروعة",
+      "date": "2026-08-03",
+      "slug": "tax-evasion-penalties",
+      "url": "https://justice-91571.web.app/blog/tax-evasion-penalties.html",
+      "tags": [
+        "التهرب الضريبي",
+        "العقوبات الضريبية",
+        "مصلحة الضرائب"
+      ],
+      "words": 3525,
+      "image": "svg",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "منع السفر في القانون المصري: متى يصدر وكيف ترفعه؟ الدليل القانوني الشامل",
+      "date": "2026-08-03",
+      "slug": "travel-ban-reasons",
+      "url": "https://justice-91571.web.app/blog/travel-ban-reasons.html",
+      "tags": [
+        "منع السفر",
+        "قوائم الترقب",
+        "رفع منع السفر"
+      ],
+      "words": 3820,
+      "image": "svg",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "عقد الزواج والشروط الاتفاقية في القانون المصري: دليل شامل لما يجوز وما لا يجوز بين الزوجين",
+      "date": "2026-08-03",
+      "slug": "prenuptial-agreement",
+      "url": "https://justice-91571.web.app/blog/prenuptial-agreement.html",
+      "tags": [
+        "عقد الزواج",
+        "الشروط الاتفاقية",
+        "الشريعة الإسلامية"
+      ],
+      "words": 3914,
+      "image": "svg",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "التحقيق الجنائي وحقوق المتهم: دليلك القانوني الكامل لحماية نفسك وموكلك وفقاً للقانون المصري",
+      "date": "2026-08-03",
+      "slug": "criminal-investigation-rights",
+      "url": "https://justice-91571.web.app/blog/criminal-investigation-rights.html",
+      "tags": [
+        "التحقيق الجنائي",
+        "حقوق المتهم",
+        "النيابة العامة"
+      ],
+      "words": 3856,
+      "image": "svg",
+      "model": "gemini-3.5-flash"
     }
   ]
 }
