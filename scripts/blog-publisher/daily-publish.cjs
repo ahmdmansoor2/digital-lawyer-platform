@@ -989,6 +989,14 @@ async function main() {
       fs.writeFileSync(articleFile, articleHtml, 'utf8');
       console.log(`[publish] تم إنشاء ملف المقال: ${articleFile} (${words} كلمة، صورة: ${imageSource})`);
 
+      // 3.1 إضافة Article + Breadcrumb schema (JSON-LD) — للظهور في Google News و rich snippets
+      try {
+        const { processFile: injectSchema } = require('../seo/add-article-schema.cjs');
+        injectSchema(articleFile);
+      } catch (e) {
+        console.warn(`[publish] تحذير: فشل حقن الـ schema: ${e.message?.substring(0, 100)}`);
+      }
+
       addCardToIndex(topic, data, meta);
       console.log('[publish] تم تحديث index.html');
 
@@ -1039,6 +1047,13 @@ async function main() {
   console.log(`[publish] ✅ اكتمل نشر ${publishedNow.length} مقالات بنجاح:`);
   for (const slug of publishedNow) {
     console.log(`[publish]   - ${BASE_URL}/blog/${slug}.html`);
+  }
+
+  // 4b. إعادة توليد sitemap.xml لتشمل كل المقالات (لا يكسر النشر عند فشله)
+  try {
+    execSync('node scripts/blog-publisher/generate-sitemap.cjs', { cwd: ROOT, stdio: 'inherit', env: { ...process.env } });
+  } catch (smErr) {
+    console.error(`[publish] تحذير: فشل توليد sitemap: ${smErr.message?.substring(0, 150)}`);
   }
 
   // 5. نشر نفس المقالات على صفحة فيسبوك (اختياري — يتطلب FB_PAGE_TOKEN)

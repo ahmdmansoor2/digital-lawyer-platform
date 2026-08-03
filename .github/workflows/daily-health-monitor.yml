@@ -1,0 +1,46 @@
+name: Daily Health Monitor
+
+on:
+  schedule:
+    # 21:45 بتوقيت القاهرة (19:45 UTC) — بعد اكتمال كل عمليات النشر اليومية
+    - cron: '45 19 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    env:
+      FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+      FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+      ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run health check (site + blog + images + sitemap + facebook + reels + github runs)
+        run: node scripts/monitor/health-check.cjs
+
+      - name: Commit health report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/health
+          git diff --cached --quiet && echo "no changes to commit" || git commit -m "chore(monitor): daily health report"
+          git push
+
+      - name: Fail run if errors found
+        run: |
+          node -e "const s=require('./reports/health/latest.json'); if(s.status==='error'){console.log('🔴 توجد أخطاء — راجع تقرير اليوم وIssue المفتوح'); process.exit(1)} console.log('الفحص سليم ✅ الحالة: '+s.status)"

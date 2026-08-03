@@ -1,0 +1,53 @@
+{
+  "date": "2026-08-03",
+  "generatedAt": "2026-08-03T18:09:03.173Z",
+  "status": "warn",
+  "blogArticles": 55,
+  "fbPosts": 41,
+  "reels": 2,
+  "ghRuns": null,
+  "checks": [
+    {
+      "name": "site_root",
+      "label": "الموقع: الصفحة الرئيسية وأصول التطبيق",
+      "status": "ok",
+      "findings": 0
+    },
+    {
+      "name": "blog_index",
+      "label": "المدونة: الفهرس والروابط",
+      "status": "ok",
+      "findings": 0
+    },
+    {
+      "name": "articles",
+      "label": "المدونة: سلامة المقالات والصور (og:image)",
+      "status": "warn",
+      "findings": 1
+    },
+    {
+      "name": "sitemap",
+      "label": "الاستضافة: خريطة الموقع sitemap.xml",
+      "status": "ok",
+      "findings": 0
+    },
+    {
+      "name": "facebook",
+      "label": "فيسبوك: منشورات اليوم والصور والريلز",
+      "status": "warn",
+      "findings": 1
+    },
+    {
+      "name": "github_runs",
+      "label": "GitHub: نتائج تشغيل الـ workflows اليومية",
+      "status": "warn",
+      "findings": 1
+    },
+    {
+      "name": "log_vs_live",
+      "label": "الاستضافة: تطابق سجلّ النشر مع المحتوى الحي",
+      "status": "ok",
+      "findings": 0
+    }
+  ]
+}
