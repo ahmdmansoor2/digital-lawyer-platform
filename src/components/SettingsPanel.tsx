@@ -633,7 +633,7 @@ export default function SettingsPanel({
         a.download = `lawfirm-backup-${new Date().toISOString().split('T')[0]}.json`;
         document.body.appendChild(a);
         a.click();
-        document.body.removeChild(a);
+        a.remove();
         URL.revokeObjectURL(url);
         setExportStatus('done');
         setTimeout(() => setExportStatus('idle'), 3000);

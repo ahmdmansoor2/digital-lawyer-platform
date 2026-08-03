@@ -597,7 +597,7 @@
       "model": "gemini-2.0-flash"
     },
     {
-      "title": "إثبات النسب بـ تحليل الـ DNA: شروطه وحجيته في القانون المصري بالتفصيل",
+      "title": "إثبات النسب بـ تحليل الـ DNA في القانون المصري: الدليل القانوني الشامل للحجية والشروط والإجراءات",
       "date": "2026-08-03",
       "slug": "paternity-dna-test",
       "url": "https://justice-91571.web.app/blog/paternity-dna-test.html",
@@ -606,12 +606,12 @@
         "تحليل الحمض النووي",
         "DNA"
       ],
-      "words": 3447,
+      "words": 3300,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-3-flash-preview"
     },
     {
-      "title": "التهرب الضريبي في مصر: العقوبات الصارمة وكيف تتجنبه بالسبل القانونية المشروعة",
+      "title": "التهرب الضريبي في مصر: العقوبات وكيف تتجنبها قانونيًا عبر الالتزام الإجرائي",
       "date": "2026-08-03",
       "slug": "tax-evasion-penalties",
       "url": "https://justice-91571.web.app/blog/tax-evasion-penalties.html",
@@ -620,12 +620,12 @@
         "العقوبات الضريبية",
         "مصلحة الضرائب"
       ],
-      "words": 3525,
+      "words": 3933,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-3-flash-preview"
     },
     {
-      "title": "منع السفر في القانون المصري: متى يصدر وكيف ترفعه؟ الدليل القانوني الشامل",
+      "title": "منع السفر في القانون المصري: الدليل الشامل للإجراءات القانونية وطرق الرفع والتظلم",
       "date": "2026-08-03",
       "slug": "travel-ban-reasons",
       "url": "https://justice-91571.web.app/blog/travel-ban-reasons.html",
@@ -634,12 +634,12 @@
         "قوائم الترقب",
         "رفع منع السفر"
       ],
-      "words": 3820,
+      "words": 3362,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-flash-lite-latest"
     },
     {
-      "title": "عقد الزواج والشروط الاتفاقية في القانون المصري: دليل شامل لما يجوز وما لا يجوز بين الزوجين",
+      "title": "عقد الزواج والشروطه الاتفاقية: ما يجوز وما لا يجوز بين الزوجين في القانون المصري",
       "date": "2026-08-03",
       "slug": "prenuptial-agreement",
       "url": "https://justice-91571.web.app/blog/prenuptial-agreement.html",
@@ -648,12 +648,12 @@
         "الشروط الاتفاقية",
         "الشريعة الإسلامية"
       ],
-      "words": 3914,
+      "words": 2464,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-flash-lite-latest"
     },
     {
-      "title": "التحقيق الجنائي وحقوق المتهم: دليلك القانوني الكامل لحماية نفسك وموكلك وفقاً للقانون المصري",
+      "title": "التحقيق الجنائي: حقوق المتهم في القانون المصري والضمانات الدستورية",
       "date": "2026-08-03",
       "slug": "criminal-investigation-rights",
       "url": "https://justice-91571.web.app/blog/criminal-investigation-rights.html",
@@ -662,9 +662,9 @@
         "حقوق المتهم",
         "النيابة العامة"
       ],
-      "words": 3856,
+      "words": 1414,
       "image": "svg",
-      "model": "gemini-3.5-flash"
+      "model": "gemini-flash-lite-latest"
     }
   ]
 }

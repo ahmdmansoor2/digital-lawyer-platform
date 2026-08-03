@@ -701,7 +701,7 @@ const LegalLibrary = React.memo(function LegalLibrary({ cases = [], onLinkLegalR
             iframe.contentWindow?.print();
           } finally {
             setTimeout(() => {
-              document.body.removeChild(iframe);
+              iframe.remove();
               URL.revokeObjectURL(blobUrl);
             }, 2000);
           }

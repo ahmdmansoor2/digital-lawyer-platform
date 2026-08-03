@@ -272,7 +272,7 @@ export function exportHtmlToWord(title: string, htmlBody: string, fileName: stri
   link.download = `${fileName}.doc`;
   document.body.appendChild(link);
   link.click();
-  document.body.removeChild(link);
+  link.remove();
   URL.revokeObjectURL(url);
 }
 

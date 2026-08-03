@@ -87,7 +87,7 @@ export async function exportHtmlToPdf(
     logger.error('[pdfExport] Failed', e);
     throw new Error(`فشل تصدير PDF: ${e.message}`);
   } finally {
-    document.body.removeChild(container);
+    container.remove();
   }
 }
 

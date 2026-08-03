@@ -148,7 +148,36 @@ function splitIntoParts(text, maxChars = FB_MAX_CHARS) {
 }
 
 // ── نشر جزء على الفيسبوك (Graph API v19.0) ───────────────────────────────
-async function postToFacebook(message, pageId, token, isPart, partInfo, articleUrl, imageUrl) {
+async function postToFacebook(message, pageId, token, isPart, partInfo, articleUrl, imageUrl, opts) {
+  // نشر الجزء الأول كصورة غلاف (نقطة /photos) — يضمن ظهور الصورة على الصفحة
+  // مباشرة دون الاعتماد على معاينة رابط og:image (التي تفشل مع SVG أو التخزين).
+  // يُرفع الملف المحلي عبر multipart عند توفره (لا يعتمد على توقيت النشر على
+  // الاستضافة) مع fallback إلى عنوان URL العام عند غياب الملف.
+  if (opts && opts.attachImage) {
+    const base = `https://graph.facebook.com/v19.0/${pageId}/photos`;
+    let resp, data;
+    if (opts.imageFile && fs.existsSync(opts.imageFile)) {
+      const ext = path.extname(opts.imageFile).slice(1).toLowerCase();
+      const mime = ext === 'png' ? 'image/png' : ext === 'webp' ? 'image/webp' : 'image/jpeg';
+      const form = new FormData();
+      form.append('message', message);
+      form.append('source', new Blob([fs.readFileSync(opts.imageFile)], { type: mime }), path.basename(opts.imageFile));
+      form.append('access_token', token);
+      resp = await fetch(base, { method: 'POST', body: form });
+      data = await resp.json().catch(() => ({}));
+    } else if (imageUrl) {
+      const body = new URLSearchParams({ message, url: imageUrl, access_token: token });
+      resp = await fetch(base, { method: 'POST', body });
+      data = await resp.json().catch(() => ({}));
+    } else {
+      throw new Error('لا صورة متاحة للرفع');
+    }
+    if (!resp.ok || data.error) {
+      const err = data.error || {};
+      throw new Error(`فيسبوك (صورة): ${err.message || resp.status} (${err.code || ''})`);
+    }
+    return data.id;
+  }
   const url = `https://graph.facebook.com/v19.0/${pageId}/feed`;
   const bodyParams = { message, access_token: token };
   // نرفق رابط المقال (وليس picture) — فيسبوك يلتقط صورة og:image تلقائياً من الصفحة.
@@ -192,7 +221,8 @@ function getImageForSlug(slug) {
   try {
     const imagesDir = path.join(BLOG_DIR, 'images');
     if (!fs.existsSync(imagesDir)) return null;
-    const base = ['svg', 'png', 'jpg', 'jpeg', 'webp', 'gif'];
+    // الصور الحقيقية (jpg/png/...) أولاً؛ SVG يبقى كحل أخير لأنه لا يُعرض في فيسبوك.
+    const base = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg'];
     const file = fs.readdirSync(imagesDir).find(f => {
       const dot = f.lastIndexOf('.');
       if (dot < 0) return false;
@@ -233,9 +263,23 @@ async function publishArticleToFacebook(article, token, pageId) {
     try {
       const imgRel = getImageForSlug(slug);
       const imageUrl = imgRel ? `https://justice-91571.web.app${imgRel}` : null;
-      const id = await postToFacebook(header, pageId, token, partCount > 1, { i: i + 1, total: partCount }, url, imageUrl);
+      const imageFile = imgRel ? path.join(BLOG_DIR, 'images', path.basename(imgRel)) : null;
+      // الجزء الأول يُنشر كصورة (إن وُجدت غلاف حقيقي) لضمان ظهور الصورة؛
+      // SVG لا يُقبل في /photos فيُترك كمنشور رابط عادي.
+      const attachImage = i === 0 && imageFile && !/\.svg$/i.test(imageFile);
+      let id;
+      try {
+        id = await postToFacebook(header, pageId, token, partCount > 1, { i: i + 1, total: partCount }, url, imageUrl, { attachImage, imageFile });
+      } catch (err) {
+        if (attachImage) {
+          console.log(`[fb]   ⚠️ نشر الصورة فشل (${err.message}) — إعادة كمنشور رابط.`);
+          id = await postToFacebook(header, pageId, token, partCount > 1, { i: i + 1, total: partCount }, url, imageUrl);
+        } else {
+          throw err;
+        }
+      }
       postedIds.push(id);
-      console.log(`[fb]   ✓ جزء ${i + 1}/${partCount} → post id ${id}`);
+      console.log(`[fb]   ✓ جزء ${i + 1}/${partCount} → post id ${id}${attachImage ? ' (بصورة)' : ''}`);
     } catch (err) {
       console.error(`[fb]   ✗ جزء ${i + 1}/${partCount} فشل: ${err.message}`);
       // إن فشل الجزء الأول فلا نكمل

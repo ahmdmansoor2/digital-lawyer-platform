@@ -237,7 +237,7 @@ export default function DocketMaster({
       ta.select();
       try { document.execCommand('copy'); setRowCopiedId(`${item.type}-${item.id}`); setTimeout(() => setRowCopiedId(null), 1500); }
       catch (e) { /* ignore */ }
-      document.body.removeChild(ta);
+      ta.remove();
     });
   }
 
@@ -439,7 +439,7 @@ export default function DocketMaster({
     a.download = `docket-${new Date().toISOString().split('T')[0]}.csv`;
     document.body.appendChild(a);
     a.click();
-    document.body.removeChild(a);
+    a.remove();
     URL.revokeObjectURL(url);
   };
 

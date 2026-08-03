@@ -298,7 +298,7 @@ const TemplatesLibrary = React.memo(function TemplatesLibrary({ templates = mock
     const iframeDoc = iframe.contentWindow?.document || iframe.contentDocument;
     if (!iframeDoc) {
       await showAlert('خطأ في تهيئة محرك الطباعة!');
-      document.body.removeChild(iframe);
+      iframe.remove();
       return;
     }
 
@@ -352,7 +352,7 @@ const TemplatesLibrary = React.memo(function TemplatesLibrary({ templates = mock
         iframe.contentWindow.print();
       }
       setTimeout(() => {
-        document.body.removeChild(iframe);
+        iframe.remove();
       }, 1000);
     }, 500);
   };

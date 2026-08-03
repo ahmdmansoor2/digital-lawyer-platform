@@ -181,7 +181,7 @@ const AttachmentManager = React.memo(function AttachmentManager({
           printIframe.contentWindow.print();
         }
         setTimeout(() => {
-          document.body.removeChild(printIframe);
+          printIframe.remove();
         }, 100);
       }, 500);
     }

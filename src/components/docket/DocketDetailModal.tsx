@@ -119,7 +119,7 @@ export default function DocketDetailModal({
       ta.select();
       try { document.execCommand('copy'); setCopied(true); setTimeout(() => setCopied(false), 1500); }
       catch (e) { /* ignore */ }
-      document.body.removeChild(ta);
+      ta.remove();
     });
   }
 

@@ -4,6 +4,32 @@
 
 ---
 
+## [v2.9.19] — 2026-08-03 (🐛 إصلاح منشورات فيسبوك بلا صور)
+
+### 📸 السبب الجذري
+- مقالا `daily-publish.cjs` (الناشر اليومي) كانا يبنيان الصورة عبر نموذج `gemini-2.5-flash-image` (Nano Banana) فقط؛ وعند استنفاد حصة النموذج (خطأ `429 You exceeded your current quota` خلال ركضات اليوم) كانا يسقطان مباشرة إلى **SVG محلي** (~830 بايت).
+- فيسبوك **لا يعرض SVG** في معاينة الرابط (og:image) → منشورات 5 مقالات اليوم ظهرت بلا صورة. (بينما مقالا `smart-publisher.cjs` التي تستخدم Unsplash/Pollinations ظهرت بصور JPG حقيقية).
+
+### 🛠️ الإصلاح
+1. **`daily-publish.cjs` — سلسلة صور حقيقية إلزامية:** Nano Banana ← Pollinations.ai (توليد مجاني) ← Unsplash (صورة فوتوغرافية حسب التصنيف) ← SVG كحل أخير فقط. كل غلاف يُعاد ضبطه إلى `1200×675 JPG` عبر `sharp` (في `generateFallbackImage` + خريطتا `COVER_UNSPLASH`/`COVER_EN` لـ 16 تصنيفاً).
+2. **`facebook-publish.cjs` — إرفاق الغلاف مباشرة:** الجزء الأول من كل مقال يُنشر عبر نقطة `/photos` (بدل `/feed` + معاينة رابط) لضمان ظهور الصورة على الصفحة، مع fallback تلقائي إلى منشور رابط عند فشل الصورة. كما صُحّحت أولوية `getImageForSlug` لتفضيل JPG/PNG على SVG.
+
+### ✅ ما نُفّذ
+- أغلفة JPG حقيقية (49–171 KB) وُلّدت للمقالات الخمسة المتضررة (`paternity-dna-test`, `tax-evasion-penalties`, `travel-ban-reasons`, `prenuptial-agreement`, `criminal-investigation-rights`) واستُبدل كل مرجع `.svg` بـ `.jpg` في صفحاتها (public + dist) ثم أُعيد نشر الاستضافة (`firebase deploy` — الموقع الحي يقدم JPG و`og:image` صحيح).
+- إعادة فحص فيسبوك للروابط الخمسة (`scrape=true`) لتحديث التخزين المؤقت للمشاركات المستقبلية.
+
+---
+
+## [v2.9.18] — 2026-08-03 (🐛 إصلاح خطأ الطباعة/التصدير removeChild)
+
+### 🐛 إصلاح `Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node`
+- **التشخيص:** النص غير موجود في `react-dom@19.2.7` — الخطأ من استدعاءات `document.body.removeChild(X)` المباشرة في كود التطبيق، وليس من React. يظهر عند حذف عقدة سبق حذفها (نقر مزدوج/تكرار النداء في `setTimeout`، أو تفريع مختلف).
+- **الحل الجذري:** استبدال `document.body.removeChild(X)` بـ `X.remove()` في كل المواضع — `remove()` لا يرمي خطأ أبداً إذا كانت العقدة غير متصلة بـ DOM.
+- **الملفات المُعالجة (19):** `AttachmentManager`, `BailiffPapersPanel` (3 مواضع), `CasesList`, `ClientsList`, `DocketDetailModal`, `DocketMaster` (2), `HourInvoicingManager` (2), `LegalLibrary`, `PrintPreviewModal` (2), `SettingsPanel`, `TemplatesLibrary` (2), `backupRestore`, `pdfExportHelper`, `printHelper` (2), `wordExportHelper`.
+- ✅ تحقق: `tsc --noEmit` لا أخطاء في الملفات المُعدّلة + `vite build` ناجح + 235 اختباراً نجحت.
+
+---
+
 ## [v2.9.17] — 2026-08-02 (🎬 ريلز فيسبوك تلقائية: 5 يومياً من ترندات جوجل بدون جهاز)
 
 ### 🤖 أتمتة كاملة لريلز فيسبوك على GitHub Actions

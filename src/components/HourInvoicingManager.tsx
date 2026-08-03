@@ -235,7 +235,7 @@ const HourInvoicingManager = React.memo(function HourInvoicingManager({
     const iframeDoc = iframe.contentWindow?.document || iframe.contentDocument;
     if (!iframeDoc) {
       await showAlert('خطأ في تهيئة محرك الطباعة!');
-      document.body.removeChild(iframe);
+      iframe.remove();
       return;
     }
 
@@ -293,7 +293,7 @@ const HourInvoicingManager = React.memo(function HourInvoicingManager({
         iframe.contentWindow.print();
       }
       setTimeout(() => {
-        document.body.removeChild(iframe);
+        iframe.remove();
       }, 1000);
     }, 500);
   };

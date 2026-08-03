@@ -236,7 +236,7 @@ const PrintPreviewModal = React.memo(function PrintPreviewModal({ title, htmlCon
       document.body.appendChild(link);
       link.click();
       setTimeout(() => {
-        document.body.removeChild(link);
+        link.remove();
         URL.revokeObjectURL(blobUrl);
       }, 1000);
       setShowDownloadHint(true);
@@ -270,7 +270,7 @@ const PrintPreviewModal = React.memo(function PrintPreviewModal({ title, htmlCon
         logging: false,
       });
 
-      document.body.removeChild(tempContainer);
+      tempContainer.remove();
 
       const imgData = canvas.toDataURL('image/jpeg', 0.95);
 

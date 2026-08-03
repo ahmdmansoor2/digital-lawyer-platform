@@ -217,7 +217,7 @@ const ClientsList = React.memo(function ClientsList({
     await new Promise(r => setTimeout(r, 30));
     const svg = container.querySelector('svg')?.outerHTML || '';
     root.unmount();
-    document.body.removeChild(container);
+    container.remove();
     printClientFileQR(client, officeProfile, svg);
   }, [officeProfile]);
 

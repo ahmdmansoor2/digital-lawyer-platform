@@ -27,7 +27,7 @@ const LOG_FILE = path.join(__dirname, 'published-log.json');
 // السجلّ الرئيسي المختوم باليدوي — يُزامن مع LOG_FILE لتفادي انفصال السجلّين
 const LEGACY_LOG_FILE = path.join(ROOT, 'scripts', 'published-log.json');
 const BASE_URL = 'https://justice-91571.web.app';
-const ARTICLES_PER_RUN = 5; // عدد المقالات المنشورة في كل تشغيل
+const ARTICLES_PER_RUN = Number(process.env.ARTICLES_PER_RUN) || 5; // عدد المقالات في كل تشغيل (قابل للتجاوز عبر env)
 const MIN_WORDS = 3000; // الحد الأدنى لعدد كلمات المقال
 const IMAGE_MODEL = 'gemini-2.5-flash-image'; // Nano Banana
 // نماذج النص المدعومة — كل نموذج له حصة مجانية يومية منفصلة، نوزّع الطلبات
@@ -176,6 +176,82 @@ async function generateImage(ai, topic, data) {
   const buf = Buffer.from(img.inlineData.data, 'base64');
   if (buf.length < 5000) return null; // صورة تالفة/فارغة
   return buf;
+}
+
+// ── صور غلاف حقيقية بديلة (عند فشل Nano Banana بسبب quota 429 أو غيره) ─────
+// فيسبوك لا يعرض SVG في معاينة الروابط (og:image)، لذا أي مقال بغلاف SVG فقط
+// يظهر منشوره على الصفحة بلا صورة. الترتيب: Pollinations (ذكاء، مجاني) ثم
+// Unsplash (صورة فوتوغرافية حسب التصنيف) ثم SVG المحلي كحل أخير.
+const COVER_UNSPLASH = {
+  'قانون الإيجارات': 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&h=675&q=80',
+  'الميراث': 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&h=675&q=80',
+  'قانون الأسرة': 'https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1200&h=675&q=80',
+  'قانون العمل': 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&h=675&q=80',
+  'حقوق المستهلك': 'https://images.unsplash.com/photo-1607082349566-187342175e2f?auto=format&fit=crop&w=1200&h=675&q=80',
+  'الشركات': 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&h=675&q=80',
+  'التنفيذ': 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&h=675&q=80',
+  'القانون التجاري': 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&h=675&q=80',
+  'العقود': 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1200&h=675&q=80',
+  'القانون المدني': 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1200&h=675&q=80',
+  'القانون الإداري': 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&h=675&q=80',
+  'الملكية الفكرية': 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1200&h=675&q=80',
+  'إجراءات قضائية': 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&h=675&q=80',
+  'قانون عقاري': 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1200&h=675&q=80',
+  'قانون ضريبي': 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&h=675&q=80',
+  'القانون الجنائي': 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&h=675&q=80',
+};
+const COVER_DEFAULT = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&h=675&q=80';
+const COVER_EN = {
+  'قانون الإيجارات': 'Egyptian real estate rent lease contract documents',
+  'الميراث': 'Egyptian inheritance law legal documents family',
+  'قانون الأسرة': 'Egyptian family law marriage contract legal',
+  'قانون العمل': 'Egyptian labor law workers employment office',
+  'حقوق المستهلك': 'Egyptian consumer protection shopping rights',
+  'الشركات': 'Egyptian company law business corporate office',
+  'التنفيذ': 'Egyptian court enforcement bailiff legal seizure',
+  'القانون التجاري': 'Egyptian commercial law trade business contract',
+  'العقود': 'Egyptian contract law signing documents pen',
+  'القانون المدني': 'Egyptian civil law code scales justice',
+  'القانون الإداري': 'Egyptian administrative law government building justice',
+  'الملكية الفكرية': 'Egyptian intellectual property copyright creative',
+  'إجراءات قضائية': 'Egyptian court procedures gavel scales justice',
+  'قانون عقاري': 'Egyptian real estate law property keys documents',
+  'قانون ضريبي': 'Egyptian tax law finance calculator documents',
+  'القانون الجنائي': 'Egyptian criminal law justice gavel handcuffs',
+};
+
+async function downloadImage(url) {
+  const res = await fetch(url, { signal: AbortSignal.timeout(25000) });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  if (buf.length < 10000) throw new Error('صورة صغيرة/فارغة');
+  return buf;
+}
+
+async function fetchPollinations(topic) {
+  const prompt = `${COVER_EN[topic.category] || 'Egyptian law justice gavel scales'}, professional editorial photography, high quality, sharp, no text, no words, no letters`;
+  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1200&height=675&nologo=true&seed=${Date.now() % 100000}`;
+  return downloadImage(url);
+}
+
+async function fetchUnsplash(topic) {
+  return downloadImage(COVER_UNSPLASH[topic.category] || COVER_DEFAULT);
+}
+
+// يرجع Buffer (JPG 1200×675) أو null إذا فشلت كل المصادر البديلة.
+async function generateFallbackImage(topic) {
+  for (const [name, fn] of [['pollinations', fetchPollinations], ['unsplash', fetchUnsplash]]) {
+    try {
+      const buf = await fn(topic);
+      const sharp = require('sharp');
+      const out = await sharp(buf).resize(1200, 675, { fit: 'cover', position: 'centre' }).jpeg({ quality: 82, mozjpeg: true }).toBuffer();
+      console.log(`[publish] ✓ غلاف حقيقي عبر ${name} (${Math.round(out.length / 1024)} KB)`);
+      return out;
+    } catch (e) {
+      console.log(`[publish] ⚠️ ${name} غير متاح (${String((e && e.message) || e).slice(0, 70)}).`);
+    }
+  }
+  return null;
 }
 
 // ── توليد SVG احترافي محلياً (fallback بلا تكلفة) ──────────────────────────
@@ -880,21 +956,27 @@ async function main() {
         throw new Error('المقال المولّد غير مكتمل البنية');
       }
 
-      // 2. توليد الصورة: Nano Banana أولاً، ثم fallback إلى SVG محلي
+      // 2. توليد الصورة: Nano Banana → Pollinations → Unsplash → SVG محلي
       let heroImagePath = null;
       let imageSource = 'svg';
+      let imgBuf = null;
       try {
         console.log(`[publish] ${topic.slug}: محاولة توليد صورة عبر ${IMAGE_MODEL}...`);
-        const imgBuf = await generateImage(ai, topic, data);
-        if (imgBuf) {
-          heroImagePath = saveArticleImage(imgBuf, topic, topic.slug, 1);
-          imageSource = 'nano-banana';
-        } else {
-          throw new Error('استجابة الصورة فارغة');
-        }
+        imgBuf = await generateImage(ai, topic, data);
+        if (imgBuf) imageSource = 'nano-banana';
       } catch (imgErr) {
         const msg = (imgErr && (imgErr.message || String(imgErr))) || '';
-        console.log(`[publish] ${topic.slug}: توليد الصورة لم ينجح (${String(msg).slice(0, 90)}). استخدام SVG محلي.`);
+        console.log(`[publish] ${topic.slug}: ${IMAGE_MODEL} فشل (${String(msg).slice(0, 90)}).`);
+      }
+      if (!imgBuf) {
+        console.log(`[publish] ${topic.slug}: توليد صورة حقيقية بديلة (Pollinations/Unsplash)...`);
+        imgBuf = await generateFallbackImage(topic);
+        if (imgBuf) imageSource = 'pollinations';
+      }
+      if (imgBuf) {
+        heroImagePath = saveArticleImage(imgBuf, topic, topic.slug, 1);
+      } else {
+        console.log(`[publish] ${topic.slug}: تعذّرت كل مصادر الصور. استخدام SVG محلي.`);
         const svg = generateSvgImage(topic);
         heroImagePath = saveArticleImage(svg, topic, topic.slug, 1);
         imageSource = 'svg';

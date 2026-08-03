@@ -55,7 +55,7 @@ export function showPrintJob(title: string, htmlContent: string) {
   const iframeDoc = iframe.contentWindow?.document || iframe.contentDocument;
   if (!iframeDoc) {
     showAlert('تعذر فتح محرك الطباعة الفرعي!');
-    document.body.removeChild(iframe);
+    iframe.remove();
     return;
   }
 
@@ -74,7 +74,7 @@ export function showPrintJob(title: string, htmlContent: string) {
       // Remove iframe from DOM after a delay so printing modal finishes
       setTimeout(() => {
         if (iframe.parentNode) {
-          document.body.removeChild(iframe);
+          iframe.remove();
         }
       }, 3000);
     }

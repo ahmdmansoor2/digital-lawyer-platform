@@ -108,7 +108,7 @@ export async function downloadBackup(): Promise<void> {
   a.download = `lawfirm-backup-${today}.json`;
   document.body.appendChild(a);
   a.click();
-  document.body.removeChild(a);
+  a.remove();
   URL.revokeObjectURL(url);
 }
 

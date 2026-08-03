@@ -157,7 +157,7 @@ const BailiffPapersPanel = React.memo(function BailiffPapersPanel({
       setTimeout(() => {
         printIframe.contentWindow?.focus();
         printIframe.contentWindow?.print();
-        setTimeout(() => document.body.removeChild(printIframe), 100);
+        setTimeout(() => printIframe.remove(), 100);
       }, 500);
     }
   };
@@ -189,7 +189,7 @@ const BailiffPapersPanel = React.memo(function BailiffPapersPanel({
       setTimeout(() => {
         printIframe.contentWindow?.focus();
         printIframe.contentWindow?.print();
-        setTimeout(() => document.body.removeChild(printIframe), 100);
+        setTimeout(() => printIframe.remove(), 100);
       }, 500);
     }
   };
@@ -443,7 +443,7 @@ const BailiffFullscreenModal = React.memo(function BailiffFullscreenModal({
       setTimeout(() => {
         printIframe.contentWindow?.focus();
         printIframe.contentWindow?.print();
-        setTimeout(() => document.body.removeChild(printIframe), 100);
+        setTimeout(() => printIframe.remove(), 100);
       }, 500);
     }
   };
