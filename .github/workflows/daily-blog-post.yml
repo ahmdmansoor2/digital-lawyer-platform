@@ -45,3 +45,8 @@ jobs:
           git add scripts/published-log.json scripts/trending-topics.json scripts/blog-publisher/facebook-published-log.json public/blog/
           git diff --staged --quiet || git commit -m "🤖 Smart-publish: $(date +'%Y-%m-%d %H:%M') — مقالات قانونية + صور ذكاء اصطناعي"
           git push
+
+      - name: Build & Deploy to Firebase Hosting
+        run: |
+          npm run build
+          npx firebase deploy --only hosting --token "$FIREBASE_TOKEN" --non-interactive

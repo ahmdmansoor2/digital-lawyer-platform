@@ -41,3 +41,8 @@ jobs:
           git add public/blog scripts/blog-publisher/published-log.json scripts/blog-publisher/facebook-published-log.json scripts/published-log.json
           git diff --cached --quiet && echo "no changes to commit" || git commit -m "chore(blog): auto-publish daily article"
           git push
+
+      - name: Build & Deploy to Firebase Hosting
+        run: |
+          npm run build
+          npx firebase deploy --only hosting --token "$FIREBASE_TOKEN" --non-interactive
