@@ -727,6 +727,76 @@
       ],
       "words": 0,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "النفقة الزوجية والأبناء في مصر: دليل شامل للتقدير والإجراءات القانونية",
+      "date": "2026-08-04",
+      "slug": "alimony-calculation-egypt",
+      "url": "https://justice-91571.web.app/blog/alimony-calculation-egypt.html",
+      "tags": [
+        "النفقة",
+        "نفقة الزوجة",
+        "نفقة الأبناء"
+      ],
+      "words": 3780,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "الفصل التعسفي في قانون العمل المصري: دليل شامل لحساب التعويض والأجور ومستحقات نهاية الخدمة بالتفصيل",
+      "date": "2026-08-04",
+      "slug": "labor-dismissal-compensation",
+      "url": "https://justice-91571.web.app/blog/labor-dismissal-compensation.html",
+      "tags": [
+        "الفصل التعسفي",
+        "تعويض الفصل",
+        "قانون العمل"
+      ],
+      "words": 3539,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "نقل الملكية العقارية في مصر: دليل شامل للشهر العقاري والرسوم والمستندات القانونية",
+      "date": "2026-08-04",
+      "slug": "real-estate-ownership-transfer",
+      "url": "https://justice-91571.web.app/blog/real-estate-ownership-transfer.html",
+      "tags": [
+        "نقل الملكية",
+        "الشهر العقاري",
+        "رسوم التوثيق"
+      ],
+      "words": 3391,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "حوادث السيارات والتعويضات: دليل شامل حول الإجراءات وحقوق الضحايا في القانون المصري",
+      "date": "2026-08-04",
+      "slug": "traffic-accident-claims",
+      "url": "https://justice-91571.web.app/blog/traffic-accident-claims.html",
+      "tags": [
+        "حوادث السيارات",
+        "التعويض",
+        "مكتب التعويضات"
+      ],
+      "words": 3084,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "التأمينات الاجتماعية للعامل في مصر: دليل شامل للحقوق والاشتراكات وحساب المعاشات",
+      "date": "2026-08-04",
+      "slug": "labor-insurance-egypt",
+      "url": "https://justice-91571.web.app/blog/labor-insurance-egypt.html",
+      "tags": [
+        "التأمينات الاجتماعية",
+        "المعاش",
+        "اشتراكات العامل"
+      ],
+      "words": 3432,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
     }
   ]
 }
