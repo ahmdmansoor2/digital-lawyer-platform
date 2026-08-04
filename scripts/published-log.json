@@ -679,6 +679,54 @@
       "words": 2492,
       "image": "pollinations",
       "model": "gemini-flash-lite-latest"
+    },
+    {
+      "title": "عقوبة تداول البتكوين والعملات المشفرة في مصر وفقاً لقانون البنك المركزي",
+      "date": "2026-08-04",
+      "slug": "bitcoin-crypto-law-egypt",
+      "url": "https://justice-91571.web.app/blog/bitcoin-crypto-law-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/bitcoin-crypto-law-egypt.jpg",
+      "tags": [
+        "القانون المصرفي"
+      ],
+      "words": 2267,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "إجراءات قضايا الشيك بدون رصيد وعقوبتها في القانون المصري 2024",
+      "date": "2026-08-04",
+      "slug": "bounced-cheque-laws-egypt",
+      "url": "https://justice-91571.web.app/blog/bounced-cheque-laws-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/bounced-cheque-laws-egypt.jpg",
+      "tags": [
+        "القانون الجنائي"
+      ],
+      "words": 1901,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "ضوابط ومُدد الحبس الاحتياطي وحقوق المتهم في قانون الإجراءات الجنائية",
+      "date": "2026-08-04",
+      "slug": "pretrial-detention-law-egypt",
+      "url": "https://justice-91571.web.app/blog/pretrial-detention-law-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/pretrial-detention-law-egypt.jpg",
+      "tags": [
+        "الإجراءات الجنائية"
+      ],
+      "words": 2350,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "العطلة القضائية في مصر: كيف تؤثر على المواعيد ومباشرة الدعاوى؟",
+      "date": "2026-08-04",
+      "slug": "judicial-recess-deadlines-egypt",
+      "url": "https://justice-91571.web.app/blog/judicial-recess-deadlines-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/judicial-recess-deadlines-egypt.jpg",
+      "tags": [
+        "المرافعة والتقاضي"
+      ],
+      "words": 0,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
