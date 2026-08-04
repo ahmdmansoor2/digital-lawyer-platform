@@ -6,18 +6,20 @@
  * (رفع Resumable — يعمل مع OAuth2 refresh token فقط، لا يكفي API key).
  *
  * وضعا التشغيل:
- *   --from-tiktok-log   يرفع آخر فيديو سجّله tiktok-publish.cjs (نفس الـ workflow — الموصى به)
- *   (بدون فلاج)          يولّد فيديو جديد بنفس خط إنتاج TikTok ثم يرفعه على YouTube
+ *   --from-fb-log        يرفع آخر فيديو ريلز سجّله reel-publisher (نفس الـ workflow — الموصى به)
+ *   --from-tiktok-log    يرفع آخر فيديو سجّله tiktok-publish.cjs
+ *   (بدون فلاج)          يولّد فيديو جديد بنفس خط إنتاج TikTok ثم يرفعه
  *
  * الاستخدام:
- *   node youtube-publish.cjs --from-tiktok-log        # رفع آخر فيديو TikTok (CI)
- *   node youtube-publish.cjs                          # توليد فيديو جديد + رفع
- *   node youtube-publish.cjs --topic demo-001         # موضوع محدد
- *   node youtube-publish.cjs --count 2                # عدد المواضيع
- *   node youtube-publish.cjs --latest-article         # من آخر مقال مدونة
- *   node youtube-publish.cjs --privacy unlisted       # عدم إدراج عام
- *   node youtube-publish.cjs --dry-run                # بدون رفع حقيقي
- *   node youtube-publish.cjs --from-tiktok-log --dry-run
+ *   node youtube-publish.cjs --from-fb-log             # رفع آخر فيديو فيسبوك (ريلز)
+ *   node youtube-publish.cjs --from-tiktok-log         # رفع آخر فيديو TikTok
+ *   node youtube-publish.cjs                           # توليد فيديو جديد + رفع
+ *   node youtube-publish.cjs --topic demo-001          # موضوع محدد
+ *   node youtube-publish.cjs --count 2                 # عدد المواضيع
+ *   node youtube-publish.cjs --latest-article          # من آخر مقال مدونة
+ *   node youtube-publish.cjs --privacy unlisted        # عدم إدراج عام
+ *   node youtube-publish.cjs --dry-run                 # بدون رفع حقيقي
+ *   node youtube-publish.cjs --from-fb-log --dry-run
  */
 
 const fs = require('fs');
@@ -40,6 +42,8 @@ const {
 const OUTPUT_DIR = path.join(__dirname, 'output');
 const LOG_FILE = path.join(__dirname, 'youtube-published-log.json');
 const TIKTOK_LOG = path.join(ROOT, 'scripts', 'tiktok-publisher', 'tiktok-published-log.json');
+const FB_LOG = path.join(ROOT, 'scripts', 'facebook-publisher', 'facebook-published-log.json');
+const FB_OUTPUT_DIR = path.join(ROOT, 'scripts', 'facebook-publisher', 'output');
 const CHANNEL_URL = process.env.YT_CHANNEL_URL || 'https://www.youtube.com/channel/UClYcsQJiwn0TkpmeVCQy-VA';
 const CATEGORY_EDUCATION = '27'; // Education
 
@@ -55,12 +59,13 @@ function writeJson(file, data) {
 // ─── CLI args ────────────────────────────────────────────────────────────────
 function parseArgs() {
   const args = {
-    fromTiktokLog: false, count: 1, topic: null, article: null, latestArticle: false,
+    fromTiktokLog: false, fromFbLog: false, count: 1, topic: null, article: null, latestArticle: false,
     privacy: 'public', tags: [], dryRun: false, skipVideo: false, categoryId: CATEGORY_EDUCATION,
   };
   for (let i = 2; i < process.argv.length; i++) {
     const a = process.argv[i];
     if (a === '--from-tiktok-log') args.fromTiktokLog = true;
+    else if (a === '--from-fb-log') args.fromFbLog = true;
     else if (a === '--count') args.count = parseInt(process.argv[++i], 10);
     else if (a === '--topic') args.topic = process.argv[++i];
     else if (a === '--article') args.article = process.argv[++i];
@@ -212,6 +217,53 @@ async function publishLatestTiktokVideo(opts) {
   return 1;
 }
 
+// ─── رفع آخر فيديو ريلز سجّله Facebook (نفس الـ run) ────────────────────────
+async function publishLatestFbVideo(opts) {
+  const log = readJson(FB_LOG, { entries: [] });
+  const candidates = [...(log.entries || [])].reverse().filter(e => {
+    if (!e.topicId) return false;
+    const local = e.videoPath && fs.existsSync(e.videoPath) ? e.videoPath : null;
+    const ci = path.join(FB_OUTPUT_DIR, `fb-${e.topicId}.mp4`);
+    return local ? true : fs.existsSync(ci);
+  });
+  if (!candidates.length) {
+    console.log('[youtube] ⚠️ لا يوجد فيديو ريلز مسجل في facebook-published-log.json مع ملف موجود.');
+    return 0;
+  }
+  const entry = candidates[0];
+  const videoPath = (entry.videoPath && fs.existsSync(entry.videoPath))
+    ? entry.videoPath
+    : path.join(FB_OUTPUT_DIR, `fb-${entry.topicId}.mp4`);
+
+  if (alreadyPublished(entry.topicId)) {
+    console.log(`[youtube] ⏭️  ${entry.topicId} منشور مسبقاً على YouTube — تخطي.`);
+    return 0;
+  }
+
+  console.log(`\n[youtube] ═══ رفع آخر فيديو ريلز: ${entry.title} ═══`);
+  const yt = await uploadToYouTube({
+    videoPath,
+    title: entry.title,
+    description: buildDescription(entry.title, entry.hashtags),
+    tags: entry.hashtags || [],
+    privacyStatus: opts.privacy,
+    categoryId: opts.categoryId,
+    dryRun: opts.dryRun,
+  });
+  if (!opts.dryRun) {
+    logPublished({
+      topicId: entry.topicId,
+      title: entry.title,
+      videoPath,
+      source: entry.source || 'fb-log',
+      videoId: yt.videoId,
+      url: yt.url,
+      fbPermalink: entry.permalink,
+    });
+  }
+  return 1;
+}
+
 // ─── توليد فيديو جديد + رفعه (نفس خط إنتاج TikTok) ─────────────────────────
 async function processTopic(topic, opts) {
   const tag = `[${topic.id}]`;
@@ -266,7 +318,11 @@ async function main() {
   const args = parseArgs();
   if (args.dryRun) console.log('🧪 DRY-RUN MODE — لن يُرفع أي شيء حقيقي\n');
 
-  // وضع CI الموصى به: رفع الفيديو الذي أنتجه TikTok في نفس الـ workflow
+  // وضع CI الموصى به: رفع الفيديو الذي أنتجه الريلز في نفس الـ workflow
+  if (args.fromFbLog) {
+    await publishLatestFbVideo(args);
+    return;
+  }
   if (args.fromTiktokLog) {
     await publishLatestTiktokVideo(args);
     return;

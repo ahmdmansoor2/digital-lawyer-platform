@@ -191,25 +191,27 @@ src/
 
 ---
 
-## حالة الجلسة الحالية: Session 5 — النشر التلقائي على قناة YouTube (كود مكتمل — ينتظر إعداد جوجل)
+## حالة الجلسة الحالية: Session 5 — النشر التلقائي على قناة YouTube (مكتمل)
 
-### ما أُنجز (كود جاهز)
+### ما أُنجز
 1. **`scripts/youtube-publisher/`** جديد:
    - `youtube-oauth.cjs` — OAuth2 لجوجل (local server على `http://localhost:8788/oauth/callback`، أوامر `login/status/refresh/import/clear`) + `getValidAccessToken()`.
-   - `youtube-publish.cjs` — رفع **Resumable** على YouTube Data API v3 مع العنوان/الوصف/الهاشتاجات، فئة Education (27)، `--privacy`، `--dry-run`، `--from-tiktok-log` (يرفع آخر فيديو TikTok في نفس الـ run — الموصى به) أو توليد فيديو مستقل.
-   - `youtube-published-log.json` (سجل منع الازدواج) + `package.json` + `README.md` (دليل إعداد جوجل خطوة بخطوة).
-2. **`.github/workflows/daily-tiktok.yml`** — بعد خطوة TikTok: Bootstrap YouTube tokens + `youtube-publish.cjs --from-tiktok-log`. خطوة الـ commit أصبحت `if: ${{ !cancelled() }}` وتلتزم ملفات يوتيوب أيضاً (حتى لو فشل رفع يوتيوب، تتأمن التوكنز المدرسة).
-3. **CHANGELOG.md** → v2.10.0.
-4. **لماذا نفس الـ workflow:** الفيديو المولّد في `scripts/tiktok-publisher/output/` مُتجاهل في `.gitignore` — فلو كان workflow مستقلاً ما كان سيجد ملف الفيديو. الرفع يتم في نفس الـ runner مباشرة بعد التوليد.
+   - `youtube-publish.cjs` — رفع **Resumable** على YouTube Data API v3 مع العنوان/الوصف/الهاشتاجات، فئة Education (27)، `--privacy`، `--dry-run`، **`--from-fb-log`** (يرفع آخر فيديو ريلز فيسبوك في نفس الـ run — المعتمد في CI)، أو `--from-tiktok-log`، أو توليد فيديو مستقل.
+   - `youtube-published-log.json` (سجل منع الازدواج) + `package.json` + `README.md` + `print-secrets.cjs`.
+2. **قرار المستخدم:** يوتيوب ينشر **فيديوهات فيسبوك (ريلز)** بدل فيديوهات التيك توك → `.github/workflows/daily-reels.yml` يرفع كل ريلز على قناة فيروز عبر `youtube-publish.cjs --from-fb-log` (حتى 5 فيديوهات يومياً). خط يوتيوب أُزيل من `daily-tiktok.yml`.
+3. **إصلاح سباق الدفع:** خطوات `git push` في كل الـ workflows تسبقها `git pull --rebase origin main` (كانت تفشل بـ 128 عند الدفع المتزامن).
+4. **لماذا نفس الـ workflow:** الفيديو المولّد في `scripts/facebook-publisher/output/` مُتجاهل في `.gitignore` — فلو كان workflow مستقلاً ما كان سيجد ملف الفيديو. الرفع يتم في نفس الـ runner مباشرة بعد التوليد.
+5. **CHANGELOG.md** → v2.10.0.
 
 ### ✅ الإعداد اليدوي اكتمل (2026-08-04)
 1. مشروع Google Cloud + **YouTube Data API v3** مفعّل ✓
 2. OAuth consent screen (scope `youtube.upload` + Test user) ✓
 3. **OAuth Client ID (Web application)** — redirect `http://localhost:8788/oauth/callback` ✓
 4. محلياً: `node scripts/youtube-publisher/youtube-oauth.cjs login` → `youtube-tokens.json` ✓
-5. GitHub Secrets (5) أُضيفت عبر `gh secret set`: `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_ACCESS_TOKEN`, `YT_REFRESH_TOKEN`, `YT_EXPIRES_IN` ✓ (تحققت بالـ `gh secret list`)
-6. اختبار محلي: `refresh` نجح — التوكنز صالحة ✓
-7. تم الالتزام والدفع — `git push` → main متزامن.
+5. GitHub Secrets (5) أُضيفت عبر `gh secret set`: `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_ACCESS_TOKEN`, `YT_REFRESH_TOKEN`, `YT_EXPIRES_IN` ✓
+6. **إعادة الربط على قناة فيروز** بعدما اتوصل الفيديو الأول على قناة ahmed Mansour بالغلط — التوكنز وsecrets اتحدثت، والفيديو الصحيح على فيروز: https://www.youtube.com/watch?v=_Ru035_zlZQ ✓
+7. اختبار محلي: `refresh` نجح — التوكنز صالحة ✓
+8. تم الالتزام والدفع — `git push` → main متزامن.
 
 ### تنبيهات
 - لا حاجة لـ API key — الرفع يتطلب OAuth2 حصراً.
@@ -218,5 +220,5 @@ src/
 - القناة: `https://www.youtube.com/channel/UClYcsQJiwn0TkpmeVCQy-VA` (في `YT_CHANNEL_URL`).
 - أداة الطباعة: `node scripts/youtube-publisher/print-secrets.cjs` (لعرض القيم مجدداً لو رُفعت).
 - gh CLI مؤقت: `C:\Users\EDA2~1\AppData\Local\Temp\opencode\gh\bin\gh.exe` (متصل بالتوكن من Credential Manager — scopes: gist/read:org/repo).
-- `git.exe` متاحة في `C:\MinGit\cmd\git.exe`. الـ repo متزامن عند `3b1990f`.
-- **تجربة أولى:** شغّل الـ workflow يدوياً (Actions → 🎬 الناشر اليومي — TikTok → Run workflow) للتحقق من الرفع على YouTube.
+- `git.exe` متاحة في `C:\MinGit\cmd\git.exe`. الـ repo متزامن عند `37c5901`.
+- **تجربة أولى:** شغّل الـ workflow يدوياً (Actions → 🎬 الناشر اليومي — ريلز فيسبوك → Run workflow) للتحقق من رفع الريلز على فيروز.

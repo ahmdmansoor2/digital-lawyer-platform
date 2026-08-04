@@ -47,11 +47,36 @@ jobs:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           CI: true
 
+      - name: Bootstrap YouTube tokens (only if youtube-tokens.json missing)
+        run: |
+          if [ ! -f scripts/youtube-publisher/youtube-tokens.json ]; then
+            node scripts/youtube-publisher/youtube-oauth.cjs import
+          else
+            echo "✅ youtube-tokens.json موجود"
+          fi
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_ACCESS_TOKEN: ${{ secrets.YT_ACCESS_TOKEN }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_EXPIRES_IN: ${{ secrets.YT_EXPIRES_IN }}
+          CI: true
+
+      - name: Publish reel to YouTube (channel فيروز)
+        run: node scripts/youtube-publisher/youtube-publish.cjs --from-fb-log
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_ACCESS_TOKEN: ${{ secrets.YT_ACCESS_TOKEN }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_EXPIRES_IN: ${{ secrets.YT_EXPIRES_IN }}
+          CI: true
+
       - name: Commit published log back
         run: |
           git config user.name  "Smart Reels Bot 🤖"
           git config user.email "bot@justice-91571.web.app"
-          git add scripts/facebook-publisher/facebook-published-log.json
+          git add scripts/facebook-publisher/facebook-published-log.json scripts/youtube-publisher/youtube-tokens.json scripts/youtube-publisher/youtube-published-log.json
           if ! git diff --cached --quiet; then
             git commit -m "🎬 Reel-publish: $(date +'%Y-%m-%d %H:%M') — ريلز من ترندات جوجل"
             git pull --rebase origin main 2>/dev/null || true

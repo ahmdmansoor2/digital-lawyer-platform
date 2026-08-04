@@ -60,37 +60,12 @@ jobs:
           EDGE_TTS_VOICE: ar-EG-ShakirNeural
           CI: true
 
-      - name: Bootstrap YouTube tokens (only if youtube-tokens.json missing)
-        run: |
-          if [ ! -f scripts/youtube-publisher/youtube-tokens.json ]; then
-            node scripts/youtube-publisher/youtube-oauth.cjs import
-          else
-            echo "✅ youtube-tokens.json موجود"
-          fi
-        env:
-          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
-          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
-          YT_ACCESS_TOKEN: ${{ secrets.YT_ACCESS_TOKEN }}
-          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-          YT_EXPIRES_IN: ${{ secrets.YT_EXPIRES_IN }}
-          CI: true
-
-      - name: Publish same video to YouTube
-        run: node scripts/youtube-publisher/youtube-publish.cjs --from-tiktok-log
-        env:
-          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
-          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
-          YT_ACCESS_TOKEN: ${{ secrets.YT_ACCESS_TOKEN }}
-          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
-          YT_EXPIRES_IN: ${{ secrets.YT_EXPIRES_IN }}
-          CI: true
-
-      - name: Commit & Push changes (persist rotated tokens + publish logs)
+      - name: Commit & Push changes (persist rotated tokens + publish log)
         if: ${{ !cancelled() }}
         run: |
           git config user.name  "Smart Legal TikTok 🤖"
           git config user.email "bot@justice-91571.web.app"
-          git add scripts/tiktok-publisher/tiktok-tokens.json scripts/tiktok-publisher/tiktok-published-log.json scripts/youtube-publisher/youtube-tokens.json scripts/youtube-publisher/youtube-published-log.json
-          git diff --staged --quiet || git commit -m "🎬 TikTok+YouTube-publish: $(date +'%Y-%m-%d %H:%M') — فيديو قانوني من الترندات"
+          git add scripts/tiktok-publisher/tiktok-tokens.json scripts/tiktok-publisher/tiktok-published-log.json
+          git diff --staged --quiet || git commit -m "🎬 TikTok-publish: $(date +'%Y-%m-%d %H:%M') — فيديو قانوني من الترندات"
           git pull --rebase origin main 2>/dev/null || true
           git push

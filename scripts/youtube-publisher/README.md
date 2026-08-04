@@ -5,10 +5,10 @@
 
 ## الفكرة
 
-- `tiktok-publish.cjs` يولّد فيديو عمودي 9:16 (مثالي لـ YouTube Shorts) يومياً.
-- في نفس الـ workflow، `youtube-publish.cjs --from-tiktok-log` يقرأ آخر سجل في
-  `tiktok-published-log.json` ويرفع نفس الملف على YouTube — من غير توليد مزدوج.
-- أو يولّد فيديو مستقل خاص باليوتيوب (بدون `--from-tiktok-log`).
+- `reel-publisher.cjs` يولّد فيديو عمودي 9:16 وينشره **ريلز على فيسبوك** (5 مرات يومياً).
+- في نفس الـ workflow، `youtube-publish.cjs --from-fb-log` يقرأ آخر سجل في
+  `facebook-published-log.json` ويرفع نفس الفيديو على **قناة فيروز** — من غير توليد مزدوج.
+- أو يولّد فيديو مستقل (بدون `--from-fb-log`)، أو يرفع فيديو TikTok عبر `--from-tiktok-log`.
 
 ## الإعداد (مرة واحدة)
 
@@ -71,19 +71,20 @@ node youtube-oauth.cjs login
 ## الاستخدام
 
 ```powershell
-node youtube-publish.cjs --dry-run --from-tiktok-log   # معاينة بدون رفع
-node youtube-publish.cjs --from-tiktok-log              # رفع آخر فيديو TikTok
-node youtube-publish.cjs --from-tiktok-log --privacy unlisted
-node youtube-publish.cjs --topic demo-001               # توليد + رفع موضوع محدد
-node youtube-publish.cjs                                # توليد + رفع (ترندات + مدونة)
+node youtube-publish.cjs --dry-run --from-fb-log        # معاينة بدون رفع
+node youtube-publish.cjs --from-fb-log                   # رفع آخر فيديو ريلز فيسبوك (الوضع المستخدم في CI)
+node youtube-publish.cjs --from-tiktok-log               # رفع آخر فيديو TikTok
+node youtube-publish.cjs --from-fb-log --privacy unlisted
+node youtube-publish.cjs --topic demo-001                # توليد + رفع موضوع محدد
+node youtube-publish.cjs                                 # توليد + رفع (ترندات + مدونة)
 ```
 
 المخرجات المولّدة في `output/` (مستقلة عن مجلد TikTok).
 
 ## الجدولة
 
-مدمجة في `.github/workflows/daily-tiktok.yml` — بعد كل فيديو TikTok يُرفع نفس الفيديو
-على YouTube تلقائياً (فيديو يومي واحد على المنصتين).
+مدمجة في `.github/workflows/daily-reels.yml` — بعد كل ريلز فيسبوك يُرفع نفس الفيديو
+على قناة فيروز تلقائياً (حتى 5 فيديوهات يومياً).
 
 ## ملاحظات
 
