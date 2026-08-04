@@ -333,22 +333,22 @@ async function checkFacebook(todayArticles) {
 
 // ══ 6) GitHub: نتائج تشغيل الـ workflows ═══════════════════════════════════
 async function checkGithubRuns() {
-  const c = addCheck('github_runs', 'GitHub: نتائج تشغيل الـ workflows اليومية');
-  const today = cairoDate();
+  const c = addCheck('github_runs', 'GitHub: نتائج تشغيل الـ workflows (آخر 24 ساعة)');
+  const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
   try {
     const headers = GH_TOKEN ? { Authorization: `Bearer ${GH_TOKEN}` } : {};
-    const url = `https://api.github.com/repos/${GH_REPO}/actions/runs?per_page=25`;
+    const url = `https://api.github.com/repos/${GH_REPO}/actions/runs?per_page=30`;
     const { status, data } = await getJson(url, headers);
     if (status !== 200) {
       find(c, 'warn', `لا يمكن الوصول لسجل GitHub Actions (${status}) — يلزم GITHUB_TOKEN`);
       return;
     }
     const runs = (data.workflow_runs || [])
-      .filter(r => (r.created_at || '').slice(0, 10) === today)
+      .filter(r => r.created_at && r.created_at >= since)
       .sort((a, b) => b.created_at.localeCompare(a.created_at));
     if (runs.length === 0) {
-      find(c, 'warn', `لا تشغيلات workflows اليوم (${today})`);
-      c.summary = '0 تشغيلات اليوم';
+      find(c, 'warn', `لا تشغيلات workflows في آخر 24 ساعة`);
+      c.summary = '0 تشغيلات في آخر 24 ساعة';
       return;
     }
     const byWorkflow = new Map();
@@ -362,9 +362,9 @@ async function checkGithubRuns() {
       const bad = rs.filter(r => r.conclusion === 'failure' || r.conclusion === 'cancelled' || r.conclusion === 'timed_out');
       if (bad.length) failed.push(`${name} (${bad.length} فشل من ${rs.length})`);
     }
-    if (failed.length) find(c, 'error', `Workflows فاشلة اليوم: ${failed.join('، ')}`);
+    if (failed.length) find(c, 'error', `Workflows فاشلة (آخر 24 ساعة): ${failed.join('، ')}`);
     c.runs = Object.fromEntries([...byWorkflow].map(([k, v]) => [k, v.length]));
-    c.summary = `${runs.length} تشغيلاً اليوم${failed.length ? ` — ${failed.length} فشل` : ''}`;
+    c.summary = `${runs.length} تشغيلاً (آخر 24 ساعة)${failed.length ? ` — ${failed.length} فشل` : ''}`;
   } catch (e) {
     find(c, 'warn', `تعذّر فحص GitHub: ${e.message}`);
   }

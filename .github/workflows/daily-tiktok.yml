@@ -1,9 +1,11 @@
 name: 🎬 الناشر اليومي — TikTok (فيديو قانوني يومياً)
 
 on:
-  schedule:
-    # 9:00 م بتوقيت القاهرة (UTC+3) — نفس قاعدة توقيت الناشر الذكي
-    - cron: '0 18 * * *'
+  # ⏸️ الجدولة اليومية موقوفة مؤقتاً — لا توجد توكنز TikTok في GitHub secrets
+  # (TIKTOK_ACCESS_TOKEN / REFRESH_TOKEN / OPEN_ID / EXPIRES_IN). إعادة التفعيل:
+  # بعد إضافة الـ secrets، أزل التعليق عن السطر التالي وأدفع.
+  # schedule:
+  #   - cron: '0 18 * * *'
   workflow_dispatch:
 
 jobs:
@@ -65,7 +67,11 @@ jobs:
         run: |
           git config user.name  "Smart Legal TikTok 🤖"
           git config user.email "bot@justice-91571.web.app"
-          git add scripts/tiktok-publisher/tiktok-tokens.json scripts/tiktok-publisher/tiktok-published-log.json
-          git diff --staged --quiet || git commit -m "🎬 TikTok-publish: $(date +'%Y-%m-%d %H:%M') — فيديو قانوني من الترندات"
-          git pull --rebase origin main 2>/dev/null || true
-          git push
+          git add -A scripts/tiktok-publisher 2>/dev/null || git add scripts/tiktok-publisher
+          if git diff --cached --quiet; then
+            echo "✅ لا تغييرات — لا توكنز ولا سجلات جديدة"
+          else
+            git commit -m "🎬 TikTok-publish: $(date +'%Y-%m-%d %H:%M') — فيديو قانوني من الترندات"
+            git pull --rebase origin main 2>/dev/null || true
+            git push
+          fi

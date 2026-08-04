@@ -222,3 +222,21 @@ src/
 - gh CLI مؤقت: `C:\Users\EDA2~1\AppData\Local\Temp\opencode\gh\bin\gh.exe` (متصل بالتوكن من Credential Manager — scopes: gist/read:org/repo).
 - `git.exe` متاحة في `C:\MinGit\cmd\git.exe`. الـ repo متزامن عند `37c5901`.
 - **تجربة أولى:** شغّل الـ workflow يدوياً (Actions → 🎬 الناشر اليومي — ريلز فيسبوك → Run workflow) للتحقق من رفع الريلز على فيروز.
+
+---
+
+## حالة الجلسة الحالية: Session 6 — ترقية نظام المراقبة اليومي (مكتمل)
+
+### المشكلة
+- فحص GitHub كان ينظر لـ "اليوم" فقط بينما يعمل الساعة 9ص — أي فشل مسائي (مثل TikTok 19:44) لا يلتقطه تقرير الصباح، وتقرير الغد يفحص يوماً جديداً → الفشل يتسرّب نهائياً.
+- TikTok يفشل يومياً لأن توكنز TikTok غير موجودة في GitHub secrets أصلاً + خطوة commit تنهي بـ exit 128 لغياب `tiktok-tokens.json`.
+
+### ما تم
+1. **`health-check.cjs`** — فحص `github_runs` ينظر الآن إلى **آخر 24 ساعة** (نافذة زمنية لا "تاريخ اليوم").
+2. **`daily-health-monitor.yml`** — تشغيلان يومياً: `0 6 * * *` (9ص) + `0 18 * * *` (9م القاهرة).
+3. **`daily-tiktok.yml`** — ⏸️ جدولة يومية موقوفة مؤقتاً (لا توكنز TikTok) + إصلاح خطوة commit (`git add -A` + commit مشروط). التفعيل لاحقاً: أضف الـ secrets وأزل تعليق الـ cron.
+4. **CHANGELOG.md** → v2.10.2.
+
+### ملاحظات
+- تقرير المراقبة 08-04 كان 🟡 تحذيرات شرعية: 22 غلاف SVG، sitemap 59≠55، فيسبوك 0 منشورات عند 9ص (قبل تشغيلات اليوم — متوقع).
+- `reports/health/latest.json` ترميزه سليم UTF-8 (أي عرض mojibake كان مجرد طرفية).
