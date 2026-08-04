@@ -154,6 +154,27 @@
       "duration": "1د 21ث",
       "size": 19149226,
       "publishedAt": "2026-08-04T11:35:09.042Z"
+    },
+    {
+      "topicId": "trend-bounced-cheque-laws-egypt",
+      "title": "إجراءات قضايا الشيك بدون رصيد وعقوبتها في القانون المصري 2024",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون الجنائي",
+        "#شيك بدون رصيد",
+        "#البنك الأهلي المصري"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-bounced-cheque-laws-egypt.mp4",
+      "videoId": "37371111895867861",
+      "permalink": "https://www.facebook.com/reel/37371111895867861",
+      "source": "trending-topics.json",
+      "duration": "1د 30ث",
+      "size": 30965908,
+      "publishedAt": "2026-08-04T14:40:07.237Z"
     }
   ]
 }
