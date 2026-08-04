@@ -196,6 +196,27 @@
       "duration": "1د 30ث",
       "size": 36322013,
       "publishedAt": "2026-08-04T17:05:41.398Z"
+    },
+    {
+      "topicId": "trend-pretrial-detention-law-egypt",
+      "title": "ضوابط ومُدد الحبس الاحتياطي وحقوق المتهم في قانون الإجراءات الجنائية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الإجراءات الجنائية",
+        "#الحبس الاحتياطي",
+        "#قانون الإجراءات الجنائية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-pretrial-detention-law-egypt.mp4",
+      "videoId": "29077603098494817",
+      "permalink": "https://www.facebook.com/reel/29077603098494817",
+      "source": "trending-topics.json",
+      "duration": "1د 19ث",
+      "size": 28382921,
+      "publishedAt": "2026-08-04T19:53:46.921Z"
     }
   ]
 }
