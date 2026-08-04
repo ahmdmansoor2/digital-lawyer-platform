@@ -202,16 +202,21 @@ src/
 3. **CHANGELOG.md** → v2.10.0.
 4. **لماذا نفس الـ workflow:** الفيديو المولّد في `scripts/tiktok-publisher/output/` مُتجاهل في `.gitignore` — فلو كان workflow مستقلاً ما كان سيجد ملف الفيديو. الرفع يتم في نفس الـ runner مباشرة بعد التوليد.
 
-### ⏳ ينتظر المستخدم (إعداد يدوي مرة واحدة — ~10 دقائق)
-1. مشروع Google Cloud → تفعيل **YouTube Data API v3** → OAuth consent screen (scope `youtube.upload` + Test user) → Credentials → **OAuth Client ID (Web application)** مع redirect URI: `http://localhost:8788/oauth/callback`.
-2. محلياً: `node scripts/youtube-publisher/youtube-oauth.cjs login` (بالمتصفح) → يخزّن `youtube-tokens.json`.
-3. GitHub Secrets (5): `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_ACCESS_TOKEN`, `YT_REFRESH_TOKEN`, `YT_EXPIRES_IN`.
-   - التفاصيل: `scripts/youtube-publisher/README.md`.
-4. بعدها أول تشغيل workflow يجدد الـ access token أوتوماتيك (`obtained_at=0`) ويرفع الفيديو.
+### ✅ الإعداد اليدوي اكتمل (2026-08-04)
+1. مشروع Google Cloud + **YouTube Data API v3** مفعّل ✓
+2. OAuth consent screen (scope `youtube.upload` + Test user) ✓
+3. **OAuth Client ID (Web application)** — redirect `http://localhost:8788/oauth/callback` ✓
+4. محلياً: `node scripts/youtube-publisher/youtube-oauth.cjs login` → `youtube-tokens.json` ✓
+5. GitHub Secrets (5) أُضيفت عبر `gh secret set`: `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_ACCESS_TOKEN`, `YT_REFRESH_TOKEN`, `YT_EXPIRES_IN` ✓ (تحققت بالـ `gh secret list`)
+6. اختبار محلي: `refresh` نجح — التوكنز صالحة ✓
+7. تم الالتزام والدفع — `git push` → main متزامن.
 
 ### تنبيهات
 - لا حاجة لـ API key — الرفع يتطلب OAuth2 حصراً.
 - الفيديو عمودي 9:16 <3 دقائق → YouTube Shorts تلقائياً.
 - يوتيوب لا يحتاج مراجعة App (خلافاً لـ TikTok) — تطبيق اختباري يعمل بحساب المستخدم.
-- `git.exe` متاحة في `C:\MinGit\cmd\git.exe`. الـ repo متزامن عند `3fc15b1`.
-- إضافة جديدة في Session 5 لم تُلتزم بعد — تُدفع بعد الإعداد (أو تُلتزم الآن والرفع ينتظر الـ secrets).
+- القناة: `https://www.youtube.com/channel/UClYcsQJiwn0TkpmeVCQy-VA` (في `YT_CHANNEL_URL`).
+- أداة الطباعة: `node scripts/youtube-publisher/print-secrets.cjs` (لعرض القيم مجدداً لو رُفعت).
+- gh CLI مؤقت: `C:\Users\EDA2~1\AppData\Local\Temp\opencode\gh\bin\gh.exe` (متصل بالتوكن من Credential Manager — scopes: gist/read:org/repo).
+- `git.exe` متاحة في `C:\MinGit\cmd\git.exe`. الـ repo متزامن عند `3b1990f`.
+- **تجربة أولى:** شغّل الـ workflow يدوياً (Actions → 🎬 الناشر اليومي — TikTok → Run workflow) للتحقق من الرفع على YouTube.
