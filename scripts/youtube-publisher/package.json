@@ -1,0 +1,7 @@
+{
+  "name": "youtube-publisher",
+  "private": true,
+  "version": "1.0.0",
+  "description": "ناشر الفيديوهات المولّدة على قناة YouTube (YouTube Data API v3)",
+  "dependencies": {}
+}

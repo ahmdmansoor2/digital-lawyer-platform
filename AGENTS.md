@@ -188,3 +188,30 @@ src/
 - **الموعد 9ص ثابت على 06:00 UTC** — في الشتاء (UTC+2) سيصبح 8ص. إن أُريد 9ص ثابتاً طول العام، يُضبط في أكتوبر.
 - ملفات غير ملتزمة متروكة: `scripts/seo/`, `scripts/facebook-reels/`, صور `test_*.jpg`, `public/googlec03a96f2162c19b9.html` (تحقق GSC).
 - الـ repo متزامن عند `52cc3a2`. التوكن يُستخرج من Windows Credential Manager عند الحاجة.
+
+---
+
+## حالة الجلسة الحالية: Session 5 — النشر التلقائي على قناة YouTube (كود مكتمل — ينتظر إعداد جوجل)
+
+### ما أُنجز (كود جاهز)
+1. **`scripts/youtube-publisher/`** جديد:
+   - `youtube-oauth.cjs` — OAuth2 لجوجل (local server على `http://localhost:8788/oauth/callback`، أوامر `login/status/refresh/import/clear`) + `getValidAccessToken()`.
+   - `youtube-publish.cjs` — رفع **Resumable** على YouTube Data API v3 مع العنوان/الوصف/الهاشتاجات، فئة Education (27)، `--privacy`، `--dry-run`، `--from-tiktok-log` (يرفع آخر فيديو TikTok في نفس الـ run — الموصى به) أو توليد فيديو مستقل.
+   - `youtube-published-log.json` (سجل منع الازدواج) + `package.json` + `README.md` (دليل إعداد جوجل خطوة بخطوة).
+2. **`.github/workflows/daily-tiktok.yml`** — بعد خطوة TikTok: Bootstrap YouTube tokens + `youtube-publish.cjs --from-tiktok-log`. خطوة الـ commit أصبحت `if: ${{ !cancelled() }}` وتلتزم ملفات يوتيوب أيضاً (حتى لو فشل رفع يوتيوب، تتأمن التوكنز المدرسة).
+3. **CHANGELOG.md** → v2.10.0.
+4. **لماذا نفس الـ workflow:** الفيديو المولّد في `scripts/tiktok-publisher/output/` مُتجاهل في `.gitignore` — فلو كان workflow مستقلاً ما كان سيجد ملف الفيديو. الرفع يتم في نفس الـ runner مباشرة بعد التوليد.
+
+### ⏳ ينتظر المستخدم (إعداد يدوي مرة واحدة — ~10 دقائق)
+1. مشروع Google Cloud → تفعيل **YouTube Data API v3** → OAuth consent screen (scope `youtube.upload` + Test user) → Credentials → **OAuth Client ID (Web application)** مع redirect URI: `http://localhost:8788/oauth/callback`.
+2. محلياً: `node scripts/youtube-publisher/youtube-oauth.cjs login` (بالمتصفح) → يخزّن `youtube-tokens.json`.
+3. GitHub Secrets (5): `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_ACCESS_TOKEN`, `YT_REFRESH_TOKEN`, `YT_EXPIRES_IN`.
+   - التفاصيل: `scripts/youtube-publisher/README.md`.
+4. بعدها أول تشغيل workflow يجدد الـ access token أوتوماتيك (`obtained_at=0`) ويرفع الفيديو.
+
+### تنبيهات
+- لا حاجة لـ API key — الرفع يتطلب OAuth2 حصراً.
+- الفيديو عمودي 9:16 <3 دقائق → YouTube Shorts تلقائياً.
+- يوتيوب لا يحتاج مراجعة App (خلافاً لـ TikTok) — تطبيق اختباري يعمل بحساب المستخدم.
+- `git.exe` متاحة في `C:\MinGit\cmd\git.exe`. الـ repo متزامن عند `3fc15b1`.
+- إضافة جديدة في Session 5 لم تُلتزم بعد — تُدفع بعد الإعداد (أو تُلتزم الآن والرفع ينتظر الـ secrets).

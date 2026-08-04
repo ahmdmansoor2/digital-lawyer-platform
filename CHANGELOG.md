@@ -4,6 +4,33 @@
 
 ---
 
+## [v2.10.0] — 2026-08-04 (📺 النشر التلقائي على قناة YouTube)
+
+### 🎯 ما أُضيف
+- **`scripts/youtube-publisher/`** — نظام نشر فيديوهات على قناة YouTube:
+  - `youtube-oauth.cjs` — OAuth2 لجوجل (Authorization Code Flow عبر `http://localhost:8788`، تجديد تلقائي للـ access token، بناء من env لوضع CI).
+  - `youtube-publish.cjs` — رفع **Resumable** (YouTube Data API v3) لملف الفيديو مع العنوان + الوصف + الهاشتاجات، فئة `Education (27)`، `madeForKids=false`، خيارات `--privacy unlisted`, `--dry-run`, `--tags`, `--category`.
+  - `youtube-published-log.json` — سجل نشر مستقل لمنع الرفع المزدوج.
+- **وضعا تشغيل:**
+  - `--from-tiktok-log` (المستخدم في CI) — يرفع آخر فيديو سجّله TikTok في نفس الـ workflow (بدون توليد مزدوج).
+  - (بدون فلاج) — يولّد فيديو جديداً بنفس خط إنتاج TikTok ثم يرفعه.
+- **`.github/workflows/daily-tiktok.yml`** — أصبح فيديو يومي واحد يُنشر على **المنصتين**: بعد خطوة TikTok تُضاف خطوة "Bootstrap YouTube tokens" + خطوة "Publish same video to YouTube". خطوة الـ commit أصبحت `if: ${{ !cancelled() }}` فتُلتزم التوكنز والسجلات حتى لو فشل رفع يوتيوب.
+
+### ⏳ يتطلب إعداداً يدوياً مرة واحدة (من المستخدم)
+1. مشروع Google Cloud + تفعيل **YouTube Data API v3**.
+2. OAuth Client ID (Web application) مع `http://localhost:8788/oauth/callback`.
+3. محلياً: `node scripts/youtube-publisher/youtube-oauth.cjs login` → `youtube-tokens.json`.
+4. رفع 5 secrets في GitHub: `YT_CLIENT_ID`, `YT_CLIENT_SECRET`, `YT_ACCESS_TOKEN`, `YT_REFRESH_TOKEN`, `YT_EXPIRES_IN`.
+   (التفاصيل كاملة في `scripts/youtube-publisher/README.md`)
+
+### 📝 ملاحظات تقنية
+- لا حاجة لمفتاح API — الرفع يتطلب OAuth2 حصراً.
+- الفيديو عمودي 9:16 وأقل من 3 دقائق → يوتيوب يعتبره Short تلقائياً.
+- صلاحية access token ساعة — يُجدّد أوتوماتيك من refresh token (لا ينتهي ما لم يُسحب).
+- `output/` يوتيوب مستقل عن TikTok وموجود في `.gitignore`.
+
+---
+
 ## [v2.9.21] — 2026-08-03 (🔧 إصلاح النشر التلقائي + موعد المراقبة 9 صباحاً)
 
 ### 🐛 إصلاح فشل النشر التلقائي (run #14)

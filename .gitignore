@@ -11,4 +11,5 @@ dist-fresh/
 *.tmp
 .env
 scripts/tiktok-publisher/output/
+scripts/youtube-publisher/output/
 scripts/facebook-publisher/output/
