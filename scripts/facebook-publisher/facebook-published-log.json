@@ -112,6 +112,27 @@
       "duration": "1د 31ث",
       "size": 23560613,
       "publishedAt": "2026-08-03T19:55:13.820Z"
+    },
+    {
+      "topicId": "trend-bitcoin-crypto-law-egypt",
+      "title": "عقوبة تداول البتكوين والعملات المشفرة في مصر وفقاً لقانون البنك المركزي",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون المصرفي",
+        "#البتكوين في مصر",
+        "#تجريم العملات المشفرة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-bitcoin-crypto-law-egypt.mp4",
+      "videoId": "1959362488098293",
+      "permalink": "https://www.facebook.com/reel/1959362488098293",
+      "source": "trending-topics.json",
+      "duration": "5ث",
+      "size": 765563,
+      "publishedAt": "2026-08-04T08:53:34.042Z"
     }
   ]
 }
