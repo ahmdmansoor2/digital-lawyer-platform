@@ -92,4 +92,5 @@ jobs:
           git config user.email "bot@justice-91571.web.app"
           git add scripts/tiktok-publisher/tiktok-tokens.json scripts/tiktok-publisher/tiktok-published-log.json scripts/youtube-publisher/youtube-tokens.json scripts/youtube-publisher/youtube-published-log.json
           git diff --staged --quiet || git commit -m "🎬 TikTok+YouTube-publish: $(date +'%Y-%m-%d %H:%M') — فيديو قانوني من الترندات"
+          git pull --rebase origin main 2>/dev/null || true
           git push

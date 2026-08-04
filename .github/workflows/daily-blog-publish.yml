@@ -40,6 +40,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/blog scripts/blog-publisher/published-log.json scripts/blog-publisher/facebook-published-log.json scripts/published-log.json
           git diff --cached --quiet && echo "no changes to commit" || git commit -m "chore(blog): auto-publish daily article"
+          git pull --rebase origin main 2>/dev/null || true
           git push
 
       - name: Build & Deploy to Firebase Hosting

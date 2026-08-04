@@ -54,6 +54,7 @@ jobs:
           git add scripts/facebook-publisher/facebook-published-log.json
           if ! git diff --cached --quiet; then
             git commit -m "🎬 Reel-publish: $(date +'%Y-%m-%d %H:%M') — ريلز من ترندات جوجل"
+            git pull --rebase origin main 2>/dev/null || true
             git push || echo "⚠️ push تعذر — سيُلتقط في التشغيل التالي"
           else
             echo "✅ لا تغييرات — كل المواضيع منشورة مسبقاً"
