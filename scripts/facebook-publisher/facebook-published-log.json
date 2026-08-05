@@ -280,6 +280,27 @@
       "duration": "1د 18ث",
       "size": 18358304,
       "publishedAt": "2026-08-05T14:32:04.082Z"
+    },
+    {
+      "topicId": "blog-tax-dispute-procedure",
+      "title": "الطعن الضريبي في القانون المصري: الدليل القانوني الشامل لإجراءات لجان الطعن والمحكمة الضريبية - منصة المحامي الرقمية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#تعتبر",
+        "#العلاقة",
+        "#مصلحة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-tax-dispute-procedure.mp4",
+      "videoId": "1089962553506314",
+      "permalink": "https://www.facebook.com/reel/1089962553506314",
+      "source": "blog",
+      "duration": "1د 7ث",
+      "size": 19940773,
+      "publishedAt": "2026-08-05T16:53:32.005Z"
     }
   ]
 }
