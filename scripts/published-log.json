@@ -797,6 +797,66 @@
       "words": 3432,
       "image": "pollinations",
       "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "دليل التعويض عن حوادث الطرق والسيارات المجهولة في القانون المصري",
+      "date": "2026-08-05",
+      "slug": "car-accident-compensation-egypt",
+      "url": "https://justice-91571.web.app/blog/car-accident-compensation-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/car-accident-compensation-egypt.jpg",
+      "tags": [
+        "القانون المدني"
+      ],
+      "words": 2124,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبات الاتجار في العملة الصعبة والتعامل باليورو والدولار خارج البنوك",
+      "date": "2026-08-05",
+      "slug": "foreign-currency-trading-laws-egypt",
+      "url": "https://justice-91571.web.app/blog/foreign-currency-trading-laws-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/foreign-currency-trading-laws-egypt.jpg",
+      "tags": [
+        "القانون الجنائي"
+      ],
+      "words": 2057,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "حقوق أولياء الأمور وقوانين زيادات مصاريف المدارس الخاصة والدولية",
+      "date": "2026-08-05",
+      "slug": "private-school-fees-legal-rights",
+      "url": "https://justice-91571.web.app/blog/private-school-fees-legal-rights.html",
+      "image": "https://justice-91571.web.app/blog/images/private-school-fees-legal-rights.jpg",
+      "tags": [
+        "حماية المستهلك"
+      ],
+      "words": 2323,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "منازعات عقود اللاعبين والتحكيم الرياضي الدولي والمحلي في مصر",
+      "date": "2026-08-05",
+      "slug": "sports-player-contracts-arbitration-egypt",
+      "url": "https://justice-91571.web.app/blog/sports-player-contracts-arbitration-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/sports-player-contracts-arbitration-egypt.jpg",
+      "tags": [
+        "القانون الرياضي"
+      ],
+      "words": 2206,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "إجراءات التشريح والطب الشرعي في الجرائم الجنائية وإثبات الوفاة",
+      "date": "2026-08-05",
+      "slug": "forensic-medicine-procedures-egypt",
+      "url": "https://justice-91571.web.app/blog/forensic-medicine-procedures-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/forensic-medicine-procedures-egypt.jpg",
+      "tags": [
+        "الإجراءات الجنائية"
+      ],
+      "words": 2077,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
