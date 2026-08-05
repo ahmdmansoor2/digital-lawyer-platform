@@ -507,6 +507,76 @@
       "words": 3432,
       "image": "pollinations",
       "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "التعويض في الزواج: دليل دعوى التعويض ضد الزوجة أو الزوج لتحديد الضرر المادي والأدبي",
+      "date": "2026-08-05",
+      "slug": "divorce-damages-claim",
+      "url": "https://justice-91571.web.app/blog/divorce-damages-claim.html",
+      "tags": [
+        "التعويض في الزواج",
+        "الضرر المادي",
+        "الضرر الأدبي"
+      ],
+      "words": 3192,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "شركة ذات مسؤولية محدودة في القانون المصري: رأس المال والحد الأدنى والخطوات العملية للتأسيس",
+      "date": "2026-08-05",
+      "slug": "limited-liability-company",
+      "url": "https://justice-91571.web.app/blog/limited-liability-company.html",
+      "tags": [
+        "شركة ذات مسؤولية محدودة",
+        "تأسيس الشركة",
+        "رأس المال"
+      ],
+      "words": 3691,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "الشهادة أمام المحاكم: شروط قبولها وقيمتها في الإثبات وفقاً للقانون المصري",
+      "date": "2026-08-05",
+      "slug": "witness-testimony-egypt",
+      "url": "https://justice-91571.web.app/blog/witness-testimony-egypt.html",
+      "tags": [
+        "الشهادة",
+        "الإثبات",
+        "الشاهد"
+      ],
+      "words": 3890,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "الطعن الضريبي في القانون المصري: الدليل القانوني الشامل لإجراءات لجان الطعن والمحكمة الضريبية",
+      "date": "2026-08-05",
+      "slug": "tax-dispute-procedure",
+      "url": "https://justice-91571.web.app/blog/tax-dispute-procedure.html",
+      "tags": [
+        "الطعن الضريبي",
+        "لجنة الطعن",
+        "الفحص الضريبي"
+      ],
+      "words": 3612,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "شروط صحة العقد في القانون المدني المصري: الأركان والعيوب ومواعيد البطلان بالتفصيل",
+      "date": "2026-08-05",
+      "slug": "contract-legal-requirements",
+      "url": "https://justice-91571.web.app/blog/contract-legal-requirements.html",
+      "tags": [
+        "شروط العقد",
+        "الأركان",
+        "الرضا"
+      ],
+      "words": 3367,
+      "image": "pollinations",
+      "model": "gemini-3-flash-preview"
     }
   ],
   "skipped": [
@@ -589,5 +659,5 @@
       "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\child-custody-egypt-1785581807609.json"
     }
   ],
-  "last_run": "2026-08-04T11:39:39.217Z"
+  "last_run": "2026-08-05T11:38:09.846Z"
 }
