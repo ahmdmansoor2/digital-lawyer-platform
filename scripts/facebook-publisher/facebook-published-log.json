@@ -301,6 +301,27 @@
       "duration": "1د 7ث",
       "size": 19940773,
       "publishedAt": "2026-08-05T16:53:32.005Z"
+    },
+    {
+      "topicId": "trend-private-school-fees-legal-rights",
+      "title": "حقوق أولياء الأمور وقوانين زيادات مصاريف المدارس الخاصة والدولية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#حماية المستهلك",
+        "#بداية العام الدراسي",
+        "#مصاريف المدارس الخاصة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-private-school-fees-legal-rights.mp4",
+      "videoId": "1060162013223496",
+      "permalink": "https://www.facebook.com/reel/1060162013223496",
+      "source": "trending-topics.json",
+      "duration": "1د 35ث",
+      "size": 30041416,
+      "publishedAt": "2026-08-05T19:54:23.674Z"
     }
   ]
 }
