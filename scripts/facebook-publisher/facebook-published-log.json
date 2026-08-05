@@ -217,6 +217,27 @@
       "duration": "1د 19ث",
       "size": 28382921,
       "publishedAt": "2026-08-04T19:53:46.921Z"
+    },
+    {
+      "topicId": "trend-car-accident-compensation-egypt",
+      "title": "دليل التعويض عن حوادث الطرق والسيارات المجهولة في القانون المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون المدني",
+        "#حوادث السيارات",
+        "#التعويض عن الحوادث"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-car-accident-compensation-egypt.mp4",
+      "videoId": "1565733134931585",
+      "permalink": "https://www.facebook.com/reel/1565733134931585",
+      "source": "trending-topics.json",
+      "duration": "1د 22ث",
+      "size": 20698008,
+      "publishedAt": "2026-08-05T08:52:49.240Z"
     }
   ]
 }
