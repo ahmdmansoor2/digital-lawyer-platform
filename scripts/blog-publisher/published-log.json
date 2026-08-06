@@ -577,6 +577,76 @@
       "words": 3367,
       "image": "pollinations",
       "model": "gemini-3-flash-preview"
+    },
+    {
+      "title": "القانون الدولي الخاص في مسائل الزواج والطلاق لغير المصريين أمام محاكم الأسرة",
+      "date": "2026-08-06",
+      "slug": "private-international-law",
+      "url": "https://justice-91571.web.app/blog/private-international-law.html",
+      "tags": [
+        "قانون دولي خاص",
+        "زواج الأجانب",
+        "تنازع القوانين"
+      ],
+      "words": 3129,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "الرسوم القضائية في الدعاوى المدنية: كيف تُحسب وتُدفع طبقاً للقانون المصري",
+      "date": "2026-08-06",
+      "slug": "judicial-fees-court",
+      "url": "https://justice-91571.web.app/blog/judicial-fees-court.html",
+      "tags": [
+        "الرسوم القضائية",
+        "رسوم الدعوى",
+        "دعوى مدنية"
+      ],
+      "words": 3510,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "إعلام الوراثة في مصر: الدليل القانوني الشامل للمستندات والإجراءات العملية 2026",
+      "date": "2026-08-06",
+      "slug": "inheritance-registration",
+      "url": "https://justice-91571.web.app/blog/inheritance-registration.html",
+      "tags": [
+        "إعلام الوراثة",
+        "حصر الإرث",
+        "المواريث"
+      ],
+      "words": 3909,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "قضايا المخدرات في مصر: دليل حقوق المتهم ودفوع الدفاع الجنائي الشامل",
+      "date": "2026-08-06",
+      "slug": "drug-offense-defense",
+      "url": "https://justice-91571.web.app/blog/drug-offense-defense.html",
+      "tags": [
+        "قضايا المخدرات",
+        "الدفاع الجنائي",
+        "التحقيق"
+      ],
+      "words": 3395,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "مجلس الإدارة ومسؤولية أعضاء الشركات: دليل قانوني شامل للحالات والحدود",
+      "date": "2026-08-06",
+      "slug": "company-board-liability",
+      "url": "https://justice-91571.web.app/blog/company-board-liability.html",
+      "tags": [
+        "مجلس الإدارة",
+        "مسؤولية المديرين",
+        "الشركات"
+      ],
+      "words": 3396,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
     }
   ],
   "skipped": [
@@ -659,5 +729,5 @@
       "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\child-custody-egypt-1785581807609.json"
     }
   ],
-  "last_run": "2026-08-05T11:38:09.846Z"
+  "last_run": "2026-08-06T11:40:48.078Z"
 }
