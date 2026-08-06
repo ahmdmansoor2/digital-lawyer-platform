@@ -927,6 +927,54 @@
       "words": 3367,
       "image": "pollinations",
       "model": "gemini-3-flash-preview"
+    },
+    {
+      "title": "حقوق العمال في الإجازات الرسمية وأجر العمل الإضافي في قانون العمل المصري",
+      "date": "2026-08-06",
+      "slug": "official-holidays-labor-law-egypt",
+      "url": "https://justice-91571.web.app/blog/official-holidays-labor-law-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/official-holidays-labor-law-egypt.jpg",
+      "tags": [
+        "قانون العمل"
+      ],
+      "words": 1518,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "القوة القاهرة في العقود العقارية والهندسية وشروط الإعفاء من المسؤولية",
+      "date": "2026-08-06",
+      "slug": "force-majeure-real-estate-contracts-egypt",
+      "url": "https://justice-91571.web.app/blog/force-majeure-real-estate-contracts-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/force-majeure-real-estate-contracts-egypt.jpg",
+      "tags": [
+        "القانون المدني"
+      ],
+      "words": 1994,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقود احتراف اللاعبين وآليات تسوية المنازعات أمام مركز التحكيم الرياضي",
+      "date": "2026-08-06",
+      "slug": "sports-contracts-arbitration-egypt",
+      "url": "https://justice-91571.web.app/blog/sports-contracts-arbitration-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/sports-contracts-arbitration-egypt.jpg",
+      "tags": [
+        "القانون الرياضي"
+      ],
+      "words": 1745,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "حماية حقوق الملكية الفكرية للفنانين وصناع المحتوى في القانون المصري",
+      "date": "2026-08-06",
+      "slug": "intellectual-property-artist-rights-egypt",
+      "url": "https://justice-91571.web.app/blog/intellectual-property-artist-rights-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/intellectual-property-artist-rights-egypt.jpg",
+      "tags": [
+        "الملكية الفكرية"
+      ],
+      "words": 1271,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
