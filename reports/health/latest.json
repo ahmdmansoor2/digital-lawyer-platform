@@ -1,11 +1,11 @@
 {
-  "date": "2026-08-06",
-  "generatedAt": "2026-08-06T08:14:40.386Z",
+  "date": "2026-08-07",
+  "generatedAt": "2026-08-06T23:47:14.146Z",
   "status": "error",
-  "blogArticles": 74,
+  "blogArticles": 64,
   "fbPosts": 0,
   "reels": 0,
-  "ghRuns": 14,
+  "ghRuns": 11,
   "checks": [
     {
       "name": "site_root",
@@ -28,8 +28,8 @@
     {
       "name": "sitemap",
       "label": "الاستضافة: خريطة الموقع sitemap.xml",
-      "status": "warn",
-      "findings": 1
+      "status": "ok",
+      "findings": 0
     },
     {
       "name": "facebook",
@@ -46,8 +46,8 @@
     {
       "name": "log_vs_live",
       "label": "الاستضافة: تطابق سجلّ النشر مع المحتوى الحي",
-      "status": "ok",
-      "findings": 0
+      "status": "warn",
+      "findings": 1
     }
   ]
 }
