@@ -458,4 +458,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { uploadToYouTube, buildDescription, alreadyPublished };
+module.exports = { uploadToYouTube, buildDescription, alreadyPublished, toHorizontal16x9, truncateTitle };
