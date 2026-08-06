@@ -4,6 +4,19 @@
 
 ---
 
+## [v2.10.3] — 2026-08-05 (📺 نشر مزدوج: Short + فيديو أفقي على صفحة القناة)
+
+### 🎯 ما تغيّر
+- **`youtube-publish.cjs`** — فلاج جديد `--as-video`: بعد رفع الريلز كـ Short يرفع نسخة **أفقية 16:9** (تحويل عبر `ffmpeg-static` بخلفية ضبابية) تظهر كفيديو عادي في تبويب **Videos** بصفحة قناة فيروز — لأن يوتيوب يصنّف العمودي الأقصر من 3 دقائق كـ Short ولا يظهره في التبويب الرئيسي.
+- **منع الازدواج أصبح نوعيّاً** (`alreadyPublished(topicId, kind)`): سجلّ `kind: 'short' | 'video'` — القديم بدون kind يُعتبر Short.
+- **`.github/workflows/daily-reels.yml`** — `youtube-publish.cjs --from-fb-log --as-video` (حتى 5 Shorts + 5 فيديوهات أفقية يومياً).
+
+### 📝 ملاحظات
+- التحويل يُحفظ في `scripts/facebook-publisher/output/fb-<topicId>-wide.mp4` (متجاهل في git).
+- لا حاجة لمحرك خارجي — `ffmpeg-static` موجود بالفعل في الـ dependencies.
+
+---
+
 ## [v2.10.2] — 2026-08-05 (🩺 تحسين نظام المراقبة اليومي)
 
 ### 🎯 ما تغيّر

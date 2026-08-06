@@ -198,7 +198,7 @@ src/
    - `youtube-oauth.cjs` — OAuth2 لجوجل (local server على `http://localhost:8788/oauth/callback`، أوامر `login/status/refresh/import/clear`) + `getValidAccessToken()`.
    - `youtube-publish.cjs` — رفع **Resumable** على YouTube Data API v3 مع العنوان/الوصف/الهاشتاجات، فئة Education (27)، `--privacy`، `--dry-run`، **`--from-fb-log`** (يرفع آخر فيديو ريلز فيسبوك في نفس الـ run — المعتمد في CI)، أو `--from-tiktok-log`، أو توليد فيديو مستقل.
    - `youtube-published-log.json` (سجل منع الازدواج) + `package.json` + `README.md` + `print-secrets.cjs`.
-2. **قرار المستخدم:** يوتيوب ينشر **فيديوهات فيسبوك (ريلز)** بدل فيديوهات التيك توك → `.github/workflows/daily-reels.yml` يرفع كل ريلز على قناة فيروز عبر `youtube-publish.cjs --from-fb-log` (حتى 5 فيديوهات يومياً). خط يوتيوب أُزيل من `daily-tiktok.yml`.
+2. **قرار المستخدم:** يوتيوب ينشر **فيديوهات فيسبوك (ريلز)** بدل فيديوهات التيك توك → `.github/workflows/daily-reels.yml` يرفع كل ريلز على قناة فيروز عبر `youtube-publish.cjs --from-fb-log --as-video` (حتى 5 يومياً). **`--as-video` = نشر مزدوج:** الريلز كـ Short (9:16) + نسخة أفقية 16:9 (ffmpeg-static بخلفية ضبابية) تظهر في تبويب **Videos** بصفحة القناة — لأن يوتيوب لا يعرض العمودي <3 دقائق في التبويب الرئيسي. سجلّ منع الازدواج أصبح نوعيّاً (`kind: short | video`). خط يوتيوب أُزيل من `daily-tiktok.yml`.
 3. **إصلاح سباق الدفع:** خطوات `git push` في كل الـ workflows تسبقها `git pull --rebase origin main` (كانت تفشل بـ 128 عند الدفع المتزامن).
 4. **لماذا نفس الـ workflow:** الفيديو المولّد في `scripts/facebook-publisher/output/` مُتجاهل في `.gitignore` — فلو كان workflow مستقلاً ما كان سيجد ملف الفيديو. الرفع يتم في نفس الـ runner مباشرة بعد التوليد.
 5. **CHANGELOG.md** → v2.10.0.

@@ -6,8 +6,10 @@
 ## الفكرة
 
 - `reel-publisher.cjs` يولّد فيديو عمودي 9:16 وينشره **ريلز على فيسبوك** (5 مرات يومياً).
-- في نفس الـ workflow، `youtube-publish.cjs --from-fb-log` يقرأ آخر سجل في
-  `facebook-published-log.json` ويرفع نفس الفيديو على **قناة فيروز** — من غير توليد مزدوج.
+- في نفس الـ workflow، `youtube-publish.cjs --from-fb-log --as-video` يقرأ آخر سجل في
+  `facebook-published-log.json` ويرفع نفس الفيديو على **قناة فيروز** **نشراً مزدوجاً**:
+  1. كـ **Short** (9:16) — يظهر في تبويب Shorts.
+  2. كـ **فيديو أفقي 16:9** (بخلفية ضبابية عبر ffmpeg) — يظهر في تبويب **Videos** بصفحة القناة.
 - أو يولّد فيديو مستقل (بدون `--from-fb-log`)، أو يرفع فيديو TikTok عبر `--from-tiktok-log`.
 
 ## الإعداد (مرة واحدة)
@@ -71,13 +73,18 @@ node youtube-oauth.cjs login
 ## الاستخدام
 
 ```powershell
-node youtube-publish.cjs --dry-run --from-fb-log        # معاينة بدون رفع
-node youtube-publish.cjs --from-fb-log                   # رفع آخر فيديو ريلز فيسبوك (الوضع المستخدم في CI)
-node youtube-publish.cjs --from-tiktok-log               # رفع آخر فيديو TikTok
+node youtube-publish.cjs --dry-run --from-fb-log --as-video  # معاينة بدون رفع
+node youtube-publish.cjs --from-fb-log --as-video             # Short + فيديو أفقي (الوضع المستخدم في CI)
+node youtube-publish.cjs --from-fb-log                        # Short فقط
+node youtube-publish.cjs --from-tiktok-log                    # رفع آخر فيديو TikTok
 node youtube-publish.cjs --from-fb-log --privacy unlisted
-node youtube-publish.cjs --topic demo-001                # توليد + رفع موضوع محدد
-node youtube-publish.cjs                                 # توليد + رفع (ترندات + مدونة)
+node youtube-publish.cjs --topic demo-001                     # توليد + رفع موضوع محدد
+node youtube-publish.cjs                                      # توليد + رفع (ترندات + مدونة)
 ```
+
+> **لماذا التحويل لأفقي؟** يوتيوب يصنّف الفيديو العمودي (9:16) الأقصر من 3 دقائق كـ Short
+> تلقائياً ولا يظهر في تبويب Videos. تحويله لـ 16:9 (عرض أكبر من الطول) يجعله فيديو عادياً
+> يظهر في صفحة القناة. التحويل يتم عبر `ffmpeg-static` (خلفية ضبابية + الفيديو في المنتصف).
 
 المخرجات المولّدة في `output/` (مستقلة عن مجلد TikTok).
 

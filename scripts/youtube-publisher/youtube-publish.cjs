@@ -7,23 +7,26 @@
  *
  * وضعا التشغيل:
  *   --from-fb-log        يرفع آخر فيديو ريلز سجّله reel-publisher (نفس الـ workflow — الموصى به)
+ *   --from-fb-log --as-video   يرافعه أيضاً كفيديو أفقي 16:9 يظهر في تبويب Videos بصفحة القناة (نشر مزدوج)
  *   --from-tiktok-log    يرفع آخر فيديو سجّله tiktok-publish.cjs
  *   (بدون فلاج)          يولّد فيديو جديد بنفس خط إنتاج TikTok ثم يرفعه
  *
  * الاستخدام:
- *   node youtube-publish.cjs --from-fb-log             # رفع آخر فيديو فيسبوك (ريلز)
- *   node youtube-publish.cjs --from-tiktok-log         # رفع آخر فيديو TikTok
- *   node youtube-publish.cjs                           # توليد فيديو جديد + رفع
- *   node youtube-publish.cjs --topic demo-001          # موضوع محدد
- *   node youtube-publish.cjs --count 2                 # عدد المواضيع
- *   node youtube-publish.cjs --latest-article          # من آخر مقال مدونة
- *   node youtube-publish.cjs --privacy unlisted        # عدم إدراج عام
- *   node youtube-publish.cjs --dry-run                 # بدون رفع حقيقي
- *   node youtube-publish.cjs --from-fb-log --dry-run
+ *   node youtube-publish.cjs --from-fb-log --as-video   # رفع الريلز كـ Short + فيديو أفقي
+ *   node youtube-publish.cjs --from-fb-log              # رفع الريلز كـ Short فقط
+ *   node youtube-publish.cjs --from-tiktok-log          # رفع آخر فيديو TikTok
+ *   node youtube-publish.cjs                            # توليد فيديو جديد + رفع
+ *   node youtube-publish.cjs --topic demo-001           # موضوع محدد
+ *   node youtube-publish.cjs --count 2                  # عدد المواضيع
+ *   node youtube-publish.cjs --latest-article           # من آخر مقال مدونة
+ *   node youtube-publish.cjs --privacy unlisted         # عدم إدراج عام
+ *   node youtube-publish.cjs --dry-run                  # بدون رفع حقيقي
+ *   node youtube-publish.cjs --from-fb-log --as-video --dry-run
  */
 
 const fs = require('fs');
 const path = require('path');
+const { execFileSync } = require('child_process');
 const dotenv = require('dotenv');
 
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -59,13 +62,14 @@ function writeJson(file, data) {
 // ─── CLI args ────────────────────────────────────────────────────────────────
 function parseArgs() {
   const args = {
-    fromTiktokLog: false, fromFbLog: false, count: 1, topic: null, article: null, latestArticle: false,
+    fromTiktokLog: false, fromFbLog: false, asVideo: false, count: 1, topic: null, article: null, latestArticle: false,
     privacy: 'public', tags: [], dryRun: false, skipVideo: false, categoryId: CATEGORY_EDUCATION,
   };
   for (let i = 2; i < process.argv.length; i++) {
     const a = process.argv[i];
     if (a === '--from-tiktok-log') args.fromTiktokLog = true;
     else if (a === '--from-fb-log') args.fromFbLog = true;
+    else if (a === '--as-video') args.asVideo = true;
     else if (a === '--count') args.count = parseInt(process.argv[++i], 10);
     else if (a === '--topic') args.topic = process.argv[++i];
     else if (a === '--article') args.article = process.argv[++i];
@@ -169,9 +173,39 @@ function logPublished(entry) {
   writeJson(LOG_FILE, log);
 }
 
-function alreadyPublished(topicId) {
+function alreadyPublished(topicId, kind = 'short') {
   const log = readJson(LOG_FILE, { entries: [] });
-  return log.entries.some(e => e.topicId === topicId);
+  return log.entries.some(e => e.topicId === topicId && (e.kind || 'short') === kind);
+}
+
+// ─── تحويل الريلز العمودي (9:16) إلى فيديو أفقي (16:9) بخلفية ضبابية ─────────
+// لازم الناتج يكون أعرض من الأطول عشان يوتيوب يعتبره فيديو عادي (مش Short)
+// ويظهر في تبويب Videos في صفحة القناة.
+function toHorizontal16x9(src, dest) {
+  const ffmpeg = require('ffmpeg-static');
+  if (!ffmpeg) throw new Error('ffmpeg-static غير متوفر. نفّذ: npm i ffmpeg-static');
+  fs.mkdirSync(path.dirname(dest), { recursive: true });
+  const filter = [
+    '[0:v]split=2[a][b]',
+    '[a]scale=1920:1080:force_original_aspect_ratio=increase,crop=1920:1080,gblur=sigma=24[bg]',
+    '[b]scale=608:1080:force_original_aspect_ratio=decrease[fg]',
+    '[bg][fg]overlay=(W-w)/2:(H-h)/2[v]',
+  ].join(';');
+  console.log(`[youtube] 🎬 تحويل الريلز إلى فيديو أفقي 16:9...`);
+  try {
+    execFileSync(ffmpeg, [
+      '-y', '-i', src,
+      '-filter_complex', filter,
+      '-map', '[v]', '-map', '0:a?',
+      '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '23', '-pix_fmt', 'yuv420p',
+      '-c:a', 'aac', '-movflags', '+faststart',
+      dest,
+    ], { stdio: ['ignore', 'pipe', 'pipe'], timeout: 300_000 });
+  } catch (e) {
+    const tail = (e.stderr ? e.stderr.toString() : e.message).split('\n').slice(-8).join('\n');
+    throw new Error(`فشل تحويل الفيديو إلى أفقي:\n${tail}`);
+  }
+  return dest;
 }
 
 // ─── رفع آخر فيديو سجّله TikTok (نفس الـ run) ───────────────────────────────
@@ -218,6 +252,8 @@ async function publishLatestTiktokVideo(opts) {
 }
 
 // ─── رفع آخر فيديو ريلز سجّله Facebook (نفس الـ run) ────────────────────────
+// بدون --as-video: يرفع الريلز كـ Short (9:16).
+// مع --as-video: يرفع الريلز كـ Short + نسخة أفقية 16:9 تظهر كفيديو عادي في تبويب Videos.
 async function publishLatestFbVideo(opts) {
   const log = readJson(FB_LOG, { entries: [] });
   const candidates = [...(log.entries || [])].reverse().filter(e => {
@@ -235,33 +271,71 @@ async function publishLatestFbVideo(opts) {
     ? entry.videoPath
     : path.join(FB_OUTPUT_DIR, `fb-${entry.topicId}.mp4`);
 
-  if (alreadyPublished(entry.topicId)) {
-    console.log(`[youtube] ⏭️  ${entry.topicId} منشور مسبقاً على YouTube — تخطي.`);
-    return 0;
+  console.log(`\n[youtube] ═══ رفع آخر فيديو ريلز: ${entry.title} ═══`);
+  let uploaded = 0;
+
+  // 1) نسخة Short (9:16)
+  if (alreadyPublished(entry.topicId, 'short')) {
+    console.log(`[youtube] ⏭️  ${entry.topicId} Short منشور مسبقاً على YouTube — تخطي.`);
+  } else {
+    const yt = await uploadToYouTube({
+      videoPath,
+      title: entry.title,
+      description: buildDescription(entry.title, entry.hashtags),
+      tags: entry.hashtags || [],
+      privacyStatus: opts.privacy,
+      categoryId: opts.categoryId,
+      dryRun: opts.dryRun,
+    });
+    if (!opts.dryRun) {
+      logPublished({
+        topicId: entry.topicId,
+        title: entry.title,
+        videoPath,
+        source: entry.source || 'fb-log',
+        videoId: yt.videoId,
+        url: yt.url,
+        kind: 'short',
+        fbPermalink: entry.permalink,
+      });
+    }
+    uploaded++;
   }
 
-  console.log(`\n[youtube] ═══ رفع آخر فيديو ريلز: ${entry.title} ═══`);
-  const yt = await uploadToYouTube({
-    videoPath,
-    title: entry.title,
-    description: buildDescription(entry.title, entry.hashtags),
-    tags: entry.hashtags || [],
-    privacyStatus: opts.privacy,
-    categoryId: opts.categoryId,
-    dryRun: opts.dryRun,
-  });
-  if (!opts.dryRun) {
-    logPublished({
-      topicId: entry.topicId,
-      title: entry.title,
-      videoPath,
-      source: entry.source || 'fb-log',
-      videoId: yt.videoId,
-      url: yt.url,
-      fbPermalink: entry.permalink,
-    });
+  // 2) نسخة أفقية 16:9 — فيديو فعلي على صفحة القناة
+  if (opts.asVideo) {
+    if (alreadyPublished(entry.topicId, 'video')) {
+      console.log(`[youtube] ⏭️  ${entry.topicId} فيديو أفقي منشور مسبقاً على YouTube — تخطي.`);
+    } else {
+      const widePath = path.join(FB_OUTPUT_DIR, `fb-${entry.topicId}-wide.mp4`);
+      const wideTitle = `${truncateTitle(entry.title, 80)} — فيديو أفقي`;
+      if (!opts.dryRun) toHorizontal16x9(videoPath, widePath);
+      const yt = await uploadToYouTube({
+        videoPath: opts.dryRun ? videoPath : widePath,
+        title: wideTitle,
+        description: buildDescription(entry.title, entry.hashtags) + '\n\nنسخة أفقية من الريلز للعرض على الشاشات.',
+        tags: entry.hashtags || [],
+        privacyStatus: opts.privacy,
+        categoryId: opts.categoryId,
+        dryRun: opts.dryRun,
+      });
+      if (!opts.dryRun) {
+        logPublished({
+          topicId: entry.topicId,
+          title: wideTitle,
+          videoPath: widePath,
+          source: entry.source || 'fb-log',
+          videoId: yt.videoId,
+          url: yt.url,
+          kind: 'video',
+          fbPermalink: entry.permalink,
+        });
+      }
+      uploaded++;
+    }
   }
-  return 1;
+
+  return uploaded;
 }
 
 // ─── توليد فيديو جديد + رفعه (نفس خط إنتاج TikTok) ─────────────────────────

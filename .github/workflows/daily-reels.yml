@@ -63,7 +63,7 @@ jobs:
           CI: true
 
       - name: Publish reel to YouTube (channel فيروز)
-        run: node scripts/youtube-publisher/youtube-publish.cjs --from-fb-log
+        run: node scripts/youtube-publisher/youtube-publish.cjs --from-fb-log --as-video
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
