@@ -21,6 +21,7 @@
 - **لا يوجد API عام لـ NotebookLM** — محتوى البطاقة يُولَّد عبر Gemini مباشرة بنفس الجودة والستايل (قرار معتمد من المستخدم).
 - البطاقات تُحفظ في `scripts/facebook-publisher/output/cards/` (متجاهلة في git).
 - يُنشَّط يدوياً من: Actions → 🃏 الناشر اليومي — بطاقات تعليمية → Run workflow.
+- **إصلاح `publishPhoto`:** `form.getBuffer()` في form-data v4 كان يفشل (`DelayedStream`) → استُبدل بـ `FormData`/`Blob` الأصليين في Node 24 — النشر يعمل الآن (أول نشر حقيقي: 2026-08-07، post `100701832193892_1351462350447624`).
 
 ---
 

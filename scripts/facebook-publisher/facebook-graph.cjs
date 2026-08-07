@@ -131,19 +131,17 @@ async function publishPhoto({ imagePath, caption = '', published = true }) {
     throw new Error(`ملف الصورة غير موجود: ${imagePath}`);
   }
 
-  // eslint-disable-next-line global-require
-  const FormData = require('form-data');
+  const imageBuf = fs.readFileSync(imagePath);
   const form = new FormData();
-  form.append('source', fs.createReadStream(imagePath));
+  form.append('source', new Blob([imageBuf], { type: 'image/png' }), path.basename(imagePath));
   form.append('caption', caption);
   form.append('access_token', PAGE_TOKEN);
   if (!published) form.append('published', 'false');
 
-  console.log(`[fb-graph] رفع صورة: ${path.basename(imagePath)} (${(fs.statSync(imagePath).size / 1024).toFixed(0)} KB)`);
+  console.log(`[fb-graph] رفع صورة: ${path.basename(imagePath)} (${(imageBuf.length / 1024).toFixed(0)} KB)`);
   const resp = await fetch(`${GRAPH_BASE}/${PAGE_ID}/photos`, {
     method: 'POST',
-    headers: form.getHeaders(),
-    body: form.getBuffer(),
+    body: form,
   });
 
   const data = await resp.json();
