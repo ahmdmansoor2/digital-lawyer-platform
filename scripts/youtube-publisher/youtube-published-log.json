@@ -253,6 +253,28 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/947861531676111",
       "publishedAt": "2026-08-07T10:13:18.029Z"
+    },
+    {
+      "topicId": "blog-judicial-fees-court",
+      "title": "الرسوم القضائية في الدعاوى المدنية: كيف تُحسب وتُدفع طبقاً للقانون المصري - منصة المحامي الرقمية",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-judicial-fees-court.mp4",
+      "source": "blog",
+      "videoId": "5kUVhk_uHbk",
+      "url": "https://www.youtube.com/watch?v=5kUVhk_uHbk",
+      "kind": "short",
+      "fbPermalink": "https://www.facebook.com/reel/1950199892354785",
+      "publishedAt": "2026-08-07T13:27:57.677Z"
+    },
+    {
+      "topicId": "blog-judicial-fees-court",
+      "title": "الرسوم القضائية في الدعاوى المدنية: كيف تُحسب وتُدفع طبقاً للقانون المصري - منصة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-judicial-fees-court-wide.mp4",
+      "source": "blog",
+      "videoId": "XMUUotESD0w",
+      "url": "https://www.youtube.com/watch?v=XMUUotESD0w",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1950199892354785",
+      "publishedAt": "2026-08-07T13:29:18.265Z"
     }
   ]
 }

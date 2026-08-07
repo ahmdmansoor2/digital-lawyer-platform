@@ -447,6 +447,27 @@
       "duration": "1د 35ث",
       "size": 17913141,
       "publishedAt": "2026-08-07T10:11:57.056Z"
+    },
+    {
+      "topicId": "blog-judicial-fees-court",
+      "title": "الرسوم القضائية في الدعاوى المدنية: كيف تُحسب وتُدفع طبقاً للقانون المصري - منصة المحامي الرقمية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#تعتبر",
+        "#الرسوم",
+        "#القضائية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-judicial-fees-court.mp4",
+      "videoId": "1950199892354785",
+      "permalink": "https://www.facebook.com/reel/1950199892354785",
+      "source": "blog",
+      "duration": "1د 14ث",
+      "size": 22895608,
+      "publishedAt": "2026-08-07T13:27:55.533Z"
     }
   ]
 }
