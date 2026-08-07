@@ -417,7 +417,7 @@ async function main() {
   console.log(`  ✓ ${card.points.length} نقاط | ${card.hashtags.length} هاشتاجات`);
 
   // 2. رسم البطاقة
-  console.log('\n[2/3] جاري رسم البطاقة (1200×628، فاتحة)...');
+  console.log('\n[2/3] جاري رسم البطاقة (1200×628، داكنة أنيقة)...');
   const pngPath = await renderCard(card, topic.slug);
 
   // 3. النشر
