@@ -1,10 +1,10 @@
 {
   "date": "2026-08-07",
-  "generatedAt": "2026-08-07T06:59:33.745Z",
+  "generatedAt": "2026-08-07T18:36:38.542Z",
   "status": "error",
-  "blogArticles": 83,
-  "fbPosts": 1,
-  "reels": 1,
+  "blogArticles": 88,
+  "fbPosts": 13,
+  "reels": 5,
   "ghRuns": 14,
   "checks": [
     {
@@ -22,8 +22,8 @@
     {
       "name": "articles",
       "label": "المدونة: سلامة المقالات والصور (og:image)",
-      "status": "warn",
-      "findings": 1
+      "status": "ok",
+      "findings": 0
     },
     {
       "name": "sitemap",
