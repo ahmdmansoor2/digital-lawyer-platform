@@ -117,6 +117,50 @@ async function publishReel({ videoPath, description, published = true }) {
 }
 
 /**
+ * نشر منشور صورة على صفحة فيسبوك (بطاقات تعليمية)
+ * @param {Object} opts
+ * @param {string} opts.imagePath - مسار ملف صورة (PNG/JPG)
+ * @param {string} opts.caption - نص المنشور (يظهر ككابشن الصورة)
+ * @param {boolean} [opts.published=true] - PUBLISHED أو DRAFT
+ * @returns {Promise<{photo_id: string, post_id: string|null, permalink_url: string}>}
+ */
+async function publishPhoto({ imagePath, caption = '', published = true }) {
+  assertConfigured();
+
+  if (!fs.existsSync(imagePath)) {
+    throw new Error(`ملف الصورة غير موجود: ${imagePath}`);
+  }
+
+  // eslint-disable-next-line global-require
+  const FormData = require('form-data');
+  const form = new FormData();
+  form.append('source', fs.createReadStream(imagePath));
+  form.append('caption', caption);
+  form.append('access_token', PAGE_TOKEN);
+  if (!published) form.append('published', 'false');
+
+  console.log(`[fb-graph] رفع صورة: ${path.basename(imagePath)} (${(fs.statSync(imagePath).size / 1024).toFixed(0)} KB)`);
+  const resp = await fetch(`${GRAPH_BASE}/${PAGE_ID}/photos`, {
+    method: 'POST',
+    headers: form.getHeaders(),
+    body: form.getBuffer(),
+  });
+
+  const data = await resp.json();
+  if (data.error) {
+    throw new Error(`فشل نشر الصورة: ${data.error.message} (code: ${data.error.code})`);
+  }
+
+  const postId = data.post_id || null;
+  console.log(`[fb-graph] ✓ تم نشر الصورة بنجاح! photo_id: ${data.id}`);
+  return {
+    photo_id: data.id,
+    post_id: postId,
+    permalink_url: `https://www.facebook.com/${postId || data.id}`,
+  };
+}
+
+/**
  * التحقق من حالة فيديو
  * @param {string} videoId
  * @returns {Promise<Object>}
@@ -131,4 +175,4 @@ function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-module.exports = { publishReel, getVideoStatus, PAGE_ID, PAGE_TOKEN };
+module.exports = { publishReel, publishPhoto, getVideoStatus, PAGE_ID, PAGE_TOKEN };
