@@ -209,6 +209,28 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2024779234731145",
       "publishedAt": "2026-08-07T00:16:55.721Z"
+    },
+    {
+      "topicId": "trend-shabka-and-engagement-gifts-law-egypt",
+      "title": "حكم الشبكة والهدايا عند فسخ الخطبة في القانون المصري ومصير الذهب",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-shabka-and-engagement-gifts-law-egypt.mp4",
+      "source": "trending-topics.json",
+      "videoId": "xZ9EnlFmBic",
+      "url": "https://www.youtube.com/watch?v=xZ9EnlFmBic",
+      "kind": "short",
+      "fbPermalink": "https://www.facebook.com/reel/1741932620285507",
+      "publishedAt": "2026-08-07T07:42:12.371Z"
+    },
+    {
+      "topicId": "trend-shabka-and-engagement-gifts-law-egypt",
+      "title": "حكم الشبكة والهدايا عند فسخ الخطبة في القانون المصري ومصير الذهب — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-shabka-and-engagement-gifts-law-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "E-AmWVtyZhM",
+      "url": "https://www.youtube.com/watch?v=E-AmWVtyZhM",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1741932620285507",
+      "publishedAt": "2026-08-07T07:43:32.373Z"
     }
   ]
 }

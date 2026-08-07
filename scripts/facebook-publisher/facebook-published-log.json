@@ -405,6 +405,27 @@
       "duration": "1د 21ث",
       "size": 20726290,
       "publishedAt": "2026-08-07T00:15:34.831Z"
+    },
+    {
+      "topicId": "trend-shabka-and-engagement-gifts-law-egypt",
+      "title": "حكم الشبكة والهدايا عند فسخ الخطبة في القانون المصري ومصير الذهب",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#أحوال شخصية",
+        "#استرداد الشبكة",
+        "#فسخ الخطبة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-shabka-and-engagement-gifts-law-egypt.mp4",
+      "videoId": "1741932620285507",
+      "permalink": "https://www.facebook.com/reel/1741932620285507",
+      "source": "trending-topics.json",
+      "duration": "1د 15ث",
+      "size": 23653217,
+      "publishedAt": "2026-08-07T07:42:09.960Z"
     }
   ]
 }
