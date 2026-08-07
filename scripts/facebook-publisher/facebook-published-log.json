@@ -468,6 +468,27 @@
       "duration": "1د 14ث",
       "size": 22895608,
       "publishedAt": "2026-08-07T13:27:55.533Z"
+    },
+    {
+      "topicId": "trend-egyptian-social-insurance-pension-guide",
+      "title": "دليل المستحقين في قانون التأمينات الاجتماعية الجديد بمصر: حساب المعاش وحقوق الورثة",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#التأمينات الاجتماعية",
+        "#التأمينات الاجتماعية مصر",
+        "#الهيئة القومية للتأمين الاجتماعي"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-egyptian-social-insurance-pension-guide.mp4",
+      "videoId": "1292093752846165",
+      "permalink": "https://www.facebook.com/reel/1292093752846165",
+      "source": "trending-topics.json",
+      "duration": "1د 36ث",
+      "size": 24862379,
+      "publishedAt": "2026-08-07T16:08:23.892Z"
     }
   ]
 }

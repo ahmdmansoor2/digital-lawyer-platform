@@ -275,6 +275,28 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1950199892354785",
       "publishedAt": "2026-08-07T13:29:18.265Z"
+    },
+    {
+      "topicId": "trend-egyptian-social-insurance-pension-guide",
+      "title": "دليل المستحقين في قانون التأمينات الاجتماعية الجديد بمصر: حساب المعاش وحقوق الورثة",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-egyptian-social-insurance-pension-guide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "J1nI6eZyWUs",
+      "url": "https://www.youtube.com/watch?v=J1nI6eZyWUs",
+      "kind": "short",
+      "fbPermalink": "https://www.facebook.com/reel/1292093752846165",
+      "publishedAt": "2026-08-07T16:08:26.541Z"
+    },
+    {
+      "topicId": "trend-egyptian-social-insurance-pension-guide",
+      "title": "دليل المستحقين في قانون التأمينات الاجتماعية الجديد بمصر: حساب المعاش وحقوق الور — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-egyptian-social-insurance-pension-guide-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "XxU7iIq2k6I",
+      "url": "https://www.youtube.com/watch?v=XxU7iIq2k6I",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1292093752846165",
+      "publishedAt": "2026-08-07T16:10:00.864Z"
     }
   ]
 }
