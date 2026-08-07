@@ -3,7 +3,7 @@
  * card-publisher.cjs — ناشر البطاقات التعليمية اليومية على فيسبوك
  *
  * يأخذ الترند الأعلى من جوجل (من trending-topics.json — يولّده smart-publisher)
- * ويحوّله إلى بطاقة تعليمية بستايل بطاقات إنستجرام (أفقية 1200×628، خلفية فاتحة)
+ * ويحوّله إلى بطاقة تعليمية بستايل بطاقات إنستجرام (أفقية 1200×628، خلفية داكنة أنيقة)
  * ثم ينشرها منشور صورة على صفحة فيسبوك عبر Graph API.
  *
  * ملاحظة: لا يوجد API عام لـ NotebookLM — يُولَّد محتوى البطاقة مباشرة عبر Gemini
@@ -206,7 +206,7 @@ async function generateCardContent(topic, retryIdx = 0) {
   }
 }
 
-// ─── بناء SVG البطاقة (فاتحة، 1200×628) ──────────────────────────────────
+// ─── بناء SVG البطاقة (داكنة أنيقة، 1200×628) ─────────────────────────────
 // تخطيط ثابت (deterministic) — لا يتكدس عمودياً مهما تغيّر طول النصوص:
 //   الشعار/التصنيف ← hook (سطر واحد) ← العنوان (سطران كحد أقصى) ← 3 نقاط
 //   ← صندوق النصيحة (سطران كحد أقصى) ← السطر السفلي (CTA + هاشتاجات)
@@ -229,91 +229,114 @@ function buildCardSvg(card) {
     detail: (wrapText(p.detail, 55)[0] || ''),
   }));
 
-  const badge = '⚖️  منصة المحامي الرقمية';
+  const badge = 'منصة المحامي الرقمية';
   const cat = escapeXml(card.category || 'قانون');
-  const chipBg = 'rgba(16,185,129,0.12)';
 
   // مواضع رأسية ثابتة (تخطيط متحفظ يناسب الحالة القصوى: عنوان سطران + 3 نقاط + نصيحة سطران)
-  const BADGE_Y = 54;
+  const BADGE_Y = 58;
   const CHIP_Y = 28;
-  const HOOK_Y = 118;
-  const TITLE_Y = 170;
-  const TITLE_STEP = 50;
-  const POINT_ROWS = [290, 358, 426];
-  const TIP_Y = 452;
+  const HOOK_Y = 128;
+  const TITLE_Y = 178;
+  const TITLE_STEP = 52;
+  const POINT_ROWS = [300, 366, 432];
+  const TIP_Y = 458;
   const TIP_LINE = 30;
-  const FOOTER_Y = 584;
+  const FOOTER_Y = 592;
+
+  const FONT = "'Noto Sans Arabic', Tahoma, 'Segoe UI', Arial, sans-serif";
 
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${CARD_WIDTH}" height="${CARD_HEIGHT}" viewBox="0 0 ${CARD_WIDTH} ${CARD_HEIGHT}">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffffff"/>
-      <stop offset="1" stop-color="#f1f5f9"/>
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.5" stop-color="#111c33"/>
+      <stop offset="1" stop-color="#1e1b4b"/>
     </linearGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0" stop-color="#10b981"/>
       <stop offset="1" stop-color="#6366f1"/>
     </linearGradient>
+    <linearGradient id="numGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="chipGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#10b981"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="0.92" cy="0.08" r="0.6">
+      <stop offset="0" stop-color="#10b981" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#10b981" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0.06" cy="0.94" r="0.6">
+      <stop offset="0" stop-color="#6366f1" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="42" height="42" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="#ffffff" opacity="0.05"/>
+    </pattern>
   </defs>
   <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#bg)"/>
-  <circle cx="1090" cy="60" r="150" fill="#10b981" opacity="0.07"/>
-  <circle cx="80" cy="580" r="130" fill="#6366f1" opacity="0.07"/>
+  <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#glow1)"/>
+  <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#glow2)"/>
+  <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#dots)"/>
   <rect x="0" y="0" width="${CARD_WIDTH}" height="10" fill="url(#accent)"/>
-  <rect x="0" y="${CARD_HEIGHT - 10}" width="${CARD_WIDTH}" height="10" fill="url(#accent)"/>`;
+  <rect x="0" y="${CARD_HEIGHT - 10}" width="${CARD_WIDTH}" height="10" fill="url(#accent)"/>
+  <circle cx="${CARD_WIDTH - 92}" cy="66" r="4" fill="#34d399" opacity="0.9"/>
+  <circle cx="${CARD_WIDTH - 118}" cy="40" r="6" fill="#10b981" opacity="0.45"/>`;
 
   // ─── الشعار (يمين) + التصنيف (شريحة يسار) ─────────────────────────────
   svg += `
-  <text x="${rightX}" y="${BADGE_Y}" font-family="Tahoma, 'Noto Sans Arabic', Arial, sans-serif" font-size="26" font-weight="700" fill="#0f172a" direction="rtl" text-anchor="start">${escapeXml(badge)}</text>
-  <rect x="${leftX}" y="${CHIP_Y}" width="${Math.min(220, 40 + cat.length * 13)}" height="40" rx="20" fill="${chipBg}"/>
-  <text x="${leftX + 20}" y="${CHIP_Y + 26}" font-family="Tahoma, 'Noto Sans Arabic', Arial, sans-serif" font-size="22" font-weight="700" fill="#047857" direction="rtl" text-anchor="end">${cat}</text>`;
+  <text x="${rightX}" y="${BADGE_Y}" font-family="${FONT}" font-size="26" font-weight="700" fill="#e2e8f0" direction="rtl" text-anchor="start">${escapeXml(badge)}</text>
+  <rect x="${leftX}" y="${CHIP_Y}" width="${Math.min(230, 44 + cat.length * 14)}" height="40" rx="20" fill="url(#chipGrad)" opacity="0.9"/>
+  <text x="${leftX + 20}" y="${CHIP_Y + 27}" font-family="${FONT}" font-size="22" font-weight="700" fill="#ffffff" direction="rtl" text-anchor="end">${cat}</text>`;
 
-  // ─── Hook (سطر واحد) ──────────────────────────────────────────────────
+  // ─── Hook (سطر واحد، بتدرج ملون) ──────────────────────────────────────
   if (hookLines[0]) {
     svg += `
-  <text x="${rightX}" y="${HOOK_Y}" font-family="Tahoma, 'Noto Sans Arabic', Arial, sans-serif" font-size="30" font-weight="700" fill="#6366f1" direction="rtl" text-anchor="start">${escapeXml(hookLines[0])}</text>`;
+  <text x="${rightX}" y="${HOOK_Y}" font-family="${FONT}" font-size="32" font-weight="800" fill="#6ee7b7" direction="rtl" text-anchor="start">${escapeXml(hookLines[0])}</text>`;
   }
 
   // ─── العنوان الرئيسي (سطران كحد أقصى) ────────────────────────────────
   titleLines.forEach((line, i) => {
     svg += `
-  <text x="${rightX}" y="${TITLE_Y + i * TITLE_STEP}" font-family="Tahoma, 'Noto Sans Arabic', Arial, sans-serif" font-size="42" font-weight="800" fill="#0f172a" direction="rtl" text-anchor="start">${escapeXml(line)}</text>`;
+  <text x="${rightX}" y="${TITLE_Y + i * TITLE_STEP}" font-family="${FONT}" font-size="44" font-weight="800" fill="#f8fafc" direction="rtl" text-anchor="start">${escapeXml(line)}</text>`;
   });
 
   // ─── النقاط (3 صفوف ثابتة) ────────────────────────────────────────────
   points.forEach((p, i) => {
     const rowY = POINT_ROWS[i];
-    const numR = 20;
-    const numCX = rightX - 20;
+    const numCX = rightX - 24;
     svg += `
-  <circle cx="${numCX}" cy="${rowY - 26}" r="${numR}" fill="#10b981" opacity="0.15"/>
-  <text x="${numCX}" y="${rowY - 18}" font-family="Tahoma, Arial, sans-serif" font-size="24" font-weight="800" fill="#047857" text-anchor="middle">${p.num}</text>`;
+  <circle cx="${numCX}" cy="${rowY - 27}" r="22" fill="url(#numGrad)" opacity="0.95"/>
+  <text x="${numCX}" y="${rowY - 19}" font-family="Tahoma, Arial, sans-serif" font-size="23" font-weight="800" fill="#ffffff" text-anchor="middle">${p.num}</text>`;
     if (p.label) {
       svg += `
-  <text x="${textX}" y="${rowY - 30}" font-family="Tahoma, 'Noto Sans Arabic', Arial, sans-serif" font-size="26" font-weight="800" fill="#0f172a" direction="rtl" text-anchor="start">${escapeXml(p.label)}</text>`;
+  <text x="${textX}" y="${rowY - 30}" font-family="${FONT}" font-size="28" font-weight="800" fill="#f1f5f9" direction="rtl" text-anchor="start">${escapeXml(p.label)}</text>`;
     }
     if (p.detail) {
       svg += `
-  <text x="${textX}" y="${rowY + 4}" font-family="Tahoma, 'Noto Sans Arabic', Arial, sans-serif" font-size="23" font-weight="400" fill="#475569" direction="rtl" text-anchor="start">${escapeXml(p.detail)}</text>`;
+  <text x="${textX}" y="${rowY + 3}" font-family="${FONT}" font-size="23" font-weight="400" fill="#a5b4fc" direction="rtl" text-anchor="start">${escapeXml(p.detail)}</text>`;
     }
   });
 
   // ─── صندوق النصيحة القانونية (سطران كحد أقصى) ─────────────────────────
-  const tipBoxH = 40 + tipLines.length * TIP_LINE;
+  const tipBoxH = 44 + tipLines.length * TIP_LINE;
   svg += `
-  <rect x="${pad}" y="${TIP_Y}" width="${CARD_WIDTH - pad * 2}" height="${tipBoxH}" rx="14" fill="#ecfdf5" stroke="#a7f3d0" stroke-width="2"/>`;
+  <rect x="${pad}" y="${TIP_Y}" width="${CARD_WIDTH - pad * 2}" height="${tipBoxH}" rx="16" fill="#10b981" opacity="0.10" stroke="#34d399" stroke-width="1.5"/>`;
   if (tipLines[0]) {
     svg += `
-  <text x="${rightX - 24}" y="${TIP_Y + 32}" font-family="Tahoma, 'Noto Sans Arabic', Arial, sans-serif" font-size="24" font-weight="800" fill="#047857" direction="rtl" text-anchor="start">💡 نصيحة قانونية: ${escapeXml(tipLines[0])}</text>`;
+  <text x="${rightX - 24}" y="${TIP_Y + 34}" font-family="${FONT}" font-size="24" font-weight="800" fill="#34d399" direction="rtl" text-anchor="start">نصيحة قانونية: ${escapeXml(tipLines[0])}</text>`;
     for (let i = 1; i < tipLines.length; i++) {
       svg += `
-  <text x="${rightX - 24}" y="${TIP_Y + 32 + i * TIP_LINE}" font-family="Tahoma, 'Noto Sans Arabic', Arial, sans-serif" font-size="22" font-weight="400" fill="#065f46" direction="rtl" text-anchor="start">${escapeXml(tipLines[i])}</text>`;
+  <text x="${rightX - 24}" y="${TIP_Y + 34 + i * TIP_LINE}" font-family="${FONT}" font-size="22" font-weight="400" fill="#a7f3d0" direction="rtl" text-anchor="start">${escapeXml(tipLines[i])}</text>`;
     }
   }
 
   // ─── السطر السفلي: CTA (يمين) + الهاشتاجات (يسار) ─────────────────────
   svg += `
-  <text x="${rightX}" y="${FOOTER_Y}" font-family="Tahoma, 'Noto Sans Arabic', Arial, sans-serif" font-size="24" font-weight="800" fill="#0f172a" direction="rtl" text-anchor="start">${escapeXml(card.cta || 'استشر محامياً مختصاً')} ←</text>
-  <text x="${leftX + 20}" y="${FOOTER_Y}" font-family="Tahoma, 'Noto Sans Arabic', Arial, sans-serif" font-size="20" font-weight="600" fill="#94a3b8" direction="rtl" text-anchor="end">${escapeXml(hashtagText)}</text>`;
+  <text x="${rightX}" y="${FOOTER_Y}" font-family="${FONT}" font-size="24" font-weight="800" fill="#e2e8f0" direction="rtl" text-anchor="start">${escapeXml(card.cta || 'استشر محامياً مختصاً')} ←</text>
+  <text x="${leftX + 20}" y="${FOOTER_Y}" font-family="${FONT}" font-size="20" font-weight="600" fill="#64748b" direction="rtl" text-anchor="end">${escapeXml(hashtagText)}</text>`;
 
   svg += `
 </svg>`;
