@@ -104,6 +104,13 @@
     .stage p:last-child { margin-bottom: 0; }
 
     /* BACK LINK & CTA */
+    .related-articles { margin-top: 40px; padding: 24px; border-radius: 16px; background: rgba(168,85,247,0.06); border: 1px solid var(--border); }
+    .related-articles h3 { font-size: 17px; font-weight: 800; color: var(--accent-light); margin: 0 0 16px; }
+    .related-articles ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+    .related-articles li { position: relative; padding-right: 20px; }
+    .related-articles li::before { content: '\2190'; position: absolute; right: 0; top: 0; color: var(--accent-light); font-weight: 700; }
+    .related-articles a { color: #e2e8f0; font-size: 14px; font-weight: 600; text-decoration: none; line-height: 1.6; }
+    .related-articles a:hover { color: var(--accent-light); }
     .back-link { text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
     .back-link a { display: inline-flex; align-items: center; gap: 8px; color: #d8b4fe; font-size: 13px; font-weight: 800; text-decoration: none; padding: 10px 24px; border-radius: 12px; background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); transition: all 0.2s; }
     .back-link a:hover { background: rgba(168,85,247,0.2); transform: translateX(-3px); }
@@ -283,8 +290,15 @@
       <h2>الخلاصة</h2>
       <p>المرافعة فن يمكن لأي محامٍ مجتهد إتقانه. <strong>التحضير + الثقة + الإقناع المنطقي = مرافعة ناجحة</strong>. كل قضية تترافع فيها ترفع مستواك وسمعتك المهنية.</p>
 
-      <p>ابدأ من الجلسات القادمة بالتدرّب على تنظيم أفكارك ومرافعتك، ومع الوقت ستصل إلى القدرة على حسم القضية بكلمات معدودة ومؤثرة.</p>
-
+      <p>ابدأ من الجلسات القادمة بالتدرّب على تنظيم أفكارك ومرافعتك، ومع الوقت ستصل إلى القدرة على حسم القضية بكلمات معدودة ومؤثرة.</p>      
+      <div class="related-articles">
+        <h3>مقالات ذات صلة</h3>
+        <ul>
+        <li><a href="/blog/case-management-guide.html">الدليل الشامل لإدارة القضايا: من القيد إلى الحكم</a></li>
+        <li><a href="/blog/judicial-fees-court.html">الرسوم القضائية في الدعاوى المدنية: كيف تُحسب وتُدفع طبقاً للقانون المصري</a></li>
+        <li><a href="/blog/judicial-recess-deadlines-egypt.html">العطلة القضائية في مصر: كيف تؤثر على المواعيد ومباشرة الدعاوى؟</a></li>
+        </ul>
+      </div>
       <div class="back-link">
         <a href="/blog/">← العودة للمدونة القانونية</a>
       </div>

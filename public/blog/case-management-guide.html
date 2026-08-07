@@ -109,6 +109,13 @@
     .checklist li::before { content: '✓'; position: absolute; right: 0; top: 2px; width: 22px; height: 22px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); border-radius: 50%; color: #fbbf24; font-weight: 900; font-size: 12px; display: flex; align-items: center; justify-content: center; }
 
     /* BACK LINK & CTA */
+    .related-articles { margin-top: 40px; padding: 24px; border-radius: 16px; background: rgba(168,85,247,0.06); border: 1px solid var(--border); }
+    .related-articles h3 { font-size: 17px; font-weight: 800; color: var(--accent-light); margin: 0 0 16px; }
+    .related-articles ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+    .related-articles li { position: relative; padding-right: 20px; }
+    .related-articles li::before { content: '\2190'; position: absolute; right: 0; top: 0; color: var(--accent-light); font-weight: 700; }
+    .related-articles a { color: #e2e8f0; font-size: 14px; font-weight: 600; text-decoration: none; line-height: 1.6; }
+    .related-articles a:hover { color: var(--accent-light); }
     .back-link { text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
     .back-link a { display: inline-flex; align-items: center; gap: 8px; color: #fbbf24; font-size: 13px; font-weight: 800; text-decoration: none; padding: 10px 24px; border-radius: 12px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); transition: all 0.2s; }
     .back-link a:hover { background: rgba(245,158,11,0.2); transform: translateX(-3px); }
@@ -329,8 +336,15 @@
 
       <p>إدارة القضايا الجيدة <strong>تحمي حقوق موكليك، تحفظ سمعتك، وتزيد دخلك</strong>. المحامي المنظم يجد وقتاً لقضايا أكثر، ويحقق نتائج أفضل، وينام مرتاح البال.</p>
 
-      <p>ابدأ اليوم بتطبيق خطوة واحدة من هذا الدليل، وستلاحظ الفرق خلال أسابيع قليلة.</p>
-
+      <p>ابدأ اليوم بتطبيق خطوة واحدة من هذا الدليل، وستلاحظ الفرق خلال أسابيع قليلة.</p>      
+      <div class="related-articles">
+        <h3>مقالات ذات صلة</h3>
+        <ul>
+        <li><a href="/blog/courtroom-advocacy.html">فن المرافعة أمام المحاكم: دليلك الشامل للاحتراف</a></li>
+        <li><a href="/blog/judicial-fees-court.html">الرسوم القضائية في الدعاوى المدنية: كيف تُحسب وتُدفع طبقاً للقانون المصري</a></li>
+        <li><a href="/blog/judicial-recess-deadlines-egypt.html">العطلة القضائية في مصر: كيف تؤثر على المواعيد ومباشرة الدعاوى؟</a></li>
+        </ul>
+      </div>
       <div class="back-link">
         <a href="/blog/">← العودة للمدونة القانونية</a>
       </div>

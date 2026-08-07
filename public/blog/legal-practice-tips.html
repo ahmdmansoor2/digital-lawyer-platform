@@ -123,6 +123,13 @@
     .tip-list-item p { margin-bottom: 0; font-size: 14px; color: #cbd5e1; }
 
     /* BACK LINK & CTA */
+    .related-articles { margin-top: 40px; padding: 24px; border-radius: 16px; background: rgba(168,85,247,0.06); border: 1px solid var(--border); }
+    .related-articles h3 { font-size: 17px; font-weight: 800; color: var(--accent-light); margin: 0 0 16px; }
+    .related-articles ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+    .related-articles li { position: relative; padding-right: 20px; }
+    .related-articles li::before { content: '\2190'; position: absolute; right: 0; top: 0; color: var(--accent-light); font-weight: 700; }
+    .related-articles a { color: #e2e8f0; font-size: 14px; font-weight: 600; text-decoration: none; line-height: 1.6; }
+    .related-articles a:hover { color: var(--accent-light); }
     .back-link { text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
     .back-link a { display: inline-flex; align-items: center; gap: 8px; color: var(--indigo); font-size: 13px; font-weight: 800; text-decoration: none; padding: 10px 24px; border-radius: 12px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3); transition: all 0.2s; }
     .back-link a:hover { background: rgba(99,102,241,0.2); transform: translateX(-3px); }
@@ -302,8 +309,15 @@
       </div>
 
       <h2>الخلاصة</h2>
-      <p>النجاح في مهنة المحاماة يتطلب أكثر من المعرفة القانونية — يتطلب <strong>تنظيماً، انضباطاً، وتكنولوجيا</strong>. ابدأ بتطبيق نصيحة أو اثنتين اليوم، ثم أضف غيرها تدريجياً.</p>
-
+      <p>النجاح في مهنة المحاماة يتطلب أكثر من المعرفة القانونية — يتطلب <strong>تنظيماً، انضباطاً، وتكنولوجيا</strong>. ابدأ بتطبيق نصيحة أو اثنتين اليوم، ثم أضف غيرها تدريجياً.</p>      
+      <div class="related-articles">
+        <h3>مقالات ذات صلة</h3>
+        <ul>
+        <li><a href="/blog/law-firm-marketing.html">التسويق لمكتب المحاماة: كيف تجذب موكلك بدون إعلانات مكلفة</a></li>
+        <li><a href="/blog/tech-for-lawyers.html">التكنولوجيا القانونية: لماذا المحامي الذكي هو المحامي الناجح؟</a></li>
+        <li><a href="/blog/case-management-guide.html">الدليل الشامل لإدارة القضايا: من القيد إلى الحكم</a></li>
+        </ul>
+      </div>
       <div class="back-link">
         <a href="/blog/">← العودة للمدونة القانونية</a>
       </div>

@@ -80,6 +80,13 @@
     .callout p strong { color: #fff; }
     .disclaimer { background: rgba(148,163,184,0.08); border: 1px solid rgba(148,163,184,0.2); border-radius: 14px; padding: 18px 22px; margin: 32px 0 0; }
     .disclaimer p { margin-bottom: 0; font-size: 12px; color: var(--muted); line-height: 1.8; }
+    .related-articles { margin-top: 40px; padding: 24px; border-radius: 16px; background: rgba(168,85,247,0.06); border: 1px solid var(--border); }
+    .related-articles h3 { font-size: 17px; font-weight: 800; color: var(--accent-light); margin: 0 0 16px; }
+    .related-articles ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+    .related-articles li { position: relative; padding-right: 20px; }
+    .related-articles li::before { content: '\2190'; position: absolute; right: 0; top: 0; color: var(--accent-light); font-weight: 700; }
+    .related-articles a { color: #e2e8f0; font-size: 14px; font-weight: 600; text-decoration: none; line-height: 1.6; }
+    .related-articles a:hover { color: var(--accent-light); }
     .back-link { text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); }
     .back-link a { display: inline-flex; align-items: center; gap: 8px; color: var(--indigo); font-size: 13px; font-weight: 800; text-decoration: none; padding: 10px 24px; border-radius: 12px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3); }
     .cta-section { text-align: center; padding: 0 24px 64px; }
@@ -623,8 +630,15 @@
 
       <div class="disclaimer">
         <p>هذا المقال لأغراض التوعية القانونية العامة ولا يغني عن استشارة محامٍ متخصص.</p>
+      </div>      
+      <div class="related-articles">
+        <h3>مقالات ذات صلة</h3>
+        <ul>
+        <li><a href="/blog/administrative-appeals-egypt.html">كيف تطعن في قرار إداري ظالم؟ دليلك للتقاضي أمام مجلس الدولة</a></li>
+        <li><a href="/blog/case-management-guide.html">الدليل الشامل لإدارة القضايا: من القيد إلى الحكم</a></li>
+        <li><a href="/blog/courtroom-advocacy.html">فن المرافعة أمام المحاكم: دليلك الشامل للاحتراف</a></li>
+        </ul>
       </div>
-
       <div class="back-link">
         <a href="/blog/">← العودة للمدونة القانونية</a>
       </div>
