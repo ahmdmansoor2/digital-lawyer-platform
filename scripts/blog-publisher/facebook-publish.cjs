@@ -29,7 +29,7 @@ const BLOG_DIR = path.join(ROOT, 'public', 'blog');
 const PUBLISHED_LOG = path.join(__dirname, 'published-log.json');
 const OLD_PUBLISHED_LOG = path.join(ROOT, 'scripts', 'published-log.json');
 const FB_LOG = path.join(__dirname, 'facebook-published-log.json');
-const BASE_URL = 'https://justice-91571.web.app';
+const BASE_URL = 'https://mohamidigital.online';
 
 dotenv.config({ path: path.join(ROOT, '.env') });
 
@@ -262,7 +262,7 @@ async function publishArticleToFacebook(article, token, pageId) {
       : `${FB_PREAMBLE}\n${part}`;
     try {
       const imgRel = getImageForSlug(slug);
-      const imageUrl = imgRel ? `https://justice-91571.web.app${imgRel}` : null;
+      const imageUrl = imgRel ? `https://mohamidigital.online${imgRel}` : null;
       const imageFile = imgRel ? path.join(BLOG_DIR, 'images', path.basename(imgRel)) : null;
       // الجزء الأول يُنشر كصورة (إن وُجدت غلاف حقيقي) لضمان ظهور الصورة؛
       // SVG لا يُقبل في /photos فيُترك كمنشور رابط عادي.

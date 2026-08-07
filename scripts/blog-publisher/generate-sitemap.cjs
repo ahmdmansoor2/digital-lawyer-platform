@@ -14,7 +14,7 @@ const BLOG_DIR = path.join(ROOT, 'public', 'blog');
 const PILLARS_DIR = path.join(ROOT, 'public', 'pillars');
 const SITEMAP_FILE = path.join(ROOT, 'public', 'sitemap.xml');
 const SITEMAP_HTML_FILE = path.join(ROOT, 'public', 'sitemap.html');
-const BASE_URL = 'https://justice-91571.web.app';
+const BASE_URL = 'https://mohamidigital.online';
 
 function cairoDateStr() {
   return new Date(Date.now() + 120 * 60000).toISOString().slice(0, 10);

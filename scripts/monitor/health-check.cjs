@@ -30,7 +30,7 @@ try {
   dotenv.config({ path: path.join(ROOT, '.env') });
 } catch { /* في CI لا يوجد .env — كل شيء من env */ }
 
-const BASE_URL = process.env.MONITOR_BASE_URL || 'https://justice-91571.web.app';
+const BASE_URL = process.env.MONITOR_BASE_URL || 'https://mohamidigital.online';
 const FB_PAGE_ID = process.env.FB_PAGE_ID || process.env.MONITOR_FB_PAGE_ID || '';
 const FB_PAGE_TOKEN = process.env.FB_PAGE_TOKEN || process.env.MONITOR_FB_TOKEN || '';
 const GH_TOKEN = process.env.GITHUB_TOKEN || '';

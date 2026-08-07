@@ -28,7 +28,7 @@
 4. في الـ Scopes فعّل: `user.info.basic`, `video.upload`, `video.publish`
 5. في **Redirect URI** ضيف:
    - `http://localhost:8787/oauth/callback` (للتطوير)
-   - `https://justice-91571.web.app/tiktok-oauth-callback.html` (للإنتاج — هنضيفه بعدين)
+   - `https://mohamidigital.online/tiktok-oauth-callback.html` (للإنتاج — هنضيفه بعدين)
 6. انسخ **Client Key** و **Client Secret** في `.env`
 
 ### 2) متغيرات البيئة

@@ -891,12 +891,12 @@ function generateArticleHTML(topic) {
   <title>${topic.title} - منصة المحامي الرقمية</title>
   <meta name="description" content="${topic.metaDesc}" />
   <meta name="keywords" content="${topic.keywords}" />
-  <link rel="canonical" href="https://justice-91571.web.app/blog/${topic.slug}.html" />
+  <link rel="canonical" href="https://mohamidigital.online/blog/${topic.slug}.html" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="${topic.title}" />
   <meta property="og:description" content="${topic.metaDesc}" />
-  <meta property="og:url" content="https://justice-91571.web.app/blog/${topic.slug}.html" />
-  <meta property="og:image" content="https://justice-91571.web.app${getImageForTopic(topic)}" />
+  <meta property="og:url" content="https://mohamidigital.online/blog/${topic.slug}.html" />
+  <meta property="og:image" content="https://mohamidigital.online${getImageForTopic(topic)}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="منصة المحامي الرقمية" />
@@ -1204,7 +1204,7 @@ async function main() {
     process.exit(1);
   }
 
-  const articleUrl = 'https://justice-91571.web.app/blog/' + topic.slug + '.html';
+  const articleUrl = 'https://mohamidigital.online/blog/' + topic.slug + '.html';
   log.published.push({ title: topic.title, date: topic.pubDate, slug: topic.slug, url: articleUrl, tags: [topic.tag] });
   saveLog(log);
 

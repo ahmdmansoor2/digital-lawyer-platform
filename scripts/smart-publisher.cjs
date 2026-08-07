@@ -26,7 +26,7 @@ const IMG_DIR    = path.join(BLOG_DIR, 'images');
 const LOG_FILE   = path.join(__dirname, 'published-log.json');
 const TREND_FILE = path.join(__dirname, 'trending-topics.json');
 const FB_LOG     = path.join(__dirname, 'blog-publisher', 'facebook-published-log.json');
-const BASE_URL   = 'https://justice-91571.web.app';
+const BASE_URL   = 'https://mohamidigital.online';
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 

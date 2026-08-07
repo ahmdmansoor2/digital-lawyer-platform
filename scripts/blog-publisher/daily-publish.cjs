@@ -26,7 +26,7 @@ const TOPICS_FILE = path.join(__dirname, 'topics.json');
 const LOG_FILE = path.join(__dirname, 'published-log.json');
 // السجلّ الرئيسي المختوم باليدوي — يُزامن مع LOG_FILE لتفادي انفصال السجلّين
 const LEGACY_LOG_FILE = path.join(ROOT, 'scripts', 'published-log.json');
-const BASE_URL = 'https://justice-91571.web.app';
+const BASE_URL = 'https://mohamidigital.online';
 const ARTICLES_PER_RUN = Number(process.env.ARTICLES_PER_RUN) || 5; // عدد المقالات في كل تشغيل (قابل للتجاوز عبر env)
 const MIN_WORDS = 3000; // الحد الأدنى لعدد كلمات المقال
 const IMAGE_MODEL = 'gemini-2.5-flash-image'; // Nano Banana
@@ -1114,6 +1114,24 @@ async function main() {
     }
   } else if (process.env.REELS_AUTO !== '1') {
     console.log('\n[publish] ⏭️  لم يُنشر Reel: REELS_AUTO=1 غير مضبوط. أضِفها في .env لو عايز التفعيل.');
+  }
+
+  // 8. إرسال المقالات الجديدة لـ IndexNow (Bing + Yandex + DuckDuckGo)
+  // فهرسة فورية بدون حد يومي
+  if (process.env.INDEXNOW_API_KEY && publishedNow.length > 0) {
+    console.log('\n[publish] === إرسال URLs لـ IndexNow ===');
+    try {
+      const newUrls = publishedNow.map(slug => `${BASE_URL}/blog/${slug}.html`).join(',');
+      execSync(`node scripts/seo/indexnow-submit.cjs --urls="${newUrls}"`, {
+        cwd: ROOT,
+        stdio: 'inherit',
+        env: { ...process.env },
+        timeout: 60_000,
+      });
+      console.log(`[publish] ✓ تم إرسال ${publishedNow.length} URLs لـ Bing/Yandex/DuckDuckGo`);
+    } catch (idxErr) {
+      console.error(`[publish] تحذير: فشل إرسال IndexNow: ${idxErr.message?.substring(0, 200)}`);
+    }
   }
 }
 

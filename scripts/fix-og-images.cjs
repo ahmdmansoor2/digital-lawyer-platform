@@ -14,7 +14,7 @@ console.log('🖼️  جاري إضافة وسوم og:image وتفعيل معا�
 let autoCode = fs.readFileSync(AUTO_PUB, 'utf8');
 if (!autoCode.includes('og:image')) {
   const targetStr = '<meta property="og:site_name" content="منصة المحامي الرقمية" />';
-  const replacementStr = `<meta property="og:image" content="https://justice-91571.web.app\${getImageForTopic(topic)}" />\n  <meta property="og:image:width" content="1200" />\n  <meta property="og:image:height" content="630" />\n  <meta property="og:site_name" content="منصة المحامي الرقمية" />`;
+  const replacementStr = `<meta property="og:image" content="https://mohamidigital.online\${getImageForTopic(topic)}" />\n  <meta property="og:image:width" content="1200" />\n  <meta property="og:image:height" content="630" />\n  <meta property="og:site_name" content="منصة المحامي الرقمية" />`;
   autoCode = autoCode.replace(targetStr, replacementStr);
   fs.writeFileSync(AUTO_PUB, autoCode, 'utf8');
   console.log('✅ تم إدراج og:image في scripts/auto-publisher.cjs');
@@ -50,7 +50,7 @@ if (!fbCode.includes('params.set("link"')) {
   // تحديث استدعاء postToFacebook في publishArticleToFacebook
   fbCode = fbCode.replace(
     'const id = await postToFacebook(header, pageId, token, partCount > 1, { i: i + 1, total: partCount });',
-    'const imageUrl = `https://justice-91571.web.app${getImageForSlug(slug)}`;\n      const id = await postToFacebook(header, pageId, token, partCount > 1, { i: i + 1, total: partCount }, url, imageUrl);'
+    'const imageUrl = `https://mohamidigital.online${getImageForSlug(slug)}`;\n      const id = await postToFacebook(header, pageId, token, partCount > 1, { i: i + 1, total: partCount }, url, imageUrl);'
   );
 
   fs.writeFileSync(FB_PUB, fbCode, 'utf8');
@@ -67,7 +67,7 @@ for (const file of htmlFiles) {
   if (!html.includes('og:image')) {
     const slug = file.replace('.html', '');
     const imgPath = getImageForSlug(slug);
-    const ogTags = `<meta property="og:image" content="https://justice-91571.web.app${imgPath}" />\n  <meta property="og:image:width" content="1200" />\n  <meta property="og:image:height" content="630" />\n  <meta property="og:site_name"`;
+    const ogTags = `<meta property="og:image" content="https://mohamidigital.online${imgPath}" />\n  <meta property="og:image:width" content="1200" />\n  <meta property="og:image:height" content="630" />\n  <meta property="og:site_name"`;
     html = html.replace('<meta property="og:site_name"', ogTags);
     fs.writeFileSync(filePath, html, 'utf8');
     htmlUpdated++;
