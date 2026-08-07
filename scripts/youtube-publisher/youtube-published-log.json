@@ -187,6 +187,28 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2591915131223546",
       "publishedAt": "2026-08-06T20:25:20.145Z"
+    },
+    {
+      "topicId": "blog-drug-offense-defense",
+      "title": "قضايا المخدرات في مصر: دليل حقوق المتهم ودفوع الدفاع الجنائي الشامل - منصة المحامي الرقمية",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-drug-offense-defense.mp4",
+      "source": "blog",
+      "videoId": "hu0_z0bCESo",
+      "url": "https://www.youtube.com/watch?v=hu0_z0bCESo",
+      "kind": "short",
+      "fbPermalink": "https://www.facebook.com/reel/2024779234731145",
+      "publishedAt": "2026-08-07T00:15:37.636Z"
+    },
+    {
+      "topicId": "blog-drug-offense-defense",
+      "title": "قضايا المخدرات في مصر: دليل حقوق المتهم ودفوع الدفاع الجنائي الشامل - منصة المحا — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-drug-offense-defense-wide.mp4",
+      "source": "blog",
+      "videoId": "ie-GsCOwy9g",
+      "url": "https://www.youtube.com/watch?v=ie-GsCOwy9g",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2024779234731145",
+      "publishedAt": "2026-08-07T00:16:55.721Z"
     }
   ]
 }

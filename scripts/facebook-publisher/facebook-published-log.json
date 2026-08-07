@@ -385,6 +385,26 @@
       "duration": "1د 31ث",
       "size": 21097506,
       "publishedAt": "2026-08-06T14:36:19.920Z"
+    },
+    {
+      "topicId": "blog-drug-offense-defense",
+      "title": "قضايا المخدرات في مصر: دليل حقوق المتهم ودفوع الدفاع الجنائي الشامل - منصة المحامي الرقمية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#تعتبر",
+        "#المخدرات"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-drug-offense-defense.mp4",
+      "videoId": "2024779234731145",
+      "permalink": "https://www.facebook.com/reel/2024779234731145",
+      "source": "blog",
+      "duration": "1د 21ث",
+      "size": 20726290,
+      "publishedAt": "2026-08-07T00:15:34.831Z"
     }
   ]
 }
