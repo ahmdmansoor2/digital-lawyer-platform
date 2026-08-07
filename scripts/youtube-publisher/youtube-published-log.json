@@ -231,6 +231,28 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1741932620285507",
       "publishedAt": "2026-08-07T07:43:32.373Z"
+    },
+    {
+      "topicId": "blog-inheritance-registration",
+      "title": "إعلام الوراثة في مصر: الدليل القانوني الشامل للمستندات والإجراءات العملية 2026 - منصة المحامي الرقمية",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-inheritance-registration.mp4",
+      "source": "blog",
+      "videoId": "a-10JLdn0-w",
+      "url": "https://www.youtube.com/watch?v=a-10JLdn0-w",
+      "kind": "short",
+      "fbPermalink": "https://www.facebook.com/reel/947861531676111",
+      "publishedAt": "2026-08-07T10:11:59.465Z"
+    },
+    {
+      "topicId": "blog-inheritance-registration",
+      "title": "إعلام الوراثة في مصر: الدليل القانوني الشامل للمستندات والإجراءات العملية 2026 - — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-inheritance-registration-wide.mp4",
+      "source": "blog",
+      "videoId": "468RIjBK8Gg",
+      "url": "https://www.youtube.com/watch?v=468RIjBK8Gg",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/947861531676111",
+      "publishedAt": "2026-08-07T10:13:18.029Z"
     }
   ]
 }
