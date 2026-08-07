@@ -297,6 +297,28 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1292093752846165",
       "publishedAt": "2026-08-07T16:10:00.864Z"
+    },
+    {
+      "topicId": "trend-shabka-legal-status-breakup-egypt",
+      "title": "الموقف القانوني لـ «الشبكة» وهدايا الخطوبة عند فسخ الخطبة في القانون المصري",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-shabka-legal-status-breakup-egypt.mp4",
+      "source": "trending-topics.json",
+      "videoId": "Oq8G_2ozJ0A",
+      "url": "https://www.youtube.com/watch?v=Oq8G_2ozJ0A",
+      "kind": "short",
+      "fbPermalink": "https://www.facebook.com/reel/1342544894704044",
+      "publishedAt": "2026-08-07T19:14:30.878Z"
+    },
+    {
+      "topicId": "trend-shabka-legal-status-breakup-egypt",
+      "title": "الموقف القانوني لـ «الشبكة» وهدايا الخطوبة عند فسخ الخطبة في القانون المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-shabka-legal-status-breakup-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "-2z3UbfYh2o",
+      "url": "https://www.youtube.com/watch?v=-2z3UbfYh2o",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1342544894704044",
+      "publishedAt": "2026-08-07T19:16:14.250Z"
     }
   ]
 }

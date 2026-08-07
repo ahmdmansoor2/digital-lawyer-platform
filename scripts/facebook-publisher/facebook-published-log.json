@@ -489,6 +489,27 @@
       "duration": "1د 36ث",
       "size": 24862379,
       "publishedAt": "2026-08-07T16:08:23.892Z"
+    },
+    {
+      "topicId": "trend-shabka-legal-status-breakup-egypt",
+      "title": "الموقف القانوني لـ «الشبكة» وهدايا الخطوبة عند فسخ الخطبة في القانون المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#أحوال شخصية",
+        "#دعوى استرداد الشبكة",
+        "#فسخ الخطبة في القانون المصري"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-shabka-legal-status-breakup-egypt.mp4",
+      "videoId": "1342544894704044",
+      "permalink": "https://www.facebook.com/reel/1342544894704044",
+      "source": "trending-topics.json",
+      "duration": "1د 38ث",
+      "size": 33575964,
+      "publishedAt": "2026-08-07T19:14:26.912Z"
     }
   ]
 }
