@@ -263,3 +263,4 @@ src/
 - البطاقات في `scripts/facebook-publisher/output/cards/` (متجاهلة في git).
 - أدوات الفحص المؤقتة `_rtl-probe.cjs`/`_card-check.cjs` حُذفت بعد التحقق.
 - **Session 7b:** `buildCardSvg` أُعيد تصميمها لستايل **داكن أنيق** (خلفية slate-900→indigo، شارات أرقام متدرجة، صندوق نصيحة زجاجي، إزالة emoji من SVG — الـ emoji بقيت في الكابشن فقط). المواضع الرأسية الثابتة محدّثة: `BADGE_Y=58, CHIP_Y=28, HOOK_Y=128, TITLE_Y=178(+52), POINT_ROWS=[300,366,432], TIP_Y=458, FOOTER_Y=592`.
+- **Session 7c:** بطاقات فيسبوك — **خط Cairo** (OFL، `scripts/facebook-publisher/fonts/Cairo.ttf`) عبر `@font-face` بدل Tahoma/Noto، وأسلوب كتابة وفق خبراء فيسبوك (hook شخصي + عنوان بفائدة + نصوص مقتصدة). المواضع الجديدة: `BADGE_Y=58, CHIP_Y=28, HOOK_Y=132, TITLE_Y=188(+56), POINT_ROWS=[308,374,440], TIP_Y=468(+32), FOOTER_Y=596`. توليد البطاقات على Linux CI يحتاج خط Cairo (مضمّن في الريبو).

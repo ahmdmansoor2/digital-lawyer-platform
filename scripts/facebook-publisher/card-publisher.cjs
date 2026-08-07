@@ -19,6 +19,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { pathToFileURL } = require('url');
 const dotenv = require('dotenv');
 
 const ROOT = path.resolve(__dirname, '..', '..');
@@ -32,6 +33,10 @@ const OUTPUT_DIR = path.join(FB_PUBLISHER_DIR, 'output', 'cards');
 
 const CARD_WIDTH = 1200;
 const CARD_HEIGHT = 628;
+
+const CAIRO_FONT_URL = pathToFileURL(
+  path.join(FB_PUBLISHER_DIR, 'fonts', 'Cairo.ttf')
+).href;
 
 const { publishPhoto } = require(path.join(FB_PUBLISHER_DIR, 'facebook-graph.cjs'));
 const { GoogleGenAI } = require('@google/genai');
@@ -159,8 +164,8 @@ async function generateCardContent(topic, retryIdx = 0) {
   const models = ['gemini-3.5-flash', 'gemini-3-flash-preview', 'gemini-flash-lite-latest', 'gemini-2.0-flash'];
   const model = models[retryIdx % models.length];
 
-  const prompt = `أنت خبير قانوني مصري ومصمم بطاقات تعليمية احترافية بستايل بطاقات إنستجرام القانونية.
-صمّم بطاقة تعليمية جذابة وبسيطة عن الموضوع التالي:
+  const prompt = `أنت خبير قانوني مصري + كاتب إعلانات (copywriter) محترف متخصص في محتوى فيسبوك التعليمي عالي التفاعل.
+صمّم بطاقة تعليمية عن الموضوع التالي بأسلوب يحقق أعلى نسبة مشاهدات ونقرات:
 
 العنوان: ${topic.title}
 التصنيف: ${topic.tag || 'قانون'}
@@ -168,21 +173,23 @@ async function generateCardContent(topic, retryIdx = 0) {
 
 أرجع JSON فقط بدون أي كلام إضافي:
 {
-  "hook": "سطر جذب قصير (5-8 كلمات، سؤال أو حقيقة صادمة)",
-  "title": "عنوان قصير وجذاب للبطاقة (6-10 كلمات)",
+  "hook": "خط افتتاحي يجذب الانتباه خلال ثانية واحدة (سؤال شخصي مباشر أو حقيقة قانونية مفاجئة، 5-8 كلمات)",
+  "title": "عنوان رئيسي قصير بأسلوب مباشر يفيد القارئ (6-9 كلمات) — اختر أسلوب: 'اعرف حقك في...' أو 'متي يحق لك...' أو رقم/فائدة محددة",
   "points": [
-    { "label": "عنوان النقطة (2-4 كلمات)", "detail": "شرح مختصر (8-14 كلمة) بمعلومة قانونية دقيقة" }
+    { "label": "عنوان النقطة (2-4 كلمات)", "detail": "معلومة قانونية دقيقة مختصرة (7-12 كلمة)" }
   ],
-  "tip": "نصيحة قانونية عملية في جملة واحدة (10-15 كلمة)",
+  "tip": "نصيحة عملية في جملة واحدة (8-12 كلمة)",
   "hashtags": ["هاشتاج1", "هاشتاج2", "هاشتاج3", "هاشتاج4"],
-  "cta": "عبارة CTA قصيرة تدعو لاستشارة محامٍ (4-8 كلمات)"
+  "cta": "عبارة CTA قصيرة تدعو لاستشارة محامٍ (4-7 كلمات)"
 }
 
-القواعد:
-- الدقة القانونية 100٪ — اذكر المادة أو القانون عند اللزوم (مثل "المادة 65 من قانون العمل 12 لسنة 2003")
-- عربية فصحى سليمة، بدون عامية
+القواعد الذهبية للتفاعل العالي على فيسبوك:
+- الـ hook: اجعله شخصياً ومباشراً — خاطب القارئ بـ "أنت" أو اذكر سيناريو يهمه. لا تبدأ بسؤال عام مثل "هل تعلم؟"
+- العنوان: ركّز على الفائدة والقيمة العملية، وفضّل ذكر رقم أو موعد أو حالة محددة
+- العناوين داخل النقاط: قصيرة وحاسمة، والشرح بدقة قانونية 100٪ — اذكر المادة أو القانون عند اللزوم
+- عربية فصحى سليمة بدون عامية، بأسلوب واضح يقرأه الجميع
 - 3 نقاط فقط كحد أقصى
-- كل detail قصير ليتناسب مع بطاقة 1200×628
+- اجعل كل النصوص قصيرة لتظهر كبيرة وواضحة على بطاقة 1200×628
 - JSON صحيح 100٪`;
 
   try {
@@ -219,14 +226,14 @@ function buildCardSvg(card) {
   const hashtagText = normalizeHashtags(card.hashtags).join('  ');
 
   // تحضير الأسطر (بحدود قصوى مضمونة تناسب التخطيط)
-  const titleLines = wrapText(card.title, 30).slice(0, 2);
-  const hookLines = wrapText(card.hook, 56).slice(0, 1);
-  const tipLines = wrapText(card.tip, 58).slice(0, 2);
+  const titleLines = wrapText(card.title, 34).slice(0, 2);
+  const hookLines = wrapText(card.hook, 52).slice(0, 1);
+  const tipLines = wrapText(card.tip, 60).slice(0, 2);
 
   const points = (card.points || []).slice(0, 3).map((p, i) => ({
     num: i + 1,
     label: (wrapText(p.label, 28)[0] || ''),
-    detail: (wrapText(p.detail, 55)[0] || ''),
+    detail: (wrapText(p.detail, 58)[0] || ''),
   }));
 
   const badge = 'منصة المحامي الرقمية';
@@ -235,18 +242,20 @@ function buildCardSvg(card) {
   // مواضع رأسية ثابتة (تخطيط متحفظ يناسب الحالة القصوى: عنوان سطران + 3 نقاط + نصيحة سطران)
   const BADGE_Y = 58;
   const CHIP_Y = 28;
-  const HOOK_Y = 128;
-  const TITLE_Y = 178;
-  const TITLE_STEP = 52;
-  const POINT_ROWS = [300, 366, 432];
-  const TIP_Y = 458;
-  const TIP_LINE = 30;
-  const FOOTER_Y = 592;
+  const HOOK_Y = 132;
+  const TITLE_Y = 188;
+  const TITLE_STEP = 56;
+  const POINT_ROWS = [308, 374, 440];
+  const TIP_Y = 468;
+  const TIP_LINE = 32;
+  const FOOTER_Y = 596;
 
-  const FONT = "'Noto Sans Arabic', Tahoma, 'Segoe UI', Arial, sans-serif";
+  const FONT = "'Cairo', 'Noto Sans Arabic', 'Segoe UI', Tahoma, Arial, sans-serif";
+  const NUM_FONT = "'Cairo', Tahoma, Arial, sans-serif";
 
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${CARD_WIDTH}" height="${CARD_HEIGHT}" viewBox="0 0 ${CARD_WIDTH} ${CARD_HEIGHT}">
   <defs>
+    <style>@font-face{font-family:'Cairo';src:url('${CAIRO_FONT_URL}') format('truetype');}</style>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0f172a"/>
       <stop offset="0.5" stop-color="#111c33"/>
@@ -291,16 +300,17 @@ function buildCardSvg(card) {
   <rect x="${leftX}" y="${CHIP_Y}" width="${Math.min(230, 44 + cat.length * 14)}" height="40" rx="20" fill="url(#chipGrad)" opacity="0.9"/>
   <text x="${leftX + 20}" y="${CHIP_Y + 27}" font-family="${FONT}" font-size="22" font-weight="700" fill="#ffffff" direction="rtl" text-anchor="end">${cat}</text>`;
 
-  // ─── Hook (سطر واحد، بتدرج ملون) ──────────────────────────────────────
+  // ─── Hook (سطر واحد، بتدرج ملون كشارة بارزة) ──────────────────────────
   if (hookLines[0]) {
     svg += `
-  <text x="${rightX}" y="${HOOK_Y}" font-family="${FONT}" font-size="32" font-weight="800" fill="#6ee7b7" direction="rtl" text-anchor="start">${escapeXml(hookLines[0])}</text>`;
+  <rect x="${rightX - 12}" y="${HOOK_Y - 30}" width="6" height="34" rx="3" fill="url(#numGrad)"/>
+  <text x="${rightX - 30}" y="${HOOK_Y}" font-family="${FONT}" font-size="30" font-weight="700" fill="#6ee7b7" direction="rtl" text-anchor="start">${escapeXml(hookLines[0])}</text>`;
   }
 
   // ─── العنوان الرئيسي (سطران كحد أقصى) ────────────────────────────────
   titleLines.forEach((line, i) => {
     svg += `
-  <text x="${rightX}" y="${TITLE_Y + i * TITLE_STEP}" font-family="${FONT}" font-size="44" font-weight="800" fill="#f8fafc" direction="rtl" text-anchor="start">${escapeXml(line)}</text>`;
+  <text x="${rightX}" y="${TITLE_Y + i * TITLE_STEP}" font-family="${FONT}" font-size="50" font-weight="800" fill="#f8fafc" direction="rtl" text-anchor="start">${escapeXml(line)}</text>`;
   });
 
   // ─── النقاط (3 صفوف ثابتة) ────────────────────────────────────────────
@@ -309,33 +319,33 @@ function buildCardSvg(card) {
     const numCX = rightX - 24;
     svg += `
   <circle cx="${numCX}" cy="${rowY - 27}" r="22" fill="url(#numGrad)" opacity="0.95"/>
-  <text x="${numCX}" y="${rowY - 19}" font-family="Tahoma, Arial, sans-serif" font-size="23" font-weight="800" fill="#ffffff" text-anchor="middle">${p.num}</text>`;
+  <text x="${numCX}" y="${rowY - 18}" font-family="${NUM_FONT}" font-size="23" font-weight="800" fill="#ffffff" text-anchor="middle">${p.num}</text>`;
     if (p.label) {
       svg += `
-  <text x="${textX}" y="${rowY - 30}" font-family="${FONT}" font-size="28" font-weight="800" fill="#f1f5f9" direction="rtl" text-anchor="start">${escapeXml(p.label)}</text>`;
+  <text x="${textX}" y="${rowY - 30}" font-family="${FONT}" font-size="29" font-weight="800" fill="#f1f5f9" direction="rtl" text-anchor="start">${escapeXml(p.label)}</text>`;
     }
     if (p.detail) {
       svg += `
-  <text x="${textX}" y="${rowY + 3}" font-family="${FONT}" font-size="23" font-weight="400" fill="#a5b4fc" direction="rtl" text-anchor="start">${escapeXml(p.detail)}</text>`;
+  <text x="${textX}" y="${rowY + 4}" font-family="${FONT}" font-size="24" font-weight="400" fill="#a5b4fc" direction="rtl" text-anchor="start">${escapeXml(p.detail)}</text>`;
     }
   });
 
   // ─── صندوق النصيحة القانونية (سطران كحد أقصى) ─────────────────────────
-  const tipBoxH = 44 + tipLines.length * TIP_LINE;
+  const tipBoxH = 48 + tipLines.length * TIP_LINE;
   svg += `
   <rect x="${pad}" y="${TIP_Y}" width="${CARD_WIDTH - pad * 2}" height="${tipBoxH}" rx="16" fill="#10b981" opacity="0.10" stroke="#34d399" stroke-width="1.5"/>`;
   if (tipLines[0]) {
     svg += `
-  <text x="${rightX - 24}" y="${TIP_Y + 34}" font-family="${FONT}" font-size="24" font-weight="800" fill="#34d399" direction="rtl" text-anchor="start">نصيحة قانونية: ${escapeXml(tipLines[0])}</text>`;
+  <text x="${rightX - 24}" y="${TIP_Y + 37}" font-family="${FONT}" font-size="24" font-weight="800" fill="#34d399" direction="rtl" text-anchor="start">نصيحة قانونية: ${escapeXml(tipLines[0])}</text>`;
     for (let i = 1; i < tipLines.length; i++) {
       svg += `
-  <text x="${rightX - 24}" y="${TIP_Y + 34 + i * TIP_LINE}" font-family="${FONT}" font-size="22" font-weight="400" fill="#a7f3d0" direction="rtl" text-anchor="start">${escapeXml(tipLines[i])}</text>`;
+  <text x="${rightX - 24}" y="${TIP_Y + 37 + i * TIP_LINE}" font-family="${FONT}" font-size="23" font-weight="400" fill="#a7f3d0" direction="rtl" text-anchor="start">${escapeXml(tipLines[i])}</text>`;
     }
   }
 
   // ─── السطر السفلي: CTA (يمين) + الهاشتاجات (يسار) ─────────────────────
   svg += `
-  <text x="${rightX}" y="${FOOTER_Y}" font-family="${FONT}" font-size="24" font-weight="800" fill="#e2e8f0" direction="rtl" text-anchor="start">${escapeXml(card.cta || 'استشر محامياً مختصاً')} ←</text>
+  <text x="${rightX}" y="${FOOTER_Y}" font-family="${FONT}" font-size="25" font-weight="800" fill="#e2e8f0" direction="rtl" text-anchor="start">${escapeXml(card.cta || 'استشر محامياً مختصاً')} ←</text>
   <text x="${leftX + 20}" y="${FOOTER_Y}" font-family="${FONT}" font-size="20" font-weight="600" fill="#64748b" direction="rtl" text-anchor="end">${escapeXml(hashtagText)}</text>`;
 
   svg += `
