@@ -1045,6 +1045,54 @@
       "words": 3396,
       "image": "pollinations",
       "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "حكم الشبكة والهدايا عند فسخ الخطبة في القانون المصري ومصير الذهب",
+      "date": "2026-08-07",
+      "slug": "shabka-and-engagement-gifts-law-egypt",
+      "url": "https://justice-91571.web.app/blog/shabka-and-engagement-gifts-law-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/shabka-and-engagement-gifts-law-egypt.jpg",
+      "tags": [
+        "أحوال شخصية"
+      ],
+      "words": 1542,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "الجمارك على الهواتف والأجهزة الإلكترونية في مصر: الرسوم والإعفاءات القانونية",
+      "date": "2026-08-07",
+      "slug": "egypt-customs-duty-mobile-phones-law",
+      "url": "https://justice-91571.web.app/blog/egypt-customs-duty-mobile-phones-law.html",
+      "image": "https://justice-91571.web.app/blog/images/egypt-customs-duty-mobile-phones-law.jpg",
+      "tags": [
+        "قانون الجمارك"
+      ],
+      "words": 1838,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "حقوق مستخدمي الاتصالات والإنترنت في مصر وكيفية تقديم شكوى للجهاز القومي",
+      "date": "2026-08-07",
+      "slug": "telecom-user-rights-and-complaints-egypt",
+      "url": "https://justice-91571.web.app/blog/telecom-user-rights-and-complaints-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/telecom-user-rights-and-complaints-egypt.jpg",
+      "tags": [
+        "حماية المستهلك"
+      ],
+      "words": 1726,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبة القرصنة الإلكترونية وانتهاك حقوق الملكية الفكرية للبرامج والألعاب في مصر",
+      "date": "2026-08-07",
+      "slug": "intellectual-property-digital-piracy-egypt",
+      "url": "https://justice-91571.web.app/blog/intellectual-property-digital-piracy-egypt.html",
+      "image": "https://justice-91571.web.app/blog/images/intellectual-property-digital-piracy-egypt.jpg",
+      "tags": [
+        "الملكية الفكرية"
+      ],
+      "words": 1789,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
