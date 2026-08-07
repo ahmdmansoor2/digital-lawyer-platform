@@ -1093,6 +1093,18 @@
       ],
       "words": 1789,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "دليل المستحقين في قانون التأمينات الاجتماعية الجديد بمصر: حساب المعاش وحقوق الورثة",
+      "date": "2026-08-07",
+      "slug": "egyptian-social-insurance-pension-guide",
+      "url": "https://justice-91571.web.app/blog/egyptian-social-insurance-pension-guide.html",
+      "image": "https://justice-91571.web.app/blog/images/egyptian-social-insurance-pension-guide.jpg",
+      "tags": [
+        "التأمينات الاجتماعية"
+      ],
+      "words": 1963,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
