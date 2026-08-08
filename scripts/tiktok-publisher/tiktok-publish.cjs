@@ -171,7 +171,7 @@ function syncTopicsFromSources(count) {
       id,
       title: t.title || t.slug,
       category: t.tag || 'قانون',
-      keywords: (t.keywords || '').split(',').map(s => s.trim()).filter(Boolean),
+      keywords: Array.isArray(t.keywords) ? t.keywords : String(t.keywords || '').split(',').map(s => s.trim()).filter(Boolean),
       angle: `موضوع رائج اليوم في مصر: ${t.title || t.slug}`,
       source: 'trending-topics.json',
       source_article: null,
