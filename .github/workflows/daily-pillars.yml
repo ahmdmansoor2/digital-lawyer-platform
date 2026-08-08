@@ -40,8 +40,8 @@ jobs:
       - name: Build production bundle
         run: npm run build
 
-      - name: Deploy updated site & pillars to Firebase Hosting
-        run: npx firebase deploy --only hosting:app
+      - name: Deploy updated site & pillars to Firebase Hosting (both targets)
+        run: npx firebase deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
