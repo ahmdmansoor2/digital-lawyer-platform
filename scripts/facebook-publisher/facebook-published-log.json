@@ -594,6 +594,27 @@
       "duration": "51ث",
       "size": 11420372,
       "publishedAt": "2026-08-08T13:10:59.300Z"
+    },
+    {
+      "topicId": "blog-divorce-damages-claim",
+      "title": "دعوى التعويض عن الطلاق التعسفي: تقدير الضرر المادي والأدبي - منصة المحامي الرقمية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون الأسرة",
+        "#العلاقة",
+        "#الزوجية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-divorce-damages-claim.mp4",
+      "videoId": "1048309027940106",
+      "permalink": "https://www.facebook.com/reel/1048309027940106",
+      "source": "blog",
+      "duration": "1د 3ث",
+      "size": 16737059,
+      "publishedAt": "2026-08-08T15:43:47.653Z"
     }
   ]
 }
