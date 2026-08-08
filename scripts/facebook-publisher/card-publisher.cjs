@@ -103,12 +103,6 @@ function wrapText(text, maxChars) {
     while (line.length > maxChars) {
       lines.push(line.slice(0, maxChars));
       line = line.slice(maxChars);
-    }
-  }
-  if (line) lines.push(line);
-  return lines;
-}
-
 // ─── السجلات ───────────────────────────────────────────────────────────────
 function readCardLog() {
   return readJson(CARD_LOG_FILE, { entries: [] });
@@ -131,22 +125,20 @@ function logCardEntry(entry) {
 }
 
 // ─── اختيار الترند الأعلى ─────────────────────────────────────────────────
-function pickTopTrend(opts) {
-  const trending = readJson(TRENDING_FILE, { date: '', topics: [] });
-  const topics = trending.topics || [];
-
-  if (opts.topic) {
-    const t = topics.find((x) => x.slug === opts.topic);
-    if (!t) {
-      console.error(`❌ الترند "${opts.topic}" غير موجود في trending-topics.json`);
-      process.exit(1);
-    }
-    return { ...t, date: trending.date };
+function selectTopUnpublishedTopic(allowReelOverlap = false) {
+  const trending = readJson(TRENDING_FILE, null);
+  if (!trending || !Array.isArray(trending.topics) || trending.topics.length === 0) {
+    console.log('ℹ️  ملف trending-topics.json غير موجود أو فارغ.');
+    return null;
   }
 
-  const first = topics.find((t) => {
-    if (isCardPublished(t.slug)) return false;
-    if (!opts.allowReelOverlap && isReelPublished(t.slug)) return false;
+  const cardLog = readJson(CARD_LOG_FILE, { entries: [] });
+  const reelLog = readJson(REEL_LOG_FILE, { entries: [] });
+
+  const first = trending.topics.find((t) => {
+    const slug = t.slug;
+    if (isCardPublished(slug)) return false;
+    if (!allowReelOverlap && isReelPublished(slug)) return false;
     return true;
   });
 
@@ -155,6 +147,19 @@ function pickTopTrend(opts) {
     return null;
   }
   return { ...first, date: trending.date };
+}
+
+function pickTopTrend(opts) {
+  if (opts.topic) {
+    const trending = readJson(TRENDING_FILE, { date: '', topics: [] });
+    const t = trending.topics.find((x) => x.slug === opts.topic);
+    if (!t) {
+      console.error(`❌ الترند "${opts.topic}" غير موجود`);
+      process.exit(1);
+    }
+    return { ...t, date: trending.date };
+  }
+  return selectTopUnpublishedTopic(opts.allowReelOverlap);
 }
 
 // ─── توليد محتوى البطاقة عبر Gemini ───────────────────────────────────────
@@ -189,7 +194,7 @@ async function generateCardContent(topic, retryIdx = 0) {
 - العناوين داخل النقاط: قصيرة وحاسمة، والشرح بدقة قانونية 100٪ — اذكر المادة أو القانون عند اللزوم
 - عربية فصحى سليمة بدون عامية، بأسلوب واضح يقرأه الجميع
 - 3 نقاط فقط كحد أقصى
-- اجعل كل النصوص قصيرة لتظهر كبيرة وواضحة على بطاقة 1200×628
+- اجعل كل النصوص قصيرة لتظهر كبيرة وواضحة على بطاقة مربعة 1080×1080
 - JSON صحيح 100٪`;
 
   try {
@@ -213,140 +218,117 @@ async function generateCardContent(topic, retryIdx = 0) {
   }
 }
 
-// ─── بناء SVG البطاقة (داكنة أنيقة، 1200×628) ─────────────────────────────
-// تخطيط ثابت (deterministic) — لا يتكدس عمودياً مهما تغيّر طول النصوص:
-//   الشعار/التصنيف ← hook (سطر واحد) ← العنوان (سطران كحد أقصى) ← 3 نقاط
-//   ← صندوق النصيحة (سطران كحد أقصى) ← السطر السفلي (CTA + هاشتاجات)
+// ─── بناء SVG البطاقة (مربعة أنيقة، 1080×1080) ──────────────────────────────
 function buildCardSvg(card) {
-  const pad = 56;
-  const rightX = CARD_WIDTH - pad; // نقطة بداية النص RTL (يمين البطاقة)
+  const pad = 60;
+  const rightX = CARD_WIDTH - pad;
   const leftX = pad;
-  const textX = rightX - 56; // أقصى عرض للنص (يسار رقم النقطة)
+  const textX = rightX - 76;
 
   const hashtagText = normalizeHashtags(card.hashtags).join('  ');
 
-  // تحضير الأسطر (بحدود قصوى مضمونة تناسب التخطيط)
-  const titleLines = wrapText(card.title, 34).slice(0, 2);
-  const hookLines = wrapText(card.hook, 52).slice(0, 1);
-  const tipLines = wrapText(card.tip, 60).slice(0, 2);
+  const titleLines = wrapText(card.title, 28).slice(0, 2);
+  const hookLines = wrapText(card.hook, 45).slice(0, 1);
+  const tipLines = wrapText(card.tip, 50).slice(0, 2);
 
   const points = (card.points || []).slice(0, 3).map((p, i) => ({
     num: i + 1,
-    label: (wrapText(p.label, 28)[0] || ''),
-    detail: (wrapText(p.detail, 58)[0] || ''),
+    label: wrapText(p.label, 26)[0] || '',
+    detail: wrapText(p.detail, 48).slice(0, 2),
   }));
 
   const badge = 'منصة المحامي الرقمية';
-  const cat = escapeXml(card.category || 'قانون');
+  const cat = escapeXml(card.category || 'استشارة قانونية');
 
-  // مواضع رأسية ثابتة (تخطيط متحفظ يناسب الحالة القصوى: عنوان سطران + 3 نقاط + نصيحة سطران)
-  const BADGE_Y = 58;
-  const CHIP_Y = 28;
-  const HOOK_Y = 132;
-  const TITLE_Y = 188;
-  const TITLE_STEP = 56;
-  const POINT_ROWS = [308, 374, 440];
-  const TIP_Y = 468;
-  const TIP_LINE = 32;
-  const FOOTER_Y = 596;
-
-  const FONT = "'Cairo', 'Noto Sans Arabic', 'Segoe UI', Tahoma, Arial, sans-serif";
-  const NUM_FONT = "'Cairo', Tahoma, Arial, sans-serif";
+  const FONT = "'Cairo', 'Segoe UI', Tahoma, sans-serif";
 
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${CARD_WIDTH}" height="${CARD_HEIGHT}" viewBox="0 0 ${CARD_WIDTH} ${CARD_HEIGHT}">
-  <defs>
-    <style>@font-face{font-family:'Cairo';src:url('${CAIRO_FONT_URL}') format('truetype');}</style>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0f172a"/>
-      <stop offset="0.5" stop-color="#111c33"/>
-      <stop offset="1" stop-color="#1e1b4b"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#10b981"/>
-      <stop offset="1" stop-color="#6366f1"/>
-    </linearGradient>
-    <linearGradient id="numGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#34d399"/>
-      <stop offset="1" stop-color="#6366f1"/>
-    </linearGradient>
-    <linearGradient id="chipGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#10b981"/>
-      <stop offset="1" stop-color="#6366f1"/>
-    </linearGradient>
-    <radialGradient id="glow1" cx="0.92" cy="0.08" r="0.6">
-      <stop offset="0" stop-color="#10b981" stop-opacity="0.28"/>
-      <stop offset="1" stop-color="#10b981" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glow2" cx="0.06" cy="0.94" r="0.6">
-      <stop offset="0" stop-color="#6366f1" stop-opacity="0.32"/>
-      <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
-    </radialGradient>
-    <pattern id="dots" width="42" height="42" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1.6" fill="#ffffff" opacity="0.05"/>
-    </pattern>
-  </defs>
-  <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#bg)"/>
-  <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#glow1)"/>
-  <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#glow2)"/>
-  <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#dots)"/>
-  <rect x="0" y="0" width="${CARD_WIDTH}" height="10" fill="url(#accent)"/>
-  <rect x="0" y="${CARD_HEIGHT - 10}" width="${CARD_WIDTH}" height="10" fill="url(#accent)"/>
-  <circle cx="${CARD_WIDTH - 92}" cy="66" r="4" fill="#34d399" opacity="0.9"/>
-  <circle cx="${CARD_WIDTH - 118}" cy="40" r="6" fill="#10b981" opacity="0.45"/>`;
+<defs>
+  <style>@font-face{font-family:'Cairo';src:url('${CAIRO_FONT_URL}') format('truetype');}</style>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0b0f19"/>
+    <stop offset="0.4" stop-color="#0f172a"/>
+    <stop offset="1" stop-color="#1e1b4b"/>
+  </linearGradient>
+  <linearGradient id="goldAccent" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#f59e0b"/>
+    <stop offset="0.5" stop-color="#10b981"/>
+    <stop offset="1" stop-color="#6366f1"/>
+  </linearGradient>
+  <linearGradient id="numGrad1" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#f59e0b"/>
+    <stop offset="1" stop-color="#d97706"/>
+  </linearGradient>
+  <linearGradient id="numGrad2" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#10b981"/>
+    <stop offset="1" stop-color="#059669"/>
+  </linearGradient>
+  <linearGradient id="numGrad3" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#6366f1"/>
+    <stop offset="1" stop-color="#4f46e5"/>
+  </linearGradient>
+  <radialGradient id="glowGold" cx="0.88" cy="0.12" r="0.55">
+    <stop offset="0" stop-color="#f59e0b" stop-opacity="0.25"/>
+    <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="glowIndigo" cx="0.12" cy="0.88" r="0.55">
+    <stop offset="0" stop-color="#6366f1" stop-opacity="0.30"/>
+    <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+  </radialGradient>
+</defs>
 
-  // ─── الشعار (يمين) + التصنيف (شريحة يسار) ─────────────────────────────
-  svg += `
-  <text x="${rightX}" y="${BADGE_Y}" font-family="${FONT}" font-size="26" font-weight="700" fill="#e2e8f0" direction="rtl" text-anchor="start">${escapeXml(badge)}</text>
-  <rect x="${leftX}" y="${CHIP_Y}" width="${Math.min(230, 44 + cat.length * 14)}" height="40" rx="20" fill="url(#chipGrad)" opacity="0.9"/>
-  <text x="${leftX + 20}" y="${CHIP_Y + 27}" font-family="${FONT}" font-size="22" font-weight="700" fill="#ffffff" direction="rtl" text-anchor="end">${cat}</text>`;
+<!-- Background -->
+<rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#bg)"/>
+<rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#glowGold)"/>
+<rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#glowIndigo)"/>
 
-  // ─── Hook (سطر واحد، بتدرج ملون كشارة بارزة) ──────────────────────────
-  if (hookLines[0]) {
-    svg += `
-  <rect x="${rightX - 12}" y="${HOOK_Y - 30}" width="6" height="34" rx="3" fill="url(#numGrad)"/>
-  <text x="${rightX - 30}" y="${HOOK_Y}" font-family="${FONT}" font-size="30" font-weight="700" fill="#6ee7b7" direction="rtl" text-anchor="start">${escapeXml(hookLines[0])}</text>`;
-  }
+<!-- Top & Bottom Glowing Gold Accents -->
+<rect x="0" y="0" width="${CARD_WIDTH}" height="14" fill="url(#goldAccent)"/>
+<rect x="0" y="${CARD_HEIGHT - 14}" width="${CARD_WIDTH}" height="14" fill="url(#goldAccent)"/>
 
-  // ─── العنوان الرئيسي (سطران كحد أقصى) ────────────────────────────────
-  titleLines.forEach((line, i) => {
-    svg += `
-  <text x="${rightX}" y="${TITLE_Y + i * TITLE_STEP}" font-family="${FONT}" font-size="50" font-weight="800" fill="#f8fafc" direction="rtl" text-anchor="start">${escapeXml(line)}</text>`;
-  });
+<!-- Header Badge -->
+<text x="${rightX}" y="76" font-family="${FONT}" font-size="30" font-weight="800" fill="#f59e0b" direction="rtl" text-anchor="start">⚖️ ${escapeXml(badge)}</text>
 
-  // ─── النقاط (3 صفوف ثابتة) ────────────────────────────────────────────
+<!-- Category Pill -->
+<rect x="${leftX}" y="44" width="${Math.min(240, 48 + cat.length * 14)}" height="46" rx="23" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
+<text x="${leftX + Math.min(240, 48 + cat.length * 14) / 2}" y="74" font-family="${FONT}" font-size="20" font-weight="700" fill="#fbbf24" text-anchor="middle">${cat}</text>
+
+<!-- Hook Banner -->
+<rect x="${leftX}" y="118" width="${CARD_WIDTH - pad * 2}" height="58" rx="16" fill="#f59e0b" fill-opacity="0.12" stroke="#f59e0b" stroke-width="1.5"/>
+<text x="${rightX - 24}" y="156" font-family="${FONT}" font-size="26" font-weight="800" fill="#fbbf24" direction="rtl" text-anchor="start">${escapeXml(hookLines[0])}</text>
+
+<!-- Title -->
+<text x="${rightX}" y="235" font-family="${FONT}" font-size="40" font-weight="800" fill="#ffffff" direction="rtl" text-anchor="start">${escapeXml(titleLines[0])}</text>
+${titleLines[1] ? `<text x="${rightX}" y="288" font-family="${FONT}" font-size="40" font-weight="800" fill="#ffffff" direction="rtl" text-anchor="start">${escapeXml(titleLines[1])}</text>` : ''}
+
+  // ─── النقاط (3 صفوف ثابتة مربعة) ───────────────────────────────────────
+  const numGrads = ['url(#numGrad1)', 'url(#numGrad2)', 'url(#numGrad3)'];
+  const pointYs = [348, 506, 664];
+
   points.forEach((p, i) => {
-    const rowY = POINT_ROWS[i];
-    const numCX = rightX - 24;
+    const y = pointYs[i];
+    const boxH = 136;
+    const numCX = rightX - 38;
     svg += `
-  <circle cx="${numCX}" cy="${rowY - 27}" r="22" fill="url(#numGrad)" opacity="0.95"/>
-  <text x="${numCX}" y="${rowY - 18}" font-family="${NUM_FONT}" font-size="23" font-weight="800" fill="#ffffff" text-anchor="middle">${p.num}</text>`;
-    if (p.label) {
-      svg += `
-  <text x="${textX}" y="${rowY - 30}" font-family="${FONT}" font-size="29" font-weight="800" fill="#f1f5f9" direction="rtl" text-anchor="start">${escapeXml(p.label)}</text>`;
-    }
-    if (p.detail) {
-      svg += `
-  <text x="${textX}" y="${rowY + 4}" font-family="${FONT}" font-size="24" font-weight="400" fill="#a5b4fc" direction="rtl" text-anchor="start">${escapeXml(p.detail)}</text>`;
-    }
+  <rect x="${leftX}" y="${y}" width="${CARD_WIDTH - pad * 2}" height="${boxH}" rx="20" fill="#0f172a" fill-opacity="0.80" stroke="#334155" stroke-width="1.5"/>
+  <circle cx="${numCX}" cy="${y + 46}" r="26" fill="${numGrads[i]}"/>
+  <text x="${numCX}" y="${y + 55}" font-family="${FONT}" font-size="26" font-weight="800" fill="#ffffff" text-anchor="middle">${p.num}</text>
+  <text x="${textX}" y="${y + 44}" font-family="${FONT}" font-size="28" font-weight="800" fill="#f8fafc" direction="rtl" text-anchor="start">${escapeXml(p.label)}</text>
+  <text x="${textX}" y="${y + 82}" font-family="${FONT}" font-size="22" font-weight="500" fill="#94a3b8" direction="rtl" text-anchor="start">${escapeXml(p.detail[0] || p.detail)}</text>`;
   });
 
-  // ─── صندوق النصيحة القانونية (سطران كحد أقصى) ─────────────────────────
-  const tipBoxH = 48 + tipLines.length * TIP_LINE;
+  // ─── صندوق النصيحة القانونية ─────────────────────────────────────────
+  const tipY = 824;
   svg += `
-  <rect x="${pad}" y="${TIP_Y}" width="${CARD_WIDTH - pad * 2}" height="${tipBoxH}" rx="16" fill="#10b981" opacity="0.10" stroke="#34d399" stroke-width="1.5"/>`;
-  if (tipLines[0]) {
-    svg += `
-  <text x="${rightX - 24}" y="${TIP_Y + 37}" font-family="${FONT}" font-size="24" font-weight="800" fill="#34d399" direction="rtl" text-anchor="start">نصيحة قانونية: ${escapeXml(tipLines[0])}</text>`;
-    for (let i = 1; i < tipLines.length; i++) {
-      svg += `
-  <text x="${rightX - 24}" y="${TIP_Y + 37 + i * TIP_LINE}" font-family="${FONT}" font-size="23" font-weight="400" fill="#a7f3d0" direction="rtl" text-anchor="start">${escapeXml(tipLines[i])}</text>`;
-    }
-  }
+  <rect x="${leftX}" y="${tipY}" width="${CARD_WIDTH - pad * 2}" height="136" rx="20" fill="#10b981" fill-opacity="0.10" stroke="#10b981" stroke-width="2"/>
+  <text x="${rightX - 24}" y="${tipY + 44}" font-family="${FONT}" font-size="24" font-weight="800" fill="#34d399" direction="rtl" text-anchor="start">💡 نصيحة قانونية:</text>
+  <text x="${rightX - 24}" y="${tipY + 82}" font-family="${FONT}" font-size="22" font-weight="600" fill="#e2e8f0" direction="rtl" text-anchor="start">${escapeXml(tipLines[0])}</text>
+  ${tipLines[1] ? `<text x="${rightX - 24}" y="${tipY + 112}" font-family="${FONT}" font-size="22" font-weight="600" fill="#e2e8f0" direction="rtl" text-anchor="start">${escapeXml(tipLines[i] || tipLines[1])}</text>` : ''}`;
 
   // ─── السطر السفلي: CTA (يمين) + الهاشتاجات (يسار) ─────────────────────
   svg += `
-  <text x="${rightX}" y="${FOOTER_Y}" font-family="${FONT}" font-size="25" font-weight="800" fill="#e2e8f0" direction="rtl" text-anchor="start">${escapeXml(card.cta || 'استشر محامياً مختصاً')} ←</text>
-  <text x="${leftX + 20}" y="${FOOTER_Y}" font-family="${FONT}" font-size="20" font-weight="600" fill="#64748b" direction="rtl" text-anchor="end">${escapeXml(hashtagText)}</text>`;
+  <text x="${rightX}" y="1018" font-family="${FONT}" font-size="24" font-weight="800" fill="#f59e0b" direction="rtl" text-anchor="start">${escapeXml(card.cta || 'استشر محامياً مختصاً الآن')} 👈</text>
+  <text x="${leftX}" y="1018" font-family="${FONT}" font-size="18" font-weight="600" fill="#64748b">${escapeXml(hashtagText)}</text>`;
 
   svg += `
 </svg>`;
