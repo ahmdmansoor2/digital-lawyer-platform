@@ -885,7 +885,7 @@ function syncBlogToDist() {
 // ── النشر على Firebase ────────────────────────────────────────────────────
 function deploy() {
   syncBlogToDist();
-  execSync('npx firebase deploy --only hosting', {
+  execSync('npx firebase deploy --only hosting:app', {
     cwd: ROOT,
     stdio: 'inherit',
     env: { ...process.env, FORCE_COLOR: '1' },

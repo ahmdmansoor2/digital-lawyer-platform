@@ -766,7 +766,7 @@ async function main() {
   try {
     const tokenFlag = process.env.FIREBASE_TOKEN
       ? `--token "${process.env.FIREBASE_TOKEN}"` : '';
-    execSync(`npx -y firebase-tools deploy --only hosting ${tokenFlag}`, {
+    execSync(`npx -y firebase-tools deploy --only hosting:app ${tokenFlag}`, {
       cwd: ROOT, stdio: 'inherit'
     });
     log('✅ تم رفع الموقع والصور الجديدة على Firebase!');
