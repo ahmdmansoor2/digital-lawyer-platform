@@ -689,7 +689,7 @@ async function main() {
   const publishedSlugs = new Set(publishedLog.published.map(p => p.slug));
 
   const force = process.argv.includes('--force');
-  const MAX_TODAY = 5;
+  const MAX_TODAY = 3;
   const todayPublished = publishedLog.published.filter(p => p.date === today).length;
 
   if (todayPublished >= MAX_TODAY && !force) {
