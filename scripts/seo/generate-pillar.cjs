@@ -213,7 +213,6 @@ function buildHtml(pillar, keyword) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
-  <script>(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-7725405859334364", enable_page_level_ads: true });</script>
   <script type="application/ld+json">${JSON.stringify(articleSchema)}</script>
   <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
   <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>

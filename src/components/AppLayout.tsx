@@ -572,7 +572,7 @@ export default function AppLayout(props: AppLayoutProps) {
           onNavigate={onNavigate}
         />
 
-                <AdSenseBanner slot="2168039898" format="horizontal" className="max-w-5xl mx-auto" />
+                <AdSenseBanner slot="2168039898" className="max-w-5xl mx-auto" />
         {/* TAB CONTENT RENDERING */}
         {activeTab === 'dashboard' && (
           <LocalErrorBoundary label="لوحة التحكم">
