@@ -311,3 +311,24 @@ src/
 - **`www.mohamidigital.online` لا يعمل** (Connection reset): سجل A موجود (199.36.158.100) لكن الدومين **غير مضاف** كدومين مخصص في Firebase Hosting — يتطلب إضافة يدوية من الكونسول + سجل TXT `hosting-site=justice-91571-app` في hPanel (لا يوجد أمر CLI/REST لإضافة دومين).
 - `index.html` به meta tag مزدوج لـ Search Console (ملف `googlec03a96f2162c19b9.html` + meta) — انتظار المستخدم: الضغط Verify ثم إرسال sitemap.xml.
 - ملفات untracked متروكة عمداً: `src/components/SiteSearchModal.tsx`، `public/search*`، `public/legal-library.html`، `scripts/facebook-reels/`، `scripts/tiktok-publisher/test-caption.png`، `_test-font.cjs`، `public/BingSiteAuth.xml`، `public/62c624f591cc714b7d28bf2c04c7966e.txt`.
+
+---
+
+## حالة الجلسة الحالية: Session 10 — حل ازدواج الدومين + تبسيط Firestore Rules (مكتمل)
+
+### ما أُنجز
+1. **تشخيص ازدواج الدومين:** `mohamidigital.online` كان مربوطاً بموقعين في نفس اللحظة — القديم `justice-91571` (`DOMAIN_ACTIVE` لأن TXT كان يطابقه) والجديد `justice-91571-app` (`DOMAIN_VERIFICATION_LOST`). هذا هو سبب "الأخطاء" التي رآها المستخدم عند تعديل TXT سابقاً — أي تغيير يصلح موقعاً ويكسر الآخر.
+2. **الحذف البرمجي مستحيل:** REST DELETE للدومين من الموقع القديم يفشل دائماً بـ 500 `CD_SITE_DELETION_IGNORE_ERRORS is not supported` → الحذف من الكونسول يدوياً فقط. قام المستخدم بالحذف من Firebase Console بنجاح (تحققت: الموقع القديم صار `{}` بلا دومينات).
+3. **إصلاح TXT في hPanel:** المستخدم غيّر سجل TXT إلى `hosting-site=justice-91571-app` — تحققت عبر Google DNS (`dns.google/resolve`) أنه المنشور الوحيد. Firebase يرى الآن `DNS_MATCH` + `CERT_ACTIVE`.
+4. **انتظار إعادة الفحص:** حالة `justice-91571-app` لا تزال `DOMAIN_VERIFICATION_LOST` — تحتاج إعادة فحص دورية من Firebase (TTL السجل 4 ساعات). المراقبة الدورية 20 دقيقة لم تُظهر تغييراً؛ يُعاد الفحص لاحقاً.
+5. **تبسيط `firestore.rules`:** حذف القاعدة المكررة `match /users/{userId}/{subcollection}/{docId}` ودمجها في `match /users/{userId} { match /{document=**} }`. السلوك مطابق تماماً: الوثيقة الرئيسية `users/{uid}` (مالك + مدير يكتبان)، المجموعات الفرعية (المالك يكتب، المدير يقرأ فقط).
+6. **التحقق بالقواعد:** 9 اختبارات عبر `firebaserules.googleapis.com ...:test` (Rules Playground API) — كلها PASS: كتابة الوثيقة الرئيسية، كتابة profile، رفض مستخدم آخر، قراءة المدير، رفض كتابة المدير للفرعية، رفض المجهول، أعماق متعددة.
+7. **النشر:** `npx firebase deploy --only firestore:rules --project justice-91571` → نجح.
+
+### مرجع مهم (طريقة اختبار قواعد Firestore)
+سكربت `C:\WINDOWS\TEMP\opencode\test_rules.cjs` — يقرأ `firestore.rules` بترميز UTF-8 ويُرسله إلى `:test` مع `source.language = 1` (رقم بدل نص) و`files[{name,content}]`. الاستجابة في `testResults[0].state` وليس `testSuite.testCases`.
+
+### متبقٍّ / تنبيهات
+- **الدومين:** انتظار تحول `justice-91571-app` إلى `DOMAIN_ACTIVE` ثم إعادة بناء/نشر `hosting:app` للتأكد أن الدومين يخدم النسخة الجديدة. الموقع القديم يعرض حالياً نسخة قديمة كاملة (وليس redirect) لأن `firebase.json:54` للـ legacy يستخدم `public: "dist"` — يُصلح لاحقاً بعد استقرار الدومين (تحويل legacy لـ `dist-legacy` redirect 301).
+- **Search Console:** بانتظار المستخدم — الضغط Verify ثم إرسال sitemap.xml.
+- **www.mohamidigital.online:** لا يعمل — الدومين الفرعي غير مضاف في Firebase Hosting (يحتاج إضافة يدوية من الكونسول + سجل TXT).
