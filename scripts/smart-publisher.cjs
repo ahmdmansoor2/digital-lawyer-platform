@@ -751,7 +751,15 @@ async function main() {
 
   if (publishedArticles.length === 0) return;
 
-  // 3. بناء الموقع (Build)
+  // 3. إعادة توليد sitemap ليشمل المقالات الجديدة قبل البناء
+  log('\n🗺️ جاري توليد sitemap...');
+  try {
+    execSync('node scripts/blog-publisher/generate-sitemap.cjs', { cwd: ROOT, stdio: 'inherit' });
+  } catch (e) {
+    log(`⚠️ تعذّر توليد sitemap: ${e.message}`);
+  }
+
+  // 3b. بناء الموقع (Build)
   log('\n🔨 جاري بناء الموقع...');
   try {
     execSync('npm run build', { cwd: ROOT, stdio: 'inherit' });
