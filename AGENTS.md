@@ -332,3 +332,25 @@ src/
 - **الدومين:** انتظار تحول `justice-91571-app` إلى `DOMAIN_ACTIVE` ثم إعادة بناء/نشر `hosting:app` للتأكد أن الدومين يخدم النسخة الجديدة. الموقع القديم يعرض حالياً نسخة قديمة كاملة (وليس redirect) لأن `firebase.json:54` للـ legacy يستخدم `public: "dist"` — يُصلح لاحقاً بعد استقرار الدومين (تحويل legacy لـ `dist-legacy` redirect 301).
 - **Search Console:** بانتظار المستخدم — الضغط Verify ثم إرسال sitemap.xml.
 - **www.mohamidigital.online:** لا يعمل — الدومين الفرعي غير مضاف في Firebase Hosting (يحتاج إضافة يدوية من الكونسول + سجل TXT).
+
+---
+
+## حالة الجلسة الحالية: Session 11 — اكتمال ربط الدومين + Search Console + www (مكتمل)
+
+### ما أُنجز
+1. **الدومين `mohamidigital.online` أصبح `DOMAIN_ACTIVE`** على `justice-91571-app` — تحقق حي من API. المحتوى المنشور أصبح النسخة الجديدة `index-z8pLDh4L.js` (بدون `enable_page_level_ads` القديم) بعد إعادة نشر `hosting:app`.
+2. **تحويل الموقع القديم `justice-91571.web.app` إلى redirect 301:** كتلة `legacy` في `firebase.json` أصبحت `public: "dist-legacy"` مع قاعدتي redirect (`/` → `mohamidigital.online/` و `/:path*` → `mohamidigital.online/:path`). تحقق حي: 301 على الجذر والمقالات والأصول مع الحفاظ على المسار.
+3. **Search Console — تحقق ناجح:** فشل أول بسبب نقص سجل TXT ثم أضاف المستخدم في hPanel سجل `TXT @ google-site-verification=fZV0yiEXSJECzmC-RBceCj2vFtLlIFXhR0MyDaiB-jg` (بجانب `hosting-site=justice-91571-app` — لم يُحذف). تأكد الانتشار عبر `dns.google/resolve` ثم نجح Verify. **باقٍ:** إرسال `sitemap.xml`.
+4. **`www.mohamidigital.online`:** Firebase طلب CNAME `www → justice-91571-app.web.app` (كان `www → mohamidigital.online`). عدّله المستخدم في hPanel → تحقق من الانتشار → Verified → الشهادة صدرت → `https://www` يعمل 200 (تحقق `ssl_verify=0`). CNAME الحالي: `justice-91571-app.web.app`.
+5. **التلف الظاهري في عناوين الصفحات:** كان مجرد ترميز عرض (CP1256 في الطرفية) — بايتات الملفات المنشورة سليمة UTF-8. لا مشكلة حقيقية.
+6. **git:** commit `13696c1` (firebase.json + firestore.rules + AGENTS.md) — push ناجح. الـ repo متزامن.
+
+### مراجع مهمة
+- فحص CNAME/TXT: `curl.exe "https://dns.google/resolve?name=<name>&type=TXT|CNAME|NS"` — للتحقق من الانتشار (TTL حقيقي 4 ساعات لكن عادة أسرع).
+- ترويسة `Content-Type: text/html; charset=utf-8` يرسلها Firebase تلقائياً.
+- قياس طول الاستجابة في PowerShell يعطي **عدد الأسطر** لا البايتات — للبايتات استخدم `[System.Text.Encoding]::UTF8.GetBytes(...)` واعرض hex.
+
+### متبقٍّ
+- **Search Console:** إرسال `sitemap.xml` (القائمة الجانبية → Sitemaps).
+- **الاختياري:** حذف الموقع القديم `justice-91571` نهائياً من Firebase Console (هو الآن redirect فقط).
+- `www` وبدونه متصلان ويعرضان نفس المحتوى (لا redirect بينهما) — إن أُريد توحيد، يُضاف redirect في `firebase.json`.
