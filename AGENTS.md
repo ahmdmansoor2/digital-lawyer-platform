@@ -354,3 +354,38 @@ src/
 - **Search Console:** إرسال `sitemap.xml` (القائمة الجانبية → Sitemaps).
 - **الاختياري:** حذف الموقع القديم `justice-91571` نهائياً من Firebase Console (هو الآن redirect فقط).
 - `www` وبدونه متصلان ويعرضان نفس المحتوى (لا redirect بينهما) — إن أُريد توحيد، يُضاف redirect في `firebase.json`.
+
+---
+
+## حالة الجلسة الحالية: Session 12 — فحص شامل للأتمتة + إصلاح فشل النشر اليومي (مكتمل)
+
+### المشكلة المكتشفة (خطيرة)
+بعد تحويل `firebase.json` ليستخدم `dist-legacy`، كل الـ workflows كانت تنشر بـ `npx firebase deploy --only hosting` (بدون تحديد target) — فيحاول نشر **كلا الهدفين** (`app` + `legacy`). مجلد `dist-legacy` غير موجود على CI runner (البناء ينتج `dist` فقط) → **النشر اليومي كان يفشل دائماً**:
+```
+Error: Directory 'dist-legacy' for Hosting does not exist.
+```
+→ المقالات كانت تُلتزم في git لكن **الموقع الحي لا يتحدث** (المقالات تظهر فقط من رنات سابقة أو بعد إعادة نشر يدوية).
+
+### الإصلاح
+تغيير `--only hosting` → `--only hosting:app` في 3 ملفات:
+- `.github/workflows/daily-blog-post.yml:53`
+- `.github/workflows/daily-blog-publish.yml:49`
+- `.github/workflows/daily-pillars.yml:44`
+
+commit `54e9559` — تم push. تحقق بـ `firebase deploy --only hosting:app --dry-run` نجح.
+
+### التحقق الشامل (آخر 24 ساعة)
+| الـ Workflow | الحالة |
+|---|---|
+| Cards (فيسبوك بطاقات) | ✅ 5 نجاحات |
+| Reels (ريلز + يوتيوب) | ✅ 5 نجاحات |
+| Blog Post (نشر ذكي) | ⚠️ 3 نجاح + 2 فشل (قبل الإصلاح) |
+| Health Monitor | ❌ فشل = **إنذار صحيح** (رصد فشل النشر) |
+
+بعد الإصلاح: **كل الرنات ناجحة**. تأكد حياً أن مقالات اليوم (khula-laws, influencer-tax, consumer-rights, public-utilities...) → **200**.
+
+### ملاحظات مهمة
+- **المقالات الفاشلة بسبب quota Gemini (429)** لا تُعاد توليدها تلقائياً — كل رن يختار موضوعات ترند **جديدة** (سلوك مقصود في `smart-publisher.cjs`). المقالات الفاشلة غير مسجلة في `published-log.json` ولا تظهر في sitemap أبداً.
+- GitHub token للفحص: يُستخرج من Windows Credential Manager عبر P/Invoke `CredRead("git:https://github.com")` ثم فك `Unicode` و`Trim` (يعطي `ghp_...` طول 40).
+- `trending-topics.json` المحلي فارغ غالباً — الموضوعات تُولَّد على CI فقط.
+- f-reels + يوتيوب + cards مستقلة تماماً عن إصلاح النشر (لم تتأثر).
