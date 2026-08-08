@@ -573,6 +573,27 @@
       "duration": "1د 1ث",
       "size": 19028273,
       "publishedAt": "2026-08-08T12:36:51.380Z"
+    },
+    {
+      "topicId": "blog-limited-liability-company",
+      "title": "شركة ذات مسؤولية محدودة في القانون المصري: رأس المال والحد الأدنى والخطوات العملية للتأسيس - منصة المحامي الرقمية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#تعتبر",
+        "#الشركة",
+        "#المسؤولية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-limited-liability-company.mp4",
+      "videoId": "25817559244607702",
+      "permalink": "https://www.facebook.com/reel/25817559244607702",
+      "source": "blog",
+      "duration": "51ث",
+      "size": 11420372,
+      "publishedAt": "2026-08-08T13:10:59.300Z"
     }
   ]
 }

@@ -382,6 +382,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1785525792893179",
       "publishedAt": "2026-08-08T12:37:50.419Z"
+    },
+    {
+      "topicId": "blog-limited-liability-company",
+      "kind": "short",
+      "videoId": "0hhW1QZIz60",
+      "url": "https://www.youtube.com/watch?v=0hhW1QZIz60",
+      "fbPermalink": "https://www.facebook.com/reel/25817559244607702",
+      "publishedAt": "2026-08-08T13:11:01.359Z"
+    },
+    {
+      "topicId": "blog-limited-liability-company",
+      "title": "شركة ذات مسؤولية محدودة في القانون المصري: رأس المال والحد الأدنى والخطوات العمل — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-limited-liability-company-wide.mp4",
+      "source": "blog",
+      "videoId": "LX-8735eEA0",
+      "url": "https://www.youtube.com/watch?v=LX-8735eEA0",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/25817559244607702",
+      "publishedAt": "2026-08-08T13:11:47.522Z"
     }
   ]
 }
