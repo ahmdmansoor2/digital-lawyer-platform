@@ -1117,8 +1117,8 @@ const LegalLibrary = React.memo(function LegalLibrary({ cases = [], onLinkLegalR
         </div>
       )}
 
-      {/* AdSense Banner */}
-      <AdSenseBanner slot="2168039898" className="max-w-5xl mx-auto w-full my-3" />
+      {/* AdSense In-Article Banner */}
+      <AdSenseBanner slot="3911754995" format="fluid" layout="in-article" className="max-w-5xl mx-auto w-full my-3" />
 
       {/* Tabs & Search */}
       <div className="flex flex-col gap-3">

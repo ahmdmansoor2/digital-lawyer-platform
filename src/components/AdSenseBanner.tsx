@@ -9,29 +9,19 @@
 import React, { useEffect, useRef } from 'react';
 
 interface AdSenseBannerProps {
-  /**
-   * معرف الناشر في AdSense (مثال: ca-pub-1234567890123456)
-   */
   client?: string;
-  /**
-   * معرف الخانة الإعلانية (Slot ID) من حساب AdSense
-   */
   slot?: string;
-  /**
-   * تنسيق الإعلان (auto | horizontal | vertical | rectangle)
-   */
   format?: 'auto' | 'fluid' | 'rectangle' | 'horizontal' | 'vertical';
-  /**
-   * استجابة الحجم تلقائياً
-   */
+  layout?: string;
   responsive?: boolean;
   className?: string;
 }
 
 export default function AdSenseBanner({
-  client = 'ca-pub-7725405859334364', // استبدل بـ Publisher ID الخاص بك عند صدوره من AdSense
+  client = 'ca-pub-7725405859334364',
   slot,
   format = 'auto',
+  layout,
   responsive = true,
   className = '',
 }: AdSenseBannerProps) {
@@ -77,10 +67,11 @@ export default function AdSenseBanner({
         <ins
           ref={adRef}
           className="adsbygoogle"
-          style={{ display: 'block' }}
+          style={{ display: 'block', textAlign: layout === 'in-article' ? 'center' : undefined }}
           data-ad-client={client}
           data-ad-slot={slot}
           data-ad-format={format}
+          data-ad-layout={layout}
           data-full-width-responsive={responsive ? 'true' : 'false'}
         />
       )}
