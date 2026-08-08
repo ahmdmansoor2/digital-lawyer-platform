@@ -4,7 +4,22 @@
 
 ---
 
+## [v2.12.1] — 2026-08-08 (⚡ تحسين شامل للأداء — Cache + Lazy Loading + Bundle Splitting)
+
+### ⚡ تحسين الأداء
+- **تقسيم Bundle ذكي** (`vite.config.ts`): `manualChunks` يفصل Firebase/React/PDF/Charts/Calendar/DnD/UI كل في chunk مستقل — Bundle الرئيسي انخفض من **1,501KB → 835KB (توفير 44%)**
+- **Lazy Loading موسّع** (`AppLayout.tsx`): تحويل 14 component إضافي إلى `lazy()` (Financials, TasksManager, ExecutionsManager, BailiffPapersPanel, ArchivePanel, DocketMaster, SecurityCenter, UsersManagement, RolesManagement, DatabaseSchemaVisualizer, TemplatesLibrary, ContractGenerator, InheritanceCalculator, CourtFeesCalculator) — تُحمَّل عند الطلب فقط
+- **إصلاح Cache-Control** (`firebase.json`): ترتيب Headers صُحِّح لضمان `/assets/**` يحصل على `max-age=31536000, immutable` ✅ — الزيارة الثانية تُصبح فورية
+- **HTML pages cache**: `**.html` تحصل على `max-age=3600` لتقليل الطلبات المتكررة
+
+### 🔧 إصلاحات
+- `daily-pillars.yml`: النشر على كلا الهدفين `app + legacy` لضمان ظهور المراجع على `mohamidigital.online`
+- `firebase.json`: استثناء `/pillars/**` من SPA rewrites لإتاحة المراجع القانونية الحية
+
+---
+
 ## [v2.12.0] — 2026-08-08 (🔧 إصلاح بطاقات 1080×1080 + YouTube مدمج في reel-publisher)
+
 
 ### 🐛 إصلاح حرج — البطاقات كانت مقطوعة
 - **السبب الجذري**: `CARD_WIDTH=1200, CARD_HEIGHT=628` بينما التخطيط لـ 1080×1080 — كل العناصر (y > 628) كانت مقطوعة!
