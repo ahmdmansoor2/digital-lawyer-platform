@@ -112,12 +112,12 @@ async function processTopic(topic, opts) {
   const plan = await planScenes(topic);
   console.log(`  ✓ ${plan.scenes.length} مشاهد، ${plan.scenes.reduce((s, sc) => s + sc.duration_sec, 0)} ثانية`);
 
-  // 2. تحويل النص إلى كلام (صوت Salma — مصري أنثوي)
+  // 2. تحويل النص إلى كلام (صوت Shakir — إعلامي فصيح رصين)
   console.log('\n[2/4] جاري تحويل النص إلى كلام...');
   const audio = await synthesize(plan.full_text, {
     outputDir: OUTPUT_DIR,
     filename: `fb-${topic.id}.mp3`,
-    voice: 'ar-EG-SalmaNeural',
+    voice: process.env.EDGE_TTS_VOICE || 'ar-EG-ShakirNeural',
   });
   console.log(`  ✓ ${formatDuration(audio.durationSec)}`);
 

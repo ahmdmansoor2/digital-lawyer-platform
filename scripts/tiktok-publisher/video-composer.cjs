@@ -79,8 +79,8 @@ function normalizeVideoClip(ffmpeg, clipPath, dur, outputPath) {
     '-t', String(dur),
     '-an',
     '-c:v', 'libx264',
-    '-preset', 'veryfast',
-    '-crf', '23',
+    '-preset', 'fast',
+    '-crf', '18',
     '-y',
     outputPath,
   ];
