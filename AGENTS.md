@@ -389,3 +389,22 @@ commit `54e9559` — تم push. تحقق بـ `firebase deploy --only hosting:ap
 - GitHub token للفحص: يُستخرج من Windows Credential Manager عبر P/Invoke `CredRead("git:https://github.com")` ثم فك `Unicode` و`Trim` (يعطي `ghp_...` طول 40).
 - `trending-topics.json` المحلي فارغ غالباً — الموضوعات تُولَّد على CI فقط.
 - f-reels + يوتيوب + cards مستقلة تماماً عن إصلاح النشر (لم تتأثر).
+
+---
+
+## حالة الجلسة الحالية: Session 13 — إصلاح النشر الداخلي + sitemap (مكتمل)
+
+### المشكلة الجذرية المكتشفة (مهمة جداً)
+تعديل الـ workflows في Session 12 (`--only hosting:app`) **لم يكن كافياً** — لأن الناشر الذكي `smart-publisher.cjs` **لا يمر عبر خطوة النشر في الـ workflow** بل ينشر بنفسه داخلياً عبر `execSync('npx -y firebase-tools deploy --only hosting')` → فشل دائم بـ `Directory 'dist-legacy' does not exist`. الرنات كانت تفشل بعد نجاح التوليد والنشر على فيسبوك.
+
+### ما تم
+1. **`scripts/smart-publisher.cjs:769`** — `--only hosting` → `--only hosting:app` (كان يفشل دائماً بسبب كتلة legacy في firebase.json).
+2. **`scripts/blog-publisher/daily-publish.cjs:888`** — نفس الإصلاح (`--only hosting:app`) لأنه يُشغَّل من `daily-blog-publish.yml` أيضاً.
+3. **`scripts/smart-publisher.cjs`** — إضافة توليد sitemap بعد كتابة المقالات وقبل البناء: `node scripts/blog-publisher/generate-sitemap.cjs` (كان sitemap ثابتاً ولا يشمل المقالات الجديدة).
+4. **التحقق:** الرن اليدوي `31281274686` → **success**، نشر 3 مقالات جديدة (2026-08-09): `egypt-digital-notary-services`, `remand-in-custody-egyptian-law`, `government-complaints-system-egypt` — كلها **200 حي**. sitemap.xml أصبح **120 رابطاً** ويشملها.
+5. **git:** commits `d3306ea` (إصلاح النشر الداخلي) + `2d98d19` (sitemap) — مدفوعة. الـ repo متزامن.
+
+### ملاحظات مهمة
+- **الدرس:** أي سكربت نشر داخلي (`execSync firebase deploy`) يجب أن يستخدم `--only hosting:app` — لا `--only hosting`. سكربتات أخرى لا تزال بها الصيغة القديمة لكنها **يدوية فقط** (لا تُشغَّل في CI): `rebuild-blog.cjs:79`, `fix-og-images.cjs:84`, `auto-publisher.cjs:1200` (معطّل), ورسائل توثيق في `scripts/seo/*.md`.
+- **الـ dispatch اليدوي:** POST `/repos/ahmdmansoor2/digital-lawyer-platform/actions/workflows/daily-blog-post.yml/dispatches` بـ `{"ref":"main"}` — الرن يُلتقط من أحدث main في لحظة التشغيل.
+- آخر توليد ناجح 09:39 كان 4 مقالات؛ الرنات المتوسطة فشلت بـ Gemini 429/503 (حصة مجانية)؛ خفض MAX_TODAY إلى 3 في `smart-publisher.cjs:692` قلل الضغط.
