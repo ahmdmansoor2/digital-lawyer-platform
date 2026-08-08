@@ -12,7 +12,7 @@
       ],
       "rewrites": [
         {
-          "source": "!/blog/**",
+          "source": "!/+(blog|pillars)/**",
           "destination": "/index.html"
         }
       ],
@@ -50,7 +50,7 @@
       ],
       "rewrites": [
         {
-          "source": "!/blog/**",
+          "source": "!/+(blog|pillars)/**",
           "destination": "/index.html"
         }
       ],
