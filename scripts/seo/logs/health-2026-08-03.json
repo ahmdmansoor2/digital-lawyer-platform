@@ -1,0 +1,97 @@
+{
+  "timestamp": "2026-08-03T19:21:51.633Z",
+  "baseUrl": "https://mohamidigital.online",
+  "sitemap": {
+    "ok": true,
+    "urlCount": 59,
+    "size": 11912,
+    "time": 251
+  },
+  "robots": {
+    "ok": true,
+    "status": 200,
+    "hasSitemap": true,
+    "size": 150
+  },
+  "importantPages": [
+    {
+      "path": "/",
+      "status": 200,
+      "time": 249,
+      "hasSchema": true,
+      "hasTitle": true,
+      "hasMeta": true,
+      "schemaCount": 4,
+      "ok": true
+    },
+    {
+      "path": "/about.html",
+      "status": 200,
+      "time": 166,
+      "hasSchema": false,
+      "hasTitle": true,
+      "hasMeta": true,
+      "schemaCount": 0,
+      "ok": true
+    },
+    {
+      "path": "/features.html",
+      "status": 200,
+      "time": 185,
+      "hasSchema": false,
+      "hasTitle": true,
+      "hasMeta": true,
+      "schemaCount": 0,
+      "ok": true
+    },
+    {
+      "path": "/pricing.html",
+      "status": 200,
+      "time": 122,
+      "hasSchema": false,
+      "hasTitle": true,
+      "hasMeta": true,
+      "schemaCount": 0,
+      "ok": true
+    },
+    {
+      "path": "/pillars/",
+      "status": 200,
+      "time": 308,
+      "hasSchema": true,
+      "hasTitle": true,
+      "hasMeta": true,
+      "schemaCount": 2,
+      "ok": true
+    },
+    {
+      "path": "/pillars/law-firm-management-in-egypt.html",
+      "status": 200,
+      "time": 160,
+      "hasSchema": true,
+      "hasTitle": true,
+      "hasMeta": true,
+      "schemaCount": 3,
+      "ok": true
+    },
+    {
+      "path": "/blog/",
+      "status": 200,
+      "time": 240,
+      "hasSchema": false,
+      "hasTitle": true,
+      "hasMeta": true,
+      "schemaCount": 0,
+      "ok": true
+    }
+  ],
+  "brokenLinks": {
+    "total": 30,
+    "broken": []
+  },
+  "summary": {
+    "ok": 3,
+    "warn": 4,
+    "error": 0
+  }
+}

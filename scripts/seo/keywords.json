@@ -1,0 +1,724 @@
+{
+  "keywords": [
+    {
+      "keyword": "خطوات تأسيس شركة ذات مسؤولية محدودة في مصر",
+      "intent": "informational",
+      "category": "قانون الشركات",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "high",
+      "suggested_content_type": "pillar",
+      "related_articles": [
+        "how-to-establish-llc-egypt",
+        "corporate-incorporation-steps"
+      ]
+    },
+    {
+      "keyword": "شروط وأحكام فصل العامل في قانون العمل المصري",
+      "intent": "informational",
+      "category": "قانون عمالي",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "high",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "labor-law-termination-rules",
+        "employee-rights-dismissal"
+      ]
+    },
+    {
+      "keyword": "طريقة حساب مكافأة نهاية الخدمة في قانون العمل الجديد",
+      "intent": "informational",
+      "category": "قانون عمالي",
+      "estimated_difficulty": "low",
+      "estimated_volume": "high",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "calculate-end-of-service-bonus",
+        "egyptian-labor-law-calculator"
+      ]
+    },
+    {
+      "keyword": "كيفية حساب الرسوم القضائية في الدعاوى المدنية",
+      "intent": "informational",
+      "category": "الرسوم القضائية",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "civil-lawsuit-fees-egypt",
+        "calculate-court-fees"
+      ]
+    },
+    {
+      "keyword": "أركان وشروط عقد البيع الابتدائي في القانون المدني",
+      "intent": "informational",
+      "category": "قانون مدني",
+      "estimated_difficulty": "low",
+      "estimated_volume": "medium",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "preliminary-sales-contract-conditions",
+        "civil-law-contracts"
+      ]
+    },
+    {
+      "keyword": "إجراءات رفع دعوى خلع في محكمة الأسرة المصرية",
+      "intent": "informational",
+      "category": "قانون الأحوال الشخصية",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "high",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "khula-lawsuit-steps-egypt",
+        "family-court-procedures"
+      ]
+    },
+    {
+      "keyword": "الفرق بين عقد العمل محدد المدة وغير محدد المدة",
+      "intent": "informational",
+      "category": "قانون عمالي",
+      "estimated_difficulty": "low",
+      "estimated_volume": "high",
+      "suggested_content_type": "comparison",
+      "related_articles": [
+        "fixed-vs-indefinite-employment-contract",
+        "labor-contract-types"
+      ]
+    },
+    {
+      "keyword": "حالات سقوط حق الحضانة عن الأم في القانون المصري",
+      "intent": "informational",
+      "category": "قانون الأحوال الشخصية",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "high",
+      "suggested_content_type": "faq",
+      "related_articles": [
+        "child-custody-loss-cases",
+        "egyptian-personal-status-law"
+      ]
+    },
+    {
+      "keyword": "كيفية صياغة عقد إيجار خاضع للقانون الجديد",
+      "intent": "informational",
+      "category": "صياغة العقود",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "drafting-new-rental-contract",
+        "civil-rental-law-egypt"
+      ]
+    },
+    {
+      "keyword": "إجراءات تسجيل العلامة التجارية في وزارة التموين المصرية",
+      "intent": "informational",
+      "category": "قانون الشركات",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "pillar",
+      "related_articles": [
+        "trademark-registration-egypt",
+        "intellectual-property-steps"
+      ]
+    },
+    {
+      "keyword": "أسباب بطلان عقد البيع في القانون المدني المصري",
+      "intent": "informational",
+      "category": "قانون مدني",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "void-sales-contract-reasons",
+        "civil-code-nullity"
+      ]
+    },
+    {
+      "keyword": "كيفية تنظيم ملفات القضايا داخل مكتب المحاماة",
+      "intent": "informational",
+      "category": "إدارة مكاتب",
+      "estimated_difficulty": "low",
+      "estimated_volume": "low",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "organizing-law-firm-case-files",
+        "law-office-management-tips"
+      ]
+    },
+    {
+      "keyword": "الحد الأقصى لساعات العمل الإضافية في مصر",
+      "intent": "informational",
+      "category": "قانون عمالي",
+      "estimated_difficulty": "low",
+      "estimated_volume": "medium",
+      "suggested_content_type": "faq",
+      "related_articles": [
+        "overtime-hours-egyptian-law",
+        "labor-working-hours"
+      ]
+    },
+    {
+      "keyword": "طريقة استخراج صيغة تنفيذية للحكم القضائي",
+      "intent": "informational",
+      "category": "قانون مدني",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "executive-formula-court-ruling",
+        "enforcing-judgments-egypt"
+      ]
+    },
+    {
+      "keyword": "دعوى صحة ونفاذ عقد البيع ونقل الملكية",
+      "intent": "informational",
+      "category": "قانون مدني",
+      "estimated_difficulty": "high",
+      "estimated_volume": "high",
+      "suggested_content_type": "pillar",
+      "related_articles": [
+        "validity-and-enforcement-lawsuit",
+        "property-transfer-procedures"
+      ]
+    },
+    {
+      "keyword": "شروط استحقاق المعاش المبكر في قانون التأمينات الجديد",
+      "intent": "informational",
+      "category": "قانون عمالي",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "high",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "early-retirement-conditions-egypt",
+        "social-insurance-law"
+      ]
+    },
+    {
+      "keyword": "أحكام دعوى الريع في القانون المدني المصري",
+      "intent": "informational",
+      "category": "قانون مدني",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "royalties-lawsuit-provisions",
+        "civil-property-disputes"
+      ]
+    },
+    {
+      "keyword": "الفرق بين دعوى صحة التوقيع ودعوى الصحة والنفاذ",
+      "intent": "informational",
+      "category": "قانون مدني",
+      "estimated_difficulty": "low",
+      "estimated_volume": "high",
+      "suggested_content_type": "comparison",
+      "related_articles": [
+        "signature-validation-vs-enforcement",
+        "property-registration-types"
+      ]
+    },
+    {
+      "keyword": "إجراءات تأسيس شركة الشخص الواحد في مصر",
+      "intent": "informational",
+      "category": "قانون الشركات",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "one-person-company-egypt",
+        "incorporating-single-member-firm"
+      ]
+    },
+    {
+      "keyword": "كيفية احتساب نفقة المتعة ونفقة العدة للمطلقة",
+      "intent": "informational",
+      "category": "قانون الأحوال الشخصية",
+      "estimated_difficulty": "low",
+      "estimated_volume": "high",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "calculating-divorce-alimony-egypt",
+        "pleasure-alimony-rules"
+      ]
+    },
+    {
+      "keyword": "أفضل طرق إدارة الوقت للمحامين المبتدئين",
+      "intent": "informational",
+      "category": "إدارة مكاتب",
+      "estimated_difficulty": "low",
+      "estimated_volume": "low",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "time-management-for-junior-lawyers",
+        "law-firm-productivity"
+      ]
+    },
+    {
+      "keyword": "عقوبة التزوير في المحررات العرفية بالقانون المصري",
+      "intent": "informational",
+      "category": "قانون مدني",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "forgery-penalty-informal-documents",
+        "penal-code-egypt"
+      ]
+    },
+    {
+      "keyword": "شروط صحة عقد الهبة في القانون المدني",
+      "intent": "informational",
+      "category": "قانون مدني",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "faq",
+      "related_articles": [
+        "gift-contract-validity-conditions",
+        "civil-code-donations"
+      ]
+    },
+    {
+      "keyword": "كيفية التعامل مع موظفي التنفيذ في المحاكم المصرية",
+      "intent": "informational",
+      "category": "إدارة مكاتب",
+      "estimated_difficulty": "low",
+      "estimated_volume": "low",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "dealing-with-court-execution-officers",
+        "practical-lawyer-guide"
+      ]
+    },
+    {
+      "keyword": "إجراءات إشهار الإفلاس للشركات في القانون المصري",
+      "intent": "informational",
+      "category": "قانون الشركات",
+      "estimated_difficulty": "high",
+      "estimated_volume": "medium",
+      "suggested_content_type": "pillar",
+      "related_articles": [
+        "corporate-bankruptcy-procedures-egypt",
+        "insolvency-law"
+      ]
+    },
+    {
+      "keyword": "حقوق العامل في حالة الاستقالة قانون العمل المصري",
+      "intent": "informational",
+      "category": "قانون عمالي",
+      "estimated_difficulty": "low",
+      "estimated_volume": "high",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "employee-resignation-rights",
+        "labor-law-resignation"
+      ]
+    },
+    {
+      "keyword": "خطوات الطعن بالنقض في الأحكام المدنية",
+      "intent": "informational",
+      "category": "قانون مدني",
+      "estimated_difficulty": "high",
+      "estimated_volume": "medium",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "cassation-appeal-steps-civil",
+        "egyptian-court-of-cassation"
+      ]
+    },
+    {
+      "keyword": "كيفية حساب ضريبة التصرفات العقارية في مصر",
+      "intent": "informational",
+      "category": "الرسوم القضائية",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "high",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "real-estate-disposal-tax-egypt",
+        "property-tax-calculation"
+      ]
+    },
+    {
+      "keyword": "شروط وإجراءات دعوى طرد للغصب في مصر",
+      "intent": "informational",
+      "category": "قانون مدني",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "eviction-by-force-lawsuit",
+        "unlawful-possession-egypt"
+      ]
+    },
+    {
+      "keyword": "كيفية صياغة اتفاقية عدم الإفصاح وسرية المعلومات",
+      "intent": "informational",
+      "category": "صياغة العقود",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "drafting-non-disclosure-agreement-nda",
+        "confidentiality-contracts"
+      ]
+    },
+    {
+      "keyword": "شروط استحقاق الزوجة للتمكين من مسكن الزوجية",
+      "intent": "informational",
+      "category": "قانون الأحوال الشخصية",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "high",
+      "suggested_content_type": "faq",
+      "related_articles": [
+        "marital-home-empowerment-conditions",
+        "family-law-egypt"
+      ]
+    },
+    {
+      "keyword": "أحكام عقد المقاولة في القانون المدني المصري",
+      "intent": "informational",
+      "category": "قانون مدني",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "construction-contract-provisions",
+        "civil-contracting-law"
+      ]
+    },
+    {
+      "keyword": "كيفية توثيق عقود زواج الأجانب في مصر",
+      "intent": "informational",
+      "category": "قانون الأحوال الشخصية",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "high",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "foreigners-marriage-registration-egypt",
+        "ministry-of-justice-marriage"
+      ]
+    },
+    {
+      "keyword": "الأوراق المطلوبة لرفع دعوى استرداد حيازة",
+      "intent": "informational",
+      "category": "قانون مدني",
+      "estimated_difficulty": "low",
+      "estimated_volume": "medium",
+      "suggested_content_type": "faq",
+      "related_articles": [
+        "repossession-lawsuit-documents",
+        "civil-possession-protection"
+      ]
+    },
+    {
+      "keyword": "كيفية إعداد مذكرة دفاع جنائية أو مدنية",
+      "intent": "informational",
+      "category": "إدارة مكاتب",
+      "estimated_difficulty": "high",
+      "estimated_volume": "low",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "drafting-defense-memorandum",
+        "legal-writing-for-lawyers"
+      ]
+    },
+    {
+      "keyword": "الفرق بين الاستقالة والإقالة في قانون العمل",
+      "intent": "informational",
+      "category": "قانون عمالي",
+      "estimated_difficulty": "low",
+      "estimated_volume": "medium",
+      "suggested_content_type": "comparison",
+      "related_articles": [
+        "resignation-vs-dismissal-egypt",
+        "labor-law-termination-types"
+      ]
+    },
+    {
+      "keyword": "أفضل برنامج إدارة مكاتب المحاماة في مصر",
+      "intent": "commercial",
+      "category": "إدارة مكاتب",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "comparison",
+      "related_articles": [
+        "best-law-firm-software-egypt",
+        "legal-practice-management-tools"
+      ]
+    },
+    {
+      "keyword": "محامي تأسيس شركات في القاهرة متخصص",
+      "intent": "commercial",
+      "category": "قانون الشركات",
+      "estimated_difficulty": "high",
+      "estimated_volume": "medium",
+      "suggested_content_type": "pillar",
+      "related_articles": [
+        "best-corporate-lawyer-cairo",
+        "company-incorporation-services"
+      ]
+    },
+    {
+      "keyword": "مكتب محاماة متخصص في قضايا العمل والعمال",
+      "intent": "commercial",
+      "category": "قانون عمالي",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "labor-lawsuit-law-firm",
+        "top-employment-lawyers-egypt"
+      ]
+    },
+    {
+      "keyword": "خدمات صياغة العقود التجارية للشركات الناشئة",
+      "intent": "commercial",
+      "category": "صياغة العقود",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "pillar",
+      "related_articles": [
+        "commercial-contract-drafting-services",
+        "startup-legal-agreements"
+      ]
+    },
+    {
+      "keyword": "أفضل محامي أحوال شخصية في الجيزة",
+      "intent": "commercial",
+      "category": "قانون الأحوال الشخصية",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "top-family-lawyer-giza",
+        "divorce-and-custody-attorneys"
+      ]
+    },
+    {
+      "keyword": "تطبيقات تنظيم القضايا وجدول المحامين",
+      "intent": "commercial",
+      "category": "إدارة مكاتب",
+      "estimated_difficulty": "low",
+      "estimated_volume": "medium",
+      "suggested_content_type": "comparison",
+      "related_articles": [
+        "case-tracking-apps-for-lawyers",
+        "lawyer-calendar-management"
+      ]
+    },
+    {
+      "keyword": "نماذج عقود بيع وشراء جاهزة للتحميل",
+      "intent": "commercial",
+      "category": "صياغة العقود",
+      "estimated_difficulty": "low",
+      "estimated_volume": "high",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "downloadable-sales-contract-templates",
+        "ready-made-legal-forms"
+      ]
+    },
+    {
+      "keyword": "مكاتب استشارات قانونية في التجمع الخامس",
+      "intent": "commercial",
+      "category": "قانون الشركات",
+      "estimated_difficulty": "high",
+      "estimated_volume": "medium",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "legal-consultation-firms-fifth-settlement",
+        "top-cairo-law-firms"
+      ]
+    },
+    {
+      "keyword": "محامي مدني شاطر في الإسكندرية",
+      "intent": "commercial",
+      "category": "قانون مدني",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "best-civil-lawyer-alexandria",
+        "civil-litigation-attorney"
+      ]
+    },
+    {
+      "keyword": "خدمة مراجعة العقود والاتفاقيات القانونية أونلاين",
+      "intent": "commercial",
+      "category": "صياغة العقود",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "pillar",
+      "related_articles": [
+        "online-contract-review-services",
+        "legal-contract-audit"
+      ]
+    },
+    {
+      "keyword": "برنامج أرشفة إلكترونية لمكاتب المحاماة",
+      "intent": "commercial",
+      "category": "إدارة مكاتب",
+      "estimated_difficulty": "low",
+      "estimated_volume": "medium",
+      "suggested_content_type": "comparison",
+      "related_articles": [
+        "digital-archiving-software-law-firms",
+        "paperless-legal-office"
+      ]
+    },
+    {
+      "keyword": "مستشار قانوني لتأسيس الشركات الأجنبية بمصر",
+      "intent": "commercial",
+      "category": "قانون الشركات",
+      "estimated_difficulty": "high",
+      "estimated_volume": "medium",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "foreign-investment-legal-advisor",
+        "establishing-foreign-companies-egypt"
+      ]
+    },
+    {
+      "keyword": "أفضل نظام إدارة علاقات العملاء للمحامين",
+      "intent": "commercial",
+      "category": "إدارة مكاتب",
+      "estimated_difficulty": "low",
+      "estimated_volume": "low",
+      "suggested_content_type": "comparison",
+      "related_articles": [
+        "best-crm-for-lawyers",
+        "managing-legal-clients"
+      ]
+    },
+    {
+      "keyword": "دليل مكاتب المحاماة الكبرى في مصر",
+      "intent": "commercial",
+      "category": "إدارة مكاتب",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "pillar",
+      "related_articles": [
+        "directory-of-top-egyptian-law-firms",
+        "corporate-law-directory"
+      ]
+    },
+    {
+      "keyword": "محامي قضايا أسرة خلع ونفقة بالتجمع",
+      "intent": "commercial",
+      "category": "قانون الأحوال الشخصية",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "family-lawyer-fifth-settlement",
+        "khula-and-alimony-attorney"
+      ]
+    },
+    {
+      "keyword": "خدمات تسجيل براءات الاختراع في مصر",
+      "intent": "commercial",
+      "category": "قانون الشركات",
+      "estimated_difficulty": "high",
+      "estimated_volume": "medium",
+      "suggested_content_type": "pillar",
+      "related_articles": [
+        "patent-registration-services-egypt",
+        "ip-protection-lawyers"
+      ]
+    },
+    {
+      "keyword": "سعر صياغة عقد شراكة تجارية في مصر",
+      "intent": "commercial",
+      "category": "صياغة العقود",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "partnership-contract-drafting-cost",
+        "commercial-legal-fees"
+      ]
+    },
+    {
+      "keyword": "شركات تصميم مواقع إنترنت للمحامين بمصر",
+      "intent": "commercial",
+      "category": "إدارة مكاتب",
+      "estimated_difficulty": "low",
+      "estimated_volume": "low",
+      "suggested_content_type": "comparison",
+      "related_articles": [
+        "website-design-for-lawyers",
+        "law-firm-marketing-egypt"
+      ]
+    },
+    {
+      "keyword": "شراء برنامج إدارة مكاتب المحاماة مصري",
+      "intent": "transactional",
+      "category": "إدارة مكاتب",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "buy-egyptian-law-firm-software",
+        "get-legal-practice-management-system"
+      ]
+    },
+    {
+      "keyword": "توكيل محامي تأسيس شركة مساهمة فوراً",
+      "intent": "transactional",
+      "category": "قانون الشركات",
+      "estimated_difficulty": "high",
+      "estimated_volume": "low",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "hire-joint-stock-company-lawyer",
+        "instant-incorporation-egypt"
+      ]
+    },
+    {
+      "keyword": "حجز استشارة قانونية أونلاين قانون العمل",
+      "intent": "transactional",
+      "category": "قانون عمالي",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "faq",
+      "related_articles": [
+        "book-online-labor-law-consultation",
+        "virtual-legal-consultation-egypt"
+      ]
+    },
+    {
+      "keyword": "تحميل نموذج عقد عمل مصري وورد جاهز",
+      "intent": "transactional",
+      "category": "صياغة العقود",
+      "estimated_difficulty": "low",
+      "estimated_volume": "high",
+      "suggested_content_type": "article",
+      "related_articles": [
+        "download-egyptian-employment-contract-word",
+        "free-labor-contract-template"
+      ]
+    },
+    {
+      "keyword": "دفع الرسوم القضائية إلكترونياً بوابة مصر الرقمية",
+      "intent": "transactional",
+      "category": "الرسوم القضائية",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "high",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "pay-court-fees-online-egypt",
+        "digital-egypt-portal-services"
+      ]
+    },
+    {
+      "keyword": "شراء صياغة عقد بيع شقة تمليك نهائي",
+      "intent": "transactional",
+      "category": "صياغة العقود",
+      "estimated_difficulty": "medium",
+      "estimated_volume": "medium",
+      "suggested_content_type": "how-to",
+      "related_articles": [
+        "buy-final-apartment-sale-contract",
+        "professional-real-estate-drafting"
+      ]
+    }
+  ]
+}

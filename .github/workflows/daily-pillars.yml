@@ -1,0 +1,59 @@
+name: 📚 الناشر المستمر — المراجع القانونية الشاملة (Pillars)
+
+on:
+  schedule:
+    # يومياً الساعة 11:00 صباحاً (توقيت القاهرة 08:00 UTC)
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  pillar-publish:
+    name: مرجع قانوني شامل جديد
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate & Publish New Legal Code Pillar Guide
+        run: node scripts/seo/auto-pillar-publisher.cjs --count 1
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CI: true
+
+      - name: Build production bundle
+        run: npm run build
+
+      - name: Deploy updated site & pillars to Firebase Hosting
+        run: npx firebase deploy --only hosting:app
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: Commit published pillars & sitemaps back to Git
+        run: |
+          git config user.name  "Legal Pillars Bot 📚"
+          git config user.email "bot@justice-91571.web.app"
+          git add public/pillars/ public/sitemap.xml public/sitemap.html scripts/seo/pillar-published-log.json
+          if ! git diff --cached --quiet; then
+            git commit -m "📚 Pillar-publish: $(date +'%Y-%m-%d %H:%M') — مرجع قانوني شامل جديد"
+            git pull --rebase origin main 2>/dev/null || true
+            git push || echo "⚠️ push تعذر — سيُلتقط في التشغيل التالي"
+          else
+            echo "✅ لا مراجع جديدة منشورة في هذه الدورة"
+          fi
