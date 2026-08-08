@@ -38,16 +38,7 @@ jobs:
       - name: Install Arabic fonts (Noto — للكابشن داخل الفيديو)
         run: sudo apt-get update && sudo apt-get install -y fonts-noto-core
 
-      - name: Generate & publish Facebook Reel (from Google Trends)
-        run: node scripts/facebook-publisher/reel-publisher.cjs --count 1
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-          CI: true
-
-      - name: Bootstrap YouTube tokens (only if youtube-tokens.json missing)
+      - name: Bootstrap YouTube tokens
         run: |
           if [ ! -f scripts/youtube-publisher/youtube-tokens.json ]; then
             node scripts/youtube-publisher/youtube-oauth.cjs import
@@ -62,7 +53,21 @@ jobs:
           YT_EXPIRES_IN: ${{ secrets.YT_EXPIRES_IN }}
           CI: true
 
-      - name: Publish reel to YouTube (channel فيروز)
+      - name: Generate & publish Facebook Reel + YouTube Short
+        run: node scripts/facebook-publisher/reel-publisher.cjs --count 1
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_ACCESS_TOKEN: ${{ secrets.YT_ACCESS_TOKEN }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          YT_EXPIRES_IN: ${{ secrets.YT_EXPIRES_IN }}
+          CI: true
+
+      - name: Upload horizontal 16x9 version to YouTube Videos tab
         run: node scripts/youtube-publisher/youtube-publish.cjs --from-fb-log --as-video
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
@@ -72,13 +77,15 @@ jobs:
           YT_EXPIRES_IN: ${{ secrets.YT_EXPIRES_IN }}
           CI: true
 
-      - name: Commit published log back
+      - name: Commit published logs back
         run: |
           git config user.name  "Smart Reels Bot 🤖"
           git config user.email "bot@justice-91571.web.app"
-          git add scripts/facebook-publisher/facebook-published-log.json scripts/youtube-publisher/youtube-tokens.json scripts/youtube-publisher/youtube-published-log.json
+          git add scripts/facebook-publisher/facebook-published-log.json \
+                  scripts/youtube-publisher/youtube-tokens.json \
+                  scripts/youtube-publisher/youtube-published-log.json
           if ! git diff --cached --quiet; then
-            git commit -m "🎬 Reel-publish: $(date +'%Y-%m-%d %H:%M') — ريلز من ترندات جوجل"
+            git commit -m "🎬 Reel-publish: $(date +'%Y-%m-%d %H:%M') — ريلز+يوتيوب"
             git pull --rebase origin main 2>/dev/null || true
             git push || echo "⚠️ push تعذر — سيُلتقط في التشغيل التالي"
           else

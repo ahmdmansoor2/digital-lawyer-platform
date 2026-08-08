@@ -38,6 +38,7 @@ const { planScenes, renderScenes, renderVideoScenes } = require(path.join(PUBLIS
 const { synthesize } = require(path.join(PUBLISHER_DIR, 'tts-generator.cjs'));
 const { composeVideo } = require(path.join(PUBLISHER_DIR, 'video-composer.cjs'));
 const { publishReel } = require(path.join(FB_PUBLISHER_DIR, 'facebook-graph.cjs'));
+const { uploadToYouTube, buildDescription, alreadyPublished: ytAlreadyPublished } = require(path.join(ROOT, 'scripts', 'youtube-publisher', 'youtube-publish.cjs'));
 
 // ─── أدوات مساعدة ─────────────────────────────────────────────────────────
 function readJson(file, fallback) {
@@ -165,8 +166,45 @@ async function processTopic(topic, opts) {
       size: videoSize,
     });
 
-    console.log(`\n✅ تم النشر بنجاح!`);
+    console.log(`\n✅ تم النشر على فيسبوك بنجاح!`);
     console.log(`   🔗 ${result.permalink_url}`);
+
+    // ─── رفع على YouTube (Short) ────────────────────────────────────────
+    console.log('\n📺 جاري الرفع على YouTube...');
+    try {
+      if (ytAlreadyPublished(topic.id, 'short')) {
+        console.log('[youtube] ⏭️  منشور مسبقاً على YouTube — تخطي.');
+      } else {
+        const ytTitle = topic.title;
+        const ytDesc = buildDescription(plan?.full_text || topic.title, hashtags);
+        const ytResult = await uploadToYouTube({
+          videoPath,
+          title: ytTitle,
+          description: ytDesc,
+          tags: (topic.keywords || []).slice(0, 10),
+          privacyStatus: 'public',
+          categoryId: '27',
+          dryRun: opts.dryRun,
+        });
+        if (!opts.dryRun && ytResult?.videoId) {
+          // تسجيل في youtube-published-log.json
+          const ytLogFile = path.join(ROOT, 'scripts', 'youtube-publisher', 'youtube-published-log.json');
+          const ytLog = readJson(ytLogFile, { entries: [] });
+          ytLog.entries.push({
+            topicId: topic.id,
+            kind: 'short',
+            videoId: ytResult.videoId,
+            url: ytResult.url,
+            fbPermalink: result.permalink_url,
+            publishedAt: new Date().toISOString(),
+          });
+          writeJson(ytLogFile, ytLog);
+          console.log(`   📺 YouTube: ${ytResult.url}`);
+        }
+      }
+    } catch (ytErr) {
+      console.warn(`[youtube] ⚠️  فشل رفع YouTube (غير مميت): ${ytErr.message}`);
+    }
   } else {
     console.log('\n🔍 [DRY RUN] لم يُنشر — الفيديو محفوظ في:');
     console.log(`   ${videoPath}`);

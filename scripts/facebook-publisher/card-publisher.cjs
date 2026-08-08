@@ -31,8 +31,8 @@ const REEL_LOG_FILE = path.join(FB_PUBLISHER_DIR, 'facebook-published-log.json')
 const CARD_LOG_FILE = path.join(FB_PUBLISHER_DIR, 'facebook-cards-published-log.json');
 const OUTPUT_DIR = path.join(FB_PUBLISHER_DIR, 'output', 'cards');
 
-const CARD_WIDTH = 1200;
-const CARD_HEIGHT = 628;
+const CARD_WIDTH = 1080;
+const CARD_HEIGHT = 1080;
 
 const CAIRO_FONT_URL = pathToFileURL(
   path.join(FB_PUBLISHER_DIR, 'fonts', 'Cairo.ttf')
@@ -221,122 +221,134 @@ async function generateCardContent(topic, retryIdx = 0) {
   }
 }
 
-// ─── بناء SVG البطاقة (مربعة أنيقة، 1080×1080) ──────────────────────────────
+// ─── بناء SVG البطاقة الاحترافية (مربعة 1080×1080) ─────────────────────────
 function buildCardSvg(card) {
-  const pad = 60;
-  const rightX = CARD_WIDTH - pad;
-  const leftX = pad;
-  const textX = rightX - 76;
+  const W = CARD_WIDTH;   // 1080
+  const H = CARD_HEIGHT;  // 1080
+  const pad = 56;         // هامش أفقي
+  const rX = W - pad;     // نقطة اليمين للنص RTL
+  const lX = pad;         // نقطة اليسار
 
-  const hashtagText = normalizeHashtags(card.hashtags).join('  ');
+  const FONT = "'Cairo', Tahoma, 'Segoe UI', Arial, sans-serif";
+  const hashtags = normalizeHashtags(card.hashtags).slice(0, 4).join(' ');
+  const cat = escapeXml(card.category || 'قانون');
 
-  const titleLines = wrapText(card.title, 28).slice(0, 2);
-  const hookLines = wrapText(card.hook, 45).slice(0, 1);
-  const tipLines = wrapText(card.tip, 50).slice(0, 2);
+  // نص مختصر — بطاقة احترافية تعرض فكرة واحدة واضحة
+  const hookLine = (wrapText(card.hook, 36)[0] || '').trim();
+  const titleLines = wrapText(card.title, 22).slice(0, 2);
+  const tipLines = wrapText(card.tip, 52).slice(0, 2);
+  const ctaLine = escapeXml(card.cta || 'استشر محامياً مختصاً الآن');
 
-  const points = (card.points || []).slice(0, 3).map((p, i) => ({
+  // النقاط — عنوان فقط بدون تفاصيل (أكثر وضوحاً)
+  const pts = (card.points || []).slice(0, 3).map((p, i) => ({
     num: i + 1,
-    label: wrapText(p.label, 26)[0] || '',
-    detail: wrapText(p.detail, 48).slice(0, 2),
+    label: (wrapText(String(p.label || p.detail || ''), 30)[0] || '').trim(),
+    grad: ['url(#g1)', 'url(#g2)', 'url(#g3)'][i],
   }));
 
-  const badge = 'منصة المحامي الرقمية';
-  const cat = escapeXml(card.category || 'استشارة قانونية');
-
-  const FONT = "'Cairo', 'Segoe UI', Tahoma, sans-serif";
-
-  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${CARD_WIDTH}" height="${CARD_HEIGHT}" viewBox="0 0 ${CARD_WIDTH} ${CARD_HEIGHT}">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
 <defs>
-  <style>@font-face{font-family:'Cairo';src:url('${CAIRO_FONT_URL}') format('truetype');}</style>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#0b0f19"/>
-    <stop offset="0.4" stop-color="#0f172a"/>
-    <stop offset="1" stop-color="#1e1b4b"/>
+  <style>@font-face{font-family:'Cairo';src:url('${CAIRO_FONT_URL}') format('truetype');font-weight:100 900;}</style>
+  <!-- خلفية متدرجة غامقة -->
+  <linearGradient id="bgTop" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#080D1A"/>
+    <stop offset="60%" stop-color="#0C1325"/>
+    <stop offset="100%" stop-color="#111827"/>
   </linearGradient>
-  <linearGradient id="goldAccent" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0" stop-color="#f59e0b"/>
-    <stop offset="0.5" stop-color="#10b981"/>
-    <stop offset="1" stop-color="#6366f1"/>
-  </linearGradient>
-  <linearGradient id="numGrad1" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#f59e0b"/>
-    <stop offset="1" stop-color="#d97706"/>
-  </linearGradient>
-  <linearGradient id="numGrad2" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#10b981"/>
-    <stop offset="1" stop-color="#059669"/>
-  </linearGradient>
-  <linearGradient id="numGrad3" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#6366f1"/>
-    <stop offset="1" stop-color="#4f46e5"/>
-  </linearGradient>
-  <radialGradient id="glowGold" cx="0.88" cy="0.12" r="0.55">
-    <stop offset="0" stop-color="#f59e0b" stop-opacity="0.25"/>
-    <stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+  <!-- توهج ذهبي في الزاوية العلوية اليمنى -->
+  <radialGradient id="gGold" cx="1" cy="0" r="0.7">
+    <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
   </radialGradient>
-  <radialGradient id="glowIndigo" cx="0.12" cy="0.88" r="0.55">
-    <stop offset="0" stop-color="#6366f1" stop-opacity="0.30"/>
-    <stop offset="1" stop-color="#6366f1" stop-opacity="0"/>
+  <!-- توهج أخضر في الزاوية السفلية اليسرى -->
+  <radialGradient id="gGreen" cx="0" cy="1" r="0.6">
+    <stop offset="0%" stop-color="#059669" stop-opacity="0.14"/>
+    <stop offset="100%" stop-color="#059669" stop-opacity="0"/>
   </radialGradient>
+  <!-- شريط ذهبي أعلى/أسفل -->
+  <linearGradient id="barGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#78350F"/>
+    <stop offset="30%" stop-color="#F59E0B"/>
+    <stop offset="70%" stop-color="#D97706"/>
+    <stop offset="100%" stop-color="#78350F"/>
+  </linearGradient>
+  <!-- أرقام النقاط -->
+  <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FBBF24"/><stop offset="100%" stop-color="#D97706"/></linearGradient>
+  <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#34D399"/><stop offset="100%" stop-color="#059669"/></linearGradient>
+  <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#818CF8"/><stop offset="100%" stop-color="#4F46E5"/></linearGradient>
+  <!-- تدرج صندوق النصيحة -->
+  <linearGradient id="tipGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#064E3B"/>
+    <stop offset="100%" stop-color="#065F46"/>
+  </linearGradient>
+  <!-- ظل الحدود -->
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+    <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#000" flood-opacity="0.5"/>
+  </filter>
 </defs>
 
-<!-- Background -->
-<rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#bg)"/>
-<rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#glowGold)"/>
-<rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#glowIndigo)"/>
+<!-- === الخلفية === -->
+<rect width="${W}" height="${H}" fill="url(#bgTop)"/>
+<rect width="${W}" height="${H}" fill="url(#gGold)"/>
+<rect width="${W}" height="${H}" fill="url(#gGreen)"/>
 
-<!-- Top & Bottom Glowing Gold Accents -->
-<rect x="0" y="0" width="${CARD_WIDTH}" height="14" fill="url(#goldAccent)"/>
-<rect x="0" y="${CARD_HEIGHT - 14}" width="${CARD_WIDTH}" height="14" fill="url(#goldAccent)"/>
+<!-- شريط علوي ذهبي -->
+<rect x="0" y="0" width="${W}" height="8" fill="url(#barGrad)"/>
 
-<!-- Header Badge -->
-<text x="${rightX}" y="76" font-family="${FONT}" font-size="30" font-weight="800" fill="#f59e0b" direction="rtl" text-anchor="start">⚖️ ${escapeXml(badge)}</text>
+<!-- === رأس البطاقة === -->
+<!-- اسم المنصة (يمين) -->
+<text x="${rX}" y="62" font-family="${FONT}" font-size="26" font-weight="700" fill="#F59E0B" direction="rtl" text-anchor="start" letter-spacing="0.5">⚖ منصة المحامي الرقمية</text>
 
-<!-- Category Pill -->
-<rect x="${leftX}" y="44" width="${Math.min(240, 48 + cat.length * 14)}" height="46" rx="23" fill="#1e293b" stroke="#f59e0b" stroke-width="1.5"/>
-<text x="${leftX + Math.min(240, 48 + cat.length * 14) / 2}" y="74" font-family="${FONT}" font-size="20" font-weight="700" fill="#fbbf24" text-anchor="middle">${cat}</text>
+<!-- تصنيف الموضوع (يسار) — حبة ملونة -->
+<rect x="${lX}" y="34" width="168" height="38" rx="19" fill="#1E3A5F" stroke="#3B82F6" stroke-width="1.5"/>
+<text x="${lX + 84}" y="59" font-family="${FONT}" font-size="19" font-weight="700" fill="#93C5FD" text-anchor="middle">${cat}</text>
 
-<!-- Hook Banner -->
-<rect x="${leftX}" y="118" width="${CARD_WIDTH - pad * 2}" height="58" rx="16" fill="#f59e0b" fill-opacity="0.12" stroke="#f59e0b" stroke-width="1.5"/>
-<text x="${rightX - 24}" y="156" font-family="${FONT}" font-size="26" font-weight="800" fill="#fbbf24" direction="rtl" text-anchor="start">${escapeXml(hookLines[0])}</text>
+<!-- خط فاصل رفيع -->
+<line x1="${lX}" y1="94" x2="${rX}" y2="94" stroke="#F59E0B" stroke-opacity="0.35" stroke-width="1"/>
 
-<!-- Title -->
-<text x="${rightX}" y="235" font-family="${FONT}" font-size="40" font-weight="800" fill="#ffffff" direction="rtl" text-anchor="start">${escapeXml(titleLines[0])}</text>
-${titleLines[1] ? `<text x="${rightX}" y="288" font-family="${FONT}" font-size="40" font-weight="800" fill="#ffffff" direction="rtl" text-anchor="start">${escapeXml(titleLines[1])}</text>` : ''}
-`;
+<!-- === الهوك (السؤال الجاذب) === -->
+<text x="${rX}" y="148" font-family="${FONT}" font-size="30" font-weight="700" fill="#FCD34D" direction="rtl" text-anchor="start">${escapeXml(hookLine)}</text>
 
-  // ─── النقاط (3 صفوف ثابتة مربعة) ───────────────────────────────────────
-  const numGrads = ['url(#numGrad1)', 'url(#numGrad2)', 'url(#numGrad3)'];
-  const pointYs = [348, 506, 664];
+<!-- === العنوان الرئيسي === -->
+<text x="${rX}" y="228" font-family="${FONT}" font-size="52" font-weight="900" fill="#FFFFFF" direction="rtl" text-anchor="start">${escapeXml(titleLines[0] || '')}</text>
+${titleLines[1] ? `<text x="${rX}" y="296" font-family="${FONT}" font-size="52" font-weight="900" fill="#FFFFFF" direction="rtl" text-anchor="start">${escapeXml(titleLines[1])}</text>` : ''}
 
-  points.forEach((p, i) => {
-    const y = pointYs[i];
-    const boxH = 136;
-    const numCX = rightX - 38;
-    svg += `
-  <rect x="${leftX}" y="${y}" width="${CARD_WIDTH - pad * 2}" height="${boxH}" rx="20" fill="#0f172a" fill-opacity="0.80" stroke="#334155" stroke-width="1.5"/>
-  <circle cx="${numCX}" cy="${y + 46}" r="26" fill="${numGrads[i]}"/>
-  <text x="${numCX}" y="${y + 55}" font-family="${FONT}" font-size="26" font-weight="800" fill="#ffffff" text-anchor="middle">${p.num}</text>
-  <text x="${textX}" y="${y + 44}" font-family="${FONT}" font-size="28" font-weight="800" fill="#f8fafc" direction="rtl" text-anchor="start">${escapeXml(p.label)}</text>
-  <text x="${textX}" y="${y + 82}" font-family="${FONT}" font-size="22" font-weight="500" fill="#94a3b8" direction="rtl" text-anchor="start">${escapeXml(p.detail[0] || p.detail)}</text>`;
-  });
+<!-- خط فاصل تحت العنوان -->
+<line x1="${lX}" y1="330" x2="${rX}" y2="330" stroke="#374151" stroke-width="1"/>
 
-  // ─── صندوق النصيحة القانونية ─────────────────────────────────────────
-  const tipY = 824;
-  svg += `
-  <rect x="${leftX}" y="${tipY}" width="${CARD_WIDTH - pad * 2}" height="136" rx="20" fill="#10b981" fill-opacity="0.10" stroke="#10b981" stroke-width="2"/>
-  <text x="${rightX - 24}" y="${tipY + 44}" font-family="${FONT}" font-size="24" font-weight="800" fill="#34d399" direction="rtl" text-anchor="start">💡 نصيحة قانونية:</text>
-  <text x="${rightX - 24}" y="${tipY + 82}" font-family="${FONT}" font-size="22" font-weight="600" fill="#e2e8f0" direction="rtl" text-anchor="start">${escapeXml(tipLines[0])}</text>
-  ${tipLines[1] ? `<text x="${rightX - 24}" y="${tipY + 112}" font-family="${FONT}" font-size="22" font-weight="600" fill="#e2e8f0" direction="rtl" text-anchor="start">${escapeXml(tipLines[i] || tipLines[1])}</text>` : ''}`;
+${pts.map((p) => {
+  const pointYMap = [370, 490, 610];
+  const y = pointYMap[p.num - 1];
+  const numCX = rX - 32;
+  return `
+<!-- نقطة ${p.num} -->
+<circle cx="${numCX}" cy="${y + 20}" r="28" fill="${p.grad}" filter="url(#shadow)"/>
+<text x="${numCX}" y="${y + 28}" font-family="${FONT}" font-size="28" font-weight="900" fill="#FFFFFF" text-anchor="middle">${p.num}</text>
+<text x="${numCX - 68}" y="${y + 28}" font-family="${FONT}" font-size="30" font-weight="700" fill="#F1F5F9" direction="rtl" text-anchor="start">${escapeXml(p.label)}</text>`;
+}).join('')}
 
-  // ─── السطر السفلي: CTA (يمين) + الهاشتاجات (يسار) ─────────────────────
-  svg += `
-  <text x="${rightX}" y="1018" font-family="${FONT}" font-size="24" font-weight="800" fill="#f59e0b" direction="rtl" text-anchor="start">${escapeXml(card.cta || 'استشر محامياً مختصاً الآن')} 👈</text>
-  <text x="${leftX}" y="1018" font-family="${FONT}" font-size="18" font-weight="600" fill="#64748b">${escapeXml(hashtagText)}</text>`;
+<!-- خط فاصل قبل النصيحة -->
+<line x1="${lX}" y1="692" x2="${rX}" y2="692" stroke="#374151" stroke-width="1"/>
 
-  svg += `
+<!-- === صندوق النصيحة === -->
+<rect x="${lX}" y="710" width="${W - pad * 2}" height="${tipLines[1] ? 128 : 100}" rx="16" fill="url(#tipGrad)" stroke="#059669" stroke-width="1.5"/>
+<text x="${rX - 22}" y="748" font-family="${FONT}" font-size="22" font-weight="800" fill="#6EE7B7" direction="rtl" text-anchor="start">💡 نصيحة قانونية:</text>
+<text x="${rX - 22}" y="786" font-family="${FONT}" font-size="23" font-weight="600" fill="#D1FAE5" direction="rtl" text-anchor="start">${escapeXml(tipLines[0])}</text>
+${tipLines[1] ? `<text x="${rX - 22}" y="820" font-family="${FONT}" font-size="23" font-weight="600" fill="#D1FAE5" direction="rtl" text-anchor="start">${escapeXml(tipLines[1])}</text>` : ''}
+
+<!-- === CTA === -->
+<text x="${rX}" y="878" font-family="${FONT}" font-size="27" font-weight="800" fill="#F59E0B" direction="rtl" text-anchor="start">${ctaLine} ←</text>
+
+<!-- خط فاصل سفلي -->
+<line x1="${lX}" y1="910" x2="${rX}" y2="910" stroke="#F59E0B" stroke-opacity="0.25" stroke-width="1"/>
+
+<!-- === هاشتاجات + watermark === -->
+<text x="${W / 2}" y="948" font-family="${FONT}" font-size="20" font-weight="500" fill="#4B5563" text-anchor="middle">${escapeXml(hashtags)}</text>
+<text x="${W / 2}" y="978" font-family="${FONT}" font-size="17" font-weight="400" fill="#2D3748" text-anchor="middle">mohamidigital.online</text>
+
+<!-- شريط سفلي ذهبي -->
+<rect x="0" y="${H - 8}" width="${W}" height="8" fill="url(#barGrad)"/>
 </svg>`;
-  return svg;
 }
 
 // ─── توليد البطاقة PNG عبر sharp ─────────────────────────────────────────
@@ -413,7 +425,7 @@ async function main() {
   console.log(`  ✓ ${card.points.length} نقاط | ${card.hashtags.length} هاشتاجات`);
 
   // 2. رسم البطاقة
-  console.log('\n[2/3] جاري رسم البطاقة (1200×628، داكنة أنيقة)...');
+  console.log('\n[2/3] جاري رسم البطاقة (1080×1080، احترافية)...');
   const pngPath = await renderCard(card, topic.slug);
 
   // 3. النشر
