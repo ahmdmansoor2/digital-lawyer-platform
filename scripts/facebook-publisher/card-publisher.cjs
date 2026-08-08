@@ -89,20 +89,23 @@ function escapeXml(s) {
 
 // تقسيم النص العربي لسطور (حسب حدود الكلمات + maxChars لكل سطر)
 function wrapText(text, maxChars) {
-  const words = String(text).split(/\s+/).filter(Boolean);
+  if (!text) return [];
+  const words = text.split(/\s+/);
   const lines = [];
-  let line = '';
-  for (const w of words) {
-    const candidate = line ? `${line} ${w}` : w;
-    if (candidate.length <= maxChars || !line) {
-      line = candidate;
+  let current = '';
+
+  words.forEach((word) => {
+    if ((current + ' ' + word).trim().length <= maxChars) {
+      current = (current + ' ' + word).trim();
     } else {
-      lines.push(line);
-      line = w;
+      if (current) lines.push(current);
+      current = word;
     }
-    while (line.length > maxChars) {
-      lines.push(line.slice(0, maxChars));
-      line = line.slice(maxChars);
+  });
+  if (current) lines.push(current);
+  return lines;
+}
+
 // ─── السجلات ───────────────────────────────────────────────────────────────
 function readCardLog() {
   return readJson(CARD_LOG_FILE, { entries: [] });
@@ -300,6 +303,7 @@ function buildCardSvg(card) {
 <!-- Title -->
 <text x="${rightX}" y="235" font-family="${FONT}" font-size="40" font-weight="800" fill="#ffffff" direction="rtl" text-anchor="start">${escapeXml(titleLines[0])}</text>
 ${titleLines[1] ? `<text x="${rightX}" y="288" font-family="${FONT}" font-size="40" font-weight="800" fill="#ffffff" direction="rtl" text-anchor="start">${escapeXml(titleLines[1])}</text>` : ''}
+`;
 
   // ─── النقاط (3 صفوف ثابتة مربعة) ───────────────────────────────────────
   const numGrads = ['url(#numGrad1)', 'url(#numGrad2)', 'url(#numGrad3)'];
