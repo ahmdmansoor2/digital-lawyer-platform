@@ -288,4 +288,26 @@ src/
 - **Search Console:** بانتظار المستخدم — الضغط **Verify** (الملف منشور ويعمل) ثم **Sitemaps** → `sitemap.xml` → Submit.
 - **كاسبرسكي** على جهاز المستخدم يعترض HTTPS محلياً (شهادة `CN=auth.match0.nl` من Kaspersky Root) — تُفضَّل الفحوصات الخارجية (مثل `r.jina.ai` أو `curl` مع تجاهل الشهادة) على الفحوصات المحلية.
 - توكن `access_token` في `C:\Users\احمد منصور\.config\configstore\firebase-tools.json` ينتهي كل ساعة والـ refresh عبر oauth2.googleapis.com يفشل أحياناً (400) — أوامر `npx firebase ...` تعمل عبر CLI كبديل.
-- آخر commits مدفوعة: `e0eaa61` (ربط الدومين)، `01803cb` (ريلز)، `a278dfc` (تقرير مراقبة).
+- آخر commits مدفوعة: `e0eaa61` (ربط الدومين)، `01803cb` (ريلز)، `a278dfc` (تقرير مراقبة)، `3ea4a1b` (إصلاح AdSense).
+
+---
+
+## حالة الجلسة الحالية: Session 9 — إصلاح شامل لإعدادات Google AdSense (مكتمل)
+
+### ما أُنجز
+1. **إضافة وحدة الإعلانات المقترحة (autorelaxed, slot `8981348923`)** في نهاية كل مقالات المدونة (93 مقالاً) قبل قسم CTA + قالب المولد اليومي `daily-publish.cjs:773` — فكل مقال جديد سيضمّنها تلقائياً.
+2. **إزالة النمط المتقادم `enable_page_level_ads: true`** من 16 مكاناً: `index.html`، 14 صفحة في `public/pillars/`، و`scripts/seo/generate-pillar.cjs`. الأسلوب الحديث: مجرد `<script async src="...adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin>` يكفي (Auto Ads تُفعَّل من لوحة AdSense وليس الكود).
+3. **توحيد صيغة الوحدة `2168039898`** في `AppLayout.tsx` من `format="horizontal"` إلى `auto` (لتطابقها مع بقية المواقع — وحدة واحدة بصيغة واحدة).
+4. **إصلاح بقايا الدومين القديم** في مقال `public/blog/egyptian-social-insurance-pension-guide.html` (أُنشئ اليوم بعد سكربت الاستبدال) — canonical/og:url/twitter:image تحوّلت إلى `mohamidigital.online`. أُعيد توليد sitemap (111 رابطاً) وأُعيد البناء والنشر.
+5. **git:** commit `b603991` → بعد rebase أصبح `3ea4a1b` (111 ملفاً، +1141/−214) — مقالات المدونة + pillars + index.html + القوالب فقط.
+
+### مراجع إعدادات AdSense (حالة مؤكدة)
+- معرّف العميل موحّد: `ca-pub-7725405859334364` (لا توجد معرفات أخرى)
+- الوحدات (9 slots): `2168039898` (auto، الرئيسية/المدونة/pillars/الصفحات الثابتة)، `3911754995` (fluid/in-article، المراجع)، `5434337426`/`8607295670`/`9002240868`/`6851909615` (auto، تطبيق React)، `8404664438`/`5940963255` (auto، LegalArticles)، `8981348923` (autorelaxed، LegalLibrary + المدونة)
+- كل صفحة تحمّل السكربت الرئيسي مرة واحدة قبل وحداتها — لا تكرار، لا صفحة بوحدات بلا سكربت.
+- `data-full-width-responsive="true"` على الوحدات المتجاوبة في الصفحات الثابتة.
+
+### تنبيهات
+- **`www.mohamidigital.online` لا يعمل** (Connection reset): سجل A موجود (199.36.158.100) لكن الدومين **غير مضاف** كدومين مخصص في Firebase Hosting — يتطلب إضافة يدوية من الكونسول + سجل TXT `hosting-site=justice-91571-app` في hPanel (لا يوجد أمر CLI/REST لإضافة دومين).
+- `index.html` به meta tag مزدوج لـ Search Console (ملف `googlec03a96f2162c19b9.html` + meta) — انتظار المستخدم: الضغط Verify ثم إرسال sitemap.xml.
+- ملفات untracked متروكة عمداً: `src/components/SiteSearchModal.tsx`، `public/search*`، `public/legal-library.html`، `scripts/facebook-reels/`، `scripts/tiktok-publisher/test-caption.png`، `_test-font.cjs`، `public/BingSiteAuth.xml`، `public/62c624f591cc714b7d28bf2c04c7966e.txt`.
