@@ -20,15 +20,39 @@ export default defineConfig(() => {
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
     build: {
-      // رفع حد تحذير حجم الـ chunk الأساسي إلى 1500 كيلوبايت (الافتراضي 500)
-      chunkSizeWarningLimit: 1500,
+      chunkSizeWarningLimit: 800,
       // تقسيم المكتبات الثقيلة إلى chunks منفصلة لتحسين التحميل والتخزين المؤقت
       rollupOptions: {
         output: {
-          manualChunks: {
-            'pdf-vendor': ['jspdf', 'html2canvas'],
-            'charts-vendor': ['recharts'],
-            'ui-vendor': ['lucide-react', 'qrcode.react', 'minisearch'],
+          manualChunks: (id) => {
+            // PDF libs — يُحمَّل فقط عند استخدام PDF
+            if (id.includes('jspdf') || id.includes('html2canvas') || id.includes('pdfjs-dist') || id.includes('react-pdf')) {
+              return 'pdf-vendor';
+            }
+            // Charts — يُحمَّل فقط عند فتح التقارير
+            if (id.includes('recharts')) {
+              return 'charts-vendor';
+            }
+            // Calendar — يُحمَّل فقط عند فتح التقويم
+            if (id.includes('@fullcalendar') || id.includes('fullcalendar')) {
+              return 'calendar-vendor';
+            }
+            // DnD Kit
+            if (id.includes('@dnd-kit')) {
+              return 'dnd-vendor';
+            }
+            // Firebase SDK — منفصل لأنه ثابت نادراً يتغير
+            if (id.includes('firebase')) {
+              return 'firebase-vendor';
+            }
+            // UI components
+            if (id.includes('lucide-react') || id.includes('qrcode.react') || id.includes('minisearch')) {
+              return 'ui-vendor';
+            }
+            // React core
+            if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+              return 'react-vendor';
+            }
           },
         },
       },

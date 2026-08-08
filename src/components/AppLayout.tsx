@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @license
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -57,35 +57,33 @@ import CasesList from './CasesList';
 import ClientsList from './ClientsList';
 import OpponentsList from './OpponentsList';
 import Notes from './Notes';
-import UsersManagement from './UsersManagement';
-import RolesManagement from './RolesManagement';
-import SecurityCenter from './SecurityCenter';
-import Financials from './Financials';
-import TemplatesLibrary from './TemplatesLibrary';
-import ContractGenerator from './ContractGenerator';
-import InheritanceCalculator from './InheritanceCalculator';
-import CourtFeesCalculator from './CourtFeesCalculator';
-import TasksManager from './TasksManager';
-import DatabaseSchemaVisualizer from './DatabaseSchemaVisualizer';
-import ExecutionsManager from './ExecutionsManager';
-import ArchivePanel from './ArchivePanel';
-import ProfilePage from './ProfilePage';
 import { LocalErrorBoundary } from './LocalErrorBoundary';
 import PrintPreviewModal from './PrintPreviewModal';
-import BailiffPapersPanel from './BailiffPapersPanel';
-import DocketMaster from './docket/DocketMaster';
 import SearchModal from './SearchModal';
 import PrivacyPolicyModal from './PrivacyPolicyModal';
+import ProfilePage from './ProfilePage';
 
-
-// v2.8.1: Lazy load heavy components to reduce initial bundle size.
-// These are loaded on-demand when the user navigates to them.
+// v2.9.11: Extended lazy loading to more heavy components for better initial load performance
 const ReportsPanel = lazy(() => import('./ReportsPanel'));
 const CalendarView = lazy(() => import('./CalendarView'));
 const LegalLibrary = lazy(() => import('./LegalLibrary'));
 const LegalArticles = lazy(() => import('./LegalArticles'));
 const DocumentManager = lazy(() => import('./DocumentManager'));
 const SettingsPanel = lazy(() => import('./SettingsPanel'));
+const Financials = lazy(() => import('./Financials'));
+const TemplatesLibrary = lazy(() => import('./TemplatesLibrary'));
+const ContractGenerator = lazy(() => import('./ContractGenerator'));
+const InheritanceCalculator = lazy(() => import('./InheritanceCalculator'));
+const CourtFeesCalculator = lazy(() => import('./CourtFeesCalculator'));
+const TasksManager = lazy(() => import('./TasksManager'));
+const ExecutionsManager = lazy(() => import('./ExecutionsManager'));
+const BailiffPapersPanel = lazy(() => import('./BailiffPapersPanel'));
+const ArchivePanel = lazy(() => import('./ArchivePanel'));
+const DocketMaster = lazy(() => import('./docket/DocketMaster'));
+const SecurityCenter = lazy(() => import('./SecurityCenter'));
+const UsersManagement = lazy(() => import('./UsersManagement'));
+const RolesManagement = lazy(() => import('./RolesManagement'));
+const DatabaseSchemaVisualizer = lazy(() => import('./DatabaseSchemaVisualizer'));
 
 import {
   Case,
