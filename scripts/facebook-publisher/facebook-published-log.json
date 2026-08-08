@@ -510,6 +510,27 @@
       "duration": "1د 38ث",
       "size": 33575964,
       "publishedAt": "2026-08-07T19:14:26.912Z"
+    },
+    {
+      "topicId": "trend-khula-laws-personal-status-egypt",
+      "title": "قانون الأحوال الشخصية الشامل: الشروط والإجراءات القانونية للخلع والطلاق",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الأحوال الشخصية",
+        "#قانون الأحوال الشخصية",
+        "#الخلع في مصر"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-khula-laws-personal-status-egypt.mp4",
+      "videoId": "943542475423223",
+      "permalink": "https://www.facebook.com/reel/943542475423223",
+      "source": "trending-topics.json",
+      "duration": "1د 30ث",
+      "size": 24009479,
+      "publishedAt": "2026-08-08T07:11:41.190Z"
     }
   ]
 }

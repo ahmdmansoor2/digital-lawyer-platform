@@ -319,6 +319,28 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1342544894704044",
       "publishedAt": "2026-08-07T19:16:14.250Z"
+    },
+    {
+      "topicId": "trend-khula-laws-personal-status-egypt",
+      "title": "قانون الأحوال الشخصية الشامل: الشروط والإجراءات القانونية للخلع والطلاق",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-khula-laws-personal-status-egypt.mp4",
+      "source": "trending-topics.json",
+      "videoId": "URLOYH26mVw",
+      "url": "https://www.youtube.com/watch?v=URLOYH26mVw",
+      "kind": "short",
+      "fbPermalink": "https://www.facebook.com/reel/943542475423223",
+      "publishedAt": "2026-08-08T07:11:43.961Z"
+    },
+    {
+      "topicId": "trend-khula-laws-personal-status-egypt",
+      "title": "قانون الأحوال الشخصية الشامل: الشروط والإجراءات القانونية للخلع والطلاق — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-khula-laws-personal-status-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "5cjzhHao_0E",
+      "url": "https://www.youtube.com/watch?v=5cjzhHao_0E",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/943542475423223",
+      "publishedAt": "2026-08-08T07:13:10.317Z"
     }
   ]
 }
