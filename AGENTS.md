@@ -264,3 +264,28 @@ src/
 - أدوات الفحص المؤقتة `_rtl-probe.cjs`/`_card-check.cjs` حُذفت بعد التحقق.
 - **Session 7b:** `buildCardSvg` أُعيد تصميمها لستايل **داكن أنيق** (خلفية slate-900→indigo، شارات أرقام متدرجة، صندوق نصيحة زجاجي، إزالة emoji من SVG — الـ emoji بقيت في الكابشن فقط). المواضع الرأسية الثابتة محدّثة: `BADGE_Y=58, CHIP_Y=28, HOOK_Y=128, TITLE_Y=178(+52), POINT_ROWS=[300,366,432], TIP_Y=458, FOOTER_Y=592`.
 - **Session 7c:** بطاقات فيسبوك — **خط Cairo** (OFL، `scripts/facebook-publisher/fonts/Cairo.ttf`) عبر `@font-face` بدل Tahoma/Noto، وأسلوب كتابة وفق خبراء فيسبوك (hook شخصي + عنوان بفائدة + نصوص مقتصدة). المواضع الجديدة: `BADGE_Y=58, CHIP_Y=28, HOOK_Y=132, TITLE_Y=188(+56), POINT_ROWS=[308,374,440], TIP_Y=468(+32), FOOTER_Y=596`. توليد البطاقات على Linux CI يحتاج خط Cairo (مضمّن في الريبو).
+
+---
+
+## حالة الجلسة الحالية: Session 8 — ربط الدومين المخصص mohamidigital.online (مكتمل)
+
+### ما أُنجز
+1. **شراء وربط الدومين:** `mohamidigital.online` مسجّل لدى **Hostinger** (HOSTINGER operations, UAB — مؤكد عبر RDAP، وليس Spaceship كما ظننا سابقاً؛ التسجيل 2026-08-07، الانتهاء 2027-08-07). إدارة السجلات عبر **hPanel** (`hpanel.hostinger.com`). NS بقيت على `lunar/solar.dns-parking.com` (موزّعات DNS تابعة لـ Hostinger فعّالة). سجلات DNS الأولية: `A @ → 199.36.158.100` (IP الرسمي لـ Firebase Hosting)، `A www → 199.36.158.100`.
+2. **بنية multi-site (مهم):** التطبيق انتقل من موقع `justice-91571` إلى موقع جديد **`justice-91571-app`** (target name: `app`، public: `dist`) — هو الذي يرتبط به الدومين المخصص الآن. الموقع القديم **`justice-91571`** (target name: `legacy`، public: `dist-legacy`) أصبح يخدم **redirect 301** فقط نحو `https://mohamidigital.online/:path`. التكوين في `firebase.json` (hosting array) + `.firebaserc` (targets: app/legacy).
+3. **سجل TXT الحالي:** `@ → hosting-site=justice-91571-app` (القديم `hosting-site=justice-91571` حُذف من hPanel). **تحذير:** كل موقع له TXT مختلف — عند النقل لمولّد جديد يُحدَّث TXT في الـ registrar وإلا تظهر حالة `DOMAIN_VERIFICATION_LOST`.
+4. **فخ النشر multi-target (مهم):** قبل أي `firebase deploy --only hosting:<target>` احذف `.firebase/hosting.*.cache` وإلا خطأ `The "paths[1]" argument must be of type string. Received undefined`.
+5. **استبدال شامل للدومين:** سكربت `replace_domain.cjs` (في `C:\WINDOWS\TEMP\opencode\`) حدّث 140 ملفاً / 1502 استبدال: `justice-91571.web.app` → `mohamidigital.online` (canonical/hreflang/og:/JSON-LD/robots/sitemap/كل src). `CHANGELOG.md` استُثني عمداً (سجل تاريخي). تحقق: 0 متبقٍّ خارج CHANGELOG. robots.txt → `Sitemap: https://mohamidigital.online/sitemap.xml`؛ إعادة توليد sitemap.xml + sitemap.html عبر `generate-sitemap.cjs`.
+6. **البناء والنشر:** `npm run build` نجح + `npx firebase deploy --only hosting:app` → تحقق حي: الرئيسية 200 (title: منصة المحامي الرقمية، canonical صحيح)، `/blog/` 200، `sitemap.xml` 200، `/__/auth/iframe` 200. الدومين مرتبط بالمولّد الجديد وحالته **Connected**.
+7. **إصلاح تسجيل الدخول بجوجل (مهم):** الدخول فشل من الدومين الجديد لأن `mohamidigital.online` لم يكن في **Authorized domains** في Firebase (Authentication → Settings). الحل من الكونسول حصراً — **بدون أي تعديل كود**: أضاف المستخدم `mohamidigital.online` + `www.mohamidigital.online`. التحقق عبر `getProjectConfig` أظهر الدومينين مصرّحين. **درس مهم:** `authDomain` في `firebaseClient.ts` يبقى `justice-91571.firebaseapp.com` (لا يُغيّر — Firebase يرسل نافذة الدخول لهذا الدومين المسجّل في OAuth).
+8. **Redirect 301 فعّال ومحقَّق:** `https://justice-91571.web.app/*` يعيد 301 نحو `https://mohamidigital.online/*` مع **الحفاظ على المسار**. القاعدة الصحيحة في Firebase: `{"source": "/", "destination": "https://mohamidigital.online/", "type": 301}` + `{"source": "/:path*", "destination": "https://mohamidigital.online/:path", "type": 301}`. **درس:** صيغة `destination: "https://.../**"` تُرسل الرمز حرفياً ولا تحفظ المسار — الوضع الصحيح هو named capture `:path`.
+9. **Search Console:** ملف التحقق `googlec03a96f2162c19b9.html` منشور في `public/` ويُستجاب بـ 200 على `https://mohamidigital.online/googlec03a96f2162c19b9.html` (مع rewrite استثناء `/google*.html` قبل الـ SPA catch-all في تكوين app). **بانتظار المستخدم:** الضغط Verify في Search Console ثم إرسال `sitemap.xml`.
+10. **git:** commit `e0eaa61` (111 ملفاً، +1084/−980) — تعديلات الدومين فقط؛ الملفات غير المرتبطة (untracked) تُركت خارج الـ commit. الدفع عبر stash → pull --rebase → push → stash pop.
+
+### الدومينات المصرّحة في Firebase Auth حالياً
+`localhost`, `justice-91571.firebaseapp.com`, `justice-91571.web.app`, `mohamidigital.online` ✅, `www.mohamidigital.online` ✅
+
+### تنبيهات / متبقٍّ
+- **Search Console:** بانتظار المستخدم — الضغط **Verify** (الملف منشور ويعمل) ثم **Sitemaps** → `sitemap.xml` → Submit.
+- **كاسبرسكي** على جهاز المستخدم يعترض HTTPS محلياً (شهادة `CN=auth.match0.nl` من Kaspersky Root) — تُفضَّل الفحوصات الخارجية (مثل `r.jina.ai` أو `curl` مع تجاهل الشهادة) على الفحوصات المحلية.
+- توكن `access_token` في `C:\Users\احمد منصور\.config\configstore\firebase-tools.json` ينتهي كل ساعة والـ refresh عبر oauth2.googleapis.com يفشل أحياناً (400) — أوامر `npx firebase ...` تعمل عبر CLI كبديل.
+- آخر commits مدفوعة: `e0eaa61` (ربط الدومين)، `01803cb` (ريلز)، `a278dfc` (تقرير مراقبة).

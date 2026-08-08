@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "justice-91571"
+  },
+  "targets": {
+    "justice-91571": {
+      "hosting": {
+        "app": [
+          "justice-91571-app"
+        ],
+        "legacy": [
+          "justice-91571"
+        ]
+      }
+    }
   }
 }
