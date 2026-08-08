@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import {
   BookOpen, Search, Copy, Printer, Bookmark, Scale, Check, Landmark,
   ShieldAlert, Download, AlertCircle, FileText, BookmarkCheck, Folder,
@@ -14,6 +14,7 @@ import { mockLawArticles, mockCourtPrecedents, mockLegalBooks, legalCategories }
 import { exportHtmlToWord } from '../utils/wordExportHelper';
 import { findMatchSnippet } from '../utils/searchHelper';
 import FileViewer from './FileViewer';
+import AdSenseBanner from './AdSenseBanner';
 import { buildLawIndex, buildPrecedentIndex, buildBookIndex, searchLaws, searchPrecedents, searchBooks, rebuildAllIndexes } from '../utils/fullTextSearch';
 import { sanitizeHtml } from '../utils/sanitizer';
 import { logger } from '../utils/logger';
@@ -1115,6 +1116,9 @@ const LegalLibrary = React.memo(function LegalLibrary({ cases = [], onLinkLegalR
           </div>
         </div>
       )}
+
+      {/* AdSense Banner */}
+      <AdSenseBanner slot="2168039898" className="max-w-5xl mx-auto w-full my-3" />
 
       {/* Tabs & Search */}
       <div className="flex flex-col gap-3">
