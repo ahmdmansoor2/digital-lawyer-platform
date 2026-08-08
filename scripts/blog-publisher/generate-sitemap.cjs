@@ -162,6 +162,7 @@ function buildSitemapHtml() {
   <meta name="description" content="كل صفحات موقع منصة المحامي الرقمية في مكان واحد. دليل شامل للخدمات، المدونة، المراجع القانونية، ومكتبة قانونية." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="${BASE_URL}/sitemap.html" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {

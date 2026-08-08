@@ -554,67 +554,25 @@
       "publishedAt": "2026-08-08T09:52:37.884Z"
     },
     {
-      "topicId": "blog-witness-testimony-egypt",
-      "title": "الشهادة أمام المحاكم: شروط قبولها وقيمتها في الإثبات وفقاً للقانون المصري - منصة المحامي الرقمية",
+      "topicId": "trend-test-labor-law-contract-termination",
+      "title": "حقوق العامل والتعويض المستحق عند إنهاء عقد العمل غير المحدد المدة",
       "hashtags": [
         "#قانون",
         "#محكمة",
         "#محامي",
         "#القانون_المصري",
         "#قضايا",
-        "#قانون الأسرة",
-        "#تعتبر",
-        "#الشهادة"
+        "#قانون العمل",
+        "#عقد العمل",
+        "#الفصل التعسفي"
       ],
-      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-witness-testimony-egypt.mp4",
-      "videoId": "1785525792893179",
-      "permalink": "https://www.facebook.com/reel/1785525792893179",
-      "source": "blog",
-      "duration": "1د 1ث",
-      "size": 19028273,
-      "publishedAt": "2026-08-08T12:36:51.380Z"
-    },
-    {
-      "topicId": "blog-limited-liability-company",
-      "title": "شركة ذات مسؤولية محدودة في القانون المصري: رأس المال والحد الأدنى والخطوات العملية للتأسيس - منصة المحامي الرقمية",
-      "hashtags": [
-        "#قانون",
-        "#محكمة",
-        "#محامي",
-        "#القانون_المصري",
-        "#قضايا",
-        "#تعتبر",
-        "#الشركة",
-        "#المسؤولية"
-      ],
-      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-limited-liability-company.mp4",
-      "videoId": "25817559244607702",
-      "permalink": "https://www.facebook.com/reel/25817559244607702",
-      "source": "blog",
-      "duration": "51ث",
-      "size": 11420372,
-      "publishedAt": "2026-08-08T13:10:59.300Z"
-    },
-    {
-      "topicId": "blog-divorce-damages-claim",
-      "title": "دعوى التعويض عن الطلاق التعسفي: تقدير الضرر المادي والأدبي - منصة المحامي الرقمية",
-      "hashtags": [
-        "#قانون",
-        "#محكمة",
-        "#محامي",
-        "#القانون_المصري",
-        "#قضايا",
-        "#قانون الأسرة",
-        "#العلاقة",
-        "#الزوجية"
-      ],
-      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-divorce-damages-claim.mp4",
-      "videoId": "1048309027940106",
-      "permalink": "https://www.facebook.com/reel/1048309027940106",
-      "source": "blog",
-      "duration": "1د 3ث",
-      "size": 16737059,
-      "publishedAt": "2026-08-08T15:43:47.653Z"
+      "videoPath": "D:\\قانوني 7\\scripts\\facebook-publisher\\output\\fb-trend-test-labor-law-contract-termination.mp4",
+      "videoId": "1048744197797045",
+      "permalink": "https://www.facebook.com/reel/1048744197797045",
+      "source": "trending-topics.json",
+      "duration": "57ث",
+      "size": 18162630,
+      "publishedAt": "2026-08-08T12:14:35.952Z"
     }
   ]
 }
