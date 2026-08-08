@@ -363,6 +363,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1068251779083611",
       "publishedAt": "2026-08-08T09:53:53.567Z"
+    },
+    {
+      "topicId": "blog-witness-testimony-egypt",
+      "kind": "short",
+      "videoId": "ogevQfWce70",
+      "url": "https://www.youtube.com/watch?v=ogevQfWce70",
+      "fbPermalink": "https://www.facebook.com/reel/1785525792893179",
+      "publishedAt": "2026-08-08T12:36:53.206Z"
+    },
+    {
+      "topicId": "blog-witness-testimony-egypt",
+      "title": "الشهادة أمام المحاكم: شروط قبولها وقيمتها في الإثبات وفقاً للقانون المصري - منصة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-witness-testimony-egypt-wide.mp4",
+      "source": "blog",
+      "videoId": "tWsxikVMoA4",
+      "url": "https://www.youtube.com/watch?v=tWsxikVMoA4",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1785525792893179",
+      "publishedAt": "2026-08-08T12:37:50.419Z"
     }
   ]
 }

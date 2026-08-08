@@ -552,6 +552,27 @@
       "duration": "1د 19ث",
       "size": 16279509,
       "publishedAt": "2026-08-08T09:52:37.884Z"
+    },
+    {
+      "topicId": "blog-witness-testimony-egypt",
+      "title": "الشهادة أمام المحاكم: شروط قبولها وقيمتها في الإثبات وفقاً للقانون المصري - منصة المحامي الرقمية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون الأسرة",
+        "#تعتبر",
+        "#الشهادة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-witness-testimony-egypt.mp4",
+      "videoId": "1785525792893179",
+      "permalink": "https://www.facebook.com/reel/1785525792893179",
+      "source": "blog",
+      "duration": "1د 1ث",
+      "size": 19028273,
+      "publishedAt": "2026-08-08T12:36:51.380Z"
     }
   ]
 }
