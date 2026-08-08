@@ -46,4 +46,4 @@ jobs:
       - name: Build & Deploy to Firebase Hosting
         run: |
           npm run build
-          npx firebase deploy --only hosting --token "$FIREBASE_TOKEN" --non-interactive
+          npx firebase deploy --only hosting:app --token "$FIREBASE_TOKEN" --non-interactive
