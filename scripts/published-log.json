@@ -1153,6 +1153,42 @@
       ],
       "words": 1543,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "خطوات التوثيق وإثبات التاريخ عبر بوابة مصر الرقمية والشهر العقاري",
+      "date": "2026-08-09",
+      "slug": "egypt-digital-notary-services",
+      "url": "https://mohamidigital.online/blog/egypt-digital-notary-services.html",
+      "image": "https://mohamidigital.online/blog/images/egypt-digital-notary-services.jpg",
+      "tags": [
+        "الشهر العقاري"
+      ],
+      "words": 2097,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "الحبس الاحتياطي في القانون المصري: المدة والشروط وإجراءات التظلم",
+      "date": "2026-08-09",
+      "slug": "remand-in-custody-egyptian-law",
+      "url": "https://mohamidigital.online/blog/remand-in-custody-egyptian-law.html",
+      "image": "https://mohamidigital.online/blog/images/remand-in-custody-egyptian-law.jpg",
+      "tags": [
+        "القانون الجنائي"
+      ],
+      "words": 1624,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "دليل تقديم الشكاوى الحكومية عبر منظومة الشكاوى الموحدة بمجلس الوزراء",
+      "date": "2026-08-09",
+      "slug": "government-complaints-system-egypt",
+      "url": "https://mohamidigital.online/blog/government-complaints-system-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/government-complaints-system-egypt.jpg",
+      "tags": [
+        "القانون الإداري"
+      ],
+      "words": 2220,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
