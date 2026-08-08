@@ -261,9 +261,34 @@ function buildHtml(pillar, keyword) {
       <ol>${tocHtml}</ol>
     </aside>
 
+    <!-- مساحة إعلانية Google AdSense -->
+    <div class="ad-banner" style="margin: 36px 0; text-align: center; overflow: hidden; background: rgba(30, 41, 59, 0.4); border: 1px dashed rgba(99, 102, 241, 0.3); border-radius: 12px; padding: 16px;">
+      <span style="display: block; font-size: 11px; color: #94a3b8; margin-bottom: 8px; font-weight: bold; letter-spacing: 1px;">— إعلان ترويجي —</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7725405859334364"
+           data-ad-slot="2168039898"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
     ${sectionsHtml}
 
+    <!-- مساحة إعلانية Google AdSense -->
+    <div class="ad-banner" style="margin: 36px 0; text-align: center; overflow: hidden; background: rgba(30, 41, 59, 0.4); border: 1px dashed rgba(99, 102, 241, 0.3); border-radius: 12px; padding: 16px;">
+      <span style="display: block; font-size: 11px; color: #94a3b8; margin-bottom: 8px; font-weight: bold; letter-spacing: 1px;">— إعلان —</span>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-7725405859334364"
+           data-ad-slot="5434337426"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
     <aside class="faq">
+
       <h2 style="color:#fde047; border:none; padding:0; margin-bottom:20px;">❓ الأسئلة الشائعة</h2>
       ${faqHtml}
     </aside>
