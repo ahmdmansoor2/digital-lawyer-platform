@@ -531,6 +531,27 @@
       "duration": "1د 30ث",
       "size": 24009479,
       "publishedAt": "2026-08-08T07:11:41.190Z"
+    },
+    {
+      "topicId": "blog-private-international-law",
+      "title": "القانون الدولي الخاص في مسائل الزواج والطلاق لغير المصريين أمام محاكم الأسرة - منصة المحامي الرقمية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#جمهورية",
+        "#العربية",
+        "#دؤوبة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-private-international-law.mp4",
+      "videoId": "1068251779083611",
+      "permalink": "https://www.facebook.com/reel/1068251779083611",
+      "source": "blog",
+      "duration": "1د 19ث",
+      "size": 16279509,
+      "publishedAt": "2026-08-08T09:52:37.884Z"
     }
   ]
 }

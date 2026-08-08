@@ -341,6 +341,28 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/943542475423223",
       "publishedAt": "2026-08-08T07:13:10.317Z"
+    },
+    {
+      "topicId": "blog-private-international-law",
+      "title": "القانون الدولي الخاص في مسائل الزواج والطلاق لغير المصريين أمام محاكم الأسرة - منصة المحامي الرقمية",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-private-international-law.mp4",
+      "source": "blog",
+      "videoId": "ZmOtkwet-j4",
+      "url": "https://www.youtube.com/watch?v=ZmOtkwet-j4",
+      "kind": "short",
+      "fbPermalink": "https://www.facebook.com/reel/1068251779083611",
+      "publishedAt": "2026-08-08T09:52:39.722Z"
+    },
+    {
+      "topicId": "blog-private-international-law",
+      "title": "القانون الدولي الخاص في مسائل الزواج والطلاق لغير المصريين أمام محاكم الأسرة - م — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-private-international-law-wide.mp4",
+      "source": "blog",
+      "videoId": "HxT45H8Ix2g",
+      "url": "https://www.youtube.com/watch?v=HxT45H8Ix2g",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1068251779083611",
+      "publishedAt": "2026-08-08T09:53:53.567Z"
     }
   ]
 }
