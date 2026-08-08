@@ -2579,6 +2579,9 @@ const LegalLibrary = React.memo(function LegalLibrary({ cases = [], onLinkLegalR
         </div>
       )}
 
+      {/* AdSense Multiplex Banner (Bottom Recommendations) */}
+      <AdSenseBanner slot="8981348923" format="autorelaxed" className="max-w-5xl mx-auto w-full my-6" />
+
       {/* ── File Viewer Modal ──────────────────────────── */}
       {fileViewerData && (
         <FileViewer

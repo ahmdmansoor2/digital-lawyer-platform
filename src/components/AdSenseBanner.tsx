@@ -11,7 +11,7 @@ import React, { useEffect, useRef } from 'react';
 interface AdSenseBannerProps {
   client?: string;
   slot?: string;
-  format?: 'auto' | 'fluid' | 'rectangle' | 'horizontal' | 'vertical';
+  format?: 'auto' | 'fluid' | 'rectangle' | 'horizontal' | 'vertical' | 'autorelaxed';
   layout?: string;
   responsive?: boolean;
   className?: string;
