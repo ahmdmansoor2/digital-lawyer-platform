@@ -278,11 +278,53 @@ async function generateTopicArticle(ai, topic, trends) {
   return { sections };
 }
 
-// ─── توليد صور البطاقات (بنفس آلية المدونة: Nano Banana → Pollinations → Unsplash) ───
+// ─── توليد صور البطاقات ───
+// ترتيب المصادر: Pexels (صور ويب حقيقية بحقوق محفوظة) → Nano Banana → Pollinations → Unsplash.
+// «اقتباس من الويب مع الحفاظ على حقوق النشر»: Pexels يمنح ترخيصاً مجانياً للاستخدام،
+// ونُضيف دائماً سطر نسبة (photographer) على الصورة.
 
 const IMAGE_MODEL = 'gemini-2.5-flash-image'; // Nano Banana
 const RADAR_IMAGES_DIR = path.join(ROOT, 'public', 'radar-images');
 const IMG_FALLBACK = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&h=675&q=80';
+
+// خريطة كلمات عربية → كلمات بحث إنجليزية لـ Pexels (بلا حصة Gemini)
+const KEYWORD_MAP = [
+  { terms: ['تصالح', 'تقنين', 'ترخيص', 'بناء', 'عقار', 'إعمار', 'مخالفات', 'وحدات سكنية', 'عقاري', 'أراضي', 'أبنية'], en: 'egypt construction building urban planning real estate' },
+  { terms: ['محاكمة', 'جناية', 'مدان', 'حكم', 'قضائي', 'مستأنف', 'نيابة', 'توقيف', 'حبس', 'سجن', 'محكمة', 'قضايا'], en: 'court trial justice gavel law' },
+  { terms: ['إلكتروني', 'رقمي', 'حكومي', 'تطبيقات', 'إنترنت', 'تكنولوجيا', 'ذكاء اصطناعي', 'رقمنة', 'خدمات', 'تحول رقمي'], en: 'digital technology government services online' },
+  { terms: ['اقتصاد', 'أسعار', 'تضخم', 'بورصة', 'عملة', 'دولار', 'جنيه', 'مالية', 'ميزانية', 'ضرائب', 'ضريبة', 'بنك'], en: 'economy finance banking money' },
+  { terms: ['صحة', 'دواء', 'مستشفى', 'علاج', 'طبي', 'لقاح', 'تأمين صحي'], en: 'healthcare hospital medicine doctor' },
+  { terms: ['تعليم', 'مدرسة', 'جامعة', 'طلاب', 'امتحانات', 'دراسة'], en: 'education university students classroom' },
+  { terms: ['طاقة', 'نفط', 'غاز', 'كهرباء', 'بترول', 'طاقة متجددة', 'وقود'], en: 'energy oil electricity power' },
+  { terms: ['سياحة', 'سفر', 'آثار', 'فنادق'], en: 'tourism travel egypt monuments' },
+  { terms: ['زراعة', 'غذاء', 'محاصيل', 'قمح', 'تموين'], en: 'agriculture farming food grain' },
+  { terms: ['نقل', 'طرق', 'مواصلات', 'قطار', 'مترو', 'كبري', 'أنفاق'], en: 'transport railway metro traffic' },
+  { terms: ['أمن', 'جريمة', 'شرطة', 'إرهاب', 'أمن قومي'], en: 'security police crime' },
+  { terms: ['عدالة', 'حقوق', 'دستور', 'قانون', 'تشريع', 'لائحة'], en: 'justice law rights constitution' },
+  { terms: ['عمل', 'وظائف', 'توظيف', 'مرتبات', 'عمالة', 'بطالة'], en: 'work jobs employment office' },
+  { terms: ['أسرة', 'زواج', 'طلاق', 'حضانة', 'ميراث', 'ولاية'], en: 'family marriage law egypt' },
+  { terms: ['تجارة', 'أعمال', 'استثمار', 'شركات', 'مشاريع', 'صناعة'], en: 'business trade investment industry' },
+  { terms: ['سيارات', 'مركبات', 'توك توك', 'نقل بري'], en: 'cars vehicles traffic street' },
+  { terms: ['بيئة', 'مناخ', 'تلوث', 'مياه', 'ري', 'نهر النيل'], en: 'environment climate pollution water' },
+  { terms: ['رياضة', 'كرة', 'أولمبياد', 'دوري', 'كأس'], en: 'sports football stadium' },
+  { terms: ['فن', 'سينما', 'مسلسلات', 'ثقافة', 'موسيقى'], en: 'art cinema culture entertainment' },
+  { terms: ['فضاء', 'أقمار', 'صاروخ', 'وكالة فضاء'], en: 'space rocket satellite nasa' },
+];
+
+function topicSearchKeywords(topic) {
+  const text = `${topic.title || ''} ${topic.summary || ''}`;
+  let best = 'egypt news report newspaper';
+  let bestScore = 0;
+  for (const r of KEYWORD_MAP) {
+    let score = 0;
+    for (const t of r.terms) if (text.includes(t)) score++;
+    if (score > bestScore) {
+      bestScore = score;
+      best = r.en;
+    }
+  }
+  return best;
+}
 
 async function downloadImage(url) {
   const res = await fetch(url, { signal: AbortSignal.timeout(25000) });
@@ -292,8 +334,34 @@ async function downloadImage(url) {
   return buf;
 }
 
+// 1) Pexels — بحث بالكلمات الإنجليزية عن صورة حقيقية مطابقة للموضوع (ترخيص مجاني + نسبة للمصوّر)
+async function fetchPexels(topic) {
+  const apiKey = process.env.PEXELS_API_KEY;
+  if (!apiKey) return null;
+  try {
+    const query = topicSearchKeywords(topic);
+    const params = new URLSearchParams({ query, per_page: '5', orientation: 'landscape', size: 'medium' });
+    const resp = await fetch(`https://api.pexels.com/v1/search?${params}`, { headers: { Authorization: apiKey } });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const data = await resp.json();
+    const photo = (data.photos || [])[0];
+    if (!photo?.src) throw new Error('لا نتائج');
+    const url = photo.src.large2x || photo.src.landscape || photo.src.large;
+    if (!url) throw new Error('بلا src');
+    const buf = await downloadImage(url);
+    log(`[radar] 🖼️ Pexels: «${query}» ← ${photo.photographer || 'Pexels'} (${Math.round(buf.length / 1024)} KB)`);
+    return { buf, credit: `📷 ${photo.photographer || 'Pexels'} — Pexels` };
+  } catch (e) {
+    log(`[radar] ⚠️ Pexels فشل: ${String((e && e.message) || e).slice(0, 70)}`);
+    return null;
+  }
+}
+
 async function generateTopicImage(ai, topic) {
-  // 1) Nano Banana — نفس أسلوب المدونة (gemini-2.5-flash-image)
+  // 1) Pexels — صور ويب حقيقية (الأولوية المطلوبة)
+  const pexels = await fetchPexels(topic);
+  if (pexels) return pexels;
+  // 2) Nano Banana — نفس أسلوب المدونة (gemini-2.5-flash-image)
   if (ai) {
     try {
       const imagePrompt = `ارسم صورة توضيحية احترافية (flat illustration) بجودة عالية للموضوع التالي:
@@ -312,24 +380,24 @@ async function generateTopicImage(ai, topic) {
       const img = parts.find((p) => p.inlineData && p.inlineData.data);
       if (img) {
         const buf = Buffer.from(img.inlineData.data, 'base64');
-        if (buf.length >= 5000) return buf;
+        if (buf.length >= 5000) return { buf, credit: null };
       }
       log('[radar] ⚠️ Nano Banana لم يرجِع صورة — ننتقل للبدائل');
     } catch (e) {
       log(`[radar] ⚠️ ${IMAGE_MODEL} فشل: ${String((e && e.message) || e).slice(0, 90)}`);
     }
   }
-  // 2) Pollinations (ذكاء مجاني — نفس ترتيب المدونة)
+  // 3) Pollinations (ذكاء مجاني)
   try {
     const enPrompt = `${topic.title}. ${topic.summary}. Egyptian legal topic, professional editorial photography, high quality, sharp, no text, no words, no letters`;
     const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(enPrompt)}?width=1200&height=675&nologo=true&seed=${Date.now() % 100000}`;
-    return await downloadImage(url);
+    return { buf: await downloadImage(url), credit: null };
   } catch (e) {
     log(`[radar] ⚠️ Pollinations فشل: ${String((e && e.message) || e).slice(0, 70)}`);
   }
-  // 3) Unsplash عام (قانون) — حل أخير
+  // 4) Unsplash عام (قانون) — حل أخير
   try {
-    return await downloadImage(IMG_FALLBACK);
+    return { buf: await downloadImage(IMG_FALLBACK), credit: null };
   } catch (e) {
     log(`[radar] ⚠️ Unsplash فشل: ${String((e && e.message) || e).slice(0, 70)}`);
   }
@@ -400,12 +468,14 @@ function buildTopicCard(t, i) {
   const img = t.image
     ? `<img class="topic-img" src="${esc(t.image)}" alt="${esc(t.title)}" loading="lazy" width="1200" height="675" />`
     : '';
+  const credit = t.imageCredit ? `<span class="img-credit">${esc(t.imageCredit)}</span>` : '';
   const hint = words > 0
     ? `📖 اضغط لعرض الموضوع الكامل (${words.toLocaleString('ar-EG')} كلمة)`
     : '📖 اضغط لعرض الموضوع الكامل';
   return `<details class="topic-card" id="topic-${i + 1}">
     <summary class="topic-summary">
       ${img}
+      ${credit}
       <div class="topic-head">
         <span class="topic-num">${String(i + 1).padStart(2, '0')}</span>
         <div class="topic-body">
@@ -559,22 +629,23 @@ function buildPage(todayTopics, archiveEntries, generatedAt) {
 
     .article { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
 
-    .topic-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
-    .topic-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; transition: border-color 0.25s, transform 0.25s; }
-    .topic-card:hover { border-color: rgba(244,63,94,0.35); transform: translateY(-3px); }
-    .topic-card[open] { border-color: rgba(244,63,94,0.5); }
-    .topic-summary { list-style: none; cursor: pointer; }
+    .topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; align-items: stretch; }
+    .topic-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 22px; overflow: hidden; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
+    .topic-card:hover { transform: translateY(-4px); border-color: rgba(99,102,241,0.4); box-shadow: 0 16px 48px rgba(0,0,0,0.25); }
+    .topic-card[open] { border-color: rgba(99,102,241,0.5); }
+    .topic-summary { list-style: none; cursor: pointer; display: flex; flex-direction: column; flex: 1; }
     .topic-summary::-webkit-details-marker { display: none; }
-    .topic-img { width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 16/9; border-bottom: 1px solid var(--border); }
-    .topic-head { display: flex; gap: 16px; padding: 18px 20px; align-items: flex-start; }
-    .topic-num { font-size: 20px; font-weight: 900; color: transparent; background: linear-gradient(135deg, #f43f5e, #a855f7); -webkit-background-clip: text; background-clip: text; min-width: 40px; text-align: center; line-height: 1.3; }
-    .topic-body h3 { font-size: 16.5px; font-weight: 900; color: #fff; line-height: 1.5; margin-bottom: 6px; }
-    .topic-body p { font-size: 13.5px; color: var(--muted); line-height: 1.8; margin-bottom: 8px; }
-    .topic-hint { display: inline-block; font-size: 11px; font-weight: 800; color: var(--indigo); }
+    .topic-img { width: 100%; height: 160px; object-fit: cover; display: block; }
+    .img-credit { display: block; font-size: 10px; color: rgba(148,163,184,0.55); padding: 6px 20px 0; }
+    .topic-head { display: flex; flex-direction: column; padding: 16px 20px 18px; flex: 1; }
+    .topic-num { font-size: 11px; font-weight: 800; color: var(--indigo); margin-bottom: 8px; letter-spacing: 0.5px; }
+    .topic-body h3 { font-size: 15.5px; font-weight: 900; color: #fff; line-height: 1.5; margin-bottom: 8px; }
+    .topic-body p { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .topic-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 800; color: var(--indigo); }
     .topic-card[open] .topic-hint::after { content: " ▲"; font-size: 9px; }
     .topic-card:not([open]) .topic-hint::after { content: " ▼"; font-size: 9px; }
-    .topic-full { padding: 0 22px 22px; }
-    .full-sec { padding: 16px 0 4px; border-top: 1px solid var(--border); }
+    .topic-full { padding: 8px 22px 22px; border-top: 1px dashed var(--border); margin-top: 4px; }
+    .full-sec { padding: 16px 0 4px; }
     .full-sec h4 { font-size: 16px; font-weight: 900; color: #fda4af; margin-bottom: 10px; }
     .full-sec p { font-size: 14.5px; color: #e2e8f0; margin-bottom: 12px; line-height: 1.9; }
     .full-empty { border-top: none !important; text-align: center; }
@@ -586,7 +657,7 @@ function buildPage(todayTopics, archiveEntries, generatedAt) {
     .arch-item summary:hover { color: #a5b4fc; }
     .arch-item summary::before { content: "◀"; font-size: 10px; color: var(--cyan); transition: transform 0.2s; }
     .arch-item[open] summary::before { transform: rotate(-90deg); }
-    .arch-body { padding: 0 22px 18px; font-size: 14px; color: #cbd5e1; border-top: 1px dashed var(--border); padding-top: 14px; }
+    .arch-body { padding: 0 22px 18px; font-size: 14px; color: #cbd5e1; border-top: 1px dashed var(--border); padding-top: 14px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
     .arch-body > p { margin-bottom: 10px; }
     .arch-sec { margin-top: 14px; }
     .arch-sec h4 { font-size: 14px; font-weight: 900; color: #fda4af; margin-bottom: 6px; }
@@ -612,6 +683,8 @@ function buildPage(todayTopics, archiveEntries, generatedAt) {
     .footer-col ul a:hover { color: var(--indigo); }
     .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
 
+    @media (max-width: 980px) { .topic-grid { grid-template-columns: 1fr 1fr; } .arch-body { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 620px) { .topic-grid { grid-template-columns: 1fr; } .arch-body { grid-template-columns: 1fr; } .topic-img { height: 190px; } }
     @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } .nav-links { display: none; } }
   </style>
 </head>
@@ -731,6 +804,23 @@ async function main() {
   const articles = loadArchive();
   let todayEntry = articles.find((e) => e.date === today);
 
+  // 2.5) تحديث صور اليوم فقط (بلا إعادة توليد النصوص) — لاستبدال الصور المولّدة بصور ويب حقيقية من Pexels
+  const refreshImages = process.argv.includes('--refresh-images') || process.env.REFRESH_IMAGES === '1';
+  if (refreshImages && todayEntry?.topics?.length) {
+    const ai = getAi();
+    for (const t of todayEntry.topics) {
+      const img = await generateTopicImage(ai, t);
+      const imgUrl = await saveTopicImage(img?.buf, t, today);
+      if (imgUrl) {
+        t.image = imgUrl;
+        t.imageCredit = img?.credit || null;
+      }
+      await sleep(1500);
+    }
+    saveArchive(articles);
+    log('[radar] 🖼️ --refresh-images: تم تحديث صور بطاقات اليوم (Pexels أولاً)');
+  }
+
   // 3) موضوعات اليوم (مرة واحدة فقط في اليوم) — مقال كامل + صورة لكل بطاقة
   if (!todayEntry && process.env.GEMINI_API_KEY) {
     const ai = getAi();
@@ -740,8 +830,9 @@ async function main() {
         const full = [];
         for (const t of topics) {
           const article = await generateTopicArticle(ai, t, freshTrends);
-          const imgUrl = await saveTopicImage(await generateTopicImage(ai, t), t, today);
-          full.push({ ...t, sections: article ? article.sections : [], image: imgUrl });
+          const img = await generateTopicImage(ai, t);
+          const imgUrl = await saveTopicImage(img?.buf, t, today);
+          full.push({ ...t, sections: article ? article.sections : [], image: imgUrl, imageCredit: img?.credit || null });
           await sleep(2000);
         }
         if (full.length) {
