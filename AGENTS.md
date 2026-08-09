@@ -408,3 +408,26 @@ commit `54e9559` — تم push. تحقق بـ `firebase deploy --only hosting:ap
 - **الدرس:** أي سكربت نشر داخلي (`execSync firebase deploy`) يجب أن يستخدم `--only hosting:app` — لا `--only hosting`. سكربتات أخرى لا تزال بها الصيغة القديمة لكنها **يدوية فقط** (لا تُشغَّل في CI): `rebuild-blog.cjs:79`, `fix-og-images.cjs:84`, `auto-publisher.cjs:1200` (معطّل), ورسائل توثيق في `scripts/seo/*.md`.
 - **الـ dispatch اليدوي:** POST `/repos/ahmdmansoor2/digital-lawyer-platform/actions/workflows/daily-blog-post.yml/dispatches` بـ `{"ref":"main"}` — الرن يُلتقط من أحدث main في لحظة التشغيل.
 - آخر توليد ناجح 09:39 كان 4 مقالات؛ الرنات المتوسطة فشلت بـ Gemini 429/503 (حصة مجانية)؛ خفض MAX_TODAY إلى 3 في `smart-publisher.cjs:692` قلل الضغط.
+
+---
+
+## حالة الجلسة الحالية: Session 14 — صفحتا SEO: رصد المحامي + صيغ العقود والدعاوي (مكتمل)
+
+### ما أُنجز
+1. **`public/legal-radar.html` — رصد المحامي**: صفحة أخبار عامة تعرض **ترندات Google Trends لمصر الحية** (`https://trends.google.com/trending/rss?geo=EG` — 10 ترندات يومياً بجوار حجم البحث) عبر `scripts/seo/generate-radar.cjs`. احتياط: `trending-topics.json` من الناشر الذكي. **تُعاد توليدها تلقائياً مع كل رن `daily-blog-post.yml`** (خطوة `Regenerate Legal Radar page` قبل Commit + `git add public/legal-radar.html`) — 5 تحديثات يومياً.
+2. **`public/legal-forms.html` — صيغ العقود والدعاوي**: **النصوص الكاملة** لـ **6 عقود** (عقد بيع عقار ابتدائي، عقد بيع أساسي نهائي، عقد إيجار عين تجارية، عقد إيجار شامل ١٥ بنداً، عقد تأسيس شركة تضامن، صحيفة دعوى صحة توقيع) بكل بنودها (**53 بنداً**)، **82 حقلاً تكميلياً** مُعلَّمة بلون emerald، قوالب مذكرات الدفاع (مدني/جنائي)، بنود عقود قياسية، واستشهادات قانونية. يُولَّد من `src/data/contractTemplates.ts` + `legalTemplates.ts` مباشرة (أي تعديل في قوالب التطبيق ينعكس على الصفحة).
+3. **إصلاح ترميز CP1256 متبقٍّ**: بيانات العقود كانت تحوي 12 رمزاً تالفاً (`ѡ→ر, ϡ→د, ֡→ض, ͡→ح, ޡ→ق, ̡→ر, ӡ→س, Ϻ→د`) — خريطة `REPAIR_MAP` في السكربت تُصلحها تلقائياً عند التوليد؛ الصفحة المنشورة نظيفة 100%. **ملاحظة:** ملفات المصدر نفسها لا تزال تحوي الرموز التالفة (تظهر في التطبيق أيضاً) — لم تُعدّل عمداً.
+4. **الربط**: بطاقتان جديدتان في `InfoCenter.tsx` PAGES فقط (`/legal-radar.html?from=app` بأيقونة Radio/rose + `/legal-forms.html?from=app` بأيقونة FileText/cyan) — **لا** بطاقات في `FirebaseLoginScreen.tsx` (قرار المستخدم).
+5. **الـ SEO**: `sitemap.xml` أصبح **122 رابطاً** (الرادار `freq: daily`، الصيغ `monthly`)، `sitemap.html` أُضيف لهما، `search-index.json` **121 صفحة** (build-search-index يمسح public تلقائياً — سيلتقط أي صفحة ثابتة جديدة). Schema على الصيغ: ItemList + FAQPage + BreadcrumbList.
+6. **النشر**: `npm run build` + `npx firebase deploy --only hosting:app` → الصفحتان **200 حي** على `mohamidigital.online` مطابقة بايتاً-ببايت للمحلي.
+7. **git:** commit `5c6ed59` (10 ملفات، +2364/−3) + push. الـ repo متزامن.
+
+### أوامر مفيدة
+- `node scripts/seo/generate-radar.cjs` — إعادة توليد الرادار يدوياً (جلب RSS مباشر).
+- `node scripts/seo/generate-legal-forms.cjs` — إعادة توليد صفحة الصيغ.
+- ملاحظة: `npm run build` ينسخ `public/*` إلى `dist/` — أي صفحة ثابتة جديدة تُنشر مع الـ deploy تلقائياً.
+
+### متبقٍّ
+- **Search Console:** بانتظار المستخدم — إرسال `sitemap.xml` (القائمة الجانبية → Sitemaps).
+- الملفات untracked المتروكة عمداً كما هي: `public/search*`, `public/legal-library.html`, `SiteSearchModal.tsx`, `scripts/facebook-reels/`, إلخ.
+- إصلاح الرموز التالفة في `src/data/*.ts` نفسها (إن رغب المستخدم) — تعرض في التطبيق كرموز غريبة.
