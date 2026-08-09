@@ -109,96 +109,40 @@ const PAGES = [
 export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCenterProps) {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 relative overflow-hidden" dir="rtl">
-      {/* Animated background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-32 -right-32 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-1/2 -left-32 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute -bottom-32 right-1/3 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-          opacity: 0.4,
-        }} />
-      </div>
-
-      {/* Top bar — Unified Premium Navbar */}
-      <header className="relative z-10 sticky top-0" style={{
-        background: 'rgba(15,23,42,0.92)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(148,163,184,0.15)',
-        boxShadow: '0 4px 24px rgba(0,0,0,0.25)',
-      }}>
-        <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 24px', height: '74px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
-          {/* Logo */}
-          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', flexShrink: 0 }}>
-            <div style={{
-              width: '44px', height: '44px', borderRadius: '12px',
-              background: 'linear-gradient(135deg, #6366f1 0%, #7c3aed 100%)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '22px', boxShadow: '0 4px 16px rgba(99,102,241,0.35)',
-              border: '1px solid rgba(255,255,255,0.18)',
-            }}>⚖️</div>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span style={{ fontSize: '16px', fontWeight: 900, color: '#ffffff', lineHeight: 1.2 }}>منصة المحامي الرقمية</span>
-              <span style={{ fontSize: '10.5px', color: '#10b981', fontWeight: 800, marginTop: '2px' }}>نظام إدارة مكاتب المحاماة</span>
+          {/* Top bar — Unified Premium Navbar */}
+      <header className="site-header">
+        <div className="header-container">
+          <a href="/" className="header-logo">
+            <div className="logo-badge">⚖️</div>
+            <div className="logo-text">
+              <span className="brand-title">منصة المحامي الرقمية</span>
+              <span className="brand-subtitle">نظام إدارة مكاتب المحاماة في مصر</span>
             </div>
           </a>
 
-          {/* Nav links */}
-          <nav className="hidden lg:flex" style={{ alignItems: 'center', gap: '4px', flex: 1, justifyContent: 'center', flexWrap: 'nowrap', overflow: 'hidden' }}>
-            {[
-              { href: '/', label: 'الرئيسية' },
-              { href: '/features.html', label: 'المميزات' },
-              { href: '/legal-library.html', label: 'المكتبة القانونية' },
-              { href: '/pillars/', label: 'المراجع القانونية' },
-              { href: '/blog/', label: 'المدونة' },
-              { href: '/about.html', label: 'عن المنصة' },
-              { href: '/pricing.html', label: 'مجانية بالكامل' },
-              { href: '/contact.html', label: 'تواصل معنا' },
-            ].map(link => (
-              <a key={link.href} href={link.href} style={{
-                fontSize: '13px', fontWeight: 700, color: '#94a3b8',
-                textDecoration: 'none', padding: '6px 10px', borderRadius: '8px',
-                transition: 'color 0.2s, background 0.2s', whiteSpace: 'nowrap',
-              }}
-              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color='#a5b4fc'; (e.currentTarget as HTMLAnchorElement).style.background='rgba(99,102,241,0.1)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color='#94a3b8'; (e.currentTarget as HTMLAnchorElement).style.background='transparent'; }}
-              >{link.label}</a>
-            ))}
+          <nav className="header-nav" id="headerNav">
+            <a href="/" className="nav-item active">الرئيسية</a>
+            <a href="/features.html" className="nav-item">المميزات</a>
+            <a href="/legal-library.html" className="nav-item">المكتبة القانونية</a>
+            <a href="/pillars/" className="nav-item">المراجع القانونية</a>
+            <a href="/blog/" className="nav-item">المدونة</a>
+            <a href="/about.html" className="nav-item">عن المنصة</a>
+            <a href="/pricing.html" className="nav-item">مجانية بالكامل</a>
+            <a href="/contact.html" className="nav-item">تواصل معنا</a>
           </nav>
 
-          {/* Actions */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
+          <div className="header-actions">
             {userName && (
-              <span className="hidden md:block" style={{ fontSize: '13px', fontWeight: 700, color: '#cbd5e1' }}>مرحباً، {userName}</span>
+              <span className="hidden md:block text-xs font-bold text-slate-300">مرحباً، {userName}</span>
             )}
-            <button
-              onClick={onEnterApp}
-              style={{
-                padding: '8px 18px', borderRadius: '10px',
-                background: 'linear-gradient(135deg, #6366f1, #7c3aed)',
-                color: '#fff', fontSize: '12px', fontWeight: 900,
-                border: 'none', cursor: 'pointer',
-                boxShadow: '0 4px 16px rgba(99,102,241,0.3)',
-                transition: 'transform 0.2s, box-shadow 0.2s',
-                whiteSpace: 'nowrap',
-              }}
-              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform='translateY(-1px)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform='translateY(0)'; }}
-            >دخول التطبيق 🚀</button>
+            <button onClick={onEnterApp} className="header-cta border-0 cursor-pointer">
+              دخول التطبيق 🚀
+            </button>
             <button
               onClick={onLogout}
-              style={{
-                width: '38px', height: '38px', borderRadius: '10px',
-                background: 'rgba(30,41,59,0.6)', border: '1px solid rgba(148,163,184,0.2)',
-                color: '#94a3b8', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                cursor: 'pointer', transition: 'color 0.2s, border-color 0.2s',
-              }}
+              className="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700/60 text-slate-400 hover:text-red-400 hover:border-red-800/60 flex items-center justify-center transition cursor-pointer"
               aria-label="تسجيل الخروج"
               title="تسجيل الخروج"
-              onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color='#f87171'; (e.currentTarget as HTMLButtonElement).style.borderColor='rgba(239,68,68,0.4)'; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color='#94a3b8'; (e.currentTarget as HTMLButtonElement).style.borderColor='rgba(148,163,184,0.2)'; }}
             >
               <LogOut className="w-4 h-4" />
             </button>
