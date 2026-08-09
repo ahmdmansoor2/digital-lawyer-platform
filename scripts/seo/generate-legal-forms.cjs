@@ -110,6 +110,17 @@ function cleanTemplateHtml(html) {
   return stripEmoji(h);
 }
 
+function htmlToPlain(html) {
+  let h = String(html);
+  h = h.replace(/<br\s*\/?\s*>/gi, '\n');
+  h = h.replace(/<\/(h1|h2|h3|h4|h5|p|li|ol|ul|div|hr)>/gi, '\n');
+  h = h.replace(/<li[^>]*>/gi, '• ');
+  h = h.replace(/<[^>]+>/g, '');
+  h = h.replace(/&nbsp;/gi, ' ').replace(/&amp;/gi, '&').replace(/&lt;/gi, '<').replace(/&gt;/gi, '>').replace(/&quot;/gi, '"');
+  h = h.replace(/\n{3,}/g, '\n\n');
+  return h.trim();
+}
+
 function buildFieldMap(contract) {
   const m = {};
   for (const f of contract.fields || []) m[f.key] = f;
@@ -210,26 +221,37 @@ function buildSections(contracts) {
 
 function buildMemos(templates) {
   const t = (id) => templates.find((x) => x.id === id);
-  const build = (name, headerId, desc) => {
+  const build = (name, headerId, desc, idx) => {
     const parts = [t(headerId), t('memo-body-facts'), t('memo-body-defense'), t('memo-body-requests')]
       .filter(Boolean)
       .map((x) => `<div class="memo-part">${cleanTemplateHtml(x.html)}</div>`)
       .join('\n');
-    return `<section class="doc memo-doc" id="doc-${esc(headerId)}">
-    <div class="doc-head">
-      <div>
+    const plain = [t(headerId), t('memo-body-facts'), t('memo-body-defense'), t('memo-body-requests')]
+      .filter(Boolean)
+      .map((x) => htmlToPlain(x.html))
+      .join('\n\n');
+    return `<details class="doc doc-card memo-doc" id="doc-${esc(headerId)}">
+    <summary class="doc-head">
+      <div class="tile-info">
         <div class="doc-cat">مذكرات الدفاع</div>
-        <h3 class="doc-title">${esc(name)}</h3>
+        <h3 class="doc-title"><span class="doc-num">${String(idx + 1).padStart(2, '0')}</span>${esc(name)}</h3>
         <p class="doc-desc">${esc(desc)}</p>
+        <span class="doc-hint">📖 اضغط لعرض المذكرة كاملة</span>
       </div>
+    </summary>
+    <div class="doc-toolbar">
+      <button class="copy-btn" type="button" onclick="copyText(this)" data-plain="${esc(JSON.stringify(plain))}">📄 نسخ المذكرة كاملة</button>
+      <span class="doc-close-hint">▲ انقر أعلى البطاقة للإغلاق</span>
     </div>
     <div class="doc-body memo">
       ${parts}
     </div>
-  </section>`;
+  </details>`;
   };
-  return `${build('مذكرة دفاع في دعوى مدنية', 'memo-header-civil', 'قالب جاهز لصياغة مذكرة دفاع أمام المحاكم المدنية — وقائع ثم دفاع ثم طلبات.')}
-    ${build('مذكرة دفاع في دعوى جنائية', 'memo-header-criminal', 'قالب جاهز لصياغة مذكرة دفاع في الجنح والجنايات — موضوع التهمة ثم الدفاع ثم الطلبات.')}`;
+  return `<div class="cat-grid">
+    ${build('مذكرة دفاع في دعوى مدنية', 'memo-header-civil', 'قالب جاهز لصياغة مذكرة دفاع أمام المحاكم المدنية — وقائع ثم دفاع ثم طلبات.', 0)}
+    ${build('مذكرة دفاع في دعوى جنائية', 'memo-header-criminal', 'قالب جاهز لصياغة مذكرة دفاع في الجنح والجنايات — موضوع التهمة ثم الدفاع ثم الطلبات.', 1)}
+  </div>`;
 }
 
 function buildContractSections(templates) {
@@ -384,7 +406,7 @@ function buildPage(contracts, legal) {
     .doc-card > .doc-head { list-style: none; cursor: pointer; margin-bottom: 0; }
     .doc-card > .doc-head::-webkit-details-marker { display: none; }
     .doc-card[open] > .doc-head { border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 16px; }
-    .memo-doc > .doc-head { margin-bottom: 18px; }
+    .memo-doc[open] > .doc-head { margin-bottom: 16px; }
     .doc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; flex-wrap: wrap; }
     .doc-cat { display: inline-block; font-size: 10px; font-weight: 800; color: #67e8f9; background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.25); padding: 4px 12px; border-radius: 999px; margin-bottom: 8px; }
     .doc-title { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 900; color: #fff; line-height: 1.4; }
