@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 /**
  * generate-radar.cjs — توليد/تحديث صفحة «رصد المحامي» (legal-radar.html)
+ * + صفحة مستقلة لكل موضوع في public/radar-topics/
  *
  * آلية العمل اليومية:
  *   1. يجلب أهم ترندات Google لمصر (geo=EG) وللعالم (RSS بلا geo).
  *   2. يستخدم Gemini لاختيار «موضوعات اليوم» (عنوان + ملخص لكل موضوع).
  *   3. يولّد لكل موضوع مقالاً متعمقاً كاملاً (لا يقل عن 3000 كلمة) بواسطة
  *      بنداء منفصل لكل موضوع (مع استدعاء تمديد تلقائي لو نقص العدد).
- *   4. ينشر البطاقات (الملخص ظاهر، الموضوع الكامل يظهر عند فتح البطاقة)
- *      مع أرشيف آخر الأيام.
+ *   4. ينشر البطاقات (Card) — كل بطاقة رابط يفتح صفحة مستقلة تحمل الموضوع
+ *      الكامل (public/radar-topics/<date>-<slug>.html) مع أرشيف آخر الأيام.
  *
  * ملاحظات:
  *   - الموضوعات تُولَّد مرة واحدة يومياً فقط (تُخزَّن في public/radar-archive.json
@@ -25,6 +26,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const ROOT = path.join(__dirname, '..', '..');
 try {
@@ -33,6 +35,7 @@ try {
 } catch {}
 
 const OUT_FILE = path.join(ROOT, 'public', 'legal-radar.html');
+const TOPICS_DIR = path.join(ROOT, 'public', 'radar-topics');
 const ARCHIVE_FILE = path.join(ROOT, 'public', 'radar-archive.json');
 const BASE_URL = 'https://mohamidigital.online';
 const EG_FEED = 'https://trends.google.com/trending/rss?geo=EG';
@@ -63,6 +66,11 @@ function cairoNow() {
 
 function todayStr() {
   return new Date(Date.now() + 120 * 60000).toISOString().slice(0, 10);
+}
+
+function topicSlug(t, i) {
+  const s = String(t.slug || '').replace(/[^\w-]/g, '');
+  return s || `topic-${i + 1}`;
 }
 
 // ─── جلب الترندات ───
@@ -487,31 +495,35 @@ function saveArchive(articles) {
 
 // ─── البناء ───
 
-function buildTopicCard(t, i) {
+function buildTopicSectionsHtml(t, emptyHint) {
   const sections = t.sections || [];
-  const full = sections.length
-    ? sections
-        .map(
-          (s) => `<div class="full-sec">
+  if (!sections.length) {
+    return `<div class="full-sec full-empty"><p>${esc(emptyHint || '🕐 المحتوى الكامل لهذا الموضوع قيد التوليد — سيظهر تلقائياً في التحديث القادم.')}</p></div>`;
+  }
+  return sections
+    .map(
+      (s) => `<div class="full-sec">
         <h4>${esc(s.heading)}</h4>
         ${String(s.body || '')
           .split(/\n+/)
           .map((p) => `<p>${esc(p.trim())}</p>`)
           .join('\n        ')}
       </div>`
-        )
-        .join('\n    ')
-    : '<div class="full-sec full-empty"><p>🕐 المحتوى الكامل لهذا الموضوع قيد التوليد — سيظهر تلقائياً في التحديث القادم.</p></div>';
-  const words = countTopicWords(sections);
+    )
+    .join('\n    ');
+}
+
+function buildTopicCard(t, i, date) {
+  const words = countTopicWords(t.sections || []);
   const img = t.image
     ? `<img class="topic-img" src="${esc(t.image)}" alt="${esc(t.title)}" loading="lazy" width="1200" height="675" />`
     : '';
   const credit = t.imageCredit ? `<span class="img-credit">${esc(t.imageCredit)}</span>` : '';
   const hint = words > 0
-    ? `📖 اضغط لعرض الموضوع الكامل (${words.toLocaleString('ar-EG')} كلمة)`
-    : '📖 اضغط لعرض الموضوع الكامل';
-  return `<details class="topic-card" id="topic-${i + 1}">
-    <summary class="topic-summary">
+    ? `📖 افتح الموضوع الكامل (${words.toLocaleString('ar-EG')} كلمة)`
+    : '📖 افتح الموضوع الكامل';
+  const href = `/radar-topics/${date}-${topicSlug(t, i)}.html`;
+  return `<a class="topic-card" href="${href}" title="افتح الصفحة الكاملة: ${esc(t.title)}">
       ${img}
       ${credit}
       <div class="topic-head">
@@ -522,18 +534,15 @@ function buildTopicCard(t, i) {
           <span class="topic-hint">${hint}</span>
         </div>
       </div>
-    </summary>
-    <div class="topic-full">
-      ${full}
-    </div>
-  </details>`;
+  </a>`;
 }
 
 function buildToday(topics, date) {
   if (!topics || !topics.length) return '';
-  const cards = topics.map(buildTopicCard).join('\n    ');
+  const cards = topics.map((t, i) => buildTopicCard(t, i, date)).join('\n    ');
   return `<div class="section">
     <div class="section-title"><span class="dot"></span> موضوعات اليوم (${esc(date)})</div>
+    <p class="section-sub">اضغط على أي بطاقة لفتح الموضوع الكامل في صفحة مستقلة.</p>
     <div class="topic-grid">
     ${cards}
     </div>
@@ -561,7 +570,7 @@ function buildArchive(entries) {
     .map((e) => {
       const topics = normalizeEntryTopics(e);
       const inner = topics
-        .map((t, i) => buildTopicCard({ ...t }, i))
+        .map((t, i) => buildTopicCard({ ...t }, i, e.date))
         .join('\n    ');
       return `<details class="arch-item">
     <summary>${esc(e.date)} — ${esc((e.topics?.[0]?.title) || (e.article?.title) || 'موضوعات اليوم')}</summary>
@@ -573,9 +582,153 @@ function buildArchive(entries) {
     .join('\n  ');
   return `<div class="archive">
     <div class="section-title"><span class="dot dot-cyan"></span> أرشيف الأيام الأخيرة</div>
-    <p class="section-sub">موضوعات رصد المحامي السابقة — اضغط على أي يوم ثم على أي بطاقة لقراءة موضوعه كاملاً.</p>
+    <p class="section-sub">موضوعات رصد المحامي السابقة — اضغط على أي يوم ثم على أي بطاقة لفتح موضوعه في صفحة مستقلة.</p>
     ${details}
   </div>`;
+}
+
+// ─── الصفحة المستقلة للموضوع ───
+
+function buildTopicPage(t, i, date) {
+  const slug = topicSlug(t, i);
+  const pageUrl = `${BASE_URL}/radar-topics/${date}-${slug}.html`;
+  const nowISO = new Date(Date.now() + 120 * 60000).toISOString();
+  const words = countTopicWords(t.sections || []);
+  const full = buildTopicSectionsHtml(t);
+  const img = t.image
+    ? `<img class="topic-img topic-img-wide" src="${esc(t.image)}" alt="${esc(t.title)}" width="1200" height="675" />`
+    : '';
+  const credit = t.imageCredit ? `<span class="img-credit">${esc(t.imageCredit)}</span>` : '';
+  const schemas = [
+    `{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}","logo":"${BASE_URL}/logo.png"}`,
+    `{"@context":"https://schema.org","@type":"NewsArticle","headline":"${esc(t.title)}","description":"${esc(t.summary || '')}","datePublished":"${date}T00:00:00+02:00","dateModified":"${nowISO}","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"image":"${esc(t.image || `${BASE_URL}/legal-radar.html`)}","mainEntityOfPage":"${pageUrl}"}`,
+    `{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"${BASE_URL}"},{"@type":"ListItem","position":2,"name":"رصد المحامي","item":"${BASE_URL}/legal-radar.html"},{"@type":"ListItem","position":3,"name":"${esc(t.title)}","item":"${pageUrl}"}]}`,
+  ];
+  return `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${esc(t.title)} - رصد المحامي | منصة المحامي الرقمية</title>
+  <meta name="description" content="${esc(t.summary || `موضوع رصد المحامي عن ${t.title}`)}" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="${pageUrl}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="${esc(t.title)}" />
+  <meta property="og:description" content="${esc(t.summary || '')}" />
+  <meta property="og:url" content="${pageUrl}" />
+  <meta property="og:site_name" content="منصة المحامي الرقمية" />
+  <meta property="og:locale" content="ar_EG" />
+  ${t.image ? `<meta property="og:image" content="${esc(t.image)}" />` : ''}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
+${schemas.map((s) => `  <script type="application/ld+json">${s}</script>`).join('\n')}
+  <style>
+${RADAR_CSS}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="logo-icon">⚖️</div>
+        <div>
+          <div class="logo-name">منصة المحامي الرقمية</div>
+          <div class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="/">الرئيسية</a>
+        <a href="/features.html">المميزات</a>
+        <a href="/blog/">المدونة</a>
+        <a href="/legal-forms.html">صيغ العقود والدعاوي</a>
+        <a href="/contact.html">تواصل معنا</a>
+      </div>
+      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
+    </div>
+  </nav>
+  <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><a href="/legal-radar.html">رصد المحامي</a><span class="sep">›</span><span class="current">${esc(t.title)}</span></nav>
+
+  <div class="article">
+    <a class="back-link" href="/legal-radar.html">→ العودة إلى رصد المحامي</a>
+    <div class="topic-page-head">
+      <span class="topic-page-date">📅 ${esc(date)}${words ? ` — ${words.toLocaleString('ar-EG')} كلمة` : ''}</span>
+      <h1>${esc(t.title)}</h1>
+      <p>${esc(t.summary || '')}</p>
+    </div>
+    ${img}
+    ${credit}
+    <div class="topic-page-body">
+      ${full}
+    </div>
+  </div>
+
+  <!-- AD -->
+  <div class="ad-slot" role="complementary" aria-label="إعلان">
+    <span class="ad-label">إعلان</span>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="cta-section">
+    <a href="/" class="cta-btn">جرّب منصة المحامي الرقمية مجاناً 🚀</a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon">⚖️</div>
+            <span class="footer-logo-name">منصة المحامي الرقمية</span>
+          </div>
+          <p class="footer-desc">النظام البرمجي المتكامل والمجاني لإدارة مكاتب المحاماة في جمهورية مصر العربية.</p>
+          <p class="footer-email">التواصل: <a href="mailto:ahmdmansoor222@gmail.com">ahmdmansoor222@gmail.com</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>أقسام المنصة</h4>
+          <ul>
+            <li><a href="/">الرئيسية</a></li>
+            <li><a href="/about.html">عن المنصة</a></li>
+            <li><a href="/features.html">المميزات</a></li>
+            <li><a href="/blog/">المدونة القانونية</a></li>
+            <li><a href="/pillars/">المراجع القانونية</a></li>
+            <li><a href="/legal-forms.html">صيغ العقود والدعاوي</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>السياسات والتواصل</h4>
+          <ul>
+            <li><a href="/legal-radar.html">رصد المحامي</a></li>
+            <li><a href="/privacy.html">سياسة الخصوصية</a></li>
+            <li><a href="/terms.html">شروط الاستخدام</a></li>
+            <li><a href="/contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 منصة المحامي الرقمية — جميع الحقوق محفوظة</span>
+        <span>محتوى تحليلي استرشادي — يُراجع مع مختص قبل الاعتماد عليه</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      try {
+        var p = new URLSearchParams(window.location.search);
+        if (p.get('from') === 'app') {
+          var cta = document.querySelector('.nav-cta');
+          if (cta) { cta.innerHTML = '← العودة إلى لوحة التحكم'; cta.setAttribute('href', '/'); }
+        }
+      } catch(e) {}
+    })();
+  </script>
+</body>
+</html>
+`;
 }
 
 function buildPage(todayTopics, archiveEntries, generatedAt) {
@@ -609,120 +762,7 @@ function buildPage(todayTopics, archiveEntries, generatedAt) {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"${esc(headline)}","datePublished":"${nowISO}","dateModified":"${nowISO}","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"mainEntityOfPage":"${BASE_URL}/legal-radar.html"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"${BASE_URL}"},{"@type":"ListItem","position":2,"name":"رصد المحامي","item":"${BASE_URL}/legal-radar.html"}]}</script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #0f172a;
-      --border: rgba(148,163,184,0.12);
-      --indigo: #6366f1;
-      --purple: #7c3aed;
-      --emerald: #10b981;
-      --rose: #f43f5e;
-      --cyan: #06b6d4;
-      --text: #f1f5f9;
-      --muted: #94a3b8;
-      --card-bg: rgba(15,23,42,0.7);
-    }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    body {
-      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      line-height: 1.8;
-      background-image:
-        radial-gradient(ellipse at 30% 0%, rgba(124,58,237,0.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 90% 70%, rgba(16,185,129,0.1) 0%, transparent 50%);
-    }
-
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .logo-icon { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 20px rgba(99,102,241,0.35); }
-    .logo-name { font-size: 15px; font-weight: 900; color: #fff; line-height: 1.2; }
-    .logo-sub { font-size: 10px; color: var(--emerald); font-weight: 700; }
-    .nav-links { display: flex; align-items: center; gap: 28px; }
-    .nav-links a { font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
-    .nav-cta { padding: 9px 22px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); color: #fff; font-size: 12px; font-weight: 900; text-decoration: none; box-shadow: 0 4px 16px rgba(99,102,241,0.3); }
-
-    .breadcrumbs { max-width: 1200px; margin: 0 auto; padding: 14px 24px 0; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .breadcrumbs a { color: var(--muted); text-decoration: none; transition: color 0.2s; font-weight: 700; }
-    .breadcrumbs a:hover { color: var(--indigo); }
-    .breadcrumbs .current { color: var(--text); font-weight: 800; }
-    .breadcrumbs .sep { color: var(--muted); opacity: 0.4; font-size: 10px; }
-
-    .hero { max-width: 860px; margin: 0 auto; padding: 50px 24px 28px; text-align: center; }
-    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: 999px; background: rgba(244,63,94,0.12); border: 1px solid rgba(244,63,94,0.3); color: #fda4af; font-size: 11px; font-weight: 800; margin-bottom: 20px; }
-    .hero h1 { font-size: clamp(1.9rem, 5vw, 3.1rem); font-weight: 900; line-height: 1.25; margin-bottom: 16px; background: linear-gradient(135deg, #e2e8f0 0%, #a5b4fc 50%, #fda4af 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero p { font-size: 16px; color: var(--muted); max-width: 640px; margin: 0 auto; font-weight: 600; }
-    .updated { display: inline-block; margin-top: 16px; padding: 6px 16px; border-radius: 999px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: #6ee7b7; font-size: 11px; font-weight: 800; }
-
-    .section { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
-    .section-title { font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
-    .section-title .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 14px rgba(244,63,94,0.7); animation: pulse 2s infinite; }
-    .section-title .dot-cyan { background: var(--cyan); box-shadow: 0 0 14px rgba(6,182,212,0.7); }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.35)} }
-    .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; }
-
-    .article { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
-
-    .topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; align-items: stretch; }
-    .topic-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 22px; overflow: hidden; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; }
-    .topic-card:hover { transform: translateY(-4px); border-color: rgba(99,102,241,0.4); box-shadow: 0 16px 48px rgba(0,0,0,0.25); }
-    .topic-card[open] { border-color: rgba(99,102,241,0.5); }
-    .topic-summary { list-style: none; cursor: pointer; display: flex; flex-direction: column; flex: 1; }
-    .topic-summary::-webkit-details-marker { display: none; }
-    .topic-img { width: 100%; height: 160px; object-fit: cover; display: block; }
-    .img-credit { display: block; font-size: 10px; color: rgba(148,163,184,0.55); padding: 6px 20px 0; }
-    .topic-head { display: flex; flex-direction: column; padding: 16px 20px 18px; flex: 1; }
-    .topic-num { font-size: 11px; font-weight: 800; color: var(--indigo); margin-bottom: 8px; letter-spacing: 0.5px; }
-    .topic-body h3 { font-size: 15.5px; font-weight: 900; color: #fff; line-height: 1.5; margin-bottom: 8px; }
-    .topic-body p { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .topic-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 800; color: var(--indigo); }
-    .topic-card[open] .topic-hint::after { content: " ▲"; font-size: 9px; }
-    .topic-card:not([open]) .topic-hint::after { content: " ▼"; font-size: 9px; }
-    .topic-full { padding: 8px 22px 22px; border-top: 1px dashed var(--border); margin-top: 4px; }
-    .full-sec { padding: 16px 0 4px; }
-    .full-sec h4 { font-size: 16px; font-weight: 900; color: #fda4af; margin-bottom: 10px; }
-    .full-sec p { font-size: 14.5px; color: #e2e8f0; margin-bottom: 12px; line-height: 1.9; }
-    .full-empty { border-top: none !important; text-align: center; }
-    .full-empty p { color: var(--muted); font-size: 13px; margin: 8px 0; }
-
-    .archive { max-width: 900px; margin: 0 auto; padding: 0 24px 56px; }
-    .arch-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
-    .arch-item summary { cursor: pointer; padding: 15px 20px; font-size: 14px; font-weight: 800; color: #e2e8f0; list-style: none; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
-    .arch-item summary:hover { color: #a5b4fc; }
-    .arch-item summary::before { content: "◀"; font-size: 10px; color: var(--cyan); transition: transform 0.2s; }
-    .arch-item[open] summary::before { transform: rotate(-90deg); }
-    .arch-body { padding: 0 22px 18px; font-size: 14px; color: #cbd5e1; border-top: 1px dashed var(--border); padding-top: 14px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
-    .arch-body > p { margin-bottom: 10px; }
-    .arch-sec { margin-top: 14px; }
-    .arch-sec h4 { font-size: 14px; font-weight: 900; color: #fda4af; margin-bottom: 6px; }
-
-    .ad-slot { margin: 28px auto; max-width: 100%; text-align: center; min-height: 90px; }
-    .ad-label { display: block; font-size: 10px; color: var(--muted); text-align: center; margin-bottom: 6px; letter-spacing: 0.5px; font-weight: 700; }
-
-    .cta-section { text-align: center; padding: 0 24px 64px; }
-    .cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 44px; border-radius: 14px; background: linear-gradient(135deg, var(--emerald), #0891b2, var(--indigo)); color: #fff; font-size: 14px; font-weight: 900; text-decoration: none; box-shadow: 0 8px 32px rgba(16,185,129,0.25); }
-
-    footer { border-top: 1px solid var(--border); background: rgba(15,23,42,0.95); padding: 56px 24px 32px; }
-    .footer-inner { max-width: 1200px; margin: 0 auto; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
-    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-    .footer-logo-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 16px; }
-    .footer-logo-name { font-size: 15px; font-weight: 900; color: #fff; }
-    .footer-desc { font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 280px; }
-    .footer-email { font-size: 12px; color: var(--indigo); margin-top: 10px; font-weight: 700; }
-    .footer-email a { color: var(--indigo); text-decoration: none; }
-    .footer-col h4 { font-size: 13px; font-weight: 800; color: #e2e8f0; margin-bottom: 14px; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .footer-col ul a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .footer-col ul a:hover { color: var(--indigo); }
-    .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
-
-    @media (max-width: 980px) { .topic-grid { grid-template-columns: 1fr 1fr; } .arch-body { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 620px) { .topic-grid { grid-template-columns: 1fr; } .arch-body { grid-template-columns: 1fr; } .topic-img { height: 190px; } }
-    @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } .nav-links { display: none; } }
+${RADAR_CSS}
   </style>
 </head>
 <body>
@@ -823,6 +863,130 @@ function buildPage(todayTopics, archiveEntries, generatedAt) {
 `;
 }
 
+const RADAR_CSS = `    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a;
+      --border: rgba(148,163,184,0.12);
+      --indigo: #6366f1;
+      --purple: #7c3aed;
+      --emerald: #10b981;
+      --rose: #f43f5e;
+      --cyan: #06b6d4;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --card-bg: rgba(15,23,42,0.7);
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.8;
+      background-image:
+        radial-gradient(ellipse at 30% 0%, rgba(124,58,237,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 70%, rgba(16,185,129,0.1) 0%, transparent 50%);
+    }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 20px rgba(99,102,241,0.35); }
+    .logo-name { font-size: 15px; font-weight: 900; color: #fff; line-height: 1.2; }
+    .logo-sub { font-size: 10px; color: var(--emerald); font-weight: 700; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
+    .nav-cta { padding: 9px 22px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); color: #fff; font-size: 12px; font-weight: 900; text-decoration: none; box-shadow: 0 4px 16px rgba(99,102,241,0.3); }
+
+    .breadcrumbs { max-width: 1200px; margin: 0 auto; padding: 14px 24px 0; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; transition: color 0.2s; font-weight: 700; }
+    .breadcrumbs a:hover { color: var(--indigo); }
+    .breadcrumbs .current { color: var(--text); font-weight: 800; }
+    .breadcrumbs .sep { color: var(--muted); opacity: 0.4; font-size: 10px; }
+
+    .hero { max-width: 860px; margin: 0 auto; padding: 50px 24px 28px; text-align: center; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: 999px; background: rgba(244,63,94,0.12); border: 1px solid rgba(244,63,94,0.3); color: #fda4af; font-size: 11px; font-weight: 800; margin-bottom: 20px; }
+    .hero h1 { font-size: clamp(1.9rem, 5vw, 3.1rem); font-weight: 900; line-height: 1.25; margin-bottom: 16px; background: linear-gradient(135deg, #e2e8f0 0%, #a5b4fc 50%, #fda4af 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 16px; color: var(--muted); max-width: 640px; margin: 0 auto; font-weight: 600; }
+    .updated { display: inline-block; margin-top: 16px; padding: 6px 16px; border-radius: 999px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: #6ee7b7; font-size: 11px; font-weight: 800; }
+
+    .section { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
+    .section-title { font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+    .section-title .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 14px rgba(244,63,94,0.7); animation: pulse 2s infinite; }
+    .section-title .dot-cyan { background: var(--cyan); box-shadow: 0 0 14px rgba(6,182,212,0.7); }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.35)} }
+    .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; }
+
+    .article { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
+
+    .back-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 12px; border: 1px solid rgba(6,182,212,0.3); background: rgba(6,182,212,0.08); color: #67e8f9; font-family: inherit; font-size: 12.5px; font-weight: 800; text-decoration: none; margin: 18px 0 10px; transition: background 0.2s; }
+    .back-link:hover { background: rgba(6,182,212,0.16); }
+
+    .topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; align-items: stretch; }
+    a.topic-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+    .topic-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 22px; overflow: hidden; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; height: 100%; }
+    .topic-card:hover { transform: translateY(-4px); border-color: rgba(99,102,241,0.4); box-shadow: 0 16px 48px rgba(0,0,0,0.25); }
+    .topic-img { width: 100%; height: 160px; object-fit: cover; display: block; }
+    .img-credit { display: block; font-size: 10px; color: rgba(148,163,184,0.55); padding: 6px 20px 0; }
+    .topic-head { display: flex; flex-direction: column; padding: 16px 20px 18px; flex: 1; }
+    .topic-num { font-size: 11px; font-weight: 800; color: var(--indigo); margin-bottom: 8px; letter-spacing: 0.5px; }
+    .topic-body h3 { font-size: 15.5px; font-weight: 900; color: #fff; line-height: 1.5; margin-bottom: 8px; }
+    .topic-body p { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .topic-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 800; color: var(--indigo); }
+    .topic-hint::after { content: " ←"; font-size: 9px; }
+    .topic-full { padding: 8px 22px 22px; border-top: 1px dashed var(--border); margin-top: 4px; }
+    .full-sec { padding: 16px 0 4px; }
+    .full-sec h4 { font-size: 16px; font-weight: 900; color: #fda4af; margin-bottom: 10px; }
+    .full-sec p { font-size: 14.5px; color: #e2e8f0; margin-bottom: 12px; line-height: 1.9; }
+    .full-empty { border-top: none !important; text-align: center; }
+    .full-empty p { color: var(--muted); font-size: 13px; margin: 8px 0; }
+
+    .topic-page-head { margin: 24px 0 20px; }
+    .topic-page-date { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: var(--cyan); background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.25); padding: 5px 14px; border-radius: 999px; margin-bottom: 14px; }
+    .topic-page-head h1 { font-size: clamp(1.6rem, 4.5vw, 2.4rem); font-weight: 900; color: #fff; line-height: 1.35; margin-bottom: 12px; }
+    .topic-page-head p { font-size: 15px; color: var(--muted); line-height: 1.8; }
+    .topic-img-wide { width: 100%; height: auto; border-radius: 16px; margin-bottom: 4px; }
+    .topic-page-body { padding: 22px 4px 10px; }
+    .topic-page-body .full-sec h4 { font-size: 18px; }
+    .topic-page-body .full-sec p { font-size: 15px; line-height: 2; }
+
+    .archive { max-width: 900px; margin: 0 auto; padding: 0 24px 56px; }
+    .arch-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
+    .arch-item summary { cursor: pointer; padding: 15px 20px; font-size: 14px; font-weight: 800; color: #e2e8f0; list-style: none; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
+    .arch-item summary:hover { color: #a5b4fc; }
+    .arch-item summary::before { content: "◀"; font-size: 10px; color: var(--cyan); transition: transform 0.2s; }
+    .arch-item[open] summary::before { transform: rotate(-90deg); }
+    .arch-body { padding: 0 22px 18px; font-size: 14px; color: #cbd5e1; border-top: 1px dashed var(--border); padding-top: 14px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+    .arch-body > p { margin-bottom: 10px; }
+    .arch-sec { margin-top: 14px; }
+    .arch-sec h4 { font-size: 14px; font-weight: 900; color: #fda4af; margin-bottom: 6px; }
+
+    .ad-slot { margin: 28px auto; max-width: 100%; text-align: center; min-height: 90px; }
+    .ad-label { display: block; font-size: 10px; color: var(--muted); text-align: center; margin-bottom: 6px; letter-spacing: 0.5px; font-weight: 700; }
+
+    .cta-section { text-align: center; padding: 0 24px 64px; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 44px; border-radius: 14px; background: linear-gradient(135deg, var(--emerald), #0891b2, var(--indigo)); color: #fff; font-size: 14px; font-weight: 900; text-decoration: none; box-shadow: 0 8px 32px rgba(16,185,129,0.25); }
+
+    footer { border-top: 1px solid var(--border); background: rgba(15,23,42,0.95); padding: 56px 24px 32px; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .footer-logo-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .footer-logo-name { font-size: 15px; font-weight: 900; color: #fff; }
+    .footer-desc { font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 280px; }
+    .footer-email { font-size: 12px; color: var(--indigo); margin-top: 10px; font-weight: 700; }
+    .footer-email a { color: var(--indigo); text-decoration: none; }
+    .footer-col h4 { font-size: 13px; font-weight: 800; color: #e2e8f0; margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .footer-col ul a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--indigo); }
+    .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
+
+    @media (max-width: 980px) { .topic-grid { grid-template-columns: 1fr 1fr; } .arch-body { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 620px) { .topic-grid { grid-template-columns: 1fr; } .arch-body { grid-template-columns: 1fr; } .topic-img { height: 190px; } }
+    @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } .nav-links { display: none; } }`;
+
 // ─── المدخل الرئيسي ───
 
 async function main() {
@@ -902,7 +1066,24 @@ async function main() {
 
   const archiveEntries = articles.filter((e) => e.date !== today).slice(0, MAX_ARCHIVE_SHOWN);
 
-  // 4) بناء الصفحة
+  // 4) الصفحات المستقلة للموضوعات (اليوم + الأرشيف) — تُعاد كتابتها دائماً لتعكس آخر تحديثات المحتوى
+  try {
+    fs.mkdirSync(TOPICS_DIR, { recursive: true });
+    let written = 0;
+    for (const e of articles) {
+      const topics = normalizeEntryTopics(e);
+      topics.forEach((t, i) => {
+        const file = path.join(TOPICS_DIR, `${e.date}-${topicSlug(t, i)}.html`);
+        fs.writeFileSync(file, buildTopicPage({ ...t }, i, e.date), 'utf8');
+        written++;
+      });
+    }
+    log(`[radar] 🗂️ صفحات موضوعات مستقلة: ${written}`);
+  } catch (e) {
+    log(`[radar] ⚠️ فشل كتابة الصفحات المستقلة: ${e.message}`);
+  }
+
+  // 5) بناء الصفحة الرئيسية
   const html = buildPage(todayEntry?.topics || [], archiveEntries, generatedAt);
   fs.writeFileSync(OUT_FILE, html, 'utf8');
 
@@ -912,6 +1093,13 @@ async function main() {
       ? 'لا موضوعات (فشل التوليد)'
       : 'بدون GEMINI_API_KEY';
   log(`[radar] ✅ تم توليد ${OUT_FILE} (${topicStatus} | أرشيف ${archiveEntries.length} يوم)`);
+
+  // 6) إعادة توليد sitemap لتشمل صفحات radar-topics/ المستقلة (لا تكسر التشغيل عند فشله)
+  try {
+    execSync('node scripts/blog-publisher/generate-sitemap.cjs', { cwd: ROOT, stdio: 'inherit', env: { ...process.env } });
+  } catch (e) {
+    log(`[radar] ⚠️ فشل إعادة توليد sitemap: ${e.message}`);
+  }
 }
 
 main().catch((e) => {

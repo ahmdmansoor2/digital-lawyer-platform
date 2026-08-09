@@ -12,9 +12,17 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..', '..');
 const BLOG_DIR = path.join(ROOT, 'public', 'blog');
 const PILLARS_DIR = path.join(ROOT, 'public', 'pillars');
+const FORMS_DOCS_DIR = path.join(ROOT, 'public', 'legal-forms-docs');
+const RADAR_TOPICS_DIR = path.join(ROOT, 'public', 'radar-topics');
 const SITEMAP_FILE = path.join(ROOT, 'public', 'sitemap.xml');
 const SITEMAP_HTML_FILE = path.join(ROOT, 'public', 'sitemap.html');
 const BASE_URL = 'https://mohamidigital.online';
+
+function listHtml(dir) {
+  return fs.existsSync(dir)
+    ? fs.readdirSync(dir).filter((f) => /^[a-z0-9_-]+\.html$/.test(f) && f !== 'index.html').sort()
+    : [];
+}
 
 function cairoDateStr() {
   return new Date(Date.now() + 120 * 60000).toISOString().slice(0, 10);
@@ -51,12 +59,10 @@ function extractTitle(html) {
 }
 
 function buildSitemap() {
-  const blogFiles = fs.existsSync(BLOG_DIR)
-    ? fs.readdirSync(BLOG_DIR).filter(f => /^[a-z0-9-]+\.html$/.test(f) && f !== 'index.html').sort()
-    : [];
-  const pillarFiles = fs.existsSync(PILLARS_DIR)
-    ? fs.readdirSync(PILLARS_DIR).filter(f => /^[a-z0-9-]+\.html$/.test(f) && f !== 'index.html').sort()
-    : [];
+  const blogFiles = listHtml(BLOG_DIR);
+  const pillarFiles = listHtml(PILLARS_DIR);
+  const formsDocFiles = listHtml(FORMS_DOCS_DIR);
+  const radarTopicFiles = listHtml(RADAR_TOPICS_DIR);
   const today = cairoDateStr();
   const urls = [];
 
@@ -94,6 +100,16 @@ function buildSitemap() {
     urls.push(`  <url>\n    <loc>${BASE_URL}/blog/${f}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>`);
   }
 
+  // كل صفحات صيغ العقود المستقلة
+  for (const f of formsDocFiles) {
+    urls.push(`  <url>\n    <loc>${BASE_URL}/legal-forms-docs/${f}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`);
+  }
+
+  // كل صفحات موضوعات رصد المحامي المستقلة
+  for (const f of radarTopicFiles) {
+    urls.push(`  <url>\n    <loc>${BASE_URL}/radar-topics/${f}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.5</priority>\n  </url>`);
+  }
+
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
 }
 
@@ -102,12 +118,10 @@ function esc(s) {
 }
 
 function buildSitemapHtml() {
-  const blogFiles = fs.existsSync(BLOG_DIR)
-    ? fs.readdirSync(BLOG_DIR).filter(f => /^[a-z0-9-]+\.html$/.test(f) && f !== 'index.html').sort()
-    : [];
-  const pillarFiles = fs.existsSync(PILLARS_DIR)
-    ? fs.readdirSync(PILLARS_DIR).filter(f => /^[a-z0-9-]+\.html$/.test(f) && f !== 'index.html').sort()
-    : [];
+  const blogFiles = listHtml(BLOG_DIR);
+  const pillarFiles = listHtml(PILLARS_DIR);
+  const formsDocFiles = listHtml(FORMS_DOCS_DIR);
+  const radarTopicFiles = listHtml(RADAR_TOPICS_DIR);
 
   // slug → {title, file}
   const articles = {};
@@ -141,6 +155,24 @@ function buildSitemapHtml() {
     return { file: f, title };
   });
 
+  const formsDocs = formsDocFiles.map((f) => {
+    let title = f.replace(/\.html$/, '').replace(/-/g, ' ');
+    try {
+      const html = fs.readFileSync(path.join(FORMS_DOCS_DIR, f), 'utf8');
+      title = extractTitle(html) || title;
+    } catch {}
+    return { file: f, title };
+  });
+
+  const radarTopics = radarTopicFiles.map((f) => {
+    let title = f.replace(/\.html$/, '').replace(/-/g, ' ');
+    try {
+      const html = fs.readFileSync(path.join(RADAR_TOPICS_DIR, f), 'utf8');
+      title = extractTitle(html) || title;
+    } catch {}
+    return { file: f, title };
+  });
+
   const blogSections = grouped
     .filter((g) => g.items.length)
     .map((g) => {
@@ -153,6 +185,14 @@ function buildSitemapHtml() {
 
   const pillarItems = pillars
     .map((p) => `        <li><a href="/pillars/${p.file}">${esc(p.title)}</a></li>`)
+    .join('\n');
+
+  const formsDocItems = formsDocs
+    .map((p) => `        <li><a href="/legal-forms-docs/${p.file}">${esc(p.title)}</a></li>`)
+    .join('\n');
+
+  const radarTopicItems = radarTopics
+    .map((p) => `        <li><a href="/radar-topics/${p.file}">${esc(p.title)}</a></li>`)
     .join('\n');
 
   return `<!DOCTYPE html>
@@ -219,6 +259,24 @@ function buildSitemapHtml() {
       <ul class="link-list">
         <li><a href="/pillars/">صفحة المراجع الرئيسية</a></li>
 ${pillarItems}
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>📄 صيغ العقود والدعاوي</h2>
+      <p class="meta">صفحات مستقلة لكل عقد وصحيفة — النصوص الكاملة والبنود</p>
+      <ul class="link-list">
+        <li><a href="/legal-forms.html">صفحة الصيغ الرئيسية</a></li>
+${formsDocItems}
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>📡 موضوعات رصد المحامي</h2>
+      <p class="meta">تحليلات يومية لكل موضوع — >3000 كلمة</p>
+      <ul class="link-list">
+        <li><a href="/legal-radar.html">صفحة الرصد الرئيسية</a></li>
+${radarTopicItems}
       </ul>
     </div>
 

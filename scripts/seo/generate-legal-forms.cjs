@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 /**
  * generate-legal-forms.cjs — توليد صفحة «صيغ العقود والدعاوي» (legal-forms.html)
+ * + صفحات مستقلة لكل عقد/مذكرة في public/legal-forms-docs/
  *
- * يقرأ قوالب العقود والمذكرات من src/data ويبني صفحة SEO ثابتة تعرض
- * النصوص الكاملة لكل العقود ببنودها مع الحقول التكميلية قابلة للتعبئة.
+ * الفهرس (legal-forms.html) يعرض بطاقات (Cards) — كل بطاقة رابط يفتح صفحة
+ * مستقلة بذاتها تحمل النص الكامل: الحقول التكميلية + البنود + زر النسخ.
  *
  * الاستخدام:
  *   node scripts/seo/generate-legal-forms.cjs
@@ -16,6 +17,7 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..', '..');
 const OUT_FILE = path.join(ROOT, 'public', 'legal-forms.html');
+const DOCS_DIR = path.join(ROOT, 'public', 'legal-forms-docs');
 const CONTRACTS_FILE = path.join(ROOT, 'src', 'data', 'contractTemplates.ts');
 const LEGAL_FILE = path.join(ROOT, 'src', 'data', 'legalTemplates.ts');
 const BASE_URL = 'https://mohamidigital.online';
@@ -137,7 +139,7 @@ function plainTextOf(contract, fieldMap) {
   return parts.join('\n\n');
 }
 
-// ─── بناء HTML ───
+// ─── بناء محتوى الوثيقة (مشترك بين الفهرس والصفحة المستقلة) ───
 
 function buildFieldChips(contract) {
   const chips = (contract.fields || [])
@@ -171,32 +173,333 @@ function buildClauses(contract, fieldMap) {
     .join('\n    ');
 }
 
-function buildContractDoc(contract, idx) {
+function buildDocBody(contract) {
   const fieldMap = buildFieldMap(contract);
-  const plain = plainTextOf(contract, fieldMap);
   const clausesHtml = buildClauses(contract, fieldMap);
   const introHtml = renderFieldedText(contract.arabicIntro || '', fieldMap);
   const fieldsHtml = buildFieldChips(contract);
-  return `<details class="doc doc-card" id="doc-${esc(contract.id)}">
-    <summary class="doc-head">
+  return { fieldsHtml, bodyHtml: `${introHtml}\n      ${clausesHtml}` };
+}
+
+// ─── بطاقة العقد في الفهرس (رابط لصفحة مستقلة) ───
+
+function buildContractCard(contract, idx) {
+  const page = `${BASE_URL}/legal-forms-docs/${esc(contract.id)}.html`;
+  return `<a class="doc doc-card" href="${page}" title="افتح الصفحة الكاملة: ${esc(repair(contract.name))}">
       <div class="tile-info">
         <div class="doc-cat">${esc(repair(contract.category))}</div>
         <h3 class="doc-title"><span class="doc-num">${String(idx + 1).padStart(2, '0')}</span>${esc(repair(contract.name))}</h3>
         <p class="doc-desc">${esc(repair(contract.description))}</p>
-        <span class="doc-hint">📖 اضغط لعرض النص كاملاً</span>
+        <span class="doc-hint">📖 افتح الصفحة الكاملة</span>
       </div>
-    </summary>
-    <div class="doc-toolbar">
-      <button class="copy-btn" type="button" onclick="copyText(this)" data-plain="${esc(JSON.stringify(plain))}">📄 نسخ النص كاملاً</button>
-      <span class="doc-close-hint">▲ انقر أعلى البطاقة للإغلاق</span>
-    </div>
-    ${fieldsHtml}
-    <div class="doc-body">
-      ${introHtml}
-      ${clausesHtml}
-    </div>
-  </details>`;
+  </a>`;
 }
+
+// ─── الصفحة المستقلة للعقد ───
+
+function buildContractPage(contract, idx) {
+  const { fieldsHtml, bodyHtml } = buildDocBody(contract);
+  const plain = plainTextOf(contract, buildFieldMap(contract));
+  const pageUrl = `${BASE_URL}/legal-forms-docs/${esc(contract.id)}.html`;
+  const nowISO = new Date(Date.now() + 120 * 60000).toISOString();
+  const title = `${esc(repair(contract.name))} — صيغة قانونية كاملة | منصة المحامي الرقمية`;
+  const description = esc(repair(contract.description));
+  const schemas = [
+    `{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}","logo":"${BASE_URL}/logo.png"}`,
+    `{"@context":"https://schema.org","@type":"Article","headline":"${esc(repair(contract.name))}","description":"${description}","datePublished":"${nowISO}","dateModified":"${nowISO}","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"mainEntityOfPage":"${pageUrl}"}`,
+    `{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"${BASE_URL}"},{"@type":"ListItem","position":2,"name":"صيغ العقود والدعاوي","item":"${BASE_URL}/legal-forms.html"},{"@type":"ListItem","position":3,"name":"${esc(repair(contract.name))}","item":"${pageUrl}"}]}`,
+  ];
+  return `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${title}</title>
+  <meta name="description" content="${description}" />
+  <meta name="author" content="منصة المحامي الرقمية" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="${pageUrl}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="${esc(repair(contract.name))} - صيغة قانونية كاملة" />
+  <meta property="og:description" content="${description}" />
+  <meta property="og:url" content="${pageUrl}" />
+  <meta property="og:site_name" content="منصة المحامي الرقمية" />
+  <meta property="og:locale" content="ar_EG" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
+${schemas.map((s) => `  <script type="application/ld+json">${s}</script>`).join('\n')}
+  <style>
+${PAGE_CSS}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="logo-icon">⚖️</div>
+        <div>
+          <div class="logo-name">منصة المحامي الرقمية</div>
+          <div class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="/">الرئيسية</a>
+        <a href="/features.html">المميزات</a>
+        <a href="/blog/">المدونة</a>
+        <a href="/legal-radar.html">رصد المحامي</a>
+        <a href="/contact.html">تواصل معنا</a>
+      </div>
+      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
+    </div>
+  </nav>
+  <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><a href="/legal-forms.html">صيغ العقود والدعاوي</a><span class="sep">›</span><span class="current">${esc(repair(contract.name))}</span></nav>
+
+  <div class="hero">
+    <div class="badge">⚖️ ${esc(repair(contract.category))}</div>
+    <h1>${esc(repair(contract.name))}</h1>
+    <p>${description}</p>
+  </div>
+
+  <!-- TOP AD -->
+  <div class="ad-slot" role="complementary" aria-label="إعلان">
+    <span class="ad-label">إعلان</span>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="container">
+    <a class="back-link" href="/legal-forms.html">→ العودة إلى كل صيغ العقود والدعاوي</a>
+    <div class="doc doc-page">
+      <div class="doc-toolbar">
+        <button class="copy-btn" type="button" onclick="copyText(this)" data-plain="${esc(JSON.stringify(plain))}">📄 نسخ النص كاملاً</button>
+      </div>
+      ${fieldsHtml}
+      <div class="doc-body">
+        ${bodyHtml}
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <a href="/" class="cta-btn">جرّب منصة المحامي الرقمية مجاناً 🚀</a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon">⚖️</div>
+            <span class="footer-logo-name">منصة المحامي الرقمية</span>
+          </div>
+          <p class="footer-desc">النظام البرمجي المتكامل والمجاني لإدارة مكاتب المحاماة في جمهورية مصر العربية.</p>
+          <p class="footer-email">التواصل: <a href="mailto:ahmdmansoor222@gmail.com">ahmdmansoor222@gmail.com</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>أقسام المنصة</h4>
+          <ul>
+            <li><a href="/">الرئيسية</a></li>
+            <li><a href="/about.html">عن المنصة</a></li>
+            <li><a href="/features.html">المميزات</a></li>
+            <li><a href="/blog/">المدونة القانونية</a></li>
+            <li><a href="/pillars/">المراجع القانونية</a></li>
+            <li><a href="/legal-radar.html">رصد المحامي</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>السياسات والتواصل</h4>
+          <ul>
+            <li><a href="/legal-forms.html">صيغ العقود والدعاوي</a></li>
+            <li><a href="/privacy.html">سياسة الخصوصية</a></li>
+            <li><a href="/terms.html">شروط الاستخدام</a></li>
+            <li><a href="/contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 منصة المحامي الرقمية — جميع الحقوق محفوظة</span>
+        <span>صيغ قانونية استرشادية — تُراجع مع محامٍ مختص قبل الاستخدام</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    ${scriptsCore()}
+  </script>
+</body>
+</html>
+`;
+}
+
+// ─── مذكرات الدفاع (بطاقة + صفحة مستقلة) ───
+
+const MEMO_DEFS = [
+  { name: 'مذكرة دفاع في دعوى مدنية', headerId: 'memo-header-civil', desc: 'قالب جاهز لصياغة مذكرة دفاع أمام المحاكم المدنية — وقائع ثم دفاع ثم طلبات.' },
+  { name: 'مذكرة دفاع في دعوى جنائية', headerId: 'memo-header-criminal', desc: 'قالب جاهز لصياغة مذكرة دفاع في الجنح والجنايات — موضوع التهمة ثم الدفاع ثم الطلبات.' },
+];
+
+function buildMemoCard(def, idx) {
+  const page = `${BASE_URL}/legal-forms-docs/${esc(def.headerId)}.html`;
+  return `<a class="doc doc-card memo-doc" href="${page}" title="افتح الصفحة الكاملة: ${esc(def.name)}">
+      <div class="tile-info">
+        <div class="doc-cat">مذكرات الدفاع</div>
+        <h3 class="doc-title"><span class="doc-num">${String(idx + 1).padStart(2, '0')}</span>${esc(def.name)}</h3>
+        <p class="doc-desc">${esc(def.desc)}</p>
+        <span class="doc-hint">📖 افتح الصفحة الكاملة</span>
+      </div>
+  </a>`;
+}
+
+function buildMemoParts(templates, headerId) {
+  const t = (id) => templates.find((x) => x.id === id);
+  const parts = [t(headerId), t('memo-body-facts'), t('memo-body-defense'), t('memo-body-requests')]
+    .filter(Boolean)
+    .map((x) => `<div class="memo-part">${cleanTemplateHtml(x.html)}</div>`)
+    .join('\n');
+  const plain = [t(headerId), t('memo-body-facts'), t('memo-body-defense'), t('memo-body-requests')]
+    .filter(Boolean)
+    .map((x) => htmlToPlain(x.html))
+    .join('\n\n');
+  return { parts, plain };
+}
+
+function buildMemoPage(def, templates) {
+  const { parts, plain } = buildMemoParts(templates, def.headerId);
+  const pageUrl = `${BASE_URL}/legal-forms-docs/${esc(def.headerId)}.html`;
+  const nowISO = new Date(Date.now() + 120 * 60000).toISOString();
+  const title = `${esc(def.name)} — قالب جاهز | منصة المحامي الرقمية`;
+  const description = esc(def.desc);
+  const schemas = [
+    `{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}","logo":"${BASE_URL}/logo.png"}`,
+    `{"@context":"https://schema.org","@type":"Article","headline":"${esc(def.name)}","description":"${description}","datePublished":"${nowISO}","dateModified":"${nowISO}","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"mainEntityOfPage":"${pageUrl}"}`,
+    `{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"${BASE_URL}"},{"@type":"ListItem","position":2,"name":"صيغ العقود والدعاوي","item":"${BASE_URL}/legal-forms.html"},{"@type":"ListItem","position":3,"name":"${esc(def.name)}","item":"${pageUrl}"}]}`,
+  ];
+  return `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${title}</title>
+  <meta name="description" content="${description}" />
+  <meta name="author" content="منصة المحامي الرقمية" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="${pageUrl}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="${esc(def.name)} - قالب مذكرة دفاع" />
+  <meta property="og:description" content="${description}" />
+  <meta property="og:url" content="${pageUrl}" />
+  <meta property="og:site_name" content="منصة المحامي الرقمية" />
+  <meta property="og:locale" content="ar_EG" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
+${schemas.map((s) => `  <script type="application/ld+json">${s}</script>`).join('\n')}
+  <style>
+${PAGE_CSS}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="logo-icon">⚖️</div>
+        <div>
+          <div class="logo-name">منصة المحامي الرقمية</div>
+          <div class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="/">الرئيسية</a>
+        <a href="/features.html">المميزات</a>
+        <a href="/blog/">المدونة</a>
+        <a href="/legal-radar.html">رصد المحامي</a>
+        <a href="/contact.html">تواصل معنا</a>
+      </div>
+      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
+    </div>
+  </nav>
+  <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><a href="/legal-forms.html">صيغ العقود والدعاوي</a><span class="sep">›</span><span class="current">${esc(def.name)}</span></nav>
+
+  <div class="hero">
+    <div class="badge">⚖️ مذكرات الدفاع</div>
+    <h1>${esc(def.name)}</h1>
+    <p>${description}</p>
+  </div>
+
+  <!-- TOP AD -->
+  <div class="ad-slot" role="complementary" aria-label="إعلان">
+    <span class="ad-label">إعلان</span>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="container">
+    <a class="back-link" href="/legal-forms.html">→ العودة إلى كل صيغ العقود والدعاوي</a>
+    <div class="doc doc-page memo-doc">
+      <div class="doc-toolbar">
+        <button class="copy-btn" type="button" onclick="copyText(this)" data-plain="${esc(JSON.stringify(plain))}">📄 نسخ المذكرة كاملة</button>
+      </div>
+      <div class="doc-body memo">
+        ${parts}
+      </div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <a href="/" class="cta-btn">جرّب منصة المحامي الرقمية مجاناً 🚀</a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon">⚖️</div>
+            <span class="footer-logo-name">منصة المحامي الرقمية</span>
+          </div>
+          <p class="footer-desc">النظام البرمجي المتكامل والمجاني لإدارة مكاتب المحاماة في جمهورية مصر العربية.</p>
+          <p class="footer-email">التواصل: <a href="mailto:ahmdmansoor222@gmail.com">ahmdmansoor222@gmail.com</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>أقسام المنصة</h4>
+          <ul>
+            <li><a href="/">الرئيسية</a></li>
+            <li><a href="/about.html">عن المنصة</a></li>
+            <li><a href="/features.html">المميزات</a></li>
+            <li><a href="/blog/">المدونة القانونية</a></li>
+            <li><a href="/pillars/">المراجع القانونية</a></li>
+            <li><a href="/legal-radar.html">رصد المحامي</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>السياسات والتواصل</h4>
+          <ul>
+            <li><a href="/legal-forms.html">صيغ العقود والدعاوي</a></li>
+            <li><a href="/privacy.html">سياسة الخصوصية</a></li>
+            <li><a href="/terms.html">شروط الاستخدام</a></li>
+            <li><a href="/contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 منصة المحامي الرقمية — جميع الحقوق محفوظة</span>
+        <span>صيغ قانونية استرشادية — تُراجع مع محامٍ مختص قبل الاستخدام</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    ${scriptsCore()}
+  </script>
+</body>
+</html>
+`;
+}
+
+// ─── أقسام الفهرس ───
 
 function buildSections(contracts) {
   const order = ['عقود البيع والشراء', 'عقود الإيجار والاستغلال', 'عقود الشركات والتضامن', 'عقود العمل', 'عقود وتوثيق', 'صحف دعاوى قضائية', 'صحف دعاوى جنائية', 'صحف دعاوى أحوال شخصية'];
@@ -207,10 +510,10 @@ function buildSections(contracts) {
   return order
     .filter((cat) => byCat[cat] && byCat[cat].length)
     .map((cat) => {
-      const docs = byCat[cat].map((c, i) => buildContractDoc(c, i)).join('\n    ');
+      const docs = byCat[cat].map((c, i) => buildContractCard(c, i)).join('\n    ');
       return `<div class="cat-block">
     <h2 class="cat-title">${esc(cat)}</h2>
-    <p class="cat-sub">كل عقد في بطاقة مدمجة — اضغط على أي بطاقة لعرض نص العقد كاملاً.</p>
+    <p class="cat-sub">كل عقد في بطاقة — اضغط على أي بطاقة لفتح الصفحة الكاملة بنص العقد.</p>
     <div class="cat-grid">
       ${docs}
     </div>
@@ -219,38 +522,9 @@ function buildSections(contracts) {
     .join('\n  ');
 }
 
-function buildMemos(templates) {
-  const t = (id) => templates.find((x) => x.id === id);
-  const build = (name, headerId, desc, idx) => {
-    const parts = [t(headerId), t('memo-body-facts'), t('memo-body-defense'), t('memo-body-requests')]
-      .filter(Boolean)
-      .map((x) => `<div class="memo-part">${cleanTemplateHtml(x.html)}</div>`)
-      .join('\n');
-    const plain = [t(headerId), t('memo-body-facts'), t('memo-body-defense'), t('memo-body-requests')]
-      .filter(Boolean)
-      .map((x) => htmlToPlain(x.html))
-      .join('\n\n');
-    return `<details class="doc doc-card memo-doc" id="doc-${esc(headerId)}">
-    <summary class="doc-head">
-      <div class="tile-info">
-        <div class="doc-cat">مذكرات الدفاع</div>
-        <h3 class="doc-title"><span class="doc-num">${String(idx + 1).padStart(2, '0')}</span>${esc(name)}</h3>
-        <p class="doc-desc">${esc(desc)}</p>
-        <span class="doc-hint">📖 اضغط لعرض المذكرة كاملة</span>
-      </div>
-    </summary>
-    <div class="doc-toolbar">
-      <button class="copy-btn" type="button" onclick="copyText(this)" data-plain="${esc(JSON.stringify(plain))}">📄 نسخ المذكرة كاملة</button>
-      <span class="doc-close-hint">▲ انقر أعلى البطاقة للإغلاق</span>
-    </div>
-    <div class="doc-body memo">
-      ${parts}
-    </div>
-  </details>`;
-  };
+function buildMemos() {
   return `<div class="cat-grid">
-    ${build('مذكرة دفاع في دعوى مدنية', 'memo-header-civil', 'قالب جاهز لصياغة مذكرة دفاع أمام المحاكم المدنية — وقائع ثم دفاع ثم طلبات.', 0)}
-    ${build('مذكرة دفاع في دعوى جنائية', 'memo-header-criminal', 'قالب جاهز لصياغة مذكرة دفاع في الجنح والجنايات — موضوع التهمة ثم الدفاع ثم الطلبات.', 1)}
+    ${MEMO_DEFS.map((def, i) => buildMemoCard(def, i)).join('\n    ')}
   </div>`;
 }
 
@@ -278,10 +552,143 @@ function buildCitations(templates, snippets) {
 
 function buildToc(contracts) {
   const links = contracts
-    .map((c) => `<li><a href="#doc-${esc(c.id)}">${esc(repair(c.name))}</a></li>`)
+    .map((c) => `<li><a href="${BASE_URL}/legal-forms-docs/${esc(c.id)}.html">${esc(repair(c.name))}</a></li>`)
     .join('\n        ');
   return links;
 }
+
+// ─── سكربتات مشتركة ───
+
+function scriptsCore() {
+  return `function copyText(btn) {
+      var text = btn.getAttribute('data-plain');
+      function done() { btn.innerHTML = '✓ تم النسخ'; btn.style.color = '#fff'; setTimeout(function(){ btn.innerHTML = '📄 نسخ النص كاملاً'; btn.style.color = ''; }, 2200); }
+      function fallback() {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); } catch(e) {}
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done, fallback);
+      } else fallback();
+    }
+    (function() {
+      try {
+        var p = new URLSearchParams(window.location.search);
+        if (p.get('from') === 'app') {
+          var cta = document.querySelector('.nav-cta');
+          if (cta) { cta.innerHTML = '← العودة إلى لوحة التحكم'; cta.setAttribute('href', '/'); }
+        }
+      } catch(e) {}
+    })();`;
+}
+
+function scriptsSearch() {
+  return `function normAr(s) {
+      return (s || '')
+        .replace(/[\\u064B-\\u0652\\u0670]/g, '')
+        .replace(/[أإآٱ]/g, 'ا')
+        .replace(/ى/g, 'ي')
+        .replace(/ة/g, 'ه')
+        .replace(/ؤ/g, 'و')
+        .replace(/ئ/g, 'ي')
+        .replace(/\\u0640/g, '')
+        .replace(/\\s+/g, ' ')
+        .trim();
+    }
+    function buildNormMap(s) {
+      var out = '', map = [];
+      for (var i = 0; i < s.length; i++) {
+        var ch = s[i];
+        if (/[\\u064B-\\u0652\\u0670]/.test(ch)) continue;
+        if (/[أإآٱ]/.test(ch)) ch = 'ا';
+        else if (ch === 'ى') ch = 'ي';
+        else if (ch === 'ة') ch = 'ه';
+        else if (ch === 'ؤ') ch = 'و';
+        else if (ch === 'ئ') ch = 'ي';
+        else if (ch === '\\u0640') continue;
+        out += ch;
+        map.push(i);
+      }
+      return { out: out, map: map };
+    }
+    var searchMarks = [];
+    function clearSearchMarks() {
+      for (var i = 0; i < searchMarks.length; i++) {
+        var m = searchMarks[i];
+        if (m && m.parentNode) {
+          var frag = document.createDocumentFragment();
+          while (m.firstChild) frag.appendChild(m.firstChild);
+          m.parentNode.replaceChild(frag, m);
+        }
+      }
+      searchMarks = [];
+    }
+    function highlightIn(node, q) {
+      var walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+      var tns = [];
+      while (walker.nextNode()) {
+        var t = walker.currentNode;
+        if (t.nodeValue && t.nodeValue.trim() && !(t.parentElement && t.parentElement.closest('button'))) tns.push(t);
+      }
+      for (var k = 0; k < tns.length; k++) {
+        var tn = tns[k];
+        var r = buildNormMap(tn.nodeValue);
+        var n = r.out;
+        if (!n) continue;
+        var idx = n.indexOf(q);
+        if (idx === -1) continue;
+        var sOrig = r.map[idx];
+        var eOrig = r.map[idx + q.length - 1] + 1;
+        var tail = tn.splitText(sOrig);
+        var after = tail.splitText(eOrig - sOrig);
+        var mark = document.createElement('mark');
+        mark.className = 'search-hit';
+        tail.parentNode.insertBefore(mark, tail);
+        mark.appendChild(tail);
+        searchMarks.push(mark);
+        tn = after;
+      }
+    }
+    function searchForms(raw) {
+      var q = normAr(raw);
+      clearSearchMarks();
+      var count = 0;
+      var items = document.querySelectorAll('.container .doc, .container .mini-doc, .container .snippet');
+      var blocks = document.querySelectorAll('.container .cat-block');
+      var cnt = document.getElementById('formsCount');
+      if (!q) {
+        for (var i = 0; i < items.length; i++) items[i].style.display = '';
+        for (var b = 0; b < blocks.length; b++) blocks[b].removeAttribute('data-empty');
+        cnt.textContent = '';
+        cnt.className = 'search-count';
+        return;
+      }
+      for (var a = 0; a < items.length; a++) {
+        var el = items[a];
+        if (normAr(el.textContent).indexOf(q) !== -1) {
+          el.style.display = '';
+          count++;
+          highlightIn(el, q);
+        } else {
+          el.style.display = 'none';
+        }
+      }
+      for (var c = 0; c < blocks.length; c++) {
+        var blk = blocks[c];
+        var inner = blk.querySelectorAll('.doc, .mini-doc, .snippet');
+        var vis = false;
+        for (var x = 0; x < inner.length; x++) { if (inner[x].style.display !== 'none') { vis = true; break; } }
+        if (vis) blk.removeAttribute('data-empty'); else blk.setAttribute('data-empty', '1');
+      }
+      if (count) { cnt.textContent = count + ' نتيجة'; cnt.className = 'search-count'; }
+      else { cnt.textContent = 'لا توجد نتائج'; cnt.className = 'search-count empty'; }
+    }`;
+}
+
+// ─── بناء صفحة الفهرس ───
 
 function buildPage(contracts, legal) {
   const { templates, snippets } = legal;
@@ -327,7 +734,140 @@ function buildPage(contracts, legal) {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"صيغ العقود والدعاوي","itemListElement":[${itemList}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[${faqJson}]}</script>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+${PAGE_CSS}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <div class="logo-icon">⚖️</div>
+        <div>
+          <div class="logo-name">منصة المحامي الرقمية</div>
+          <div class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="/">الرئيسية</a>
+        <a href="/features.html">المميزات</a>
+        <a href="/blog/">المدونة</a>
+        <a href="/legal-radar.html">رصد المحامي</a>
+        <a href="/contact.html">تواصل معنا</a>
+      </div>
+      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
+    </div>
+  </nav>
+  <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><span class="current">صيغ العقود والدعاوي</span></nav>
+
+  <div class="hero">
+    <div class="badge">⚖️ نصوص قانونية مصرية كاملة البنود</div>
+    <h1>صيغ العقود والدعاوي — نصوص كاملة جاهزة للتعبئة</h1>
+    <p>صيغ قانونية شاملة بنصوصها الكاملة وكل بنودها، مع الحقول التكميلية المطلوب ملؤها قبل التعاقد أو رفع الدعوى — وفق القانون المدني المصري وقانون الإثبات والمرافعات.</p>
+  </div>
+
+  <!-- TOP AD -->
+  <div class="ad-slot" role="complementary" aria-label="إعلان">
+    <span class="ad-label">إعلان</span>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <div class="toc-wrap">
+    <div class="toc">
+      <h4>محتويات الصفحة</h4>
+      <ol>
+        ${buildToc(contracts)}
+      </ol>
+    </div>
+    <div class="search-box">
+      <span class="s-icon">🔍</span>
+      <input type="search" id="formsSearch" aria-label="بحث في صيغ العقود والدعاوي" placeholder="ابحث في الصيغ: شيك، صحة ونفاذ، إيصال أمانة، إيجار، بيع سيارة، حضانة، سمسرة..." oninput="searchForms(this.value)">
+      <span class="search-count" id="formsCount"></span>
+    </div>
+  </div>
+  <p class="search-hint">💡 يبحث الفلتر في عناوين الصيغ والبطاقات ويبرز كلمة البحث — اضغط أي بطاقة لفتح صفحتها الكاملة.</p>
+
+  <div class="container">
+    ${buildSections(contracts)}
+
+    <div class="cat-block">
+      <div class="cat-title">قوالب مذكرات الدفاع</div>
+      ${buildMemos()}
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-title">بنود العقود القياسية</div>
+      ${buildContractSections(templates)}
+    </div>
+
+    <div class="cat-block">
+      <div class="cat-title">الاستشهادات والعبارات القانونية الجاهزة</div>
+      ${buildCitations(templates, snippets)}
+    </div>
+
+    <!-- MIDDLE AD -->
+    <div class="ad-slot" role="complementary" aria-label="إعلان">
+      <span class="ad-label">إعلان</span>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <a href="/" class="cta-btn">جرّب منصة المحامي الرقمية مجاناً 🚀</a>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon">⚖️</div>
+            <span class="footer-logo-name">منصة المحامي الرقمية</span>
+          </div>
+          <p class="footer-desc">النظام البرمجي المتكامل والمجاني لإدارة مكاتب المحاماة في جمهورية مصر العربية.</p>
+          <p class="footer-email">التواصل: <a href="mailto:ahmdmansoor222@gmail.com">ahmdmansoor222@gmail.com</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>أقسام المنصة</h4>
+          <ul>
+            <li><a href="/">الرئيسية</a></li>
+            <li><a href="/about.html">عن المنصة</a></li>
+            <li><a href="/features.html">المميزات</a></li>
+            <li><a href="/blog/">المدونة القانونية</a></li>
+            <li><a href="/pillars/">المراجع القانونية</a></li>
+            <li><a href="/legal-radar.html">رصد المحامي</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>السياسات والتواصل</h4>
+          <ul>
+            <li><a href="/legal-forms.html">صيغ العقود والدعاوي</a></li>
+            <li><a href="/privacy.html">سياسة الخصوصية</a></li>
+            <li><a href="/terms.html">شروط الاستخدام</a></li>
+            <li><a href="/contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 منصة المحامي الرقمية — جميع الحقوق محفوظة</span>
+        <span>صيغ قانونية استرشادية — تُراجع مع محامٍ مختص قبل الاستخدام</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    ${scriptsCore()}
+    ${scriptsSearch()}
+  </script>
+</body>
+</html>
+`;
+}
+
+// ─── CSS مشترك بين الفهرس والصفحات المستقلة ───
+
+const PAGE_CSS = `    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #0f172a;
       --border: rgba(148,163,184,0.12);
@@ -402,33 +942,25 @@ function buildPage(contracts, legal) {
 
     .doc { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 24px 26px; margin-bottom: 20px; transition: border-color 0.25s, transform 0.25s; }
     .doc:hover { border-color: rgba(6,182,212,0.35); transform: translateY(-2px); }
-    .doc-card[open] { border-color: rgba(6,182,212,0.5); }
-    .doc-card > .doc-head { list-style: none; cursor: pointer; margin-bottom: 0; }
-    .doc-card > .doc-head::-webkit-details-marker { display: none; }
-    .doc-card[open] > .doc-head { border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 16px; }
-    .memo-doc[open] > .doc-head { margin-bottom: 16px; }
+    .doc-page { margin-bottom: 0; }
+    a.doc-card { text-decoration: none; color: inherit; display: block; }
     .doc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; flex-wrap: wrap; }
     .doc-cat { display: inline-block; font-size: 10px; font-weight: 800; color: #67e8f9; background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.25); padding: 4px 12px; border-radius: 999px; margin-bottom: 8px; }
     .doc-title { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 900; color: #fff; line-height: 1.4; }
     .doc-num { font-size: 17px; font-weight: 900; color: transparent; background: linear-gradient(135deg, #06b6d4, #a855f7); -webkit-background-clip: text; background-clip: text; min-width: 30px; text-align: center; }
     .doc-desc { font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.7; }
     .doc-hint { display: inline-block; margin-top: 10px; font-size: 11px; font-weight: 800; color: var(--cyan); }
-    .doc-card[open] .doc-hint::after { content: " ▲"; font-size: 9px; }
-    .doc-card:not([open]) .doc-hint::after { content: " ▼"; font-size: 9px; }
 
     .doc-card { margin-bottom: 0; padding: 14px 16px; border-radius: 14px; }
-    .doc-card .doc-head { flex-direction: column; align-items: stretch; gap: 0; }
     .doc-card .tile-info { display: flex; flex-direction: column; }
     .doc-card .doc-cat { font-size: 9px; padding: 3px 10px; margin-bottom: 6px; align-self: flex-start; }
     .doc-card .doc-title { font-size: 13.5px; gap: 8px; }
     .doc-card .doc-num { font-size: 12px; min-width: 20px; }
     .doc-card .doc-desc { font-size: 11px; margin-top: 4px; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .doc-card .doc-hint { margin-top: 6px; font-size: 9.5px; }
-    .doc-card[open] { grid-column: 1 / -1; }
-    .doc-card[open] .doc-head { flex-direction: row; align-items: center; justify-content: space-between; gap: 16px; }
-    .doc-card[open] .tile-info { flex: 1; }
-    .doc-card[open] .doc-desc { -webkit-line-clamp: unset; display: block; }
-    .doc-card[open] .doc-hint { display: none; }
+
+    .back-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 12px; border: 1px solid rgba(6,182,212,0.3); background: rgba(6,182,212,0.08); color: #67e8f9; font-family: inherit; font-size: 12.5px; font-weight: 800; text-decoration: none; margin-bottom: 18px; transition: background 0.2s; }
+    .back-link:hover { background: rgba(6,182,212,0.16); }
 
     .doc-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 2px 0 12px; }
     .doc-close-hint { font-size: 11px; color: var(--muted); font-weight: 700; }
@@ -498,267 +1030,32 @@ function buildPage(contracts, legal) {
       .doc-head { flex-direction: column; }
       .footer-grid { grid-template-columns: 1fr; gap: 28px; }
       .nav-links { display: none; }
-    }
-  </style>
-</head>
-<body>
-  <nav>
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <div class="logo-icon">⚖️</div>
-        <div>
-          <div class="logo-name">منصة المحامي الرقمية</div>
-          <div class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</div>
-        </div>
-      </a>
-      <div class="nav-links">
-        <a href="/">الرئيسية</a>
-        <a href="/features.html">المميزات</a>
-        <a href="/blog/">المدونة</a>
-        <a href="/legal-radar.html">رصد المحامي</a>
-        <a href="/contact.html">تواصل معنا</a>
-      </div>
-      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
-    </div>
-  </nav>
-  <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><span class="current">صيغ العقود والدعاوي</span></nav>
+    }`;
 
-  <div class="hero">
-    <div class="badge">⚖️ نصوص قانونية مصرية كاملة البنود</div>
-    <h1>صيغ العقود والدعاوي — نصوص كاملة جاهزة للتعبئة</h1>
-    <p>صيغ قانونية شاملة بنصوصها الكاملة وكل بنودها، مع الحقول التكميلية المطلوب ملؤها قبل التعاقد أو رفع الدعوى — وفق القانون المدني المصري وقانون الإثبات والمرافعات.</p>
-  </div>
-
-  <!-- TOP AD -->
-  <div class="ad-slot" role="complementary" aria-label="إعلان">
-    <span class="ad-label">إعلان</span>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="toc-wrap">
-    <div class="toc">
-      <h4>محتويات الصفحة</h4>
-      <ol>
-        ${buildToc(contracts)}
-      </ol>
-    </div>
-    <div class="search-box">
-      <span class="s-icon">🔍</span>
-      <input type="search" id="formsSearch" aria-label="بحث في صيغ العقود والدعاوي" placeholder="ابحث في الصيغ: شيك، صحة ونفاذ، إيصال أمانة، إيجار، بيع سيارة، حضانة، سمسرة..." oninput="searchForms(this.value)">
-      <span class="search-count" id="formsCount"></span>
-    </div>
-  </div>
-  <p class="search-hint">💡 يبحث الفلتر في عناوين الصيغ ونصوصها الكاملة — يفتح تلقائياً البطاقات المطابقة ويبرز كلمة البحث.</p>
-
-  <div class="container">
-    ${buildSections(contracts)}
-
-    <div class="cat-block">
-      <div class="cat-title">قوالب مذكرات الدفاع</div>
-      ${buildMemos(templates)}
-    </div>
-
-    <div class="cat-block">
-      <div class="cat-title">بنود العقود القياسية</div>
-      ${buildContractSections(templates)}
-    </div>
-
-    <div class="cat-block">
-      <div class="cat-title">الاستشهادات والعبارات القانونية الجاهزة</div>
-      ${buildCitations(templates, snippets)}
-    </div>
-
-    <!-- MIDDLE AD -->
-    <div class="ad-slot" role="complementary" aria-label="إعلان">
-      <span class="ad-label">إعلان</span>
-      <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-  </div>
-
-  <div class="cta-section">
-    <a href="/" class="cta-btn">جرّب منصة المحامي الرقمية مجاناً 🚀</a>
-  </div>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-logo">
-            <div class="footer-logo-icon">⚖️</div>
-            <span class="footer-logo-name">منصة المحامي الرقمية</span>
-          </div>
-          <p class="footer-desc">النظام البرمجي المتكامل والمجاني لإدارة مكاتب المحاماة في جمهورية مصر العربية.</p>
-          <p class="footer-email">التواصل: <a href="mailto:ahmdmansoor222@gmail.com">ahmdmansoor222@gmail.com</a></p>
-        </div>
-        <div class="footer-col">
-          <h4>أقسام المنصة</h4>
-          <ul>
-            <li><a href="/">الرئيسية</a></li>
-            <li><a href="/about.html">عن المنصة</a></li>
-            <li><a href="/features.html">المميزات</a></li>
-            <li><a href="/blog/">المدونة القانونية</a></li>
-            <li><a href="/pillars/">المراجع القانونية</a></li>
-            <li><a href="/legal-radar.html">رصد المحامي</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>السياسات والتواصل</h4>
-          <ul>
-            <li><a href="/legal-forms.html">صيغ العقود والدعاوي</a></li>
-            <li><a href="/privacy.html">سياسة الخصوصية</a></li>
-            <li><a href="/terms.html">شروط الاستخدام</a></li>
-            <li><a href="/contact.html">تواصل معنا</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 منصة المحامي الرقمية — جميع الحقوق محفوظة</span>
-        <span>صيغ قانونية استرشادية — تُراجع مع محامٍ مختص قبل الاستخدام</span>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    function copyText(btn) {
-      var text = btn.getAttribute('data-plain');
-      function done() { btn.innerHTML = '✓ تم النسخ'; btn.style.color = '#fff'; setTimeout(function(){ btn.innerHTML = '📄 نسخ النص كاملاً'; btn.style.color = ''; }, 2200); }
-      function fallback() {
-        var ta = document.createElement('textarea');
-        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-        document.body.appendChild(ta); ta.select();
-        try { document.execCommand('copy'); done(); } catch(e) {}
-        document.body.removeChild(ta);
-      }
-      if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(done, fallback);
-      } else fallback();
-    }
-
-    function normAr(s) {
-      return (s || '')
-        .replace(/[\u064B-\u0652\u0670]/g, '')
-        .replace(/[أإآٱ]/g, 'ا')
-        .replace(/ى/g, 'ي')
-        .replace(/ة/g, 'ه')
-        .replace(/ؤ/g, 'و')
-        .replace(/ئ/g, 'ي')
-        .replace(/\u0640/g, '')
-        .replace(/\s+/g, ' ')
-        .trim();
-    }
-    function buildNormMap(s) {
-      var out = '', map = [];
-      for (var i = 0; i < s.length; i++) {
-        var ch = s[i];
-        if (/[\u064B-\u0652\u0670]/.test(ch)) continue;
-        if (/[أإآٱ]/.test(ch)) ch = 'ا';
-        else if (ch === 'ى') ch = 'ي';
-        else if (ch === 'ة') ch = 'ه';
-        else if (ch === 'ؤ') ch = 'و';
-        else if (ch === 'ئ') ch = 'ي';
-        else if (ch === '\u0640') continue;
-        out += ch;
-        map.push(i);
-      }
-      return { out: out, map: map };
-    }
-    var searchMarks = [];
-    function clearSearchMarks() {
-      for (var i = 0; i < searchMarks.length; i++) {
-        var m = searchMarks[i];
-        if (m && m.parentNode) {
-          var frag = document.createDocumentFragment();
-          while (m.firstChild) frag.appendChild(m.firstChild);
-          m.parentNode.replaceChild(frag, m);
-        }
-      }
-      searchMarks = [];
-    }
-    function highlightIn(node, q) {
-      var walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
-      var tns = [];
-      while (walker.nextNode()) {
-        var t = walker.currentNode;
-        if (t.nodeValue && t.nodeValue.trim() && !(t.parentElement && t.parentElement.closest('button'))) tns.push(t);
-      }
-      for (var k = 0; k < tns.length; k++) {
-        var tn = tns[k];
-        var r = buildNormMap(tn.nodeValue);
-        var n = r.out;
-        if (!n) continue;
-        var idx = n.indexOf(q);
-        if (idx === -1) continue;
-        var sOrig = r.map[idx];
-        var eOrig = r.map[idx + q.length - 1] + 1;
-        var tail = tn.splitText(sOrig);
-        var after = tail.splitText(eOrig - sOrig);
-        var mark = document.createElement('mark');
-        mark.className = 'search-hit';
-        tail.parentNode.insertBefore(mark, tail);
-        mark.appendChild(tail);
-        searchMarks.push(mark);
-        tn = after;
-      }
-    }
-    function searchForms(raw) {
-      var q = normAr(raw);
-      clearSearchMarks();
-      var count = 0;
-      var items = document.querySelectorAll('.container .doc, .container .mini-doc, .container .snippet');
-      var blocks = document.querySelectorAll('.container .cat-block');
-      var cnt = document.getElementById('formsCount');
-      if (!q) {
-        for (var i = 0; i < items.length; i++) items[i].style.display = '';
-        for (var b = 0; b < blocks.length; b++) blocks[b].removeAttribute('data-empty');
-        cnt.textContent = '';
-        cnt.className = 'search-count';
-        return;
-      }
-      for (var a = 0; a < items.length; a++) {
-        var el = items[a];
-        if (normAr(el.textContent).indexOf(q) !== -1) {
-          el.style.display = '';
-          count++;
-          if (el.tagName === 'DETAILS') el.open = true;
-          highlightIn(el, q);
-        } else {
-          el.style.display = 'none';
-        }
-      }
-      for (var c = 0; c < blocks.length; c++) {
-        var blk = blocks[c];
-        var inner = blk.querySelectorAll('.doc, .mini-doc, .snippet');
-        var vis = false;
-        for (var x = 0; x < inner.length; x++) { if (inner[x].style.display !== 'none') { vis = true; break; } }
-        if (vis) blk.removeAttribute('data-empty'); else blk.setAttribute('data-empty', '1');
-      }
-      if (count) { cnt.textContent = count + ' نتيجة'; cnt.className = 'search-count'; }
-      else { cnt.textContent = 'لا توجد نتائج'; cnt.className = 'search-count empty'; }
-    }
-    (function() {
-      try {
-        var p = new URLSearchParams(window.location.search);
-        if (p.get('from') === 'app') {
-          var cta = document.querySelector('.nav-cta');
-          if (cta) { cta.innerHTML = '← العودة إلى لوحة التحكم'; cta.setAttribute('href', '/'); }
-        }
-      } catch(e) {}
-    })();
-  </script>
-</body>
-</html>
-`;
-}
+// ─── المدخل الرئيسي ───
 
 function main() {
   const contracts = loadContracts();
   const legal = loadLegalTemplates();
   if (!Array.isArray(contracts) || !contracts.length) throw new Error('لا توجد عقود');
+
+  // الفهرس
   const html = buildPage(contracts, legal);
   fs.writeFileSync(OUT_FILE, html, 'utf8');
+
+  // الصفحات المستقلة
+  fs.mkdirSync(DOCS_DIR, { recursive: true });
+  let docs = 0;
+  contracts.forEach((c, i) => {
+    fs.writeFileSync(path.join(DOCS_DIR, `${c.id}.html`), buildContractPage(c, i), 'utf8');
+    docs++;
+  });
+  MEMO_DEFS.forEach((def) => {
+    fs.writeFileSync(path.join(DOCS_DIR, `${def.headerId}.html`), buildMemoPage(def, legal.templates), 'utf8');
+    docs++;
+  });
   console.log(`[legal-forms] ✅ تم توليد ${OUT_FILE} (${contracts.length} عقود + ${legal.templates.length} قوالب + ${legal.snippets.length} عبارات)`);
+  console.log(`[legal-forms] ✅ تم توليد ${docs} صفحات مستقلة في legal-forms-docs/`);
 }
 
 try {
