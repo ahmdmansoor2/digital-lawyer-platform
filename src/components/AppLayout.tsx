@@ -356,30 +356,52 @@ export default function AppLayout(props: AppLayoutProps) {
         }
       `}</style>
 
-      {/* MOBILE HEADER BAR */}
-      <div className="md:hidden bg-slate-800 text-slate-100 p-3 flex items-center justify-between border-b border-slate-700 sticky top-0 z-40">
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 bg-indigo-500 rounded flex items-center justify-center">
-            <span className="text-white text-xs">⚖️</span>
+      {/* MOBILE HEADER BAR — Unified Premium Design */}
+      <div className="md:hidden sticky top-0 z-40" style={{
+        background: 'rgba(15,23,42,0.95)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(148,163,184,0.15)',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+      }}>
+        <div className="flex items-center justify-between px-4" style={{ height: '64px' }}>
+          <div className="flex items-center gap-2.5">
+            <div style={{
+              width: '38px', height: '38px', borderRadius: '10px',
+              background: 'linear-gradient(135deg, #6366f1 0%, #7c3aed 100%)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '18px', boxShadow: '0 3px 12px rgba(99,102,241,0.35)',
+            }}>⚖️</div>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: 900, color: '#ffffff', lineHeight: 1.2 }}>منصة المحامي الرقمية</div>
+              <div style={{ fontSize: '9.5px', color: '#10b981', fontWeight: 800 }}>مجاني 100%</div>
+            </div>
           </div>
-          <span className="font-bold text-sm tracking-tight">مكتب المُحَامِي الرَّقْمِي</span>
-        </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setSearchOpen(true)}
-            className="p-1.5 rounded bg-slate-700 text-slate-200 hover:bg-slate-600"
-            title="بحث شامل (Ctrl+K)"
-          >
-            <SearchIcon className="h-4 w-4" />
-          </button>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 rounded bg-slate-705 text-slate-250"
-            id="mobile-hamburger-btn"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setSearchOpen(true)}
+              style={{
+                width: '36px', height: '36px', borderRadius: '9px',
+                background: 'rgba(30,41,59,0.8)', border: '1px solid rgba(148,163,184,0.2)',
+                color: '#94a3b8', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+              }}
+              title="بحث شامل (Ctrl+K)"
+            >
+              <SearchIcon className="h-4 w-4" />
+            </button>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              style={{
+                width: '36px', height: '36px', borderRadius: '9px',
+                background: 'rgba(99,102,241,0.2)', border: '1px solid rgba(99,102,241,0.3)',
+                color: '#a5b4fc', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+              }}
+              id="mobile-hamburger-btn"
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
       </div>
 
