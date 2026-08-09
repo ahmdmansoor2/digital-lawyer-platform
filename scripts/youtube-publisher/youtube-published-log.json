@@ -420,6 +420,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1048309027940106",
       "publishedAt": "2026-08-08T15:44:51.895Z"
+    },
+    {
+      "topicId": "trend-egypt-digital-notary-services",
+      "kind": "short",
+      "videoId": "xmhkJeNGyzE",
+      "url": "https://www.youtube.com/watch?v=xmhkJeNGyzE",
+      "fbPermalink": "https://www.facebook.com/reel/2355256785009819",
+      "publishedAt": "2026-08-09T07:16:15.645Z"
+    },
+    {
+      "topicId": "trend-egypt-digital-notary-services",
+      "title": "خطوات التوثيق وإثبات التاريخ عبر بوابة مصر الرقمية والشهر العقاري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-egypt-digital-notary-services-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "L05zdeA6zyM",
+      "url": "https://www.youtube.com/watch?v=L05zdeA6zyM",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2355256785009819",
+      "publishedAt": "2026-08-09T07:17:31.046Z"
     }
   ]
 }

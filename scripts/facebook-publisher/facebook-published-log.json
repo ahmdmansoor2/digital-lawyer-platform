@@ -594,6 +594,27 @@
       "duration": "55ث",
       "size": 20100566,
       "publishedAt": "2026-08-08T18:58:09.039Z"
+    },
+    {
+      "topicId": "trend-egypt-digital-notary-services",
+      "title": "خطوات التوثيق وإثبات التاريخ عبر بوابة مصر الرقمية والشهر العقاري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الشهر العقاري",
+        "#مصر الرقمية",
+        "#توثيق العقود"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-egypt-digital-notary-services.mp4",
+      "videoId": "2355256785009819",
+      "permalink": "https://www.facebook.com/reel/2355256785009819",
+      "source": "trending-topics.json",
+      "duration": "1د 10ث",
+      "size": 25597700,
+      "publishedAt": "2026-08-09T07:16:13.525Z"
     }
   ]
 }
