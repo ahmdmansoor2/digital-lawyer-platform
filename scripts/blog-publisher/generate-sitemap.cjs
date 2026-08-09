@@ -75,6 +75,7 @@ function buildSitemap() {
     { loc: '/features.html', pri: '0.8', freq: 'monthly' },
     { loc: '/pricing.html', pri: '0.7', freq: 'monthly' },
     { loc: '/about.html', pri: '0.6', freq: 'monthly' },
+    { loc: '/why-trust-us.html', pri: '0.6', freq: 'monthly' },
     { loc: '/contact.html', pri: '0.6', freq: 'monthly' },
     { loc: '/privacy.html', pri: '0.3', freq: 'yearly' },
     { loc: '/terms.html', pri: '0.3', freq: 'yearly' },
@@ -243,6 +244,7 @@ function buildSitemapHtml() {
       <ul class="link-list">
         <li><a href="/">الصفحة الرئيسية</a> <span class="pill">indexed</span></li>
         <li><a href="/about.html">عن المنصة</a></li>
+        <li><a href="/why-trust-us.html">🛡️ لماذا تثق بنا</a></li>
         <li><a href="/features.html">مميزات النظام</a></li>
         <li><a href="/legal-library.html">📚 المكتبة القانونية الشاملة</a></li>
         <li><a href="/legal-forms.html">📄 صيغ العقود والدعاوي</a></li>
