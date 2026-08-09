@@ -748,7 +748,6 @@ function buildPage(todayTopics, archiveEntries, generatedAt) {
   <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><span class="current">رصد المحامي</span></nav>
 
   <div class="hero">
-    <div class="badge">📡 نشرة يومية — ترندات مصر والعالم</div>
     <h1>رصد المحامي</h1>
     <p>نشرة يومية تُصاغ بالذكاء الاصطناعي عن أهم الترندات المصرية والعالمية على Google، بتحليل عملي للمواطن والمحامي.</p>
     <span class="updated">آخر تحديث: ${esc(generatedAt)} بتوقيت القاهرة</span>
@@ -856,6 +855,26 @@ async function main() {
     }
     saveArchive(articles);
     log('[radar] 🖼️ --refresh-images: تم تحديث صور بطاقات اليوم (Pexels أولاً)');
+  }
+
+  // 2.6) تعبئة مقالات اليوم الفارغة فقط (بلا إعادة توليد الموضوعات/الصور) — عند توفر حصة Gemini
+  const fillArticles = process.argv.includes('--fill-articles') || process.env.FILL_ARTICLES === '1';
+  if (fillArticles && todayEntry?.topics?.length && process.env.GEMINI_API_KEY) {
+    const ai = getAi();
+    if (ai) {
+      for (const t of todayEntry.topics) {
+        if (Array.isArray(t.sections) && t.sections.length) continue;
+        const article = await generateTopicArticle(ai, t, freshTrends);
+        if (article?.sections?.length) {
+          t.sections = article.sections;
+        } else {
+          log(`[radar] ⚠️ «${t.title}»: فشل توليد المقال (حصة Gemini أو خطأ)`);
+        }
+        await sleep(2000);
+      }
+      saveArchive(articles);
+      log('[radar] 📝 --fill-articles: انتهت محاولة تعبئة مقالات اليوم');
+    }
   }
 
   // 3) موضوعات اليوم (مرة واحدة فقط في اليوم) — مقال كامل + صورة لكل بطاقة
