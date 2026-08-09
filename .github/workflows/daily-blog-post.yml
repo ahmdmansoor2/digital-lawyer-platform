@@ -42,6 +42,8 @@ jobs:
         run: node scripts/seo/generate-radar.cjs
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          REFRESH_IMAGES: '1'
+          FILL_ARTICLES: '1'
           CI: true
 
       - name: Commit & Push changes
