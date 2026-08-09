@@ -4,6 +4,21 @@
 
 ---
 
+## [v2.14.5] — 2026-08-09 (🔑 كلمات مفتاحية حقيقية من Google + صفحة «لماذا تثق بنا» + استرداد مقالات CI)
+
+### 🔑 كلمات مفتاحية حقيقية من Google للمدونة
+- سكربت جديد `scripts/seo/keywords-from-google.cjs` يجلب الكلمات **الأكثر بحثاً فعلاً** من **Google Suggest API** (اقتراحات البحث العربية لمصر) + **Google Trends RSS (geo=EG)** ثم يصنّفها ويربطها بمواضيع `topics.json` عبر Gemini.
+- **تحديث 40 موضوعاً** في `topics.json` بكلمات بحث حقيقية (مثل «محامي اسرة في الاسكندرية»، «حبس الحدث احتياطيا»، «تظلمات الثانوية العامة 2026») + **موضوعان جديدان** (`alexandria-lawyers-directory`, `high-school-grievance-procedure`) — 57 موضوعاً إجمالاً.
+- مخرجات السكربت: `scripts/seo/google-keywords.json` + `keywords-from-google-report.md`. التشغيل يدوي وليس في CI.
+- استرداد **5 مقالات CI المفقودة** (فشل push في رن 07:54): `consumer-contract-cancellation`, `marital-housing-rights`, `labor-overtime-rights`, `administrative-dismissal-appeal`, `cheque-fraud-defense` — أعيد توليدها ونشرها + مشاركتها على فيسبوك + إرسالها لـ IndexNow.
+
+### 🛡️ صفحة «لماذا تثق بنا» (`public/why-trust-us.html`)
+- صفحة ثقة جديدة على نمط `about.html`: مجانية 100%، خصوصية بيانات الموكلين (IndexedDB محلياً — لا سجلات)، بيانات قانونية مصرية، أمان Electron (contextIsolation + CSP + تعقيم المدخلات)، شفافية التطوير، ومحتوى بإعداد قانوني متخصص. مع canonical/og + JSON-LD (Organization + WebPage + BreadcrumbList) + وحدات AdSense.
+- **رابط في فوتر** عمود «السياسات والتواصل» لـ 9 صفحات ثابتة (about, features, pricing, contact, privacy, terms, legal-forms, legal-radar, legal-library).
+- **الفهارس**: sitemap.xml (154 رابطاً) + sitemap.html + search-index.json (123 صفحة) — توليد تلقائي وإعادة نشر.
+
+---
+
 ## [v2.14.3] — 2026-08-09 (🎴 قوالب مذكرات الدفاع أصبحت بطاقات مدمجة قابلة للفتح)
 
 ### 🎴 تطبيق نمط البطاقات المدمجة على قوالب مذكرات الدفاع
