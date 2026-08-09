@@ -496,7 +496,7 @@ function buildToday(topics, date) {
   const cards = topics.map(buildTopicCard).join('\n    ');
   return `<div class="section">
     <div class="section-title"><span class="dot"></span> موضوعات اليوم (${esc(date)})</div>
-    <p class="section-sub">كل بطاقة تعرض عنوان الخبر وملخصه وصورته — اضغط على البطاقة لقراءة الموضوع كاملاً.</p>
+    <p class="section-sub">اضغط على أي بطاقة لقراءة الموضوع كاملاً.</p>
     <div class="topic-grid">
     ${cards}
     </div>
