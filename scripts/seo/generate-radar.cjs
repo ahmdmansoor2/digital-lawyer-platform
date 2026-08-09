@@ -451,7 +451,9 @@ async function saveTopicImage(buf, topic, date) {
     const out = await sharp(buf).resize(1200, 675, { fit: 'cover', position: 'centre' }).jpeg({ quality: 82, mozjpeg: true }).toBuffer();
     const file = path.join(dir, `${slug}.jpg`);
     fs.writeFileSync(file, out);
-    const url = `/radar-images/${date}/${slug}.jpg`;
+    // ?v=hash يجبر المتصفح/CDN على جلب الصورة الجديدة عند تغيّر محتواها (كسر الكاش)
+    const v = require('crypto').createHash('sha1').update(out).digest('hex').slice(0, 10);
+    const url = `/radar-images/${date}/${slug}.jpg?v=${v}`;
     log(`[radar] 🖼️ صورة «${topic.title}»: ${url} (${Math.round(out.length / 1024)} KB)`);
     return url;
   } catch (e) {
