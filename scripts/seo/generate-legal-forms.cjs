@@ -168,14 +168,17 @@ function buildContractDoc(contract, idx) {
   const fieldsHtml = buildFieldChips(contract);
   return `<details class="doc doc-card" id="doc-${esc(contract.id)}">
     <summary class="doc-head">
-      <div>
+      <div class="tile-info">
         <div class="doc-cat">${esc(repair(contract.category))}</div>
         <h3 class="doc-title"><span class="doc-num">${String(idx + 1).padStart(2, '0')}</span>${esc(repair(contract.name))}</h3>
         <p class="doc-desc">${esc(repair(contract.description))}</p>
         <span class="doc-hint">📖 اضغط لعرض النص كاملاً</span>
       </div>
-      <button class="copy-btn" type="button" onclick="event.stopPropagation(); copyText(this)" data-plain="${esc(JSON.stringify(plain))}">📄 نسخ النص كاملاً</button>
     </summary>
+    <div class="doc-toolbar">
+      <button class="copy-btn" type="button" onclick="copyText(this)" data-plain="${esc(JSON.stringify(plain))}">📄 نسخ النص كاملاً</button>
+      <span class="doc-close-hint">▲ انقر أعلى البطاقة للإغلاق</span>
+    </div>
     ${fieldsHtml}
     <div class="doc-body">
       ${introHtml}
@@ -196,8 +199,10 @@ function buildSections(contracts) {
       const docs = byCat[cat].map((c, i) => buildContractDoc(c, i)).join('\n    ');
       return `<div class="cat-block">
     <h2 class="cat-title">${esc(cat)}</h2>
-    <p class="cat-sub">كل عقد في بطاقة مستقلة — اضغط على أي بطاقة لعرض نص العقد كاملاً.</p>
-    ${docs}
+    <p class="cat-sub">كل عقد في بطاقة مدمجة — اضغط على أي بطاقة لعرض نص العقد كاملاً.</p>
+    <div class="cat-grid">
+      ${docs}
+    </div>
     </div>`;
     })
     .join('\n  ');
@@ -371,6 +376,8 @@ function buildPage(contracts, legal) {
     .cat-title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(6,182,212,0.4), transparent); }
     .cat-sub { font-size: 12.5px; color: var(--muted); margin-top: -14px; margin-bottom: 18px; }
 
+    .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(225px, 1fr)); gap: 12px; }
+
     .doc { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 24px 26px; margin-bottom: 20px; transition: border-color 0.25s, transform 0.25s; }
     .doc:hover { border-color: rgba(6,182,212,0.35); transform: translateY(-2px); }
     .doc-card[open] { border-color: rgba(6,182,212,0.5); }
@@ -386,6 +393,23 @@ function buildPage(contracts, legal) {
     .doc-hint { display: inline-block; margin-top: 10px; font-size: 11px; font-weight: 800; color: var(--cyan); }
     .doc-card[open] .doc-hint::after { content: " ▲"; font-size: 9px; }
     .doc-card:not([open]) .doc-hint::after { content: " ▼"; font-size: 9px; }
+
+    .doc-card { margin-bottom: 0; padding: 14px 16px; border-radius: 14px; }
+    .doc-card .doc-head { flex-direction: column; align-items: stretch; gap: 0; }
+    .doc-card .tile-info { display: flex; flex-direction: column; }
+    .doc-card .doc-cat { font-size: 9px; padding: 3px 10px; margin-bottom: 6px; align-self: flex-start; }
+    .doc-card .doc-title { font-size: 13.5px; gap: 8px; }
+    .doc-card .doc-num { font-size: 12px; min-width: 20px; }
+    .doc-card .doc-desc { font-size: 11px; margin-top: 4px; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .doc-card .doc-hint { margin-top: 6px; font-size: 9.5px; }
+    .doc-card[open] { grid-column: 1 / -1; }
+    .doc-card[open] .doc-head { flex-direction: row; align-items: center; justify-content: space-between; gap: 16px; }
+    .doc-card[open] .tile-info { flex: 1; }
+    .doc-card[open] .doc-desc { -webkit-line-clamp: unset; display: block; }
+    .doc-card[open] .doc-hint { display: none; }
+
+    .doc-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 2px 0 12px; }
+    .doc-close-hint { font-size: 11px; color: var(--muted); font-weight: 700; }
     .copy-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.4); background: rgba(16,185,129,0.1); color: #6ee7b7; font-family: inherit; font-size: 12px; font-weight: 800; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
     .copy-btn:hover { background: rgba(16,185,129,0.2); }
 
