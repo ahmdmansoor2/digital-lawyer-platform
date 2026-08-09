@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/header.css">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online","logo":"https://mohamidigital.online/logo.png"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"قانون التصالح في مخالفات البناء: تسهيلات جديدة لتقنين أوضاع العقارات","datePublished":"2026-08-09T17:34:54.949Z","dateModified":"2026-08-09T17:34:54.949Z","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"mainEntityOfPage":"https://mohamidigital.online/legal-radar.html"}</script>
@@ -48,18 +49,9 @@
         radial-gradient(ellipse at 90% 70%, rgba(16,185,129,0.1) 0%, transparent 50%);
     }
 
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .logo-icon { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 20px rgba(99,102,241,0.35); }
-    .logo-name { font-size: 15px; font-weight: 900; color: #fff; line-height: 1.2; }
-    .logo-sub { font-size: 10px; color: var(--emerald); font-weight: 700; }
-    .nav-links { display: flex; align-items: center; gap: 28px; }
-    .nav-links a { font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
-    .nav-cta { padding: 9px 22px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); color: #fff; font-size: 12px; font-weight: 900; text-decoration: none; box-shadow: 0 4px 16px rgba(99,102,241,0.3); }
+.nav-links a:hover, 
 
-    .breadcrumbs { max-width: 1200px; margin: 0 auto; padding: 14px 24px 0; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.breadcrumbs { max-width: 1200px; margin: 0 auto; padding: 14px 24px 0; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .breadcrumbs a { color: var(--muted); text-decoration: none; transition: color 0.2s; font-weight: 700; }
     .breadcrumbs a:hover { color: var(--indigo); }
     .breadcrumbs .current { color: var(--text); font-weight: 800; }
@@ -145,10 +137,95 @@
 
     @media (max-width: 980px) { .topic-grid { grid-template-columns: 1fr 1fr; } .arch-body { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 620px) { .topic-grid { grid-template-columns: 1fr; } .arch-body { grid-template-columns: 1fr; } .topic-img { height: 190px; } }
-    @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } .nav-links { display: none; } }
+    @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } 
+ }
   </style>
 </head>
 <body>
+        <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <a href="/" class="header-logo" aria-label="منصة المحامي الرقمي">
+        <div class="logo-badge">⚖️</div>
+        <div class="logo-text">
+          <span class="brand-title">المحامي الرقمي</span>
+          <span class="brand-subtitle">مساعدك القانوني الذكي · مجاناً</span>
+        </div>
+      </a>
+
+      <nav class="header-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
+              <a href="/" class="nav-item">🏠 الرئيسية</a>
+              <a href="/blog/" class="nav-item">📰 المدونة القانونية</a>
+              <a href="/legal-library.html" class="nav-item">📚 المكتبة القانونية</a>
+              <a href="/pillars/" class="nav-item">🏛️ المراجع القانونية الشاملة</a>
+              <a href="/legal-forms.html" class="nav-item">📝 صيغ العقود والدعاوي</a>
+              <a href="/legal-radar.html" class="nav-item active">🔍 رصد المحامي</a>
+              <div class="nav-more">
+                <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">
+                  <span>المزيد</span><span class="nav-more-caret">▾</span>
+                </button>
+                <div class="nav-more-menu">
+                  <a href="/about.html" class="nav-more-item">⚖️ عن المنصة</a>
+                  <a href="/features.html" class="nav-more-item">⚡ المميزات الكاملة</a>
+                  <a href="/pricing.html" class="nav-more-item">🎁 الأسعار — مجاني 100%</a>
+                  <a href="/why-trust-us.html" class="nav-more-item">🛡️ لماذا تثق بنا</a>
+                  <a href="/privacy.html" class="nav-more-item">🔐 سياسة الخصوصية</a>
+                  <a href="/terms.html" class="nav-more-item">📜 الشروط والأحكام</a>
+                  <a href="/contact.html" class="nav-more-item">📬 تواصل معنا</a>
+                </div>
+              </div>
+            </nav>
+
+      <div class="header-actions">
+        <a href="/" class="header-cta">
+          <span>🚀</span>
+          <span>ابدأ مجاناً</span>
+        </a>
+        <button
+          class="header-mobile-toggle"
+          aria-label="فتح القائمة"
+          aria-expanded="false"
+          aria-controls="headerNav"
+          onclick="(function(btn){var nav=document.getElementById('headerNav');var isOpen=nav.classList.toggle('active');btn.setAttribute('aria-expanded',isOpen);btn.setAttribute('aria-label',isOpen?'إغلاق القائمة':'فتح القائمة');btn.innerHTML=isOpen?'✕':'☰';})(this)"
+        >☰</button>
+      </div>
+    </div>
+  </header>
+      <script>
+        (function(){
+          var hdr=document.getElementById('siteHeader');
+          var nav=document.getElementById('headerNav');
+          if(hdr)window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+          var toggle=document.querySelector('.header-mobile-toggle');
+          var more=document.querySelector('.nav-more');
+          var moreBtn=document.querySelector('.nav-more-btn');
+          function closeMobile(){
+            if(nav)nav.classList.remove('active');
+            if(toggle){toggle.setAttribute('aria-expanded','false');toggle.innerHTML='☰';}
+          }
+          if(toggle){toggle.addEventListener('click',function(){
+            var open=nav.classList.toggle('active');
+            toggle.setAttribute('aria-expanded',open);
+            toggle.innerHTML=open?'✕':'☰';
+            if(!open&&more){more.classList.remove('open');}
+          });}
+          if(moreBtn&&more){
+            moreBtn.addEventListener('click',function(e){
+              e.stopPropagation();
+              var open=more.classList.toggle('open');
+              moreBtn.setAttribute('aria-expanded',open);
+            });
+          }
+          document.addEventListener('click',function(e){
+            if(more&&more.classList.contains('open')&&!more.contains(e.target)){
+              more.classList.remove('open');
+              if(moreBtn)moreBtn.setAttribute('aria-expanded','false');
+            }
+            if(nav&&nav.classList.contains('active')&&toggle&&!nav.contains(e.target)&&!toggle.contains(e.target)){
+              closeMobile();
+            }
+          });
+        })();
+      </script>
   <nav>
     <div class="nav-inner">
       <a href="/" class="nav-logo">
