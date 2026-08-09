@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { LogOut, ArrowLeft, Scale, Sparkles, Briefcase, Calendar, FileText, Calculator, BookOpen, MessageCircle, Shield, Radio } from 'lucide-react';
+import { LogOut, ArrowLeft, Scale, Sparkles, Briefcase, Calendar, FileText, Calculator, BookOpen, MessageCircle, Shield, Radio, ShieldCheck } from 'lucide-react';
 
 interface InfoCenterProps {
   userName?: string;
@@ -22,6 +22,15 @@ const PAGES = [
     tone: 'indigo',
     gradient: 'from-indigo-500 to-blue-600',
     bgGlow: 'rgba(99,102,241,0.25)',
+  },
+  {
+    href: '/why-trust-us.html?from=app',
+    label: 'لماذا تثق بنا',
+    desc: 'رؤيتنا ومبادئنا وضماناتنا في حماية بياناتك وتقديم محتوى قانوني موثوق',
+    icon: ShieldCheck,
+    tone: 'emerald',
+    gradient: 'from-emerald-500 to-green-600',
+    bgGlow: 'rgba(16,185,129,0.25)',
   },
   {
     href: '/features.html?from=app',
@@ -115,16 +124,29 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
       {/* Top bar */}
       <header className="relative z-10 border-b border-slate-800/60 backdrop-blur-xl bg-slate-950/70">
         <div className="max-w-7xl mx-auto px-6 md:px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30 flex-shrink-0">
               <Scale className="w-6 h-6 text-white" />
             </div>
-            <div>
+            <div className="flex-shrink-0">
               <p className="font-black text-base leading-tight">منصة المحامي الرقمية</p>
               <p className="text-[11px] text-emerald-400 font-bold">مركز المعلومات</p>
             </div>
+            <nav className="hidden lg:flex items-center gap-1 ms-2 ps-4 border-s border-slate-800/60 overflow-x-auto">
+              {PAGES.map(page => (
+                <a
+                  key={page.href}
+                  href={page.href}
+                  target="_self"
+                  rel="noopener noreferrer"
+                  className="whitespace-nowrap text-xs font-bold text-slate-300 hover:text-white hover:bg-slate-800/70 rounded-lg px-2.5 py-1.5 transition-colors"
+                >
+                  {page.label}
+                </a>
+              ))}
+            </nav>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-shrink-0">
             {userName && (
               <div className="hidden md:flex flex-col items-end">
                 <span className="text-xs text-slate-400">مرحباً</span>
