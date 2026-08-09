@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { LogOut, ArrowLeft, Scale, Sparkles, Briefcase, Calendar, FileText, Calculator, BookOpen, MessageCircle, Shield } from 'lucide-react';
+import { LogOut, ArrowLeft, Scale, Sparkles, Briefcase, Calendar, FileText, Calculator, BookOpen, MessageCircle, Shield, Radio } from 'lucide-react';
 
 interface InfoCenterProps {
   userName?: string;
@@ -67,6 +67,24 @@ const PAGES = [
     tone: 'amber',
     gradient: 'from-amber-500 to-orange-600',
     bgGlow: 'rgba(245,158,11,0.25)',
+  },
+  {
+    href: '/legal-radar.html?from=app',
+    label: 'رصد المحامي',
+    desc: 'أهم الأخبار والترندات الأكثر بحثاً في مصر الآن — تحديث تلقائي حسب ترندات Google',
+    icon: Radio,
+    tone: 'rose',
+    gradient: 'from-rose-500 to-red-600',
+    bgGlow: 'rgba(244,63,94,0.25)',
+  },
+  {
+    href: '/legal-forms.html?from=app',
+    label: 'صيغ العقود والدعاوي',
+    desc: 'نصوص قانونية كاملة: عقود البيع والإيجار وتأسيس الشركات وصحف الدعاوى ومذكرات الدفاع',
+    icon: FileText,
+    tone: 'cyan',
+    gradient: 'from-cyan-500 to-sky-600',
+    bgGlow: 'rgba(6,182,212,0.25)',
   },
   {
     href: '/privacy.html?from=app',

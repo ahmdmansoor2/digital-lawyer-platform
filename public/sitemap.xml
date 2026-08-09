@@ -67,6 +67,18 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/legal-forms.html</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/legal-radar.html</loc>
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/pillars/</loc>
     <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>

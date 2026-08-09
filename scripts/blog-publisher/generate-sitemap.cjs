@@ -73,6 +73,8 @@ function buildSitemap() {
     { loc: '/privacy.html', pri: '0.3', freq: 'yearly' },
     { loc: '/terms.html', pri: '0.3', freq: 'yearly' },
     { loc: '/sitemap.html', pri: '0.3', freq: 'monthly' },
+    { loc: '/legal-forms.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/legal-radar.html', pri: '0.6', freq: 'daily' },
   ];
   for (const m of main) {
     urls.push(`  <url>\n    <loc>${BASE_URL}${m.loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${m.freq}</changefreq>\n    <priority>${m.pri}</priority>\n  </url>`);
@@ -203,6 +205,8 @@ function buildSitemapHtml() {
         <li><a href="/about.html">عن المنصة</a></li>
         <li><a href="/features.html">مميزات النظام</a></li>
         <li><a href="/legal-library.html">📚 المكتبة القانونية الشاملة</a></li>
+        <li><a href="/legal-forms.html">📄 صيغ العقود والدعاوي</a></li>
+        <li><a href="/legal-radar.html">📡 رصد المحامي — أخبار وترندات مصر</a></li>
         <li><a href="/search.html">🔍 بحث في الموقع</a></li>
         <li><a href="/pricing.html">الأسعار (مجاني بالكامل)</a></li>
         <li><a href="/contact.html">تواصل معنا</a></li>
