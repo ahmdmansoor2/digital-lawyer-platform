@@ -647,6 +647,69 @@
       "words": 3396,
       "image": "pollinations",
       "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "حق العدول في القانون المصري: دليلك الشامل لفسخ عقود المستهلك واسترداد أموالك",
+      "date": "2026-08-09",
+      "slug": "consumer-contract-cancellation",
+      "url": "https://mohamidigital.online/blog/consumer-contract-cancellation.html",
+      "tags": [
+        "فسخ العقد",
+        "حق العدول",
+        "حماية المستهلك"
+      ],
+      "words": 3631,
+      "image": "pollinations",
+      "model": "gemini-3-flash-preview"
+    },
+    {
+      "title": "قانون الاسرة الجديد ومسكن الزوجية: دليل شامل لمن له حق البقاء في المنزل",
+      "date": "2026-08-09",
+      "slug": "marital-housing-rights",
+      "url": "https://mohamidigital.online/blog/marital-housing-rights.html",
+      "tags": [
+        "قانون الاسرة الجديد",
+        "قانون الاحوال الشخصية الجديد"
+      ],
+      "words": 3815,
+      "image": "pollinations",
+      "model": "gemini-3-flash-preview"
+    },
+    {
+      "title": "قانون العمل الجديد وأجر الساعات الإضافية في مصر: دليل شامل للحساب والحقوق",
+      "date": "2026-08-09",
+      "slug": "labor-overtime-rights",
+      "url": "https://mohamidigital.online/blog/labor-overtime-rights.html",
+      "tags": [
+        "قانون العمل الجديد"
+      ],
+      "words": 3717,
+      "image": "pollinations",
+      "model": "gemini-3-flash-preview"
+    },
+    {
+      "title": "تظلمات الموظف العام والطعن في قرارات الفصل: دليلك الشامل للقضاء الإداري",
+      "date": "2026-08-09",
+      "slug": "administrative-dismissal-appeal",
+      "url": "https://mohamidigital.online/blog/administrative-dismissal-appeal.html",
+      "tags": [
+        "تظلمات"
+      ],
+      "words": 3139,
+      "image": "pollinations",
+      "model": "gemini-flash-lite-latest"
+    },
+    {
+      "title": "شيك بدون رصيد: الدفوع القانونية القوية أمام النيابة والمحكمة في القانون المصري",
+      "date": "2026-08-09",
+      "slug": "cheque-fraud-defense",
+      "url": "https://mohamidigital.online/blog/cheque-fraud-defense.html",
+      "tags": [
+        "شيك بدون رصيد"
+      ],
+      "words": 3095,
+      "image": "pollinations",
+      "model": "gemini-flash-lite-latest"
     }
   ],
   "skipped": [
@@ -729,5 +792,5 @@
       "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\child-custody-egypt-1785581807609.json"
     }
   ],
-  "last_run": "2026-08-06T11:40:48.078Z"
+  "last_run": "2026-08-09T15:11:38.684Z"
 }
