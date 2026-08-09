@@ -40,13 +40,16 @@ jobs:
 
       - name: Regenerate Legal Radar page
         run: node scripts/seo/generate-radar.cjs
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CI: true
 
       - name: Commit & Push changes
         run: |
           git config user.name  "Smart Legal Publisher 🤖"
           git config user.email "bot@justice-91571.web.app"
-          git add scripts/published-log.json scripts/trending-topics.json scripts/blog-publisher/facebook-published-log.json public/blog/ public/legal-radar.html
-          git diff --staged --quiet || git commit -m "🤖 Smart-publish: $(date +'%Y-%m-%d %H:%M') — مقالات قانونية + صور ذكاء اصطناعي + تحديث رصد المحامي"
+          git add scripts/published-log.json scripts/trending-topics.json scripts/blog-publisher/facebook-published-log.json public/blog/ public/legal-radar.html public/radar-archive.json
+          git diff --staged --quiet || git commit -m "🤖 Smart-publish: $(date +'%Y-%m-%d %H:%M') — مقالات قانونية + صور ذكاء اصطناعي + رصد المحامي"
           git pull --rebase origin main 2>/dev/null || true
           git push
 

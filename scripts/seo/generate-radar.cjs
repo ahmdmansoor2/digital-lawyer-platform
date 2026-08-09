@@ -2,13 +2,20 @@
 /**
  * generate-radar.cjs — توليد/تحديث صفحة «رصد المحامي» (legal-radar.html)
  *
- * يجلب أهم ترندات Google Trends لمصر (geo=EG) ويعرضها كصفحة أخبار عامة حية.
+ * آلية العمل اليومية:
+ *   1. يجلب أهم ترندات Google لمصر (geo=EG) وللعالم (RSS بلا geo).
+ *   2. يستخدم Gemini لصياغة «مقال اليوم» — تحليل ترندات من زاوية قانونية/مهنية.
+ *   3. ينشر المقال + الترندات على الصفحة، مع أرشيف آخر الأيام.
+ *
+ * ملاحظات:
+ *   - المقال يُولَّد مرة واحدة يومياً فقط (يُخزَّن في public/radar-archive.json
+ *     ويُتجاهل لو اليوم موجود بالفعل) حتى لا تُستنزف حصة Gemini في الرنات
+ *     المتكررة (الـ workflow يعمل حتى 5 مرات يومياً).
+ *   - بدون GEMINI_API_KEY تتحول الصفحة لوضع عرض الترندات فقط (بدون مقال).
+ *   - تُشغَّل تلقائياً في daily-blog-post.yml بعد الناشر الذكي.
  *
  * الاستخدام:
- *   node scripts/seo/generate-radar.cjs
- *
- * تُشغَّل تلقائياً في daily-blog-post.yml بعد النشر الذكي، فتتحدث الصفحة
- * مع كل رن نشر (حتى 5 مرات يومياً) وتُنشر تلقائياً مع الـ deploy.
+ *   GEMINI_API_KEY=... node scripts/seo/generate-radar.cjs
  */
 
 'use strict';
@@ -17,12 +24,24 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..', '..');
+try {
+  // eslint-disable-next-line global-require
+  require('dotenv').config({ path: path.join(ROOT, '.env') });
+} catch {}
+
 const OUT_FILE = path.join(ROOT, 'public', 'legal-radar.html');
+const ARCHIVE_FILE = path.join(ROOT, 'public', 'radar-archive.json');
 const BASE_URL = 'https://mohamidigital.online';
-const TRENDS_FEED = 'https://trends.google.com/trending/rss?geo=EG';
-const MAX_TRENDS = 25;
+const EG_FEED = 'https://trends.google.com/trending/rss?geo=EG';
+const WORLD_FEED = 'https://trends.google.com/trending/rss';
+const MAX_TRENDS = 10;
+const MAX_ARCHIVE = 12;
+const MAX_ARCHIVE_SHOWN = 7;
 const AD_CLIENT = 'ca-pub-7725405859334364';
 const AD_SLOT = '2168039898';
+const MODELS = ['gemini-flash-latest', 'gemini-3.6-flash', 'gemini-2.0-flash'];
+
+let log = console.log;
 
 function esc(s) {
   return String(s)
@@ -37,71 +56,169 @@ function cairoNow() {
   return d.toISOString().slice(0, 19).replace('T', ' ');
 }
 
-function cairoDateStr() {
+function todayStr() {
   return new Date(Date.now() + 120 * 60000).toISOString().slice(0, 10);
 }
 
-function parseRSS(text) {
-  const items = (text.match(/<item>[\s\S]*?<\/item>/g) || []).slice(0, MAX_TRENDS);
-  return items
-    .map((item) => {
-      const title = (item.match(/<title>(.*?)<\/title>/) || [])[1]?.trim();
-      const link = (item.match(/<link>(.*?)<\/link>/) || [])[1]?.trim();
-      const traffic = (item.match(/ht_approx_traffic>([^<]+)</) || [])[1]?.trim();
-      const pubDate = (item.match(/<pubDate>(.*?)<\/pubDate>/) || [])[1]?.trim();
-      if (!title) return null;
-      return { title, link, traffic, pubDate };
-    })
-    .filter(Boolean);
-}
+// ─── جلب الترندات ───
 
-async function fetchTrends() {
-  const fallback = [];
+async function fetchFeed(url, region) {
   try {
-    const res = await fetch(TRENDS_FEED, {
+    const res = await fetch(url, {
       signal: AbortSignal.timeout(15000),
       headers: { 'User-Agent': 'Mozilla/5.0 (compatible; mohamidigital-radar/1.0)' },
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const text = await res.text();
-    const parsed = parseRSS(text);
-    if (parsed.length) return parsed;
-    console.log('[radar] ⚠️ لا توجد ترندات من RSS، محاولة قراءة trending-topics.json');
+    const items = (text.match(/<item>[\s\S]*?<\/item>/g) || []).slice(0, MAX_TRENDS);
+    const trends = items
+      .map((item) => {
+        const title = (item.match(/<title>(.*?)<\/title>/) || [])[1]?.trim();
+        const traffic = (item.match(/ht_approx_traffic>([^<]+)</) || [])[1]?.trim();
+        if (!title) return null;
+        return { title, traffic, region };
+      })
+      .filter(Boolean);
+    log(`[radar] ✅ ${region}: ${trends.length} ترنداً`);
+    return trends;
   } catch (e) {
-    console.log(`[radar] ⚠️ فشل جلب Google Trends: ${e.message}`);
+    log(`[radar] ⚠️ فشل جلب ترندات ${region}: ${e.message}`);
+    return [];
   }
+}
 
-  // Fallback: بيانات الترندات المخزنة من الناشر الذكي
+async function fetchTrends() {
+  const [eg, world] = await Promise.all([fetchFeed(EG_FEED, 'مصر'), fetchFeed(WORLD_FEED, 'عالمي')]);
+  const seen = new Set();
+  const all = [...eg, ...world].filter((t) => {
+    if (seen.has(t.title)) return false;
+    seen.add(t.title);
+    return true;
+  });
+  if (all.length) return all;
+
+  // احتياط: بيانات الناشر الذكي
   try {
-    const trendsFile = path.join(ROOT, 'scripts', 'trending-topics.json');
-    if (fs.existsSync(trendsFile)) {
-      const data = JSON.parse(fs.readFileSync(trendsFile, 'utf8'));
+    const tf = path.join(ROOT, 'scripts', 'trending-topics.json');
+    if (fs.existsSync(tf)) {
+      const data = JSON.parse(fs.readFileSync(tf, 'utf8'));
       if (Array.isArray(data.topics)) {
-        fallback.push(...data.topics.map((t) => ({
-          title: t.title || '',
-          link: `${BASE_URL}/blog/${t.slug || ''}.html`,
-          traffic: '',
-          pubDate: data.date || '',
-        })));
+        return data.topics.map((t) => ({ title: t.title || '', traffic: '', region: 'مصر' })).slice(0, MAX_TRENDS);
       }
     }
   } catch {}
-
-  return fallback.slice(0, MAX_TRENDS);
+  return [];
 }
+
+// ─── Gemini: توليد مقال اليوم ───
+
+function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+function extractJson(text) {
+  let s = String(text).trim();
+  s = s.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '');
+  const start = s.indexOf('{');
+  const end = s.lastIndexOf('}');
+  if (start === -1 || end === -1) throw new Error('لا يوجد JSON في رد Gemini');
+  return JSON.parse(s.slice(start, end + 1));
+}
+
+function buildArticlePrompt(trends) {
+  const list = trends
+    .map((t, i) => `${i + 1}. [${t.region}] ${t.title}${t.traffic ? ` (${t.traffic} بحث)` : ''}`)
+    .join('\n');
+  return `أنت كاتب تحليلي قانوني خبير في تحرير النشرة اليومية لموقع «منصة المحامي الرقمية» (مصري).
+
+أهم الترندات الفعلية على Google اليوم (مصر + العالم):
+${list}
+
+اكتب مقال «مقال اليوم» لصفحة رصد المحامي كالتالي:
+- العنوان: عنوان جذاب يعكس مضمون أهم الترندات.
+- مقدمة: 2-3 جمل تشير لأهم ما يدور عالمياً ومحلياً.
+- 3 إلى 5 أقسام، كل قسم يغطي ترنداً مهماً واحداً من القائمة من زاوية تحليلية عملية للمواطن المصري والمحامي (انعكاسه القانوني أو الاقتصادي أو الاجتماعي إن وُجد — دون اختلاق صلة قانونية حين لا توجد).
+- كل قسم: عنوان قصير + 2-3 فقرات (60-100 كلمة للفقرة).
+- أسلوب صحفي مهني محايد، عربي فصيح بلا مصطلحات أجنبية، بلا Markdown.
+أعد الناتج JSON فقط بهذا الشكل الصارم:
+{"title":"...","intro":"...","sections":[{"heading":"...","body":"...\n\n..."}]}`;
+}
+
+async function generateArticle(trends) {
+  let ai = null;
+  try {
+    // eslint-disable-next-line global-require
+    const { GoogleGenAI } = require('@google/genai');
+    ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+  } catch (e) {
+    log('[radar] ⚠️ @google/genai غير متاح — لن يُولَّد مقال اليوم');
+    return null;
+  }
+
+  const prompt = buildArticlePrompt(trends);
+  for (let attempt = 0; attempt < MODELS.length; attempt++) {
+    const model = MODELS[attempt % MODELS.length];
+    try {
+      log(`[radar] ✍️ توليد مقال اليوم عبر Gemini (${model})...`);
+      const result = await ai.models.generateContent({
+        model,
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        config: { temperature: 0.7 },
+      });
+      const text = result?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') || '';
+      if (!text) throw new Error('رد فارغ');
+      const article = extractJson(text);
+      if (!article.title || !article.sections?.length) throw new Error('بنية مقال غير صالحة');
+      log(`[radar] ✅ اكتمل مقال اليوم (${article.sections.length} أقسام): ${article.title}`);
+      return article;
+    } catch (e) {
+      log(`[radar] ⚠️ محاولة ${model} فشلت: ${e.message}`);
+      if (e.status === 429 || String(e.message).includes('429') || String(e.message).includes('Quota')) {
+        await sleep(15000);
+      }
+    }
+  }
+  return null;
+}
+
+// ─── الأرشيف ───
+
+function loadArchive() {
+  try {
+    if (fs.existsSync(ARCHIVE_FILE)) {
+      const data = JSON.parse(fs.readFileSync(ARCHIVE_FILE, 'utf8'));
+      if (Array.isArray(data.articles)) return data.articles;
+    }
+  } catch (e) {
+    log(`[radar] ⚠️ أرشيف تالف — نبدأ من جديد: ${e.message}`);
+  }
+  return [];
+}
+
+function saveArchive(articles) {
+  const data = {
+    baseUrl: BASE_URL,
+    updatedAt: cairoNow(),
+    articles: articles.slice(0, MAX_ARCHIVE),
+  };
+  fs.writeFileSync(ARCHIVE_FILE, JSON.stringify(data, null, 2), 'utf8');
+}
+
+// ─── البناء ───
 
 function buildTrendCard(trend, idx) {
   const searchLink = `https://www.google.com/search?q=${encodeURIComponent(trend.title)}`;
   const rank = String(idx + 1).padStart(2, '0');
-  const trafficBadge = trend.traffic
-    ? `<span class="trend-traffic">🔍 ${esc(trend.traffic)} عمليات بحث</span>`
-    : '';
+  const regionBadge =
+    trend.region === 'عالمي' ? '<span class="region region-global">🌍 عالمي</span>' : '<span class="region region-eg">🇪🇬 مصر</span>';
+  const trafficBadge = trend.traffic ? `<span class="trend-traffic">🔍 ${esc(trend.traffic)} بحث</span>` : '';
   return `
         <article class="trend-card">
           <div class="trend-rank">${rank}</div>
           <div class="trend-body">
             <h3><a href="${esc(searchLink)}" target="_blank" rel="noopener nofollow">${esc(trend.title)}</a></h3>
             <div class="trend-meta">
+              ${regionBadge}
               ${trafficBadge}
               <a class="trend-link" href="${esc(searchLink)}" target="_blank" rel="noopener nofollow">ابحث على Google ←</a>
             </div>
@@ -109,28 +226,83 @@ function buildTrendCard(trend, idx) {
         </article>`;
 }
 
-function buildPage(trends) {
-  const generatedAt = cairoNow();
+function buildArticle(article, date) {
+  if (!article) return '';
+  const sections = (article.sections || [])
+    .map(
+      (s) => `<section class="art-sec">
+        <h3>${esc(s.heading)}</h3>
+        ${String(s.body || '')
+          .split(/\n+/)
+          .map((p) => `<p>${esc(p.trim())}</p>`)
+          .join('\n        ')}
+      </section>`
+    )
+    .join('\n    ');
+  return `<section class="article" id="article-today">
+    <div class="article-badge">📰 مقال اليوم — ${esc(date)}</div>
+    <h2 class="article-title">${esc(article.title)}</h2>
+    <div class="article-body">
+      ${esc(article.intro || '').split(/\n+/).map((p) => `<p>${esc(p.trim())}</p>`).join('\n      ')}
+      ${sections}
+    </div>
+  </section>`;
+}
+
+function buildArchive(entries) {
+  if (!entries.length) return '';
+  const details = entries
+    .map((e) => {
+      const sections = (e.article?.sections || [])
+        .map(
+          (s) => `<div class="arch-sec">
+            <h4>${esc(s.heading)}</h4>
+            ${String(s.body || '')
+              .split(/\n+/)
+              .map((p) => `<p>${esc(p.trim())}</p>`)
+              .join('\n            ')}
+          </div>`
+        )
+        .join('\n          ');
+      return `<details class="arch-item">
+    <summary>${esc(e.date)} — ${esc(e.article?.title || 'مقال اليوم')}</summary>
+    <div class="arch-body">
+      ${esc(e.article?.intro || '')}
+      ${sections}
+    </div>
+  </details>`;
+    })
+    .join('\n  ');
+  return `<div class="archive">
+    <div class="section-title"><span class="dot dot-cyan"></span> أرشيف الأيام الأخيرة</div>
+    <p class="section-sub">مقالات رصد المحامي السابقة — اضغط على أي يوم لعرض مقاله كاملاً.</p>
+    ${details}
+  </div>`;
+}
+
+function buildPage(todayArticle, trends, archiveEntries, generatedAt) {
   const cards = trends.map(buildTrendCard).join('\n');
+  const articleHtml = buildArticle(todayArticle, todayStr());
+  const archiveHtml = buildArchive(archiveEntries);
+  const nowISO = new Date(Date.now() + 120 * 60000).toISOString();
   const itemList = trends
     .map((t, i) => `{"@type":"ListItem","position":${i + 1},"name":"${esc(t.title)}"}`)
     .join(',');
-  const nowISO = new Date(Date.now() + 120 * 60000).toISOString();
 
   return `<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>رصد المحامي - أهم الأخبار والترندات في مصر اليوم | منصة المحامي الرقمية</title>
-  <meta name="description" content="رصد المحامي — أهم الأخبار العالمية والمحلية والعربية والمصرية اليوم وفق ترندات Google. تابع الأكثر بحثاً الآن في مصر." />
-  <meta name="keywords" content="رصد المحامي, ترندات مصر, أخبار مصر اليوم, الأكثر بحثاً, ترند جوجل مصر, أخبار عربية, أخبار عالمية" />
+  <title>رصد المحامي</title>
+  <meta name="description" content="رصد المحامي — نشرة يومية تحليلية لأهم الترندات المصرية والعالمية على Google، بصياغة تحليلية عملية للمواطن والمحامي المصري." />
+  <meta name="keywords" content="رصد المحامي, ترندات مصر, أخبار مصر اليوم, الأكثر بحثاً, ترند جوجل مصر, أخبار عربية, أخبار عالمية, تحليل ترندات" />
   <meta name="author" content="منصة المحامي الرقمية" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="${BASE_URL}/legal-radar.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="رصد المحامي - أهم الأخبار والترندات في مصر اليوم" />
-  <meta property="og:description" content="تابع أهم الترندات في مصر اليوم — الأكثر بحثاً الآن على Google." />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="رصد المحامي" />
+  <meta property="og:description" content="نشرة يومية تحليلية لأهم الترندات المصرية والعالمية على Google." />
   <meta property="og:url" content="${BASE_URL}/legal-radar.html" />
   <meta property="og:site_name" content="منصة المحامي الرقمية" />
   <meta property="og:locale" content="ar_EG" />
@@ -139,9 +311,9 @@ function buildPage(trends) {
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}","logo":"${BASE_URL}/logo.png"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"رصد المحامي - أهم الأخبار والترندات في مصر اليوم","url":"${BASE_URL}/legal-radar.html","isPartOf":{"@type":"WebSite","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"inLanguage":"ar-EG","dateModified":"${nowISO}"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"${esc(todayArticle?.title || 'رصد المحامي — مقال اليوم')}","datePublished":"${nowISO}","dateModified":"${nowISO}","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"mainEntityOfPage":"${BASE_URL}/legal-radar.html"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"${BASE_URL}"},{"@type":"ListItem","position":2,"name":"رصد المحامي","item":"${BASE_URL}/legal-radar.html"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"الأكثر بحثاً الآن في مصر","itemListElement":[${itemList}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"الأكثر بحثاً الآن","itemListElement":[${itemList}]}</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -156,13 +328,13 @@ function buildPage(trends) {
       --muted: #94a3b8;
       --card-bg: rgba(15,23,42,0.7);
     }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
     body {
       font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      line-height: 1.7;
+      line-height: 1.8;
       background-image:
         radial-gradient(ellipse at 30% 0%, rgba(124,58,237,0.18) 0%, transparent 55%),
         radial-gradient(ellipse at 90% 70%, rgba(16,185,129,0.1) 0%, transparent 50%);
@@ -185,29 +357,53 @@ function buildPage(trends) {
     .breadcrumbs .current { color: var(--text); font-weight: 800; }
     .breadcrumbs .sep { color: var(--muted); opacity: 0.4; font-size: 10px; }
 
-    .hero { max-width: 860px; margin: 0 auto; padding: 56px 24px 36px; text-align: center; }
+    .hero { max-width: 860px; margin: 0 auto; padding: 50px 24px 28px; text-align: center; }
     .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: 999px; background: rgba(244,63,94,0.12); border: 1px solid rgba(244,63,94,0.3); color: #fda4af; font-size: 11px; font-weight: 800; margin-bottom: 20px; }
-    .hero h1 { font-size: clamp(1.9rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.2; margin-bottom: 16px; background: linear-gradient(135deg, #e2e8f0 0%, #a5b4fc 50%, #fda4af 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero p { font-size: 16px; color: var(--muted); max-width: 620px; margin: 0 auto; font-weight: 600; }
+    .hero h1 { font-size: clamp(1.9rem, 5vw, 3.1rem); font-weight: 900; line-height: 1.25; margin-bottom: 16px; background: linear-gradient(135deg, #e2e8f0 0%, #a5b4fc 50%, #fda4af 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 16px; color: var(--muted); max-width: 640px; margin: 0 auto; font-weight: 600; }
     .updated { display: inline-block; margin-top: 16px; padding: 6px 16px; border-radius: 999px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: #6ee7b7; font-size: 11px; font-weight: 800; }
 
-    .section { max-width: 1000px; margin: 0 auto; padding: 0 24px 64px; }
+    .section { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
     .section-title { font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
     .section-title .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 14px rgba(244,63,94,0.7); animation: pulse 2s infinite; }
+    .section-title .dot-cyan { background: var(--cyan); box-shadow: 0 0 14px rgba(6,182,212,0.7); }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.35)} }
-    .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+    .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; }
 
-    .trend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .trend-card { display: flex; gap: 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 20px 22px; transition: border-color 0.25s, transform 0.25s; }
+    .article { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
+    .article-badge { display: inline-block; padding: 6px 16px; border-radius: 999px; background: rgba(244,63,94,0.12); border: 1px solid rgba(244,63,94,0.3); color: #fda4af; font-size: 11px; font-weight: 800; margin-bottom: 14px; }
+    .article-title { font-size: clamp(1.5rem, 4vw, 2.3rem); font-weight: 900; color: #fff; line-height: 1.4; margin-bottom: 8px; }
+    .article-meta { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
+    .article-body { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 28px 30px; }
+    .article-body p { font-size: 15px; color: #e2e8f0; margin-bottom: 14px; }
+    .art-sec { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border); }
+    .art-sec h3 { font-size: 17px; font-weight: 900; color: #fda4af; margin-bottom: 10px; }
+
+    .trend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .trend-card { display: flex; gap: 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 18px 20px; transition: border-color 0.25s, transform 0.25s; }
     .trend-card:hover { border-color: rgba(244,63,94,0.35); transform: translateY(-3px); }
-    .trend-rank { font-size: 22px; font-weight: 900; color: transparent; background: linear-gradient(135deg, #f43f5e, #a855f7); -webkit-background-clip: text; background-clip: text; min-width: 44px; text-align: center; line-height: 1.3; }
-    .trend-body h3 { font-size: 15px; font-weight: 800; color: #fff; line-height: 1.5; }
+    .trend-rank { font-size: 22px; font-weight: 900; color: transparent; background: linear-gradient(135deg, #f43f5e, #a855f7); -webkit-background-clip: text; background-clip: text; min-width: 42px; text-align: center; line-height: 1.3; }
+    .trend-body h3 { font-size: 14.5px; font-weight: 800; color: #fff; line-height: 1.5; }
     .trend-body h3 a { color: #fff; text-decoration: none; transition: color 0.2s; }
     .trend-body h3 a:hover { color: #fda4af; }
-    .trend-meta { display: flex; align-items: center; gap: 14px; margin-top: 10px; flex-wrap: wrap; }
+    .trend-meta { display: flex; align-items: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+    .region { font-size: 10px; font-weight: 800; padding: 2px 9px; border-radius: 999px; }
+    .region-eg { color: #6ee7b7; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); }
+    .region-global { color: #67e8f9; background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); }
     .trend-traffic { font-size: 11px; color: #fda4af; font-weight: 700; }
     .trend-link { font-size: 11px; color: var(--indigo); text-decoration: none; font-weight: 800; transition: color 0.2s; }
     .trend-link:hover { color: #a5b4fc; }
+
+    .archive { max-width: 900px; margin: 0 auto; padding: 0 24px 56px; }
+    .arch-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
+    .arch-item summary { cursor: pointer; padding: 15px 20px; font-size: 14px; font-weight: 800; color: #e2e8f0; list-style: none; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
+    .arch-item summary:hover { color: #a5b4fc; }
+    .arch-item summary::before { content: "◀"; font-size: 10px; color: var(--cyan); transition: transform 0.2s; }
+    .arch-item[open] summary::before { transform: rotate(-90deg); }
+    .arch-body { padding: 0 22px 18px; font-size: 14px; color: #cbd5e1; border-top: 1px dashed var(--border); padding-top: 14px; }
+    .arch-body p { margin-bottom: 10px; }
+    .arch-sec { margin-top: 14px; }
+    .arch-sec h4 { font-size: 14px; font-weight: 900; color: #fda4af; margin-bottom: 6px; }
 
     .ad-slot { margin: 28px auto; max-width: 100%; text-align: center; min-height: 90px; }
     .ad-label { display: block; font-size: 10px; color: var(--muted); text-align: center; margin-bottom: 6px; letter-spacing: 0.5px; font-weight: 700; }
@@ -256,11 +452,13 @@ function buildPage(trends) {
   <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><span class="current">رصد المحامي</span></nav>
 
   <div class="hero">
-    <div class="badge">📡 رصد لحظي للأكثر بحثاً الآن</div>
-    <h1>رصد المحامي — أهم الأخبار والترندات في مصر اليوم</h1>
-    <p>أهم الأخبار العالمية والمحلية والعربية والمصرية وفق الأكثر بحثاً على Google الآن.</p>
+    <div class="badge">📡 نشرة يومية — ترندات مصر والعالم</div>
+    <h1>رصد المحامي</h1>
+    <p>نشرة يومية تُصاغ بالذكاء الاصطناعي عن أهم الترندات المصرية والعالمية على Google، بتحليل عملي للمواطن والمحامي.</p>
     <span class="updated">آخر تحديث: ${esc(generatedAt)} بتوقيت القاهرة</span>
   </div>
+
+  ${articleHtml}
 
   <!-- TOP AD -->
   <div class="ad-slot" role="complementary" aria-label="إعلان">
@@ -270,8 +468,8 @@ function buildPage(trends) {
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="dot"></span> الأكثر بحثاً الآن في مصر</div>
-    <p class="section-sub">ترندات Google المباشرة لليوم (${esc(cairoDateStr())}) — اضغط على أي ترند للبحث عنه على Google.</p>
+    <div class="section-title"><span class="dot"></span> أهم الترندات الآن (${esc(todayStr())})</div>
+    <p class="section-sub">الأكثر بحثاً على Google اليوم في مصر والعالم — اضغط على أي ترند للبحث عنه.</p>
     <div class="trend-grid">
 ${cards}
     </div>
@@ -283,6 +481,8 @@ ${cards}
     <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
+
+  ${archiveHtml}
 
   <div class="cta-section">
     <a href="/" class="cta-btn">جرّب منصة المحامي الرقمية مجاناً 🚀</a>
@@ -322,7 +522,7 @@ ${cards}
       </div>
       <div class="footer-bottom">
         <span>© 2026 منصة المحامي الرقمية — جميع الحقوق محفوظة</span>
-        <span>خدمة مجانية للمحامين والقانونيين في مصر</span>
+        <span>محتوى تحليلي استرشادي — يُراجع مع مختص قبل الاعتماد عليه</span>
       </div>
     </div>
   </footer>
@@ -343,15 +543,48 @@ ${cards}
 `;
 }
 
+// ─── المدخل الرئيسي ───
+
 async function main() {
-  const trends = await fetchTrends();
-  if (!trends.length) {
-    console.error('[radar] ❌ لا توجد بيانات ترندات متاحة — لن تُحدَّث الصفحة.');
+  const generatedAt = cairoNow();
+  const today = todayStr();
+
+  // 1) جلب الترندات
+  const freshTrends = await fetchTrends();
+  if (!freshTrends.length) {
+    log('[radar] ⚠️ لا توجد بيانات ترندات متاحة — لن تُحدَّث الصفحة.');
     process.exit(0);
   }
-  const html = buildPage(trends);
+
+  // 2) الأرشيف
+  const articles = loadArchive();
+  let todayEntry = articles.find((e) => e.date === today);
+
+  // 3) مقال اليوم (مرة واحدة فقط في اليوم)
+  if (!todayEntry && process.env.GEMINI_API_KEY) {
+    const article = await generateArticle(freshTrends);
+    if (article) {
+      todayEntry = {
+        date: today,
+        generatedAt,
+        title: article.title,
+        article,
+        trends: freshTrends,
+      };
+      articles.unshift(todayEntry);
+      saveArchive(articles);
+    }
+  }
+
+  const trendsForPage = todayEntry?.trends?.length ? todayEntry.trends : freshTrends;
+  const archiveEntries = articles.filter((e) => e.date !== today).slice(0, MAX_ARCHIVE_SHOWN);
+
+  // 4) بناء الصفحة
+  const html = buildPage(todayEntry?.article || null, trendsForPage, archiveEntries, generatedAt);
   fs.writeFileSync(OUT_FILE, html, 'utf8');
-  console.log(`[radar] ✅ تم توليد ${OUT_FILE} (${trends.length} ترنداً)`);
+
+  const articleStatus = todayEntry ? `مقال: «${todayEntry.title}»` : (process.env.GEMINI_API_KEY ? 'لا مقال (فشل التوليد)' : 'وضع ترندات فقط (بدون GEMINI_API_KEY)');
+  log(`[radar] ✅ تم توليد ${OUT_FILE} (${trendsForPage.length} ترنداً | ${articleStatus} | أرشيف ${archiveEntries.length} يوم)`);
 }
 
 main().catch((e) => {
