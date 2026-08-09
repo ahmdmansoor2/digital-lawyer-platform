@@ -615,6 +615,27 @@
       "duration": "1د 10ث",
       "size": 25597700,
       "publishedAt": "2026-08-09T07:16:13.525Z"
+    },
+    {
+      "topicId": "trend-remand-in-custody-egyptian-law",
+      "title": "الحبس الاحتياطي في القانون المصري: المدة والشروط وإجراءات التظلم",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون الجنائي",
+        "#الحبس الاحتياطي",
+        "#سجن"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-remand-in-custody-egyptian-law.mp4",
+      "videoId": "1664839931282894",
+      "permalink": "https://www.facebook.com/reel/1664839931282894",
+      "source": "trending-topics.json",
+      "duration": "55ث",
+      "size": 15155468,
+      "publishedAt": "2026-08-09T13:14:09.077Z"
     }
   ]
 }

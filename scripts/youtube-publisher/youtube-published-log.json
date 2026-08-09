@@ -439,6 +439,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2355256785009819",
       "publishedAt": "2026-08-09T07:17:31.046Z"
+    },
+    {
+      "topicId": "trend-remand-in-custody-egyptian-law",
+      "kind": "short",
+      "videoId": "QoIMGzEjMNw",
+      "url": "https://www.youtube.com/watch?v=QoIMGzEjMNw",
+      "fbPermalink": "https://www.facebook.com/reel/1664839931282894",
+      "publishedAt": "2026-08-09T13:14:11.049Z"
+    },
+    {
+      "topicId": "trend-remand-in-custody-egyptian-law",
+      "title": "الحبس الاحتياطي في القانون المصري: المدة والشروط وإجراءات التظلم — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-remand-in-custody-egyptian-law-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "DvuBrRYDru0",
+      "url": "https://www.youtube.com/watch?v=DvuBrRYDru0",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1664839931282894",
+      "publishedAt": "2026-08-09T13:15:02.469Z"
     }
   ]
 }
