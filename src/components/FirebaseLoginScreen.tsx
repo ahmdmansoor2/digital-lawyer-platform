@@ -320,6 +320,7 @@ export default function FirebaseLoginScreen({ onSuccess }: FirebaseLoginScreenPr
     { href: '/pricing.html', label: 'مجاني 100%', icon: '🎁', color: 'emerald' },
     { href: '/blog/', label: 'المدونة', icon: '📚', color: 'warm' },
     { href: '/contact.html', label: 'تواصل معنا', icon: '✉️', color: 'warm' },
+    { href: '/why-trust-us.html', label: 'لماذا تثق بنا', icon: '🛡️', color: 'emerald' },
     { href: '/privacy.html', label: 'الخصوصية', icon: '🔐', color: 'emerald' },
   ];
 
