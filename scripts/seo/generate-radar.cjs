@@ -206,45 +206,35 @@ function saveArchive(articles) {
 
 // ─── البناء ───
 
-function buildTrendCard(trend, idx) {
-  const searchLink = `https://www.google.com/search?q=${encodeURIComponent(trend.title)}`;
-  const rank = String(idx + 1).padStart(2, '0');
-  const regionBadge =
-    trend.region === 'عالمي' ? '<span class="region region-global">🌍 عالمي</span>' : '<span class="region region-eg">🇪🇬 مصر</span>';
-  const trafficBadge = trend.traffic ? `<span class="trend-traffic">🔍 ${esc(trend.traffic)} بحث</span>` : '';
-  return `
-        <article class="trend-card">
-          <div class="trend-rank">${rank}</div>
-          <div class="trend-body">
-            <h3><a href="${esc(searchLink)}" target="_blank" rel="noopener nofollow">${esc(trend.title)}</a></h3>
-            <div class="trend-meta">
-              ${regionBadge}
-              ${trafficBadge}
-              <a class="trend-link" href="${esc(searchLink)}" target="_blank" rel="noopener nofollow">ابحث على Google ←</a>
-            </div>
-          </div>
-        </article>`;
+function buildTopicCards(article) {
+  if (!article) return '';
+  const cards = (article.sections || [])
+    .map(
+      (s, i) => `<article class="topic-card">
+        <div class="topic-num">${String(i + 1).padStart(2, '0')}</div>
+        <div class="topic-body">
+          <h3>${esc(s.heading)}</h3>
+          ${String(s.body || '')
+            .split(/\n+/)
+            .map((p) => `<p>${esc(p.trim())}</p>`)
+            .join('\n          ')}
+        </div>
+      </article>`
+    )
+    .join('\n    ');
+  return cards;
 }
 
 function buildArticle(article, date) {
   if (!article) return '';
-  const sections = (article.sections || [])
-    .map(
-      (s) => `<section class="art-sec">
-        <h3>${esc(s.heading)}</h3>
-        ${String(s.body || '')
-          .split(/\n+/)
-          .map((p) => `<p>${esc(p.trim())}</p>`)
-          .join('\n        ')}
-      </section>`
-    )
-    .join('\n    ');
   return `<section class="article" id="article-today">
-    <div class="article-badge">📰 مقال اليوم — ${esc(date)}</div>
+    <div class="article-badge">📰 موضوعات اليوم — ${esc(date)}</div>
     <h2 class="article-title">${esc(article.title)}</h2>
-    <div class="article-body">
+    <div class="article-intro">
       ${esc(article.intro || '').split(/\n+/).map((p) => `<p>${esc(p.trim())}</p>`).join('\n      ')}
-      ${sections}
+    </div>
+    <div class="topic-grid">
+    ${buildTopicCards(article)}
     </div>
   </section>`;
 }
@@ -280,14 +270,10 @@ function buildArchive(entries) {
   </div>`;
 }
 
-function buildPage(todayArticle, trends, archiveEntries, generatedAt) {
-  const cards = trends.map(buildTrendCard).join('\n');
+function buildPage(todayArticle, archiveEntries, generatedAt) {
   const articleHtml = buildArticle(todayArticle, todayStr());
   const archiveHtml = buildArchive(archiveEntries);
   const nowISO = new Date(Date.now() + 120 * 60000).toISOString();
-  const itemList = trends
-    .map((t, i) => `{"@type":"ListItem","position":${i + 1},"name":"${esc(t.title)}"}`)
-    .join(',');
 
   return `<!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -313,7 +299,6 @@ function buildPage(todayArticle, trends, archiveEntries, generatedAt) {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}","logo":"${BASE_URL}/logo.png"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"${esc(todayArticle?.title || 'رصد المحامي — مقال اليوم')}","datePublished":"${nowISO}","dateModified":"${nowISO}","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"mainEntityOfPage":"${BASE_URL}/legal-radar.html"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"${BASE_URL}"},{"@type":"ListItem","position":2,"name":"رصد المحامي","item":"${BASE_URL}/legal-radar.html"}]}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"الأكثر بحثاً الآن","itemListElement":[${itemList}]}</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -372,27 +357,18 @@ function buildPage(todayArticle, trends, archiveEntries, generatedAt) {
 
     .article { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
     .article-badge { display: inline-block; padding: 6px 16px; border-radius: 999px; background: rgba(244,63,94,0.12); border: 1px solid rgba(244,63,94,0.3); color: #fda4af; font-size: 11px; font-weight: 800; margin-bottom: 14px; }
-    .article-title { font-size: clamp(1.5rem, 4vw, 2.3rem); font-weight: 900; color: #fff; line-height: 1.4; margin-bottom: 8px; }
-    .article-meta { font-size: 12px; color: var(--muted); margin-bottom: 20px; }
-    .article-body { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 28px 30px; }
-    .article-body p { font-size: 15px; color: #e2e8f0; margin-bottom: 14px; }
-    .art-sec { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border); }
-    .art-sec h3 { font-size: 17px; font-weight: 900; color: #fda4af; margin-bottom: 10px; }
+    .article-title { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 900; color: #fff; line-height: 1.4; margin-bottom: 10px; }
+    .article-intro { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 18px 22px; margin-bottom: 20px; }
+    .article-intro p { font-size: 14.5px; color: #e2e8f0; margin-bottom: 10px; }
+    .article-intro p:last-child { margin-bottom: 0; }
 
-    .trend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .trend-card { display: flex; gap: 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 18px 20px; transition: border-color 0.25s, transform 0.25s; }
-    .trend-card:hover { border-color: rgba(244,63,94,0.35); transform: translateY(-3px); }
-    .trend-rank { font-size: 22px; font-weight: 900; color: transparent; background: linear-gradient(135deg, #f43f5e, #a855f7); -webkit-background-clip: text; background-clip: text; min-width: 42px; text-align: center; line-height: 1.3; }
-    .trend-body h3 { font-size: 14.5px; font-weight: 800; color: #fff; line-height: 1.5; }
-    .trend-body h3 a { color: #fff; text-decoration: none; transition: color 0.2s; }
-    .trend-body h3 a:hover { color: #fda4af; }
-    .trend-meta { display: flex; align-items: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
-    .region { font-size: 10px; font-weight: 800; padding: 2px 9px; border-radius: 999px; }
-    .region-eg { color: #6ee7b7; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); }
-    .region-global { color: #67e8f9; background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); }
-    .trend-traffic { font-size: 11px; color: #fda4af; font-weight: 700; }
-    .trend-link { font-size: 11px; color: var(--indigo); text-decoration: none; font-weight: 800; transition: color 0.2s; }
-    .trend-link:hover { color: #a5b4fc; }
+    .topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .topic-card { display: flex; gap: 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 20px 22px; transition: border-color 0.25s, transform 0.25s; }
+    .topic-card:hover { border-color: rgba(244,63,94,0.35); transform: translateY(-3px); }
+    .topic-num { font-size: 20px; font-weight: 900; color: transparent; background: linear-gradient(135deg, #f43f5e, #a855f7); -webkit-background-clip: text; background-clip: text; min-width: 40px; text-align: center; line-height: 1.3; }
+    .topic-body h3 { font-size: 15.5px; font-weight: 900; color: #fff; line-height: 1.5; margin-bottom: 8px; }
+    .topic-body p { font-size: 13.5px; color: #cbd5e1; line-height: 1.85; margin-bottom: 8px; }
+    .topic-body p:last-child { margin-bottom: 0; }
 
     .archive { max-width: 900px; margin: 0 auto; padding: 0 24px 56px; }
     .arch-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
@@ -426,7 +402,7 @@ function buildPage(todayArticle, trends, archiveEntries, generatedAt) {
     .footer-col ul a:hover { color: var(--indigo); }
     .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
 
-    @media (max-width: 760px) { .trend-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; gap: 28px; } .nav-links { display: none; } }
+    @media (max-width: 760px) { .topic-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; gap: 28px; } .nav-links { display: none; } }
   </style>
 </head>
 <body>
@@ -461,21 +437,6 @@ function buildPage(todayArticle, trends, archiveEntries, generatedAt) {
   ${articleHtml}
 
   <!-- TOP AD -->
-  <div class="ad-slot" role="complementary" aria-label="إعلان">
-    <span class="ad-label">إعلان</span>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="dot"></span> أهم الترندات الآن (${esc(todayStr())})</div>
-    <p class="section-sub">الأكثر بحثاً على Google اليوم في مصر والعالم — اضغط على أي ترند للبحث عنه.</p>
-    <div class="trend-grid">
-${cards}
-    </div>
-  </div>
-
-  <!-- BOTTOM AD -->
   <div class="ad-slot" role="complementary" aria-label="إعلان">
     <span class="ad-label">إعلان</span>
     <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -576,15 +537,14 @@ async function main() {
     }
   }
 
-  const trendsForPage = todayEntry?.trends?.length ? todayEntry.trends : freshTrends;
   const archiveEntries = articles.filter((e) => e.date !== today).slice(0, MAX_ARCHIVE_SHOWN);
 
   // 4) بناء الصفحة
-  const html = buildPage(todayEntry?.article || null, trendsForPage, archiveEntries, generatedAt);
+  const html = buildPage(todayEntry?.article || null, archiveEntries, generatedAt);
   fs.writeFileSync(OUT_FILE, html, 'utf8');
 
-  const articleStatus = todayEntry ? `مقال: «${todayEntry.title}»` : (process.env.GEMINI_API_KEY ? 'لا مقال (فشل التوليد)' : 'وضع ترندات فقط (بدون GEMINI_API_KEY)');
-  log(`[radar] ✅ تم توليد ${OUT_FILE} (${trendsForPage.length} ترنداً | ${articleStatus} | أرشيف ${archiveEntries.length} يوم)`);
+  const articleStatus = todayEntry ? `موضوعات: «${todayEntry.title}»` : (process.env.GEMINI_API_KEY ? 'لا موضوعات (فشل التوليد)' : 'بدون GEMINI_API_KEY');
+  log(`[radar] ✅ تم توليد ${OUT_FILE} (${articleStatus} | أرشيف ${archiveEntries.length} يوم)`);
 }
 
 main().catch((e) => {
