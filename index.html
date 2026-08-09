@@ -7,6 +7,26 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
+    <!-- Cache Buster: يتحقق من إصدار البناء ويُعيد التحميل تلقائياً عند التحديث -->
+    <script>
+      (function() {
+        var BUILD_VERSION = '20260809-v3';
+        var stored = localStorage.getItem('app_build_version');
+        if (stored && stored !== BUILD_VERSION) {
+          localStorage.setItem('app_build_version', BUILD_VERSION);
+          // مسح أي cache قديم
+          if ('caches' in window) {
+            caches.keys().then(function(names) {
+              names.forEach(function(name) { caches.delete(name); });
+            });
+          }
+          // إعادة تحميل بدون cache
+          window.location.reload(true);
+        } else {
+          localStorage.setItem('app_build_version', BUILD_VERSION);
+        }
+      })();
+    </script>
     <title>منصة المحامي الرقمية - نظام إدارة مكاتب المحاماة في مصر | مجاني 100%</title>
     <meta name="description" content="منصة المحامي الرقمية - النظام الأشمل لإدارة مكاتب المحاماة في مصر. إدارة القضايا، الموكلين، الجلسات، أوراق المحضرين، حاسبة الرسوم، المكتبة القانونية. مجاني 100% ويعمل على كل الأجهزة." />
     <meta name="keywords" content="نظام إدارة مكاتب المحاماة, برنامج محاماة مجاني, إدارة قضايا, إدارة موكلين, جدول جلسات, محضرين, حاسبة رسوم محاكم, مكتبة قانونية, صيغ عقود, قانون مصري, محامي مصر, استشارات قانونية" />
