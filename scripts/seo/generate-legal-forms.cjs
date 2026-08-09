@@ -355,6 +355,17 @@ function buildPage(contracts, legal) {
     .toc ol li a::before { content: counter(t, decimal-leading-zero); font-size: 11px; font-weight: 900; color: var(--cyan); }
     .toc ol li a:hover { background: rgba(99,102,241,0.08); color: #fff; }
 
+    .search-box { margin-top: 14px; display: flex; align-items: center; gap: 12px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 4px 6px 4px 16px; transition: border-color 0.2s, box-shadow 0.2s; }
+    .search-box:focus-within { border-color: rgba(6,182,212,0.55); box-shadow: 0 0 0 3px rgba(6,182,212,0.14); }
+    .search-box .s-icon { font-size: 16px; padding-inline-start: 10px; opacity: 0.7; }
+    .search-box input { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-family: inherit; font-size: 14px; padding: 12px 14px; min-width: 0; }
+    .search-box input::placeholder { color: var(--muted); }
+    .search-count { font-size: 11.5px; font-weight: 800; color: var(--cyan); white-space: nowrap; padding-inline-end: 12px; }
+    .search-count.empty { color: #fda4af; }
+    .search-hint { max-width: 1000px; margin: -18px auto 0; padding: 0 24px 10px; font-size: 11.5px; color: var(--muted); }
+    mark.search-hit { background: rgba(250, 204, 21, 0.32); color: #fef08a; padding: 0 3px; border-radius: 4px; }
+    .cat-block[data-empty="1"] { display: none; }
+
     .container { max-width: 1000px; margin: 0 auto; padding: 0 24px 40px; }
     .cat-title { font-size: 22px; font-weight: 900; color: #fff; margin: 36px 0 20px; display: flex; align-items: center; gap: 12px; }
     .cat-title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(6,182,212,0.4), transparent); }
@@ -486,19 +497,31 @@ function buildPage(contracts, legal) {
         ${buildToc(contracts)}
       </ol>
     </div>
+    <div class="search-box">
+      <span class="s-icon">🔍</span>
+      <input type="search" id="formsSearch" aria-label="بحث في صيغ العقود والدعاوي" placeholder="ابحث في الصيغ: شيك، صحة ونفاذ، إيصال أمانة، إيجار، بيع سيارة، حضانة، سمسرة..." oninput="searchForms(this.value)">
+      <span class="search-count" id="formsCount"></span>
+    </div>
   </div>
+  <p class="search-hint">💡 يبحث الفلتر في عناوين الصيغ ونصوصها الكاملة — يفتح تلقائياً البطاقات المطابقة ويبرز كلمة البحث.</p>
 
   <div class="container">
     ${buildSections(contracts)}
 
-    <div class="cat-title">قوالب مذكرات الدفاع</div>
-    ${buildMemos(templates)}
+    <div class="cat-block">
+      <div class="cat-title">قوالب مذكرات الدفاع</div>
+      ${buildMemos(templates)}
+    </div>
 
-    <div class="cat-title">بنود العقود القياسية</div>
-    ${buildContractSections(templates)}
+    <div class="cat-block">
+      <div class="cat-title">بنود العقود القياسية</div>
+      ${buildContractSections(templates)}
+    </div>
 
-    <div class="cat-title">الاستشهادات والعبارات القانونية الجاهزة</div>
-    ${buildCitations(templates, snippets)}
+    <div class="cat-block">
+      <div class="cat-title">الاستشهادات والعبارات القانونية الجاهزة</div>
+      ${buildCitations(templates, snippets)}
+    </div>
 
     <!-- MIDDLE AD -->
     <div class="ad-slot" role="complementary" aria-label="إعلان">
@@ -565,6 +588,108 @@ function buildPage(contracts, legal) {
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text).then(done, fallback);
       } else fallback();
+    }
+
+    function normAr(s) {
+      return (s || '')
+        .replace(/[\u064B-\u0652\u0670]/g, '')
+        .replace(/[أإآٱ]/g, 'ا')
+        .replace(/ى/g, 'ي')
+        .replace(/ة/g, 'ه')
+        .replace(/ؤ/g, 'و')
+        .replace(/ئ/g, 'ي')
+        .replace(/\u0640/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+    function buildNormMap(s) {
+      var out = '', map = [];
+      for (var i = 0; i < s.length; i++) {
+        var ch = s[i];
+        if (/[\u064B-\u0652\u0670]/.test(ch)) continue;
+        if (/[أإآٱ]/.test(ch)) ch = 'ا';
+        else if (ch === 'ى') ch = 'ي';
+        else if (ch === 'ة') ch = 'ه';
+        else if (ch === 'ؤ') ch = 'و';
+        else if (ch === 'ئ') ch = 'ي';
+        else if (ch === '\u0640') continue;
+        out += ch;
+        map.push(i);
+      }
+      return { out: out, map: map };
+    }
+    var searchMarks = [];
+    function clearSearchMarks() {
+      for (var i = 0; i < searchMarks.length; i++) {
+        var m = searchMarks[i];
+        if (m && m.parentNode) {
+          var frag = document.createDocumentFragment();
+          while (m.firstChild) frag.appendChild(m.firstChild);
+          m.parentNode.replaceChild(frag, m);
+        }
+      }
+      searchMarks = [];
+    }
+    function highlightIn(node, q) {
+      var walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+      var tns = [];
+      while (walker.nextNode()) {
+        var t = walker.currentNode;
+        if (t.nodeValue && t.nodeValue.trim() && !(t.parentElement && t.parentElement.closest('button'))) tns.push(t);
+      }
+      for (var k = 0; k < tns.length; k++) {
+        var tn = tns[k];
+        var r = buildNormMap(tn.nodeValue);
+        var n = r.out;
+        if (!n) continue;
+        var idx = n.indexOf(q);
+        if (idx === -1) continue;
+        var sOrig = r.map[idx];
+        var eOrig = r.map[idx + q.length - 1] + 1;
+        var tail = tn.splitText(sOrig);
+        var after = tail.splitText(eOrig - sOrig);
+        var mark = document.createElement('mark');
+        mark.className = 'search-hit';
+        tail.parentNode.insertBefore(mark, tail);
+        mark.appendChild(tail);
+        searchMarks.push(mark);
+        tn = after;
+      }
+    }
+    function searchForms(raw) {
+      var q = normAr(raw);
+      clearSearchMarks();
+      var count = 0;
+      var items = document.querySelectorAll('.container .doc, .container .mini-doc, .container .snippet');
+      var blocks = document.querySelectorAll('.container .cat-block');
+      var cnt = document.getElementById('formsCount');
+      if (!q) {
+        for (var i = 0; i < items.length; i++) items[i].style.display = '';
+        for (var b = 0; b < blocks.length; b++) blocks[b].removeAttribute('data-empty');
+        cnt.textContent = '';
+        cnt.className = 'search-count';
+        return;
+      }
+      for (var a = 0; a < items.length; a++) {
+        var el = items[a];
+        if (normAr(el.textContent).indexOf(q) !== -1) {
+          el.style.display = '';
+          count++;
+          if (el.tagName === 'DETAILS') el.open = true;
+          highlightIn(el, q);
+        } else {
+          el.style.display = 'none';
+        }
+      }
+      for (var c = 0; c < blocks.length; c++) {
+        var blk = blocks[c];
+        var inner = blk.querySelectorAll('.doc, .mini-doc, .snippet');
+        var vis = false;
+        for (var x = 0; x < inner.length; x++) { if (inner[x].style.display !== 'none') { vis = true; break; } }
+        if (vis) blk.removeAttribute('data-empty'); else blk.setAttribute('data-empty', '1');
+      }
+      if (count) { cnt.textContent = count + ' نتيجة'; cnt.className = 'search-count'; }
+      else { cnt.textContent = 'لا توجد نتائج'; cnt.className = 'search-count empty'; }
     }
     (function() {
       try {
