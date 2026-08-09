@@ -287,33 +287,33 @@ const IMAGE_MODEL = 'gemini-2.5-flash-image'; // Nano Banana
 const RADAR_IMAGES_DIR = path.join(ROOT, 'public', 'radar-images');
 const IMG_FALLBACK = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&h=675&q=80';
 
-// خريطة كلمات عربية → كلمات بحث إنجليزية لـ Pexels (بلا حصة Gemini)
+// خريطة كلمات عربية → كلمات بحث إنجليزية (Pexels + السياق البصري لـ AI)
 const KEYWORD_MAP = [
-  { terms: ['تصالح', 'تقنين', 'ترخيص', 'بناء', 'عقار', 'إعمار', 'مخالفات', 'وحدات سكنية', 'عقاري', 'أراضي', 'أبنية'], en: 'egypt construction building urban planning real estate' },
-  { terms: ['محاكمة', 'جناية', 'مدان', 'حكم', 'قضائي', 'مستأنف', 'نيابة', 'توقيف', 'حبس', 'سجن', 'محكمة', 'قضايا'], en: 'court trial justice gavel law' },
-  { terms: ['إلكتروني', 'رقمي', 'حكومي', 'تطبيقات', 'إنترنت', 'تكنولوجيا', 'ذكاء اصطناعي', 'رقمنة', 'خدمات', 'تحول رقمي'], en: 'digital technology government services online' },
-  { terms: ['اقتصاد', 'أسعار', 'تضخم', 'بورصة', 'عملة', 'دولار', 'جنيه', 'مالية', 'ميزانية', 'ضرائب', 'ضريبة', 'بنك'], en: 'economy finance banking money' },
-  { terms: ['صحة', 'دواء', 'مستشفى', 'علاج', 'طبي', 'لقاح', 'تأمين صحي'], en: 'healthcare hospital medicine doctor' },
-  { terms: ['تعليم', 'مدرسة', 'جامعة', 'طلاب', 'امتحانات', 'دراسة'], en: 'education university students classroom' },
-  { terms: ['طاقة', 'نفط', 'غاز', 'كهرباء', 'بترول', 'طاقة متجددة', 'وقود'], en: 'energy oil electricity power' },
-  { terms: ['سياحة', 'سفر', 'آثار', 'فنادق'], en: 'tourism travel egypt monuments' },
-  { terms: ['زراعة', 'غذاء', 'محاصيل', 'قمح', 'تموين'], en: 'agriculture farming food grain' },
-  { terms: ['نقل', 'طرق', 'مواصلات', 'قطار', 'مترو', 'كبري', 'أنفاق'], en: 'transport railway metro traffic' },
-  { terms: ['أمن', 'جريمة', 'شرطة', 'إرهاب', 'أمن قومي'], en: 'security police crime' },
-  { terms: ['عدالة', 'حقوق', 'دستور', 'قانون', 'تشريع', 'لائحة'], en: 'justice law rights constitution' },
-  { terms: ['عمل', 'وظائف', 'توظيف', 'مرتبات', 'عمالة', 'بطالة'], en: 'work jobs employment office' },
-  { terms: ['أسرة', 'زواج', 'طلاق', 'حضانة', 'ميراث', 'ولاية'], en: 'family marriage law egypt' },
-  { terms: ['تجارة', 'أعمال', 'استثمار', 'شركات', 'مشاريع', 'صناعة'], en: 'business trade investment industry' },
-  { terms: ['سيارات', 'مركبات', 'توك توك', 'نقل بري'], en: 'cars vehicles traffic street' },
-  { terms: ['بيئة', 'مناخ', 'تلوث', 'مياه', 'ري', 'نهر النيل'], en: 'environment climate pollution water' },
-  { terms: ['رياضة', 'كرة', 'أولمبياد', 'دوري', 'كأس'], en: 'sports football stadium' },
-  { terms: ['فن', 'سينما', 'مسلسلات', 'ثقافة', 'موسيقى'], en: 'art cinema culture entertainment' },
-  { terms: ['فضاء', 'أقمار', 'صاروخ', 'وكالة فضاء'], en: 'space rocket satellite nasa' },
+  { terms: ['تصالح', 'تقنين', 'ترخيص', 'بناء', 'عقار', 'إعمار', 'مخالفات', 'وحدات سكنية', 'عقاري', 'أراضي', 'أبنية'], en: 'construction site building crane engineers blueprint' },
+  { terms: ['محاكمة', 'جناية', 'مدان', 'حكم', 'قضائي', 'مستأنف', 'نيابة', 'توقيف', 'حبس', 'سجن', 'محكمة', 'قضايا'], en: 'courtroom gavel scales of justice trial' },
+  { terms: ['إلكتروني', 'رقمي', 'حكومي', 'تطبيقات', 'إنترنت', 'تكنولوجيا', 'ذكاء اصطناعي', 'رقمنة', 'خدمات', 'تحول رقمي'], en: 'smartphone online services digital technology' },
+  { terms: ['اقتصاد', 'أسعار', 'تضخم', 'بورصة', 'عملة', 'دولار', 'جنيه', 'مالية', 'ميزانية', 'ضرائب', 'ضريبة', 'بنك'], en: 'stock market finance charts banking money' },
+  { terms: ['صحة', 'دواء', 'مستشفى', 'علاج', 'طبي', 'لقاح', 'تأمين صحي'], en: 'doctor hospital healthcare medicine' },
+  { terms: ['تعليم', 'مدرسة', 'جامعة', 'طلاب', 'امتحانات', 'دراسة'], en: 'university students classroom education' },
+  { terms: ['طاقة', 'نفط', 'غاز', 'كهرباء', 'بترول', 'طاقة متجددة', 'وقود'], en: 'power plant electricity solar panels energy' },
+  { terms: ['سياحة', 'سفر', 'آثار', 'فنادق'], en: 'egypt pyramids tourism travel' },
+  { terms: ['زراعة', 'غذاء', 'محاصيل', 'قمح', 'تموين'], en: 'wheat field agriculture farming' },
+  { terms: ['نقل', 'طرق', 'مواصلات', 'قطار', 'مترو', 'كبري', 'أنفاق'], en: 'railway metro train highway transport' },
+  { terms: ['أمن', 'جريمة', 'شرطة', 'إرهاب', 'أمن قومي'], en: 'police security officer patrol' },
+  { terms: ['عدالة', 'حقوق', 'دستور', 'قانون', 'تشريع', 'لائحة'], en: 'law books justice scales legislation' },
+  { terms: ['عمل', 'وظائف', 'توظيف', 'مرتبات', 'عمالة', 'بطالة'], en: 'office employees work meeting jobs' },
+  { terms: ['أسرة', 'زواج', 'طلاق', 'حضانة', 'ميراث', 'ولاية'], en: 'egyptian family home' },
+  { terms: ['تجارة', 'أعمال', 'استثمار', 'شركات', 'مشاريع', 'صناعة'], en: 'business skyscrapers investment industry' },
+  { terms: ['سيارات', 'مركبات', 'توك توك', 'نقل بري'], en: 'cars highway traffic vehicles' },
+  { terms: ['بيئة', 'مناخ', 'تلوث', 'مياه', 'ري', 'نهر النيل'], en: 'nile river water environment nature' },
+  { terms: ['رياضة', 'كرة', 'أولمبياد', 'دوري', 'كأس'], en: 'football stadium soccer match' },
+  { terms: ['فن', 'سينما', 'مسلسلات', 'ثقافة', 'موسيقى'], en: 'cinema theater culture arts' },
+  { terms: ['فضاء', 'أقمار', 'صاروخ', 'وكالة فضاء'], en: 'space rocket satellite astronomy' },
 ];
 
 function topicSearchKeywords(topic) {
   const text = `${topic.title || ''} ${topic.summary || ''}`;
-  let best = 'egypt news report newspaper';
+  let best = 'newspaper newsroom reporter office';
   let bestScore = 0;
   for (const r of KEYWORD_MAP) {
     let score = 0;
@@ -324,6 +324,42 @@ function topicSearchKeywords(topic) {
     }
   }
   return best;
+}
+
+// مشهد تفصيلي (بالعربية) لكل سياق — لصورة AI معبّرة عن جوهر الموضوع
+const SCENE_MAP = {
+  'construction site building crane engineers blueprint': 'موقع بناء مصري بأبراج سكنية ورافعات، مهندسون يفحصون مخططات وملفات ترخيص وبناء حديث، إضاءة شفقية دافئة',
+  'courtroom gavel scales of justice trial': 'قاعة محكمة رسمية بميزان العدالة ومطرقة خشبية، طاولة قاضٍ ومنصة دفاع وملفات قضايا، إضاءة سينمائية',
+  'smartphone online services digital technology': 'مواطن يستخدم تطبيقاً حكومياً على هاتف ذكي، شاشات بيانات رقمية وأيقونات خدمات حكومية، مكتب عصري بإضاءة زرقاء',
+  'stock market finance charts banking money': 'مباني بنوك وبورصة، رسوم بيانية مالية على شاشات، عملات وصناديق استثمار، أجواء أعمال حديثة',
+  'doctor hospital healthcare medicine': 'مستشفى حديث، طبيب بمعطف أبيض وتقارير طبية، أدوات طبية، ألوان هادئة',
+  'university students classroom education': 'جامعة وقاعة محاضرات، طلاب ومراجع قانونية، مكتبة جامعية',
+  'power plant electricity solar panels energy': 'محطات طاقة وأبراج كهرباء وتوربينات، ألواح شمسية، حقول نفط وغاز',
+  'egypt pyramids tourism travel': 'معالم مصرية وأهرامات، سائحون وفنادق، أجواء رحلة سياحية',
+  'wheat field agriculture farming': 'حقول قمح ومحاصيل خضراء، معدات زراعية، صوامع تموين',
+  'railway metro train highway transport': 'قطار ومترو وجسور وطرق سريعة حديثة، حركة نقل',
+  'police security officer patrol': 'ضباط شرطة ودورية أمنية، أضواء تحذيرية، مفاهيم حماية وأمان',
+  'law books justice scales legislation': 'كتب قانون ودستور، ميزان عدالة وقلم، أوراق رسمية وتشريعات',
+  'office employees work meeting jobs': 'مكاتب عمل حديثة، موظفون في اجتماع، عقود توظيف وحواسيب',
+  'egyptian family home': 'أسرة مصرية في أجواء هادئة، أوراق رسمية ومحكمة أسرة، مفهوم الأسرة والقانون',
+  'business skyscrapers investment industry': 'أبراج أعمال ومصانع، صفقات استثمارية، حافلات شحن وتجارة',
+  'cars highway traffic vehicles': 'سيارات حديثة وطرق ومواقف، إشارات مرور',
+  'nile river water environment nature': 'مياه نهر النيل وطبيعة خضراء، بيئة نظيفة ومفاهيم تغير مناخي',
+  'football stadium soccer match': 'ملعب كرة قدم وترتيبات مباراة، جماهير',
+  'cinema theater culture arts': 'مسرح وسينما وفنون، أضواء استعراضية',
+  'space rocket satellite astronomy': 'فضاء وصواريخ وأقمار صناعية، مشاهد نجوم',
+  'newspaper newsroom reporter office': 'مكتب أخبار حديث، جريدة وشاشات تقارير، إضاءة مكتبية',
+};
+
+function buildImagePrompt(topic) {
+  const kw = topicSearchKeywords(topic);
+  const scene = SCENE_MAP[kw] || SCENE_MAP['newspaper newsroom reporter office'];
+  return `صورة تحريرية احترافية (editorial photography) واقعية عالية الجودة 4K تعبّر بدقة عن هذا الموضوع المصري:
+العنوان: ${topic.title}
+الملخص: ${topic.summary}
+المشهد المطلوب: ${scene}
+السياق البصري: ${kw}
+الأسلوب: ألوان داكنة أنيقة (كحلي/رمادي) مع لمسات إضاءة سينمائية، تفاصيل دقيقة، بلا أي نصوص أو حروف أو شعارات أو علامات مائية في الصورة.`;
 }
 
 async function downloadImage(url) {
@@ -358,16 +394,10 @@ async function fetchPexels(topic) {
 }
 
 async function generateTopicImage(ai, topic) {
-  // 1) Pexels — صور ويب حقيقية (الأولوية المطلوبة)
-  const pexels = await fetchPexels(topic);
-  if (pexels) return pexels;
-  // 2) Nano Banana — نفس أسلوب المدونة (gemini-2.5-flash-image)
+  // 1) Nano Banana — صورة مخصصة أصلية (بلا حقوق نشر) بمشهد تفصيلي يعبّر عن الموضوع تحديداً
   if (ai) {
     try {
-      const imagePrompt = `ارسم صورة توضيحية احترافية (flat illustration) بجودة عالية للموضوع التالي:
-الموضوع: ${topic.title}
-الملخص: ${topic.summary}
-الأسلوب: رسوم توضيحية حديثة بخلفية متدرجة داكنة (كحلي/بنفسجي)، أيقونات واضحة، ألوان نابضة، بدون أي نصوص أو حروف مكتوبة في الصورة.`;
+      const imagePrompt = buildImagePrompt(topic);
       const resp = await ai.models.generateContent({
         model: IMAGE_MODEL,
         contents: [{ text: imagePrompt }],
@@ -380,13 +410,19 @@ async function generateTopicImage(ai, topic) {
       const img = parts.find((p) => p.inlineData && p.inlineData.data);
       if (img) {
         const buf = Buffer.from(img.inlineData.data, 'base64');
-        if (buf.length >= 5000) return { buf, credit: null };
+        if (buf.length >= 5000) {
+          log(`[radar] 🖼️ Nano Banana: صورة مخصصة لـ«${topic.title}»`);
+          return { buf, credit: null };
+        }
       }
       log('[radar] ⚠️ Nano Banana لم يرجِع صورة — ننتقل للبدائل');
     } catch (e) {
       log(`[radar] ⚠️ ${IMAGE_MODEL} فشل: ${String((e && e.message) || e).slice(0, 90)}`);
     }
   }
+  // 2) Pexels — صور ويب حقيقية (ترخيص مجاني + نسبة للمصوّر)
+  const pexels = await fetchPexels(topic);
+  if (pexels) return pexels;
   // 3) Pollinations (ذكاء مجاني)
   try {
     const enPrompt = `${topic.title}. ${topic.summary}. Egyptian legal topic, professional editorial photography, high quality, sharp, no text, no words, no letters`;
@@ -496,7 +532,6 @@ function buildToday(topics, date) {
   const cards = topics.map(buildTopicCard).join('\n    ');
   return `<div class="section">
     <div class="section-title"><span class="dot"></span> موضوعات اليوم (${esc(date)})</div>
-    <p class="section-sub">اضغط على أي بطاقة لقراءة الموضوع كاملاً.</p>
     <div class="topic-grid">
     ${cards}
     </div>
