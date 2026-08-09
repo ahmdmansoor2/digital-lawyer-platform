@@ -477,6 +477,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1053232757117682",
       "publishedAt": "2026-08-09T15:47:22.193Z"
+    },
+    {
+      "topicId": "blog-administrative-dismissal-appeal",
+      "kind": "short",
+      "videoId": "tv80TtC-2bA",
+      "url": "https://www.youtube.com/watch?v=tv80TtC-2bA",
+      "fbPermalink": "https://www.facebook.com/reel/1509848907826479",
+      "publishedAt": "2026-08-09T18:59:51.142Z"
+    },
+    {
+      "topicId": "blog-administrative-dismissal-appeal",
+      "title": "تظلمات الموظف العام والطعن في قرارات الفصل: دليلك الشامل للقضاء الإداري - منصة ا — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-administrative-dismissal-appeal-wide.mp4",
+      "source": "blog",
+      "videoId": "btpfWHyBFqw",
+      "url": "https://www.youtube.com/watch?v=btpfWHyBFqw",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1509848907826479",
+      "publishedAt": "2026-08-09T19:00:50.468Z"
     }
   ]
 }
