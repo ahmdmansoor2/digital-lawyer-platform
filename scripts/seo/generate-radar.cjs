@@ -4,14 +4,17 @@
  *
  * آلية العمل اليومية:
  *   1. يجلب أهم ترندات Google لمصر (geo=EG) وللعالم (RSS بلا geo).
- *   2. يستخدم Gemini لصياغة «مقال اليوم» — تحليل ترندات من زاوية قانونية/مهنية.
- *   3. ينشر المقال + الترندات على الصفحة، مع أرشيف آخر الأيام.
+ *   2. يستخدم Gemini لاختيار «موضوعات اليوم» (عنوان + ملخص لكل موضوع).
+ *   3. يولّد لكل موضوع مقالاً متعمقاً كاملاً (لا يقل عن 3000 كلمة) بواسطة
+ *      بنداء منفصل لكل موضوع (مع استدعاء تمديد تلقائي لو نقص العدد).
+ *   4. ينشر البطاقات (الملخص ظاهر، الموضوع الكامل يظهر عند فتح البطاقة)
+ *      مع أرشيف آخر الأيام.
  *
  * ملاحظات:
- *   - المقال يُولَّد مرة واحدة يومياً فقط (يُخزَّن في public/radar-archive.json
+ *   - الموضوعات تُولَّد مرة واحدة يومياً فقط (تُخزَّن في public/radar-archive.json
  *     ويُتجاهل لو اليوم موجود بالفعل) حتى لا تُستنزف حصة Gemini في الرنات
  *     المتكررة (الـ workflow يعمل حتى 5 مرات يومياً).
- *   - بدون GEMINI_API_KEY تتحول الصفحة لوضع عرض الترندات فقط (بدون مقال).
+ *   - بدون GEMINI_API_KEY تتحول الصفحة لوضع عرض الترندات فقط (بدون موضوعات).
  *   - تُشغَّل تلقائياً في daily-blog-post.yml بعد الناشر الذكي.
  *
  * الاستخدام:
@@ -35,6 +38,8 @@ const BASE_URL = 'https://mohamidigital.online';
 const EG_FEED = 'https://trends.google.com/trending/rss?geo=EG';
 const WORLD_FEED = 'https://trends.google.com/trending/rss';
 const MAX_TRENDS = 10;
+const MAX_TOPICS = 3;
+const MIN_TOPIC_WORDS = 3000;
 const MAX_ARCHIVE = 12;
 const MAX_ARCHIVE_SHOWN = 7;
 const AD_CLIENT = 'ca-pub-7725405859334364';
@@ -110,7 +115,7 @@ async function fetchTrends() {
   return [];
 }
 
-// ─── Gemini: توليد مقال اليوم ───
+// ─── Gemini: اختيار موضوعات اليوم + توليد الموضوعات الكاملة ───
 
 function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
@@ -125,60 +130,230 @@ function extractJson(text) {
   return JSON.parse(s.slice(start, end + 1));
 }
 
-function buildArticlePrompt(trends) {
-  const list = trends
+function getAi() {
+  try {
+    // eslint-disable-next-line global-require
+    const { GoogleGenAI } = require('@google/genai');
+    return new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+  } catch (e) {
+    log('[radar] ⚠️ @google/genai غير متاح');
+    return null;
+  }
+}
+
+function isQuotaError(e) {
+  const msg = String((e && e.message) || e);
+  return e?.status === 429 || msg.includes('429') || msg.includes('Quota') || msg.includes('quota');
+}
+
+function buildTrendsList(trends) {
+  return trends
     .map((t, i) => `${i + 1}. [${t.region}] ${t.title}${t.traffic ? ` (${t.traffic} بحث)` : ''}`)
     .join('\n');
-  return `أنت كاتب تحليلي قانوني خبير في تحرير النشرة اليومية لموقع «منصة المحامي الرقمية» (مصري).
+}
+
+function buildTopicsPrompt(trends) {
+  const list = buildTrendsList(trends);
+  return `أنت محرر نشرة «رصد المحامي» لموقع «منصة المحامي الرقمية» (مصري).
 
 أهم الترندات الفعلية على Google اليوم (مصر + العالم):
 ${list}
 
-اكتب مقال «مقال اليوم» لصفحة رصد المحامي كالتالي:
-- العنوان: عنوان جذاب يعكس مضمون أهم الترندات.
-- مقدمة: 2-3 جمل تشير لأهم ما يدور عالمياً ومحلياً.
-- 3 إلى 5 أقسام، كل قسم يغطي ترنداً مهماً واحداً من القائمة من زاوية تحليلية عملية للمواطن المصري والمحامي (انعكاسه القانوني أو الاقتصادي أو الاجتماعي إن وُجد — دون اختلاق صلة قانونية حين لا توجد).
-- كل قسم: عنوان قصير + 2-3 فقرات (60-100 كلمة للفقرة).
-- أسلوب صحفي مهني محايد، عربي فصيح بلا مصطلحات أجنبية، بلا Markdown.
+اختر ${MAX_TOPICS} موضوعات هي الأهم بينها (الأكثر تأثيراً على المواطن المصري والمحامي، أو الأقرب للشأن القانوني والاقتصادي والاجتماعي) دون اختلاق صلة قانونية حين لا توجد.
+لكل موضوع:
+- slug: معرّف إنجليزي قصير بلا فراغات.
+- title: عنوان جذاب يعكس الخبر/الموضوع.
+- summary: ملخص للخبر في 2-3 جمل (60-90 كلمة) يلخص الحدث ولماذا يهم القارئ.
 أعد الناتج JSON فقط بهذا الشكل الصارم:
-{"title":"...","intro":"...","sections":[{"heading":"...","body":"...\n\n..."}]}`;
+{"topics":[{"slug":"...","title":"...","summary":"..."}]}`;
 }
 
-async function generateArticle(trends) {
-  let ai = null;
-  try {
-    // eslint-disable-next-line global-require
-    const { GoogleGenAI } = require('@google/genai');
-    ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-  } catch (e) {
-    log('[radar] ⚠️ @google/genai غير متاح — لن يُولَّد مقال اليوم');
-    return null;
-  }
+function buildTopicArticlePrompt(topic, trends) {
+  const list = buildTrendsList(trends);
+  return `أنت كاتب تحليلي قانوني مصري خبير، تكتب موضوعاً متعمقاً لصفحة «رصد المحامي».
 
-  const prompt = buildArticlePrompt(trends);
+الموضوع: ${topic.title}
+ملخصه: ${topic.summary}
+ترندات اليوم كسياق:
+${list}
+
+اكتب موضوعاً شاملاً عميقاً لا يقل عن ${MIN_TOPIC_WORDS} كلمة عربية (عدّ الكلمات بنفسك)، مرتّباً في 5-7 أقسام، كل قسم بعنوان فرعي قصير.
+المطلوب في المحتوى:
+- تغطية الخبر/الظاهرة من كل زاوية: الوقائع، السياق، الانعكاس القانوني (إن وُجد مع ذكر القانون والمادة بحذر ودون اختلاق أرقام)، الانعكاس الاقتصادي/الاجتماعي، آراء الخبراء، الأسئلة الشائعة، والتوقعات.
+- كل قسم: 3-5 فقرات قصيرة (70-120 كلمة) سهلة القراءة، مع عدم كتابة قسم "الخلاصة" النهائية.
+- أسلوب صحفي مهني محايد، عربي فصيح، بلا Markdown، بلا ترويسات.
+أعد الناتج JSON فقط بهذا الشكل الصارم:
+{"sections":[{"heading":"...","body":"..."}]}`;
+}
+
+function buildContinuePrompt(topic, currentWords) {
+  return `موضوعك عن «${topic.title}» بلغ ${currentWords} كلمة ونحن بحاجة إلى ما لا يقل عن ${MIN_TOPIC_WORDS} كلمة.
+أكمل التوسّع بإضافة أقسام وفقرات جديدة (زوايا وأمثلة وتفاصيل جديدة) دون تكرار ما سبق، ولا تكتب خاتمة نهائية.
+أعد JSON فقط: {"sections":[{"heading":"...","body":"..."}]}`;
+}
+
+async function runGenText(ai, model, prompt, isQuota) {
+  const result = await ai.models.generateContent({
+    model,
+    contents: [{ role: 'user', parts: [{ text: prompt }] }],
+    config: { temperature: 0.7, maxOutputTokens: 8192 },
+  });
+  const text = result?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') || '';
+  if (!text) throw new Error('رد فارغ');
+  return text;
+}
+
+async function generateTopics(ai, trends) {
+  const prompt = buildTopicsPrompt(trends);
   for (let attempt = 0; attempt < MODELS.length; attempt++) {
     const model = MODELS[attempt % MODELS.length];
     try {
-      log(`[radar] ✍️ توليد مقال اليوم عبر Gemini (${model})...`);
-      const result = await ai.models.generateContent({
-        model,
-        contents: [{ role: 'user', parts: [{ text: prompt }] }],
-        config: { temperature: 0.7 },
-      });
-      const text = result?.candidates?.[0]?.content?.parts?.map((p) => p.text).join('') || '';
-      if (!text) throw new Error('رد فارغ');
-      const article = extractJson(text);
-      if (!article.title || !article.sections?.length) throw new Error('بنية مقال غير صالحة');
-      log(`[radar] ✅ اكتمل مقال اليوم (${article.sections.length} أقسام): ${article.title}`);
-      return article;
+      log(`[radar] ✍️ اختيار موضوعات اليوم عبر Gemini (${model})...`);
+      const text = await runGenText(ai, model, prompt);
+      const data = extractJson(text);
+      const topics = (data.topics || [])
+        .slice(0, MAX_TOPICS)
+        .map((t) => ({ slug: String(t.slug || '').replace(/[^\w-]/g, '-'), title: String(t.title || '').trim(), summary: String(t.summary || '').trim() }))
+        .filter((t) => t.title);
+      if (!topics.length) throw new Error('لا موضوعات في الرد');
+      log(`[radar] ✅ اختير ${topics.length} موضوعات: ${topics.map((t) => t.title).join(' | ')}`);
+      return topics;
     } catch (e) {
       log(`[radar] ⚠️ محاولة ${model} فشلت: ${e.message}`);
-      if (e.status === 429 || String(e.message).includes('429') || String(e.message).includes('Quota')) {
-        await sleep(15000);
-      }
+      if (isQuotaError(e)) await sleep(15000);
+    }
+  }
+  return [];
+}
+
+function countTopicWords(sections) {
+  return (sections || []).reduce((n, s) => n + String(s.body || '').trim().split(/\s+/).filter(Boolean).length, 0);
+}
+
+async function extendTopicArticle(ai, topic, currentWords) {
+  const prompt = buildContinuePrompt(topic, currentWords);
+  for (let attempt = 0; attempt < MODELS.length; attempt++) {
+    const model = MODELS[attempt % MODELS.length];
+    try {
+      const text = await runGenText(ai, model, prompt);
+      const data = extractJson(text);
+      if (Array.isArray(data.sections)) return data.sections;
+    } catch (e) {
+      log(`[radar] ⚠️ تمديد ${model} فشل: ${e.message}`);
+      if (isQuotaError(e)) await sleep(15000);
     }
   }
   return null;
+}
+
+async function generateTopicArticle(ai, topic, trends) {
+  const prompt = buildTopicArticlePrompt(topic, trends);
+  let sections = [];
+  for (let attempt = 0; attempt < MODELS.length; attempt++) {
+    const model = MODELS[attempt % MODELS.length];
+    try {
+      log(`[radar] ✍️ توليد موضوع «${topic.title}» عبر Gemini (${model})...`);
+      const text = await runGenText(ai, model, prompt);
+      const data = extractJson(text);
+      if (Array.isArray(data.sections) && data.sections.length) {
+        sections = data.sections;
+        break;
+      }
+      throw new Error('بنية موضوع غير صالحة');
+    } catch (e) {
+      log(`[radar] ⚠️ محاولة ${model} فشلت: ${e.message}`);
+      if (isQuotaError(e)) await sleep(15000);
+    }
+  }
+  if (!sections.length) return null;
+  let words = countTopicWords(sections);
+  log(`[radar] ℹ️ «${topic.title}»: ${sections.length} قسم / ${words} كلمة`);
+  if (words < MIN_TOPIC_WORDS) {
+    log(`[radar] ✍️ تمديد «${topic.title}» للوصول إلى ${MIN_TOPIC_WORDS}+ كلمة...`);
+    const extra = await extendTopicArticle(ai, topic, words);
+    if (Array.isArray(extra) && extra.length) sections = sections.concat(extra);
+    words = countTopicWords(sections);
+  }
+  log(`[radar] ✅ «${topic.title}»: ${sections.length} قسم / ${words} كلمة`);
+  return { sections };
+}
+
+// ─── توليد صور البطاقات (بنفس آلية المدونة: Nano Banana → Pollinations → Unsplash) ───
+
+const IMAGE_MODEL = 'gemini-2.5-flash-image'; // Nano Banana
+const RADAR_IMAGES_DIR = path.join(ROOT, 'public', 'radar-images');
+const IMG_FALLBACK = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&h=675&q=80';
+
+async function downloadImage(url) {
+  const res = await fetch(url, { signal: AbortSignal.timeout(25000) });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  if (buf.length < 10000) throw new Error('صورة صغيرة/فارغة');
+  return buf;
+}
+
+async function generateTopicImage(ai, topic) {
+  // 1) Nano Banana — نفس أسلوب المدونة (gemini-2.5-flash-image)
+  if (ai) {
+    try {
+      const imagePrompt = `ارسم صورة توضيحية احترافية (flat illustration) بجودة عالية للموضوع التالي:
+الموضوع: ${topic.title}
+الملخص: ${topic.summary}
+الأسلوب: رسوم توضيحية حديثة بخلفية متدرجة داكنة (كحلي/بنفسجي)، أيقونات واضحة، ألوان نابضة، بدون أي نصوص أو حروف مكتوبة في الصورة.`;
+      const resp = await ai.models.generateContent({
+        model: IMAGE_MODEL,
+        contents: [{ text: imagePrompt }],
+        config: {
+          responseModalities: ['IMAGE', 'TEXT'],
+          imageConfig: { aspectRatio: '16:9', imageSize: '1K' },
+        },
+      });
+      const parts = resp.candidates?.[0]?.content?.parts || [];
+      const img = parts.find((p) => p.inlineData && p.inlineData.data);
+      if (img) {
+        const buf = Buffer.from(img.inlineData.data, 'base64');
+        if (buf.length >= 5000) return buf;
+      }
+      log('[radar] ⚠️ Nano Banana لم يرجِع صورة — ننتقل للبدائل');
+    } catch (e) {
+      log(`[radar] ⚠️ ${IMAGE_MODEL} فشل: ${String((e && e.message) || e).slice(0, 90)}`);
+    }
+  }
+  // 2) Pollinations (ذكاء مجاني — نفس ترتيب المدونة)
+  try {
+    const enPrompt = `${topic.title}. ${topic.summary}. Egyptian legal topic, professional editorial photography, high quality, sharp, no text, no words, no letters`;
+    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(enPrompt)}?width=1200&height=675&nologo=true&seed=${Date.now() % 100000}`;
+    return await downloadImage(url);
+  } catch (e) {
+    log(`[radar] ⚠️ Pollinations فشل: ${String((e && e.message) || e).slice(0, 70)}`);
+  }
+  // 3) Unsplash عام (قانون) — حل أخير
+  try {
+    return await downloadImage(IMG_FALLBACK);
+  } catch (e) {
+    log(`[radar] ⚠️ Unsplash فشل: ${String((e && e.message) || e).slice(0, 70)}`);
+  }
+  return null;
+}
+
+async function saveTopicImage(buf, topic, date) {
+  if (!buf) return null;
+  try {
+    const dir = path.join(RADAR_IMAGES_DIR, date);
+    fs.mkdirSync(dir, { recursive: true });
+    const slug = (topic.slug || topic.title || 'topic').replace(/[^\w-]/g, '-');
+    // eslint-disable-next-line global-require
+    const sharp = require('sharp');
+    const out = await sharp(buf).resize(1200, 675, { fit: 'cover', position: 'centre' }).jpeg({ quality: 82, mozjpeg: true }).toBuffer();
+    const file = path.join(dir, `${slug}.jpg`);
+    fs.writeFileSync(file, out);
+    const url = `/radar-images/${date}/${slug}.jpg`;
+    log(`[radar] 🖼️ صورة «${topic.title}»: ${url} (${Math.round(out.length / 1024)} KB)`);
+    return url;
+  } catch (e) {
+    log(`[radar] ⚠️ حفظ الصورة فشل: ${String((e && e.message) || e).slice(0, 70)}`);
+    return null;
+  }
 }
 
 // ─── الأرشيف ───
@@ -206,74 +381,101 @@ function saveArchive(articles) {
 
 // ─── البناء ───
 
-function buildTopicCards(article) {
-  if (!article) return '';
-  const cards = (article.sections || [])
-    .map(
-      (s, i) => `<article class="topic-card">
-        <div class="topic-num">${String(i + 1).padStart(2, '0')}</div>
+function buildTopicCard(t, i) {
+  const sections = t.sections || [];
+  const full = sections.length
+    ? sections
+        .map(
+          (s) => `<div class="full-sec">
+        <h4>${esc(s.heading)}</h4>
+        ${String(s.body || '')
+          .split(/\n+/)
+          .map((p) => `<p>${esc(p.trim())}</p>`)
+          .join('\n        ')}
+      </div>`
+        )
+        .join('\n    ')
+    : '<div class="full-sec full-empty"><p>🕐 المحتوى الكامل لهذا الموضوع قيد التوليد — سيظهر تلقائياً في التحديث القادم.</p></div>';
+  const words = countTopicWords(sections);
+  const img = t.image
+    ? `<img class="topic-img" src="${esc(t.image)}" alt="${esc(t.title)}" loading="lazy" width="1200" height="675" />`
+    : '';
+  const hint = words > 0
+    ? `📖 اضغط لعرض الموضوع الكامل (${words.toLocaleString('ar-EG')} كلمة)`
+    : '📖 اضغط لعرض الموضوع الكامل';
+  return `<details class="topic-card" id="topic-${i + 1}">
+    <summary class="topic-summary">
+      ${img}
+      <div class="topic-head">
+        <span class="topic-num">${String(i + 1).padStart(2, '0')}</span>
         <div class="topic-body">
-          <h3>${esc(s.heading)}</h3>
-          ${String(s.body || '')
-            .split(/\n+/)
-            .map((p) => `<p>${esc(p.trim())}</p>`)
-            .join('\n          ')}
+          <h3>${esc(t.title)}</h3>
+          <p>${esc(t.summary || '')}</p>
+          <span class="topic-hint">${hint}</span>
         </div>
-      </article>`
-    )
-    .join('\n    ');
-  return cards;
+      </div>
+    </summary>
+    <div class="topic-full">
+      ${full}
+    </div>
+  </details>`;
 }
 
-function buildArticle(article, date) {
-  if (!article) return '';
-  return `<section class="article" id="article-today">
-    <div class="article-badge">📰 موضوعات اليوم — ${esc(date)}</div>
-    <h2 class="article-title">${esc(article.title)}</h2>
-    <div class="article-intro">
-      ${esc(article.intro || '').split(/\n+/).map((p) => `<p>${esc(p.trim())}</p>`).join('\n      ')}
-    </div>
+function buildToday(topics, date) {
+  if (!topics || !topics.length) return '';
+  const cards = topics.map(buildTopicCard).join('\n    ');
+  return `<div class="section">
+    <div class="section-title"><span class="dot"></span> موضوعات اليوم (${esc(date)})</div>
+    <p class="section-sub">كل بطاقة تعرض عنوان الخبر وملخصه وصورته — اضغط على البطاقة لقراءة الموضوع كاملاً.</p>
     <div class="topic-grid">
-    ${buildTopicCards(article)}
+    ${cards}
     </div>
-  </section>`;
+  </div>`;
+}
+
+function normalizeEntryTopics(e) {
+  if (Array.isArray(e?.topics) && e.topics.length) return e.topics;
+  if (e?.article) {
+    return [
+      {
+        title: e.article.title || 'مقال اليوم',
+        summary: e.article.intro || '',
+        sections: e.article.sections || [],
+        image: null,
+      },
+    ];
+  }
+  return [];
 }
 
 function buildArchive(entries) {
   if (!entries.length) return '';
   const details = entries
     .map((e) => {
-      const sections = (e.article?.sections || [])
-        .map(
-          (s) => `<div class="arch-sec">
-            <h4>${esc(s.heading)}</h4>
-            ${String(s.body || '')
-              .split(/\n+/)
-              .map((p) => `<p>${esc(p.trim())}</p>`)
-              .join('\n            ')}
-          </div>`
-        )
-        .join('\n          ');
+      const topics = normalizeEntryTopics(e);
+      const inner = topics
+        .map((t, i) => buildTopicCard({ ...t }, i))
+        .join('\n    ');
       return `<details class="arch-item">
-    <summary>${esc(e.date)} — ${esc(e.article?.title || 'مقال اليوم')}</summary>
+    <summary>${esc(e.date)} — ${esc((e.topics?.[0]?.title) || (e.article?.title) || 'موضوعات اليوم')}</summary>
     <div class="arch-body">
-      ${esc(e.article?.intro || '')}
-      ${sections}
+      ${inner}
     </div>
   </details>`;
     })
     .join('\n  ');
   return `<div class="archive">
     <div class="section-title"><span class="dot dot-cyan"></span> أرشيف الأيام الأخيرة</div>
-    <p class="section-sub">مقالات رصد المحامي السابقة — اضغط على أي يوم لعرض مقاله كاملاً.</p>
+    <p class="section-sub">موضوعات رصد المحامي السابقة — اضغط على أي يوم ثم على أي بطاقة لقراءة موضوعه كاملاً.</p>
     ${details}
   </div>`;
 }
 
-function buildPage(todayArticle, archiveEntries, generatedAt) {
-  const articleHtml = buildArticle(todayArticle, todayStr());
+function buildPage(todayTopics, archiveEntries, generatedAt) {
+  const todayHtml = buildToday(todayTopics, todayStr());
   const archiveHtml = buildArchive(archiveEntries);
   const nowISO = new Date(Date.now() + 120 * 60000).toISOString();
+  const headline = todayTopics?.[0]?.title || 'رصد المحامي — موضوعات اليوم';
 
   return `<!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -297,7 +499,7 @@ function buildPage(todayArticle, archiveEntries, generatedAt) {
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}","logo":"${BASE_URL}/logo.png"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"${esc(todayArticle?.title || 'رصد المحامي — مقال اليوم')}","datePublished":"${nowISO}","dateModified":"${nowISO}","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"mainEntityOfPage":"${BASE_URL}/legal-radar.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"${esc(headline)}","datePublished":"${nowISO}","dateModified":"${nowISO}","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"mainEntityOfPage":"${BASE_URL}/legal-radar.html"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"${BASE_URL}"},{"@type":"ListItem","position":2,"name":"رصد المحامي","item":"${BASE_URL}/legal-radar.html"}]}</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -356,19 +558,27 @@ function buildPage(todayArticle, archiveEntries, generatedAt) {
     .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; }
 
     .article { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
-    .article-badge { display: inline-block; padding: 6px 16px; border-radius: 999px; background: rgba(244,63,94,0.12); border: 1px solid rgba(244,63,94,0.3); color: #fda4af; font-size: 11px; font-weight: 800; margin-bottom: 14px; }
-    .article-title { font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 900; color: #fff; line-height: 1.4; margin-bottom: 10px; }
-    .article-intro { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 18px 22px; margin-bottom: 20px; }
-    .article-intro p { font-size: 14.5px; color: #e2e8f0; margin-bottom: 10px; }
-    .article-intro p:last-child { margin-bottom: 0; }
 
-    .topic-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .topic-card { display: flex; gap: 16px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 20px 22px; transition: border-color 0.25s, transform 0.25s; }
+    .topic-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    .topic-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; overflow: hidden; transition: border-color 0.25s, transform 0.25s; }
     .topic-card:hover { border-color: rgba(244,63,94,0.35); transform: translateY(-3px); }
+    .topic-card[open] { border-color: rgba(244,63,94,0.5); }
+    .topic-summary { list-style: none; cursor: pointer; }
+    .topic-summary::-webkit-details-marker { display: none; }
+    .topic-img { width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 16/9; border-bottom: 1px solid var(--border); }
+    .topic-head { display: flex; gap: 16px; padding: 18px 20px; align-items: flex-start; }
     .topic-num { font-size: 20px; font-weight: 900; color: transparent; background: linear-gradient(135deg, #f43f5e, #a855f7); -webkit-background-clip: text; background-clip: text; min-width: 40px; text-align: center; line-height: 1.3; }
-    .topic-body h3 { font-size: 15.5px; font-weight: 900; color: #fff; line-height: 1.5; margin-bottom: 8px; }
-    .topic-body p { font-size: 13.5px; color: #cbd5e1; line-height: 1.85; margin-bottom: 8px; }
-    .topic-body p:last-child { margin-bottom: 0; }
+    .topic-body h3 { font-size: 16.5px; font-weight: 900; color: #fff; line-height: 1.5; margin-bottom: 6px; }
+    .topic-body p { font-size: 13.5px; color: var(--muted); line-height: 1.8; margin-bottom: 8px; }
+    .topic-hint { display: inline-block; font-size: 11px; font-weight: 800; color: var(--indigo); }
+    .topic-card[open] .topic-hint::after { content: " ▲"; font-size: 9px; }
+    .topic-card:not([open]) .topic-hint::after { content: " ▼"; font-size: 9px; }
+    .topic-full { padding: 0 22px 22px; }
+    .full-sec { padding: 16px 0 4px; border-top: 1px solid var(--border); }
+    .full-sec h4 { font-size: 16px; font-weight: 900; color: #fda4af; margin-bottom: 10px; }
+    .full-sec p { font-size: 14.5px; color: #e2e8f0; margin-bottom: 12px; line-height: 1.9; }
+    .full-empty { border-top: none !important; text-align: center; }
+    .full-empty p { color: var(--muted); font-size: 13px; margin: 8px 0; }
 
     .archive { max-width: 900px; margin: 0 auto; padding: 0 24px 56px; }
     .arch-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
@@ -377,7 +587,7 @@ function buildPage(todayArticle, archiveEntries, generatedAt) {
     .arch-item summary::before { content: "◀"; font-size: 10px; color: var(--cyan); transition: transform 0.2s; }
     .arch-item[open] summary::before { transform: rotate(-90deg); }
     .arch-body { padding: 0 22px 18px; font-size: 14px; color: #cbd5e1; border-top: 1px dashed var(--border); padding-top: 14px; }
-    .arch-body p { margin-bottom: 10px; }
+    .arch-body > p { margin-bottom: 10px; }
     .arch-sec { margin-top: 14px; }
     .arch-sec h4 { font-size: 14px; font-weight: 900; color: #fda4af; margin-bottom: 6px; }
 
@@ -402,7 +612,7 @@ function buildPage(todayArticle, archiveEntries, generatedAt) {
     .footer-col ul a:hover { color: var(--indigo); }
     .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
 
-    @media (max-width: 760px) { .topic-grid { grid-template-columns: 1fr; } .footer-grid { grid-template-columns: 1fr; gap: 28px; } .nav-links { display: none; } }
+    @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } .nav-links { display: none; } }
   </style>
 </head>
 <body>
@@ -434,7 +644,7 @@ function buildPage(todayArticle, archiveEntries, generatedAt) {
     <span class="updated">آخر تحديث: ${esc(generatedAt)} بتوقيت القاهرة</span>
   </div>
 
-  ${articleHtml}
+  ${todayHtml}
 
   <!-- TOP AD -->
   <div class="ad-slot" role="complementary" aria-label="إعلان">
@@ -521,30 +731,40 @@ async function main() {
   const articles = loadArchive();
   let todayEntry = articles.find((e) => e.date === today);
 
-  // 3) مقال اليوم (مرة واحدة فقط في اليوم)
+  // 3) موضوعات اليوم (مرة واحدة فقط في اليوم) — مقال كامل + صورة لكل بطاقة
   if (!todayEntry && process.env.GEMINI_API_KEY) {
-    const article = await generateArticle(freshTrends);
-    if (article) {
-      todayEntry = {
-        date: today,
-        generatedAt,
-        title: article.title,
-        article,
-        trends: freshTrends,
-      };
-      articles.unshift(todayEntry);
-      saveArchive(articles);
+    const ai = getAi();
+    if (ai) {
+      const topics = await generateTopics(ai, freshTrends);
+      if (topics.length) {
+        const full = [];
+        for (const t of topics) {
+          const article = await generateTopicArticle(ai, t, freshTrends);
+          const imgUrl = await saveTopicImage(await generateTopicImage(ai, t), t, today);
+          full.push({ ...t, sections: article ? article.sections : [], image: imgUrl });
+          await sleep(2000);
+        }
+        if (full.length) {
+          todayEntry = { date: today, generatedAt, topics: full, trends: freshTrends };
+          articles.unshift(todayEntry);
+          saveArchive(articles);
+        }
+      }
     }
   }
 
   const archiveEntries = articles.filter((e) => e.date !== today).slice(0, MAX_ARCHIVE_SHOWN);
 
   // 4) بناء الصفحة
-  const html = buildPage(todayEntry?.article || null, archiveEntries, generatedAt);
+  const html = buildPage(todayEntry?.topics || [], archiveEntries, generatedAt);
   fs.writeFileSync(OUT_FILE, html, 'utf8');
 
-  const articleStatus = todayEntry ? `موضوعات: «${todayEntry.title}»` : (process.env.GEMINI_API_KEY ? 'لا موضوعات (فشل التوليد)' : 'بدون GEMINI_API_KEY');
-  log(`[radar] ✅ تم توليد ${OUT_FILE} (${articleStatus} | أرشيف ${archiveEntries.length} يوم)`);
+  const topicStatus = todayEntry?.topics?.length
+    ? `${todayEntry.topics.length} بطاقات (${todayEntry.topics.map((t) => t.title).join(' | ')})`
+    : process.env.GEMINI_API_KEY
+      ? 'لا موضوعات (فشل التوليد)'
+      : 'بدون GEMINI_API_KEY';
+  log(`[radar] ✅ تم توليد ${OUT_FILE} (${topicStatus} | أرشيف ${archiveEntries.length} يوم)`);
 }
 
 main().catch((e) => {

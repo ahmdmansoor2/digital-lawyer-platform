@@ -166,21 +166,22 @@ function buildContractDoc(contract, idx) {
   const clausesHtml = buildClauses(contract, fieldMap);
   const introHtml = renderFieldedText(contract.arabicIntro || '', fieldMap);
   const fieldsHtml = buildFieldChips(contract);
-  return `<section class="doc" id="doc-${esc(contract.id)}">
-    <div class="doc-head">
+  return `<details class="doc doc-card" id="doc-${esc(contract.id)}">
+    <summary class="doc-head">
       <div>
         <div class="doc-cat">${esc(repair(contract.category))}</div>
-        <h3 class="doc-title">${esc(repair(contract.name))}</h3>
+        <h3 class="doc-title"><span class="doc-num">${String(idx + 1).padStart(2, '0')}</span>${esc(repair(contract.name))}</h3>
         <p class="doc-desc">${esc(repair(contract.description))}</p>
+        <span class="doc-hint">📖 اضغط لعرض النص كاملاً</span>
       </div>
-      <button class="copy-btn" type="button" onclick="copyText(this)" data-plain="${esc(JSON.stringify(plain))}">📄 نسخ النص كاملاً</button>
-    </div>
+      <button class="copy-btn" type="button" onclick="event.stopPropagation(); copyText(this)" data-plain="${esc(JSON.stringify(plain))}">📄 نسخ النص كاملاً</button>
+    </summary>
     ${fieldsHtml}
     <div class="doc-body">
       ${introHtml}
       ${clausesHtml}
     </div>
-  </section>`;
+  </details>`;
 }
 
 function buildSections(contracts) {
@@ -195,6 +196,7 @@ function buildSections(contracts) {
       const docs = byCat[cat].map((c, i) => buildContractDoc(c, i)).join('\n    ');
       return `<div class="cat-block">
     <h2 class="cat-title">${esc(cat)}</h2>
+    <p class="cat-sub">كل عقد في بطاقة مستقلة — اضغط على أي بطاقة لعرض نص العقد كاملاً.</p>
     ${docs}
     </div>`;
     })
@@ -356,12 +358,23 @@ function buildPage(contracts, legal) {
     .container { max-width: 1000px; margin: 0 auto; padding: 0 24px 40px; }
     .cat-title { font-size: 22px; font-weight: 900; color: #fff; margin: 36px 0 20px; display: flex; align-items: center; gap: 12px; }
     .cat-title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(6,182,212,0.4), transparent); }
+    .cat-sub { font-size: 12.5px; color: var(--muted); margin-top: -14px; margin-bottom: 18px; }
 
-    .doc { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 28px 30px; margin-bottom: 24px; }
-    .doc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; margin-bottom: 18px; flex-wrap: wrap; }
+    .doc { background: var(--card-bg); border: 1px solid var(--border); border-radius: 18px; padding: 24px 26px; margin-bottom: 20px; transition: border-color 0.25s, transform 0.25s; }
+    .doc:hover { border-color: rgba(6,182,212,0.35); transform: translateY(-2px); }
+    .doc-card[open] { border-color: rgba(6,182,212,0.5); }
+    .doc-card > .doc-head { list-style: none; cursor: pointer; margin-bottom: 0; }
+    .doc-card > .doc-head::-webkit-details-marker { display: none; }
+    .doc-card[open] > .doc-head { border-bottom: 1px solid var(--border); padding-bottom: 14px; margin-bottom: 16px; }
+    .memo-doc > .doc-head { margin-bottom: 18px; }
+    .doc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; flex-wrap: wrap; }
     .doc-cat { display: inline-block; font-size: 10px; font-weight: 800; color: #67e8f9; background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.25); padding: 4px 12px; border-radius: 999px; margin-bottom: 8px; }
-    .doc-title { font-size: 19px; font-weight: 900; color: #fff; line-height: 1.4; }
+    .doc-title { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 900; color: #fff; line-height: 1.4; }
+    .doc-num { font-size: 17px; font-weight: 900; color: transparent; background: linear-gradient(135deg, #06b6d4, #a855f7); -webkit-background-clip: text; background-clip: text; min-width: 30px; text-align: center; }
     .doc-desc { font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.7; }
+    .doc-hint { display: inline-block; margin-top: 10px; font-size: 11px; font-weight: 800; color: var(--cyan); }
+    .doc-card[open] .doc-hint::after { content: " ▲"; font-size: 9px; }
+    .doc-card:not([open]) .doc-hint::after { content: " ▼"; font-size: 9px; }
     .copy-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 12px; border: 1px solid rgba(16,185,129,0.4); background: rgba(16,185,129,0.1); color: #6ee7b7; font-family: inherit; font-size: 12px; font-weight: 800; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
     .copy-btn:hover { background: rgba(16,185,129,0.2); }
 
