@@ -572,6 +572,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1036363326051224",
       "publishedAt": "2026-08-10T16:13:04.265Z"
+    },
+    {
+      "topicId": "blog-property-tax-egypt",
+      "kind": "short",
+      "videoId": "PdPMarChgu0",
+      "url": "https://www.youtube.com/watch?v=PdPMarChgu0",
+      "fbPermalink": "https://www.facebook.com/reel/915801604905515",
+      "publishedAt": "2026-08-10T19:16:24.874Z"
+    },
+    {
+      "topicId": "blog-property-tax-egypt",
+      "title": "الضريبة العقارية في مصر: كيف تُحتسب ومتى تُدفع؟ - منصة المحامي الرقمية — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-property-tax-egypt-wide.mp4",
+      "source": "blog",
+      "videoId": "f1UXoujrtLE",
+      "url": "https://www.youtube.com/watch?v=f1UXoujrtLE",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/915801604905515",
+      "publishedAt": "2026-08-10T19:17:35.121Z"
     }
   ]
 }
