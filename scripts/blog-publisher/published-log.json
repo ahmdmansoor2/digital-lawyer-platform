@@ -710,6 +710,68 @@
       "words": 3095,
       "image": "pollinations",
       "model": "gemini-flash-lite-latest"
+    },
+    {
+      "title": "حضانة الطفل في القانون المصري: الأسباب القانونية لإسقاط الحضانة وإجراءات التقاضي بالتفصيل",
+      "date": "2026-08-10",
+      "slug": "martial-rape-custody",
+      "url": "https://mohamidigital.online/blog/martial-rape-custody.html",
+      "tags": [
+        "حضانة الطفل"
+      ],
+      "words": 3579,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "الضريبة العقارية في مصر: كيف تُحتسب ومتى تُدفع؟",
+      "date": "2026-08-10",
+      "slug": "property-tax-egypt",
+      "url": "https://mohamidigital.online/blog/property-tax-egypt.html",
+      "tags": [
+        "ضريبة التصرفات العقارية"
+      ],
+      "words": 3882,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "تسجيل علامة تجارية في مصر: الدليل القانوني الشامل لخطوات التسجيل وآليات الحماية القضائية",
+      "date": "2026-08-10",
+      "slug": "trademark-registration-egypt",
+      "url": "https://mohamidigital.online/blog/trademark-registration-egypt.html",
+      "tags": [
+        "تسجيل علامة تجارية",
+        "العلامات التجارية",
+        "الملكية الفكرية"
+      ],
+      "words": 3748,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "حقوق المرأة في الميراث: ميراث البنت الوحيدة من أمها والضمانات القانونية في مصر",
+      "date": "2026-08-10",
+      "slug": "inheritance-women-rights",
+      "url": "https://mohamidigital.online/blog/inheritance-women-rights.html",
+      "tags": [
+        "ميراث البنت الوحيدة من أمها"
+      ],
+      "words": 3883,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "تأسيس شركة مقاولات في مصر والمنازعات القانونية: بنود الحماية الاستراتيجية ودعاوى التشييد والبناء",
+      "date": "2026-08-10",
+      "slug": "construction-contract-disputes",
+      "url": "https://mohamidigital.online/blog/construction-contract-disputes.html",
+      "tags": [
+        "تأسيس شركة مقاولات في مصر"
+      ],
+      "words": 3880,
+      "image": "pollinations",
+      "model": "gemini-3-flash-preview"
     }
   ],
   "skipped": [
@@ -792,5 +854,5 @@
       "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\child-custody-egypt-1785581807609.json"
     }
   ],
-  "last_run": "2026-08-09T15:11:38.684Z"
+  "last_run": "2026-08-10T10:28:09.211Z"
 }
