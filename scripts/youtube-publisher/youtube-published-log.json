@@ -553,6 +553,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1391147182971170",
       "publishedAt": "2026-08-10T13:43:24.058Z"
+    },
+    {
+      "topicId": "blog-trademark-registration-egypt",
+      "kind": "short",
+      "videoId": "sFOQqPMiI7U",
+      "url": "https://www.youtube.com/watch?v=sFOQqPMiI7U",
+      "fbPermalink": "https://www.facebook.com/reel/1036363326051224",
+      "publishedAt": "2026-08-10T16:12:03.990Z"
+    },
+    {
+      "topicId": "blog-trademark-registration-egypt",
+      "title": "تسجيل علامة تجارية في مصر: الدليل القانوني الشامل لخطوات التسجيل وآليات الحماية — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-trademark-registration-egypt-wide.mp4",
+      "source": "blog",
+      "videoId": "22qLAd3yxJg",
+      "url": "https://www.youtube.com/watch?v=22qLAd3yxJg",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1036363326051224",
+      "publishedAt": "2026-08-10T16:13:04.265Z"
     }
   ]
 }
