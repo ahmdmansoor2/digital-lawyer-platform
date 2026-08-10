@@ -27,6 +27,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
+const { headerMarkup, HEADER_CSS } = require('./unified-header.cjs');
 
 const ROOT = path.join(__dirname, '..', '..');
 try {
@@ -624,31 +625,14 @@ function buildTopicPage(t, i, date) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
+  ${HEADER_CSS}
 ${schemas.map((s) => `  <script type="application/ld+json">${s}</script>`).join('\n')}
   <style>
 ${RADAR_CSS}
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <div class="logo-icon">⚖️</div>
-        <div>
-          <div class="logo-name">منصة المحامي الرقمية</div>
-          <div class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</div>
-        </div>
-      </a>
-      <div class="nav-links">
-        <a href="/">الرئيسية</a>
-        <a href="/features.html">المميزات</a>
-        <a href="/blog/">المدونة</a>
-        <a href="/legal-forms.html">صيغ العقود والدعاوي</a>
-        <a href="/contact.html">تواصل معنا</a>
-      </div>
-      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
-    </div>
-  </nav>
+  ${headerMarkup('radar')}
   <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><a href="/legal-radar.html">رصد المحامي</a><span class="sep">›</span><span class="current">${esc(t.title)}</span></nav>
 
   <div class="article">
@@ -758,6 +742,7 @@ function buildPage(todayTopics, archiveEntries, generatedAt) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
+  ${HEADER_CSS}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}","logo":"${BASE_URL}/logo.png"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"${esc(headline)}","datePublished":"${nowISO}","dateModified":"${nowISO}","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"mainEntityOfPage":"${BASE_URL}/legal-radar.html"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"${BASE_URL}"},{"@type":"ListItem","position":2,"name":"رصد المحامي","item":"${BASE_URL}/legal-radar.html"}]}</script>
@@ -766,25 +751,7 @@ ${RADAR_CSS}
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <div class="logo-icon">⚖️</div>
-        <div>
-          <div class="logo-name">منصة المحامي الرقمية</div>
-          <div class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</div>
-        </div>
-      </a>
-      <div class="nav-links">
-        <a href="/">الرئيسية</a>
-        <a href="/features.html">المميزات</a>
-        <a href="/blog/">المدونة</a>
-        <a href="/legal-forms.html">صيغ العقود والدعاوي</a>
-        <a href="/contact.html">تواصل معنا</a>
-      </div>
-      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
-    </div>
-  </nav>
+  ${headerMarkup('radar')}
   <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><span class="current">رصد المحامي</span></nav>
 
   <div class="hero">
@@ -888,7 +855,7 @@ const RADAR_CSS = `    *, *::before, *::after { box-sizing: border-box; margin: 
         radial-gradient(ellipse at 90% 70%, rgba(16,185,129,0.1) 0%, transparent 50%);
     }
 
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    nav:not(.header-nav) { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
     .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .logo-icon { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 20px rgba(99,102,241,0.35); }

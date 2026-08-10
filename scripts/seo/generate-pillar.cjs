@@ -15,6 +15,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { headerMarkup, HEADER_CSS } = require('./unified-header.cjs');
 const dotenv = require('dotenv');
 const { GoogleGenAI } = require('@google/genai');
 
@@ -216,6 +217,7 @@ function buildHtml(pillar, keyword) {
   <script type="application/ld+json">${JSON.stringify(articleSchema)}</script>
   <script type="application/ld+json">${JSON.stringify(faqSchema)}</script>
   <script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>
+  ${HEADER_CSS}
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -247,6 +249,7 @@ function buildHtml(pillar, keyword) {
   </style>
 </head>
 <body>
+  ${headerMarkup('pillars')}
   <nav class="breadcrumb">
     <a href="/">الرئيسية</a> › <a href="/pillars/">المراجع القانونية</a> › <span>${title}</span>
   </nav>

@@ -14,6 +14,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { headerMarkup, HEADER_CSS } = require('./unified-header.cjs');
 
 const ROOT = path.join(__dirname, '..', '..');
 const OUT_FILE = path.join(ROOT, 'public', 'legal-forms.html');
@@ -230,30 +231,13 @@ function buildContractPage(contract, idx) {
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
 ${schemas.map((s) => `  <script type="application/ld+json">${s}</script>`).join('\n')}
+  ${HEADER_CSS}
   <style>
 ${PAGE_CSS}
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <div class="logo-icon">⚖️</div>
-        <div>
-          <div class="logo-name">منصة المحامي الرقمية</div>
-          <div class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</div>
-        </div>
-      </a>
-      <div class="nav-links">
-        <a href="/">الرئيسية</a>
-        <a href="/features.html">المميزات</a>
-        <a href="/blog/">المدونة</a>
-        <a href="/legal-radar.html">رصد المحامي</a>
-        <a href="/contact.html">تواصل معنا</a>
-      </div>
-      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
-    </div>
-  </nav>
+  ${headerMarkup('forms')}
   <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><a href="/legal-forms.html">صيغ العقود والدعاوي</a><span class="sep">›</span><span class="current">${esc(repair(contract.name))}</span></nav>
 
   <div class="hero">
@@ -397,30 +381,13 @@ function buildMemoPage(def, templates) {
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
 ${schemas.map((s) => `  <script type="application/ld+json">${s}</script>`).join('\n')}
+  ${HEADER_CSS}
   <style>
 ${PAGE_CSS}
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <div class="logo-icon">⚖️</div>
-        <div>
-          <div class="logo-name">منصة المحامي الرقمية</div>
-          <div class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</div>
-        </div>
-      </a>
-      <div class="nav-links">
-        <a href="/">الرئيسية</a>
-        <a href="/features.html">المميزات</a>
-        <a href="/blog/">المدونة</a>
-        <a href="/legal-radar.html">رصد المحامي</a>
-        <a href="/contact.html">تواصل معنا</a>
-      </div>
-      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
-    </div>
-  </nav>
+  ${headerMarkup('forms')}
   <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><a href="/legal-forms.html">صيغ العقود والدعاوي</a><span class="sep">›</span><span class="current">${esc(def.name)}</span></nav>
 
   <div class="hero">
@@ -733,30 +700,13 @@ function buildPage(contracts, legal) {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"${BASE_URL}"},{"@type":"ListItem","position":2,"name":"صيغ العقود والدعاوي","item":"${BASE_URL}/legal-forms.html"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"صيغ العقود والدعاوي","itemListElement":[${itemList}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[${faqJson}]}</script>
+  ${HEADER_CSS}
   <style>
 ${PAGE_CSS}
   </style>
 </head>
 <body>
-  <nav>
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <div class="logo-icon">⚖️</div>
-        <div>
-          <div class="logo-name">منصة المحامي الرقمية</div>
-          <div class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</div>
-        </div>
-      </a>
-      <div class="nav-links">
-        <a href="/">الرئيسية</a>
-        <a href="/features.html">المميزات</a>
-        <a href="/blog/">المدونة</a>
-        <a href="/legal-radar.html">رصد المحامي</a>
-        <a href="/contact.html">تواصل معنا</a>
-      </div>
-      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
-    </div>
-  </nav>
+  ${headerMarkup('forms')}
   <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><span class="current">صيغ العقود والدعاوي</span></nav>
 
   <div class="hero">
@@ -891,7 +841,7 @@ const PAGE_CSS = `    *, *::before, *::after { box-sizing: border-box; margin: 0
         radial-gradient(ellipse at 90% 30%, rgba(124,58,237,0.14) 0%, transparent 50%);
     }
 
-    nav { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    nav:not(.header-nav) { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
     .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
     .logo-icon { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 20px rgba(99,102,241,0.35); }

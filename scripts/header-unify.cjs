@@ -10,6 +10,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { headerMarkup, HEADER_CSS } = require('./seo/unified-header.cjs');
 
 const ROOT = path.resolve(__dirname, '..');
 const PUBLIC = path.join(ROOT, 'public');
@@ -92,6 +93,8 @@ const NEW_JS = `  <script>
 
 const NAV_RE = /([ \t]*)<nav class="header-nav"[^>]*>[\s\S]*?<\/nav>/;
 const JS_RE = /([ \t]*)<script>\s*\(function\(\)\{\s*var hdr=document\.getElementById\('siteHeader'\);[\s\S]*?<\/script>/;
+const RADAR_NAV_RE = /([ \t]*)<nav>\s*<div class="nav-inner">[\s\S]*?<\/nav>/;
+const RADAR_NAV_CSS_RE = /nav \{ position: sticky; top: 0;/;
 
 function activeFor(rel) {
   const p = rel.replace(/\\/g, '/');
@@ -136,6 +139,7 @@ function main() {
   let updated = 0;
   let skipped = 0;
   let jsUpdated = 0;
+  let radarFixed = 0;
   for (const file of files) {
     let html = fs.readFileSync(file, 'utf8');
     const rel = path.relative(PUBLIC, file);
@@ -143,6 +147,18 @@ function main() {
 
     const navMatch = html.match(NAV_RE);
     if (!navMatch) {
+      const radarMatch = html.match(RADAR_NAV_RE);
+      if (radarMatch) {
+        const navHtml = indentBlock(headerMarkup('radar').split('\n'), radarMatch[1]);
+        html = html.replace(RADAR_NAV_RE, navHtml);
+        if (!html.includes('/header.css')) {
+          html = html.replace(/\n(\s*)<style>/, `\n${HEADER_CSS}\n$1<style>`);
+        }
+        html = html.replace(RADAR_NAV_CSS_RE, 'nav:not(.header-nav) { position: sticky; top: 0;');
+        fs.writeFileSync(file, html, 'utf8');
+        radarFixed++;
+        continue;
+      }
       skipped++;
       continue;
     }
@@ -155,11 +171,15 @@ function main() {
       html = html.replace(JS_RE, jsHtml);
       jsUpdated++;
     }
+    if (RADAR_NAV_CSS_RE.test(html)) {
+      html = html.replace(RADAR_NAV_CSS_RE, 'nav:not(.header-nav) { position: sticky; top: 0;');
+    }
     fs.writeFileSync(file, html, 'utf8');
     updated++;
   }
   console.log(`✓ headers updated: ${updated}`);
   console.log(`✓ header JS updated: ${jsUpdated}`);
+  console.log(`✓ radar headers fixed: ${radarFixed}`);
   console.log(`○ skipped (no header): ${skipped}`);
 }
 
