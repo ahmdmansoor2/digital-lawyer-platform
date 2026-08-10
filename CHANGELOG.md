@@ -4,6 +4,20 @@
 
 ---
 
+## [v2.14.6] — 2026-08-10 (🛡️ الشريط العلوي الموحد لا يُفقد من صفحات CI)
+
+### المشكلة
+`daily-blog-post.yml` كان يعيد توليد `legal-radar.html` و`radar-topics/*.html` **بلا أي header** ثم ينشرها حياً (المحلي سليم والحيّ خاسر) — لأن مولدات CI كانت تصدّر هيدراً قديماً خاصاً أو لا تصدّر هيدراً أصلاً (pillars)، وقاعدة CSS العامة `nav { position: sticky; }` كانت تكسر `.header-nav`.
+
+### الإصلاح
+- **وحدة مشتركة `scripts/seo/unified-header.cjs`** (`headerMarkup(activeKey)` + `HEADER_CSS`) — مصدر موحّد واحد يستورده أي مولد.
+- ضبط المولدات الثلاثة: `generate-radar.cjs`، `generate-legal-forms.cjs`، `generate-pillar.cjs` — كلها تصدر الآن الشريط الموحد بدل الهيدر القديم/غيابه، وقواعد `nav {}` أصبحت `nav:not(.header-nav) {}`.
+- `header-unify.cjs` يدعم صفحات radar القديمة + يطبّق scoping تلقائياً على أي ملف فيه `nav {}` عام مع هيدر.
+- إعادة توليد `legal-forms.html` + `legal-forms-docs` (22 صفحة) — إصلاح تداخل `<nav><header>` غير صالح سابق.
+- النشر الحي: 7 مسارات كلها 200 مع `site-header` + `nav-more-btn` بلا قاعدة `nav {}` متعارضة. commit `9cf269e`.
+
+---
+
 ## [v2.14.5] — 2026-08-09 (🔑 كلمات مفتاحية حقيقية من Google + صفحة «لماذا تثق بنا» + استرداد مقالات CI)
 
 ### 🔑 كلمات مفتاحية حقيقية من Google للمدونة

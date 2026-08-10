@@ -432,3 +432,31 @@ commit `54e9559` — تم push. تحقق بـ `firebase deploy --only hosting:ap
 - **Search Console:** بانتظار المستخدم — إرسال `sitemap.xml` (القائمة الجانبية → Sitemaps).
 - الملفات untracked المتروكة عمداً كما هي: `public/search*`, `public/legal-library.html`, `SiteSearchModal.tsx`, `scripts/facebook-reels/`, إلخ.
 - إصلاح الرموز التالفة في `src/data/*.ts` نفسها (إن رغب المستخدم) — تعرض في التطبيق كرموز غريبة.
+
+---
+
+## حالة الجلسة الحالية: Session 15 — منع فقدان الشريط العلوي الموحد في صفحات CI (مكتمل)
+
+### المشكلة
+بعد نشر توحيد الشريط (`d02282f`)، اكتُشف أن `daily-blog-post.yml` أعاد توليد `legal-radar.html` و`radar-topics/*.html` **بلا أي header إطلاقاً** ثم نشرها على الموقع الحي (المحلي سليم والحيّ خاسر). السبب: مولدات CI (`generate-radar.cjs` / `generate-legal-forms.cjs` / `generate-pillar.cjs`) كانت تُصدّر هيدراً قديماً خاصاً أو لا تُصدر هيدراً أصلاً (pillars)، وقاعدة CSS العامة `nav { position: sticky; ... }` في أنماطها كانت تتعارض مع `.header-nav` في `header.css`.
+
+### ما تم
+1. **وحدة مشتركة جديدة `scripts/seo/unified-header.cjs`** — `headerMarkup(activeKey)` يُصدّر الشريط الموحد كاملاً (6 روابط أساسية + قائمة «المزيد» + سكربت التفاعل) + `HEADER_CSS` (رابط `header.css`). يستوردها أي مولّد ليطابق صفحاته التوحيد تماماً.
+2. **ضبط المولدات الثلاثة:**
+   - `generate-radar.cjs`: القالبان (صفحة الموضوع + الفهرس) يستخدمان `headerMarkup('radar')` + `HEADER_CSS` بدل الهيدر القديم؛ قاعدة `nav {}` أصبحت `nav:not(.header-nav) {}`.
+   - `generate-legal-forms.cjs`: نفس الاستبدال في القوالب الثلاثة (عقود + مذكرات + فهرس) + scoping قاعدة `nav {}`.
+   - `generate-pillar.cjs`: كان بلا هيدر إطلاقاً — أصبح يُصدر `headerMarkup('pillars')` + `HEADER_CSS` قبل الـ breadcrumb.
+3. **`header-unify.cjs`**: يدعم الآن صفحة radar القديمة (النمط `<nav><div class="nav-inner">`) ويستبدلها بالهيدر الموحّد + يضيف رابط `header.css` + يطبّق `nav:not(.header-nav)` على **أي** ملف فيه قاعدة `nav {}` عامة مع هيدر (شمل `blog/index.html` و`pillars/index.html` و`radar-topics/*` و`legal-forms-docs/*`).
+4. **إعادة توليد `legal-forms.html` + `legal-forms-docs` (22 صفحة)** — أصلح هذا **تداخل `<nav><header class="site-header">` غير صالح** كان موجوداً في الملفات الملتفة سابقاً (النصوص والترميز سليمة UTF-8).
+5. **النشر الحي:** `npm run build` + `npx firebase deploy --only hosting:app` → تحقق من 7 مسارات (`legal-radar.html`، `radar-topics/*`، `legal-forms.html`، `legal-forms-docs/sale_contract.html`، `blog/index.html`، `pillars/index.html`، `header.css`) كلها **200** مع `site-header` + `nav-more-btn` + صفر قاعدة `nav {}` متعارضة.
+6. **git:** commit `9cf269e` (بعد rebase على `997aa6f`) — 33 ملفاً، مدفوع. ملاحظة: أثناء rebase تعارضت ملفات radar-topics الثلاثة لأن origin/main كانت قد التزمت نسخاً بلا هيدر من CI — حُسم لصالح نسختنا المصحّحة (`checkout --theirs`).
+
+### دروس
+- **الدرس الجوهري:** أي مولد HTML يُشغَّل في CI يجب أن يستورد `unified-header.cjs` (أو أي مصدر موحّد واحد) — لا يُكتَب فيه هيدر يدوي خاص، لأنه سيتفوق على التوحيد في كل رن.
+- **قاعدة CSS عامة** `nav { position: sticky; }` في صفحة تحوي `header.css` تكسر `.header-nav` (sticky + خلفية زجاجية فوق الهيدر) — الحل `nav:not(.header-nav)`.
+- تعارض radar-topics أثناء rebase يؤكد: **أي سكربت CI يعيد توليد صفحات ثابتة يجب أن يُصدّر الهيدر الموحّد، وإلا الرن التالي يعيد الخطأ.**
+
+### متبقٍّ / ملاحظات
+- عمل React في الـ working tree **غير ملتزم** (بشأنه): `index.html` (BUILD_VERSION v5) + `src/components/{ContractGenerator,FirebaseLoginScreen,InfoCenter,QuickActionHeader}.tsx` + `src/index.css` — موضوع جلسة لاحقة.
+- `index.html` في جذر المشروع (Vite) — ليس في `public/`.
+- untracked المتروكة: `docs/legal/`, `firebase_deploy.log.err`, `vite_build*.log.*`, `مذكرات/`.
