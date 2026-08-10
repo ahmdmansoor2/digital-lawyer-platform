@@ -515,6 +515,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1620025309458336",
       "publishedAt": "2026-08-10T08:04:41.884Z"
+    },
+    {
+      "topicId": "blog-construction-contract-disputes",
+      "kind": "short",
+      "videoId": "jwgUwNZ7R-0",
+      "url": "https://www.youtube.com/watch?v=jwgUwNZ7R-0",
+      "fbPermalink": "https://www.facebook.com/reel/1086119947432124",
+      "publishedAt": "2026-08-10T10:31:27.598Z"
+    },
+    {
+      "topicId": "blog-construction-contract-disputes",
+      "title": "تأسيس شركة مقاولات في مصر والمنازعات القانونية: بنود الحماية الاستراتيجية ودعاوى — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-construction-contract-disputes-wide.mp4",
+      "source": "blog",
+      "videoId": "zH4qlV5nT6o",
+      "url": "https://www.youtube.com/watch?v=zH4qlV5nT6o",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1086119947432124",
+      "publishedAt": "2026-08-10T10:32:29.792Z"
     }
   ]
 }
