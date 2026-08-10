@@ -496,6 +496,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1509848907826479",
       "publishedAt": "2026-08-09T19:00:50.468Z"
+    },
+    {
+      "topicId": "blog-labor-overtime-rights",
+      "kind": "short",
+      "videoId": "tevn4D8kW6o",
+      "url": "https://www.youtube.com/watch?v=tevn4D8kW6o",
+      "fbPermalink": "https://www.facebook.com/reel/1620025309458336",
+      "publishedAt": "2026-08-10T08:03:48.021Z"
+    },
+    {
+      "topicId": "blog-labor-overtime-rights",
+      "title": "قانون العمل الجديد وأجر الساعات الإضافية في مصر: دليل شامل للحساب والحقوق - منصة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-labor-overtime-rights-wide.mp4",
+      "source": "blog",
+      "videoId": "gFa3EOuhNJg",
+      "url": "https://www.youtube.com/watch?v=gFa3EOuhNJg",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1620025309458336",
+      "publishedAt": "2026-08-10T08:04:41.884Z"
     }
   ]
 }
