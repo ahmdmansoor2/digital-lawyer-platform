@@ -534,6 +534,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1086119947432124",
       "publishedAt": "2026-08-10T10:32:29.792Z"
+    },
+    {
+      "topicId": "blog-inheritance-women-rights",
+      "kind": "short",
+      "videoId": "0oXeG3b_ooU",
+      "url": "https://www.youtube.com/watch?v=0oXeG3b_ooU",
+      "fbPermalink": "https://www.facebook.com/reel/1391147182971170",
+      "publishedAt": "2026-08-10T13:42:18.868Z"
+    },
+    {
+      "topicId": "blog-inheritance-women-rights",
+      "title": "حقوق المرأة في الميراث: ميراث البنت الوحيدة من أمها والضمانات القانونية في مصر - — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-inheritance-women-rights-wide.mp4",
+      "source": "blog",
+      "videoId": "OBfUi7LrueY",
+      "url": "https://www.youtube.com/watch?v=OBfUi7LrueY",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1391147182971170",
+      "publishedAt": "2026-08-10T13:43:24.058Z"
     }
   ]
 }
