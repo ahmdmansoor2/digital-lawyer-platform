@@ -1,11 +1,11 @@
 {
   "date": "2026-08-10",
-  "generatedAt": "2026-08-10T07:08:53.339Z",
+  "generatedAt": "2026-08-10T18:39:49.607Z",
   "status": "error",
   "blogArticles": 100,
-  "fbPosts": 0,
-  "reels": 0,
-  "ghRuns": 18,
+  "fbPosts": 30,
+  "reels": 4,
+  "ghRuns": 19,
   "checks": [
     {
       "name": "site_root",
@@ -34,8 +34,8 @@
     {
       "name": "facebook",
       "label": "فيسبوك: منشورات اليوم والصور والريلز",
-      "status": "warn",
-      "findings": 2
+      "status": "ok",
+      "findings": 0
     },
     {
       "name": "github_runs",
@@ -46,8 +46,8 @@
     {
       "name": "log_vs_live",
       "label": "الاستضافة: تطابق سجلّ النشر مع المحتوى الحي",
-      "status": "ok",
-      "findings": 0
+      "status": "warn",
+      "findings": 2
     }
   ]
 }
