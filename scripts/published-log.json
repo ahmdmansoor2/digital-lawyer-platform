@@ -1314,6 +1314,48 @@
       "words": 3880,
       "image": "pollinations",
       "model": "gemini-3-flash-preview"
+    },
+    {
+      "title": "حبس المتهم احتياطيا في القانون المصري: الضوابط والمدد القانونية وشروط إخلاء السبيل",
+      "date": "2026-08-11",
+      "slug": "criminal-polygraph-law",
+      "url": "https://mohamidigital.online/blog/criminal-polygraph-law.html",
+      "tags": [
+        "حبس احتياطي",
+        "حبس الحدث احتياطيا في القانون المصري",
+        "حبس الطفل احتياطيا"
+      ],
+      "words": 3847,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "دليل محامين الإسكندرية: كيف تجد المحامي الأنسب لقضيتك وتضمن حقوقك القانونية؟",
+      "date": "2026-08-11",
+      "slug": "alexandria-lawyers-directory",
+      "url": "https://mohamidigital.online/blog/alexandria-lawyers-directory.html",
+      "tags": [
+        "محامين الاسكندرية",
+        "محامي اسكندرية",
+        "محامي اسرة في الاسكندرية"
+      ],
+      "words": 3611,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "تظلمات الثانوية العامة: الإجراءات القانونية والمواعيد والرسوم وكيفية استرداد حقوقك بالكامل",
+      "date": "2026-08-11",
+      "slug": "high-school-grievance-procedure",
+      "url": "https://mohamidigital.online/blog/high-school-grievance-procedure.html",
+      "tags": [
+        "تظلمات الثانوية العامة",
+        "تظلم الثانوية العامة 2026",
+        "تظلمات الثانوية الازهرية"
+      ],
+      "words": 3514,
+      "image": "pollinations",
+      "model": "gemini-3.5-flash"
     }
   ]
 }
