@@ -591,6 +591,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/915801604905515",
       "publishedAt": "2026-08-10T19:17:35.121Z"
+    },
+    {
+      "topicId": "blog-martial-rape-custody",
+      "kind": "short",
+      "videoId": "W1OkFu56WAE",
+      "url": "https://www.youtube.com/watch?v=W1OkFu56WAE",
+      "fbPermalink": "https://www.facebook.com/reel/3431396307039032",
+      "publishedAt": "2026-08-11T07:28:08.006Z"
+    },
+    {
+      "topicId": "blog-martial-rape-custody",
+      "title": "حضانة الطفل في القانون المصري: الأسباب القانونية لإسقاط الحضانة وإجراءات التقاضي — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-martial-rape-custody-wide.mp4",
+      "source": "blog",
+      "videoId": "pAwWYNmGrnE",
+      "url": "https://www.youtube.com/watch?v=pAwWYNmGrnE",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/3431396307039032",
+      "publishedAt": "2026-08-11T07:29:08.370Z"
     }
   ]
 }
