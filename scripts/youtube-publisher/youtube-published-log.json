@@ -667,6 +667,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2056966194933087",
       "publishedAt": "2026-08-11T16:14:20.371Z"
+    },
+    {
+      "topicId": "blog-marital-housing-rights",
+      "kind": "short",
+      "videoId": "TUukyVZzEgw",
+      "url": "https://www.youtube.com/watch?v=TUukyVZzEgw",
+      "fbPermalink": "https://www.facebook.com/reel/1314161340538359",
+      "publishedAt": "2026-08-11T19:20:51.723Z"
+    },
+    {
+      "topicId": "blog-marital-housing-rights",
+      "title": "قانون الاسرة الجديد ومسكن الزوجية: دليل شامل لمن له حق البقاء في المنزل - منصة ا — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-marital-housing-rights-wide.mp4",
+      "source": "blog",
+      "videoId": "yC1lC-GnNKs",
+      "url": "https://www.youtube.com/watch?v=yC1lC-GnNKs",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1314161340538359",
+      "publishedAt": "2026-08-11T19:21:41.348Z"
     }
   ]
 }
