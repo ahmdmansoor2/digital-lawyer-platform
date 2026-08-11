@@ -610,6 +610,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/3431396307039032",
       "publishedAt": "2026-08-11T07:29:08.370Z"
+    },
+    {
+      "topicId": "blog-high-school-grievance-procedure",
+      "kind": "short",
+      "videoId": "WJ1PeYdPO3M",
+      "url": "https://www.youtube.com/watch?v=WJ1PeYdPO3M",
+      "fbPermalink": "https://www.facebook.com/reel/1565115618424935",
+      "publishedAt": "2026-08-11T10:14:09.494Z"
+    },
+    {
+      "topicId": "blog-high-school-grievance-procedure",
+      "title": "تظلمات الثانوية العامة: الإجراءات القانونية والمواعيد والرسوم وكيفية استرداد حقو — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-high-school-grievance-procedure-wide.mp4",
+      "source": "blog",
+      "videoId": "Ywihw1Do5j8",
+      "url": "https://www.youtube.com/watch?v=Ywihw1Do5j8",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1565115618424935",
+      "publishedAt": "2026-08-11T10:15:31.799Z"
     }
   ]
 }
