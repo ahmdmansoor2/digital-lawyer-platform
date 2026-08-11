@@ -825,6 +825,27 @@
       "duration": "1د 13ث",
       "size": 30925457,
       "publishedAt": "2026-08-11T10:14:06.822Z"
+    },
+    {
+      "topicId": "blog-alexandria-lawyers-directory",
+      "title": "دليل محامين الإسكندرية: كيف تجد المحامي الأنسب لقضيتك وتضمن حقوقك القانونية؟ - منصة المحامي الرقمية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#مدينة",
+        "#الإسكندرية",
+        "#العاصمة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-alexandria-lawyers-directory.mp4",
+      "videoId": "1787464599103664",
+      "permalink": "https://www.facebook.com/reel/1787464599103664",
+      "source": "blog",
+      "duration": "48ث",
+      "size": 23252067,
+      "publishedAt": "2026-08-11T13:30:06.590Z"
     }
   ]
 }
