@@ -1356,6 +1356,30 @@
       "words": 3514,
       "image": "pollinations",
       "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "عقود الإيجار المصيفي والمدن الساحلية: نموذج عقد وضوابط حماية المؤجر والمستأجر",
+      "date": "2026-08-12",
+      "slug": "summer-rental-contracts-egypt",
+      "url": "https://mohamidigital.online/blog/summer-rental-contracts-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/summer-rental-contracts-egypt.jpg",
+      "tags": [
+        "القانون المدني"
+      ],
+      "words": 2293,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقود الرعاية وحقوق الاستغلال التجاري للصور والإعلانات في القانون المصري",
+      "date": "2026-08-12",
+      "slug": "image-rights-influencer-contracts-egypt",
+      "url": "https://mohamidigital.online/blog/image-rights-influencer-contracts-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/image-rights-influencer-contracts-egypt.jpg",
+      "tags": [
+        "الملكية الفكرية"
+      ],
+      "words": 2132,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
