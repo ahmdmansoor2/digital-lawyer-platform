@@ -4,6 +4,24 @@
 
 ---
 
+## [v2.17.0] — 2026-08-13 (🗑️ رصد المحامي بلا صور — إزالة توليد الصور نهائياً)
+
+### القرار
+- حذف الصور نهائياً من قسم **رصد المحامي** (`legal-radar.html` + صفحات `radar-topics/`): النشر أصبح **نصياً بلا صور** (قرار المستخدم — تقليل الاستهلاك وتبسيط الصيانة).
+
+### ما تم
+- `scripts/seo/generate-radar.cjs`: حذف كتلة توليد الصور كاملة (Nano Banana `gemini-2.5-flash-image` → Pexels → Pollinations → Unsplash) — الدوال `buildImagePrompt`/`downloadImage`/`fetchPexels`/`generateTopicImage`/`saveTopicImage` + `IMAGE_MODEL`/`RADAR_IMAGES_DIR`/`IMG_FALLBACK`/`KEYWORD_MAP`/`SCENE_MAP`، وعرض `<img>` في البطاقات وصفحات الموضوع، و`og:image`، وحقل `image` في JSON-LD NewsArticle، وقواعد CSS `.topic-img`/`.img-credit`/`.topic-img-wide`.
+- حذف كتلة `--refresh-images` (كانت تُشغَّل من الـ CI يومياً) وتحديث نداء توليد اليوم بلا حقلي `image`/`imageCredit`.
+- `.github/workflows/daily-blog-post.yml`: حذف `REFRESH_IMAGES: '1'` وسطر `public/radar-images/` من `git add` + تحديث رسالة الـ commit.
+- تنظيف المنشورات: حذف `public/radar-images/` (15 صورة) من git، وتجريد `public/legal-radar.html` و`radar-topics/*.html` (15 صفحة) من كل `<img>`/`og:image`/`"image"`/CSS، و`public/radar-archive.json` من حقلي `image`/`imageCredit` (30 مفتاحاً).
+- `npm run build` + deploy `hosting:app` → تحقق حي: `legal-radar.html` و`radar-topics/*` كلها 200 بلا أي مرجع `radar-images` (0 `<img>` / 0 `og:image`).
+- commit `f78d75f` (34 ملفاً، +55/−428) — بعد rebase على main المحدَّث.
+
+### متبقٍّ
+- `search-index.json` لا يزال أسبوعياً (فقط في `legal-library-update.yml`) — ثغرة ثابتة تُعالج في جلسة الأتمتة القادمة (إضافة `legal-forms-docs` و`radar-topics` للفهرس + توليد search-index في الـ workflows اليومية).
+
+---
+
 ## [v2.16.0] — 2026-08-13 (📚 المكتبة القانونية بمحتوى حقيقي مُدار عبر Gemini)
 
 ### المشكلة المُصلَحة
