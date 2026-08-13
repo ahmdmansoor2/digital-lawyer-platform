@@ -1,0 +1,185 @@
+html.public-theme-light,
+html.public-theme-light body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html.public-theme-dark,
+html.public-theme-dark body {
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+html.public-theme-light body {
+  background-image: none !important;
+}
+
+html.public-theme-light .site-header {
+  background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(248,250,252,.96)) !important;
+  border-bottom-color: #e2e8f0 !important;
+  box-shadow: 0 8px 28px rgba(15,23,42,.08) !important;
+}
+
+html.public-theme-light .brand-title,
+html.public-theme-light .nav-item,
+html.public-theme-light .nav-more-btn {
+  color: #334155 !important;
+  text-shadow: none !important;
+}
+
+html.public-theme-light .brand-subtitle {
+  color: #047857 !important;
+  text-shadow: none !important;
+}
+
+html.public-theme-light .nav-item:hover,
+html.public-theme-light .nav-more-btn:hover {
+  color: #1e1b4b !important;
+  background: rgba(99,102,241,.08) !important;
+}
+
+html.public-theme-light .nav-more-menu {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 20px 50px rgba(15,23,42,.14) !important;
+}
+
+html.public-theme-light .nav-more-item {
+  color: #475569 !important;
+}
+
+html.public-theme-light .nav-more-item:hover,
+html.public-theme-light .nav-more-item.active {
+  color: #1e1b4b !important;
+  background: #eef2ff !important;
+}
+
+html.public-theme-light .header-mobile-toggle {
+  background: #eef2ff !important;
+  border-color: #c7d2fe !important;
+  color: #3730a3 !important;
+}
+
+.public-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 7px 11px;
+  border: 1px solid rgba(148,163,184,.28);
+  border-radius: 11px;
+  background: rgba(255,255,255,.07);
+  color: #e2e8f0;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+  white-space: nowrap;
+}
+
+.public-theme-toggle span:first-child {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.public-theme-toggle:hover {
+  background: rgba(99,102,241,.16);
+  border-color: rgba(99,102,241,.45);
+  color: #ffffff;
+}
+
+.public-theme-toggle:active {
+  transform: scale(.97);
+}
+
+.public-theme-toggle:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 2px;
+}
+
+html.public-theme-light .public-theme-toggle {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #334155;
+  box-shadow: 0 2px 8px rgba(15,23,42,.06);
+}
+
+html.public-theme-light .public-theme-toggle:hover {
+  background: #eef2ff;
+  border-color: #a5b4fc;
+  color: #312e81;
+}
+
+@media (max-width: 480px) {
+  .public-theme-toggle {
+    min-height: 36px;
+    padding: 6px 9px;
+  }
+
+  .public-theme-toggle span:last-child {
+    display: none;
+  }
+}
+
+/* Most static pages use the same semantic variables in their inline styles. */
+html.public-theme-light {
+  --bg: #f8fafc !important;
+  --bg2: #ffffff !important;
+  --bg3: rgba(241, 245, 249, 0.9) !important;
+  --border: rgba(148, 163, 184, 0.28) !important;
+  --text: #0f172a !important;
+  --muted: #64748b !important;
+  --card-bg: rgba(255, 255, 255, 0.9) !important;
+}
+
+html.public-theme-light body {
+  background-color: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+html.public-theme-light .vision-card,
+html.public-theme-light .info-card,
+html.public-theme-light .features-grid {
+  background: var(--card-bg) !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08) !important;
+}
+
+html.public-theme-light .vision-content h2,
+html.public-theme-light .info-card h3,
+html.public-theme-light .features-grid h3,
+html.public-theme-light .footer-logo-name,
+html.public-theme-light .footer-col h4 {
+  color: #0f172a !important;
+}
+
+html.public-theme-light .feat-item {
+  background: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+html.public-theme-light .feat-item .feat-label {
+  color: #4338ca !important;
+}
+
+html.public-theme-light .feat-item.emerald .feat-label {
+  color: #047857 !important;
+}
+
+html.public-theme-light footer {
+  background: #ffffff !important;
+  border-top-color: #e2e8f0 !important;
+}
+
+html.public-theme-light .ad-fallback {
+  background: #ffffff !important;
+  border-color: #c7d2fe !important;
+  color: #64748b !important;
+}
+
+html.public-theme-light .footer-bottom {
+  border-top-color: #e2e8f0 !important;
+  color: #64748b !important;
+}

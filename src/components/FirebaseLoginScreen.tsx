@@ -7,24 +7,15 @@
  */
 
 import React, { useState, useRef, useEffect } from 'react';
+import PublicThemeToggle from './PublicThemeToggle';
 import { getFirebase } from '../firebaseClient';
 import {
   Scale,
-  Mail,
   Lock,
-  Phone,
   Eye,
   EyeOff,
   Loader2,
-  Smartphone,
-  Briefcase,
-  Calendar,
-  FileText,
-  Calculator,
   Shield,
-  Check,
-  Sparkles,
-  Users,
 } from 'lucide-react';
 
 type AuthMode = 'login' | 'register' | 'phone';
@@ -71,15 +62,6 @@ export default function FirebaseLoginScreen({ onSuccess }: FirebaseLoginScreenPr
         console.warn('[FirebaseLoginScreen] redirect handler failed:', e);
       }
     })();
-  }, []);
-
-  // ── تأثير scroll على الهيدر ────────────────────────────────────
-  useEffect(() => {
-    const hdr = document.getElementById('siteHeader');
-    if (!hdr) return;
-    const onScroll = () => hdr.classList.toggle('scrolled', window.scrollY > 20);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const clearError = () => setError('');
@@ -290,298 +272,105 @@ export default function FirebaseLoginScreen({ onSuccess }: FirebaseLoginScreenPr
     }
   };
 
-  // ── قائمة مميزات المنصة (العمود التسويقي) ──────────────────────
-  const features = [
-    {
-      icon: Briefcase,
-      title: 'إدارة القضايا',
-      desc: 'تتبع كل قضية بمواعيدها وجلساتها ومستنداتها',
-      color: 'from-orange-500/25 to-rose-500/25',
-      iconColor: 'text-orange-400',
-    },
-    {
-      icon: Calendar,
-      title: 'تنبيهات الجلسات',
-      desc: 'تذكيرات ذكية قبل كل جلسة بأيام أو ساعات',
-      color: 'from-pink-500/25 to-rose-500/25',
-      iconColor: 'text-pink-400',
-    },
-    {
-      icon: FileText,
-      title: 'أوراق المحضرين',
-      desc: 'تنظيم محاضر الجلسات وربطها بالقضايا تلقائياً',
-      color: 'from-purple-500/25 to-fuchsia-500/25',
-      iconColor: 'text-purple-400',
-    },
-    {
-      icon: Calculator,
-      title: 'الحاسبات القانونية',
-      desc: 'حاسبات النفقة والميراث والتعويضات جاهزة',
-      color: 'from-amber-500/25 to-orange-500/25',
-      iconColor: 'text-amber-400',
-    },
-  ];
-
-  // ── روابط الصفحات التي تظهر أسفل بطاقة الدخول ──────────────────
-  const pageLinks = [
-    { href: '/about.html', label: 'عن المنصة', icon: '⚖️', color: 'warm' },
-    { href: '/features.html', label: 'المميزات', icon: '⚡', color: 'warm' },
-    { href: '/pricing.html', label: 'مجاني 100%', icon: '🎁', color: 'emerald' },
-    { href: '/blog/', label: 'المدونة', icon: '📚', color: 'warm' },
-    { href: '/contact.html', label: 'تواصل معنا', icon: '✉️', color: 'warm' },
-    { href: '/why-trust-us.html', label: 'لماذا تثق بنا', icon: '🛡️', color: 'emerald' },
-    { href: '/privacy.html', label: 'الخصوصية', icon: '🔐', color: 'emerald' },
-  ];
-
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // شاشة المصادقة intentionally محدودة بعناصر الدخول فقط؛ التفاصيل التسويقية متاحة في الصفحة العامة.
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0b0713] via-[#2b1020] to-[#0a0814] flex flex-col items-stretch justify-start w-full relative overflow-hidden" dir="rtl">
-      <div id="recaptcha-container" ref={recaptchaRef} />
-
-      {/* ── Unified Site Header (Navbar) ── */}
-      <header className="site-header w-full" id="siteHeader">
-        <div className="header-container">
-          <a href="/" className="header-logo" aria-label="منصة المحامي الرقمي - الرئيسية">
-            <div className="logo-badge">⚖️</div>
-            <div className="logo-text">
-              <span className="brand-title">المحامي الرقمي</span>
-              <span className="brand-subtitle">مساعدك القانوني الذكي · مجاناً</span>
-            </div>
-          </a>
-
-          <nav className={`header-nav ${mobileMenuOpen ? 'active' : ''}`} id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
-            <a href="/" className="nav-item active">🏠 الرئيسية</a>
-            <a href="/legal-library.html" className="nav-item">📚 المكتبة القانونية</a>
-            <a href="/pillars/" className="nav-item">🏛️ المراجع القانونية الشاملة</a>
-            <a href="/legal-forms.html" className="nav-item">📝 صيغ العقود والدعاوي</a>
-            <a href="/legal-radar.html" className="nav-item">🔍 رصد المحامي</a>
-            <a href="/privacy.html" className="nav-item">🔐 سياسة الخصوصية</a>
-            <a href="/contact.html" className="nav-item">📬 تواصل معنا</a>
-          </nav>
-
-          <div className="header-actions">
-            <a href="#login-card" className="header-cta">
-              <span>🚀</span>
-              <span>ابدأ مجاناً</span>
-            </a>
-            <button
-              className="header-mobile-toggle"
-              aria-label={mobileMenuOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
-              aria-expanded={mobileMenuOpen}
-              aria-controls="headerNav"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? '✕' : '☰'}
-            </button>
-          </div>
-        </div>
-      </header>
-
-      {/* Animated background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-orange-600/15 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-purple-700/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
-        <div className="absolute top-1/2 left-1/3 w-72 h-72 bg-pink-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.8s' }} />
-        <div className="absolute inset-0 opacity-[0.018]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+    <div className="public-site public-auth-screen relative min-h-screen bg-[radial-gradient(circle_at_top_right,rgba(79,70,229,0.18),transparent_36%),#020617] text-slate-100 flex items-center justify-center px-4 py-8 sm:py-12" dir="rtl">
+      <div className="absolute left-4 top-4 z-10 sm:left-6 sm:top-6">
+        <PublicThemeToggle />
       </div>
+      <div id="recaptcha-container" ref={recaptchaRef} />
+      <div className="w-full max-w-md">
+        <a href="/" className="mb-6 flex items-center justify-center gap-3 text-center" aria-label="العودة إلى الموقع التعريفي">
+          <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-950/50">
+            <Scale className="h-6 w-6 text-white" />
+          </span>
+          <span>
+            <span className="block text-sm font-black text-white">منصة المحامي الرقمية</span>
+            <span className="block text-[11px] text-slate-400">الدخول إلى مساحة العمل</span>
+          </span>
+        </a>
 
-      <div className="w-full max-w-6xl mx-auto relative z-10 px-4 sm:px-6 pt-8 pb-6">
-
-        {/* ── Header / Logo ── */}
-        <div className="text-center mb-8 space-y-3">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-3xl bg-gradient-to-br from-orange-500 via-pink-500 to-purple-600 shadow-2xl shadow-orange-500/30 mx-auto ring-1 ring-white/15">
-            <Scale className="w-8 h-8 text-white" />
-          </div>
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-500/10 border border-orange-500/25 text-orange-300 text-[11px] font-bold mb-2">
-              <Sparkles className="w-3 h-3" />
-              المنصة القانونية الأولى في مصر
+        <div className="rounded-[2rem] border border-white/10 bg-slate-900/95 p-6 shadow-2xl shadow-indigo-950/40 backdrop-blur-xl sm:p-8">
+          <div className="mb-6 text-center">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-500/15 text-indigo-300">
+              <Lock className="h-6 w-6" />
             </div>
-            <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight">منصة المحامي الرقمية</h1>
-            <p className="text-slate-400 text-sm mt-1 max-w-md mx-auto">إدارة مكتبك القانوني بذكاء وأمان — من القضايا إلى الجلسات في مكان واحد</p>
+            <h1 className="text-2xl font-black text-white">دخول المنصة</h1>
+            <p className="mt-2 text-sm leading-6 text-slate-400">أدخل إلى مساحة العمل الخاصة بك وتابع أعمال مكتبك بأمان.</p>
+          </div>
+
+          <div className="mb-6 flex items-start gap-3 rounded-2xl border border-emerald-400/15 bg-emerald-400/5 px-4 py-3 text-xs leading-6 text-slate-300">
+            <Shield className="mt-1 h-4 w-4 shrink-0 text-emerald-400" />
+            <span>تُحفظ بيانات العمل محلياً على جهازك وفق إعدادات المنصة. راجع <a href="/privacy.html" className="font-bold text-emerald-300 hover:text-emerald-200">سياسة الخصوصية</a> قبل إدخال بيانات حساسة.</span>
+          </div>
+
+          {error && (
+            <div className="mb-4 rounded-2xl border border-red-800/50 bg-red-950/40 px-4 py-3 text-center text-xs font-medium text-red-300" role="alert">
+              {error}
+            </div>
+          )}
+
+          <button onClick={handleGoogle} disabled={loading} className="w-full relative group overflow-hidden bg-white hover:bg-indigo-50 text-slate-900 py-4 px-6 rounded-2xl font-black text-sm shadow-xl shadow-indigo-950/30 border border-white transition-all duration-200 cursor-pointer disabled:opacity-50 flex items-center justify-center gap-3">
+            {loading ? <Loader2 className="h-5 w-5 animate-spin text-indigo-600" /> : (
+              <svg className="h-5 w-5 shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+            )}
+            <span>{loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول بحساب Google'}</span>
+          </button>
+
+          <div className="my-5 flex items-center gap-3 text-[11px] text-slate-600"><span className="h-px flex-1 bg-slate-800" /><span>أو</span><span className="h-px flex-1 bg-slate-800" /></div>
+
+          {mode !== 'phone' ? (
+            <form onSubmit={mode === 'register' ? handleRegister : handleEmailLogin} className="space-y-3">
+              {mode === 'register' && (
+                <label className="block text-xs font-bold text-slate-300">الاسم
+                  <input value={name} onChange={(e) => setName(e.target.value)} className="mt-1.5 w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-3 text-sm text-white outline-none transition focus:border-indigo-500" placeholder="اسمك أو اسم المكتب" autoComplete="name" />
+                </label>
+              )}
+              <label className="block text-xs font-bold text-slate-300">البريد الإلكتروني
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1.5 w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-3 text-sm text-white outline-none transition focus:border-indigo-500" placeholder="name@example.com" autoComplete="email" dir="ltr" />
+              </label>
+              <label className="block text-xs font-bold text-slate-300">كلمة المرور
+                <span className="relative mt-1.5 block">
+                  <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-3 pl-11 text-sm text-white outline-none transition focus:border-indigo-500" placeholder="••••••••" autoComplete={mode === 'register' ? 'new-password' : 'current-password'} dir="ltr" />
+                  <button type="button" onClick={() => setShowPassword((value) => !value)} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300" aria-label={showPassword ? 'إخفاء كلمة المرور' : 'إظهار كلمة المرور'}>{showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}</button>
+                </span>
+              </label>
+              <button type="submit" disabled={loading} className="w-full rounded-xl bg-indigo-600 py-3.5 text-sm font-black text-white transition hover:bg-indigo-500 disabled:opacity-50">{loading ? 'جاري المعالجة...' : mode === 'register' ? 'إنشاء الحساب' : 'تسجيل الدخول'}</button>
+            </form>
+          ) : (
+            !otpSent ? (
+              <form onSubmit={handleSendOTP} className="space-y-3">
+                <label className="block text-xs font-bold text-slate-300">رقم الهاتف المصري
+                  <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} className="mt-1.5 w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-3 text-sm text-white outline-none transition focus:border-indigo-500" placeholder="01012345678" autoComplete="tel" dir="ltr" />
+                </label>
+                <button type="submit" disabled={loading} className="w-full rounded-xl bg-indigo-600 py-3.5 text-sm font-black text-white transition hover:bg-indigo-500 disabled:opacity-50">{loading ? 'جاري إرسال الرمز...' : 'إرسال رمز التحقق'}</button>
+              </form>
+            ) : (
+              <form onSubmit={handleConfirmOTP} className="space-y-3">
+                <label className="block text-xs font-bold text-slate-300">رمز التحقق
+                  <input inputMode="numeric" value={otp} onChange={(e) => setOtp(e.target.value)} className="mt-1.5 w-full rounded-xl border border-white/10 bg-slate-950 px-3 py-3 text-center text-lg tracking-[0.4em] text-white outline-none transition focus:border-indigo-500" placeholder="123456" autoComplete="one-time-code" dir="ltr" />
+                </label>
+                <button type="submit" disabled={loading} className="w-full rounded-xl bg-indigo-600 py-3.5 text-sm font-black text-white transition hover:bg-indigo-500 disabled:opacity-50">{loading ? 'جاري التحقق...' : 'تأكيد الرمز'}</button>
+              </form>
+            )
+          )}
+
+          <div className="mt-5 flex items-center justify-between gap-3 text-xs">
+            <button type="button" onClick={() => { setMode(mode === 'register' ? 'login' : 'register'); clearError(); }} className="font-bold text-indigo-300 hover:text-indigo-200">{mode === 'register' ? 'لديك حساب؟ سجّل الدخول' : 'إنشاء حساب جديد'}</button>
+            <button type="button" onClick={() => { setMode(mode === 'phone' ? 'login' : 'phone'); clearError(); }} className="font-bold text-slate-400 hover:text-slate-200">{mode === 'phone' ? 'الدخول بالبريد' : 'الدخول بالهاتف'}</button>
           </div>
         </div>
 
-        {/* ── Main Grid: Marketing (left) + Login Form (right in RTL) ── */}
-        <div className="grid lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-12 items-start">
-
-          {/* ── عمود النموذج ── */}
-          <div className="order-1 space-y-4">
-            <div className="bg-slate-900/70 border border-white/10 rounded-3xl p-6 sm:p-7 backdrop-blur-xl shadow-2xl shadow-orange-950/40 space-y-5 ring-1 ring-white/10">
-
-              {/* Security badge */}
-              <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500 font-medium">
-                <Shield className="w-3 h-3 text-orange-400" />
-                <span>اتصال مشفّر • بياناتك آمنة معنا</span>
-              </div>
-
-              {/* ── تسجيل الدخول والإنشاء بحساب Google فقط ── */}
-              <div className="space-y-4 py-2">
-                <div className="text-center space-y-1">
-                  <h3 className="text-lg font-black text-white">الدخول بضغطة واحدة</h3>
-                  <p className="text-xs text-slate-400">سجّل دخولك أو أنشئ حسابك الجديد فوراً باستخدام حساب Google الخاص بك</p>
-                </div>
-
-                {/* رسالة الخطأ */}
-                {error && (
-                  <div className="bg-red-950/40 border border-red-800/50 rounded-2xl px-4 py-3 text-red-400 text-xs font-medium text-center">
-                    {error}
-                  </div>
-                )}
-
-                {/* ── زر Google ── */}
-                <button
-                  onClick={handleGoogle}
-                  disabled={loading}
-                  className="w-full relative group overflow-hidden bg-white hover:bg-orange-50 text-slate-900 py-4 px-6 rounded-2xl font-black text-base shadow-2xl shadow-orange-500/20 hover:shadow-orange-500/30 border border-white transition-all duration-200 cursor-pointer disabled:opacity-50 flex items-center justify-center gap-3"
-                >
-                  {loading ? (
-                    <Loader2 className="w-5 h-5 animate-spin text-orange-600" />
-                  ) : (
-                    <svg className="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24">
-                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                    </svg>
-                  )}
-                  <span>{loading ? 'جاري تسجيل الدخول...' : 'تسجيل الدخول بحساب Google'}</span>
-                </button>
-
-                <p className="text-[11px] text-slate-400 text-center font-medium">
-                  ⚡ سرعة وأمان بدون الحاجة لحفظ كلمات مرور جديدة
-                </p>
-              </div>
-
-              {/* مجاني 100% */}
-              <p className="text-center text-emerald-400 font-bold text-xs flex items-center justify-center gap-1.5 pt-1 border-t border-slate-800/80">
-                <span className="relative flex w-2 h-2">
-                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
-                </span>
-                المنصة مجانية بالكامل 100% لكل المحامين والقانونيين بدون أي رسوم
-              </p>
-            </div>
-
-            {/* ── روابط الصفحات — تظهر أسفل بطاقة الدخول ── */}
-            <div className="space-y-2">
-              <p className="text-center text-slate-500 text-[11px] font-bold">تعرّف على المنصة</p>
-              <div className="grid grid-cols-3 gap-2">
-                {pageLinks.slice(0, 3).map(link => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex flex-col items-center gap-1.5 py-3 px-2 rounded-2xl bg-slate-900/60 border transition text-center cursor-pointer ${
-                      link.color === 'emerald'
-                        ? 'border-emerald-800/40 hover:border-emerald-600/50 hover:bg-emerald-950/30'
-                        : 'border-white/10 hover:border-orange-500/50 hover:bg-orange-950/30 hover:-translate-y-0.5'
-                    }`}
-                  >
-                    <span className="text-xl">{link.icon}</span>
-                    <span className={`text-[10px] font-black ${
-                      link.color === 'emerald' ? 'text-emerald-400' : 'text-orange-200'
-                    }`}>{link.label}</span>
-                  </a>
-                ))}
-              </div>
-              <div className="grid grid-cols-3 gap-2">
-                {pageLinks.slice(3).map(link => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex flex-col items-center gap-1.5 py-3 px-2 rounded-2xl bg-slate-900/60 border transition text-center cursor-pointer ${
-                      link.color === 'emerald'
-                        ? 'border-emerald-800/40 hover:border-emerald-600/50 hover:bg-emerald-950/30'
-                        : 'border-white/10 hover:border-orange-500/50 hover:bg-orange-950/30 hover:-translate-y-0.5'
-                    }`}
-                  >
-                    <span className="text-xl">{link.icon}</span>
-                    <span className={`text-[10px] font-black ${
-                      link.color === 'emerald' ? 'text-emerald-400' : 'text-orange-200'
-                    }`}>{link.label}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* حقوق النشر */}
-            <p className="text-center text-slate-600 text-[10px] pb-2">
-              © 2026 منصة المحامي الرقمية •{' '}
-              <a href="/terms.html" target="_blank" rel="noopener" className="hover:text-slate-400 transition">الشروط والأحكام</a>
-            </p>
-          </div>
-
-          {/* ── العمود التسويقي (يظهر يسار في RTL، يختفي على الموبايل) ── */}
-          <div className="order-2 space-y-6 hidden lg:block">
-            <div className="space-y-3">
-              <h2 className="text-3xl xl:text-4xl font-black text-white leading-[1.3]">
-                كل ما يحتاجه مكتبك القانوني
-                <br />
-                <span className="bg-gradient-to-l from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-                  في مكان واحد
-                </span>
-              </h2>
-              <p className="text-slate-400 text-sm xl:text-base leading-relaxed max-w-md">
-                منصة متكاملة لإدارة القضايا والجلسات والموكلين والمحضرين — صُممت خصيصاً للمحامي المصري بأدوات ذكية وسير عمل سلس.
-              </p>
-            </div>
-
-            {/* Feature Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {features.map((feature, i) => (
-                <div
-                  key={i}
-                  className="group relative p-4 rounded-2xl bg-slate-900/40 border border-white/10 hover:border-orange-500/40 transition-all duration-300 hover:bg-slate-900/60 hover:-translate-y-0.5"
-                >
-                  <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-3 ring-1 ring-white/5`}>
-                    <feature.icon className={`w-5 h-5 ${feature.iconColor}`} />
-                  </div>
-                  <h3 className="text-white font-bold text-sm mb-1">{feature.title}</h3>
-                  <p className="text-slate-500 text-xs leading-relaxed">{feature.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Trust Signal */}
-            <div className="relative overflow-hidden p-5 rounded-2xl bg-gradient-to-br from-orange-950/40 via-pink-950/30 to-purple-950/30 border border-orange-800/40">
-              <div className="absolute -top-12 -left-12 w-32 h-32 bg-orange-500/15 rounded-full blur-2xl" />
-              <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-purple-500/15 rounded-full blur-2xl" />
-              <div className="relative flex items-center gap-4">
-                <div className="flex -space-x-2 space-x-reverse flex-shrink-0">
-                  {['from-orange-500 to-pink-600', 'from-pink-500 to-purple-600', 'from-purple-500 to-fuchsia-600', 'from-rose-500 to-orange-600'].map((gradient, i) => (
-                    <div key={i} className={`w-9 h-9 rounded-full bg-gradient-to-br ${gradient} border-2 border-slate-950`} />
-                  ))}
-                  <div className="w-9 h-9 rounded-full bg-slate-800 border-2 border-slate-950 flex items-center justify-center text-[10px] font-black text-orange-400">+</div>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-1.5 text-white font-bold text-sm">
-                    <Users className="w-3.5 h-3.5 text-orange-400 flex-shrink-0" />
-                    أكثر من 500 محامي يستخدمون المنصة
-                  </div>
-                  <p className="text-slate-500 text-xs mt-0.5">موثوق من نخبة المحامين والمستشارين القانونيين</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Highlights */}
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-400">
-              {[
-                { icon: Check, text: 'مجاني 100% بدون بطاقة ائتمان' },
-                { icon: Check, text: 'تشفير من الطرف للطرف' },
-                { icon: Check, text: 'دعم فني بالعربية' },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-1.5">
-                  <item.icon className="w-3.5 h-3.5 text-orange-400" />
-                  <span>{item.text}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="mt-5 flex items-center justify-center gap-4 text-xs text-slate-500">
+          <a href="/" className="transition hover:text-slate-300">العودة إلى الموقع</a>
+          <span aria-hidden="true">•</span>
+          <a href="/contact.html" className="transition hover:text-slate-300">تواصل معنا</a>
         </div>
       </div>
     </div>
