@@ -478,3 +478,32 @@ commit `54e9559` — تم push. تحقق بـ `firebase deploy --only hosting:ap
 - عمل React في الـ working tree **غير ملتزم** (بشأنه): `index.html` (BUILD_VERSION v5) + `src/components/{ContractGenerator,FirebaseLoginScreen,InfoCenter,QuickActionHeader}.tsx` + `src/index.css` — موضوع جلسة لاحقة.
 - `index.html` في جذر المشروع (Vite) — ليس في `public/`.
 - untracked المتروكة: `docs/legal/`, `firebase_deploy.log.err`, `vite_build*.log.*`, `مذكرات/`.
+
+---
+
+## حالة الجلسة الحالية: Session 17 — المكتبة القانونية بمحتوى حقيقي مُدار عبر Gemini (مكتمل)
+
+### المشكلة المُصلَحة
+صفحة `public/legal-library.html` (التي تفتحها بطاقة مركز المعلومات `/legal-library.html?from=app`) كانت تعرض **محتوى غير حقيقي**: إحصاءات منتفخة (`+15 قانون` / `+50 سابقة قضائية`) بينما البيانات الفعلية 16 مادة/~8 قوانين/4 سوابق، و«نماذج من المحتوى» ملفّقة، وFAQ تدّعي تحديثاً دورياً غير موجود، وبلا أي مولّد.
+
+### قرارات المستخدم الثلاثة
+1. **المصدر:** توليد Gemini مُدار مثل pillars.
+2. **النطاق:** الصفحة العامة فقط — **لا** مساس بتبويب التطبيق `LegalLibrary.tsx` / `src/data/mockLegalLibrary.ts` (لو تلف CP1256 الموجود فيه).
+3. **الوتيرة:** أسبوعياً (الاثنين 8ص).
+
+### ما أُنجز
+1. **`scripts/seo/generate-legal-library.cjs`** (جديد) — نمط `generate-pillar.cjs`: `@google/genai` + `GEMINI_API_KEY` + `TEXT_MODELS` احتياطية + `responseMimeType: application/json` + الهيدر الموحّد `headerMarkup('lib')`. **8 فروع** (مدني، جنائي، أحوال شخصية، إداري، تجاري، عمل، دستوري، مرافعات) → كل فرع **دليل ≥3000 كلمة** في `public/legal-library-topics/<slug>.html` (TOC + أقسام H2/H3 + FAQ + CTA + AdSense `3911754995`/`8981348923` + Schema Article/FAQ/Breadcrumb). **مصداقية إلزامية:** الروابط الداخلية من قوائم سلاگز مُتحقق منها على القرص (يُسقط المولّد المفقود). منشور `scripts/seo/legal-library-topics.json` يمنع الازدواج + أعلام `--branch <slug>`/`--force`/`--limit` + إعادة محاولة للمحتوى القصير (<2500 كلمة).
+2. **`public/legal-library.html`** — أعيد بناؤه بالكامل: **إحصاءات حقيقية محسوبة من الملفات** (8 فروع · 8 أدلة · +113 مقالاً · 56 صيغة)، بطاقات الأقسام → روابط الأدلة المولّدة، عينات حقيقية من الدليلين الأولين، روابط فعلية للمراجع الشاملة وأحدث المقالات، FAQ صادقة (إزالة ادعاء تحديث القوانين دورياً)، هيدر موحّد + إعلانات + `search.js` + Schema.
+3. **الـ SEO:** `generate-sitemap.cjs` — ثابت `LEGAL_LIBRARY_TOPICS_DIR` + إدخالات XML (monthly/0.8) + قسم في sitemap.html → sitemap.xml **224 رابطاً** (+8). `build-search-index.cjs` — `SEARCH_PATHS` جديد لـ `legal-library-topics/` (نوع pillar؛ **لازم يُضاف يدوياً** لأن المسح للجذر فقط) → search-index.json **152 صفحة** (+8).
+4. **`.github/workflows/legal-library-update.yml`** (جديد) — cron `0 5 * * 1` (الاثنين 8ص القاهرة) + `workflow_dispatch` → توليد الأدلة → sitemap + search-index → commit ("Legal Library Bot 📚") + push → build + deploy `hosting:app`.
+5. **التحقق:** 8 أدلة بلا روابط معطلة (تحقق سكربت: 14 رابطاً داخلياً حقيقياً في الدليل الجنائي مثلاً)، الفهرس بلا ادعاءات +15/+50 وبلا CSS مكسور قديم، build نجح، sitemap/search-index محدّثان.
+
+### أوامر مفيدة
+- `node scripts/seo/generate-legal-library.cjs` — توليد كل الفروع غير المنشورة + إعادة بناء الفهرس.
+- `node scripts/seo/generate-legal-library.cjs --branch civil-law-egypt-guide --force` — إعادة توليد فرع واحد رغماً عن المنشور.
+- `node scripts/blog-publisher/generate-sitemap.cjs` + `node scripts/seo/build-search-index.cjs` — بعد أي توليد جديد.
+
+### متبقٍّ / تنبيهات
+- **Search Console:** بانتظار المستخدم — إرسال `sitemap.xml` (القائمة الجانبية → Sitemaps).
+- `mockLegalLibrary.ts` (تبويب التطبيق) ما زال يحوي تلف CP1256 (`خاصɡ`/`تكتȡ`/`ذلߡ`/`الجوهريɡ`/`تسربهǡ`) — **خارج نطاق Session 17** بقرار المستخدم (الصفحة العامة فقط).
+- عمل React غير الملتم (index.html + 5 ملفات src) ما زال متروكاً عمداً — لا يُلمس.

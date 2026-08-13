@@ -30,7 +30,8 @@ const BASE_URL = 'https://mohamidigital.online';
 const SEARCH_PATHS = [
   { dir: path.join(PUBLIC_DIR, 'blog'), type: 'blog', urlPrefix: '/blog/' },
   { dir: path.join(PUBLIC_DIR, 'pillars'), type: 'pillar', urlPrefix: '/pillars/' },
-  { dir: PUBLIC_DIR, type: 'page', urlPrefix: '/', filter: (f) => f.endsWith('.html') && !f.startsWith('blog') && !f.startsWith('pillars') && !f.startsWith('assets') },
+  { dir: path.join(PUBLIC_DIR, 'legal-library-topics'), type: 'pillar', urlPrefix: '/legal-library-topics/' },
+  { dir: PUBLIC_DIR, type: 'page', urlPrefix: '/', filter: (f) => f.endsWith('.html') && !f.startsWith('blog') && !f.startsWith('pillars') && !f.startsWith('assets') && !f.startsWith('legal-library-topics') },
 ];
 
 // ملفات نتجاهلها (ليست صفحات محتوى)

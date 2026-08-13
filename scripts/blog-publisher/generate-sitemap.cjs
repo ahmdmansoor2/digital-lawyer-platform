@@ -14,6 +14,7 @@ const BLOG_DIR = path.join(ROOT, 'public', 'blog');
 const PILLARS_DIR = path.join(ROOT, 'public', 'pillars');
 const FORMS_DOCS_DIR = path.join(ROOT, 'public', 'legal-forms-docs');
 const RADAR_TOPICS_DIR = path.join(ROOT, 'public', 'radar-topics');
+const LIBRARY_TOPICS_DIR = path.join(ROOT, 'public', 'legal-library-topics');
 const SITEMAP_FILE = path.join(ROOT, 'public', 'sitemap.xml');
 const SITEMAP_HTML_FILE = path.join(ROOT, 'public', 'sitemap.html');
 const BASE_URL = 'https://mohamidigital.online';
@@ -63,6 +64,7 @@ function buildSitemap() {
   const pillarFiles = listHtml(PILLARS_DIR);
   const formsDocFiles = listHtml(FORMS_DOCS_DIR);
   const radarTopicFiles = listHtml(RADAR_TOPICS_DIR);
+  const libraryTopicFiles = listHtml(LIBRARY_TOPICS_DIR);
   const today = cairoDateStr();
   const urls = [];
 
@@ -111,6 +113,11 @@ function buildSitemap() {
     urls.push(`  <url>\n    <loc>${BASE_URL}/radar-topics/${f}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.5</priority>\n  </url>`);
   }
 
+  // كل أدلة المكتبة القانونية
+  for (const f of libraryTopicFiles) {
+    urls.push(`  <url>\n    <loc>${BASE_URL}/legal-library-topics/${f}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`);
+  }
+
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
 }
 
@@ -123,6 +130,7 @@ function buildSitemapHtml() {
   const pillarFiles = listHtml(PILLARS_DIR);
   const formsDocFiles = listHtml(FORMS_DOCS_DIR);
   const radarTopicFiles = listHtml(RADAR_TOPICS_DIR);
+  const libraryTopicFiles = listHtml(LIBRARY_TOPICS_DIR);
 
   // slug → {title, file}
   const articles = {};
@@ -194,6 +202,19 @@ function buildSitemapHtml() {
 
   const radarTopicItems = radarTopics
     .map((p) => `        <li><a href="/radar-topics/${p.file}">${esc(p.title)}</a></li>`)
+    .join('\n');
+
+  const libraryTopics = libraryTopicFiles.map((f) => {
+    let title = f.replace(/\.html$/, '').replace(/-/g, ' ');
+    try {
+      const html = fs.readFileSync(path.join(LIBRARY_TOPICS_DIR, f), 'utf8');
+      title = extractTitle(html) || title;
+    } catch {}
+    return { file: f, title };
+  });
+
+  const libraryTopicItems = libraryTopics
+    .map((p) => `        <li><a href="/legal-library-topics/${p.file}">${esc(p.title)}</a></li>`)
     .join('\n');
 
   return `<!DOCTYPE html>
@@ -359,6 +380,15 @@ ${formsDocItems}
       <ul class="link-list">
         <li><a href="/legal-radar.html">صفحة الرصد الرئيسية</a></li>
 ${radarTopicItems}
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>📚 أدلة المكتبة القانونية</h2>
+      <p class="meta">أدلة متخصصة في فروع القانون المصري — ≥3000 كلمة</p>
+      <ul class="link-list">
+        <li><a href="/legal-library.html">صفحة المكتبة الرئيسية</a></li>
+${libraryTopicItems}
       </ul>
     </div>
 

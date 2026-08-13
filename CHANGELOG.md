@@ -4,6 +4,39 @@
 
 ---
 
+## [v2.16.0] — 2026-08-13 (📚 المكتبة القانونية بمحتوى حقيقي مُدار عبر Gemini)
+
+### المشكلة المُصلَحة
+- صفحة `public/legal-library.html` (المعروضة من بطاقة مركز المعلومات `/legal-library.html?from=app`) كانت تعرض **إحصاءات وعينات وFAQ غير حقيقية** (`+15 قانون` و`+50 سابقة قضائية` مدّعاة بينما لا يوجد محتوى فعلي)، وبدون أي مولّد، وبتحديث دوري غير موجود.
+
+### المولّد الجديد `scripts/seo/generate-legal-library.cjs`
+- يقلّد نمط `generate-pillar.cjs`: `@google/genai` + `GEMINI_API_KEY` + سلسلة `TEXT_MODELS` الاحتياطية + `responseMimeType: application/json`.
+- **8 فروع** (مدني، جنائي، أحوال شخصية، إداري، تجاري، عمل، دستوري، مرافعات) → كل فرع **دليل متخصص ≥3000 كلمة** في `public/legal-library-topics/<slug>.html` (TOC + أقسام H2/H3 + FAQ + CTA + AdSense `3911754995`/`8981348923` + Schema Article/FAQ/Breadcrumb).
+- **مصداقية إلزامية:** كل الروابط الداخلية (مقالات مدونة + مراجع + صيغ) من قوائم سلاگز مُتحقق منها على القرص قبل الكتابة — يُسقط المولّد أي رابط غير موجود.
+- منشور `scripts/seo/legal-library-topics.json` (slug → title/wordCount/date) يمنع الازدواج + أعلام `--branch <slug>` / `--force` / `--limit`.
+- إعادة محاولة تلقائية لمحتوى قصير (<2500 كلمة) وتبديل النموذج عند فشل JSON.
+
+### الفهرس الجديد `public/legal-library.html` (مُعاد بناؤه بالكامل)
+- **إحصاءات حقيقية محسوبة من الملفات الفعلية:** 8 فروع · 8 أدلة · +113 مقالاً · 56 صيغة — حُذفت ادعاءات +15/+50.
+- بطاقات الأقسام → روابط حقيقية لصفحات الأدلة؛ «نماذج من المحتوى» → اقتباسات حقيقية من أول دليلين؛ روابط فعلية للمراجع الشاملة وأحدث المقالات.
+- FAQ صادقة (إزالة ادعاء تحديث القوانين دورياً — استبداله بتوضيح أن النصوص مرجعية وتراجع قبل التقاضي).
+- هيدر موحّد (`headerMarkup('lib')`) + إعلانات + `search.js` + Schema CollectionPage/ItemList/Breadcrumb.
+
+### الربط بالـ SEO
+- `generate-sitemap.cjs`: مجلد `legal-library-topics` الجديد → sitemap.xml أصبح **224 رابطاً** (+8) + قسم جديد في sitemap.html.
+- `build-search-index.cjs`: `SEARCH_PATHS` جديد لـ `legal-library-topics/` → search-index.json **152 صفحة** (+8).
+- `npm run build` + deploy `hosting:app` → تحقق حي 200 عبر r.jina.ai.
+
+### الأتمتة الجديدة `.github/workflows/legal-library-update.yml`
+- **الاثنين 8ص القاهرة** (cron `0 5 * * 1`) + `workflow_dispatch` → توليد الأدلة عبر Gemini → sitemap + search-index → commit + push → build + deploy `hosting:app`.
+
+### قرارات المستخدم (Session 17)
+- المصدر: **توليد Gemini مُدار مثل pillars**.
+- النطاق: **الصفحة العامة فقط** (لا مساس بتبويب التطبيق `LegalLibrary.tsx` / `mockLegalLibrary.ts`).
+- الوتيرة: **أسبوعياً**.
+
+---
+
 ## [v2.15.0] — 2026-08-13 (📄 +32 صيغة قانونية جديدة + فئتان جديدتان + مذكرتان)
 
 ### المصدر
