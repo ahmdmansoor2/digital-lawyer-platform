@@ -4,8 +4,8 @@
  * تعرض صفحات المنصة الرسمية + اختصارات للتطبيق
  */
 
-import React from 'react';
-import { LogOut, ArrowLeft, Scale, Sparkles, Briefcase, Calendar, FileText, Calculator, BookOpen, MessageCircle, Shield, Radio, ShieldCheck } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { LogOut, ArrowLeft, Scale, Sparkles, Briefcase, Calendar, FileText, Calculator, BookOpen, Library, MessageCircle, Shield, Radio, ShieldCheck } from 'lucide-react';
 
 interface InfoCenterProps {
   userName?: string;
@@ -69,6 +69,15 @@ const PAGES = [
     bgGlow: 'rgba(99,102,241,0.25)',
   },
   {
+    href: '/legal-library.html?from=app',
+    label: 'المكتبة القانونية والبحث',
+    desc: 'مرجع شامل للقوانين المصرية مع بحث متقدم في المواد القانونية — مرجعك الأساسي في كل قضية',
+    icon: Library,
+    tone: 'blue',
+    gradient: 'from-blue-500 to-indigo-600',
+    bgGlow: 'rgba(59,130,246,0.25)',
+  },
+  {
     href: '/contact.html?from=app',
     label: 'تواصل معنا',
     desc: 'لأي استفسار أو دعم فني، فريقنا متاح للمساعدة عبر البريد الإلكتروني',
@@ -107,44 +116,161 @@ const PAGES = [
 ];
 
 export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCenterProps) {
+  // ربط JavaScript الخاص بالـ header (مطابق للصفحات الثابتة) — useEffect لأن <script> في React لا ينفذ
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const target = e.target as HTMLElement;
+      const hdr = document.getElementById('siteHeader');
+      const nav = document.getElementById('headerNav');
+
+      if (hdr && e.type === 'scroll') {
+        hdr.classList.toggle('scrolled', window.scrollY > 20);
+      }
+    };
+    window.addEventListener('scroll', () => {
+      const hdr = document.getElementById('siteHeader');
+      if (hdr) hdr.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    const onToggleMobile = (btn: HTMLElement) => {
+      const nav = document.getElementById('headerNav');
+      if (!nav) return;
+      const isOpen = nav.classList.toggle('active');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      btn.setAttribute('aria-label', isOpen ? 'إغلاق القائمة' : 'فتح القائمة');
+      btn.innerHTML = isOpen ? '✕' : '☰';
+      if (!isOpen) {
+        const more = document.querySelector('.nav-more');
+        if (more) more.classList.remove('open');
+      }
+    };
+
+    const onToggleMore = (e: Event) => {
+      e.stopPropagation();
+      const btn = e.currentTarget as HTMLElement;
+      const more = btn.parentElement;
+      if (!more) return;
+      const isOpen = more.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+    };
+
+    const onDocumentClick = (e: Event) => {
+      const target = e.target as HTMLElement;
+      const more = document.querySelector('.nav-more');
+      const moreBtn = document.querySelector('.nav-more-btn');
+      const nav = document.getElementById('headerNav');
+      const toggle = document.querySelector('.header-mobile-toggle');
+
+      if (more && more.classList.contains('open') && !more.contains(target)) {
+        more.classList.remove('open');
+        if (moreBtn) moreBtn.setAttribute('aria-expanded', 'false');
+      }
+      if (nav && nav.classList.contains('active') && toggle && !nav.contains(target) && !toggle.contains(target)) {
+        nav.classList.remove('active');
+        if (toggle) {
+          toggle.setAttribute('aria-expanded', 'false');
+          toggle.innerHTML = '☰';
+        }
+      }
+    };
+
+    // ربط الأحداث بعد tick (بعد render)
+    const bind = () => {
+      const toggle = document.querySelector<HTMLButtonElement>('.header-mobile-toggle');
+      const moreBtn = document.querySelector<HTMLButtonElement>('.nav-more-btn');
+      if (toggle) toggle.onclick = () => onToggleMobile(toggle);
+      if (moreBtn) moreBtn.onclick = (e) => onToggleMore(e);
+    };
+    bind();
+    // إعادة الربط بعد tick (في حال الـ DOM تغير)
+    const t = setTimeout(bind, 0);
+
+    document.addEventListener('click', onDocumentClick);
+
+    return () => {
+      document.removeEventListener('click', onDocumentClick);
+      clearTimeout(t);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 relative overflow-hidden" dir="rtl">
-          {/* Top bar — Unified Premium Navbar */}
-      <header className="site-header">
+    <div className="min-h-screen bg-slate-950 text-slate-100" dir="rtl">
+          {/* Top bar — Unified Premium Navbar (مطابق للصفحات الثابتة) */}
+      <header className="site-header" id="siteHeader">
         <div className="header-container">
-          <a href="/" className="header-logo">
+          <a href="/" className="header-logo" aria-label="منصة المحامي الرقمي">
             <div className="logo-badge">⚖️</div>
             <div className="logo-text">
-              <span className="brand-title">منصة المحامي الرقمية</span>
-              <span className="brand-subtitle">نظام إدارة مكاتب المحاماة في مصر</span>
+              <span className="brand-title">المحامي الرقمي</span>
+              <span className="brand-subtitle">مساعدك القانوني الذكي · مجاناً</span>
             </div>
           </a>
 
-          <nav className="header-nav" id="headerNav">
-            <a href="/" className="nav-item active">الرئيسية</a>
-            <a href="/features.html" className="nav-item">المميزات</a>
-            <a href="/legal-library.html" className="nav-item">المكتبة القانونية</a>
-            <a href="/pillars/" className="nav-item">المراجع القانونية</a>
-            <a href="/blog/" className="nav-item">المدونة</a>
-            <a href="/about.html" className="nav-item">عن المنصة</a>
-            <a href="/pricing.html" className="nav-item">مجانية بالكامل</a>
-            <a href="/contact.html" className="nav-item">تواصل معنا</a>
-          </nav>
+          <nav className="header-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
+              <a href="/" className="nav-item active">🏠 الرئيسية</a>
+              <a href="/blog/" className="nav-item">📰 المدونة القانونية</a>
+              <a href="/legal-library.html" className="nav-item">📚 المكتبة القانونية</a>
+              <a href="/pillars/" className="nav-item">🏛️ المراجع القانونية الشاملة</a>
+              <a href="/legal-forms.html" className="nav-item">📝 صيغ العقود والدعاوي</a>
+              <a href="/legal-radar.html" className="nav-item">🔍 رصد المحامي</a>
+              <div className="nav-more">
+                <button className="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">
+                  <span>المزيد</span><span className="nav-more-caret">▾</span>
+                </button>
+                <div className="nav-more-menu">
+                  <a href="/about.html" className="nav-more-item">⚖️ عن المنصة</a>
+                  <a href="/features.html" className="nav-more-item">⚡ المميزات الكاملة</a>
+                  <a href="/pricing.html" className="nav-more-item">🎁 الأسعار — مجاني 100%</a>
+                  <a href="/why-trust-us.html" className="nav-more-item">🛡️ لماذا تثق بنا</a>
+                  <a href="/privacy.html" className="nav-more-item">🔐 سياسة الخصوصية</a>
+                  <a href="/terms.html" className="nav-more-item">📜 الشروط والأحكام</a>
+                  <a href="/contact.html" className="nav-more-item">📬 تواصل معنا</a>
+                </div>
+              </div>
+            </nav>
 
           <div className="header-actions">
             {userName && (
-              <span className="hidden md:block text-xs font-bold text-slate-300">مرحباً، {userName}</span>
+              <span className="hidden lg:flex items-center gap-1.5 text-[11px] font-bold text-slate-300 bg-slate-800/60 border border-slate-700/60 rounded-lg px-2 py-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>مرحباً، {userName}</span>
+              </span>
             )}
-            <button onClick={onEnterApp} className="header-cta border-0 cursor-pointer">
-              دخول التطبيق 🚀
-            </button>
             <button
-              onClick={onLogout}
-              className="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700/60 text-slate-400 hover:text-red-400 hover:border-red-800/60 flex items-center justify-center transition cursor-pointer"
-              aria-label="تسجيل الخروج"
-              title="تسجيل الخروج"
+              type="button"
+              onClick={onEnterApp}
+              className="header-cta border-0 cursor-pointer"
             >
-              <LogOut className="w-4 h-4" />
+              <span style={{ fontSize: '13px' }}>🚀</span>
+              <span>دخول</span>
+            </button>
+            {userName && (
+              <button
+                type="button"
+                onClick={onLogout}
+                className="h-9 w-9 p-0 rounded-lg bg-rose-600 hover:bg-rose-700 text-white flex items-center justify-center transition cursor-pointer border border-rose-700 hover:border-rose-800 shadow-md"
+                aria-label="تسجيل الخروج من الموقع"
+                title="تسجيل الخروج من الموقع"
+              >
+                <LogOut style={{ width: '16px', height: '16px' }} />
+              </button>
+            )}
+            <button
+              className="header-mobile-toggle"
+              aria-label="فتح القائمة"
+              aria-expanded="false"
+              aria-controls="headerNav"
+              onClick={(e) => {
+                const btn = e.currentTarget;
+                const nav = document.getElementById('headerNav');
+                if (!nav) return;
+                const isOpen = nav.classList.toggle('active');
+                btn.setAttribute('aria-expanded', String(isOpen));
+                btn.setAttribute('aria-label', isOpen ? 'إغلاق القائمة' : 'فتح القائمة');
+                btn.innerHTML = isOpen ? '✕' : '☰';
+              }}
+            >
+              ☰
             </button>
           </div>
         </div>
@@ -218,13 +344,15 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               <h2 className="text-2xl md:text-3xl font-black text-white mb-2">جاهز لإدارة قضاياك؟</h2>
               <p className="text-white/80 text-sm md:text-base">ادخل إلى لوحة التحكم وابدأ في إدارة مكتبك القانوني</p>
             </div>
-            <button
-              onClick={onEnterApp}
-              className="group bg-white text-indigo-700 hover:bg-slate-50 font-black text-base md:text-lg px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3 transition-all hover:scale-105 cursor-pointer"
-            >
-              <span>دخول التطبيق</span>
-              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            </button>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={onEnterApp}
+                className="group bg-white text-indigo-700 hover:bg-slate-50 font-black text-base md:text-lg px-8 py-4 rounded-2xl shadow-2xl flex items-center justify-center gap-3 transition-all hover:scale-105 cursor-pointer"
+              >
+                <span>دخول التطبيق</span>
+                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+              </button>
+            </div>
           </div>
         </div>
       </main>

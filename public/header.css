@@ -80,14 +80,14 @@
 }
 
 .logo-badge {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
   background: linear-gradient(135deg, #6366f1 0%, #7c3aed 60%, #4f46e5 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
+  font-size: 21px;
   box-shadow:
     0 4px 20px rgba(99, 102, 241, 0.45),
     0 0 0 1px rgba(255,255,255,0.15) inset;
@@ -118,7 +118,7 @@
 }
 
 .brand-title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.3px;
@@ -127,7 +127,7 @@
 }
 
 .brand-subtitle {
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 800;
   color: #34d399;
   margin-top: 2px;
@@ -148,11 +148,11 @@
 
 .nav-item {
   position: relative;
-  font-size: 13.5px;
+  font-size: 12.5px;
   font-weight: 700;
   color: #94a3b8;
   text-decoration: none;
-  padding: 7px 12px;
+  padding: 6px 9px;
   border-radius: 10px;
   transition: color 0.22s ease, background 0.22s ease;
   white-space: nowrap;
@@ -200,8 +200,16 @@
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-shrink: 0;
+}
+
+/* شريحة اسم المستخدم — تُقصّ عند الضيق بدل دفع بقية العناصر خارج الشاشة */
+.header-actions > span {
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* زر الدخول */
@@ -209,11 +217,11 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 9px 20px;
+  padding: 8px 16px;
   border-radius: 12px;
   background: linear-gradient(135deg, #6366f1 0%, #7c3aed 60%, #5b21b6 100%);
   color: #ffffff !important;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 900;
   text-decoration: none;
   letter-spacing: 0.1px;
@@ -277,29 +285,37 @@
 }
 
 /* ══════════════════════════════════════════════════
-   شاشات متوسطة (1240px → 1120px)
+   شاشات متوسطة (1440px → 1281px)
 ══════════════════════════════════════════════════ */
-@media (max-width: 1240px) and (min-width: 1121px) {
+@media (max-width: 1440px) and (min-width: 1281px) {
   .header-container {
     padding: 0 20px;
-    gap: 10px;
+    gap: 8px;
   }
   .nav-item {
-    font-size: 12.5px;
-    padding: 6px 9px;
+    font-size: 12px;
+    padding: 5px 8px;
   }
-  .brand-title { font-size: 15px; }
-  .brand-subtitle { font-size: 10px; }
+  .brand-title { font-size: 14px; }
+  .brand-subtitle { display: none; }
   .header-cta {
-    padding: 8px 15px;
-    font-size: 12.5px;
+    padding: 7px 13px;
+    font-size: 12px;
   }
+  .logo-badge {
+    width: 38px;
+    height: 38px;
+    font-size: 19px;
+    border-radius: 11px;
+  }
+  .header-actions { gap: 6px; }
+  .header-actions > span { max-width: 100px; }
 }
 
 /* ══════════════════════════════════════════════════
-   موبايل / تابلت (≤ 1120px)
+   موبايل / تابلت (≤ 1280px)
 ══════════════════════════════════════════════════ */
-@media (max-width: 1120px) {
+@media (max-width: 1280px) {
   .header-nav {
     display: none;
     position: fixed;
@@ -429,14 +445,14 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 13.5px;
+  font-size: 12.5px;
   font-weight: 700;
   font-family: inherit;
   color: #94a3b8;
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 7px 12px;
+  padding: 6px 9px;
   border-radius: 10px;
   white-space: nowrap;
   letter-spacing: 0.1px;
@@ -515,15 +531,15 @@
 }
 
 /* شاشات متوسطة — تصغير زر المزيد */
-@media (max-width: 1240px) and (min-width: 1121px) {
+@media (max-width: 1440px) and (min-width: 1281px) {
   .nav-more-btn {
-    font-size: 12.5px;
-    padding: 6px 9px;
+    font-size: 12px;
+    padding: 5px 8px;
   }
 }
 
 /* موبايل / تابلت — القائمة داخل لوحة التنقل المنسدلة */
-@media (max-width: 1120px) {
+@media (max-width: 1280px) {
   .nav-more {
     position: static;
   }

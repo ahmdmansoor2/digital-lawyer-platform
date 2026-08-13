@@ -77,6 +77,8 @@ function initOfficeProfileIfNew(user: User) {
 export default function FirebaseAuthGate() {
   const [user, setUser] = useState<User | null>(null);
   const [gateState, setGateState] = useState<GateState>('loading');
+  // v2.18: شاشة الدخول لا تظهر للزوار — تُفتح فقط عند طلب الدخول للمنصة
+  const [showLogin, setShowLogin] = useState(false);
 
   const subscription = useSubscription(user?.uid ?? null);
 
@@ -172,8 +174,20 @@ export default function FirebaseAuthGate() {
   }
 
   // ── شاشة تسجيل الدخول ───────────────────────────────────────────
+  // v2.18: الموقع عام — الزوار يرون InfoCenter مباشرة بدون تسجيل دخول.
+  // شاشة الدخول تُعرض فقط عند طلب المستخدم الدخول إلى المنصة (زر «دخول التطبيق»).
   if (gateState === 'unauthenticated') {
-    return <FirebaseLoginScreen onSuccess={() => setGateState('checking_sub')} />;
+    if (showLogin) {
+      return (
+        <FirebaseLoginScreen
+          onSuccess={() => {
+            setShowLogin(false);
+            setGateState('checking_sub');
+          }}
+        />
+      );
+    }
+    return <App userUid={undefined} onRequestLogin={() => setShowLogin(true)} />;
   }
 
   // ── صفحة الاشتراك (انتهت التجربة) ────────────────────────────────
@@ -230,7 +244,7 @@ export default function FirebaseAuthGate() {
         </button>
       )}
 
-      <App userUid={user?.uid} />
+      <App userUid={user?.uid} onRequestLogin={() => setShowLogin(true)} />
     </div>
   );
 }

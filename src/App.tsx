@@ -33,7 +33,7 @@ import { useEntityPersistence } from './hooks/useEntityPersistence';
 // transactions, deadlines, tasks, documents).
 import { Case, Client, Session, Transaction, LegalDeadline, LawTask, LawDocument, HourLog, Invoice, OfficeProfile, TypographySettings, BailiffPaper, PowerOfAttorney, Opponent, Execution, LegalReference, CaseStatus } from './types';
 
-export default function App({ userUid }: { userUid?: string }) {
+export default function App({ userUid, onRequestLogin }: { userUid?: string; onRequestLogin?: () => void }) {
   const getLSKey = useCallback((baseKey: string) => {
     return userUid ? `lawfirm_${userUid}_${baseKey}` : `lawfirm_${baseKey}`;
   }, [userUid]);
@@ -836,6 +836,18 @@ clients: true,
   }
 
   if (!isAuthenticated) {
+    // v2.18: على الويب (عبر FirebaseAuthGate) الموقع عام — الزائر يرى InfoCenter
+    // بدون تسجيل دخول، وزر «دخول التطبيق» يفتح شاشة الدخول للمنصة فقط.
+    if (onRequestLogin) {
+      return (
+        <InfoCenter
+          userName={undefined}
+          onEnterApp={onRequestLogin}
+          onLogout={() => {}}
+        />
+      );
+    }
+    // وضع Electron: شاشة الدخول المحلية القديمة كما هي
     return (
       <LoginScreen
         onLoginSuccess={(role, name) => {

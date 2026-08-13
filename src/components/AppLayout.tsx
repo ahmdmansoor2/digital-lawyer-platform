@@ -391,6 +391,25 @@ export default function AppLayout(props: AppLayoutProps) {
               <SearchIcon className="h-4 w-4" />
             </button>
             <button
+              onClick={() => {
+                localStorage.removeItem('lawfirm_logged_in');
+                localStorage.removeItem('lawfirm_user_name');
+                localStorage.removeItem('lawfirm_user_role');
+                if (typeof onLogout === 'function') {
+                  onLogout();
+                }
+              }}
+              style={{
+                width: '36px', height: '36px', borderRadius: '9px',
+                background: 'rgba(244, 63, 94, 0.15)', border: '1px solid rgba(244, 63, 94, 0.4)',
+                color: '#fda4af', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+              }}
+              title="تسجيل الخروج"
+              aria-label="تسجيل الخروج"
+            >
+              <LogOut className="h-4 w-4" />
+            </button>
+            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               style={{
                 width: '36px', height: '36px', borderRadius: '9px',
@@ -470,10 +489,12 @@ export default function AppLayout(props: AppLayoutProps) {
                 onLogout();
               }
             }}
-            className="p-1 text-slate-400 hover:text-rose-400 hover:bg-slate-850 rounded transition cursor-pointer"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-rose-500/15 border border-rose-500/40 text-rose-200 hover:bg-rose-500/25 hover:text-white hover:border-rose-400/70 transition cursor-pointer"
             title="تسجيل الخروج"
+            aria-label="تسجيل الخروج"
           >
-            <LogOut className="w-3.5 h-3.5" />
+            <LogOut className="w-4 h-4" />
+            <span className="text-[11px] font-bold">خروج</span>
           </button>
         </div>
 

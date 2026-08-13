@@ -73,6 +73,15 @@ export default function FirebaseLoginScreen({ onSuccess }: FirebaseLoginScreenPr
     })();
   }, []);
 
+  // ── تأثير scroll على الهيدر ────────────────────────────────────
+  useEffect(() => {
+    const hdr = document.getElementById('siteHeader');
+    if (!hdr) return;
+    const onScroll = () => hdr.classList.toggle('scrolled', window.scrollY > 20);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   const clearError = () => setError('');
 
   // ── إنشاء سجل المستخدم في Firestore ─────────────────────────────
@@ -327,35 +336,43 @@ export default function FirebaseLoginScreen({ onSuccess }: FirebaseLoginScreenPr
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0b0713] via-[#2b1020] to-[#0a0814] flex flex-col items-center justify-start relative overflow-hidden" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-br from-[#0b0713] via-[#2b1020] to-[#0a0814] flex flex-col items-stretch justify-start w-full relative overflow-hidden" dir="rtl">
       <div id="recaptcha-container" ref={recaptchaRef} />
 
       {/* ── Unified Site Header (Navbar) ── */}
-      <header className="site-header">
+      <header className="site-header w-full" id="siteHeader">
         <div className="header-container">
-          <a href="/" className="header-logo">
+          <a href="/" className="header-logo" aria-label="منصة المحامي الرقمي - الرئيسية">
             <div className="logo-badge">⚖️</div>
             <div className="logo-text">
-              <span className="brand-title">منصة المحامي الرقمية</span>
-              <span className="brand-subtitle">نظام إدارة مكاتب المحاماة في مصر</span>
+              <span className="brand-title">المحامي الرقمي</span>
+              <span className="brand-subtitle">مساعدك القانوني الذكي · مجاناً</span>
             </div>
           </a>
 
-          <nav className={`header-nav ${mobileMenuOpen ? 'active' : ''}`} id="headerNav">
-            <a href="/" className="nav-item active">الرئيسية</a>
-            <a href="/features.html" className="nav-item">المميزات</a>
-            <a href="/legal-library.html" className="nav-item">المكتبة القانونية</a>
-            <a href="/pillars/" className="nav-item">المراجع القانونية</a>
-            <a href="/blog/" className="nav-item">المدونة</a>
-            <a href="/about.html" className="nav-item">عن المنصة</a>
-            <a href="/pricing.html" className="nav-item">مجانية بالكامل</a>
-            <a href="/contact.html" className="nav-item">تواصل معنا</a>
+          <nav className={`header-nav ${mobileMenuOpen ? 'active' : ''}`} id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
+            <a href="/" className="nav-item active">🏠 الرئيسية</a>
+            <a href="/legal-library.html" className="nav-item">📚 المكتبة القانونية</a>
+            <a href="/pillars/" className="nav-item">🏛️ المراجع القانونية الشاملة</a>
+            <a href="/legal-forms.html" className="nav-item">📝 صيغ العقود والدعاوي</a>
+            <a href="/legal-radar.html" className="nav-item">🔍 رصد المحامي</a>
+            <a href="/privacy.html" className="nav-item">🔐 سياسة الخصوصية</a>
+            <a href="/contact.html" className="nav-item">📬 تواصل معنا</a>
           </nav>
 
           <div className="header-actions">
-            <a href="#login-card" className="header-cta">دخول المنصة مجاناً 🚀</a>
-            <button className="header-mobile-toggle" aria-label="القائمة" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              ☰
+            <a href="#login-card" className="header-cta">
+              <span>🚀</span>
+              <span>ابدأ مجاناً</span>
+            </a>
+            <button
+              className="header-mobile-toggle"
+              aria-label={mobileMenuOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="headerNav"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? '✕' : '☰'}
             </button>
           </div>
         </div>
@@ -369,7 +386,7 @@ export default function FirebaseLoginScreen({ onSuccess }: FirebaseLoginScreenPr
         <div className="absolute inset-0 opacity-[0.018]" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
       </div>
 
-      <div className="w-full max-w-6xl relative z-10 px-4 sm:px-6 pt-8 pb-6">
+      <div className="w-full max-w-6xl mx-auto relative z-10 px-4 sm:px-6 pt-8 pb-6">
 
         {/* ── Header / Logo ── */}
         <div className="text-center mb-8 space-y-3">

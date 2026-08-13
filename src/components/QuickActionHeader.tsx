@@ -189,7 +189,7 @@ const QuickActionHeader = React.memo(function QuickActionHeader({
     addPoa: false,
     poaNumber: '',
     poaOffice: '',
-    type: 'عام قضايا' as 'عام قضايا' | 'خاص قضايا' | 'توكيل شامل'
+    poaType: 'عام قضايا' as 'عام قضايا' | 'خاص قضايا' | 'توكيل شامل'
   });
 
   // 2. New Case Form
@@ -266,7 +266,7 @@ const QuickActionHeader = React.memo(function QuickActionHeader({
       name: clientForm.name,
       phone: clientForm.phone,
       nationalId: clientForm.nationalId,
-      address: clientForm.address || 'القاهرɡ مصر',
+      address: clientForm.address || 'القاهرة، مصر',
       email: clientForm.email || undefined,
       notes: clientForm.notes || undefined,
       poas: clientForm.addPoa && clientForm.poaNumber ? [{
@@ -595,10 +595,7 @@ const QuickActionHeader = React.memo(function QuickActionHeader({
                 ></div>
 
                 <div
-                  initial={{ opacity: 0, scale: 0.95, y: -5 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95, y: -5 }}
-                  className="absolute start-0 mt-2 w-72 bg-white border border-slate-200 rounded-lg shadow-lg py-2.5 z-30 font-sans text-end"
+                  className="absolute start-0 mt-2 w-72 bg-white border border-slate-200 rounded-lg shadow-lg py-2.5 z-30 font-sans text-end animate-fade-in-down"
                   id="quick-actions-menu-panel"
                 >
                   <div className="px-3 pb-1 border-b border-slate-100 mb-1.5 flex justify-between items-center">
@@ -717,7 +714,7 @@ const QuickActionHeader = React.memo(function QuickActionHeader({
                     <Sliders className="w-4 h-4 text-indigo-600 animate-pulse" />
                     <div className="text-end">
                       <p className="text-xs font-bold text-indigo-900">مركز التعديل السريع للأقسام</p>
-                      <p className="text-[9px] text-indigo-700 font-normal">تعديل بيانات المكتȡ مستويات التقاضي وحالات التشغيل</p>
+                      <p className="text-[9px] text-indigo-700 font-normal">تعديل بيانات المكتب، مستويات التقاضي وحالات التشغيل</p>
                     </div>
                   </button>
                 </div>
@@ -733,10 +730,7 @@ const QuickActionHeader = React.memo(function QuickActionHeader({
             <div className="absolute inset-0 cursor-default" onClick={() => setActiveModal(null)}></div>
             
             <div
-              initial={{ opacity: 0, scale: 0.95, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 15 }}
-              className={`bg-white border border-slate-200 rounded-lg shadow-xl w-full ${activeModal === 'quick-control' ? 'max-w-4xl' : 'max-w-lg'} p-5 z-10 max-h-[90vh] overflow-y-auto relative text-end font-sans`}
+              className={`bg-white border border-slate-200 rounded-lg shadow-xl w-full ${activeModal === 'quick-control' ? 'max-w-4xl' : 'max-w-lg'} p-5 z-10 max-h-[90vh] overflow-y-auto relative text-end font-sans animate-fade-in-up`}
               dir="rtl"
               id={`quick-add-${activeModal}-modal`}
             >
@@ -910,7 +904,7 @@ const QuickActionHeader = React.memo(function QuickActionHeader({
                     <Briefcase className="w-5 h-5 text-blue-600" />
                     <div>
                       <h3 className="text-sm font-bold text-slate-900">قيد دعوى وقضية جديدة</h3>
-                      <p className="text-[11px] text-slate-500">إدخال بيانات الدعوى، المحكمة المختصɡ والخصوم، وضبط اتزان مبالغ الأتعاب بالدفاتر.</p>
+                      <p className="text-[11px] text-slate-500">إدخال بيانات الدعوى، المحكمة المختصة والخصوم، وضبط اتزان مبالغ الأتعاب بالدفاتر.</p>
                     </div>
                   </div>
 
@@ -2016,10 +2010,7 @@ const QuickActionHeader = React.memo(function QuickActionHeader({
       {/* RENDER DYNAMIC SUCCESS TOAST NOTIFICATION */}
         {toastMessage && (
           <div
-            initial={{ opacity: 0, y: 50, x: '50%' }}
-            animate={{ opacity: 1, y: 0, x: '0%' }}
-            exit={{ opacity: 0, y: 20, x: '0%' }}
-            className="fixed bottom-5 start-5 z-50 bg-[#1e293b] text-white border border-emerald-500/30 p-3 px-4 rounded-lg shadow-xl flex items-center gap-3 font-sans max-w-sm rounded text-end"
+            className="fixed bottom-5 start-5 z-50 bg-[#1e293b] text-white border border-emerald-500/30 p-3 px-4 rounded-lg shadow-xl flex items-center gap-3 font-sans max-w-sm rounded text-end animate-toast-in"
             dir="rtl"
             id="quick-action-success-toast"
           >
