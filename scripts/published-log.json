@@ -1380,6 +1380,42 @@
       ],
       "words": 2132,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "غرامات وإجراءات التصالح في جرائم سرقة الكهرباء في القانون المصري",
+      "date": "2026-08-13",
+      "slug": "electricity-theft-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/electricity-theft-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/electricity-theft-penalties-egypt.jpg",
+      "tags": [
+        "القانون الجنائي"
+      ],
+      "words": 1219,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "الولاية التعليمية للأم المطلقة: شروط الحصول عليها وإجراءات نقل المدارس",
+      "date": "2026-08-13",
+      "slug": "educational-guardianship-divorce-egypt",
+      "url": "https://mohamidigital.online/blog/educational-guardianship-divorce-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/educational-guardianship-divorce-egypt.jpg",
+      "tags": [
+        "الأحوال الشخصية"
+      ],
+      "words": 2038,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "دليل الاستثمار والتداول القانوني في البورصة المصرية للمبتدئين 2024",
+      "date": "2026-08-13",
+      "slug": "egyptian-stock-market-legal-guide",
+      "url": "https://mohamidigital.online/blog/egyptian-stock-market-legal-guide.html",
+      "image": "https://mohamidigital.online/blog/images/egyptian-stock-market-legal-guide.jpg",
+      "tags": [
+        "القانون التجاري"
+      ],
+      "words": 2011,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
