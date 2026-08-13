@@ -11,6 +11,10 @@ import {
   Users,
 } from 'lucide-react';
 
+interface PublicLandingPageProps {
+  onEnterApp?: () => void;
+}
+
 const features = [
   { icon: FileText, title: 'إدارة القضايا', description: 'تنظيم ملفات القضايا والمذكرات والمهام في مساحة عمل واحدة.' },
   { icon: Users, title: 'الموكلون والزيارات', description: 'حفظ بيانات الموكلين وسجل الزيارات والاستشارات بطريقة مرتبة.' },
@@ -24,7 +28,8 @@ const benefits = [
   'تعمل من المتصفح مع توفر إصدار سطح مكتب لنظام Windows',
 ];
 
-export default function PublicLandingPage() {
+export default function PublicLandingPage({ onEnterApp }: PublicLandingPageProps) {
+  const enterApp = onEnterApp || (() => { window.location.href = '/app'; });
   return (
     <div dir="rtl" className="public-site public-landing-page min-h-screen overflow-hidden bg-slate-950 text-slate-100">
       <header className="border-b border-white/10 bg-slate-950/85 backdrop-blur-xl">
@@ -46,10 +51,10 @@ export default function PublicLandingPage() {
           </nav>
           <div className="flex items-center gap-2">
             <PublicThemeToggle />
-            <a href="/app" className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-xs font-black text-white shadow-lg shadow-indigo-950/40 transition hover:bg-indigo-500">
+            <button type="button" onClick={enterApp} className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-xs font-black text-white shadow-lg shadow-indigo-950/40 transition hover:bg-indigo-500">
               دخول المنصة
               <ArrowLeft className="h-4 w-4" />
-            </a>
+            </button>
           </div>
         </div>
       </header>
@@ -71,10 +76,10 @@ export default function PublicLandingPage() {
                 منصة المحامي الرقمية تساعدك على إدارة القضايا والموكلين والجلسات والمكتبة القانونية بواجهة عربية واضحة، مع أدوات تساعدك على حفظ بيانات عملك وتنظيمه.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="/app" className="inline-flex items-center justify-center gap-2 rounded-2xl bg-indigo-600 px-6 py-4 text-sm font-black text-white shadow-xl shadow-indigo-950/40 transition hover:-translate-y-0.5 hover:bg-indigo-500">
+                <button type="button" onClick={enterApp} className="inline-flex items-center justify-center gap-2 rounded-2xl bg-indigo-600 px-6 py-4 text-sm font-black text-white shadow-xl shadow-indigo-950/40 transition hover:-translate-y-0.5 hover:bg-indigo-500">
                   ابدأ من داخل المنصة
                   <ArrowLeft className="h-5 w-5" />
-                </a>
+                </button>
                 <a href="/features.html" className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-sm font-bold text-slate-200 transition hover:bg-white/10">
                   استعرض المميزات
                 </a>
@@ -144,7 +149,7 @@ export default function PublicLandingPage() {
               <h2 className="text-2xl font-black text-white">هل تريد الدخول إلى مساحة عملك؟</h2>
               <p className="mt-2 text-sm text-slate-400">تسجيل الدخول متاح داخل المنصة من خلال المسار المخصص لها.</p>
             </div>
-            <a href="/app" className="inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-6 py-3.5 text-sm font-black text-white transition hover:bg-indigo-500">دخول المنصة <ArrowLeft className="h-4 w-4" /></a>
+            <button type="button" onClick={enterApp} className="inline-flex items-center gap-2 rounded-2xl bg-indigo-600 px-6 py-3.5 text-sm font-black text-white transition hover:bg-indigo-500">دخول المنصة <ArrowLeft className="h-4 w-4" /></button>
           </div>
         </section>
       </main>
