@@ -287,190 +287,6 @@ async function generateTopicArticle(ai, topic, trends) {
   return { sections };
 }
 
-// ─── توليد صور البطاقات ───
-// ترتيب المصادر: Pexels (صور ويب حقيقية بحقوق محفوظة) → Nano Banana → Pollinations → Unsplash.
-// «اقتباس من الويب مع الحفاظ على حقوق النشر»: Pexels يمنح ترخيصاً مجانياً للاستخدام،
-// ونُضيف دائماً سطر نسبة (photographer) على الصورة.
-
-const IMAGE_MODEL = 'gemini-2.5-flash-image'; // Nano Banana
-const RADAR_IMAGES_DIR = path.join(ROOT, 'public', 'radar-images');
-const IMG_FALLBACK = 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200&h=675&q=80';
-
-// خريطة كلمات عربية → كلمات بحث إنجليزية (Pexels + السياق البصري لـ AI)
-const KEYWORD_MAP = [
-  { terms: ['تصالح', 'تقنين', 'ترخيص', 'بناء', 'عقار', 'إعمار', 'مخالفات', 'وحدات سكنية', 'عقاري', 'أراضي', 'أبنية'], en: 'construction site building crane engineers blueprint' },
-  { terms: ['محاكمة', 'جناية', 'مدان', 'حكم', 'قضائي', 'مستأنف', 'نيابة', 'توقيف', 'حبس', 'سجن', 'محكمة', 'قضايا'], en: 'courtroom gavel scales of justice trial' },
-  { terms: ['إلكتروني', 'رقمي', 'حكومي', 'تطبيقات', 'إنترنت', 'تكنولوجيا', 'ذكاء اصطناعي', 'رقمنة', 'خدمات', 'تحول رقمي'], en: 'smartphone online services digital technology' },
-  { terms: ['اقتصاد', 'أسعار', 'تضخم', 'بورصة', 'عملة', 'دولار', 'جنيه', 'مالية', 'ميزانية', 'ضرائب', 'ضريبة', 'بنك'], en: 'stock market finance charts banking money' },
-  { terms: ['صحة', 'دواء', 'مستشفى', 'علاج', 'طبي', 'لقاح', 'تأمين صحي'], en: 'doctor hospital healthcare medicine' },
-  { terms: ['تعليم', 'مدرسة', 'جامعة', 'طلاب', 'امتحانات', 'دراسة'], en: 'university students classroom education' },
-  { terms: ['طاقة', 'نفط', 'غاز', 'كهرباء', 'بترول', 'طاقة متجددة', 'وقود'], en: 'power plant electricity solar panels energy' },
-  { terms: ['سياحة', 'سفر', 'آثار', 'فنادق'], en: 'egypt pyramids tourism travel' },
-  { terms: ['زراعة', 'غذاء', 'محاصيل', 'قمح', 'تموين'], en: 'wheat field agriculture farming' },
-  { terms: ['نقل', 'طرق', 'مواصلات', 'قطار', 'مترو', 'كبري', 'أنفاق'], en: 'railway metro train highway transport' },
-  { terms: ['أمن', 'جريمة', 'شرطة', 'إرهاب', 'أمن قومي'], en: 'police security officer patrol' },
-  { terms: ['عدالة', 'حقوق', 'دستور', 'قانون', 'تشريع', 'لائحة'], en: 'law books justice scales legislation' },
-  { terms: ['عمل', 'وظائف', 'توظيف', 'مرتبات', 'عمالة', 'بطالة'], en: 'office employees work meeting jobs' },
-  { terms: ['أسرة', 'زواج', 'طلاق', 'حضانة', 'ميراث', 'ولاية'], en: 'egyptian family home' },
-  { terms: ['تجارة', 'أعمال', 'استثمار', 'شركات', 'مشاريع', 'صناعة'], en: 'business skyscrapers investment industry' },
-  { terms: ['سيارات', 'مركبات', 'توك توك', 'نقل بري'], en: 'cars highway traffic vehicles' },
-  { terms: ['بيئة', 'مناخ', 'تلوث', 'مياه', 'ري', 'نهر النيل'], en: 'nile river water environment nature' },
-  { terms: ['رياضة', 'كرة', 'أولمبياد', 'دوري', 'كأس'], en: 'football stadium soccer match' },
-  { terms: ['فن', 'سينما', 'مسلسلات', 'ثقافة', 'موسيقى'], en: 'cinema theater culture arts' },
-  { terms: ['فضاء', 'أقمار', 'صاروخ', 'وكالة فضاء'], en: 'space rocket satellite astronomy' },
-];
-
-function topicSearchKeywords(topic) {
-  const text = `${topic.title || ''} ${topic.summary || ''}`;
-  let best = 'newspaper newsroom reporter office';
-  let bestScore = 0;
-  for (const r of KEYWORD_MAP) {
-    let score = 0;
-    for (const t of r.terms) if (text.includes(t)) score++;
-    if (score > bestScore) {
-      bestScore = score;
-      best = r.en;
-    }
-  }
-  return best;
-}
-
-// مشهد تفصيلي (بالعربية) لكل سياق — لصورة AI معبّرة عن جوهر الموضوع
-const SCENE_MAP = {
-  'construction site building crane engineers blueprint': 'موقع بناء مصري بأبراج سكنية ورافعات، مهندسون يفحصون مخططات وملفات ترخيص وبناء حديث، إضاءة شفقية دافئة',
-  'courtroom gavel scales of justice trial': 'قاعة محكمة رسمية بميزان العدالة ومطرقة خشبية، طاولة قاضٍ ومنصة دفاع وملفات قضايا، إضاءة سينمائية',
-  'smartphone online services digital technology': 'مواطن يستخدم تطبيقاً حكومياً على هاتف ذكي، شاشات بيانات رقمية وأيقونات خدمات حكومية، مكتب عصري بإضاءة زرقاء',
-  'stock market finance charts banking money': 'مباني بنوك وبورصة، رسوم بيانية مالية على شاشات، عملات وصناديق استثمار، أجواء أعمال حديثة',
-  'doctor hospital healthcare medicine': 'مستشفى حديث، طبيب بمعطف أبيض وتقارير طبية، أدوات طبية، ألوان هادئة',
-  'university students classroom education': 'جامعة وقاعة محاضرات، طلاب ومراجع قانونية، مكتبة جامعية',
-  'power plant electricity solar panels energy': 'محطات طاقة وأبراج كهرباء وتوربينات، ألواح شمسية، حقول نفط وغاز',
-  'egypt pyramids tourism travel': 'معالم مصرية وأهرامات، سائحون وفنادق، أجواء رحلة سياحية',
-  'wheat field agriculture farming': 'حقول قمح ومحاصيل خضراء، معدات زراعية، صوامع تموين',
-  'railway metro train highway transport': 'قطار ومترو وجسور وطرق سريعة حديثة، حركة نقل',
-  'police security officer patrol': 'ضباط شرطة ودورية أمنية، أضواء تحذيرية، مفاهيم حماية وأمان',
-  'law books justice scales legislation': 'كتب قانون ودستور، ميزان عدالة وقلم، أوراق رسمية وتشريعات',
-  'office employees work meeting jobs': 'مكاتب عمل حديثة، موظفون في اجتماع، عقود توظيف وحواسيب',
-  'egyptian family home': 'أسرة مصرية في أجواء هادئة، أوراق رسمية ومحكمة أسرة، مفهوم الأسرة والقانون',
-  'business skyscrapers investment industry': 'أبراج أعمال ومصانع، صفقات استثمارية، حافلات شحن وتجارة',
-  'cars highway traffic vehicles': 'سيارات حديثة وطرق ومواقف، إشارات مرور',
-  'nile river water environment nature': 'مياه نهر النيل وطبيعة خضراء، بيئة نظيفة ومفاهيم تغير مناخي',
-  'football stadium soccer match': 'ملعب كرة قدم وترتيبات مباراة، جماهير',
-  'cinema theater culture arts': 'مسرح وسينما وفنون، أضواء استعراضية',
-  'space rocket satellite astronomy': 'فضاء وصواريخ وأقمار صناعية، مشاهد نجوم',
-  'newspaper newsroom reporter office': 'مكتب أخبار حديث، جريدة وشاشات تقارير، إضاءة مكتبية',
-};
-
-function buildImagePrompt(topic) {
-  const kw = topicSearchKeywords(topic);
-  const scene = SCENE_MAP[kw] || SCENE_MAP['newspaper newsroom reporter office'];
-  return `صورة تحريرية احترافية (editorial photography) واقعية عالية الجودة 4K تعبّر بدقة عن هذا الموضوع المصري:
-العنوان: ${topic.title}
-الملخص: ${topic.summary}
-المشهد المطلوب: ${scene}
-السياق البصري: ${kw}
-الأسلوب: ألوان داكنة أنيقة (كحلي/رمادي) مع لمسات إضاءة سينمائية، تفاصيل دقيقة، بلا أي نصوص أو حروف أو شعارات أو علامات مائية في الصورة.`;
-}
-
-async function downloadImage(url) {
-  const res = await fetch(url, { signal: AbortSignal.timeout(25000) });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const buf = Buffer.from(await res.arrayBuffer());
-  if (buf.length < 10000) throw new Error('صورة صغيرة/فارغة');
-  return buf;
-}
-
-// 1) Pexels — بحث بالكلمات الإنجليزية عن صورة حقيقية مطابقة للموضوع (ترخيص مجاني + نسبة للمصوّر)
-async function fetchPexels(topic) {
-  const apiKey = process.env.PEXELS_API_KEY;
-  if (!apiKey) return null;
-  try {
-    const query = topicSearchKeywords(topic);
-    const params = new URLSearchParams({ query, per_page: '5', orientation: 'landscape', size: 'medium' });
-    const resp = await fetch(`https://api.pexels.com/v1/search?${params}`, { headers: { Authorization: apiKey } });
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-    const data = await resp.json();
-    const photo = (data.photos || [])[0];
-    if (!photo?.src) throw new Error('لا نتائج');
-    const url = photo.src.large2x || photo.src.landscape || photo.src.large;
-    if (!url) throw new Error('بلا src');
-    const buf = await downloadImage(url);
-    log(`[radar] 🖼️ Pexels: «${query}» ← ${photo.photographer || 'Pexels'} (${Math.round(buf.length / 1024)} KB)`);
-    return { buf, credit: `📷 ${photo.photographer || 'Pexels'} — Pexels` };
-  } catch (e) {
-    log(`[radar] ⚠️ Pexels فشل: ${String((e && e.message) || e).slice(0, 70)}`);
-    return null;
-  }
-}
-
-async function generateTopicImage(ai, topic) {
-  // 1) Nano Banana — صورة مخصصة أصلية (بلا حقوق نشر) بمشهد تفصيلي يعبّر عن الموضوع تحديداً
-  if (ai) {
-    try {
-      const imagePrompt = buildImagePrompt(topic);
-      const resp = await ai.models.generateContent({
-        model: IMAGE_MODEL,
-        contents: [{ text: imagePrompt }],
-        config: {
-          responseModalities: ['IMAGE', 'TEXT'],
-          imageConfig: { aspectRatio: '16:9', imageSize: '1K' },
-        },
-      });
-      const parts = resp.candidates?.[0]?.content?.parts || [];
-      const img = parts.find((p) => p.inlineData && p.inlineData.data);
-      if (img) {
-        const buf = Buffer.from(img.inlineData.data, 'base64');
-        if (buf.length >= 5000) {
-          log(`[radar] 🖼️ Nano Banana: صورة مخصصة لـ«${topic.title}»`);
-          return { buf, credit: null };
-        }
-      }
-      log('[radar] ⚠️ Nano Banana لم يرجِع صورة — ننتقل للبدائل');
-    } catch (e) {
-      log(`[radar] ⚠️ ${IMAGE_MODEL} فشل: ${String((e && e.message) || e).slice(0, 90)}`);
-    }
-  }
-  // 2) Pexels — صور ويب حقيقية (ترخيص مجاني + نسبة للمصوّر)
-  const pexels = await fetchPexels(topic);
-  if (pexels) return pexels;
-  // 3) Pollinations (ذكاء مجاني)
-  try {
-    const enPrompt = `${topic.title}. ${topic.summary}. Egyptian legal topic, professional editorial photography, high quality, sharp, no text, no words, no letters`;
-    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(enPrompt)}?width=1200&height=675&nologo=true&seed=${Date.now() % 100000}`;
-    return { buf: await downloadImage(url), credit: null };
-  } catch (e) {
-    log(`[radar] ⚠️ Pollinations فشل: ${String((e && e.message) || e).slice(0, 70)}`);
-  }
-  // 4) Unsplash عام (قانون) — حل أخير
-  try {
-    return { buf: await downloadImage(IMG_FALLBACK), credit: null };
-  } catch (e) {
-    log(`[radar] ⚠️ Unsplash فشل: ${String((e && e.message) || e).slice(0, 70)}`);
-  }
-  return null;
-}
-
-async function saveTopicImage(buf, topic, date) {
-  if (!buf) return null;
-  try {
-    const dir = path.join(RADAR_IMAGES_DIR, date);
-    fs.mkdirSync(dir, { recursive: true });
-    const slug = (topic.slug || topic.title || 'topic').replace(/[^\w-]/g, '-');
-    // eslint-disable-next-line global-require
-    const sharp = require('sharp');
-    const out = await sharp(buf).resize(1200, 675, { fit: 'cover', position: 'centre' }).jpeg({ quality: 82, mozjpeg: true }).toBuffer();
-    const file = path.join(dir, `${slug}.jpg`);
-    fs.writeFileSync(file, out);
-    // ?v=hash يجبر المتصفح/CDN على جلب الصورة الجديدة عند تغيّر محتواها (كسر الكاش)
-    const v = require('crypto').createHash('sha1').update(out).digest('hex').slice(0, 10);
-    const url = `/radar-images/${date}/${slug}.jpg?v=${v}`;
-    log(`[radar] 🖼️ صورة «${topic.title}»: ${url} (${Math.round(out.length / 1024)} KB)`);
-    return url;
-  } catch (e) {
-    log(`[radar] ⚠️ حفظ الصورة فشل: ${String((e && e.message) || e).slice(0, 70)}`);
-    return null;
-  }
-}
-
 // ─── الأرشيف ───
 
 function loadArchive() {
@@ -516,17 +332,11 @@ function buildTopicSectionsHtml(t, emptyHint) {
 
 function buildTopicCard(t, i, date) {
   const words = countTopicWords(t.sections || []);
-  const img = t.image
-    ? `<img class="topic-img" src="${esc(t.image)}" alt="${esc(t.title)}" loading="lazy" width="1200" height="675" />`
-    : '';
-  const credit = t.imageCredit ? `<span class="img-credit">${esc(t.imageCredit)}</span>` : '';
   const hint = words > 0
     ? `📖 افتح الموضوع الكامل (${words.toLocaleString('ar-EG')} كلمة)`
     : '📖 افتح الموضوع الكامل';
   const href = `/radar-topics/${date}-${topicSlug(t, i)}.html`;
   return `<a class="topic-card" href="${href}" title="افتح الصفحة الكاملة: ${esc(t.title)}">
-      ${img}
-      ${credit}
       <div class="topic-head">
         <span class="topic-num">${String(i + 1).padStart(2, '0')}</span>
         <div class="topic-body">
@@ -596,13 +406,9 @@ function buildTopicPage(t, i, date) {
   const nowISO = new Date(Date.now() + 120 * 60000).toISOString();
   const words = countTopicWords(t.sections || []);
   const full = buildTopicSectionsHtml(t);
-  const img = t.image
-    ? `<img class="topic-img topic-img-wide" src="${esc(t.image)}" alt="${esc(t.title)}" width="1200" height="675" />`
-    : '';
-  const credit = t.imageCredit ? `<span class="img-credit">${esc(t.imageCredit)}</span>` : '';
   const schemas = [
     `{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}","logo":"${BASE_URL}/logo.png"}`,
-    `{"@context":"https://schema.org","@type":"NewsArticle","headline":"${esc(t.title)}","description":"${esc(t.summary || '')}","datePublished":"${date}T00:00:00+02:00","dateModified":"${nowISO}","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"image":"${esc(t.image || `${BASE_URL}/legal-radar.html`)}","mainEntityOfPage":"${pageUrl}"}`,
+    `{"@context":"https://schema.org","@type":"NewsArticle","headline":"${esc(t.title)}","description":"${esc(t.summary || '')}","datePublished":"${date}T00:00:00+02:00","dateModified":"${nowISO}","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"mainEntityOfPage":"${pageUrl}"}`,
     `{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"${BASE_URL}"},{"@type":"ListItem","position":2,"name":"رصد المحامي","item":"${BASE_URL}/legal-radar.html"},{"@type":"ListItem","position":3,"name":"${esc(t.title)}","item":"${pageUrl}"}]}`,
   ];
   return `<!DOCTYPE html>
@@ -620,7 +426,6 @@ function buildTopicPage(t, i, date) {
   <meta property="og:url" content="${pageUrl}" />
   <meta property="og:site_name" content="منصة المحامي الرقمية" />
   <meta property="og:locale" content="ar_EG" />
-  ${t.image ? `<meta property="og:image" content="${esc(t.image)}" />` : ''}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -642,8 +447,6 @@ ${RADAR_CSS}
       <h1>${esc(t.title)}</h1>
       <p>${esc(t.summary || '')}</p>
     </div>
-    ${img}
-    ${credit}
     <div class="topic-page-body">
       ${full}
     </div>
@@ -894,8 +697,6 @@ const RADAR_CSS = `    *, *::before, *::after { box-sizing: border-box; margin: 
     a.topic-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; }
     .topic-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 22px; overflow: hidden; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; height: 100%; }
     .topic-card:hover { transform: translateY(-4px); border-color: rgba(99,102,241,0.4); box-shadow: 0 16px 48px rgba(0,0,0,0.25); }
-    .topic-img { width: 100%; height: 160px; object-fit: cover; display: block; }
-    .img-credit { display: block; font-size: 10px; color: rgba(148,163,184,0.55); padding: 6px 20px 0; }
     .topic-head { display: flex; flex-direction: column; padding: 16px 20px 18px; flex: 1; }
     .topic-num { font-size: 11px; font-weight: 800; color: var(--indigo); margin-bottom: 8px; letter-spacing: 0.5px; }
     .topic-body h3 { font-size: 15.5px; font-weight: 900; color: #fff; line-height: 1.5; margin-bottom: 8px; }
@@ -913,7 +714,6 @@ const RADAR_CSS = `    *, *::before, *::after { box-sizing: border-box; margin: 
     .topic-page-date { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: var(--cyan); background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.25); padding: 5px 14px; border-radius: 999px; margin-bottom: 14px; }
     .topic-page-head h1 { font-size: clamp(1.6rem, 4.5vw, 2.4rem); font-weight: 900; color: #fff; line-height: 1.35; margin-bottom: 12px; }
     .topic-page-head p { font-size: 15px; color: var(--muted); line-height: 1.8; }
-    .topic-img-wide { width: 100%; height: auto; border-radius: 16px; margin-bottom: 4px; }
     .topic-page-body { padding: 22px 4px 10px; }
     .topic-page-body .full-sec h4 { font-size: 18px; }
     .topic-page-body .full-sec p { font-size: 15px; line-height: 2; }
@@ -951,7 +751,7 @@ const RADAR_CSS = `    *, *::before, *::after { box-sizing: border-box; margin: 
     .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
 
     @media (max-width: 980px) { .topic-grid { grid-template-columns: 1fr 1fr; } .arch-body { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 620px) { .topic-grid { grid-template-columns: 1fr; } .arch-body { grid-template-columns: 1fr; } .topic-img { height: 190px; } }
+    @media (max-width: 620px) { .topic-grid { grid-template-columns: 1fr; } .arch-body { grid-template-columns: 1fr; } }
     @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } .nav-links { display: none; } }`;
 
 // ─── المدخل الرئيسي ───
@@ -970,23 +770,6 @@ async function main() {
   // 2) الأرشيف
   const articles = loadArchive();
   let todayEntry = articles.find((e) => e.date === today);
-
-  // 2.5) تحديث صور اليوم فقط (بلا إعادة توليد النصوص) — لاستبدال الصور المولّدة بصور ويب حقيقية من Pexels
-  const refreshImages = process.argv.includes('--refresh-images') || process.env.REFRESH_IMAGES === '1';
-  if (refreshImages && todayEntry?.topics?.length) {
-    const ai = getAi();
-    for (const t of todayEntry.topics) {
-      const img = await generateTopicImage(ai, t);
-      const imgUrl = await saveTopicImage(img?.buf, t, today);
-      if (imgUrl) {
-        t.image = imgUrl;
-        t.imageCredit = img?.credit || null;
-      }
-      await sleep(1500);
-    }
-    saveArchive(articles);
-    log('[radar] 🖼️ --refresh-images: تم تحديث صور بطاقات اليوم (Pexels أولاً)');
-  }
 
   // 2.6) تعبئة مقالات اليوم الفارغة فقط (بلا إعادة توليد الموضوعات/الصور) — عند توفر حصة Gemini
   const fillArticles = process.argv.includes('--fill-articles') || process.env.FILL_ARTICLES === '1';
@@ -1008,7 +791,7 @@ async function main() {
     }
   }
 
-  // 3) موضوعات اليوم (مرة واحدة فقط في اليوم) — مقال كامل + صورة لكل بطاقة
+  // 3) موضوعات اليوم (مرة واحدة فقط في اليوم) — مقال كامل لكل بطاقة
   if (!todayEntry && process.env.GEMINI_API_KEY) {
     const ai = getAi();
     if (ai) {
@@ -1017,9 +800,7 @@ async function main() {
         const full = [];
         for (const t of topics) {
           const article = await generateTopicArticle(ai, t, freshTrends);
-          const img = await generateTopicImage(ai, t);
-          const imgUrl = await saveTopicImage(img?.buf, t, today);
-          full.push({ ...t, sections: article ? article.sections : [], image: imgUrl, imageCredit: img?.credit || null });
+          full.push({ ...t, sections: article ? article.sections : [] });
           await sleep(2000);
         }
         if (full.length) {
