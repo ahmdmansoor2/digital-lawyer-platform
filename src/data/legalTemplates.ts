@@ -54,6 +54,42 @@ export const LEGAL_TEMPLATES: LegalTemplate[] = [
 <h2>الدفاع:</h2>
 <p>...</p>`
   },
+  {
+    id: 'memo-header-release',
+    category: 'header',
+    label: 'مذكرة إخلاء سبيل',
+    description: 'عنوان مذكرة دفاع بطلب الإفراج/إخلاء السبيل',
+    html: `<h1 style="text-align: center;">مذكرة دفاع بطلب إخلاء السبيل</h1>
+<h2 style="text-align: center;">في القضية رقم [رقم القضية] لسنة [السنة]</h2>
+<h3 style="text-align: center;">المتهم: [الاسم]</h3>
+<hr/>
+<h2>أسباب طلب الإخلاء:</h2>
+<p>...</p>
+<h2>الدوافع الموجبة للإفراج:</h2>
+<p>...</p>
+<h2>الطلبات:</h2>
+<ol>
+  <li>إخلاء سبيل المتهم بضمان مالي أو بغير ضمان.</li>
+</ol>`
+  },
+  {
+    id: 'memo-header-appeal',
+    category: 'header',
+    label: 'مذكرة استئناف',
+    description: 'عنوان مذكرة أسباب الاستئناف',
+    html: `<h1 style="text-align: center;">مذكرة أسباب الاستئناف</h1>
+<h2 style="text-align: center;">في الاستئناف رقم [رقم الاستئناف] لسنة [السنة]</h2>
+<h3 style="text-align: center;">المقام من [المستأنف] ضد [المستأنف ضده]</h3>
+<h3 style="text-align: center;">عن الحكم الصادر من [المحكمة] في [رقم الدعوى]</h3>
+<hr/>
+<h2>أوجه الاستئناف:</h2>
+<p>...</p>
+<h2>الطلبات:</h2>
+<ol>
+  <li>إلغاء الحكم المستأنف والقضاء مجدداً بـ [الطلبات].</li>
+  <li>إلزام المستأنف ضده بالمصروفات وأتعاب المحاماة.</li>
+</ol>`
+  },
 
   // ─── Memo Bodies ───
   {
