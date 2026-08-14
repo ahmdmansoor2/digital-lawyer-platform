@@ -8,6 +8,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import PublicThemeToggle from './PublicThemeToggle';
+import SiteHeader from './SiteHeader';
 import { getFirebase } from '../firebaseClient';
 import {
   Scale,
@@ -275,12 +276,14 @@ export default function FirebaseLoginScreen({ onSuccess }: FirebaseLoginScreenPr
   // شاشة المصادقة intentionally محدودة بعناصر الدخول فقط؛ التفاصيل التسويقية متاحة في الصفحة العامة.
 
   return (
-    <div className="public-site public-auth-screen relative min-h-screen bg-[radial-gradient(circle_at_top_right,rgba(79,70,229,0.18),transparent_36%),#020617] text-slate-100 flex items-center justify-center px-4 py-8 sm:py-12" dir="rtl">
-      <div className="absolute left-4 top-4 z-10 sm:left-6 sm:top-6">
-        <PublicThemeToggle />
-      </div>
-      <div id="recaptcha-container" ref={recaptchaRef} />
-      <div className="w-full max-w-md">
+    <div className="public-site public-auth-screen relative min-h-screen bg-[radial-gradient(circle_at_top_right,rgba(79,70,229,0.18),transparent_36%),#020617] text-slate-100 flex flex-col" dir="rtl">
+      <SiteHeader variant="login" activeKey="home" />
+      <div className="relative flex-1 flex items-center justify-center px-4 py-8 sm:py-12">
+        <div className="absolute left-4 top-4 z-10 sm:left-6 sm:top-6">
+          <PublicThemeToggle />
+        </div>
+        <div id="recaptcha-container" ref={recaptchaRef} />
+        <div className="w-full max-w-md">
         <a href="/" className="mb-6 flex items-center justify-center gap-3 text-center" aria-label="العودة إلى الموقع التعريفي">
           <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-950/50">
             <Scale className="h-6 w-6 text-white" />
@@ -371,6 +374,7 @@ export default function FirebaseLoginScreen({ onSuccess }: FirebaseLoginScreenPr
           <a href="/" className="transition hover:text-slate-300">العودة إلى الموقع</a>
           <span aria-hidden="true">•</span>
           <a href="/contact.html" className="transition hover:text-slate-300">تواصل معنا</a>
+        </div>
         </div>
       </div>
     </div>

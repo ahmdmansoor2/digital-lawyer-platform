@@ -18,6 +18,7 @@ const path = require('path');
 const { execSync } = require('child_process');
 const dotenv = require('dotenv');
 const { GoogleGenAI, Type } = require('@google/genai');
+const { headerMarkup, HEADER_CSS } = require('../seo/unified-header.cjs');
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const BLOG_DIR = path.join(ROOT, 'public', 'blog');
@@ -603,17 +604,6 @@ ${list}${midImage}`;
         linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
       background-size: 100% 100%, 48px 48px, 48px 48px;
     }
-    nav.main-nav { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .logo-icon { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 20px rgba(99,102,241,0.35); }
-    .logo-text { display: flex; flex-direction: column; }
-    .logo-name { font-size: 15px; font-weight: 900; color: #fff; line-height: 1.2; }
-    .logo-sub { font-size: 10px; color: var(--emerald); font-weight: 700; }
-    .nav-links { display: flex; align-items: center; gap: 28px; }
-    .nav-links a { font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
-    .nav-cta { padding: 9px 22px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); color: #fff; font-size: 12px; font-weight: 900; text-decoration: none; box-shadow: 0 4px 16px rgba(99,102,241,0.3); }
     .breadcrumbs { max-width: 860px; margin: 16px auto 0; padding: 0 24px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
     .breadcrumbs a { color: var(--muted); text-decoration: none; font-weight: 700; }
     .breadcrumbs a:hover { color: var(--indigo); }
@@ -664,7 +654,7 @@ ${list}${midImage}`;
     .footer-col ul a { font-size: 12px; color: var(--muted); text-decoration: none; }
     .footer-col ul a:hover { color: var(--indigo); }
     .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
-    @media (max-width: 768px) { .article-card { padding: 28px 20px; } .footer-grid { grid-template-columns: 1fr; gap: 28px; } .nav-links { display: none; } }
+    @media (max-width: 768px) { .article-card { padding: 28px 20px; } .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
   `;
 
   return `<!DOCTYPE html>
@@ -688,56 +678,48 @@ ${list}${midImage}`;
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="/header.css">
+  ${HEADER_CSS}
   <style>${articleCardCss}</style>
 </head>
 <body>
 
-  <header class="site-header" id="siteHeader">
-    <div class="header-container">
-      <a href="/" class="header-logo" aria-label="منصة المحامي الرقمي">
-        <div class="logo-badge">⚖️</div>
-        <div class="logo-text">
-          <span class="brand-title">المحامي الرقمي</span>
-          <span class="brand-subtitle">مساعدك القانوني الذكي · مجاناً</span>
-        </div>
+
+  <header class="uh-bar" id="siteHeader">
+    <div class="uh-inner">
+      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+        <span class="uh-badge">⚖️</span>
+        <span class="uh-brand">
+          <span class="uh-title">المحامي الرقمي</span>
+          <span class="uh-sub">مساعدك القانوني الذكي · مجاناً</span>
+        </span>
       </a>
 
-      <nav class="header-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
-        <a href="/" class="nav-item">🏠 الرئيسية</a>
-        <a href="/blog/" class="nav-item active">📰 المدونة القانونية</a>
-        <a href="/legal-library.html" class="nav-item">📚 المكتبة القانونية</a>
-        <a href="/pillars/" class="nav-item">🏛️ المراجع القانونية الشاملة</a>
-        <a href="/legal-forms.html" class="nav-item">📝 صيغ العقود والدعاوي</a>
-        <a href="/legal-radar.html" class="nav-item">🔍 رصد المحامي</a>
-        <div class="nav-more">
-          <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">
-            <span>المزيد</span><span class="nav-more-caret">▾</span>
+      <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
+        <a href="/" class="uh-link">🏠 الرئيسية</a>
+        <a href="/blog/" class="uh-link active">📰 المدونة القانونية</a>
+        <a href="/legal-library.html" class="uh-link">📚 المكتبة القانونية</a>
+        <a href="/pillars/" class="uh-link">🏛️ المراجع الشاملة</a>
+        <a href="/legal-forms.html" class="uh-link">📝 صيغ العقود والدعاوي</a>
+        <a href="/legal-radar.html" class="uh-link">🔍 رصد المحامي</a>
+        <div class="uh-more" id="uhMore">
+          <button class="uh-more-btn" type="button" aria-expanded="false" aria-haspopup="true">
+            <span>المزيد</span><span class="uh-caret">▾</span>
           </button>
-          <div class="nav-more-menu">
-            <a href="/about.html" class="nav-more-item">⚖️ عن المنصة</a>
-            <a href="/features.html" class="nav-more-item">⚡ المميزات الكاملة</a>
-            <a href="/pricing.html" class="nav-more-item">🎁 الأسعار — مجاني 100%</a>
-            <a href="/why-trust-us.html" class="nav-more-item">🛡️ لماذا تثق بنا</a>
-            <a href="/privacy.html" class="nav-more-item">🔐 سياسة الخصوصية</a>
-            <a href="/terms.html" class="nav-more-item">📜 الشروط والأحكام</a>
-            <a href="/contact.html" class="nav-more-item">📬 تواصل معنا</a>
+          <div class="uh-menu">
+            <a href="/about.html" class="uh-menu-item">⚖️ عن المنصة</a>
+            <a href="/features.html" class="uh-menu-item">⚡ المميزات الكاملة</a>
+            <a href="/pricing.html" class="uh-menu-item">🎁 الأسعار — مجاني 100%</a>
+            <a href="/why-trust-us.html" class="uh-menu-item">🛡️ لماذا تثق بنا</a>
+            <a href="/privacy.html" class="uh-menu-item">🔐 سياسة الخصوصية</a>
+            <a href="/terms.html" class="uh-menu-item">📜 الشروط والأحكام</a>
+            <a href="/contact.html" class="uh-menu-item">📬 تواصل معنا</a>
           </div>
         </div>
       </nav>
 
-      <div class="header-actions">
-        <a href="/" class="header-cta">
-          <span>🚀</span>
-          <span>ابدأ مجاناً</span>
-        </a>
-        <button
-          class="header-mobile-toggle"
-          aria-label="فتح القائمة"
-          aria-expanded="false"
-          aria-controls="headerNav"
-          onclick="(function(btn){var nav=document.getElementById('headerNav');var isOpen=nav.classList.toggle('active');btn.setAttribute('aria-expanded',isOpen);btn.setAttribute('aria-label',isOpen?'إغلاق القائمة':'فتح القائمة');btn.innerHTML=isOpen?'✕':'☰';})(this)"
-        >☰</button>
+      <div class="uh-actions">
+        <a href="/" class="uh-cta"><span>🚀 دخول التطبيق</span></a>
+        <button class="uh-burger" id="uhBurger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="headerNav">☰</button>
       </div>
     </div>
   </header>
@@ -745,18 +727,19 @@ ${list}${midImage}`;
     (function(){
       var hdr=document.getElementById('siteHeader');
       var nav=document.getElementById('headerNav');
+      var burger=document.getElementById('uhBurger');
+      var more=document.getElementById('uhMore');
+      var moreBtn=more?more.querySelector('.uh-more-btn'):null;
       if(hdr)window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
-      var toggle=document.querySelector('.header-mobile-toggle');
-      var more=document.querySelector('.nav-more');
-      var moreBtn=document.querySelector('.nav-more-btn');
       function closeMobile(){
         if(nav)nav.classList.remove('active');
-        if(toggle){toggle.setAttribute('aria-expanded','false');toggle.innerHTML='☰';}
+        if(burger){burger.setAttribute('aria-expanded','false');burger.innerHTML='☰';burger.setAttribute('aria-label','فتح القائمة');}
       }
-      if(toggle){toggle.addEventListener('click',function(){
+      if(burger){burger.addEventListener('click',function(){
         var open=nav.classList.toggle('active');
-        toggle.setAttribute('aria-expanded',open);
-        toggle.innerHTML=open?'✕':'☰';
+        burger.setAttribute('aria-expanded',open);
+        burger.innerHTML=open?'✕':'☰';
+        burger.setAttribute('aria-label',open?'إغلاق القائمة':'فتح القائمة');
         if(!open&&more){more.classList.remove('open');}
       });}
       if(moreBtn&&more){
@@ -771,7 +754,7 @@ ${list}${midImage}`;
           more.classList.remove('open');
           if(moreBtn)moreBtn.setAttribute('aria-expanded','false');
         }
-        if(nav&&nav.classList.contains('active')&&toggle&&!nav.contains(e.target)&&!toggle.contains(e.target)){
+        if(nav&&nav.classList.contains('active')&&burger&&!nav.contains(e.target)&&!burger.contains(e.target)){
           closeMobile();
         }
       });

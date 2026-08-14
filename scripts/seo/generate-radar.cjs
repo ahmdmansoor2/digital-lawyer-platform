@@ -507,7 +507,7 @@ ${RADAR_CSS}
       try {
         var p = new URLSearchParams(window.location.search);
         if (p.get('from') === 'app') {
-          var cta = document.querySelector('.nav-cta');
+          var cta = document.querySelector('.uh-cta');
           if (cta) { cta.innerHTML = '← العودة إلى لوحة التحكم'; cta.setAttribute('href', '/'); }
         }
       } catch(e) {}
@@ -622,7 +622,7 @@ ${RADAR_CSS}
       try {
         var p = new URLSearchParams(window.location.search);
         if (p.get('from') === 'app') {
-          var cta = document.querySelector('.nav-cta');
+          var cta = document.querySelector('.uh-cta');
           if (cta) { cta.innerHTML = '← العودة إلى لوحة التحكم'; cta.setAttribute('href', '/'); }
         }
       } catch(e) {}
@@ -658,16 +658,6 @@ const RADAR_CSS = `    *, *::before, *::after { box-sizing: border-box; margin: 
         radial-gradient(ellipse at 90% 70%, rgba(16,185,129,0.1) 0%, transparent 50%);
     }
 
-    nav:not(.header-nav) { position: sticky; top: 0; z-index: 100; background: rgba(15,23,42,0.82); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
-    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 68px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .logo-icon { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 20px rgba(99,102,241,0.35); }
-    .logo-name { font-size: 15px; font-weight: 900; color: #fff; line-height: 1.2; }
-    .logo-sub { font-size: 10px; color: var(--emerald); font-weight: 700; }
-    .nav-links { display: flex; align-items: center; gap: 28px; }
-    .nav-links a { font-size: 13px; font-weight: 700; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--indigo); }
-    .nav-cta { padding: 9px 22px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); color: #fff; font-size: 12px; font-weight: 900; text-decoration: none; box-shadow: 0 4px 16px rgba(99,102,241,0.3); }
 
     .breadcrumbs { max-width: 1200px; margin: 0 auto; padding: 14px 24px 0; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .breadcrumbs a { color: var(--muted); text-decoration: none; transition: color 0.2s; font-weight: 700; }
@@ -752,7 +742,7 @@ const RADAR_CSS = `    *, *::before, *::after { box-sizing: border-box; margin: 
 
     @media (max-width: 980px) { .topic-grid { grid-template-columns: 1fr 1fr; } .arch-body { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 620px) { .topic-grid { grid-template-columns: 1fr; } .arch-body { grid-template-columns: 1fr; } }
-    @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } .nav-links { display: none; } }`;
+    @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } }`;
 
 // ─── المدخل الرئيسي ───
 

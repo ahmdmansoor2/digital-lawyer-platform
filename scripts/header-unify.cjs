@@ -1,10 +1,12 @@
 ﻿/**
- * header-unify.cjs — توحيد الشريط العلوي في كل صفحات الموقع الثابتة
- * روابط أساسية + قائمة «المزيد» المنسدلة تعكس المحتوى الفعلي للموقع.
- * يعيد كتابة:
- *   1) كتلة <nav class="header-nav">…</nav> داخل كل ملف HTML
- *   2) سكربت الـ header (scroll + هامبرغر + قائمة المزيد)
- * مع تحديد رابط `active` حسب مسار الملف.
+ * header-unify.cjs — حقن الشريط العلوي الزجاجي الجديد في كل صفحات الموقع الثابتة
+ * (هجرة لمرة واحدة + إعادة ضبط للملفات الملتزمة التي لم تولّدها مولّدات CI بعد).
+ *
+ * لكل ملف HTML في public/:
+ *   1) يستبدل الهيدر القديم <header class="site-header"> إن وُجد.
+ *   2) يحقن الهيدر الجديد (.uh-bar) بعد <body> إن لم يوجد.
+ *   3) يضيف <link rel="stylesheet" href="/header.css?v=..."> في <head> إن غاب.
+ *   4) يزيل بقايا CSS الميتة القديمة (ال NAV / .nav-logo / .nav-links / .header-).
  *
  * الاستخدام: node scripts/header-unify.cjs
  */
@@ -15,94 +17,40 @@ const { headerMarkup, HEADER_CSS } = require('./seo/unified-header.cjs');
 const ROOT = path.resolve(__dirname, '..');
 const PUBLIC = path.join(ROOT, 'public');
 
-/* ── روابط الشريط الأساسية ─────────────────────────── */
-function primaryLinks(a) {
-  return [
-    `<a href="/" class="nav-item">🏠 الرئيسية</a>`,
-    `<a href="/blog/" class="nav-item${a.blog || ''}">📰 المدونة القانونية</a>`,
-    `<a href="/legal-library.html" class="nav-item${a.lib || ''}">📚 المكتبة القانونية</a>`,
-    `<a href="/pillars/" class="nav-item${a.pillars || ''}">🏛️ المراجع القانونية الشاملة</a>`,
-    `<a href="/legal-forms.html" class="nav-item${a.forms || ''}">📝 صيغ العقود والدعاوي</a>`,
-    `<a href="/legal-radar.html" class="nav-item${a.radar || ''}">🔍 رصد المحامي</a>`,
-  ];
+/* ── التعابير ───────────────────────────────────────── */
+const OLD_HEADER_RE = /<header class="site-header" id="siteHeader">[\s\S]*?<\/header>/;
+const OLD_JS_RE = /([ \t]*)<script>\s*\(function\(\)\{\s*var hdr=document\.getElementById\('siteHeader'\);[\s\S]*?<\/script>/;
+const NEW_HEADER_RE = /<header class="uh-bar" id="siteHeader">/;
+const ANY_HEADER_RE = /id="siteHeader"/;
+const CSS_LINK_RE = /\/header\.css/;
+const HEAD_RE = /(<\/head>)/;
+
+/* بقايا CSS الميتة (قواعد مكسورة بلا أقواس من الهيدر القديم) */
+const NAV_COMMENT_RE = /\/\*[^\n]*NAV[^\n]*\*\/\s*\n\s*\.nav-logo:hover\s*\n\s*\.nav-links a:hover,?\s*\n?/g;
+const HEADER_MEDIA_RE = /@media\s*\(max-width:\s*1024px\)\s*\{\s*\.header-\s*\n\s*\}\n?/g;
+
+function isDeadNavSelector(sel) {
+  const s = sel.trim();
+  if (/^nav(?::not\([^)]*\))?(\s*|,)/.test(s)) return true;
+  if (/\.header-/.test(s)) return true;
+  if (/(^|,\s*)\.nav-/.test(s)) return true;
+  if (/(^|,\s*)\.(?:logo-icon|logo-name|logo-sub)(?=\s*(?:,|$))/.test(s)) return true;
+  return false;
 }
 
-/* ── روابط قائمة «المزيد» المنسدلة ─────────────────── */
-function moreLinks(a) {
-  return [
-    `<a href="/about.html" class="nav-more-item${a.about || ''}">⚖️ عن المنصة</a>`,
-    `<a href="/features.html" class="nav-more-item${a.features || ''}">⚡ المميزات الكاملة</a>`,
-    `<a href="/pricing.html" class="nav-more-item${a.pricing || ''}">🎁 الأسعار — مجاني 100%</a>`,
-    `<a href="/why-trust-us.html" class="nav-more-item${a.trust || ''}">🛡️ لماذا تثق بنا</a>`,
-    `<a href="/privacy.html" class="nav-more-item${a.privacy || ''}">🔐 سياسة الخصوصية</a>`,
-    `<a href="/terms.html" class="nav-more-item${a.terms || ''}">📜 الشروط والأحكام</a>`,
-    `<a href="/contact.html" class="nav-more-item${a.contact || ''}">📬 تواصل معنا</a>`,
-  ];
+/* يزيل قواعد الهيدر القديم الميتة من كتلة <style> ويُسقط الكتلة إن خلت */
+function cleanCssBlock(css) {
+  let out = css.replace(/(^|[\r\n])\s*([^{}\r\n@][^{}\r\n]*?)\s*\{[^{}]*\}/g, (m, pre, sel) =>
+    isDeadNavSelector(sel) ? '' : m
+  );
+  out = out.replace(/^[ \t]*\.(?:nav-|header-)[^;\r\n]*$/gm, '');
+  out = out.replace(/@media[^{}]*\{\s*\}/g, '');
+  return out;
 }
-
-function buildNav(active) {
-  return `<nav class="header-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
-${primaryLinks(active).map((l) => `        ${l}`).join('\n')}
-        <div class="nav-more">
-          <button class="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">
-            <span>المزيد</span><span class="nav-more-caret">▾</span>
-          </button>
-          <div class="nav-more-menu">
-${moreLinks(active).map((l) => `            ${l}`).join('\n')}
-          </div>
-        </div>
-      </nav>`;
-}
-
-const NEW_JS = `  <script>
-    (function(){
-      var hdr=document.getElementById('siteHeader');
-      var nav=document.getElementById('headerNav');
-      if(hdr)window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
-      var toggle=document.querySelector('.header-mobile-toggle');
-      var more=document.querySelector('.nav-more');
-      var moreBtn=document.querySelector('.nav-more-btn');
-      function closeMobile(){
-        if(nav)nav.classList.remove('active');
-        if(toggle){toggle.setAttribute('aria-expanded','false');toggle.innerHTML='☰';}
-      }
-      if(toggle){toggle.addEventListener('click',function(){
-        var open=nav.classList.toggle('active');
-        toggle.setAttribute('aria-expanded',open);
-        toggle.innerHTML=open?'✕':'☰';
-        if(!open&&more){more.classList.remove('open');}
-      });}
-      if(moreBtn&&more){
-        moreBtn.addEventListener('click',function(e){
-          e.stopPropagation();
-          var open=more.classList.toggle('open');
-          moreBtn.setAttribute('aria-expanded',open);
-        });
-      }
-      document.addEventListener('click',function(e){
-        if(more&&more.classList.contains('open')&&!more.contains(e.target)){
-          more.classList.remove('open');
-          if(moreBtn)moreBtn.setAttribute('aria-expanded','false');
-        }
-        if(nav&&nav.classList.contains('active')&&toggle&&!nav.contains(e.target)&&!toggle.contains(e.target)){
-          closeMobile();
-        }
-      });
-    })();
-  </script>`;
-
-const NAV_RE = /([ \t]*)<nav class="header-nav"[^>]*>[\s\S]*?<\/nav>/;
-const JS_RE = /([ \t]*)<script>\s*\(function\(\)\{\s*var hdr=document\.getElementById\('siteHeader'\);[\s\S]*?<\/script>/;
-const RADAR_NAV_RE = /([ \t]*)<nav>\s*<div class="nav-inner">[\s\S]*?<\/nav>/;
-const RADAR_NAV_CSS_RE = /nav \{ position: sticky; top: 0;/;
 
 function activeFor(rel) {
   const p = rel.replace(/\\/g, '/');
-  const one = (key) => {
-    const o = {};
-    o[key] = ' active';
-    return o;
-  };
+  const one = (key) => key;
   if (p === 'about.html') return one('about');
   if (p === 'features.html') return one('features');
   if (p === 'pricing.html') return one('pricing');
@@ -113,15 +61,12 @@ function activeFor(rel) {
   if (p === 'legal-library.html') return one('lib');
   if (p === 'legal-radar.html') return one('radar');
   if (p === 'legal-forms.html') return one('forms');
+  if (p.startsWith('legal-library-topics/')) return one('lib');
   if (p.startsWith('blog/')) return one('blog');
   if (p.startsWith('pillars/')) return one('pillars');
   if (p.startsWith('legal-forms-docs/')) return one('forms');
   if (p.startsWith('radar-topics/')) return one('radar');
-  return {};
-}
-
-function indentBlock(lines, baseIndent) {
-  return lines.map((l) => (l.trim() ? baseIndent + l : '')).join('\n');
+  return 'home';
 }
 
 function walk(dir) {
@@ -135,52 +80,61 @@ function walk(dir) {
 }
 
 function main() {
-  const files = walk(PUBLIC);
-  let updated = 0;
-  let skipped = 0;
-  let jsUpdated = 0;
-  let radarFixed = 0;
+  const files = walk(PUBLIC).filter((f) => !/googlec03a96f2162c19b9\.html$/i.test(f));
+  let injected = 0;
+  let replaced = 0;
+  let cssAdded = 0;
+  let cleaned = 0;
+  let untouched = 0;
   for (const file of files) {
     let html = fs.readFileSync(file, 'utf8');
     const rel = path.relative(PUBLIC, file);
     const active = activeFor(rel);
+    const markup = headerMarkup(active);
+    let changed = false;
 
-    const navMatch = html.match(NAV_RE);
-    if (!navMatch) {
-      const radarMatch = html.match(RADAR_NAV_RE);
-      if (radarMatch) {
-        const navHtml = indentBlock(headerMarkup('radar').split('\n'), radarMatch[1]);
-        html = html.replace(RADAR_NAV_RE, navHtml);
-        if (!html.includes('/header.css')) {
-          html = html.replace(/\n(\s*)<style>/, `\n${HEADER_CSS}\n$1<style>`);
-        }
-        html = html.replace(RADAR_NAV_CSS_RE, 'nav:not(.header-nav) { position: sticky; top: 0;');
-        fs.writeFileSync(file, html, 'utf8');
-        radarFixed++;
-        continue;
+    html = html.replace(OLD_JS_RE, '');
+    if (OLD_HEADER_RE.test(html)) {
+      html = html.replace(OLD_HEADER_RE, markup);
+      replaced++;
+      changed = true;
+    }
+
+    if (!ANY_HEADER_RE.test(html)) {
+      const bodyMatch = html.match(/<body[^>]*>/);
+      if (bodyMatch) {
+        html = html.replace(bodyMatch[0], bodyMatch[0] + '\n' + markup + '\n');
+        injected++;
+        changed = true;
       }
-      skipped++;
-      continue;
     }
-    const navHtml = indentBlock(buildNav(active).split('\n'), navMatch[1]);
-    html = html.replace(NAV_RE, navHtml);
 
-    const jsMatch = html.match(JS_RE);
-    if (jsMatch) {
-      const jsHtml = indentBlock(NEW_JS.split('\n'), jsMatch[1]);
-      html = html.replace(JS_RE, jsHtml);
-      jsUpdated++;
+    if (!CSS_LINK_RE.test(html)) {
+      html = html.replace(HEAD_RE, HEADER_CSS + '\n$1');
+      cssAdded++;
+      changed = true;
     }
-    if (RADAR_NAV_CSS_RE.test(html)) {
-      html = html.replace(RADAR_NAV_CSS_RE, 'nav:not(.header-nav) { position: sticky; top: 0;');
+
+    if (NAV_COMMENT_RE.test(html) || HEADER_MEDIA_RE.test(html) || /\.nav-|\.header-|\.logo-(?:icon|name|sub)/.test(html)) {
+      html = html.replace(NAV_COMMENT_RE, '');
+      html = html.replace(HEADER_MEDIA_RE, '');
+      html = html.replace(/<style[^>]*>([\s\S]*?)<\/style>/gi, (m, body) => {
+        const cleaned = cleanCssBlock(body);
+        if (!/\{/.test(cleaned)) return '';
+        return m.replace(body, cleaned);
+      });
+      cleaned++;
+      changed = true;
     }
-    fs.writeFileSync(file, html, 'utf8');
-    updated++;
+
+    if (changed) fs.writeFileSync(file, html, 'utf8');
+    else untouched++;
   }
-  console.log(`✓ headers updated: ${updated}`);
-  console.log(`✓ header JS updated: ${jsUpdated}`);
-  console.log(`✓ radar headers fixed: ${radarFixed}`);
-  console.log(`○ skipped (no header): ${skipped}`);
+  console.log(`✓ headers injected: ${injected}`);
+  console.log(`✓ old headers replaced: ${replaced}`);
+  console.log(`✓ css links added: ${cssAdded}`);
+  console.log(`✓ dead css cleaned: ${cleaned}`);
+  console.log(`○ untouched: ${untouched}`);
 }
 
 main();

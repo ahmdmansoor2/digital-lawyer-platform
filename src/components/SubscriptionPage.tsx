@@ -12,6 +12,7 @@ import {
   Crown, CheckCircle2, Star, Shield, Clock,
   HeadphonesIcon, Copy, Check, MessageCircle, ChevronLeft
 } from 'lucide-react';
+import SiteHeader from './SiteHeader';
 
 interface SubscriptionPageProps {
   userEmail?: string;
@@ -69,7 +70,7 @@ const FEATURES = [
   'دعم فني مباشر على واتساب',
 ];
 
-export default function SubscriptionPage({ userEmail, onLogout }: SubscriptionPageProps) {
+export default function SubscriptionPage({ userEmail, userName, onLogout }: SubscriptionPageProps) {
   const [selected, setSelected] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
@@ -93,7 +94,9 @@ export default function SubscriptionPage({ userEmail, onLogout }: SubscriptionPa
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950/20 to-slate-950 flex items-center justify-center p-4" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950/20 to-slate-950 flex flex-col" dir="rtl">
+      <SiteHeader activeKey="home" userName={userName} onLogout={onLogout} />
+      <div className="flex-1 flex items-center justify-center p-4">
       <div className="max-w-4xl w-full space-y-5">
 
         {/* ── Header ── */}
@@ -242,6 +245,7 @@ export default function SubscriptionPage({ userEmail, onLogout }: SubscriptionPa
             تسجيل الخروج — {userEmail}
           </button>
         </div>
+      </div>
       </div>
     </div>
   );

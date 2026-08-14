@@ -5,7 +5,8 @@
  */
 
 import React from 'react';
-import { LogOut, ArrowLeft, Scale, Sparkles, Briefcase, Calendar, FileText, Calculator, BookOpen, Library, MessageCircle, Shield, Radio, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, Scale, Sparkles, Briefcase, Calendar, FileText, Calculator, BookOpen, Library, MessageCircle, Shield, Radio, ShieldCheck } from 'lucide-react';
+import SiteHeader from './SiteHeader';
 
 interface InfoCenterProps {
   userName?: string;
@@ -118,7 +119,7 @@ const PAGES = [
 export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCenterProps) {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100" dir="rtl">
-      {/* تم حذف الشريط العلوي بناءً على طلب المستخدم */}
+      <SiteHeader activeKey="home" onEnterApp={onEnterApp} userName={userName} onLogout={onLogout} />
 
       {/* Main content */}
       <main className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 py-12 md:py-16">
