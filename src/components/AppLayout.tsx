@@ -359,75 +359,7 @@ export default function AppLayout(props: AppLayoutProps) {
         }
       `}</style>
 
-      {/* MOBILE HEADER BAR — Unified Premium Design */}
-      <div className="md:hidden sticky top-0 z-40" style={{
-        background: isLightWorkspace ? 'rgba(255,255,255,0.95)' : 'rgba(15,23,42,0.95)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: isLightWorkspace ? '1px solid rgba(148,163,184,0.28)' : '1px solid rgba(148,163,184,0.15)',
-        boxShadow: isLightWorkspace ? '0 4px 16px rgba(15,23,42,0.10)' : '0 4px 16px rgba(0,0,0,0.3)',
-      }}>
-        <div className="flex items-center justify-between px-4" style={{ height: '64px' }}>
-          <div className="flex items-center gap-2.5">
-            <div style={{
-              width: '38px', height: '38px', borderRadius: '10px',
-              background: 'linear-gradient(135deg, #6366f1 0%, #7c3aed 100%)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '18px', boxShadow: '0 3px 12px rgba(99,102,241,0.35)',
-            }}>⚖️</div>
-            <div>
-              <div style={{ fontSize: '14px', fontWeight: 900, color: isLightWorkspace ? '#0f172a' : '#ffffff', lineHeight: 1.2 }}>منصة المحامي الرقمية</div>
-              <div style={{ fontSize: '9.5px', color: isLightWorkspace ? '#047857' : '#10b981', fontWeight: 800 }}>مجاني 100%</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setSearchOpen(true)}
-              style={{
-                width: '36px', height: '36px', borderRadius: '9px',
-                background: isLightWorkspace ? 'rgba(241,245,249,0.95)' : 'rgba(30,41,59,0.8)',
-                border: isLightWorkspace ? '1px solid rgba(148,163,184,0.35)' : '1px solid rgba(148,163,184,0.2)',
-                color: isLightWorkspace ? '#475569' : '#94a3b8', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
-              }}
-              title="بحث شامل (Ctrl+K)"
-            >
-              <SearchIcon className="h-4 w-4" />
-            </button>
-            <button
-              onClick={() => {
-                localStorage.removeItem('lawfirm_logged_in');
-                localStorage.removeItem('lawfirm_user_name');
-                localStorage.removeItem('lawfirm_user_role');
-                if (typeof onLogout === 'function') {
-                  onLogout();
-                }
-              }}
-              style={{
-                width: '36px', height: '36px', borderRadius: '9px',
-                background: 'rgba(244, 63, 94, 0.15)', border: '1px solid rgba(244, 63, 94, 0.4)',
-                color: '#fda4af', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
-              }}
-              title="تسجيل الخروج"
-              aria-label="تسجيل الخروج"
-            >
-              <LogOut className="h-4 w-4" />
-            </button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              style={{
-                width: '36px', height: '36px', borderRadius: '9px',
-                background: isLightWorkspace ? 'rgba(224,231,255,0.85)' : 'rgba(99,102,241,0.2)',
-                border: isLightWorkspace ? '1px solid rgba(99,102,241,0.35)' : '1px solid rgba(99,102,241,0.3)',
-                color: isLightWorkspace ? '#4338ca' : '#a5b4fc', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
-              }}
-              id="mobile-hamburger-btn"
-            >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </div>
-        </div>
-      </div>
+      {/* MOBILE HEADER BAR — تم حذفه بناءً على طلب المستخدم */}
 
       {/* RIGHT SIDEBAR (قائمة التنقل الكبرى) */}
       <aside className={`

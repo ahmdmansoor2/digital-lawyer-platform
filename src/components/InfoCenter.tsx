@@ -4,7 +4,7 @@
  * تعرض صفحات المنصة الرسمية + اختصارات للتطبيق
  */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { LogOut, ArrowLeft, Scale, Sparkles, Briefcase, Calendar, FileText, Calculator, BookOpen, Library, MessageCircle, Shield, Radio, ShieldCheck } from 'lucide-react';
 
 interface InfoCenterProps {
@@ -116,165 +116,9 @@ const PAGES = [
 ];
 
 export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCenterProps) {
-  // ربط JavaScript الخاص بالـ header (مطابق للصفحات الثابتة) — useEffect لأن <script> في React لا ينفذ
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const target = e.target as HTMLElement;
-      const hdr = document.getElementById('siteHeader');
-      const nav = document.getElementById('headerNav');
-
-      if (hdr && e.type === 'scroll') {
-        hdr.classList.toggle('scrolled', window.scrollY > 20);
-      }
-    };
-    window.addEventListener('scroll', () => {
-      const hdr = document.getElementById('siteHeader');
-      if (hdr) hdr.classList.toggle('scrolled', window.scrollY > 20);
-    }, { passive: true });
-
-    const onToggleMobile = (btn: HTMLElement) => {
-      const nav = document.getElementById('headerNav');
-      if (!nav) return;
-      const isOpen = nav.classList.toggle('active');
-      btn.setAttribute('aria-expanded', String(isOpen));
-      btn.setAttribute('aria-label', isOpen ? 'إغلاق القائمة' : 'فتح القائمة');
-      btn.innerHTML = isOpen ? '✕' : '☰';
-      if (!isOpen) {
-        const more = document.querySelector('.nav-more');
-        if (more) more.classList.remove('open');
-      }
-    };
-
-    const onToggleMore = (e: Event) => {
-      e.stopPropagation();
-      const btn = e.currentTarget as HTMLElement;
-      const more = btn.parentElement;
-      if (!more) return;
-      const isOpen = more.classList.toggle('open');
-      btn.setAttribute('aria-expanded', String(isOpen));
-    };
-
-    const onDocumentClick = (e: Event) => {
-      const target = e.target as HTMLElement;
-      const more = document.querySelector('.nav-more');
-      const moreBtn = document.querySelector('.nav-more-btn');
-      const nav = document.getElementById('headerNav');
-      const toggle = document.querySelector('.header-mobile-toggle');
-
-      if (more && more.classList.contains('open') && !more.contains(target)) {
-        more.classList.remove('open');
-        if (moreBtn) moreBtn.setAttribute('aria-expanded', 'false');
-      }
-      if (nav && nav.classList.contains('active') && toggle && !nav.contains(target) && !toggle.contains(target)) {
-        nav.classList.remove('active');
-        if (toggle) {
-          toggle.setAttribute('aria-expanded', 'false');
-          toggle.innerHTML = '☰';
-        }
-      }
-    };
-
-    // ربط الأحداث بعد tick (بعد render)
-    const bind = () => {
-      const toggle = document.querySelector<HTMLButtonElement>('.header-mobile-toggle');
-      const moreBtn = document.querySelector<HTMLButtonElement>('.nav-more-btn');
-      if (toggle) toggle.onclick = () => onToggleMobile(toggle);
-      if (moreBtn) moreBtn.onclick = (e) => onToggleMore(e);
-    };
-    bind();
-    // إعادة الربط بعد tick (في حال الـ DOM تغير)
-    const t = setTimeout(bind, 0);
-
-    document.addEventListener('click', onDocumentClick);
-
-    return () => {
-      document.removeEventListener('click', onDocumentClick);
-      clearTimeout(t);
-    };
-  }, []);
-
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100" dir="rtl">
-          {/* Top bar — Unified Premium Navbar (مطابق للصفحات الثابتة) */}
-      <header className="site-header" id="siteHeader">
-        <div className="header-container">
-          <a href="/" className="header-logo" aria-label="منصة المحامي الرقمي">
-            <div className="logo-badge">⚖️</div>
-            <div className="logo-text">
-              <span className="brand-title">المحامي الرقمي</span>
-              <span className="brand-subtitle">مساعدك القانوني الذكي · مجاناً</span>
-            </div>
-          </a>
-
-          <nav className="header-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
-              <a href="/" className="nav-item active">🏠 الرئيسية</a>
-              <a href="/blog/" className="nav-item">📰 المدونة القانونية</a>
-              <a href="/legal-library.html" className="nav-item">📚 المكتبة القانونية</a>
-              <a href="/pillars/" className="nav-item">🏛️ المراجع القانونية الشاملة</a>
-              <a href="/legal-forms.html" className="nav-item">📝 صيغ العقود والدعاوي</a>
-              <a href="/legal-radar.html" className="nav-item">🔍 رصد المحامي</a>
-              <div className="nav-more">
-                <button className="nav-more-btn" type="button" aria-expanded="false" aria-haspopup="true">
-                  <span>المزيد</span><span className="nav-more-caret">▾</span>
-                </button>
-                <div className="nav-more-menu">
-                  <a href="/about.html" className="nav-more-item">⚖️ عن المنصة</a>
-                  <a href="/features.html" className="nav-more-item">⚡ المميزات الكاملة</a>
-                  <a href="/pricing.html" className="nav-more-item">🎁 الأسعار — مجاني 100%</a>
-                  <a href="/why-trust-us.html" className="nav-more-item">🛡️ لماذا تثق بنا</a>
-                  <a href="/privacy.html" className="nav-more-item">🔐 سياسة الخصوصية</a>
-                  <a href="/terms.html" className="nav-more-item">📜 الشروط والأحكام</a>
-                  <a href="/contact.html" className="nav-more-item">📬 تواصل معنا</a>
-                </div>
-              </div>
-            </nav>
-
-          <div className="header-actions">
-            {userName && (
-              <span className="hidden lg:flex items-center gap-1.5 text-[11px] font-bold text-slate-300 bg-slate-800/60 border border-slate-700/60 rounded-lg px-2 py-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>مرحباً، {userName}</span>
-              </span>
-            )}
-            <button
-              type="button"
-              onClick={onEnterApp}
-              className="header-cta border-0 cursor-pointer"
-            >
-              <span style={{ fontSize: '13px' }}>🚀</span>
-              <span>دخول</span>
-            </button>
-            {userName && (
-              <button
-                type="button"
-                onClick={onLogout}
-                className="h-9 w-9 p-0 rounded-lg bg-rose-600 hover:bg-rose-700 text-white flex items-center justify-center transition cursor-pointer border border-rose-700 hover:border-rose-800 shadow-md"
-                aria-label="تسجيل الخروج من الموقع"
-                title="تسجيل الخروج من الموقع"
-              >
-                <LogOut style={{ width: '16px', height: '16px' }} />
-              </button>
-            )}
-            <button
-              className="header-mobile-toggle"
-              aria-label="فتح القائمة"
-              aria-expanded="false"
-              aria-controls="headerNav"
-              onClick={(e) => {
-                const btn = e.currentTarget;
-                const nav = document.getElementById('headerNav');
-                if (!nav) return;
-                const isOpen = nav.classList.toggle('active');
-                btn.setAttribute('aria-expanded', String(isOpen));
-                btn.setAttribute('aria-label', isOpen ? 'إغلاق القائمة' : 'فتح القائمة');
-                btn.innerHTML = isOpen ? '✕' : '☰';
-              }}
-            >
-              ☰
-            </button>
-          </div>
-        </div>
-      </header>
+      {/* تم حذف الشريط العلوي بناءً على طلب المستخدم */}
 
       {/* Main content */}
       <main className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 py-12 md:py-16">
