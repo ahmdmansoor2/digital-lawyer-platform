@@ -724,6 +724,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1394158229515090",
       "publishedAt": "2026-08-14T09:56:15.328Z"
+    },
+    {
+      "topicId": "trend-egyptian-stock-market-legal-guide",
+      "kind": "short",
+      "videoId": "46bCQLyAnm8",
+      "url": "https://www.youtube.com/watch?v=46bCQLyAnm8",
+      "fbPermalink": "https://www.facebook.com/reel/1608141870665133",
+      "publishedAt": "2026-08-14T10:16:52.443Z"
+    },
+    {
+      "topicId": "trend-egyptian-stock-market-legal-guide",
+      "title": "دليل الاستثمار والتداول القانوني في البورصة المصرية للمبتدئين 2024 — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-egyptian-stock-market-legal-guide-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "p945QxXtHwo",
+      "url": "https://www.youtube.com/watch?v=p945QxXtHwo",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1608141870665133",
+      "publishedAt": "2026-08-14T10:17:29.975Z"
     }
   ]
 }
