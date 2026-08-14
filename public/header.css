@@ -58,17 +58,20 @@
 .header-container {
   max-width: 1320px;
   width: 100%;
+  /* في RTL: padding-inline-start 160px يخلق 160px space فارغة على اليمين، فيبدأ الـ logo من أقصى يمين الـ viewport */
   margin: 0 auto;
-  padding: 0 28px;
-  height: 70px;
+  padding: 0 20px 0 160px;
+  height: 64px;
   display: flex;
   align-items: center;
+  position: relative;
+  overflow: visible;
   justify-content: space-between;
   gap: 16px;
 }
 
 /* ══════════════════════════════════════════════════
-   الشعار (Logo)
+   الشعار (Logo) — مثبت في أقصى يمين الـ viewport
 ══════════════════════════════════════════════════ */
 .header-logo {
   display: flex;
@@ -76,7 +79,9 @@
   gap: 11px;
   text-decoration: none;
   flex-shrink: 0;
-  position: relative;
+  position: absolute;
+  inset-inline-end: 0;
+  padding-inline-end: 20px;
 }
 
 .logo-badge {
