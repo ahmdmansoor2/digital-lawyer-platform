@@ -1,49 +1,37 @@
-/*
- * header.css — الشريط العلوي الموحّد لمنصة المحامي الرقمي
- * Ultra Premium Design · RTL · Responsive
- * mohamidigital.online
- */
+/* ============================================================================
+ * header.css — الشريط العلوي الموحّد لمنصة المحامي الرقمية
+ * تم إعادة كتابته من الصفر لحل مشاكل التكرار والتعارض
+ * يدعم: RTL/LTR, responsive (desktop, tablet, mobile)
+ * ============================================================================ */
 
-/* ══════════════════════════════════════════════════
-   الـ Header الرئيسي
-══════════════════════════════════════════════════ */
+/* ============================================================================
+   1. الحاوية الرئيسية (الشريط نفسه)
+   ============================================================================ */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 1000;
   width: 100%;
   font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
-  /* خلفية زجاجية داكنة راقية */
-  background: linear-gradient(135deg,
-    rgba(9, 9, 27, 0.96) 0%,
-    rgba(15, 10, 35, 0.95) 50%,
-    rgba(8, 12, 30, 0.96) 100%
-  );
+  background: linear-gradient(135deg, rgba(9,9,27,0.96) 0%, rgba(15,10,35,0.95) 50%, rgba(8,12,30,0.96) 100%);
   backdrop-filter: blur(28px) saturate(1.6);
   -webkit-backdrop-filter: blur(28px) saturate(1.6);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.22);
-  box-shadow:
-    0 1px 0 rgba(255,255,255,0.04),
-    0 8px 32px rgba(0, 0, 0, 0.45),
-    0 2px 16px rgba(99, 102, 241, 0.1);
+  border-bottom: 1px solid rgba(99,102,241,0.22);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 8px 32px rgba(0,0,0,0.45);
 }
 
-/* خط متوهّج في الأعلى */
+.site-header.scrolled {
+  background: linear-gradient(135deg, rgba(7,7,22,0.98) 0%, rgba(12,8,28,0.98) 50%, rgba(6,10,24,0.98) 100%);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04), 0 12px 48px rgba(0,0,0,0.6), 0 4px 24px rgba(99,102,241,0.15);
+}
+
+/* خط متوهج في الأعلى */
 .site-header::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   height: 2px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(99,102,241,0.6) 20%,
-    rgba(139,92,246,0.9) 40%,
-    rgba(99,102,241,1) 60%,
-    rgba(16,185,129,0.7) 80%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg, transparent 0%, rgba(99,102,241,0.6) 20%, rgba(139,92,246,0.9) 40%, rgba(99,102,241,1) 60%, rgba(16,185,129,0.7) 80%, transparent 100%);
   animation: headerGlow 4s ease-in-out infinite alternate;
 }
 
@@ -52,27 +40,25 @@
   100% { opacity: 1; }
 }
 
-/* ══════════════════════════════════════════════════
-   الحاوية الداخلية
-══════════════════════════════════════════════════ */
+/* ============================================================================
+   2. الحاوية الداخلية (flex container)
+   ============================================================================ */
 .header-container {
   max-width: 1320px;
   width: 100%;
-  /* في RTL: padding-inline-start 160px يخلق 160px space فارغة على اليمين، فيبدأ الـ logo من أقصى يمين الـ viewport */
-  margin: 0 auto;
-  padding: 0 20px 0 160px;
   height: 64px;
+  margin: 0 auto;
+  padding: 0 20px 0 160px;  /* RTL: padding-right 20px, padding-left 160px (يخلق space في اليمين للـ logo) */
   display: flex;
   align-items: center;
-  position: relative;
-  overflow: visible;
   justify-content: space-between;
   gap: 16px;
+  position: relative;
 }
 
-/* ══════════════════════════════════════════════════
-   الشعار (Logo) — مثبت في أقصى يمين الـ viewport
-══════════════════════════════════════════════════ */
+/* ============================================================================
+   3. الشعار (Logo) — مثبت في أقصى يمين الـ viewport
+   ============================================================================ */
 .header-logo {
   display: flex;
   align-items: center;
@@ -82,24 +68,20 @@
   position: absolute;
   inset-inline-end: 0;
   padding-inline-end: 20px;
+  z-index: 5;
 }
 
 .logo-badge {
-  width: 42px;
-  height: 42px;
-  border-radius: 13px;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
   background: linear-gradient(135deg, #6366f1 0%, #7c3aed 60%, #4f46e5 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 21px;
-  box-shadow:
-    0 4px 20px rgba(99, 102, 241, 0.45),
-    0 0 0 1px rgba(255,255,255,0.15) inset;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
+  font-size: 22px;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.45), 0 0 0 1px rgba(255,255,255,0.15) inset;
+  transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
 }
 
 .logo-badge::after {
@@ -109,11 +91,12 @@
   height: 50%;
   background: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, transparent 100%);
   border-radius: 14px 14px 0 0;
+  pointer-events: none;
 }
 
 .header-logo:hover .logo-badge {
   transform: scale(1.08) rotate(-3deg);
-  box-shadow: 0 8px 28px rgba(99, 102, 241, 0.65), 0 0 0 1px rgba(255,255,255,0.2) inset;
+  box-shadow: 0 8px 28px rgba(99,102,241,0.65), 0 0 0 1px rgba(255,255,255,0.2) inset;
 }
 
 .logo-text {
@@ -123,7 +106,7 @@
 }
 
 .brand-title {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 900;
   color: #ffffff;
   letter-spacing: -0.3px;
@@ -132,7 +115,7 @@
 }
 
 .brand-subtitle {
-  font-size: 10px;
+  font-size: 10.5px;
   font-weight: 800;
   color: #34d399;
   margin-top: 2px;
@@ -141,30 +124,32 @@
   text-shadow: 0 0 12px rgba(52,211,153,0.4);
 }
 
-/* ══════════════════════════════════════════════════
-   روابط التنقل
-══════════════════════════════════════════════════ */
+/* ============================================================================
+   4. القائمة الرئيسية (Nav)
+   ============================================================================ */
 .header-nav {
   display: flex;
   align-items: center;
   gap: 0;
   flex-wrap: nowrap;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  margin-inline-end: 8px;
 }
 
 .nav-item {
   position: relative;
-  font-size: 12.5px;
+  font-size: 13.5px;
   font-weight: 700;
   color: #94a3b8;
   text-decoration: none;
-  padding: 6px 9px;
+  padding: 6px 10px;
   border-radius: 10px;
   transition: color 0.22s ease, background 0.22s ease;
   white-space: nowrap;
   letter-spacing: 0.1px;
 }
 
-/* خط متحرك أسفل كل رابط */
 .nav-item::after {
   content: '';
   position: absolute;
@@ -176,12 +161,12 @@
   background: linear-gradient(90deg, #6366f1, #8b5cf6);
   transform: scaleX(0);
   transform-origin: center;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
 }
 
 .nav-item:hover {
   color: #e2e8f0;
-  background: rgba(99, 102, 241, 0.1);
+  background: rgba(99,102,241,0.1);
 }
 
 .nav-item:hover::after {
@@ -190,7 +175,7 @@
 
 .nav-item.active {
   color: #fde68a;
-  background: rgba(99, 102, 241, 0.15);
+  background: rgba(99,102,241,0.15);
   font-weight: 900;
 }
 
@@ -199,47 +184,37 @@
   transform: scaleX(0.8);
 }
 
-/* ══════════════════════════════════════════════════
-   أزرار الجانب الأيسر
-══════════════════════════════════════════════════ */
+/* ============================================================================
+   5. أزرار الجانب (Header actions) — login, logout, hamburger
+   ============================================================================ */
 .header-actions {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+  min-width: max-content;
 }
 
-/* شريحة اسم المستخدم — تُقصّ عند الضيق بدل دفع بقية العناصر خارج الشاشة */
-.header-actions > span {
-  max-width: 120px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* زر الدخول */
+/* زر الدخول الرئيسي (CTA) */
 .header-cta {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 8px 16px;
-  border-radius: 12px;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 9px;
   background: linear-gradient(135deg, #6366f1 0%, #7c3aed 60%, #5b21b6 100%);
   color: #ffffff !important;
-  font-size: 12.5px;
+  font-size: 11px;
   font-weight: 900;
   text-decoration: none;
   letter-spacing: 0.1px;
-  box-shadow:
-    0 4px 20px rgba(99, 102, 241, 0.4),
-    0 0 0 1px rgba(255,255,255,0.12) inset,
-    0 1px 0 rgba(255,255,255,0.2) inset;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.4), 0 0 0 1px rgba(255,255,255,0.12) inset;
   border: none;
   cursor: pointer;
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease;
   white-space: nowrap;
-  position: relative;
-  overflow: hidden;
+  flex-shrink: 0;
+  min-width: max-content;
 }
 
 .header-cta::before {
@@ -256,10 +231,7 @@
 
 .header-cta:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow:
-    0 8px 32px rgba(99, 102, 241, 0.6),
-    0 0 0 1px rgba(255,255,255,0.2) inset;
-  background: linear-gradient(135deg, #4f46e5 0%, #6d28d9 60%, #4c1d95 100%);
+  box-shadow: 0 8px 32px rgba(99,102,241,0.6);
 }
 
 .header-cta:active {
@@ -269,8 +241,8 @@
 /* زر الهامبرغر (موبايل) */
 .header-mobile-toggle {
   display: none;
-  background: rgba(30, 27, 75, 0.7);
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: rgba(30,27,75,0.7);
+  border: 1px solid rgba(99,102,241,0.3);
   color: #e2e8f0;
   width: 40px;
   height: 40px;
@@ -284,164 +256,14 @@
 }
 
 .header-mobile-toggle:hover {
-  background: rgba(99, 102, 241, 0.2);
-  border-color: rgba(99, 102, 241, 0.5);
+  background: rgba(99,102,241,0.2);
+  border-color: rgba(99,102,241,0.5);
   transform: scale(1.05);
 }
 
-/* ══════════════════════════════════════════════════
-   شاشات متوسطة (1440px → 1281px)
-══════════════════════════════════════════════════ */
-@media (max-width: 1440px) and (min-width: 1281px) {
-  .header-container {
-    padding: 0 20px;
-    gap: 8px;
-  }
-  .nav-item {
-    font-size: 12px;
-    padding: 5px 8px;
-  }
-  .brand-title { font-size: 14px; }
-  .brand-subtitle { display: none; }
-  .header-cta {
-    padding: 7px 13px;
-    font-size: 12px;
-  }
-  .logo-badge {
-    width: 38px;
-    height: 38px;
-    font-size: 19px;
-    border-radius: 11px;
-  }
-  .header-actions { gap: 6px; }
-  .header-actions > span { max-width: 100px; }
-}
-
-/* ══════════════════════════════════════════════════
-   موبايل / تابلت (≤ 1280px)
-══════════════════════════════════════════════════ */
-@media (max-width: 1280px) {
-  .header-nav {
-    display: none;
-    position: fixed;
-    top: 70px;
-    right: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(135deg,
-      rgba(9, 9, 27, 0.98) 0%,
-      rgba(15, 10, 35, 0.99) 100%
-    );
-    backdrop-filter: blur(32px);
-    -webkit-backdrop-filter: blur(32px);
-    border-bottom: 1px solid rgba(99, 102, 241, 0.25);
-    padding: 16px 20px 20px;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 4px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-    z-index: 999;
-    animation: slideDown 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-12px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .header-nav.active {
-    display: flex;
-  }
-
-  .nav-item {
-    padding: 12px 16px;
-    font-size: 14.5px;
-    border-radius: 10px;
-    border: 1px solid transparent;
-  }
-
-  .nav-item:hover,
-  .nav-item.active {
-    border-color: rgba(99, 102, 241, 0.2);
-  }
-
-  .nav-item::after {
-    display: none;
-  }
-
-  .header-mobile-toggle {
-    display: flex;
-  }
-
-  .header-cta {
-    padding: 8px 14px;
-    font-size: 12.5px;
-  }
-}
-
-/* ══════════════════════════════════════════════════
-   شاشات صغيرة جداً (≤ 480px)
-══════════════════════════════════════════════════ */
-@media (max-width: 480px) {
-  .header-container {
-    padding: 0 14px;
-    height: 62px;
-    gap: 8px;
-  }
-
-  .logo-badge {
-    width: 38px;
-    height: 38px;
-    font-size: 19px;
-    border-radius: 11px;
-  }
-
-  .brand-title { font-size: 14px; }
-  .brand-subtitle { font-size: 9.5px; }
-
-  .header-cta {
-    padding: 7px 12px;
-    font-size: 11.5px;
-    border-radius: 10px;
-    gap: 5px;
-  }
-
-  .header-mobile-toggle {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
-    border-radius: 9px;
-  }
-
-  .header-nav {
-    top: 62px;
-    padding: 12px 14px 16px;
-  }
-
-  .nav-item {
-    font-size: 14px;
-    padding: 11px 14px;
-  }
-}
-
-/* ══════════════════════════════════════════════════
-   تأثير scroll — يُضاف بالـ JS
-══════════════════════════════════════════════════ */
-.site-header.scrolled {
-  background: linear-gradient(135deg,
-    rgba(7, 7, 22, 0.98) 0%,
-    rgba(12, 8, 28, 0.98) 50%,
-    rgba(6, 10, 24, 0.98) 100%
-  );
-  box-shadow:
-    0 1px 0 rgba(255,255,255,0.04),
-    0 12px 48px rgba(0, 0, 0, 0.6),
-    0 4px 24px rgba(99, 102, 241, 0.15);
-}
-
-/* ══════════════════════════════════════════════════
-   قائمة «المزيد» المنسدلة — بقية صفحات الموقع
-══════════════════════════════════════════════════ */
+/* ============================================================================
+   6. قائمة "المزيد" المنسدلة
+   ============================================================================ */
 .nav-more {
   position: relative;
 }
@@ -450,14 +272,14 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 12.5px;
+  font-size: 13.5px;
   font-weight: 700;
   font-family: inherit;
   color: #94a3b8;
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 6px 9px;
+  padding: 6px 10px;
   border-radius: 10px;
   white-space: nowrap;
   letter-spacing: 0.1px;
@@ -466,12 +288,12 @@
 
 .nav-more-btn:hover {
   color: #e2e8f0;
-  background: rgba(99, 102, 241, 0.1);
+  background: rgba(99,102,241,0.1);
 }
 
 .nav-more-btn[aria-expanded="true"] {
   color: #fde68a;
-  background: rgba(99, 102, 241, 0.15);
+  background: rgba(99,102,241,0.15);
 }
 
 .nav-more-caret {
@@ -489,15 +311,10 @@
   right: 0;
   min-width: 235px;
   padding: 8px;
-  background: linear-gradient(135deg,
-    rgba(9, 9, 27, 0.98) 0%,
-    rgba(15, 10, 35, 0.98) 100%
-  );
-  border: 1px solid rgba(99, 102, 241, 0.25);
+  background: linear-gradient(135deg, rgba(9,9,27,0.98) 0%, rgba(15,10,35,0.98) 100%);
+  border: 1px solid rgba(99,102,241,0.25);
   border-radius: 14px;
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04) inset;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
@@ -526,59 +343,100 @@
 }
 
 .nav-more-item:hover {
-  background: rgba(99, 102, 241, 0.12);
+  background: rgba(99,102,241,0.12);
   color: #ffffff;
 }
 
 .nav-more-item.active {
-  background: rgba(99, 102, 241, 0.15);
+  background: rgba(99,102,241,0.15);
   color: #fde68a;
 }
 
-/* شاشات متوسطة — تصغير زر المزيد */
-@media (max-width: 1440px) and (min-width: 1281px) {
-  .nav-more-btn {
-    font-size: 12px;
-    padding: 5px 8px;
+/* ============================================================================
+   7. Responsive — Tablet (≤ 1240px)
+   ============================================================================ */
+@media (max-width: 1240px) {
+  .header-container {
+    padding: 0 20px 0 120px;
   }
+  .brand-title { font-size: 15px; }
+  .brand-subtitle { font-size: 10px; }
+  .nav-item, .nav-more-btn { font-size: 12.5px; padding: 5px 8px; }
+  .header-cta { font-size: 10.5px; padding: 5px 8px; }
+  .header-logo { padding-inline-end: 16px; }
 }
 
-/* موبايل / تابلت — القائمة داخل لوحة التنقل المنسدلة */
-@media (max-width: 1280px) {
-  .nav-more {
-    position: static;
+/* ============================================================================
+   8. Responsive — Mobile (≤ 1120px) — يُخفى nav ويظهر hamburger
+   ============================================================================ */
+@media (max-width: 1120px) {
+  .header-container {
+    padding: 0 20px;
   }
-  .nav-more-btn {
+  .header-logo { position: static; padding-inline-end: 0; }
+  .header-nav {
+    display: none;
+    position: fixed;
+    top: 64px;
+    right: 0;
+    left: 0;
     width: 100%;
-    justify-content: flex-start;
+    background: linear-gradient(135deg, rgba(9,9,27,0.98) 0%, rgba(15,10,35,0.99) 100%);
+    backdrop-filter: blur(32px);
+    border-bottom: 1px solid rgba(99,102,241,0.25);
+    padding: 16px 20px 20px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    z-index: 999;
+    animation: slideDown 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .header-nav.active { display: flex; }
+  .nav-item, .nav-more-btn {
     padding: 12px 16px;
     font-size: 14.5px;
     border-radius: 10px;
     border: 1px solid transparent;
+    width: 100%;
+    justify-content: flex-start;
   }
-  .nav-more-btn:hover,
-  .nav-more-btn[aria-expanded="true"] {
-    border-color: rgba(99, 102, 241, 0.2);
-  }
+  .nav-item::after { display: none; }
+  .nav-more { position: static; }
   .nav-more-menu {
     position: static;
     min-width: 0;
     width: 100%;
     margin-top: 4px;
     padding: 6px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(99, 102, 241, 0.18);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(99,102,241,0.18);
     box-shadow: none;
     opacity: 1;
     visibility: visible;
     transform: none;
     display: none;
   }
-  .nav-more.open .nav-more-menu {
-    display: block;
-  }
-  .nav-more-item {
-    padding: 11px 14px;
-    font-size: 14px;
-  }
+  .nav-more.open .nav-more-menu { display: block; }
+  .header-mobile-toggle { display: flex; }
+  .header-cta { font-size: 11px; padding: 6px 10px; }
+  .nav-more-item { padding: 11px 14px; font-size: 14px; }
+}
+
+/* ============================================================================
+   9. Responsive — Mobile صغير (≤ 480px)
+   ============================================================================ */
+@media (max-width: 480px) {
+  .header-container { padding: 0 14px; height: 60px; gap: 8px; }
+  .logo-badge { width: 38px; height: 38px; font-size: 19px; border-radius: 11px; }
+  .brand-title { font-size: 14px; }
+  .brand-subtitle { font-size: 9.5px; }
+  .header-cta { font-size: 10.5px; padding: 5px 8px; border-radius: 8px; }
+  .header-mobile-toggle { width: 36px; height: 36px; font-size: 18px; border-radius: 9px; }
+  .header-nav { top: 60px; padding: 12px 14px 16px; }
+  .nav-item, .nav-more-btn { font-size: 14px; padding: 11px 14px; }
 }
