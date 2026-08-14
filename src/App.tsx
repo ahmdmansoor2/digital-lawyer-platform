@@ -28,6 +28,7 @@ import { putIntoStore, removeFromStore } from './utils/indexedDBHelper';
 import { handleEntityAction } from './utils/entityHandler';
 import { showAlert, showConfirm } from './utils/dialogs';
 import { useEntityPersistence } from './hooks/useEntityPersistence';
+import { getInitialPublicTheme } from './hooks/usePublicTheme';
 
 // mockData imports removed — the useAppData hook now handles mockData seeding
 // for all primary entities (cases, clients, bailiffPapers, opponents, sessions,
@@ -195,7 +196,10 @@ export default function App({ userUid, onRequestLogin }: { userUid?: string; onR
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [appTheme, setAppTheme] = useState<'slate' | 'golden' | 'dark' | 'palace' | 'modern' | 'natural' | 'night' | 'cobalt' | 'wine' | 'carbon' | 'ivory' | 'sapphire' | 'rose'>(() => {
     const saved = localStorage.getItem(getLSKey('app_theme'));
-    return (saved as any) || 'slate';
+    if (saved) return saved as any;
+
+    // Carry the public light/dark preference into the authenticated workspace.
+    return getInitialPublicTheme() === 'dark' ? 'dark' : 'slate';
   });
   const [isInIframe, setIsInIframe] = useState(false);
 
@@ -309,6 +313,17 @@ clients: true,
   useEffect(() => {
     localStorage.setItem(getLSKey('app_theme'), appTheme);
   }, [appTheme, getLSKey]);
+
+  // Keep the authenticated workspace aligned with the public light/dark choice.
+  // Custom workspace themes remain untouched once the user explicitly selects one.
+  useEffect(() => {
+    const publicTheme = getInitialPublicTheme();
+    const savedAppTheme = localStorage.getItem(getLSKey('app_theme'));
+    if (!savedAppTheme || savedAppTheme === 'slate' || savedAppTheme === 'dark') {
+      const nextAppTheme = publicTheme === 'dark' ? 'dark' : 'slate';
+      setAppTheme((currentTheme) => currentTheme === nextAppTheme ? currentTheme : nextAppTheme);
+    }
+  }, [getLSKey]);
 
   // Dynamic background mapping
   const getThemeBgClass = () => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PublicThemeToggle from './PublicThemeToggle';
 import {
   ArrowLeft,
@@ -6,9 +6,11 @@ import {
   CalendarDays,
   CheckCircle2,
   FileText,
+  Menu,
   Scale,
   ShieldCheck,
   Users,
+  X,
 } from 'lucide-react';
 
 interface PublicLandingPageProps {
@@ -29,33 +31,60 @@ const benefits = [
 ];
 
 export default function PublicLandingPage({ onEnterApp }: PublicLandingPageProps) {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const enterApp = onEnterApp || (() => { window.location.href = '/app'; });
+
   return (
     <div dir="rtl" className="public-site public-landing-page min-h-screen overflow-hidden bg-slate-950 text-slate-100">
-      <header className="border-b border-white/10 bg-slate-950/85 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-          <a href="/" className="flex items-center gap-3" aria-label="الصفحة الرئيسية لمنصة المحامي الرقمية">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-950/50">
-              <Scale className="h-6 w-6 text-white" />
+      <header className="public-header sticky top-0 z-50 border-b border-white/10 bg-slate-950/90 shadow-lg shadow-slate-950/10 backdrop-blur-xl">
+        <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+          <a href="/" className="flex min-w-0 items-center gap-3" aria-label="الصفحة الرئيسية لمنصة المحامي الرقمية">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-950/50 sm:h-11 sm:w-11">
+              <Scale className="h-5 w-5 text-white sm:h-6 sm:w-6" />
             </span>
-            <span>
-              <span className="block text-sm font-black text-white sm:text-base">منصة المحامي الرقمية</span>
-              <span className="block text-[10px] text-slate-400 sm:text-xs">إدارة مكتب المحاماة بوضوح</span>
+            <span className="min-w-0">
+              <span className="block truncate text-sm font-black text-white sm:text-base">منصة المحامي الرقمية</span>
+              <span className="block truncate text-[10px] text-slate-400 sm:text-xs">إدارة مكتب المحاماة بوضوح</span>
             </span>
           </a>
-          <nav className="hidden items-center gap-5 text-xs font-bold text-slate-300 md:flex" aria-label="التنقل الرئيسي">
+
+          <nav className="public-header-nav hidden items-center gap-5 text-xs font-bold text-slate-300 md:flex" aria-label="التنقل الرئيسي">
             <a href="/features.html" className="transition hover:text-white">المميزات</a>
             <a href="/about.html" className="transition hover:text-white">عن المنصة</a>
             <a href="/blog/" className="transition hover:text-white">المدونة</a>
             <a href="/contact.html" className="transition hover:text-white">تواصل معنا</a>
           </nav>
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <PublicThemeToggle />
-            <button type="button" onClick={enterApp} className="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-xs font-black text-white shadow-lg shadow-indigo-950/40 transition hover:bg-indigo-500">
+            <button type="button" onClick={enterApp} className="hidden items-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-xs font-black text-white shadow-lg shadow-indigo-950/40 transition hover:bg-indigo-500 sm:inline-flex">
               دخول المنصة
               <ArrowLeft className="h-4 w-4" />
             </button>
+            <button
+              type="button"
+              onClick={() => setMobileNavOpen((open) => !open)}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-slate-200 transition hover:bg-white/10 md:hidden"
+              aria-label={mobileNavOpen ? 'إغلاق قائمة التنقل' : 'فتح قائمة التنقل'}
+              aria-expanded={mobileNavOpen}
+            >
+              {mobileNavOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
+
+          {mobileNavOpen && (
+            <div className="public-mobile-nav absolute inset-x-4 top-full rounded-2xl border border-white/10 bg-slate-900/95 p-3 shadow-2xl shadow-slate-950/40 backdrop-blur-xl md:hidden">
+              <nav className="flex flex-col gap-1 text-sm font-bold text-slate-200" aria-label="التنقل للجوال">
+                <a href="/features.html" className="rounded-xl px-3 py-3 transition hover:bg-white/10 hover:text-white">المميزات</a>
+                <a href="/about.html" className="rounded-xl px-3 py-3 transition hover:bg-white/10 hover:text-white">عن المنصة</a>
+                <a href="/blog/" className="rounded-xl px-3 py-3 transition hover:bg-white/10 hover:text-white">المدونة</a>
+                <a href="/contact.html" className="rounded-xl px-3 py-3 transition hover:bg-white/10 hover:text-white">تواصل معنا</a>
+                <button type="button" onClick={enterApp} className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 text-xs font-black text-white transition hover:bg-indigo-500">
+                  دخول المنصة
+                  <ArrowLeft className="h-4 w-4" />
+                </button>
+              </nav>
+            </div>
+          )}
         </div>
       </header>
 

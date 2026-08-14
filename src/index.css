@@ -2115,3 +2115,134 @@ html.public-theme-dark body {
     transition: none;
   }
 }
+
+/* Public landing header: keep layout and mobile menu readable in both themes. */
+.public-header {
+  isolation: isolate;
+  transition: background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.public-mobile-nav {
+  z-index: 60;
+}
+
+.public-theme-light .public-landing-page .public-header {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08) !important;
+}
+
+.public-theme-light .public-landing-page .public-header-nav {
+  color: #475569 !important;
+}
+
+.public-theme-light .public-landing-page .public-header-nav a:hover {
+  color: #1e1b4b !important;
+}
+
+.public-theme-light .public-landing-page .public-mobile-nav {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.16) !important;
+}
+
+.public-theme-light .public-landing-page .public-mobile-nav nav {
+  color: #334155 !important;
+}
+
+.public-theme-light .public-landing-page .public-mobile-nav a:not(.bg-indigo-600) {
+  color: #334155 !important;
+}
+
+.public-theme-light .public-landing-page .public-mobile-nav a:not(.bg-indigo-600):hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+.public-theme-light .public-landing-page button[aria-label*="قائمة"] {
+  border-color: #cbd5e1 !important;
+  background: #f8fafc !important;
+  color: #4338ca !important;
+}
+
+.public-theme-light .public-landing-page button[aria-label*="قائمة"]:hover {
+  background: #eef2ff !important;
+}
+
+@media (max-width: 639px) {
+  .public-landing-page .public-header > div {
+    min-height: 64px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .public-landing-page .public-header > div {
+    min-height: 68px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .public-header {
+    transition: none;
+  }
+}
+
+/* Ensure the slate workspace shell has an explicit light canvas beneath its content. */
+.theme-slate {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.theme-slate .theme-main-bg {
+  background-color: #f8fafc;
+}
+
+.theme-slate .theme-panel-bg {
+  background-color: #ffffff;
+}
+
+.theme-slate .theme-card-bg {
+  background-color: #ffffff;
+  border-color: #e2e8f0;
+}
+
+.theme-slate .theme-text-primary {
+  color: #0f172a;
+}
+
+.theme-slate .theme-text-secondary {
+  color: #475569;
+}
+
+.theme-slate .theme-border {
+  border-color: #e2e8f0;
+}
+
+.theme-slate .theme-muted-bg {
+  background-color: #f1f5f9;
+}
+
+.theme-slate .theme-muted-text {
+  color: #64748b;
+}
+
+.theme-slate .theme-input {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.theme-slate .theme-input::placeholder {
+  color: #94a3b8;
+}
+
+.theme-slate .theme-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-slate {
+    transition: none;
+  }
+}

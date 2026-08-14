@@ -50,6 +50,7 @@ import {
 } from 'lucide-react';
 
 import AdSenseBanner from './AdSenseBanner';
+import PublicThemeToggle from './PublicThemeToggle';
 import QuickActionHeader from './QuickActionHeader';
 import WhatsNewModal, { useWhatsNew } from './WhatsNewModal';
 import Dashboard from './Dashboard';
@@ -317,6 +318,8 @@ export default function AppLayout(props: AppLayoutProps) {
     onShowInfoCenter
   } = props;
 
+  const isLightWorkspace = appTheme === 'slate';
+
   // ─── Global search modal (Ctrl+K) ─────────────────────────────────────
   const [searchOpen, setSearchOpen] = useState(false);
   const [privacyOpen, setPrivacyOpen] = useState(false);
@@ -358,11 +361,11 @@ export default function AppLayout(props: AppLayoutProps) {
 
       {/* MOBILE HEADER BAR — Unified Premium Design */}
       <div className="md:hidden sticky top-0 z-40" style={{
-        background: 'rgba(15,23,42,0.95)',
+        background: isLightWorkspace ? 'rgba(255,255,255,0.95)' : 'rgba(15,23,42,0.95)',
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(148,163,184,0.15)',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+        borderBottom: isLightWorkspace ? '1px solid rgba(148,163,184,0.28)' : '1px solid rgba(148,163,184,0.15)',
+        boxShadow: isLightWorkspace ? '0 4px 16px rgba(15,23,42,0.10)' : '0 4px 16px rgba(0,0,0,0.3)',
       }}>
         <div className="flex items-center justify-between px-4" style={{ height: '64px' }}>
           <div className="flex items-center gap-2.5">
@@ -373,8 +376,8 @@ export default function AppLayout(props: AppLayoutProps) {
               fontSize: '18px', boxShadow: '0 3px 12px rgba(99,102,241,0.35)',
             }}>⚖️</div>
             <div>
-              <div style={{ fontSize: '14px', fontWeight: 900, color: '#ffffff', lineHeight: 1.2 }}>منصة المحامي الرقمية</div>
-              <div style={{ fontSize: '9.5px', color: '#10b981', fontWeight: 800 }}>مجاني 100%</div>
+              <div style={{ fontSize: '14px', fontWeight: 900, color: isLightWorkspace ? '#0f172a' : '#ffffff', lineHeight: 1.2 }}>منصة المحامي الرقمية</div>
+              <div style={{ fontSize: '9.5px', color: isLightWorkspace ? '#047857' : '#10b981', fontWeight: 800 }}>مجاني 100%</div>
             </div>
           </div>
 
@@ -383,8 +386,9 @@ export default function AppLayout(props: AppLayoutProps) {
               onClick={() => setSearchOpen(true)}
               style={{
                 width: '36px', height: '36px', borderRadius: '9px',
-                background: 'rgba(30,41,59,0.8)', border: '1px solid rgba(148,163,184,0.2)',
-                color: '#94a3b8', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+                background: isLightWorkspace ? 'rgba(241,245,249,0.95)' : 'rgba(30,41,59,0.8)',
+                border: isLightWorkspace ? '1px solid rgba(148,163,184,0.35)' : '1px solid rgba(148,163,184,0.2)',
+                color: isLightWorkspace ? '#475569' : '#94a3b8', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
               }}
               title="بحث شامل (Ctrl+K)"
             >
@@ -413,8 +417,9 @@ export default function AppLayout(props: AppLayoutProps) {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               style={{
                 width: '36px', height: '36px', borderRadius: '9px',
-                background: 'rgba(99,102,241,0.2)', border: '1px solid rgba(99,102,241,0.3)',
-                color: '#a5b4fc', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
+                background: isLightWorkspace ? 'rgba(224,231,255,0.85)' : 'rgba(99,102,241,0.2)',
+                border: isLightWorkspace ? '1px solid rgba(99,102,241,0.35)' : '1px solid rgba(99,102,241,0.3)',
+                color: isLightWorkspace ? '#4338ca' : '#a5b4fc', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer',
               }}
               id="mobile-hamburger-btn"
             >
@@ -427,19 +432,19 @@ export default function AppLayout(props: AppLayoutProps) {
       {/* RIGHT SIDEBAR (قائمة التنقل الكبرى) */}
       <aside className={`
         fixed md:sticky top-0 bottom-0 start-0 z-40
-        w-[220px] bg-[#1a2333] text-slate-100 flex flex-col border-s border-slate-800/60
+        w-[220px] ${isLightWorkspace ? 'bg-white text-slate-800 border-slate-200' : 'bg-[#1a2333] text-slate-100 border-slate-800/60'} flex flex-col
         transition-transform duration-300 transform md:transform-none shadow-lg shrink-0
         ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full md:translate-x-0'}
       `} id="major-app-sidebar">
         {/* Brand Banner */}
-        <div className="p-4 border-b border-slate-800 space-y-2 shrink-0">
+        <div className={`p-4 border-b space-y-2 shrink-0 ${isLightWorkspace ? 'border-slate-200' : 'border-slate-800'}`}>
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 bg-indigo-500 rounded flex items-center justify-center shrink-0">
               <span className="text-white text-xs">⚖️</span>
             </div>
             <div>
-              <h1 className="font-bold text-sm text-white tracking-wide leading-tight">مكتب المُحَامِي الرَّقْمِي</h1>
-              <span className="text-[10px] text-slate-400 block">منظومة العدالة بمصر</span>
+              <h1 className={`font-bold text-sm tracking-wide leading-tight ${isLightWorkspace ? 'text-slate-900' : 'text-white'}`}>مكتب المُحَامِي الرَّقْمِي</h1>
+              <span className={`text-[10px] block ${isLightWorkspace ? 'text-slate-500' : 'text-slate-400'}`}>منظومة العدالة بمصر</span>
             </div>
           </div>
           {onShowInfoCenter && (
@@ -455,27 +460,27 @@ export default function AppLayout(props: AppLayoutProps) {
         </div>
 
         {/* GLOBAL SEARCH BUTTON (Ctrl+K) — مرئي من أي مكان */}
-        <div className="p-3 border-b border-slate-800 shrink-0">
+        <div className={`p-3 border-b shrink-0 ${isLightWorkspace ? 'border-slate-200' : 'border-slate-800'}`}>
           <button
             onClick={() => setSearchOpen(true)}
-            className="w-full bg-slate-800/60 hover:bg-slate-800 border border-slate-700 hover:border-indigo-500/50 text-slate-300 hover:text-white rounded-xl px-3 py-2.5 flex items-center gap-2.5 transition group"
+            className={`w-full rounded-xl px-3 py-2.5 flex items-center gap-2.5 transition group border ${isLightWorkspace ? 'bg-slate-50 hover:bg-white border-slate-200 text-slate-600 hover:text-slate-900' : 'bg-slate-800/60 hover:bg-slate-800 border-slate-700 hover:border-indigo-500/50 text-slate-300 hover:text-white'}`}
             id="global-search-btn"
             title="بحث شامل في كل البيانات (Ctrl+K)"
           >
             <SearchIcon className="w-4 h-4 text-indigo-500 shrink-0" />
             <span className="text-xs font-bold flex-1 text-end">بحث شامل</span>
-            <kbd className="hidden lg:inline-block text-[9px] font-mono font-bold bg-slate-900 text-slate-400 px-1.5 py-0.5 rounded border border-slate-700 group-hover:border-slate-600">
+            <kbd className={`hidden lg:inline-block text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border ${isLightWorkspace ? 'bg-white text-slate-500 border-slate-200' : 'bg-slate-900 text-slate-400 border-slate-700 group-hover:border-slate-600'}`}>
               Ctrl+K
             </kbd>
           </button>
         </div>
 
         {/* User Badge context */}
-        <div className="p-2 px-3 mx-3 my-2 bg-slate-800/40 border border-slate-800/60 rounded flex items-center justify-between gap-1 text-xs shrink-0">
+        <div className={`p-2 px-3 mx-3 my-2 rounded flex items-center justify-between gap-1 text-xs shrink-0 border ${isLightWorkspace ? 'bg-slate-50 border-slate-200' : 'bg-slate-800/40 border-slate-800/60'}`}>
           <div className="flex items-center gap-2">
             <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
             <div className="space-y-0.5 text-end">
-              <p className="font-semibold text-slate-300">{sessionUser.name}</p>
+              <p className={`font-semibold ${isLightWorkspace ? 'text-slate-800' : 'text-slate-300'}`}>{sessionUser.name}</p>
               <p className="text-[10px] text-slate-500 font-mono">{sessionUser.role}</p>
             </div>
           </div>
@@ -489,7 +494,7 @@ export default function AppLayout(props: AppLayoutProps) {
                 onLogout();
               }
             }}
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-rose-500/15 border border-rose-500/40 text-rose-200 hover:bg-rose-500/25 hover:text-white hover:border-rose-400/70 transition cursor-pointer"
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition cursor-pointer ${isLightWorkspace ? 'bg-rose-50 border border-rose-200 text-rose-600 hover:bg-rose-100 hover:text-rose-700' : 'bg-rose-500/15 border border-rose-500/40 text-rose-200 hover:bg-rose-500/25 hover:text-white hover:border-rose-400/70'}`}
             title="تسجيل الخروج"
             aria-label="تسجيل الخروج"
           >
@@ -511,9 +516,9 @@ export default function AppLayout(props: AppLayoutProps) {
                   className="px-3 pt-4 pb-1.5 text-[10px] font-black text-indigo-500/80 uppercase tracking-wider flex items-center gap-2 select-none cursor-default"
                   aria-hidden="true"
                 >
-                  <span className="h-px flex-1 bg-slate-700/60" />
+                  <span className={`h-px flex-1 ${isLightWorkspace ? 'bg-slate-200' : 'bg-slate-700/60'}`} />
                   <span>{item.label}</span>
-                  <span className="h-px flex-1 bg-slate-700/60" />
+                  <span className={`h-px flex-1 ${isLightWorkspace ? 'bg-slate-200' : 'bg-slate-700/60'}`} />
                 </div>
               );
             }
@@ -530,7 +535,9 @@ export default function AppLayout(props: AppLayoutProps) {
                   w-full text-end px-3 py-1.5 rounded font-semibold flex items-center gap-3 transition text-xs cursor-pointer
                   ${isActive
                     ? 'bg-indigo-600 text-white border border-indigo-500/25'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-slate-100'
+                    : isLightWorkspace
+                      ? 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                      : 'text-slate-300 hover:bg-slate-800 hover:text-slate-100'
                   }
                 `}
                 id={`sidebar-link-${item.id}`}
@@ -543,8 +550,18 @@ export default function AppLayout(props: AppLayoutProps) {
         </nav>
 
         {/* Theme select option */}
-        <div className="p-3 border-t border-slate-800 bg-slate-900/40 text-xs text-end space-y-1.5 shrink-0">
-          <p className="text-[10px] text-slate-400 font-bold flex items-center gap-1.5 justify-end">
+        <div className={`p-3 border-t text-xs text-end space-y-2 shrink-0 ${isLightWorkspace ? 'border-slate-200 bg-slate-50' : 'border-slate-800 bg-slate-900/40'}`}>
+          <div className="flex items-center justify-between gap-2">
+            <PublicThemeToggle
+              className="h-8 px-2 text-[10px]"
+              onThemeChange={(theme) => setAppTheme(theme === 'dark' ? 'dark' : 'slate')}
+            />
+            <p className={`text-[10px] font-bold flex items-center gap-1.5 justify-end ${isLightWorkspace ? 'text-slate-600' : 'text-slate-400'}`}>
+              <Palette className="w-3.5 h-3.5 text-indigo-500" />
+              الوضع العام
+            </p>
+          </div>
+          <p className={`text-[10px] font-bold flex items-center gap-1.5 justify-end ${isLightWorkspace ? 'text-slate-600' : 'text-slate-400'}`}>
             <Palette className="w-3.5 h-3.5 text-indigo-500" />
             تغيير مظهر الواجهة القضائية
           </p>
@@ -556,7 +573,9 @@ export default function AppLayout(props: AppLayoutProps) {
                 className={`py-1 px-1 rounded text-[9px] font-bold transition border cursor-pointer ${
                   appTheme === thm.id
                     ? 'bg-indigo-600 text-white border-indigo-600 shadow-sm'
-                    : 'bg-slate-800/30 text-slate-400 border-slate-800/70 hover:bg-slate-800 hover:text-white'
+                    : isLightWorkspace
+                      ? 'bg-slate-100 text-slate-600 border-slate-200 hover:bg-white hover:text-slate-900'
+                      : 'bg-slate-800/30 text-slate-400 border-slate-800/70 hover:bg-slate-800 hover:text-white'
                 }`}
                 id={`theme-btn-${thm.id}`}
               >
@@ -567,7 +586,7 @@ export default function AppLayout(props: AppLayoutProps) {
         </div>
 
         {/* Footer info lockup */}
-        <div className="p-2.5 border-t border-slate-800 text-[10px] text-slate-500 text-center leading-relaxed shrink-0 space-y-1.5">
+        <div className={`p-2.5 border-t text-[10px] text-center leading-relaxed shrink-0 space-y-1.5 ${isLightWorkspace ? 'border-slate-200 text-slate-500' : 'border-slate-800 text-slate-500'}`}>
           <p>مطابق لقوانين المرافعات المصرية</p>
           <button
             type="button"
