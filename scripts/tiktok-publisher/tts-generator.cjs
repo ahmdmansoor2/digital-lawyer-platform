@@ -60,24 +60,36 @@ async function synthesize(text, opts = {}) {
     throw new Error(`فشل تحميل node-edge-tts: ${e.message}\nنفّذ: npm install node-edge-tts`);
   }
 
-  const tts = new EdgeTTS({
-    voice,
-    lang: voice.split('-').slice(0, 2).join('-'), // e.g. ar-EG
-    rate,
-    pitch,
-    volume,
-    saveSubtitles: true,
-    timeout: 30000,
-  });
+  // النصوص الطويلة تحتاج مهلة أكبر — قابلة للضبط عبر EDGE_TTS_TIMEOUT (بالثانية)
+  const timeoutMs = (parseInt(process.env.EDGE_TTS_TIMEOUT, 10) || 120) * 1000;
 
-  try {
-    await tts.ttsPromise(cleanText, audioPath);
-  } catch (e) {
-    throw new Error(`فشل توليد الصوت من Edge: ${e.message}`);
+  let lastErr;
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    if (attempt > 1) console.log(`[tts] إعادة محاولة (${attempt}/2)...`);
+    const tts = new EdgeTTS({
+      voice,
+      lang: voice.split('-').slice(0, 2).join('-'), // e.g. ar-EG
+      rate,
+      pitch,
+      volume,
+      saveSubtitles: true,
+      timeout: timeoutMs,
+    });
+    try {
+      await tts.ttsPromise(cleanText, audioPath);
+      if (fs.existsSync(audioPath) && fs.statSync(audioPath).size >= 100) {
+        lastErr = null;
+        break;
+      }
+      lastErr = new Error('ملف الصوت لم يُنشأ أو حجمه صغير جداً.');
+    } catch (e) {
+      lastErr = e;
+      // ملف جزئي من المحاولة الفاشلة
+      try { if (fs.existsSync(audioPath)) fs.unlinkSync(audioPath); } catch { /* تجاهل */ }
+    }
   }
-
-  if (!fs.existsSync(audioPath) || fs.statSync(audioPath).size < 100) {
-    throw new Error('ملف الصوت لم يُنشأ أو حجمه صغير جداً.');
+  if (lastErr) {
+    throw new Error(`فشل توليد الصوت من Edge: ${lastErr.message}`);
   }
 
   // الترجمة (word timings) — اختيارية

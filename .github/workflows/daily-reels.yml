@@ -82,7 +82,6 @@ jobs:
           git config user.name  "Smart Reels Bot 🤖"
           git config user.email "bot@justice-91571.web.app"
           git add scripts/facebook-publisher/facebook-published-log.json \
-                  scripts/youtube-publisher/youtube-tokens.json \
                   scripts/youtube-publisher/youtube-published-log.json
           if ! git diff --cached --quiet; then
             git commit -m "🎬 Reel-publish: $(date +'%Y-%m-%d %H:%M') — ريلز+يوتيوب"

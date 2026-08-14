@@ -14,3 +14,5 @@ dist-fresh/
 scripts/tiktok-publisher/output/
 scripts/youtube-publisher/output/
 scripts/facebook-publisher/output/
+# أسرار يوتيوب — لا تُلتزم أبداً في الـ repo (تحتوي refresh_token)
+scripts/youtube-publisher/youtube-tokens.json

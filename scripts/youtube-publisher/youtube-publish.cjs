@@ -394,7 +394,12 @@ async function main() {
 
   // وضع CI الموصى به: رفع الفيديو الذي أنتجه الريلز في نفس الـ workflow
   if (args.fromFbLog) {
-    await publishLatestFbVideo(args);
+    try {
+      await publishLatestFbVideo(args);
+    } catch (e) {
+      // فشل يوتيوب غير مميت — الريلز منشور بالفعل على فيسبوك، والمحاولة تُسجَّل للرن القادم
+      console.warn(`[youtube] ⚠️ فشل رفع الفيديو على YouTube (غير مميت): ${e.message}`);
+    }
     return;
   }
   if (args.fromTiktokLog) {

@@ -6,7 +6,7 @@
  * - يفتح local server على YT_OAUTH_PORT (افتراضي 8788) ليستقبل الـ callback
  *   (جوجل تسمح بـ http://localhost بدون TLS — أبسط من TikTok)
  * - يحوّل الكود لـ access_token + refresh_token
- * - يخزّنهم في youtube-tokens.json (يجب حمايته — لكنه يُدار كملف ملتزم للدوران)
+ * - يخزّنهم في youtube-tokens.json (مستثنى في .gitignore — لا يُلتزم في الـ repo؛ الـ CI يبني من secrets)
  * - يجدد التوكن أوتوماتيك (صلاحية access_token ساعة)
  *
  * الاستخدام:
@@ -188,8 +188,7 @@ async function refresh() {
   assertConfigured();
   const tokens = readTokens();
   if (!tokens?.refresh_token) {
-    console.error('❌ مفيش refresh_token. شغّل `login` الأول.');
-    process.exit(1);
+    throw new Error('مفيش refresh_token. شغّل `login` الأول.');
   }
   const resp = await fetch(TOKEN_URL, {
     method: 'POST',
@@ -203,8 +202,7 @@ async function refresh() {
   });
   const data = await resp.json();
   if (!resp.ok || data.error) {
-    console.error('❌ فشل التجديد:', JSON.stringify(data, null, 2));
-    process.exit(1);
+    throw new Error(`فشل تجديد التوكن: ${JSON.stringify(data)}`);
   }
   const updated = {
     ...tokens,
@@ -242,7 +240,11 @@ function clear() {
 }
 
 async function getValidAccessToken() {
-  let tokens = readTokens();
+  // أولوية: env (secrets) فوق أي ملف توكنز ملتزَم/قديم — يمنع استخدام توكن متقادم في CI
+  let tokens = (process.env.YT_CLIENT_ID && process.env.YT_REFRESH_TOKEN)
+    ? importTokensFromEnv()
+    : null;
+  if (!tokens) tokens = readTokens();
   if (!tokens) {
     console.log('[youtube-oauth] لا يوجد ملف توكنز — محاولة البناء من env (وضع CI)');
     tokens = importTokensFromEnv();
@@ -255,7 +257,11 @@ async function getValidAccessToken() {
 
   console.log('[youtube-oauth] التوكن قرب ينتهي — جاري التجديد...');
   await refresh();
-  return readTokens().access_token;
+  const fresh = readTokens();
+  if (!fresh?.access_token) {
+    throw new Error('فشل تجديد التوكن: لا يوجد access_token بعد التجديد.');
+  }
+  return fresh.access_token;
 }
 
 const cmd = process.argv[2];

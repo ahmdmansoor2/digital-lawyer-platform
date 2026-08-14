@@ -4,6 +4,23 @@
 
 ---
 
+## [v2.17.1] — 2026-08-14 (🔧 إصلاح فشل الريلز + منع تسريب توكن يوتيوب)
+
+### المشكلة الجذرية
+- فشل `daily-reels.yml` في 11 رن متتالي بـ `invalid_grant` لأن **`youtube-tokens.json` كان ملتزماً في الـ repo** — خطوة Bootstrap في الـ workflow تتخطى الـ import (الملف موجود بعد checkout) فيُستخدم التوكن القديم الملتزَم بدل الـ secrets المحدَّثة.
+- أسوأ: الملف يحوي `refresh_token` حقيقياً في repo عمومي — تسريب أمني.
+
+### ما تم
+- **إزالة التسريب**: `git rm --cached youtube-tokens.json` + إضافته لـ `.gitignore` + إزالته من خطوة commit في الـ workflow (الآن يُلتزم فقط `facebook-published-log.json` و`youtube-published-log.json`).
+- **أولوية الـ secrets**: `getValidAccessToken()` يبني التوكن من env أولاً عند وجود `YT_CLIENT_ID` + `YT_REFRESH_TOKEN` — يمنع أي ملف قديم من التغلب على الـ secrets.
+- **فشل يوتيوب غير مميت حقاً**: كان `refresh()` و`getValidAccessToken()` يستدعيان `process.exit(1)` (يقتل العملية ولا يُلتقط) → صارا يرميان خطأً. مسار `--from-fb-log` في `youtube-publish.cjs` يلتقط فشل الرفع ويكمل بـ exit 0 (الريلز منشور بالفعل على فيسبوك).
+- **TTS**: رفع `timeout` من 30 ثانية إلى 120 (قابل للضبط عبر `EDGE_TTS_TIMEOUT`) + إعادة محاولة واحدة (كانت النصوص الطويلة ~3000 حرف تفشل بـ `Edge: undefined`).
+
+### متبقٍّ
+- إعادة ربط OAuth يوتيوب: `node scripts/youtube-publisher/youtube-oauth.cjs login` ثم تحديث الـ secrets الخمسة `YT_*`.
+
+---
+
 ## [v2.17.0] — 2026-08-13 (🗑️ رصد المحامي بلا صور — إزالة توليد الصور نهائياً)
 
 ### القرار
