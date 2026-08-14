@@ -20,7 +20,6 @@ import InfoCenter from './components/InfoCenter';
 import { useAuth } from './contexts/AuthContext';
 import { OfficeProfileProvider, useOfficeProfile } from './contexts/OfficeProfileContext';
 import LoginScreen from './components/LoginScreen';
-import PublicLandingPage from './components/PublicLandingPage';
 import { registerGlobalPrintHandler, unregisterGlobalPrintHandler } from './utils/printHelper';
 import { logger } from './utils/logger';
 import { useAppData } from './hooks/useAppData';
@@ -852,10 +851,11 @@ clients: true,
   }
 
   if (!isAuthenticated) {
-    // v2.19: الموقع عام — الزوار يرون صفحة الهبوط العامة (PublicLandingPage)
-    // مع زر تبديل الوضع الفاتح/الداكن، وزر «دخول المنصة» يفتح شاشة الدخول فقط.
+    // v2.20: الموقع عام — الزوار يرون مركز المعلومات مباشرة بدون تسجيل دخول.
+    // شاشة الدخول لا تظهر إلا عند الضغط على زر «دخول التطبيق» في مركز المعلومات
+    // (onRequestLogin ← FirebaseAuthGate يفتح FirebaseLoginScreen).
     if (onRequestLogin) {
-      return <PublicLandingPage onEnterApp={onRequestLogin} />;
+      return <InfoCenter userName={undefined} onEnterApp={onRequestLogin} onLogout={() => {}} />;
     }
     // وضع Electron: شاشة الدخول المحلية القديمة كما هي
     return (

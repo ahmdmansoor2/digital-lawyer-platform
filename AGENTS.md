@@ -542,3 +542,37 @@ commit `54e9559` — تم push. تحقق بـ `firebase deploy --only hosting:ap
 - **`www.mohamidigital.online` لا يعمل** (سجل A موجود، الدومين غير مضاف لـ Firebase Hosting) — معروف من Session 9.
 - **Search Console:** لا يزال بانتظار المستخدم (Verify + Submit sitemap).
 - **YouTube tokens:** بانتظار إعادة ربط OAuth (`youtube-oauth.cjs login` + تحديث 5 secrets `YT_*`) — من Session 17.
+
+---
+
+## حالة الجلسة الحالية: Session 19 — حذف صفحة تسجيل الدخول من الموقع (مكتمل)
+
+### طلب المستخدم
+"قم بحذف صفحة تسجيل الدخول للموقع واجعلها فقط من بعد الضغط على زر دخول التطبيق في مركز المعلومات."
+
+### التدفق قبل / بعد
+| | قبل (v2.19) | بعد (v2.20) |
+|---|---|---|
+| زائر الموقع | `PublicLandingPage` (صفحة هبوط تسويقية) | **مركز المعلومات** مباشرة (عام) |
+| دخول المنصة | زر «ابدأ من داخل المنصة» → شاشة الدخول | زر **«دخول التطبيق»** في مركز المعلومات → شاشة الدخول |
+
+- `FirebaseLoginScreen` لا يُفتح الآن إلا من زر «دخول التطبيق» في مركز المعلومات (عبر `onRequestLogin` ← `FirebaseAuthGate` يضبط `showLogin`).
+- بعد الدخول → نفس السلوك السابق: مركز المعلومات → «دخول التطبيق» → لوحة التحكم.
+
+### ما تم
+1. **`src/App.tsx`** — فرع الزائر (`!isAuthenticated`): استبدال `PublicLandingPage` بـ `InfoCenter` عام:
+   - `onEnterApp={onRequestLogin}` (يفتح شاشة الدخول فقط عند الضغط)
+   - `userName={undefined}` + `onLogout={() => {}}` (مركز المعلومات بلا شريط — props غير مستخدمة أصلاً)
+   - إبقاء `LoginScreen` القديمة لوضع Electron (بلا `onRequestLogin`) كما هي
+2. **حذف `src/components/PublicLandingPage.tsx`** نهائياً (144 سطراً) — بقرار المستخدم (خيار «حذف الملف نهائياً»).
+3. **`InfoCenter.tsx` و`FirebaseAuthGate.tsx` و`FirebaseLoginScreen.tsx` لم تُمس** — بوابة الدخول موجودة لكن لا يُطلقها إلا زر مركز المعلومات.
+
+### التحقق
+- `npm run build` نجح (vite + esbuild server) — بلا أخطاء TypeScript.
+- `git diff`: +4/−148 فقط (`App.tsx` 8 أسطر متغيرة + حذف الملف).
+
+### متبقٍّ / تنبيهات
+- **CSS ميت** في `src/index.css`: block `.public-theme-light .public-landing-page` كاملاً (سطور 1812-2012) أصبح بلا مستخدم — تنظيف اختياري لاحقاً.
+- **لم يُنشر حياً بعد** — التغيير محلي. عند النشر: `npm run build` ثم حذف `.firebase/hosting.*.cache` ثم `npx firebase deploy --only hosting:app`.
+- **بحث في `index.html` عن إشارات قديمة** لصفحة الهبوط (like `public-landing-page`) قبل النشر إن لزم.
+- باقي تنبيهات Session 18 كما هي (الشريط الجديد، www، Search Console، YouTube tokens).
