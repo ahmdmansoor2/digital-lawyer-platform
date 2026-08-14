@@ -507,3 +507,38 @@ commit `54e9559` — تم push. تحقق بـ `firebase deploy --only hosting:ap
 - **Search Console:** بانتظار المستخدم — إرسال `sitemap.xml` (القائمة الجانبية → Sitemaps).
 - `mockLegalLibrary.ts` (تبويب التطبيق) ما زال يحوي تلف CP1256 (`خاصɡ`/`تكتȡ`/`ذلߡ`/`الجوهريɡ`/`تسربهǡ`) — **خارج نطاق Session 17** بقرار المستخدم (الصفحة العامة فقط).
 - عمل React غير الملتم (index.html + 5 ملفات src) ما زال متروكاً عمداً — لا يُلمس.
+
+---
+
+## حالة الجلسة الحالية: Session 18 — حذف الشريط العلوي للموقع كلياً (مكتمل)
+
+### السياق
+- المستخدم اشتكى من **تضارب 3 أيقونات** في الشريط العلوي: شعار + دخول/خروج + تنقل → تغطي على الشريط ولا تعمل بشكل صحيح على الجوال.
+- أمره الحرفي: "قم بحزف الشريط العلوي للموقع كليا وبعد ذلك قم بتصميم شريط جديد للموقع" → نُفّذ الحذف أولاً، ثم سيُصمَّم الشريط الجديد في جلسة لاحقة بعد موافقته.
+
+### ما أُنجز (الحذف)
+1. **`src/components/InfoCenter.tsx`**: حذف كتلة `<header>` الكاملة (79 سطراً: `.site-header` + `.header-container` + `.header-cta` + dropdown) + استيراد `useEffect` + معالجات الأحداث (scroll listener + dropdown + mobile toggle).
+2. **`src/components/AppLayout.tsx`**: حذف كتلة mobile header (69 سطراً) + state الخاص بها (`mobileMenuOpen`/...).
+3. **`index.html`**: حذف `<link rel="stylesheet" href="/header.css?v=20260814-v1">`.
+4. **`firebase.json`**: حذف قواعد `Cache-Control: no-cache` لـ `/header.css` و `/public/**.css`.
+5. **`public/header.css`**: حذف الملف (12369 بايت). نسخة احتياطية في `C:\Users\احمد منصور\header-old.css`.
+
+### التحقق الحي على https://mohamidigital.online/
+- `index.html` (21546 بايت): لا يحتوي `<header>` ولا `header.css` ✓
+- الباندل `index-BoTYt2A2.js` (774002 بايت): 0 مرجع `header-cta` / `mobile-header` / `header-utility` / `header.css` ✓
+- الباندل CSS `index-B_7Wzr96.css` (235544 بايت): 2 selector `header-cta` ميتة (لا JSX يستهدفها) — تنظيف مؤجل.
+- `<noscript>`: يستخدم بادئ `ns-*` — لا header ثابت ✓
+- `BUILD_VERSION`: 20260814-v1 ✓
+- `https://mohamidigital.online/header.css` يعيد 200 (Firebase rewrite يخدم SPA fallback) — غير ضار لأن الرابط لم يعد موجوداً في `index.html`.
+
+### git
+- commit `fc0c6b7` (5 ملفات، +3/−679): حذف نظيف انتقائي.
+- untracked المتروكة: `DELIVERY_THEME.md`، `docs/legal/`، `firebase_deploy.log.err`، `mohamidigital_theme.patch`، `storage.rules`، `vite_build*.log.*`، `مذكرات/`، `*.txt`. ملفات `.github/workflows/daily-reels.yml` و`.gitignore` وscripts/* لم تُلمس (تعديلاتها من Session 17 السابق، التزمت في `74ae8a2`).
+- الحالة: `74ae8a2..fc0c6b7 main` مدفوع إلى origin.
+
+### متبقٍّ / تنبيهات
+- **الشريط العلوي الجديد** لم يُصمَّم بعد (مرحلة 2 من طلب المستخدم — بانتظار تأكيده).
+- **CSS ميت في `src/index.css`**: 2 selector `.header-cta` / `.header-cta:hover` (سطور 1899-1920) — تُنظَّف في جلسة التصميم الجديد.
+- **`www.mohamidigital.online` لا يعمل** (سجل A موجود، الدومين غير مضاف لـ Firebase Hosting) — معروف من Session 9.
+- **Search Console:** لا يزال بانتظار المستخدم (Verify + Submit sitemap).
+- **YouTube tokens:** بانتظار إعادة ربط OAuth (`youtube-oauth.cjs login` + تحديث 5 secrets `YT_*`) — من Session 17.

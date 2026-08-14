@@ -4,6 +4,35 @@
 
 ---
 
+## [v2.18.0] — 2026-08-14 (🔥 حذف الشريط العلوي بالكامل — تمهيد لإعادة التصميم)
+
+### القرار
+- حذف الشريط العلوي (`<header>` في `InfoCenter` + mobile header في `AppLayout`) كلياً بناءً على طلب المستخدم — كان يعاني من تضارب الأيقونات (شعار + دخول/خروج + تنقل) في مساحة محدودة على الجوال.
+- النسخة القديمة محفوظة في `C:\Users\احمد منصور\header-old.css` (12369 بايت) كمرجع عند إعادة التصميم.
+
+### ما تم
+- **`src/components/InfoCenter.tsx`**: حذف كتلة `<header>` الكاملة (79 سطراً) + استيرادات `useEffect` + معالجات الأحداث (scroll/dropdown/mobile-toggle).
+- **`src/components/AppLayout.tsx`**: حذف كتلة mobile header (69 سطراً) + state الخاص بها.
+- **`index.html`**: حذف `<link rel="stylesheet" href="/header.css?v=20260814-v1">`.
+- **`firebase.json`**: حذف قواعد `Cache-Control: no-cache` لـ `/header.css` و `/public/**.css`.
+- **`public/header.css`**: حذف الملف (12369 بايت). نسخة احتياطية في `C:\Users\احمد منصور\header-old.css`.
+
+### التحقق الحي على https://mohamidigital.online/
+- `index.html` (21546 بايت): لا يحتوي `<header>` ولا `header.css` ✓
+- الباندل `index-BoTYt2A2.js`: 0 مرجع `header-cta` / `mobile-header` / `header-utility` / `header.css` ✓
+- `<noscript>`: يستخدم بادئ `ns-*` — لا header ثابت ✓
+- `BUILD_VERSION`: 20260814-v1 ✓
+- ملاحظة: `index.css` يحوي 2 selector `header-cta` ميتة (لا JSX يستهدفها) — تنظيف CSS مؤجل لمرحلة التصميم الجديد.
+
+### git
+- commit `fc0c6b7` (5 ملفات، +3/−679): حذف نظيف انتقائي (لم يُلزَم أي ملف من untracked).
+
+### متبقٍّ
+- تصميم شريط علوي جديد (أقصى يمين، بدون تضارب أيقونات، يحوي زر logout واضح، متجاوب desktop+mobile).
+- إزالة CSS الميت من `src/index.css` (2 selector: `.header-cta` و `.header-cta:hover`).
+
+---
+
 ## [v2.17.1] — 2026-08-14 (🔧 إصلاح فشل الريلز + منع تسريب توكن يوتيوب)
 
 ### المشكلة الجذرية
