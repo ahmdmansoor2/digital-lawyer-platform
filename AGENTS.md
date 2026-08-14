@@ -576,3 +576,40 @@ commit `54e9559` — تم push. تحقق بـ `firebase deploy --only hosting:ap
 - **لم يُنشر حياً بعد** — التغيير محلي. عند النشر: `npm run build` ثم حذف `.firebase/hosting.*.cache` ثم `npx firebase deploy --only hosting:app`.
 - **بحث في `index.html` عن إشارات قديمة** لصفحة الهبوط (like `public-landing-page`) قبل النشر إن لزم.
 - باقي تنبيهات Session 18 كما هي (الشريط الجديد، www، Search Console، YouTube tokens).
+
+---
+
+## حالة الجلسة الحالية: Session 20 — الشريط العلوي الزجاجي الموحّد الجديد (مكتمل)
+
+### السياق
+- المرحلة 2 من طلب المستخدم في Session 18 («احذف الشريط القديم ثم صمّم شريطاً جديداً»). نُفّذ الحذف سابقاً، وهذه الجلسة صمّمت الشريط الجديد ونشرته.
+- **قرارات المستخدم:** النطاق = كل صفحات الموقع (React website + الـ 225 HTML) **ما عدا لوحة تحكم التطبيق `AppLayout`**؛ زر CTA على الصفحات الثابتة يقود إلى `/` (مركز المعلومات).
+
+### ما أُنجز
+1. **`public/header.css`** (جديد): كلاسات `.uh-*` — شريط زجاجي `sticky` باهتة blur + شارة شعار متدرجة + شريط تنقل + قائمة «المزيد» + زر CTA + زر برغر للجوال + دعم `html.public-theme-light`.
+2. **`scripts/seo/unified-header.cjs`**: `headerMarkup(activeKey, opts)` يُصدّر الشريط الكامل (6 روابط أساسية + قائمة المزيد + سكربت التفاعل) + `HEADER_CSS` = `<link rel="stylesheet" href="/header.css?v=20260814-v5">` + `VERSION = '20260814-v5'`.
+3. **`scripts/header-unify.cjs`**: حقن الشريط في 225 ملفاً (12 static + 213 ديناميكي؛ المستثنى الوحيد `googlec03a96f2162c19b9.html`) + استبدال الهيدر القديم + إزالة CSS الميت (`.nav-*`, `.logo-*`, `nav:not(.header-nav)`) + حذف كتل `<style>` الفارغة.
+4. **`src/components/SiteHeader.tsx`** (جديد): مكوّن React موازٍ مع scroll listener + mobile toggle + قائمة المزيد + `variant: 'default' | 'login'` + زر «خروج · {userName}` عند تسجيل الدخول. دُمج في `InfoCenter.tsx:122`, `FirebaseLoginScreen.tsx:280` (الجذر `flex flex-col` + حاوية `flex-1` داخلية), `SubscriptionPage.tsx:98`.
+5. **`index.html`**: `BUILD_VERSION` = `20260814-v5` + رابط `header.css`.
+6. **تنظيف المولّدات من بقايا navbar القديمة** (منع إعادة ظهورها في CI): `generate-radar.cjs` (حذف CSS القديم + `var cta` → `.uh-cta`)، `generate-legal-forms.cjs`, `generate-legal-library.cjs` (رابط `header.css` الثابت → `${HEADER_CSS}`)، `generate-pillar.cjs` (سليم أصلاً)، `daily-publish.cjs` (حذف `nav.main-nav` من `articleCardCss`). كلها `node --check` سليمة.
+7. **`generate-legal-forms.cjs` أُعيد تشغيله** (بلا API) → خرج بنفس بصمة الشريط (`uh-bar` + `header.css?v=20260814-v5` + صفر dead nav).
+
+### التحقق الحي (https://mohamidigital.online/)
+- `/blog/`, `/legal-radar.html`, `/legal-forms.html` → **200** مع `uh-bar` + `header.css?v=20260814-v5` + صفر `class="site-header"` ✓
+- الجذر (SPA): `BUILD_VERSION = '20260814-v5` ✓ + الباندل `index-cDfr9U9o.js` يحوي `uh-bar` + «دخول التطبيق` + صفر `header-cta` ✓
+- `/header.css?v=20260814-v5` → **200** (10379 بايت) ✓
+
+### git
+- commit `62895a1` (238 ملفاً، +13714/−8000) — push ناجح بعد rebase على `38170ba` (قبلها وصل origin/main commit جديد `eed414f..38170ba`). الـ untracked القديمة (DELIVERY_THEME.md, docs/legal/, firebase_deploy.log.err, mohamidigital_theme.patch, storage.rules, vite_build*.log.*, مذكرات/, الملفات العربية غير الملتمة) تُركت خارج الـ commit عمداً.
+
+### أوامر مفيدة
+- `node scripts/header-unify.cjs` — حقن/ترقية الشريط في كل `public/**/*.html`.
+- `node scripts/seo/generate-legal-forms.cjs` — إعادة توليد صفحة الصيغ (بلا API).
+- فحص البصمة: أي صفحة = يجب أن تحوي `uh-bar` + `header.css?v=<VERSION>` ولا تحوي `class="site-header"` ولا `nav:not(.header-nav)`.
+
+### متبقٍّ / تنبيهات
+- **CSS ميت** في `src/index.css`: selectors `.header-cta` القديمة + block `.public-theme-light .public-landing-page` (Session 19) — تنظيف اختياري لاحقاً.
+- **`www.mohamidigital.online` لا يعمل** — معروف من Session 9.
+- **Search Console:** بانتظار المستخدم — إرسال `sitemap.xml`.
+- **YouTube tokens:** بانتظار إعادة ربط OAuth (`youtube-oauth.cjs login` + تحديث 5 secrets `YT_*`).
+- الفحوصات المحلية للـ HTTPS يعترضها كاسبرسكي — استخدم `curl -sk` أو `r.jina.ai`. الطرفية تعرض Mojibake للقوالب — لا تُنسخ منها.

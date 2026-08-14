@@ -4,6 +4,35 @@
 
 ---
 
+## [v2.21.0] — 2026-08-14 (🎨 الشريط العلوي الزجاجي الموحّد الجديد — كل صفحات الموقع)
+
+### القرار
+- تنفيذ المرحلة 2 من طلب المستخدم (Session 18 كان الحذف): تصميم شريط علوي زجاجي موحّد 2026 بنفس هوية `src/index.css` على **كل صفحات الموقع** (ما عدا لوحة تحكم التطبيق `AppLayout`).
+- النطاق: صفحات React (مركز المعلومات + تسجيل الدخول + الاشتراك) + الـ 225 صفحة HTML (static + blog + pillars + radar + صيغ + مكتبة).
+- زر CTA على الصفحات الثابتة يقود إلى `/` (مركز المعلومات).
+
+### ما تم
+- **`public/header.css`** (جديد): كلاسات `.uh-*` — شريط زجاجي `sticky` بتأثير blur + شارة شعار + شريط تنقل + قائمة «المزيد» + زر CTA + زر برغر للجوال + دعم `html.public-theme-light`.
+- **`scripts/seo/unified-header.cjs`**: `headerMarkup(activeKey)` يُصدّر الشريط الكامل + `HEADER_CSS` (`/header.css?v=20260814-v5`) + `VERSION`.
+- **`scripts/header-unify.cjs`**: حقن الشريط في 225 ملفاً + استبدال الهيدر القديم + إزالة CSS الميت (`nav.main-nav`, `.nav-*`, `.logo-*`) + حذف كتل `<style>` الفارغة.
+- **`src/components/SiteHeader.tsx`** (جديد): مكوّن React موازٍ (scroll listener + mobile toggle + قائمة المزيد + زر خروج عند تسجيل الدخول) ودُمج في `InfoCenter`, `FirebaseLoginScreen`, `SubscriptionPage`.
+- **`index.html`**: `BUILD_VERSION` = `20260814-v5` + رابط `header.css`.
+- **تنظيف المولّدات**: إزالة بقايا navbar القديمة من قوالب `daily-publish`, `generate-sitemap`, `generate-radar`, `generate-legal-forms`, `generate-legal-library` — حتى لا يُعيد CI توليد صفحات متعارضة مستقبلاً.
+
+### التحقق
+- تشغيلا `header-unify`: 0 بقايا `class="site-header"`، 0 ملفات بلا `uh-bar`، `googlec03a96f2162c19b9.html` سليم.
+- `npm run build` نجح + `npx firebase deploy --only hosting:app`.
+- حي: `/blog/`, `/legal-radar.html`, `/legal-forms.html` → 200 مع `uh-bar` + `header.css?v=20260814-v5`؛ الجذر SPA يحمل v5 في الباندل (`index-cDfr9U9o.js` يحوي `uh-bar` + «دخول التطبيق`).
+
+### git
+- commit `62895a1` (238 ملفاً، +13714/−8000).
+
+### متبقٍّ
+- CSS ميت في `src/index.css`: selectors `.header-cta` القديمة — تنظيف لاحق.
+- `www.mohamidigital.online` لا يعمل، Search Console بانتظار إرسال sitemap، YouTube tokens بانتظار إعادة الربط.
+
+---
+
 ## [v2.18.0] — 2026-08-14 (🔥 حذف الشريط العلوي بالكامل — تمهيد لإعادة التصميم)
 
 ### القرار
