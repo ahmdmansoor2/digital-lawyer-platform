@@ -743,6 +743,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1608141870665133",
       "publishedAt": "2026-08-14T10:17:29.975Z"
+    },
+    {
+      "topicId": "blog-consumer-contract-cancellation",
+      "kind": "short",
+      "videoId": "mK01I6wT2Lw",
+      "url": "https://www.youtube.com/watch?v=mK01I6wT2Lw",
+      "fbPermalink": "https://www.facebook.com/reel/976344988746995",
+      "publishedAt": "2026-08-14T13:31:48.952Z"
+    },
+    {
+      "topicId": "blog-consumer-contract-cancellation",
+      "title": "حق العدول في القانون المصري: دليلك الشامل لفسخ عقود المستهلك واسترداد أموالك - م — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-consumer-contract-cancellation-wide.mp4",
+      "source": "blog",
+      "videoId": "3mKF7086R7c",
+      "url": "https://www.youtube.com/watch?v=3mKF7086R7c",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/976344988746995",
+      "publishedAt": "2026-08-14T13:32:55.217Z"
     }
   ]
 }
