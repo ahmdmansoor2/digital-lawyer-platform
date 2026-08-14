@@ -4,23 +4,14 @@
  * تعرض صفحات المنصة الرسمية + اختصارات للتطبيق
  */
 
-import React, { useState } from 'react';
-import { LogOut, ArrowLeft, Scale, Sparkles, Briefcase, Calendar, FileText, Calculator, BookOpen, Library, MessageCircle, Shield, Radio, ShieldCheck, Menu, X, LogIn } from 'lucide-react';
+import React from 'react';
+import { LogOut, ArrowLeft, Scale, Sparkles, Briefcase, Calendar, FileText, Calculator, BookOpen, Library, MessageCircle, Shield, Radio, ShieldCheck } from 'lucide-react';
 
 interface InfoCenterProps {
   userName?: string;
   onEnterApp: () => void;
   onLogout: () => void;
 }
-
-const TOP_NAV: Array<{ href: string; label: string }> = [
-  { href: '/about.html?from=app', label: 'عن المنصة' },
-  { href: '/features.html?from=app', label: 'المميزات' },
-  { href: '/blog/?from=app', label: 'المدونة' },
-  { href: '/pillars/?from=app', label: 'المراجع' },
-  { href: '/legal-library.html?from=app', label: 'المكتبة' },
-  { href: '/contact.html?from=app', label: 'تواصل معنا' },
-];
 
 const PAGES = [
   {
@@ -125,95 +116,9 @@ const PAGES = [
 ];
 
 export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCenterProps) {
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const isLoggedIn = Boolean(userName);
-
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100" dir="rtl">
-      {/* ════════════════════════════════════════════════════════════════════════
-          TOP HEADER — شريط علوي ثابت، 3 مناطق: شعار يمين، تنقل وسط، دخول/خروج يسار
-          ════════════════════════════════════════════════════════════════════════ */}
-      <header className="ic-header sticky top-0 z-50">
-        <div className="ic-header-inner">
-          {/* المنطقة 1: الشعار في أقصى يمين (طبيعة RTL) */}
-          <a href="/about.html?from=app" className="ic-logo" aria-label="الصفحة الرئيسية لمنصة المحامي الرقمية">
-            <div className="ic-logo-badge" aria-hidden="true">
-              <Scale className="w-5 h-5 text-white" />
-            </div>
-            <div className="ic-logo-text">
-              <span className="ic-logo-title">المحامي الرقمي</span>
-              <span className="ic-logo-subtitle">منصة المحامي المصرية</span>
-            </div>
-          </a>
-
-          {/* المنطقة 2: التنقل — يظهر على tablet+ */}
-          <nav className="ic-nav" aria-label="التنقل الرئيسي">
-            {TOP_NAV.map((item) => (
-              <a key={item.href} href={item.href} className="ic-nav-item">
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* المنطقة 3: أزرار دخول/خروج في أقصى يسار */}
-          <div className="ic-actions">
-            {isLoggedIn ? (
-              <>
-                <span className="ic-user-badge" title={userName}>
-                  <span className="ic-user-dot" />
-                  <span className="ic-user-name">{userName}</span>
-                </span>
-                <button
-                  onClick={onLogout}
-                  className="ic-btn ic-btn-logout"
-                  aria-label="تسجيل الخروج"
-                  title="تسجيل الخروج"
-                >
-                  <LogOut className="w-4 h-4" />
-                  <span className="ic-btn-label">خروج</span>
-                </button>
-              </>
-            ) : (
-              <a
-                href="/app"
-                className="ic-btn ic-btn-login"
-                aria-label="تسجيل الدخول"
-                title="تسجيل الدخول"
-              >
-                <LogIn className="w-4 h-4" />
-                <span className="ic-btn-label">دخول</span>
-              </a>
-            )}
-            {/* زر hamburger للجوال */}
-            <button
-              className="ic-mobile-toggle"
-              onClick={() => setMobileNavOpen((v) => !v)}
-              aria-label={mobileNavOpen ? 'إغلاق قائمة التنقل' : 'فتح قائمة التنقل'}
-              aria-expanded={mobileNavOpen}
-            >
-              {mobileNavOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-
-        {/* قائمة الجوال المنسدلة */}
-        {mobileNavOpen && (
-          <div className="ic-mobile-nav">
-            <nav className="ic-mobile-nav-inner" aria-label="التنقل للجوال">
-              {TOP_NAV.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="ic-mobile-nav-item"
-                  onClick={() => setMobileNavOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
-          </div>
-        )}
-      </header>
+      {/* تم حذف الشريط العلوي بناءً على طلب المستخدم */}
 
       {/* Main content */}
       <main className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 py-12 md:py-16">

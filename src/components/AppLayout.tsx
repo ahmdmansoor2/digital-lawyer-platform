@@ -359,40 +359,7 @@ export default function AppLayout(props: AppLayoutProps) {
         }
       `}</style>
 
-      {/* MOBILE HEADER BAR — شريط علوي مختصر للجوال فقط (desktop له sidebar ثابت) */}
-      <header className="al-mobile-header md:hidden">
-        <div className="al-mobile-header-inner">
-          <div className="flex items-center gap-2.5 shrink-0">
-            <div className="w-9 h-9 rounded-xl bg-indigo-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
-              <span className="text-white text-sm">⚖️</span>
-            </div>
-            <div className="leading-tight">
-              <h1 className={`font-black text-sm ${isLightWorkspace ? 'text-slate-900' : 'text-white'}`}>المحامي الرقمي</h1>
-              <p className={`text-[10px] ${isLightWorkspace ? 'text-slate-500' : 'text-slate-400'}`}>{sessionUser.name}</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            {onLogout && (
-              <button
-                onClick={onLogout}
-                className={`p-2.5 rounded-xl border transition active:scale-95 ${isLightWorkspace ? 'border-rose-200 bg-rose-50 text-rose-600 active:bg-rose-100' : 'border-rose-500/30 bg-rose-500/10 text-rose-300 active:bg-rose-500/20'}`}
-                aria-label="تسجيل الخروج"
-                title="تسجيل الخروج"
-              >
-                <LogOut className="w-4 h-4" />
-              </button>
-            )}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`p-2.5 rounded-xl border transition active:scale-95 ${isLightWorkspace ? 'border-slate-200 bg-white text-slate-700 active:bg-slate-50' : 'border-slate-700 bg-slate-800 text-slate-100 active:bg-slate-700'}`}
-              aria-label={mobileMenuOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-      </header>
+      {/* MOBILE HEADER BAR — تم حذفه بناءً على طلب المستخدم */}
 
       {/* RIGHT SIDEBAR (قائمة التنقل الكبرى) */}
       <aside className={`
