@@ -762,6 +762,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/976344988746995",
       "publishedAt": "2026-08-14T13:32:55.217Z"
+    },
+    {
+      "topicId": "trend-cybercrime-phone-extortion-egypt",
+      "kind": "short",
+      "videoId": "oO4c2yMgT68",
+      "url": "https://www.youtube.com/watch?v=oO4c2yMgT68",
+      "fbPermalink": "https://www.facebook.com/reel/1536632521810465",
+      "publishedAt": "2026-08-14T19:12:22.892Z"
+    },
+    {
+      "topicId": "trend-cybercrime-phone-extortion-egypt",
+      "title": "عقوبة الابتزاز الإلكتروني عبر الهاتف وسرقة البيانات في القانون المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cybercrime-phone-extortion-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "yFR6RugbLnw",
+      "url": "https://www.youtube.com/watch?v=yFR6RugbLnw",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1536632521810465",
+      "publishedAt": "2026-08-14T19:13:22.818Z"
     }
   ]
 }

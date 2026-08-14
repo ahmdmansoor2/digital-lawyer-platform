@@ -993,6 +993,27 @@
       "duration": "1د 6ث",
       "size": 32751940,
       "publishedAt": "2026-08-14T16:07:32.841Z"
+    },
+    {
+      "topicId": "trend-cybercrime-phone-extortion-egypt",
+      "title": "عقوبة الابتزاز الإلكتروني عبر الهاتف وسرقة البيانات في القانون المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#جرائم إلكترونية",
+        "#الابتزاز الإلكتروني",
+        "#مباحث الإنترنت"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cybercrime-phone-extortion-egypt.mp4",
+      "videoId": "1536632521810465",
+      "permalink": "https://www.facebook.com/reel/1536632521810465",
+      "source": "trending-topics.json",
+      "duration": "1د 5ث",
+      "size": 14410789,
+      "publishedAt": "2026-08-14T19:12:20.345Z"
     }
   ]
 }
