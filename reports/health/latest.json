@@ -1,11 +1,11 @@
 {
-  "date": "2026-08-13",
-  "generatedAt": "2026-08-13T18:44:52.959Z",
+  "date": "2026-08-14",
+  "generatedAt": "2026-08-14T07:07:20.788Z",
   "status": "error",
   "blogArticles": 113,
-  "fbPosts": 11,
-  "reels": 4,
-  "ghRuns": 19,
+  "fbPosts": 0,
+  "reels": 0,
+  "ghRuns": 20,
   "checks": [
     {
       "name": "site_root",
@@ -22,8 +22,8 @@
     {
       "name": "articles",
       "label": "المدونة: سلامة المقالات والصور (og:image)",
-      "status": "error",
-      "findings": 1
+      "status": "ok",
+      "findings": 0
     },
     {
       "name": "sitemap",
@@ -34,8 +34,8 @@
     {
       "name": "facebook",
       "label": "فيسبوك: منشورات اليوم والصور والريلز",
-      "status": "ok",
-      "findings": 0
+      "status": "warn",
+      "findings": 2
     },
     {
       "name": "github_runs",
