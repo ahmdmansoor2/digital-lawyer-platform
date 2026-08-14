@@ -8,6 +8,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
+import type { Timestamp } from 'firebase/firestore';
 import { getFirebase } from '../firebaseClient';
 import {
   Shield, Users, CheckCircle, XCircle, Clock,
