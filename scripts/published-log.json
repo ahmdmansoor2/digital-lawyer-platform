@@ -1428,6 +1428,30 @@
       ],
       "words": 2148,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبة الابتزاز الإلكتروني عبر الهاتف وسرقة البيانات في القانون المصري",
+      "date": "2026-08-14",
+      "slug": "cybercrime-phone-extortion-egypt",
+      "url": "https://mohamidigital.online/blog/cybercrime-phone-extortion-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cybercrime-phone-extortion-egypt.jpg",
+      "tags": [
+        "جرائم إلكترونية"
+      ],
+      "words": 2092,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "قانون الرياضة المصري: الثغرات الشائعة في عقود احتراف اللاعبين والفسخ",
+      "date": "2026-08-14",
+      "slug": "egyptian-sports-law-player-contracts",
+      "url": "https://mohamidigital.online/blog/egyptian-sports-law-player-contracts.html",
+      "image": "https://mohamidigital.online/blog/images/egyptian-sports-law-player-contracts.jpg",
+      "tags": [
+        "قانون الرياضة"
+      ],
+      "words": 2377,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
