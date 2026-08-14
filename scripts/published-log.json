@@ -1416,6 +1416,18 @@
       ],
       "words": 2011,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "قانون مكافحة جرائم تقنية المعلومات المصري: عقوبات الابتزاز والتجسس الإلكتروني",
+      "date": "2026-08-14",
+      "slug": "cybercrime-law-extortion-egypt",
+      "url": "https://mohamidigital.online/blog/cybercrime-law-extortion-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cybercrime-law-extortion-egypt.jpg",
+      "tags": [
+        "الجرائم الإلكترونية"
+      ],
+      "words": 2148,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
