@@ -141,10 +141,12 @@ async function downloadFile(url, dest) {
   return buf.length;
 }
 
-// استدعاء Gemini مع إعادة المحاولة التلقائية عند تجاوز المعدل (Rate Limit 429)
-async function generateContentWithRetry(prompt, config = {}, modelIndex = 0) {
+// استدعاء Gemini مع إعادة المحاولة التلقائية عند 429 (Rate Limit) أو 503/5xx (UNAVAILABLE)
+// يحاول عبر النماذج الثلاثة بالتناوب مع مهلة قصيرة حتى ينجح أو تنتهي المحاولات
+async function generateContentWithRetry(prompt, config = {}, modelIndex = 0, attempt = 0) {
   const models = ['gemini-flash-latest', 'gemini-3.6-flash', 'gemini-2.0-flash'];
   const modelName = models[modelIndex % models.length];
+  const MAX_ATTEMPTS = 9;
 
   try {
     const result = await ai.models.generateContent({
@@ -154,10 +156,14 @@ async function generateContentWithRetry(prompt, config = {}, modelIndex = 0) {
     });
     return result;
   } catch (err) {
-    if (err.status === 429 || err.message?.includes('429') || err.message?.includes('Quota')) {
-      log(`⏳ انتظر 15 ثانية لتفادي Rate Limit لـ Gemini (${modelName})...`);
-      await sleep(15000);
-      return generateContentWithRetry(prompt, config, modelIndex + 1);
+    const msg = err.message || '';
+    const isRateLimit = err.status === 429 || msg.includes('429') || msg.includes('Quota');
+    const isUnavailable = err.status === 503 || err.status >= 500 || msg.includes('503') || msg.includes('UNAVAILABLE') || msg.includes('high demand');
+    if ((isRateLimit || isUnavailable) && attempt < MAX_ATTEMPTS) {
+      const waitMs = isRateLimit ? 15000 : 8000;
+      log(`⚠️ Gemini (${modelName}) ${isRateLimit ? 'Rate Limit' : 'غير متاح'} — انتظار ${waitMs / 1000} ثانية (محاولة ${attempt + 1}/${MAX_ATTEMPTS})...`);
+      await sleep(waitMs);
+      return generateContentWithRetry(prompt, config, modelIndex + 1, attempt + 1);
     }
     throw err;
   }
