@@ -888,6 +888,27 @@
       "duration": "46ث",
       "size": 18003087,
       "publishedAt": "2026-08-11T19:20:50.061Z"
+    },
+    {
+      "topicId": "trend-electricity-theft-penalties-egypt",
+      "title": "غرامات وإجراءات التصالح في جرائم سرقة الكهرباء في القانون المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون الجنائي",
+        "#سرقة الكهرباء",
+        "#التصالح في الكهرباء"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-electricity-theft-penalties-egypt.mp4",
+      "videoId": "1872319867472535",
+      "permalink": "https://www.facebook.com/reel/1872319867472535",
+      "source": "trending-topics.json",
+      "duration": "1د 2ث",
+      "size": 20839598,
+      "publishedAt": "2026-08-14T09:40:00.478Z"
     }
   ]
 }
