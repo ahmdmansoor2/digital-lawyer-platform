@@ -909,6 +909,27 @@
       "duration": "1د 2ث",
       "size": 20839598,
       "publishedAt": "2026-08-14T09:40:00.478Z"
+    },
+    {
+      "topicId": "trend-educational-guardianship-divorce-egypt",
+      "title": "الولاية التعليمية للأم المطلقة: شروط الحصول عليها وإجراءات نقل المدارس",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الأحوال الشخصية",
+        "#الولاية التعليمية",
+        "#نقل المدارس للمطلقة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-educational-guardianship-divorce-egypt.mp4",
+      "videoId": "1394158229515090",
+      "permalink": "https://www.facebook.com/reel/1394158229515090",
+      "source": "trending-topics.json",
+      "duration": "53ث",
+      "size": 26983206,
+      "publishedAt": "2026-08-14T09:55:38.672Z"
     }
   ]
 }

@@ -705,6 +705,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1872319867472535",
       "publishedAt": "2026-08-14T09:40:38.775Z"
+    },
+    {
+      "topicId": "trend-educational-guardianship-divorce-egypt",
+      "kind": "short",
+      "videoId": "Z2Qsk-Vn700",
+      "url": "https://www.youtube.com/watch?v=Z2Qsk-Vn700",
+      "fbPermalink": "https://www.facebook.com/reel/1394158229515090",
+      "publishedAt": "2026-08-14T09:55:40.371Z"
+    },
+    {
+      "topicId": "trend-educational-guardianship-divorce-egypt",
+      "title": "الولاية التعليمية للأم المطلقة: شروط الحصول عليها وإجراءات نقل المدارس — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-educational-guardianship-divorce-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "2N1P9NvgeKM",
+      "url": "https://www.youtube.com/watch?v=2N1P9NvgeKM",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1394158229515090",
+      "publishedAt": "2026-08-14T09:56:15.328Z"
     }
   ]
 }
