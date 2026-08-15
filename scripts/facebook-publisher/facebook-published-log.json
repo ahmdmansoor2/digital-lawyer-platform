@@ -1014,6 +1014,27 @@
       "duration": "1د 5ث",
       "size": 14410789,
       "publishedAt": "2026-08-14T19:12:20.345Z"
+    },
+    {
+      "topicId": "trend-gold-customs-regulations-egypt",
+      "title": "الجمارك على سبائك ومشغولات الذهب: الحد المسموح به وإجراءات الإفصاح للمسافرين",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#جمارك وضرائب",
+        "#جمارك الذهب مصر",
+        "#إدخال سبائك الذهب للمسافرين"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-gold-customs-regulations-egypt.mp4",
+      "videoId": "1632469634967136",
+      "permalink": "https://www.facebook.com/reel/1632469634967136",
+      "source": "trending-topics.json",
+      "duration": "1د 3ث",
+      "size": 28050220,
+      "publishedAt": "2026-08-15T06:59:09.812Z"
     }
   ]
 }

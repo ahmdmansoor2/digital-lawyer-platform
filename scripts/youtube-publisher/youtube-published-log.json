@@ -781,6 +781,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1536632521810465",
       "publishedAt": "2026-08-14T19:13:22.818Z"
+    },
+    {
+      "topicId": "trend-gold-customs-regulations-egypt",
+      "kind": "short",
+      "videoId": "NytAubKYwQ4",
+      "url": "https://www.youtube.com/watch?v=NytAubKYwQ4",
+      "fbPermalink": "https://www.facebook.com/reel/1632469634967136",
+      "publishedAt": "2026-08-15T06:59:12.119Z"
+    },
+    {
+      "topicId": "trend-gold-customs-regulations-egypt",
+      "title": "الجمارك على سبائك ومشغولات الذهب: الحد المسموح به وإجراءات الإفصاح للمسافرين — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-gold-customs-regulations-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "5qywkf2IERY",
+      "url": "https://www.youtube.com/watch?v=5qywkf2IERY",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1632469634967136",
+      "publishedAt": "2026-08-15T07:00:19.191Z"
     }
   ]
 }
