@@ -1077,6 +1077,27 @@
       "duration": "1د 8ث",
       "size": 25682869,
       "publishedAt": "2026-08-15T13:00:34.136Z"
+    },
+    {
+      "topicId": "trend-artistic-production-contracts-ip-egypt",
+      "title": "عقود الإنتاج الفني وحقوق الملكية الفكرية: أحكام فسخ التعاقد والشرط الجزائي",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#ملكية فكرية",
+        "#عقود الإنتاج الفني",
+        "#حقوق الملكية الفكرية مصر"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-artistic-production-contracts-ip-egypt.mp4",
+      "videoId": "1019510701083766",
+      "permalink": "https://www.facebook.com/reel/1019510701083766",
+      "source": "trending-topics.json",
+      "duration": "1د 9ث",
+      "size": 27448753,
+      "publishedAt": "2026-08-15T15:36:27.635Z"
     }
   ]
 }
