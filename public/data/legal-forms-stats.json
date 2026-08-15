@@ -1,0 +1,411 @@
+{
+  "totalForms": 2691,
+  "categories": [
+    {
+      "category": "إنذارات وإعلانات محضرين",
+      "icon": "📜",
+      "color": "#f59e0b",
+      "count": 105,
+      "withTextCount": 104
+    },
+    {
+      "category": "صحف استئناف وطعون",
+      "icon": "⚖️",
+      "color": "#ef4444",
+      "count": 35,
+      "withTextCount": 35
+    },
+    {
+      "category": "إشكالات تنفيذ ووقف تنفيذ",
+      "icon": "🛑",
+      "color": "#dc2626",
+      "count": 17,
+      "withTextCount": 17
+    },
+    {
+      "category": "تظلمات وأوامر أداء",
+      "icon": "📝",
+      "color": "#8b5cf6",
+      "count": 28,
+      "withTextCount": 28
+    },
+    {
+      "category": "ايصال امانه",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 7,
+      "withTextCount": 7
+    },
+    {
+      "category": "بلاغ كاذب",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 8,
+      "withTextCount": 8
+    },
+    {
+      "category": "عرائض جنح ومذكرات جنائية",
+      "icon": "🛡️",
+      "color": "#ef4444",
+      "count": 21,
+      "withTextCount": 21
+    },
+    {
+      "category": "خيانة امانه",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 17,
+      "withTextCount": 17
+    },
+    {
+      "category": "سب",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 47,
+      "withTextCount": 47
+    },
+    {
+      "category": "سرقة",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 10,
+      "withTextCount": 10
+    },
+    {
+      "category": "شيكات",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 31,
+      "withTextCount": 31
+    },
+    {
+      "category": "ضرب",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 33,
+      "withTextCount": 33
+    },
+    {
+      "category": "مباني",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 9,
+      "withTextCount": 9
+    },
+    {
+      "category": "نصب",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 7,
+      "withTextCount": 7
+    },
+    {
+      "category": "الدفوع",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 58,
+      "withTextCount": 58
+    },
+    {
+      "category": "مذكرات دفاع ودفوع قانونية",
+      "icon": "📑",
+      "color": "#06b6d4",
+      "count": 1,
+      "withTextCount": 1
+    },
+    {
+      "category": "نظرية الدفوع",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 13,
+      "withTextCount": 11
+    },
+    {
+      "category": "دعاوى الأسرة والأحوال الشخصية",
+      "icon": "👨‍👩‍👧‍👦",
+      "color": "#ec4899",
+      "count": 27,
+      "withTextCount": 21
+    },
+    {
+      "category": "توكيلات وإقرارات الشهر العقاري",
+      "icon": "🏢",
+      "color": "#10b981",
+      "count": 13,
+      "withTextCount": 12
+    },
+    {
+      "category": "أحوال",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 7,
+      "withTextCount": 7
+    },
+    {
+      "category": "دعاوي",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 552,
+      "withTextCount": 552
+    },
+    {
+      "category": "صيغ",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 168,
+      "withTextCount": 168
+    },
+    {
+      "category": "الدفوع فى قانون الأثبات",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 10,
+      "withTextCount": 10
+    },
+    {
+      "category": "جنائى",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 15,
+      "withTextCount": 15
+    },
+    {
+      "category": "مذكرات",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 16,
+      "withTextCount": 16
+    },
+    {
+      "category": "تطليق",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 10,
+      "withTextCount": 10
+    },
+    {
+      "category": "حبس",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 4,
+      "withTextCount": 4
+    },
+    {
+      "category": "رؤية",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 4,
+      "withTextCount": 4
+    },
+    {
+      "category": "شامل",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 3,
+      "withTextCount": 0
+    },
+    {
+      "category": "مؤخر",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 8,
+      "withTextCount": 8
+    },
+    {
+      "category": "متعة",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 4,
+      "withTextCount": 4
+    },
+    {
+      "category": "متنوع",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 16,
+      "withTextCount": 16
+    },
+    {
+      "category": "نفقة",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 36,
+      "withTextCount": 36
+    },
+    {
+      "category": "وراثة و حسبى",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 8,
+      "withTextCount": 8
+    },
+    {
+      "category": "صيغ دعاوي القضاء الادارى",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 11,
+      "withTextCount": 11
+    },
+    {
+      "category": "القضاء الأدارى",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 2,
+      "withTextCount": 2
+    },
+    {
+      "category": "مدنى",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 2,
+      "withTextCount": 2
+    },
+    {
+      "category": "مذكرات هامة جدا",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 13,
+      "withTextCount": 13
+    },
+    {
+      "category": "مرافعات",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 9,
+      "withTextCount": 9
+    },
+    {
+      "category": "مساكن",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 10,
+      "withTextCount": 10
+    },
+    {
+      "category": "دعاوي المساكن",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 10,
+      "withTextCount": 10
+    },
+    {
+      "category": "صيغ الدعاوي الجزء الاول",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 3,
+      "withTextCount": 3
+    },
+    {
+      "category": "صيغ دعاوى الاحوال الشخصية",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 36,
+      "withTextCount": 36
+    },
+    {
+      "category": "صيغ دعاوي الجنائى",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 15,
+      "withTextCount": 15
+    },
+    {
+      "category": "صيغ دعاوي المدنى",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 4,
+      "withTextCount": 2
+    },
+    {
+      "category": "صيغ دعاوي المرافعات",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 10,
+      "withTextCount": 10
+    },
+    {
+      "category": "قضاء ادارى",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 9,
+      "withTextCount": 9
+    },
+    {
+      "category": "فرز وتجنيب",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 11,
+      "withTextCount": 11
+    },
+    {
+      "category": "كتب صيغ الدعاوي",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 5,
+      "withTextCount": 3
+    },
+    {
+      "category": "مخدرات",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 16,
+      "withTextCount": 16
+    },
+    {
+      "category": "صيغ طلبات",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 76,
+      "withTextCount": 76
+    },
+    {
+      "category": "نماذج",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 53,
+      "withTextCount": 53
+    },
+    {
+      "category": "مذكرات دفاع شاملة",
+      "icon": "📚",
+      "color": "#a855f7",
+      "count": 184,
+      "withTextCount": 184
+    },
+    {
+      "category": "المذكرات",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 1,
+      "withTextCount": 1
+    },
+    {
+      "category": "صيغ ونماذج متنوعة",
+      "icon": "📂",
+      "color": "#64748b",
+      "count": 560,
+      "withTextCount": 555
+    },
+    {
+      "category": "عقود بيع وإيجار وشركات واتفاقيات",
+      "icon": "🤝",
+      "color": "#10b981",
+      "count": 277,
+      "withTextCount": 274
+    },
+    {
+      "category": "إجراءات التقاضي وخطوات الدعاوى",
+      "icon": "⚙️",
+      "color": "#06b6d4",
+      "count": 19,
+      "withTextCount": 19
+    },
+    {
+      "category": "اجراءاتك",
+      "icon": "📄",
+      "color": "#64748b",
+      "count": 7,
+      "withTextCount": 5
+    }
+  ]
+}
