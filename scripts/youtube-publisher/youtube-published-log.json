@@ -800,6 +800,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1632469634967136",
       "publishedAt": "2026-08-15T07:00:19.191Z"
+    },
+    {
+      "topicId": "trend-illegal-immigration-travel-fraud-law",
+      "kind": "short",
+      "videoId": "Am2rsyG-1KI",
+      "url": "https://www.youtube.com/watch?v=Am2rsyG-1KI",
+      "fbPermalink": "https://www.facebook.com/reel/1588873902818486",
+      "publishedAt": "2026-08-15T09:41:07.664Z"
+    },
+    {
+      "topicId": "trend-illegal-immigration-travel-fraud-law",
+      "title": "مكافحة الهجرة غير الشرعية وعقوبات النصب بعقود العمل بالخارج في القانون المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-illegal-immigration-travel-fraud-law-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "gWo_a63_oHQ",
+      "url": "https://www.youtube.com/watch?v=gWo_a63_oHQ",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1588873902818486",
+      "publishedAt": "2026-08-15T09:42:13.886Z"
     }
   ]
 }
