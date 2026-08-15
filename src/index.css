@@ -1937,3 +1937,148 @@ html.public-theme-dark body {
     transition: none;
   }
 }
+
+/* ============================================================================
+   ULTRA-PREMIUM DESIGN SYSTEM UTILITIES (2026 OVERHAUL)
+   يوفر بطاقات زجاجية فاخرة، إضاءات خافتة، وشارات متوهجة وتأثيرات تفاعلية ناعمة
+   ============================================================================ */
+
+/* 1. بطاقات الـ Glassmorphism النخبوية */
+.glass-panel-ultra {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.75) 0%, rgba(30, 41, 59, 0.65) 100%);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-panel-ultra:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 20px rgba(99, 102, 241, 0.15);
+}
+
+.glass-card-premium {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 14px;
+  transition: all 0.25s ease;
+}
+
+.glass-card-premium:hover {
+  transform: translateY(-2px);
+  border-color: rgba(99, 102, 241, 0.3);
+  background: rgba(15, 23, 42, 0.8);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+}
+
+/* 2. الأزرار التفاعلية الشفافة والمضيئة (Shimmer Buttons) */
+.btn-shimmer-cta {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #6366f1 0%, #7c3aed 60%, #4f46e5 100%);
+  color: #ffffff !important;
+  font-weight: 800;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease, background 0.22s ease;
+}
+
+.btn-shimmer-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-shimmer-cta:hover::before {
+  left: 100%;
+}
+
+.btn-shimmer-cta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #4f46e5 0%, #6d28d9 60%, #4338ca 100%);
+}
+
+.btn-shimmer-cta:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* 3. الشارات المتوهجة (Glow Badges) */
+.badge-glow-emerald {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.15);
+  border-radius: 9999px;
+  font-weight: 700;
+}
+
+.badge-glow-indigo {
+  background: rgba(99, 102, 241, 0.14);
+  border: 1px solid rgba(99, 102, 241, 0.32);
+  color: #a5b4fc;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.18);
+  border-radius: 9999px;
+  font-weight: 700;
+}
+
+/* 4. إضاءات الخلفية الخافتة (Ambient Glow Orbs) */
+.ambient-glow-indigo {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.ambient-glow-purple {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.16) 0%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+.ambient-glow-emerald {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.14) 0%, transparent 70%);
+  filter: blur(45px);
+  pointer-events: none;
+}
+
+/* 5. تحسين جداول وقوائم لوحة التحكم الداكنة */
+.theme-dark tbody tr.table-row-ultra-hover {
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.theme-dark tbody tr.table-row-ultra-hover:hover {
+  background-color: rgba(30, 41, 59, 0.8) !important;
+  box-shadow: inset 3px 0 0 #6366f1;
+}
+
+/* 6. تحسين شريط التقدم في قراءة المقالات */
+.reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #7c3aed, #10b981);
+  z-index: 1001;
+  transform-origin: 0%;
+}
+

@@ -364,25 +364,25 @@ export default function AppLayout(props: AppLayoutProps) {
       {/* RIGHT SIDEBAR (قائمة التنقل الكبرى) */}
       <aside className={`
         fixed md:sticky top-0 bottom-0 start-0 z-40
-        w-[220px] ${isLightWorkspace ? 'bg-white text-slate-800 border-slate-200' : 'bg-[#1a2333] text-slate-100 border-slate-800/60'} flex flex-col
-        transition-transform duration-300 transform md:transform-none shadow-lg shrink-0
+        w-[225px] ${isLightWorkspace ? 'bg-white/95 backdrop-blur-xl text-slate-800 border-slate-200 shadow-xl' : 'bg-slate-900/90 backdrop-blur-xl text-slate-100 border-slate-800/80 shadow-2xl shadow-black/40'} flex flex-col
+        transition-transform duration-300 transform md:transform-none shrink-0 border-e
         ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full md:translate-x-0'}
       `} id="major-app-sidebar">
         {/* Brand Banner */}
-        <div className={`p-4 border-b space-y-2 shrink-0 ${isLightWorkspace ? 'border-slate-200' : 'border-slate-800'}`}>
+        <div className={`p-4 border-b space-y-2 shrink-0 ${isLightWorkspace ? 'border-slate-200/80' : 'border-slate-800/80'}`}>
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 bg-indigo-500 rounded flex items-center justify-center shrink-0">
-              <span className="text-white text-xs">⚖️</span>
+            <div className="w-9 h-9 bg-gradient-to-br from-indigo-500 via-purple-600 to-indigo-700 rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-indigo-500/30 ring-1 ring-white/20">
+              <span className="text-white text-sm">⚖️</span>
             </div>
             <div>
-              <h1 className={`font-bold text-sm tracking-wide leading-tight ${isLightWorkspace ? 'text-slate-900' : 'text-white'}`}>مكتب المُحَامِي الرَّقْمِي</h1>
-              <span className={`text-[10px] block ${isLightWorkspace ? 'text-slate-500' : 'text-slate-400'}`}>منظومة العدالة بمصر</span>
+              <h1 className={`font-black text-sm tracking-wide leading-tight ${isLightWorkspace ? 'text-slate-900' : 'text-white'}`}>مكتب المُحَامِي الرَّقْمِي</h1>
+              <span className={`text-[10px] font-bold block ${isLightWorkspace ? 'text-indigo-600' : 'text-emerald-400'}`}>منظومة العدالة الذكية</span>
             </div>
           </div>
           {onShowInfoCenter && (
             <button
               onClick={onShowInfoCenter}
-              className="w-full mt-2 flex items-center justify-center gap-2 bg-gradient-to-l from-indigo-600/20 to-purple-600/20 hover:from-indigo-600/30 hover:to-purple-600/30 border border-indigo-500/30 hover:border-indigo-500/50 text-indigo-200 hover:text-white rounded-lg px-3 py-2 text-[11px] font-black transition cursor-pointer"
+              className="w-full mt-2 flex items-center justify-center gap-2 bg-gradient-to-l from-indigo-600/20 to-purple-600/20 hover:from-indigo-600/30 hover:to-purple-600/30 border border-indigo-500/30 hover:border-indigo-500/50 text-indigo-200 hover:text-white rounded-xl px-3 py-2 text-[11px] font-black transition-all cursor-pointer shadow-sm hover:scale-[1.02]"
               title="العودة إلى مركز المعلومات"
             >
               <BookOpen className="w-3.5 h-3.5" />
@@ -392,14 +392,14 @@ export default function AppLayout(props: AppLayoutProps) {
         </div>
 
         {/* GLOBAL SEARCH BUTTON (Ctrl+K) — مرئي من أي مكان */}
-        <div className={`p-3 border-b shrink-0 ${isLightWorkspace ? 'border-slate-200' : 'border-slate-800'}`}>
+        <div className={`p-3 border-b shrink-0 ${isLightWorkspace ? 'border-slate-200/80' : 'border-slate-800/80'}`}>
           <button
             onClick={() => setSearchOpen(true)}
-            className={`w-full rounded-xl px-3 py-2.5 flex items-center gap-2.5 transition group border ${isLightWorkspace ? 'bg-slate-50 hover:bg-white border-slate-200 text-slate-600 hover:text-slate-900' : 'bg-slate-800/60 hover:bg-slate-800 border-slate-700 hover:border-indigo-500/50 text-slate-300 hover:text-white'}`}
+            className={`w-full rounded-xl px-3 py-2.5 flex items-center gap-2.5 transition group border ${isLightWorkspace ? 'bg-slate-50 hover:bg-white border-slate-200 text-slate-600 hover:text-slate-900 shadow-xs' : 'bg-slate-800/50 hover:bg-slate-800/80 border-slate-700/70 hover:border-indigo-500/50 text-slate-300 hover:text-white shadow-inner'}`}
             id="global-search-btn"
             title="بحث شامل في كل البيانات (Ctrl+K)"
           >
-            <SearchIcon className="w-4 h-4 text-indigo-500 shrink-0" />
+            <SearchIcon className="w-4 h-4 text-indigo-400 shrink-0 group-hover:scale-110 transition-transform" />
             <span className="text-xs font-bold flex-1 text-end">بحث شامل</span>
             <kbd className={`hidden lg:inline-block text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border ${isLightWorkspace ? 'bg-white text-slate-500 border-slate-200' : 'bg-slate-900 text-slate-400 border-slate-700 group-hover:border-slate-600'}`}>
               Ctrl+K
@@ -408,12 +408,12 @@ export default function AppLayout(props: AppLayoutProps) {
         </div>
 
         {/* User Badge context */}
-        <div className={`p-2 px-3 mx-3 my-2 rounded flex items-center justify-between gap-1 text-xs shrink-0 border ${isLightWorkspace ? 'bg-slate-50 border-slate-200' : 'bg-slate-800/40 border-slate-800/60'}`}>
+        <div className={`p-2 px-3 mx-3 my-2 rounded-xl flex items-center justify-between gap-1 text-xs shrink-0 border ${isLightWorkspace ? 'bg-slate-50 border-slate-200' : 'bg-slate-800/40 border-slate-700/50'}`}>
           <div className="flex items-center gap-2">
-            <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
+            <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse ring-2 ring-emerald-500/20"></div>
             <div className="space-y-0.5 text-end">
-              <p className={`font-semibold ${isLightWorkspace ? 'text-slate-800' : 'text-slate-300'}`}>{sessionUser.name}</p>
-              <p className="text-[10px] text-slate-500 font-mono">{sessionUser.role}</p>
+              <p className={`font-bold ${isLightWorkspace ? 'text-slate-800' : 'text-slate-200'}`}>{sessionUser.name}</p>
+              <p className="text-[10px] text-slate-400 font-mono">{sessionUser.role}</p>
             </div>
           </div>
 
@@ -430,13 +430,13 @@ export default function AppLayout(props: AppLayoutProps) {
             title="تسجيل الخروج"
             aria-label="تسجيل الخروج"
           >
-            <LogOut className="w-4 h-4" />
-            <span className="text-[11px] font-bold">خروج</span>
+            <LogOut className="w-3.5 h-3.5" />
+            <span className="text-[10px] font-bold">خروج</span>
           </button>
         </div>
 
         {/* Nav list options */}
-        <nav className="flex-1 px-3 py-2 space-y-0.5 text-xs overflow-y-auto">
+        <nav className="flex-1 px-3 py-2 space-y-1 text-xs overflow-y-auto custom-scrollbar">
           {NAV_ITEMS.filter(item => enabledMenus[item.id] !== false).map((item) => {
             const IconComponent = item.icon;
             const isActive = activeTab === item.id;
@@ -445,12 +445,12 @@ export default function AppLayout(props: AppLayoutProps) {
               return (
                 <div
                   key={item.id}
-                  className="px-3 pt-4 pb-1.5 text-[10px] font-black text-indigo-500/80 uppercase tracking-wider flex items-center gap-2 select-none cursor-default"
+                  className="px-3 pt-4 pb-1.5 text-[10px] font-black text-indigo-400 uppercase tracking-wider flex items-center gap-2 select-none cursor-default"
                   aria-hidden="true"
                 >
-                  <span className={`h-px flex-1 ${isLightWorkspace ? 'bg-slate-200' : 'bg-slate-700/60'}`} />
+                  <span className={`h-px flex-1 ${isLightWorkspace ? 'bg-slate-200' : 'bg-slate-800'}`} />
                   <span>{item.label}</span>
-                  <span className={`h-px flex-1 ${isLightWorkspace ? 'bg-slate-200' : 'bg-slate-700/60'}`} />
+                  <span className={`h-px flex-1 ${isLightWorkspace ? 'bg-slate-200' : 'bg-slate-800'}`} />
                 </div>
               );
             }
@@ -464,18 +464,23 @@ export default function AppLayout(props: AppLayoutProps) {
                   if (item.id !== 'cases') setDrillCaseId(undefined);
                 }}
                 className={`
-                  w-full text-end px-3 py-1.5 rounded font-semibold flex items-center gap-3 transition text-xs cursor-pointer
+                  w-full text-end px-3 py-2 rounded-xl font-bold flex items-center gap-2.5 transition-all duration-200 text-xs cursor-pointer
                   ${isActive
-                    ? 'bg-indigo-600 text-white border border-indigo-500/25'
+                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-500/25 border border-indigo-400/30'
                     : isLightWorkspace
                       ? 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-                      : 'text-slate-300 hover:bg-slate-800 hover:text-slate-100'
+                      : 'text-slate-300 hover:bg-slate-800/70 hover:text-white hover:translate-x-[-2px]'
                   }
                 `}
                 id={`sidebar-link-${item.id}`}
               >
-                <IconComponent className="h-3.5 w-3.5 opacity-80" />
-                <span>{item.label}</span>
+                <IconComponent className={`h-4 w-4 ${isActive ? 'text-white' : 'text-slate-400'} shrink-0`} />
+                <span className="flex-1">{item.label}</span>
+                {item.badge && (
+                  <span className="text-[9px] px-1.5 py-0.5 rounded-full font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                    {item.badge}
+                  </span>
+                )}
               </button>
             );
           })}

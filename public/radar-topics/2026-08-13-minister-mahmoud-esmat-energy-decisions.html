@@ -36,16 +36,7 @@
       --card-bg: rgba(15,23,42,0.7);
     }
     html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    body {
-      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      line-height: 1.8;
-      background-image:
-        radial-gradient(ellipse at 30% 0%, rgba(124,58,237,0.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 90% 70%, rgba(16,185,129,0.1) 0%, transparent 50%);
-    }
+    
 
 
     .breadcrumbs { max-width: 1200px; margin: 0 auto; padding: 14px 24px 0; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -133,6 +124,7 @@
     @media (max-width: 620px) { .topic-grid { grid-template-columns: 1fr; } .arch-body { grid-template-columns: 1fr; } }
     @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
   </style>
+  <link rel="stylesheet" href="/header.css">
 </head>
 <body>
   <header class="uh-bar" id="siteHeader">

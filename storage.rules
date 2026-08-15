@@ -1,0 +1,11 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // لا توجد ميزة رفع ملفات مفعلة في التطبيق حالياً.
+    // إبقاء Storage مغلقاً افتراضياً يمنع أي وصول غير مقصود.
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

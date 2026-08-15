@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -396,65 +396,77 @@ const Dashboard = React.memo(function Dashboard({
       <div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* Cases Stats */}
-        <div onClick={() => onNavigate('cases')} className="bg-white border border-slate-200 p-3.5 rounded-lg shadow-sm flex items-center justify-between hover:border-indigo-500/30 hover:shadow-md transition cursor-pointer">
-          <div className="space-y-1">
-            <p className="text-xs font-semibold text-slate-500">إجمالي القضايا النشطة</p>
+        <div 
+          onClick={() => onNavigate('cases')} 
+          className="bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 p-4 rounded-2xl shadow-sm hover:shadow-xl hover:border-indigo-500/40 transition-all duration-300 flex items-center justify-between cursor-pointer group hover:-translate-y-1"
+        >
+          <div className="space-y-1.5">
+            <p className="text-xs font-bold text-slate-500 dark:text-slate-400">إجمالي القضايا النشطة</p>
             <div className="flex justify-between items-baseline gap-2">
-              <h3 className="text-xl font-bold text-slate-800">{activeCasesCount}</h3>
+              <h3 className="text-2xl font-black text-slate-800 dark:text-white tracking-tight">{activeCasesCount}</h3>
             </div>
-            <p className="text-[10px] text-slate-400">تحت المراوغة والتقاضي حالياً</p>
+            <p className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">تحت المرافعة والتقاضي حالياً</p>
           </div>
-          <div className="p-2 bg-slate-50 border border-slate-100 rounded text-slate-600">
-            <Briefcase className="h-5 w-5" id="dashboard-briefcase-icon" />
+          <div className="p-3 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 dark:from-indigo-500/20 dark:to-purple-500/20 border border-indigo-500/20 dark:border-indigo-500/30 rounded-2xl text-indigo-600 dark:text-indigo-400 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-indigo-500/20 transition-all">
+            <Briefcase className="h-6 w-6" id="dashboard-briefcase-icon" />
           </div>
         </div>
 
         {/* Clients Stats */}
-        <div onClick={() => onNavigate('clients')} className="bg-white border border-slate-200 p-3.5 rounded-lg shadow-sm flex items-center justify-between hover:border-indigo-500/30 hover:shadow-md transition cursor-pointer">
-          <div className="space-y-1">
-            <p className="text-xs font-semibold text-slate-500">موكلين مكتب المحاماة</p>
+        <div 
+          onClick={() => onNavigate('clients')} 
+          className="bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 p-4 rounded-2xl shadow-sm hover:shadow-xl hover:border-blue-500/40 transition-all duration-300 flex items-center justify-between cursor-pointer group hover:-translate-y-1"
+        >
+          <div className="space-y-1.5">
+            <p className="text-xs font-bold text-slate-500 dark:text-slate-400">موكلين مكتب المحاماة</p>
             <div className="flex justify-between items-baseline gap-2">
-              <h3 className="text-xl font-bold text-slate-800">{totalClientsCount}</h3>
-              <span className="text-slate-450 text-[10px]">نشطين</span>
+              <h3 className="text-2xl font-black text-slate-800 dark:text-white tracking-tight">{totalClientsCount}</h3>
+              <span className="text-blue-500 text-[10px] font-bold bg-blue-50 dark:bg-blue-950/50 px-2 py-0.5 rounded-full border border-blue-200/50 dark:border-blue-800/50">نشطين</span>
             </div>
-            <p className="text-[10px] text-slate-400">شركات وهيئات وأفراد مسجلين</p>
+            <p className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">شركات وهيئات وأفراد مسجلين</p>
           </div>
-          <div className="p-2 bg-slate-50 border border-slate-100 rounded text-slate-600">
-            <Users className="h-5 w-5" id="dashboard-users-icon" />
+          <div className="p-3 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 dark:from-blue-500/20 dark:to-cyan-500/20 border border-blue-500/20 dark:border-blue-800/30 rounded-2xl text-blue-600 dark:text-blue-400 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-500/20 transition-all">
+            <Users className="h-6 w-6" id="dashboard-users-icon" />
           </div>
         </div>
 
         {/* Sessions Week */}
-        <div onClick={() => onNavigate('calendar')} className="bg-white border border-slate-200 p-3.5 rounded-lg shadow-sm flex items-center justify-between hover:border-indigo-500/30 hover:shadow-md transition cursor-pointer">
-          <div className="space-y-1">
-            <p className="text-xs font-semibold text-slate-500">جلسات هذا الإسبوع</p>
+        <div 
+          onClick={() => onNavigate('calendar')} 
+          className="bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 p-4 rounded-2xl shadow-sm hover:shadow-xl hover:border-purple-500/40 transition-all duration-300 flex items-center justify-between cursor-pointer group hover:-translate-y-1"
+        >
+          <div className="space-y-1.5">
+            <p className="text-xs font-bold text-slate-500 dark:text-slate-400">جلسات هذا الإسبوع</p>
             <div className="flex justify-between items-baseline gap-2">
-              <h3 className="text-xl font-bold text-slate-850">{upcomingSessions.length}</h3>
-              <span className="text-indigo-650 text-[11px] font-bold">
+              <h3 className="text-2xl font-black text-slate-850 dark:text-white tracking-tight">{upcomingSessions.length}</h3>
+              <span className="text-purple-600 dark:text-purple-300 text-[10px] font-bold bg-purple-50 dark:bg-purple-950/50 px-2 py-0.5 rounded-full border border-purple-200/50 dark:border-purple-800/50">
                 {sessions.filter(s => s.status === 'قادمة' && s.date === new Date().toISOString().split('T')[0]).length} اليوم
               </span>
             </div>
-            <p className="text-[10px] text-slate-400">تستلزم تجهيز مذكرات الدفاع</p>
+            <p className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">تستلزم تجهيز مذكرات الدفاع</p>
           </div>
-          <div className="p-2 bg-indigo-50 text-indigo-600 rounded">
-            <Calendar className="h-5 w-5" id="dashboard-calendar-icon" />
+          <div className="p-3 bg-gradient-to-br from-purple-500/10 to-pink-500/10 dark:from-purple-500/20 dark:to-pink-500/20 border border-purple-500/20 dark:border-purple-800/30 rounded-2xl text-purple-600 dark:text-purple-400 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-purple-500/20 transition-all">
+            <Calendar className="h-6 w-6" id="dashboard-calendar-icon" />
           </div>
         </div>
 
         {/* Ledger Vault Box */}
-        <div onClick={() => onNavigate('financials')} className="bg-white border border-slate-200 p-3.5 rounded-lg shadow-sm flex items-center justify-between hover:border-indigo-500/30 hover:shadow-md transition cursor-pointer">
-          <div className="space-y-1">
-            <p className="text-xs font-semibold text-slate-500">الحسابات والمالية (ج.م)</p>
+        <div 
+          onClick={() => onNavigate('financials')} 
+          className="bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 p-4 rounded-2xl shadow-sm hover:shadow-xl hover:border-emerald-500/40 transition-all duration-300 flex items-center justify-between cursor-pointer group hover:-translate-y-1"
+        >
+          <div className="space-y-1.5">
+            <p className="text-xs font-bold text-slate-500 dark:text-slate-400">الحسابات والمالية (ج.م)</p>
             <div className="flex justify-between items-baseline gap-2">
-              <h3 className="text-xl font-bold text-blue-600">{netProfit.toLocaleString('ar-EG')}</h3>
-              <span className="text-slate-400 text-[10px]">
-                {new Intl.DateTimeFormat('ar-EG', { month: 'long', year: 'numeric' }).format(new Date())}
+              <h3 className="text-2xl font-black text-emerald-600 dark:text-emerald-400 tracking-tight">{netProfit.toLocaleString('ar-EG')}</h3>
+              <span className="text-slate-400 text-[10px] font-mono">
+                {new Intl.DateTimeFormat('ar-EG', { month: 'short' }).format(new Date())}
               </span>
             </div>
-            <p className="text-[10px] text-slate-400">إجمالي الأرباح والإيرادات الصافية</p>
+            <p className="text-[10px] text-slate-400 dark:text-slate-500 font-medium">إجمالي الإيرادات الصافية</p>
           </div>
-          <div className="p-2 bg-emerald-50 text-emerald-600 rounded">
-            <DollarSign className="h-5 w-5" id="dashboard-dollarsign-icon" />
+          <div className="p-3 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 dark:from-emerald-500/20 dark:to-teal-500/20 border border-emerald-500/20 dark:border-emerald-800/30 rounded-2xl text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-emerald-500/20 transition-all">
+            <DollarSign className="h-6 w-6" id="dashboard-dollarsign-icon" />
           </div>
         </div>
 
