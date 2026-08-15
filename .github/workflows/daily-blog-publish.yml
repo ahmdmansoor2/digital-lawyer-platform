@@ -1,9 +1,13 @@
-name: Daily Blog Publish
+name: Daily Blog Publish [LEGACY — مُعطَّل الجدولة]
+
+# ⚠️ تم تعطيل الجدولة التلقائية بتاريخ 2026-08-15
+# السبب: smart-publisher (daily-blog-post.yml) يقوم بنفس الوظيفة 5 مرات يومياً
+# وتم رصد 62 مقال مكرر بين السجلّين.
+# لا تزال يمكن التشغيل اليدوي عبر workflow_dispatch للطوارئ.
 
 on:
-  schedule:
-    # 09:00 بتوقيت القاهرة (UTC+2) = 07:00 UTC — كل يوم
-    - cron: '0 7 * * *'
+  # schedule:  # ⏸️ DISABLED — يُشغَّل يدوياً فقط عند الحاجة
+  #   - cron: '0 7 * * *'
   workflow_dispatch: {}
 
 permissions:
