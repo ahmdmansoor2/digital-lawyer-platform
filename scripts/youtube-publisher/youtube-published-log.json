@@ -819,6 +819,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1588873902818486",
       "publishedAt": "2026-08-15T09:42:13.886Z"
+    },
+    {
+      "topicId": "trend-content-creators-tax-law-egypt",
+      "kind": "short",
+      "videoId": "TfJKXkNGoN0",
+      "url": "https://www.youtube.com/watch?v=TfJKXkNGoN0",
+      "fbPermalink": "https://www.facebook.com/reel/4062642930537253",
+      "publishedAt": "2026-08-15T13:00:37.142Z"
+    },
+    {
+      "topicId": "trend-content-creators-tax-law-egypt",
+      "title": "الضرائب على صناع المحتوى والستريمرز في مصر: التسجيل الضريبي والترخيص القانوني — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-content-creators-tax-law-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "J2rwof8qN4M",
+      "url": "https://www.youtube.com/watch?v=J2rwof8qN4M",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/4062642930537253",
+      "publishedAt": "2026-08-15T13:01:50.251Z"
     }
   ]
 }
