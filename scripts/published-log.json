@@ -1452,6 +1452,42 @@
       ],
       "words": 2377,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "الجمارك على سبائك ومشغولات الذهب: الحد المسموح به وإجراءات الإفصاح للمسافرين",
+      "date": "2026-08-15",
+      "slug": "gold-customs-regulations-egypt",
+      "url": "https://mohamidigital.online/blog/gold-customs-regulations-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/gold-customs-regulations-egypt.jpg",
+      "tags": [
+        "جمارك وضرائب"
+      ],
+      "words": 2075,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "مكافحة الهجرة غير الشرعية وعقوبات النصب بعقود العمل بالخارج في القانون المصري",
+      "date": "2026-08-15",
+      "slug": "illegal-immigration-travel-fraud-law",
+      "url": "https://mohamidigital.online/blog/illegal-immigration-travel-fraud-law.html",
+      "image": "https://mohamidigital.online/blog/images/illegal-immigration-travel-fraud-law.jpg",
+      "tags": [
+        "قانون العقوبات"
+      ],
+      "words": 2000,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "الضرائب على صناع المحتوى والستريمرز في مصر: التسجيل الضريبي والترخيص القانوني",
+      "date": "2026-08-15",
+      "slug": "content-creators-tax-law-egypt",
+      "url": "https://mohamidigital.online/blog/content-creators-tax-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/content-creators-tax-law-egypt.jpg",
+      "tags": [
+        "ضرائب وتجارة إلكترونية"
+      ],
+      "words": 1952,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
