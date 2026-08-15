@@ -330,15 +330,18 @@ function buildTopicSectionsHtml(t, emptyHint) {
     .join('\n    ');
 }
 
-function buildTopicCard(t, i, date) {
+function buildTopicCard(t, i, date, isToday) {
   const words = countTopicWords(t.sections || []);
   const hint = words > 0
     ? `📖 افتح الموضوع الكامل (${words.toLocaleString('ar-EG')} كلمة)`
     : '📖 افتح الموضوع الكامل';
   const href = `/radar-topics/${date}-${topicSlug(t, i)}.html`;
+  const dateBadge = isToday
+    ? `<span class="card-date today-badge">🔴 اليوم — ${esc(date)}</span>`
+    : `<span class="card-date">${esc(date)}</span>`;
   return `<a class="topic-card" href="${href}" title="افتح الصفحة الكاملة: ${esc(t.title)}">
       <div class="topic-head">
-        <span class="topic-num">${String(i + 1).padStart(2, '0')}</span>
+        <div class="card-top-row">${dateBadge}</div>
         <div class="topic-body">
           <h3>${esc(t.title)}</h3>
           <p>${esc(t.summary || '')}</p>
@@ -349,15 +352,8 @@ function buildTopicCard(t, i, date) {
 }
 
 function buildToday(topics, date) {
-  if (!topics || !topics.length) return '';
-  const cards = topics.map((t, i) => buildTopicCard(t, i, date)).join('\n    ');
-  return `<div class="section">
-    <div class="section-title"><span class="dot"></span> موضوعات اليوم (${esc(date)})</div>
-    <p class="section-sub">اضغط على أي بطاقة لفتح الموضوع الكامل في صفحة مستقلة.</p>
-    <div class="topic-grid">
-    ${cards}
-    </div>
-  </div>`;
+  // لا تُستخدم منفردة — تُدمج في buildAllCards
+  return '';
 }
 
 function normalizeEntryTopics(e) {
@@ -375,26 +371,39 @@ function normalizeEntryTopics(e) {
   return [];
 }
 
-function buildArchive(entries) {
-  if (!entries.length) return '';
-  const details = entries
-    .map((e) => {
-      const topics = normalizeEntryTopics(e);
-      const inner = topics
-        .map((t, i) => buildTopicCard({ ...t }, i, e.date))
-        .join('\n    ');
-      return `<details class="arch-item">
-    <summary>${esc(e.date)} — ${esc((e.topics?.[0]?.title) || (e.article?.title) || 'موضوعات اليوم')}</summary>
-    <div class="arch-body">
-      ${inner}
+// buildArchive: لم تعد تُستخدم — استُبدلت بـ buildAllCards
+function buildArchive(entries) { return ''; }
+
+// عرض جميع الموضوعات (اليوم + الأرشيف) في شبكة بطاقات موحدة
+function buildAllCards(todayTopics, archiveEntries, today) {
+  const allCards = [];
+
+  // موضوعات اليوم أولاً (مع شارة "اليوم")
+  if (todayTopics && todayTopics.length) {
+    todayTopics.forEach((t, i) => {
+      allCards.push(buildTopicCard(t, i, today, true));
+    });
+  }
+
+  // موضوعات الأرشيف بعدها
+  archiveEntries.forEach((e) => {
+    const topics = normalizeEntryTopics(e);
+    topics.forEach((t, i) => {
+      allCards.push(buildTopicCard(t, i, e.date, false));
+    });
+  });
+
+  if (!allCards.length) return '';
+
+  const totalTopics = allCards.length;
+  const totalDays = (todayTopics.length ? 1 : 0) + archiveEntries.length;
+
+  return `<div class="section">
+    <div class="section-title"><span class="dot"></span> جميع الموضوعات (${totalTopics} موضوعاً — ${totalDays} يوم)</div>
+    <p class="section-sub">موضوعات رصد المحامي اليومية — اضغط على أي بطاقة لفتح الموضوع الكامل.</p>
+    <div class="topic-grid">
+    ${allCards.join('\n    ')}
     </div>
-  </details>`;
-    })
-    .join('\n  ');
-  return `<div class="archive">
-    <div class="section-title"><span class="dot dot-cyan"></span> أرشيف الأيام الأخيرة</div>
-    <p class="section-sub">موضوعات رصد المحامي السابقة — اضغط على أي يوم ثم على أي بطاقة لفتح موضوعه في صفحة مستقلة.</p>
-    ${details}
   </div>`;
 }
 
@@ -519,8 +528,7 @@ ${RADAR_CSS}
 }
 
 function buildPage(todayTopics, archiveEntries, generatedAt) {
-  const todayHtml = buildToday(todayTopics, todayStr());
-  const archiveHtml = buildArchive(archiveEntries);
+  const allCardsHtml = buildAllCards(todayTopics, archiveEntries, todayStr());
   const nowISO = new Date(Date.now() + 120 * 60000).toISOString();
   const headline = todayTopics?.[0]?.title || 'رصد المحامي — موضوعات اليوم';
 
@@ -563,16 +571,14 @@ ${RADAR_CSS}
     <span class="updated">آخر تحديث: ${esc(generatedAt)} بتوقيت القاهرة</span>
   </div>
 
-  ${todayHtml}
+  ${allCardsHtml}
 
-  <!-- TOP AD -->
+  <!-- AD -->
   <div class="ad-slot" role="complementary" aria-label="إعلان">
     <span class="ad-label">إعلان</span>
     <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
-
-  ${archiveHtml}
 
   <div class="cta-section">
     <a href="/" class="cta-btn">جرّب منصة المحامي الرقمية مجاناً 🚀</a>
@@ -671,12 +677,11 @@ const RADAR_CSS = `    *, *::before, *::after { box-sizing: border-box; margin: 
     .hero p { font-size: 16px; color: var(--muted); max-width: 640px; margin: 0 auto; font-weight: 600; }
     .updated { display: inline-block; margin-top: 16px; padding: 6px 16px; border-radius: 999px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: #6ee7b7; font-size: 11px; font-weight: 800; }
 
-    .section { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
-    .section-title { font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+    .section { max-width: 1200px; margin: 0 auto; padding: 0 24px 60px; }
+    .section-title { font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
     .section-title .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 14px rgba(244,63,94,0.7); animation: pulse 2s infinite; }
-    .section-title .dot-cyan { background: var(--cyan); box-shadow: 0 0 14px rgba(6,182,212,0.7); }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.35)} }
-    .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; }
+    .section-sub { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
 
     .article { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
 
@@ -684,15 +689,25 @@ const RADAR_CSS = `    *, *::before, *::after { box-sizing: border-box; margin: 
     .back-link:hover { background: rgba(6,182,212,0.16); }
 
     .topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; align-items: stretch; }
+    @media (max-width: 992px) { .topic-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .topic-grid { grid-template-columns: 1fr; gap: 16px; } }
+
     a.topic-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; }
-    .topic-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 22px; overflow: hidden; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; height: 100%; }
-    .topic-card:hover { transform: translateY(-4px); border-color: rgba(99,102,241,0.4); box-shadow: 0 16px 48px rgba(0,0,0,0.25); }
-    .topic-head { display: flex; flex-direction: column; padding: 16px 20px 18px; flex: 1; }
-    .topic-num { font-size: 11px; font-weight: 800; color: var(--indigo); margin-bottom: 8px; letter-spacing: 0.5px; }
-    .topic-body h3 { font-size: 15.5px; font-weight: 900; color: #fff; line-height: 1.5; margin-bottom: 8px; }
-    .topic-body p { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .topic-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 800; color: var(--indigo); }
-    .topic-hint::after { content: " ←"; font-size: 9px; }
+    .topic-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; height: 100%; position: relative; }
+    .topic-card:hover { transform: translateY(-5px); border-color: rgba(99,102,241,0.5); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5), 0 0 20px rgba(99,102,241,0.15); }
+    
+    .topic-head { display: flex; flex-direction: column; padding: 22px 22px 20px; flex: 1; }
+    .card-top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; gap: 10px; flex-wrap: wrap; }
+    .card-date { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #94a3b8; background: rgba(148,163,184,0.1); border: 1px solid rgba(148,163,184,0.2); padding: 4px 12px; border-radius: 999px; }
+    .today-badge { color: #fda4af; background: rgba(244,63,94,0.12); border-color: rgba(244,63,94,0.3); font-weight: 800; }
+    
+    .topic-body h3 { font-size: 16px; font-weight: 800; color: #fff; line-height: 1.55; margin-bottom: 10px; transition: color 0.2s; }
+    .topic-card:hover .topic-body h3 { color: #a5b4fc; }
+    .topic-body p { font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .topic-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #67e8f9; margin-top: auto; transition: gap 0.2s; }
+    .topic-hint::after { content: "←"; font-size: 12px; transition: transform 0.2s; }
+    .topic-card:hover .topic-hint::after { transform: translateX(-4px); }
+
     .topic-full { padding: 8px 22px 22px; border-top: 1px dashed var(--border); margin-top: 4px; }
     .full-sec { padding: 16px 0 4px; }
     .full-sec h4 { font-size: 16px; font-weight: 900; color: #fda4af; margin-bottom: 10px; }
@@ -707,17 +722,6 @@ const RADAR_CSS = `    *, *::before, *::after { box-sizing: border-box; margin: 
     .topic-page-body { padding: 22px 4px 10px; }
     .topic-page-body .full-sec h4 { font-size: 18px; }
     .topic-page-body .full-sec p { font-size: 15px; line-height: 2; }
-
-    .archive { max-width: 900px; margin: 0 auto; padding: 0 24px 56px; }
-    .arch-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
-    .arch-item summary { cursor: pointer; padding: 15px 20px; font-size: 14px; font-weight: 800; color: #e2e8f0; list-style: none; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
-    .arch-item summary:hover { color: #a5b4fc; }
-    .arch-item summary::before { content: "◀"; font-size: 10px; color: var(--cyan); transition: transform 0.2s; }
-    .arch-item[open] summary::before { transform: rotate(-90deg); }
-    .arch-body { padding: 0 22px 18px; font-size: 14px; color: #cbd5e1; border-top: 1px dashed var(--border); padding-top: 14px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
-    .arch-body > p { margin-bottom: 10px; }
-    .arch-sec { margin-top: 14px; }
-    .arch-sec h4 { font-size: 14px; font-weight: 900; color: #fda4af; margin-bottom: 6px; }
 
     .ad-slot { margin: 28px auto; max-width: 100%; text-align: center; min-height: 90px; }
     .ad-label { display: block; font-size: 10px; color: var(--muted); text-align: center; margin-bottom: 6px; letter-spacing: 0.5px; font-weight: 700; }

@@ -21,7 +21,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/header.css?v=20260814-v5">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online","logo":"https://mohamidigital.online/logo.png"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"تحركات أسعار الذهب اليوم: متابعة اقتصادية وتأثيرها على الأسواق والالتزامات المالية","datePublished":"2026-08-15T11:37:44.409Z","dateModified":"2026-08-15T11:37:44.409Z","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"mainEntityOfPage":"https://mohamidigital.online/legal-radar.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"تحركات أسعار الذهب اليوم: متابعة اقتصادية وتأثيرها على الأسواق والالتزامات المالية","datePublished":"2026-08-15T12:35:34.915Z","dateModified":"2026-08-15T12:35:34.915Z","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"mainEntityOfPage":"https://mohamidigital.online/legal-radar.html"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"https://mohamidigital.online"},{"@type":"ListItem","position":2,"name":"رصد المحامي","item":"https://mohamidigital.online/legal-radar.html"}]}</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,7 +38,16 @@
       --card-bg: rgba(15,23,42,0.7);
     }
     html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    
+    body {
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.8;
+      background-image:
+        radial-gradient(ellipse at 30% 0%, rgba(124,58,237,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 70%, rgba(16,185,129,0.1) 0%, transparent 50%);
+    }
 
 
     .breadcrumbs { max-width: 1200px; margin: 0 auto; padding: 14px 24px 0; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
@@ -53,12 +62,11 @@
     .hero p { font-size: 16px; color: var(--muted); max-width: 640px; margin: 0 auto; font-weight: 600; }
     .updated { display: inline-block; margin-top: 16px; padding: 6px 16px; border-radius: 999px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.25); color: #6ee7b7; font-size: 11px; font-weight: 800; }
 
-    .section { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
-    .section-title { font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+    .section { max-width: 1200px; margin: 0 auto; padding: 0 24px 60px; }
+    .section-title { font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
     .section-title .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--rose); box-shadow: 0 0 14px rgba(244,63,94,0.7); animation: pulse 2s infinite; }
-    .section-title .dot-cyan { background: var(--cyan); box-shadow: 0 0 14px rgba(6,182,212,0.7); }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.35)} }
-    .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 22px; }
+    .section-sub { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
 
     .article { max-width: 900px; margin: 0 auto; padding: 0 24px 40px; }
 
@@ -66,15 +74,25 @@
     .back-link:hover { background: rgba(6,182,212,0.16); }
 
     .topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; align-items: stretch; }
+    @media (max-width: 992px) { .topic-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .topic-grid { grid-template-columns: 1fr; gap: 16px; } }
+
     a.topic-card { text-decoration: none; color: inherit; display: flex; flex-direction: column; }
-    .topic-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 22px; overflow: hidden; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; display: flex; flex-direction: column; height: 100%; }
-    .topic-card:hover { transform: translateY(-4px); border-color: rgba(99,102,241,0.4); box-shadow: 0 16px 48px rgba(0,0,0,0.25); }
-    .topic-head { display: flex; flex-direction: column; padding: 16px 20px 18px; flex: 1; }
-    .topic-num { font-size: 11px; font-weight: 800; color: var(--indigo); margin-bottom: 8px; letter-spacing: 0.5px; }
-    .topic-body h3 { font-size: 15.5px; font-weight: 900; color: #fff; line-height: 1.5; margin-bottom: 8px; }
-    .topic-body p { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-bottom: 14px; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .topic-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 800; color: var(--indigo); }
-    .topic-hint::after { content: " ←"; font-size: 9px; }
+    .topic-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; height: 100%; position: relative; }
+    .topic-card:hover { transform: translateY(-5px); border-color: rgba(99,102,241,0.5); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5), 0 0 20px rgba(99,102,241,0.15); }
+    
+    .topic-head { display: flex; flex-direction: column; padding: 22px 22px 20px; flex: 1; }
+    .card-top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; gap: 10px; flex-wrap: wrap; }
+    .card-date { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #94a3b8; background: rgba(148,163,184,0.1); border: 1px solid rgba(148,163,184,0.2); padding: 4px 12px; border-radius: 999px; }
+    .today-badge { color: #fda4af; background: rgba(244,63,94,0.12); border-color: rgba(244,63,94,0.3); font-weight: 800; }
+    
+    .topic-body h3 { font-size: 16px; font-weight: 800; color: #fff; line-height: 1.55; margin-bottom: 10px; transition: color 0.2s; }
+    .topic-card:hover .topic-body h3 { color: #a5b4fc; }
+    .topic-body p { font-size: 13px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .topic-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #67e8f9; margin-top: auto; transition: gap 0.2s; }
+    .topic-hint::after { content: "←"; font-size: 12px; transition: transform 0.2s; }
+    .topic-card:hover .topic-hint::after { transform: translateX(-4px); }
+
     .topic-full { padding: 8px 22px 22px; border-top: 1px dashed var(--border); margin-top: 4px; }
     .full-sec { padding: 16px 0 4px; }
     .full-sec h4 { font-size: 16px; font-weight: 900; color: #fda4af; margin-bottom: 10px; }
@@ -89,17 +107,6 @@
     .topic-page-body { padding: 22px 4px 10px; }
     .topic-page-body .full-sec h4 { font-size: 18px; }
     .topic-page-body .full-sec p { font-size: 15px; line-height: 2; }
-
-    .archive { max-width: 900px; margin: 0 auto; padding: 0 24px 56px; }
-    .arch-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 12px; overflow: hidden; }
-    .arch-item summary { cursor: pointer; padding: 15px 20px; font-size: 14px; font-weight: 800; color: #e2e8f0; list-style: none; display: flex; align-items: center; gap: 10px; transition: color 0.2s; }
-    .arch-item summary:hover { color: #a5b4fc; }
-    .arch-item summary::before { content: "◀"; font-size: 10px; color: var(--cyan); transition: transform 0.2s; }
-    .arch-item[open] summary::before { transform: rotate(-90deg); }
-    .arch-body { padding: 0 22px 18px; font-size: 14px; color: #cbd5e1; border-top: 1px dashed var(--border); padding-top: 14px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
-    .arch-body > p { margin-bottom: 10px; }
-    .arch-sec { margin-top: 14px; }
-    .arch-sec h4 { font-size: 14px; font-weight: 900; color: #fda4af; margin-bottom: 6px; }
 
     .ad-slot { margin: 28px auto; max-width: 100%; text-align: center; min-height: 90px; }
     .ad-label { display: block; font-size: 10px; color: var(--muted); text-align: center; margin-bottom: 6px; letter-spacing: 0.5px; font-weight: 700; }
@@ -126,7 +133,6 @@
     @media (max-width: 620px) { .topic-grid { grid-template-columns: 1fr; } .arch-body { grid-template-columns: 1fr; } }
     @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
   </style>
-  <link rel="stylesheet" href="/header.css">
 </head>
 <body>
   <header class="uh-bar" id="siteHeader">
@@ -210,16 +216,16 @@
   <div class="hero">
     <h1>رصد المحامي</h1>
     <p>نشرة يومية تُصاغ بالذكاء الاصطناعي عن أهم الترندات المصرية والعالمية على Google، بتحليل عملي للمواطن والمحامي.</p>
-    <span class="updated">آخر تحديث: 2026-08-15 11:27:50 بتوقيت القاهرة</span>
+    <span class="updated">آخر تحديث: 2026-08-15 12:35:33 بتوقيت القاهرة</span>
   </div>
 
   <div class="section">
-    <div class="section-title"><span class="dot"></span> موضوعات اليوم (2026-08-15)</div>
-    <p class="section-sub">اضغط على أي بطاقة لفتح الموضوع الكامل في صفحة مستقلة.</p>
+    <div class="section-title"><span class="dot"></span> جميع الموضوعات (21 موضوعاً — 7 يوم)</div>
+    <p class="section-sub">موضوعات رصد المحامي اليومية — اضغط على أي بطاقة لفتح الموضوع الكامل.</p>
     <div class="topic-grid">
     <a class="topic-card" href="/radar-topics/2026-08-15-gold-prices-egypt.html" title="افتح الصفحة الكاملة: تحركات أسعار الذهب اليوم: متابعة اقتصادية وتأثيرها على الأسواق والالتزامات المالية">
       <div class="topic-head">
-        <span class="topic-num">01</span>
+        <div class="card-top-row"><span class="card-date today-badge">🔴 اليوم — 2026-08-15</span></div>
         <div class="topic-body">
           <h3>تحركات أسعار الذهب اليوم: متابعة اقتصادية وتأثيرها على الأسواق والالتزامات المالية</h3>
           <p>تشهد أسعار الذهب في مصر حالة من التذبذب المتواصل بالتزامن مع تغيرات الأسواق العالمية وتغيرات أسعار الفائدة. يتابع الشارع المصري والمستثمرون حركة المعدن الأصفر اليوم ببالغ الاهتمام باعتباره الملاذ الآمن الأول لحفظ قيمة المدخرات والتحوط ضد موجات التضخم. ويؤثر هذا التغير بشكل مباشر على التعاملات التجارية الشاملة، وتقييم الأصول المالية، والالتزامات المتعلقة بالحقوق والنزاعات المالية المعروضة أمام القضاء.</p>
@@ -229,7 +235,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-15-egypt-migration-trends.html" title="افتح الصفحة الكاملة: ملف الهجرة يتصدر الاهتمام: أبعاد قانونية واجتماعية تحكم حركة العمالة والشباب">
       <div class="topic-head">
-        <span class="topic-num">02</span>
+        <div class="card-top-row"><span class="card-date today-badge">🔴 اليوم — 2026-08-15</span></div>
         <div class="topic-body">
           <h3>ملف الهجرة يتصدر الاهتمام: أبعاد قانونية واجتماعية تحكم حركة العمالة والشباب</h3>
           <p>يتزايد البحث في مصر حول قضايا الهجرة وتأشيرات العمل الخارجي للبحث عن فرص جديدة في ظل الأوضاع الاقتصادية الراهنة. ينعكس هذا الملف بشكل رئيسي على المستجدات المتعلقة بتنظيم أطر الهجرة الشرعية، وعقود العمل الدولية، وحماية حقوق العمالة المصرية بالخارج. كما يفتح النقاش حول آليات التصدي للهجرة غير الشرعية وتطوير القوانين المنظمة لإجراءات السفر وتأمين الجاليات.</p>
@@ -239,7 +245,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-15-strait-of-hormuz-impact.html" title="افتح الصفحة الكاملة: التوترات في مضيق هرمز: تداعيات على حركة التجارة البحرية والاقتصاد الإقليمي">
       <div class="topic-head">
-        <span class="topic-num">03</span>
+        <div class="card-top-row"><span class="card-date today-badge">🔴 اليوم — 2026-08-15</span></div>
         <div class="topic-body">
           <h3>التوترات في مضيق هرمز: تداعيات على حركة التجارة البحرية والاقتصاد الإقليمي</h3>
           <p>تتصدر التطورات الأمنية في منطقة مضيق هرمز اهتمامات المتابعين نظرًا لأهمية المضيق الحيوية لنقل النفط والتجارة العالمية. يثير هذا الوضع تساؤلات حول أمن الملاحة في الممرات الدولية، وأسعار تأمين السفن، وقانون البحار. وتكمن أهمية الحدث للمواطن والمحامي المصري في تأثيراته المباشرة على سلاسل الإمداد وتكاليف الشحن، وحركة الملاحة بقناة السويس، إضافة إلى أسعار الطاقة والتجارة البحرية بوجه عام.</p>
@@ -247,25 +253,9 @@
         </div>
       </div>
   </a>
-    </div>
-  </div>
-
-  <!-- TOP AD -->
-  <div class="ad-slot" role="complementary" aria-label="إعلان">
-    <span class="ad-label">إعلان</span>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7725405859334364" data-ad-slot="2168039898" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="archive">
-    <div class="section-title"><span class="dot dot-cyan"></span> أرشيف الأيام الأخيرة</div>
-    <p class="section-sub">موضوعات رصد المحامي السابقة — اضغط على أي يوم ثم على أي بطاقة لفتح موضوعه في صفحة مستقلة.</p>
-    <details class="arch-item">
-    <summary>2026-08-14 — الجهاز القومي لتنظيم الاتصالات: إجراءات مشددة لضبط السوق وحماية حقوق المستخدمين</summary>
-    <div class="arch-body">
-      <a class="topic-card" href="/radar-topics/2026-08-14-ntra-egypt-regulations.html" title="افتح الصفحة الكاملة: الجهاز القومي لتنظيم الاتصالات: إجراءات مشددة لضبط السوق وحماية حقوق المستخدمين">
+    <a class="topic-card" href="/radar-topics/2026-08-14-ntra-egypt-regulations.html" title="افتح الصفحة الكاملة: الجهاز القومي لتنظيم الاتصالات: إجراءات مشددة لضبط السوق وحماية حقوق المستخدمين">
       <div class="topic-head">
-        <span class="topic-num">01</span>
+        <div class="card-top-row"><span class="card-date">2026-08-14</span></div>
         <div class="topic-body">
           <h3>الجهاز القومي لتنظيم الاتصالات: إجراءات مشددة لضبط السوق وحماية حقوق المستخدمين</h3>
           <p>تصدر الجهاز القومي لتنظيم الاتصالات اهتمامات الرأي العام بالتزامن مع إطلاق حزمة من الإجراءات والضوابط المنظمة لخدمات المحمول والإنترنت، ومكافحة المكالمات الترويجية المزعجة وحماية بيانات المستخدمين. تهم هذه التطورات عموم المستهلكين وأوساط المحامين للتعرف على الحقوق التعاقدية مع شركات الاتصالات والمسارات القانونية لتقديم الشكاوى أو المطالبة بالتعويضات وفق أحكام قانون تنظيم الاتصالات.</p>
@@ -275,7 +265,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-14-takaful-karama-inquiry.html" title="افتح الصفحة الكاملة: استعلام «تكافل وكرامة»: تزايد الاهتمام بشروط الاستحقاق وضوابط صرف الدعم النقدي">
       <div class="topic-head">
-        <span class="topic-num">02</span>
+        <div class="card-top-row"><span class="card-date">2026-08-14</span></div>
         <div class="topic-body">
           <h3>استعلام «تكافل وكرامة»: تزايد الاهتمام بشروط الاستحقاق وضوابط صرف الدعم النقدي</h3>
           <p>شهدت محركات البحث إقبالاً ملحوظاً للاستعلام عن برنامج الدعم النقدي المشروط «تكافل وكرامة» لمعرفة موقف بطاقات الصرف ونتائج التظلمات المقدمة لوزارة التضامن الاجتماعي. يمس هذا الملف شريحة واسعة من الأسر المصرية، ويحظى باهتمام الشأن العام والقانوني لمتابعة ضوابط استحقاق المعاشات وآليات التظلم القانوني المقررة لضمان وصول الدعم لمستحقيه وفق اللوائح التنفيذية.</p>
@@ -285,7 +275,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-14-civil-registry-services-egypt.html" title="افتح الصفحة الكاملة: خدمات السجل المدني: توسع في التحول الرقمي وتيسير استخراج الوثائق الرسمية">
       <div class="topic-head">
-        <span class="topic-num">03</span>
+        <div class="card-top-row"><span class="card-date">2026-08-14</span></div>
         <div class="topic-body">
           <h3>خدمات السجل المدني: توسع في التحول الرقمي وتيسير استخراج الوثائق الرسمية</h3>
           <p>جاءت خدمات السجل المدني ضمن الأكثر بحثاً بالتزامن مع تحديث وتطوير قطاع الأحوال المدنية لآليات استخراج بطاقات الرقم القومي والشهادات الثبوتية إلكترونياً ومن خلال المراكز النموذجية. يمثل هذا التحديث أهمية مباشرة للمواطنين وأعضاء المهنة القانونية، نظراً لارتباط الوثائق الرسمية بإجراءات التقاضي، وصحة التوكيلات، وتوثيق المعاملات اليومية أمام الجهات الحكومية والقضائية.</p>
@@ -293,14 +283,9 @@
         </div>
       </div>
   </a>
-    </div>
-  </details>
-  <details class="arch-item">
-    <summary>2026-08-13 — متابعة أداء البورصة المصرية وتأثير تحركات سوق المال على قطاع الأعمال</summary>
-    <div class="arch-body">
-      <a class="topic-card" href="/radar-topics/2026-08-13-egyptian-stock-exchange-performance.html" title="افتح الصفحة الكاملة: متابعة أداء البورصة المصرية وتأثير تحركات سوق المال على قطاع الأعمال">
+    <a class="topic-card" href="/radar-topics/2026-08-13-egyptian-stock-exchange-performance.html" title="افتح الصفحة الكاملة: متابعة أداء البورصة المصرية وتأثير تحركات سوق المال على قطاع الأعمال">
       <div class="topic-head">
-        <span class="topic-num">01</span>
+        <div class="card-top-row"><span class="card-date">2026-08-13</span></div>
         <div class="topic-body">
           <h3>متابعة أداء البورصة المصرية وتأثير تحركات سوق المال على قطاع الأعمال</h3>
           <p>شهدت البورصة المصرية عمليات بحث مكثفة من قبل المستثمرين والمتابعين للشأن الاقتصادي للوقوف على أداء المؤشرات الرئيسية وتداولات الأسهم. يعكس هذا الاهتمام مدى ارتباط التغيرات المالية بالقرارات الاستثمارية وبيئة المؤسسات والشركات في مصر، وهو ما يهم القانونيين والمستثمرين لمتابعة المسارات الاقتصادية وأثرها على السوق المحلي.</p>
@@ -310,7 +295,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-13-minister-mahmoud-esmat-energy-decisions.html" title="افتح الصفحة الكاملة: قرارات وتصريحات وزير الكهرباء محمود عصمت تحت مجهر اهتمام المواطنين">
       <div class="topic-head">
-        <span class="topic-num">02</span>
+        <div class="card-top-row"><span class="card-date">2026-08-13</span></div>
         <div class="topic-body">
           <h3>قرارات وتصريحات وزير الكهرباء محمود عصمت تحت مجهر اهتمام المواطنين</h3>
           <p>تصدر اسم الدكتور محمود عصمت، وزير الكهرباء والطاقة المتجددة، قائمة الموضوعات الأكثر بحثًا في مصر في إطار متابعة الشارع للسياسات الحكومية الخاصة بملف الطاقة والإجراءات التنظيمية الجديدة. تكتسب هذه المتابعة أهمية بالغة للمواطنين وقطاعات الأعمال، لما لها من انعكاسات مباشرة على الخدمات الأساسية والتكاليف التشغيلية للأنشطة التجارية والصناعية.</p>
@@ -320,7 +305,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-13-academic-year-schedule-announcements.html" title="افتح الصفحة الكاملة: الخريطة الزمنية لبدء العام الدراسي ومستجدات القرارات التنظيمية للتعليم">
       <div class="topic-head">
-        <span class="topic-num">03</span>
+        <div class="card-top-row"><span class="card-date">2026-08-13</span></div>
         <div class="topic-body">
           <h3>الخريطة الزمنية لبدء العام الدراسي ومستجدات القرارات التنظيمية للتعليم</h3>
           <p>تزايدت عمليات البحث حول المواعيد الرسمية والخريطة الزمنية لبدء العام الدراسي وتنظيم العملية التعليمية. يمثل هذا الملف نقطة محورية لجميع الأسرة المصرية والقطاعات المختلفة، لما يترتب عليه من ترتيبات اجتماعية وإدارية وتنظيمية ترتبط ببيئة العمل وساعات الدوام والإجازات الرسمية للعام الجديد.</p>
@@ -328,14 +313,9 @@
         </div>
       </div>
   </a>
-    </div>
-  </details>
-  <details class="arch-item">
-    <summary>2026-08-12 — تحركات سعر الدولار مقابل الجنيه: متابعة الاقتصاد والالتزامات التعاقدية</summary>
-    <div class="arch-body">
-      <a class="topic-card" href="/radar-topics/2026-08-12-egp-dollar-rate.html" title="افتح الصفحة الكاملة: تحركات سعر الدولار مقابل الجنيه: متابعة الاقتصاد والالتزامات التعاقدية">
+    <a class="topic-card" href="/radar-topics/2026-08-12-egp-dollar-rate.html" title="افتح الصفحة الكاملة: تحركات سعر الدولار مقابل الجنيه: متابعة الاقتصاد والالتزامات التعاقدية">
       <div class="topic-head">
-        <span class="topic-num">01</span>
+        <div class="card-top-row"><span class="card-date">2026-08-12</span></div>
         <div class="topic-body">
           <h3>تحركات سعر الدولار مقابل الجنيه: متابعة الاقتصاد والالتزامات التعاقدية</h3>
           <p>يتصدر الاستعلام عن سعر الدولار مقابل الجنيه المصري مؤشرات البحث اليوم، في ظل متابعة دقيقة من المواطنين ورجال الأعمال لتقلبات سوق الصرف والسياسات النقدية. يكتسب هذا الموضوع أهمية بالغة للشأن الاقتصادي والقانوني، حيث يؤثر بشكل مباشر على تكاليف المعيشة والقوة الشرائية، إلى جانب أثره على العقود المبرمة بالعملة الأجنبية، وآليات تنفيذ أحكام التعويضات والالتزامات المالية في القضايا التجارية والمدنية.</p>
@@ -345,7 +325,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-12-prophet-birthday-holidays.html" title="افتح الصفحة الكاملة: إجازة المولد النبوي 2026: خريطة العطلات الرسمية وتنظيم حقوق العمالة">
       <div class="topic-head">
-        <span class="topic-num">02</span>
+        <div class="card-top-row"><span class="card-date">2026-08-12</span></div>
         <div class="topic-body">
           <h3>إجازة المولد النبوي 2026: خريطة العطلات الرسمية وتنظيم حقوق العمالة</h3>
           <p>يتزايد بحث الشارع المصري عن موعد المولد النبوي الشريف لعام 2026 لرصد الأجندة الرسمية للعطلات والمناسبات القادمة. يمثل هذا الترند أهمية اجتماعية وقانونية واسعة لجمهور القراء والمحامين، حيث يتصل بتطبيق أحكام قانون العمل بشأن الإجازات مدفوعة الأجر في القطاعين الحكومي والخاص، بالإضافة إلى تأثر سير العمل بالجهات الحكومية والمحاكم ومدد المواعيد الإجرائية المقررة قانوناً خلال العطلات.</p>
@@ -355,7 +335,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-12-booking-digital-reservations.html" title="افتح الصفحة الكاملة: منصات الحجز الإلكتروني Booking: تنظيم حركة السفر وحماية حقوق المستهلك">
       <div class="topic-head">
-        <span class="topic-num">03</span>
+        <div class="card-top-row"><span class="card-date">2026-08-12</span></div>
         <div class="topic-body">
           <h3>منصات الحجز الإلكتروني Booking: تنظيم حركة السفر وحماية حقوق المستهلك</h3>
           <p>شهدت منصة Booking العالمية معدلات بحث مرتفعة بالتزامن مع نشاط حركة السفر والسياحة والبحث عن خيارات الإقامة. يتقاطع هذا الترند مع الشأن الاقتصادي والاجتماعي، إذ يمس حقوق المستهلكين في المعاملات الرقمية، وضوابط إلغاء الحجز والاسترداد المالي وفق قوانين التجارة الإلكترونية، فضلاً عن أهميته للمواطنين الراغبين في تنظيم رحلاتهم والتعامل مع منصات الدفع عبر الإنترنت بأمان وتجنب النزاعات.</p>
@@ -363,14 +343,9 @@
         </div>
       </div>
   </a>
-    </div>
-  </details>
-  <details class="arch-item">
-    <summary>2026-08-11 — قطاع الاتصالات في مصر: تحولات متسارعة وتأثير مباشر على الخدمات الرقمية والاستثمار</summary>
-    <div class="arch-body">
-      <a class="topic-card" href="/radar-topics/2026-08-11-egypt-telecom-sector.html" title="افتح الصفحة الكاملة: قطاع الاتصالات في مصر: تحولات متسارعة وتأثير مباشر على الخدمات الرقمية والاستثمار">
+    <a class="topic-card" href="/radar-topics/2026-08-11-egypt-telecom-sector.html" title="افتح الصفحة الكاملة: قطاع الاتصالات في مصر: تحولات متسارعة وتأثير مباشر على الخدمات الرقمية والاستثمار">
       <div class="topic-head">
-        <span class="topic-num">01</span>
+        <div class="card-top-row"><span class="card-date">2026-08-11</span></div>
         <div class="topic-body">
           <h3>قطاع الاتصالات في مصر: تحولات متسارعة وتأثير مباشر على الخدمات الرقمية والاستثمار</h3>
           <p>تصدر قطاع الاتصالات في مصر اهتمامات البحث مع متابعة المواطنين والخبراء للتطورات الجديدة في جودة الخدمات وأسعار الباقات وتحديثات البنية التحتية الرقمية. يكتسب هذا الملف أهمية خاصة للمجتمع القانوني والاقتصادي في ظل التوجه نحو التحول الرقمي وميكنة الخدمات الحكومية والقضائية. يتابع الشارع المصري القرارات التنظيمية المرتقبة من الجهاز القومي لتنظيم الاتصالات وتأثيرها على خدمات الإنترنت والتواصل اليومي.</p>
@@ -380,7 +355,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-11-global-housing-market-prices.html" title="افتح الصفحة الكاملة: سوق العقارات العالمي: تقلبات أسعار السكن ومؤشرات الفائدة تثير قلق المستثمرين">
       <div class="topic-head">
-        <span class="topic-num">02</span>
+        <div class="card-top-row"><span class="card-date">2026-08-11</span></div>
         <div class="topic-body">
           <h3>سوق العقارات العالمي: تقلبات أسعار السكن ومؤشرات الفائدة تثير قلق المستثمرين</h3>
           <p>شهدت محركات البحث العالمية اهتماماً مكثفاً بمتابعة أسعار السكن ومستقبل أسواق العقارات، في ظل التقلبات الاقتصادية ومعدلات الفائدة المرتفعة. يهم هذا الملف قطاعاً واسعاً من المستثمرين والمواطنين لمتابعة انعكاسات هذه التغييرات على القروض العقارية وتكاليف الملكية والإيجارات في الأسواق المختلفة. تشكل هذه التحركات مؤشراً حيوياً لبوصلة الاستثمار العقاري، وتوفر رؤية واضحة حول توجهات التمويل العقاري والسياسات التشريعية والاقتصادية المرتبطة بقطاع الإسكان.</p>
@@ -390,7 +365,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-11-egypt-weather-temperatures.html" title="افتح الصفحة الكاملة: درجات الحرارة في مصر: متابعة مستمرة للطقس لتنظيم حركة العمل والتنقلات">
       <div class="topic-head">
-        <span class="topic-num">03</span>
+        <div class="card-top-row"><span class="card-date">2026-08-11</span></div>
         <div class="topic-body">
           <h3>درجات الحرارة في مصر: متابعة مستمرة للطقس لتنظيم حركة العمل والتنقلات</h3>
           <p>تصدرت متابعة درجات الحرارة وتغيرات الطقس اهتمامات الشارع المصري، مع رغبة المواطنين في تنظيم جدول أعمالهم والتنقلات اليومية وفق التحديثات الجوية. تهم هذه التوقعات المواطنين والمحامين لتنسيق المواعيد الميدانية والتواجد في المحاكم والمصالح الحكومية بمرونة وأمان. تواصل الجهات المختصة تقديم الإرشادات الوقائية للتعامل مع التغيرات المناخية وتفادي أوقات الذروة الحرارية، بما يضمن سلامة سير الحياة العملية والتجارية في مختلف المحافظات.</p>
@@ -398,14 +373,9 @@
         </div>
       </div>
   </a>
-    </div>
-  </details>
-  <details class="arch-item">
-    <summary>2026-08-10 — تطورات قضية «سفاح التجمع»: الجوانب القانونية ومتابعة تحقيقات النيابة العامة</summary>
-    <div class="arch-body">
-      <a class="topic-card" href="/radar-topics/2026-08-10-tagamoa-crime-investigations.html" title="افتح الصفحة الكاملة: تطورات قضية «سفاح التجمع»: الجوانب القانونية ومتابعة تحقيقات النيابة العامة">
+    <a class="topic-card" href="/radar-topics/2026-08-10-tagamoa-crime-investigations.html" title="افتح الصفحة الكاملة: تطورات قضية «سفاح التجمع»: الجوانب القانونية ومتابعة تحقيقات النيابة العامة">
       <div class="topic-head">
-        <span class="topic-num">01</span>
+        <div class="card-top-row"><span class="card-date">2026-08-10</span></div>
         <div class="topic-body">
           <h3>تطورات قضية «سفاح التجمع»: الجوانب القانونية ومتابعة تحقيقات النيابة العامة</h3>
           <p>تواصل قضية «سفاح التجمع» تصدر اهتمامات الرأي العام في مصر مع استمرار جلسات المحاكمة واستعراض الأدلة الفنية. تحظى القضية بمتابعة دقيقة من المجتمع والوسط القانوني لمراقبة تطبيق مواد قانون العقوبات الخاصة بالقتل العمد، فضلاً عن القواعد الإجرائية المنظمة لجمع الاستدلالات وتقارير الطب الشرعي.</p>
@@ -415,7 +385,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-10-takaful-karama-inquiry-rights.html" title="افتح الصفحة الكاملة: استعلام «تكافل وكرامة»: ضوابط وشروط الاستحقاق في قانون الضمان الاجتماعي">
       <div class="topic-head">
-        <span class="topic-num">02</span>
+        <div class="card-top-row"><span class="card-date">2026-08-10</span></div>
         <div class="topic-body">
           <h3>استعلام «تكافل وكرامة»: ضوابط وشروط الاستحقاق في قانون الضمان الاجتماعي</h3>
           <p>يتزايد بحث المواطنين يومياً حول الاستعلام عن أسماء المستفيدين من برنامج «تكافل وكرامة» وآليات تقديم التظلمات الإدارية. يهم هذا الملف ملايين الأسر المصرية والمحامين المهتمين بالقانون الاجتماعي؛ للوقوف على القرارات الوزارية المنظمة لشروط استحقاق الدعم النقدي وقواعد الاستبعاد والقبول.</p>
@@ -425,7 +395,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-10-mawlid-holiday-labor-law.html" title="افتح الصفحة الكاملة: إجازة المولد النبوي المرتقبة: تنظيم العطلات الرسمية وفق قانون العمل المصري">
       <div class="topic-head">
-        <span class="topic-num">03</span>
+        <div class="card-top-row"><span class="card-date">2026-08-10</span></div>
         <div class="topic-body">
           <h3>إجازة المولد النبوي المرتقبة: تنظيم العطلات الرسمية وفق قانون العمل المصري</h3>
           <p>يبحث الشارع المصري عن الموعد الرسمي لإجازة المولد النبوي الشريف المعتمدة للعاملين بالقطاعين الحكومي والخاص. وتكمن أهمية الموضوع قانونياً واجتماعياً في تحديد حقوق العمال في الحصول على إجازة مدفوعة الأجر وكيفية تعويض الموظفين في حال استدعاء حاجة العمل حضورهم، طبقاً لقانون العمل وقانون الخدمة المدنية.</p>
@@ -433,14 +403,9 @@
         </div>
       </div>
   </a>
-    </div>
-  </details>
-  <details class="arch-item">
-    <summary>2026-08-09 — قانون التصالح في مخالفات البناء: تسهيلات جديدة لتقنين أوضاع العقارات</summary>
-    <div class="arch-body">
-      <a class="topic-card" href="/radar-topics/2026-08-09-tasaloh-building-law.html" title="افتح الصفحة الكاملة: قانون التصالح في مخالفات البناء: تسهيلات جديدة لتقنين أوضاع العقارات">
+    <a class="topic-card" href="/radar-topics/2026-08-09-tasaloh-building-law.html" title="افتح الصفحة الكاملة: قانون التصالح في مخالفات البناء: تسهيلات جديدة لتقنين أوضاع العقارات">
       <div class="topic-head">
-        <span class="topic-num">01</span>
+        <div class="card-top-row"><span class="card-date">2026-08-09</span></div>
         <div class="topic-body">
           <h3>قانون التصالح في مخالفات البناء: تسهيلات جديدة لتقنين أوضاع العقارات</h3>
           <p>تصدر ملف «التصالح في مخالفات البناء» اهتمامات الشارع المصري والمجتمع القانوني، بالتزامن مع تفعيل التيسيرات الجديدة الممنوحة للمواطنين لتقنين أوضاع المباني المخالفة. يمثل هذا الملف أهمية بالغ الأهمية للمواطن والمحامي للتعرف على الآليات الإجرائية والمستندات المطلوبة، والاستفادة من المهلة المحددة لحماية الملكية العقارية وتجنب قرارات الإزالة والعقوبات القانونية.</p>
@@ -450,7 +415,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-09-digital-legal-services.html" title="افتح الصفحة الكاملة: التوسع في تقديم الخدمات الإلكترونية لتسهيل الإجراءات الحكومية والقضائية">
       <div class="topic-head">
-        <span class="topic-num">02</span>
+        <div class="card-top-row"><span class="card-date">2026-08-09</span></div>
         <div class="topic-body">
           <h3>التوسع في تقديم الخدمات الإلكترونية لتسهيل الإجراءات الحكومية والقضائية</h3>
           <p>شهدت محركات البحث إقبالاً مكثفاً من المواطنين والمحامين للتعرف على أحدث «الخدمات الإلكترونية» التي أطلقتها الجهات الحكومية والقضائية لتيسير استخراج المستندات الرسمية وإنجاز المعاملات عن بُعد. وتأتي هذه الخطوات ضمن استراتيجية التحول الرقمي للدولة، مما يوفر الوقت والجهد على المتعاملين مع المحاكم والجهات الإدارية ويُسرّع من وتيرة إنهاء المعاملات.</p>
@@ -460,7 +425,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-08-09-hunter-biden-legal-updates.html" title="افتح الصفحة الكاملة: التطورات القضائية في محاكمة هانتر بايدن وتأثيرها على المشهد العام">
       <div class="topic-head">
-        <span class="topic-num">03</span>
+        <div class="card-top-row"><span class="card-date">2026-08-09</span></div>
         <div class="topic-body">
           <h3>التطورات القضائية في محاكمة هانتر بايدن وتأثيرها على المشهد العام</h3>
           <p>حظيت المحاكمة الجنائية لـ «هانتر بايدن»، نجل الرئيس الأمريكي، بمتابعة واسعة في الأوساط القانونية والإعلامية عالمياً ومصرياً، نظراً لطبيعة التهم الموجهة إليه المتعلقة بالضرائب والأسلحة. تهم القضية المهتمين بالشأن القانوني الدولي كونها تقدم نموذجاً تطبيقياً للتعامل القضائي مع القضايا الجنائية رفيعة المستوى، واستقلالية السلطة القضائية في مواجهة الشخصيات العامة.</p>
@@ -469,7 +434,13 @@
       </div>
   </a>
     </div>
-  </details>
+  </div>
+
+  <!-- AD -->
+  <div class="ad-slot" role="complementary" aria-label="إعلان">
+    <span class="ad-label">إعلان</span>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7725405859334364" data-ad-slot="2168039898" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
   <div class="cta-section">
