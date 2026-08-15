@@ -1,4 +1,168 @@
-<!DOCTYPE html>
+#!/usr/bin/env node
+/**
+ * build-rich-library.cjs — بناء واجهة المكتبة القانونية التفاعلية الفورية مع عارض الكتب المتطور
+ * 
+ * 1. توليد legal-catalog-summary.json (خفيف وسريع جداً للبحث الفوري).
+ * 2. تضمين أمهات الكتب والموسوعات الكبرى مسبقاً في HTML (Pre-rendered) للظهور الفوري دون أي انتظار.
+ * 3. تزويد عارض الكتب (Reader Modal) بنظام القراءة المباشرة، التكبير، التحميل، والطباعة.
+ */
+
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+
+const CATALOG_FILE = path.join(__dirname, '..', '..', 'public', 'data', 'legal-catalog.json');
+const SUMMARY_FILE = path.join(__dirname, '..', '..', 'public', 'data', 'legal-catalog-summary.json');
+const LIB_HTML_FILE = path.join(__dirname, '..', '..', 'public', 'legal-library.html');
+
+console.log('🚀 بدء بناء واجهة المكتبة القانونية الغنية وتجهيز عارض الكتب...');
+
+const catalog = JSON.parse(fs.readFileSync(CATALOG_FILE, 'utf8'));
+
+// 1. توليد النسخة الخفيفة المضغوطة للفهرس
+const summaryItems = catalog.items.map(item => ({
+  i: item.id,
+  t: item.title,
+  a: item.author,
+  b: item.branchId,
+  bn: item.branchName,
+  e: item.ext,
+  s: item.sizeFormatted,
+  p: item.isPdf ? 1 : 0,
+  u: item.downloadUrl || null,
+  h: item.hasDirectPdf ? 1 : 0,
+  m: item.isMasterBook ? 1 : 0
+}));
+
+const summaryData = {
+  v: '2.5.0',
+  total: catalog.totalItems,
+  size: catalog.totalSizeFormatted,
+  branches: catalog.branches,
+  items: summaryItems
+};
+
+fs.writeFileSync(SUMMARY_FILE, JSON.stringify(summaryData), 'utf8');
+console.log(`✅ تم حفظ الفهرس الخفيف: ${SUMMARY_FILE} (الحجم: ${(fs.statSync(SUMMARY_FILE).size / 1024).toFixed(1)} KB)`);
+
+// 2. قائمة أمهات الكتب والموسوعات الكبرى المتاحة للقراءة الفورية
+const MASTER_ENCLYCLOPEDIAS = [
+  {
+    title: 'موسوعة الوسيط في شرح القانون المدني — الجزء الأول (مصادر الالتزام)',
+    author: 'د. عبد الرزاق السنهوري',
+    branchName: 'القانون المدني والعقود',
+    sizeFormatted: '35.3 MB',
+    downloadUrl: '/books/sanhouri-waseet-vol-1-sources-of-obligation.pdf',
+    badge: '📕 موسوعة الوسيط',
+    desc: 'المرجع الفقهي الأكبر في القانون المدني المصري والعربي — العقد، الإرادة المنفردة، العمل غير المشروع، والإثراء بلا سبب.'
+  },
+  {
+    title: 'موسوعة الوسيط في شرح القانون المدني — الجزء الثاني (الإثبات وآثار الالتزام)',
+    author: 'د. عبد الرزاق السنهوري',
+    branchName: 'القانون المدني والعقود',
+    sizeFormatted: '44.8 MB',
+    downloadUrl: '/books/sanhouri-waseet-vol-2-evidence-and-effects.pdf',
+    badge: '📕 موسوعة الوسيط',
+    desc: 'قواعد الإثبات، التنفيذ العيني، بطريق التعويض، ووسائل ضمان حقوق الدائنين والوفاء بمقابل.'
+  },
+  {
+    title: 'موسوعة الوسيط في شرح القانون المدني — الجزء الثالث (الأوصاف والحوالة والانقضاء)',
+    author: 'د. عبد الرزاق السنهوري',
+    branchName: 'القانون المدني والعقود',
+    sizeFormatted: '40.6 MB',
+    downloadUrl: '/books/sanhouri-waseet-vol-3-assignment-and-extinction.pdf',
+    badge: '📕 موسوعة الوسيط',
+    desc: 'الشرط والأجل، تعدد محل الالتزام، التضامن، حوالة الحق وحوالة الدين، وانقضاء الالتزام.'
+  },
+  {
+    title: 'موسوعة الوسيط في شرح القانون المدني — الجزء الرابع (عقود الملكية: البيع والمقايضة)',
+    author: 'د. عبد الرزاق السنهوري',
+    branchName: 'القانون المدني والعقود',
+    sizeFormatted: '25.5 MB',
+    downloadUrl: '/books/sanhouri-waseet-vol-4-sale-and-barter-contracts.pdf',
+    badge: '📕 موسوعة الوسيط',
+    desc: 'أركان عقد البيع، التزامات البائع والمشتري، دعوى الضمان، والمقايضة في التشريع المصري.'
+  },
+  {
+    title: 'موسوعة الوسيط في شرح القانون المدني — الجزء السادس (العارية والإيجار)',
+    author: 'د. عبد الرزاق السنهوري',
+    branchName: 'قانون الإيجارات والملكية',
+    sizeFormatted: '34.0 MB',
+    downloadUrl: '/books/sanhouri-waseet-vol-6-1-lease-and-loan-for-use.pdf',
+    badge: '🏢 موسوعة الإيجارات',
+    desc: 'الشرح الشامل لأحكام الإيجار، التزامات المؤجر والمستأجر، انتهاء عقد الإيجار، وعقد العارية.'
+  },
+  {
+    title: 'موسوعة الوسيط في شرح القانون المدني — الجزء العاشر (التأمينات العينية والشخصية)',
+    author: 'د. عبد الرزاق السنهوري',
+    branchName: 'القانون المدني والعقود',
+    sizeFormatted: '27.3 MB',
+    downloadUrl: '/books/sanhouri-waseet-vol-10-collaterals-and-guarantees.pdf',
+    badge: '📕 موسوعة الوسيط',
+    desc: 'الرهن الرسمي، حق الاختصاص، الرهن الحيازي، حقوق الامتياز، والكفالة الشخصية.'
+  },
+  {
+    title: 'مبادئ الإجراءات الجنائية في القانون المصري',
+    author: 'د. رؤوف عبيد',
+    branchName: 'القانون الجنائي والإجراءات',
+    sizeFormatted: '18.1 MB',
+    downloadUrl: '/books/raouf-obeid-criminal-procedures.pdf',
+    badge: '⚖️ الفقه الجنائي',
+    desc: 'المرجع الكلاسيكي في شرح الدعوى الجنائية، جمع الاستدلالات، التحقيق الابتدائي، والمحاكمة الجنائية.'
+  },
+  {
+    title: 'أصول قانون الإجراءات الجنائية — الجزء الأول',
+    author: 'د. حسن صادق المرصفاوي',
+    branchName: 'القانون الجنائي والإجراءات',
+    sizeFormatted: '50.2 MB',
+    downloadUrl: '/books/marsafawi-criminal-procedures-vol-1.pdf',
+    badge: '⚖️ موسوعة المرصفاوي',
+    desc: 'شرح متعمق للنظرية العامة للإجراءات الجنائية، البطلان، الضبطية القضائية، وأوامر الحبس الاحتياطي.'
+  },
+  {
+    title: 'الموسوعة الشاملة في التنفيذ الجبري — الجزء الثاني',
+    author: 'د. أحمد مليجي',
+    branchName: 'المرافعات والتنفيذ الجبري',
+    sizeFormatted: '51.0 MB',
+    downloadUrl: '/books/meleigy-forced-execution-vol-2.pdf',
+    badge: '📑 موسوعة مليجي',
+    desc: 'إجراءات الحجز التنفيذي، حجز ما للمدين لدى الغير، بيع المنقولات والعقارات، وإشكالات التنفيذ الوقتية والموضوعية.'
+  },
+  {
+    title: 'قضاء الأمور المستعجلة في القانون المصري',
+    author: 'د. علي راتب',
+    branchName: 'المرافعات والقضاء المستعجل',
+    sizeFormatted: '7.4 MB',
+    downloadUrl: '/books/ali-rateb-summary-judiciary.pdf',
+    badge: '📑 القضاء المستعجل',
+    desc: 'شروط اختصاص قاضي الأمور المستعجلة، عدم المساس بأصل الحق، وتطبيقات الحراسة القضائية ووقف الأعمال الجديدة.'
+  },
+  {
+    title: 'المستحدث من مبادئ دوائر الإيجارات بمحكمة النقض',
+    author: 'محكمة النقض المصرية',
+    branchName: 'مبادئ وأحكام النقض',
+    sizeFormatted: '0.9 MB',
+    downloadUrl: '/books/cassation-leases-principles-2013-2014.pdf',
+    badge: '🛡️ أحكام النقض',
+    desc: 'أحدث المبادئ القضائية المستقرة لدوائر الإيجارات في الامتداد القانوني، الهدم الكلي، والإخلاء لعدم سداد الأجرة.'
+  },
+  {
+    title: 'المستحدث من مبادئ الدوائر الجنائية بمحكمة النقض',
+    author: 'محكمة النقض المصرية',
+    branchName: 'مبادئ وأحكام النقض',
+    sizeFormatted: '3.5 MB',
+    downloadUrl: '/books/cassation-criminal-principles-2011-2012.pdf',
+    badge: '🛡️ أحكام النقض',
+    desc: 'مبادئ الدوائر الجنائية في إجراءات القبض والتفتيش، تسبيب الأحكام، القصد الجنائي، والقصور في التسبيب.'
+  }
+];
+
+// 3. بناء صفحة الـ HTML المتطورة
+function generateLegalLibraryHtml() {
+  const branches = catalog.branches || [];
+
+  return `<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -142,82 +306,7 @@
   </style>
 </head>
 <body>
-  <header class="uh-bar" id="siteHeader">
-    <div class="uh-inner">
-      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
-        <span class="uh-badge">⚖️</span>
-        <span class="uh-brand">
-          <span class="uh-title">المحامي الرقمي</span>
-          <span class="uh-sub">مساعدك القانوني الذكي · مجاناً</span>
-        </span>
-      </a>
-
-      <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
-        <a href="/" class="uh-link">🏠 الرئيسية</a>
-        <a href="/blog/" class="uh-link">📰 المدونة القانونية</a>
-        <a href="/legal-library.html" class="uh-link active">📚 المكتبة القانونية</a>
-        <a href="/pillars/" class="uh-link">🏛️ المراجع الشاملة</a>
-        <a href="/legal-forms.html" class="uh-link">📝 صيغ العقود والدعاوي</a>
-        <a href="/legal-radar.html" class="uh-link">🔍 رصد المحامي</a>
-        <div class="uh-more" id="uhMore">
-          <button class="uh-more-btn" type="button" aria-expanded="false" aria-haspopup="true">
-            <span>المزيد</span><span class="uh-caret">▾</span>
-          </button>
-          <div class="uh-menu">
-            <a href="/about.html" class="uh-menu-item">⚖️ عن المنصة</a>
-            <a href="/features.html" class="uh-menu-item">⚡ المميزات الكاملة</a>
-            <a href="/pricing.html" class="uh-menu-item">🎁 الأسعار — مجاني 100%</a>
-            <a href="/why-trust-us.html" class="uh-menu-item">🛡️ لماذا تثق بنا</a>
-            <a href="/privacy.html" class="uh-menu-item">🔐 سياسة الخصوصية</a>
-            <a href="/terms.html" class="uh-menu-item">📜 الشروط والأحكام</a>
-            <a href="/contact.html" class="uh-menu-item">📬 تواصل معنا</a>
-          </div>
-        </div>
-      </nav>
-
-      <div class="uh-actions">
-        <a href="/" class="uh-cta"><span>🚀 دخول التطبيق</span></a>
-        <button class="uh-burger" id="uhBurger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="headerNav">☰</button>
-      </div>
-    </div>
-  </header>
-  <script>
-    (function(){
-      var hdr=document.getElementById('siteHeader');
-      var nav=document.getElementById('headerNav');
-      var burger=document.getElementById('uhBurger');
-      var more=document.getElementById('uhMore');
-      var moreBtn=more?more.querySelector('.uh-more-btn'):null;
-      if(hdr)window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
-      function closeMobile(){
-        if(nav)nav.classList.remove('active');
-        if(burger){burger.setAttribute('aria-expanded','false');burger.innerHTML='☰';burger.setAttribute('aria-label','فتح القائمة');}
-      }
-      if(burger){burger.addEventListener('click',function(){
-        var open=nav.classList.toggle('active');
-        burger.setAttribute('aria-expanded',open);
-        burger.innerHTML=open?'✕':'☰';
-        burger.setAttribute('aria-label',open?'إغلاق القائمة':'فتح القائمة');
-        if(!open&&more){more.classList.remove('open');}
-      });}
-      if(moreBtn&&more){
-        moreBtn.addEventListener('click',function(e){
-          e.stopPropagation();
-          var open=more.classList.toggle('open');
-          moreBtn.setAttribute('aria-expanded',open);
-        });
-      }
-      document.addEventListener('click',function(e){
-        if(more&&more.classList.contains('open')&&!more.contains(e.target)){
-          more.classList.remove('open');
-          if(moreBtn)moreBtn.setAttribute('aria-expanded','false');
-        }
-        if(nav&&nav.classList.contains('active')&&burger&&!nav.contains(e.target)&&!burger.contains(e.target)){
-          closeMobile();
-        }
-      });
-    })();
-  </script>
+  ${require('../seo/unified-header.cjs').headerMarkup('lib')}
   <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><span class="current">المكتبة القانونية</span></nav>
 
   <div class="hero">
@@ -225,9 +314,9 @@
     <h1>المكتبة القانونية وموسوعات الفقه والقضاء</h1>
     <p>مطالعة وقراءة أمهات الكتب والموسوعات الفقهية وأحكام النقض مباشرة أونلاين مع إمكانية التحميل الفوري — مجاناً لكافة المحامين والباحثين.</p>
     <div class="hero-stats">
-      <div class="stat-pill"><span class="num">١٠٬٣٢٩</span> كتاب ومرجع</div>
-      <div class="stat-pill"><span class="num">10</span> فروع تخصصية</div>
-      <div class="stat-pill"><span class="num">13.12 GB</span> حجم المكتبة</div>
+      <div class="stat-pill"><span class="num">${catalog.totalItems.toLocaleString('ar-EG')}</span> كتاب ومرجع</div>
+      <div class="stat-pill"><span class="num">${catalog.branches.length}</span> فروع تخصصية</div>
+      <div class="stat-pill"><span class="num">${catalog.totalSizeFormatted}</span> حجم المكتبة</div>
     </div>
   </div>
 
@@ -240,139 +329,18 @@
         <div class="sec-sub">تصفح واقرأ موسوعة الوسيط للسنهوري، مراجع المرصفاوي، رؤوف عبيد، مليجي، ومبادئ النقض مباشرة أونلاين</div>
       </div>
       <div class="master-grid">
-        
+        ${MASTER_ENCLYCLOPEDIAS.map((b, idx) => `
           <div class="master-card">
-            <span class="master-badge">📕 موسوعة الوسيط</span>
-            <h3>موسوعة الوسيط في شرح القانون المدني — الجزء الأول (مصادر الالتزام)</h3>
-            <div class="master-author">✍️ د. عبد الرزاق السنهوري</div>
-            <p class="master-desc">المرجع الفقهي الأكبر في القانون المدني المصري والعربي — العقد، الإرادة المنفردة، العمل غير المشروع، والإثراء بلا سبب.</p>
+            <span class="master-badge">${b.badge}</span>
+            <h3>${b.title}</h3>
+            <div class="master-author">✍️ ${b.author}</div>
+            <p class="master-desc">${b.desc}</p>
             <div class="master-footer">
-              <button class="btn-read-now" onclick="openDirectReader('/books/sanhouri-waseet-vol-1-sources-of-obligation.pdf', '%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D9%88%D8%B3%D9%8A%D8%B7%20%D9%81%D9%8A%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%A3%D9%88%D9%84%20(%D9%85%D8%B5%D8%A7%D8%AF%D8%B1%20%D8%A7%D9%84%D8%A7%D9%84%D8%AA%D8%B2%D8%A7%D9%85)', '%D8%AF.%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%B1%D8%B2%D8%A7%D9%82%20%D8%A7%D9%84%D8%B3%D9%86%D9%87%D9%88%D8%B1%D9%8A', '35.3 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/sanhouri-waseet-vol-1-sources-of-obligation.pdf" download="موسوعة الوسيط في شرح القانون المدني — الجزء الأول (مصادر الالتزام).pdf" class="btn-dl-now">📥 تحميل (35.3 MB)</a>
+              <button class="btn-read-now" onclick="openDirectReader('${b.downloadUrl}', '${encodeURIComponent(b.title)}', '${encodeURIComponent(b.author)}', '${b.sizeFormatted}')">📖 قراءة وتصفح الآن</button>
+              <a href="${b.downloadUrl}" download="${b.title}.pdf" class="btn-dl-now">📥 تحميل (${b.sizeFormatted})</a>
             </div>
           </div>
-        
-          <div class="master-card">
-            <span class="master-badge">📕 موسوعة الوسيط</span>
-            <h3>موسوعة الوسيط في شرح القانون المدني — الجزء الثاني (الإثبات وآثار الالتزام)</h3>
-            <div class="master-author">✍️ د. عبد الرزاق السنهوري</div>
-            <p class="master-desc">قواعد الإثبات، التنفيذ العيني، بطريق التعويض، ووسائل ضمان حقوق الدائنين والوفاء بمقابل.</p>
-            <div class="master-footer">
-              <button class="btn-read-now" onclick="openDirectReader('/books/sanhouri-waseet-vol-2-evidence-and-effects.pdf', '%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D9%88%D8%B3%D9%8A%D8%B7%20%D9%81%D9%8A%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A%20(%D8%A7%D9%84%D8%A5%D8%AB%D8%A8%D8%A7%D8%AA%20%D9%88%D8%A2%D8%AB%D8%A7%D8%B1%20%D8%A7%D9%84%D8%A7%D9%84%D8%AA%D8%B2%D8%A7%D9%85)', '%D8%AF.%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%B1%D8%B2%D8%A7%D9%82%20%D8%A7%D9%84%D8%B3%D9%86%D9%87%D9%88%D8%B1%D9%8A', '44.8 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/sanhouri-waseet-vol-2-evidence-and-effects.pdf" download="موسوعة الوسيط في شرح القانون المدني — الجزء الثاني (الإثبات وآثار الالتزام).pdf" class="btn-dl-now">📥 تحميل (44.8 MB)</a>
-            </div>
-          </div>
-        
-          <div class="master-card">
-            <span class="master-badge">📕 موسوعة الوسيط</span>
-            <h3>موسوعة الوسيط في شرح القانون المدني — الجزء الثالث (الأوصاف والحوالة والانقضاء)</h3>
-            <div class="master-author">✍️ د. عبد الرزاق السنهوري</div>
-            <p class="master-desc">الشرط والأجل، تعدد محل الالتزام، التضامن، حوالة الحق وحوالة الدين، وانقضاء الالتزام.</p>
-            <div class="master-footer">
-              <button class="btn-read-now" onclick="openDirectReader('/books/sanhouri-waseet-vol-3-assignment-and-extinction.pdf', '%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D9%88%D8%B3%D9%8A%D8%B7%20%D9%81%D9%8A%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20(%D8%A7%D9%84%D8%A3%D9%88%D8%B5%D8%A7%D9%81%20%D9%88%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D9%84%D8%A9%20%D9%88%D8%A7%D9%84%D8%A7%D9%86%D9%82%D8%B6%D8%A7%D8%A1)', '%D8%AF.%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%B1%D8%B2%D8%A7%D9%82%20%D8%A7%D9%84%D8%B3%D9%86%D9%87%D9%88%D8%B1%D9%8A', '40.6 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/sanhouri-waseet-vol-3-assignment-and-extinction.pdf" download="موسوعة الوسيط في شرح القانون المدني — الجزء الثالث (الأوصاف والحوالة والانقضاء).pdf" class="btn-dl-now">📥 تحميل (40.6 MB)</a>
-            </div>
-          </div>
-        
-          <div class="master-card">
-            <span class="master-badge">📕 موسوعة الوسيط</span>
-            <h3>موسوعة الوسيط في شرح القانون المدني — الجزء الرابع (عقود الملكية: البيع والمقايضة)</h3>
-            <div class="master-author">✍️ د. عبد الرزاق السنهوري</div>
-            <p class="master-desc">أركان عقد البيع، التزامات البائع والمشتري، دعوى الضمان، والمقايضة في التشريع المصري.</p>
-            <div class="master-footer">
-              <button class="btn-read-now" onclick="openDirectReader('/books/sanhouri-waseet-vol-4-sale-and-barter-contracts.pdf', '%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D9%88%D8%B3%D9%8A%D8%B7%20%D9%81%D9%8A%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%B1%D8%A7%D8%A8%D8%B9%20(%D8%B9%D9%82%D9%88%D8%AF%20%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9%3A%20%D8%A7%D9%84%D8%A8%D9%8A%D8%B9%20%D9%88%D8%A7%D9%84%D9%85%D9%82%D8%A7%D9%8A%D8%B6%D8%A9)', '%D8%AF.%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%B1%D8%B2%D8%A7%D9%82%20%D8%A7%D9%84%D8%B3%D9%86%D9%87%D9%88%D8%B1%D9%8A', '25.5 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/sanhouri-waseet-vol-4-sale-and-barter-contracts.pdf" download="موسوعة الوسيط في شرح القانون المدني — الجزء الرابع (عقود الملكية: البيع والمقايضة).pdf" class="btn-dl-now">📥 تحميل (25.5 MB)</a>
-            </div>
-          </div>
-        
-          <div class="master-card">
-            <span class="master-badge">🏢 موسوعة الإيجارات</span>
-            <h3>موسوعة الوسيط في شرح القانون المدني — الجزء السادس (العارية والإيجار)</h3>
-            <div class="master-author">✍️ د. عبد الرزاق السنهوري</div>
-            <p class="master-desc">الشرح الشامل لأحكام الإيجار، التزامات المؤجر والمستأجر، انتهاء عقد الإيجار، وعقد العارية.</p>
-            <div class="master-footer">
-              <button class="btn-read-now" onclick="openDirectReader('/books/sanhouri-waseet-vol-6-1-lease-and-loan-for-use.pdf', '%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D9%88%D8%B3%D9%8A%D8%B7%20%D9%81%D9%8A%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%B3%D8%A7%D8%AF%D8%B3%20(%D8%A7%D9%84%D8%B9%D8%A7%D8%B1%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1)', '%D8%AF.%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%B1%D8%B2%D8%A7%D9%82%20%D8%A7%D9%84%D8%B3%D9%86%D9%87%D9%88%D8%B1%D9%8A', '34.0 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/sanhouri-waseet-vol-6-1-lease-and-loan-for-use.pdf" download="موسوعة الوسيط في شرح القانون المدني — الجزء السادس (العارية والإيجار).pdf" class="btn-dl-now">📥 تحميل (34.0 MB)</a>
-            </div>
-          </div>
-        
-          <div class="master-card">
-            <span class="master-badge">📕 موسوعة الوسيط</span>
-            <h3>موسوعة الوسيط في شرح القانون المدني — الجزء العاشر (التأمينات العينية والشخصية)</h3>
-            <div class="master-author">✍️ د. عبد الرزاق السنهوري</div>
-            <p class="master-desc">الرهن الرسمي، حق الاختصاص، الرهن الحيازي، حقوق الامتياز، والكفالة الشخصية.</p>
-            <div class="master-footer">
-              <button class="btn-read-now" onclick="openDirectReader('/books/sanhouri-waseet-vol-10-collaterals-and-guarantees.pdf', '%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D9%88%D8%B3%D9%8A%D8%B7%20%D9%81%D9%8A%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%B9%D8%A7%D8%B4%D8%B1%20(%D8%A7%D9%84%D8%AA%D8%A3%D9%85%D9%8A%D9%86%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B9%D9%8A%D9%86%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%B4%D8%AE%D8%B5%D9%8A%D8%A9)', '%D8%AF.%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%B1%D8%B2%D8%A7%D9%82%20%D8%A7%D9%84%D8%B3%D9%86%D9%87%D9%88%D8%B1%D9%8A', '27.3 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/sanhouri-waseet-vol-10-collaterals-and-guarantees.pdf" download="موسوعة الوسيط في شرح القانون المدني — الجزء العاشر (التأمينات العينية والشخصية).pdf" class="btn-dl-now">📥 تحميل (27.3 MB)</a>
-            </div>
-          </div>
-        
-          <div class="master-card">
-            <span class="master-badge">⚖️ الفقه الجنائي</span>
-            <h3>مبادئ الإجراءات الجنائية في القانون المصري</h3>
-            <div class="master-author">✍️ د. رؤوف عبيد</div>
-            <p class="master-desc">المرجع الكلاسيكي في شرح الدعوى الجنائية، جمع الاستدلالات، التحقيق الابتدائي، والمحاكمة الجنائية.</p>
-            <div class="master-footer">
-              <button class="btn-read-now" onclick="openDirectReader('/books/raouf-obeid-criminal-procedures.pdf', '%D9%85%D8%A8%D8%A7%D8%AF%D8%A6%20%D8%A7%D9%84%D8%A5%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AC%D9%86%D8%A7%D8%A6%D9%8A%D8%A9%20%D9%81%D9%8A%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A', '%D8%AF.%20%D8%B1%D8%A4%D9%88%D9%81%20%D8%B9%D8%A8%D9%8A%D8%AF', '18.1 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/raouf-obeid-criminal-procedures.pdf" download="مبادئ الإجراءات الجنائية في القانون المصري.pdf" class="btn-dl-now">📥 تحميل (18.1 MB)</a>
-            </div>
-          </div>
-        
-          <div class="master-card">
-            <span class="master-badge">⚖️ موسوعة المرصفاوي</span>
-            <h3>أصول قانون الإجراءات الجنائية — الجزء الأول</h3>
-            <div class="master-author">✍️ د. حسن صادق المرصفاوي</div>
-            <p class="master-desc">شرح متعمق للنظرية العامة للإجراءات الجنائية، البطلان، الضبطية القضائية، وأوامر الحبس الاحتياطي.</p>
-            <div class="master-footer">
-              <button class="btn-read-now" onclick="openDirectReader('/books/marsafawi-criminal-procedures-vol-1.pdf', '%D8%A3%D8%B5%D9%88%D9%84%20%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A5%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AC%D9%86%D8%A7%D8%A6%D9%8A%D8%A9%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%A3%D9%88%D9%84', '%D8%AF.%20%D8%AD%D8%B3%D9%86%20%D8%B5%D8%A7%D8%AF%D9%82%20%D8%A7%D9%84%D9%85%D8%B1%D8%B5%D9%81%D8%A7%D9%88%D9%8A', '50.2 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/marsafawi-criminal-procedures-vol-1.pdf" download="أصول قانون الإجراءات الجنائية — الجزء الأول.pdf" class="btn-dl-now">📥 تحميل (50.2 MB)</a>
-            </div>
-          </div>
-        
-          <div class="master-card">
-            <span class="master-badge">📑 موسوعة مليجي</span>
-            <h3>الموسوعة الشاملة في التنفيذ الجبري — الجزء الثاني</h3>
-            <div class="master-author">✍️ د. أحمد مليجي</div>
-            <p class="master-desc">إجراءات الحجز التنفيذي، حجز ما للمدين لدى الغير، بيع المنقولات والعقارات، وإشكالات التنفيذ الوقتية والموضوعية.</p>
-            <div class="master-footer">
-              <button class="btn-read-now" onclick="openDirectReader('/books/meleigy-forced-execution-vol-2.pdf', '%D8%A7%D9%84%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D8%B4%D8%A7%D9%85%D9%84%D8%A9%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D8%A7%D9%84%D8%AC%D8%A8%D8%B1%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A', '%D8%AF.%20%D8%A3%D8%AD%D9%85%D8%AF%20%D9%85%D9%84%D9%8A%D8%AC%D9%8A', '51.0 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/meleigy-forced-execution-vol-2.pdf" download="الموسوعة الشاملة في التنفيذ الجبري — الجزء الثاني.pdf" class="btn-dl-now">📥 تحميل (51.0 MB)</a>
-            </div>
-          </div>
-        
-          <div class="master-card">
-            <span class="master-badge">📑 القضاء المستعجل</span>
-            <h3>قضاء الأمور المستعجلة في القانون المصري</h3>
-            <div class="master-author">✍️ د. علي راتب</div>
-            <p class="master-desc">شروط اختصاص قاضي الأمور المستعجلة، عدم المساس بأصل الحق، وتطبيقات الحراسة القضائية ووقف الأعمال الجديدة.</p>
-            <div class="master-footer">
-              <button class="btn-read-now" onclick="openDirectReader('/books/ali-rateb-summary-judiciary.pdf', '%D9%82%D8%B6%D8%A7%D8%A1%20%D8%A7%D9%84%D8%A3%D9%85%D9%88%D8%B1%20%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B9%D8%AC%D9%84%D8%A9%20%D9%81%D9%8A%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A', '%D8%AF.%20%D8%B9%D9%84%D9%8A%20%D8%B1%D8%A7%D8%AA%D8%A8', '7.4 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/ali-rateb-summary-judiciary.pdf" download="قضاء الأمور المستعجلة في القانون المصري.pdf" class="btn-dl-now">📥 تحميل (7.4 MB)</a>
-            </div>
-          </div>
-        
-          <div class="master-card">
-            <span class="master-badge">🛡️ أحكام النقض</span>
-            <h3>المستحدث من مبادئ دوائر الإيجارات بمحكمة النقض</h3>
-            <div class="master-author">✍️ محكمة النقض المصرية</div>
-            <p class="master-desc">أحدث المبادئ القضائية المستقرة لدوائر الإيجارات في الامتداد القانوني، الهدم الكلي، والإخلاء لعدم سداد الأجرة.</p>
-            <div class="master-footer">
-              <button class="btn-read-now" onclick="openDirectReader('/books/cassation-leases-principles-2013-2014.pdf', '%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AD%D8%AF%D8%AB%20%D9%85%D9%86%20%D9%85%D8%A8%D8%A7%D8%AF%D8%A6%20%D8%AF%D9%88%D8%A7%D8%A6%D8%B1%20%D8%A7%D9%84%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1%D8%A7%D8%AA%20%D8%A8%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6', '%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9', '0.9 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/cassation-leases-principles-2013-2014.pdf" download="المستحدث من مبادئ دوائر الإيجارات بمحكمة النقض.pdf" class="btn-dl-now">📥 تحميل (0.9 MB)</a>
-            </div>
-          </div>
-        
-          <div class="master-card">
-            <span class="master-badge">🛡️ أحكام النقض</span>
-            <h3>المستحدث من مبادئ الدوائر الجنائية بمحكمة النقض</h3>
-            <div class="master-author">✍️ محكمة النقض المصرية</div>
-            <p class="master-desc">مبادئ الدوائر الجنائية في إجراءات القبض والتفتيش، تسبيب الأحكام، القصد الجنائي، والقصور في التسبيب.</p>
-            <div class="master-footer">
-              <button class="btn-read-now" onclick="openDirectReader('/books/cassation-criminal-principles-2011-2012.pdf', '%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AD%D8%AF%D8%AB%20%D9%85%D9%86%20%D9%85%D8%A8%D8%A7%D8%AF%D8%A6%20%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A6%D8%B1%20%D8%A7%D9%84%D8%AC%D9%86%D8%A7%D8%A6%D9%8A%D8%A9%20%D8%A8%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6', '%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9', '3.5 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/cassation-criminal-principles-2011-2012.pdf" download="المستحدث من مبادئ الدوائر الجنائية بمحكمة النقض.pdf" class="btn-dl-now">📥 تحميل (3.5 MB)</a>
-            </div>
-          </div>
-        
+        `).join('')}
       </div>
     </div>
 
@@ -382,97 +350,16 @@
       <div class="sec-sub">اختر أي فرع لتصفح كتبه وأبحاثه ومذكراته المتخصصة</div>
     </div>
     <div class="branches-grid">
-      
-        <div class="branch-card" onclick="filterByBranch('civil')">
-          <div class="branch-icon">📕</div>
-          <h3>القانون المدني والعقود</h3>
+      ${branches.map(b => `
+        <div class="branch-card" onclick="filterByBranch('${b.id}')">
+          <div class="branch-icon">${b.icon}</div>
+          <h3>${b.name}</h3>
           <div class="branch-meta">
-            <span>٣٨٠ مرجع</span>
+            <span>${b.count.toLocaleString('ar-EG')} مرجع</span>
             <span style="color:#67e8f9">تصفح ←</span>
           </div>
         </div>
-      
-        <div class="branch-card" onclick="filterByBranch('criminal')">
-          <div class="branch-icon">⚖️</div>
-          <h3>القانون الجنائي والإجراءات الجنائية</h3>
-          <div class="branch-meta">
-            <span>١٨٤ مرجع</span>
-            <span style="color:#67e8f9">تصفح ←</span>
-          </div>
-        </div>
-      
-        <div class="branch-card" onclick="filterByBranch('personal-status')">
-          <div class="branch-icon">👨‍👩‍👧‍👦</div>
-          <h3>الأحوال الشخصية والمواريث والأسرة</h3>
-          <div class="branch-meta">
-            <span>٨٨ مرجع</span>
-            <span style="color:#67e8f9">تصفح ←</span>
-          </div>
-        </div>
-      
-        <div class="branch-card" onclick="filterByBranch('admin')">
-          <div class="branch-icon">🏛️</div>
-          <h3>القانون الإداري ومجلس الدولة</h3>
-          <div class="branch-meta">
-            <span>٢٥ مرجع</span>
-            <span style="color:#67e8f9">تصفح ←</span>
-          </div>
-        </div>
-      
-        <div class="branch-card" onclick="filterByBranch('commercial')">
-          <div class="branch-icon">💼</div>
-          <h3>القانون التجاري والشركات والتحكيم</h3>
-          <div class="branch-meta">
-            <span>٧٠ مرجع</span>
-            <span style="color:#67e8f9">تصفح ←</span>
-          </div>
-        </div>
-      
-        <div class="branch-card" onclick="filterByBranch('leases')">
-          <div class="branch-icon">🏢</div>
-          <h3>قانون الإيجارات والملكية العقارية</h3>
-          <div class="branch-meta">
-            <span>٩٤ مرجع</span>
-            <span style="color:#67e8f9">تصفح ←</span>
-          </div>
-        </div>
-      
-        <div class="branch-card" onclick="filterByBranch('procedures')">
-          <div class="branch-icon">📑</div>
-          <h3>قانون المرافعات والإثبات والتنفيذ الجبري</h3>
-          <div class="branch-meta">
-            <span>٦٩ مرجع</span>
-            <span style="color:#67e8f9">تصفح ←</span>
-          </div>
-        </div>
-      
-        <div class="branch-card" onclick="filterByBranch('forms')">
-          <div class="branch-icon">📜</div>
-          <h3>صيغ ونماذج العقود والصحف والدعاوى</h3>
-          <div class="branch-meta">
-            <span>٢٬٩٩٩ مرجع</span>
-            <span style="color:#67e8f9">تصفح ←</span>
-          </div>
-        </div>
-      
-        <div class="branch-card" onclick="filterByBranch('precedents')">
-          <div class="branch-icon">🛡️</div>
-          <h3>مبادئ وأحكام محكمة النقض والفتاوى</h3>
-          <div class="branch-meta">
-            <span>٥٬٧٥٧ مرجع</span>
-            <span style="color:#67e8f9">تصفح ←</span>
-          </div>
-        </div>
-      
-        <div class="branch-card" onclick="filterByBranch('encyclopedias')">
-          <div class="branch-icon">📚</div>
-          <h3>الموسوعات العامة والطب الشرعي والمذكرات</h3>
-          <div class="branch-meta">
-            <span>٦٦٣ مرجع</span>
-            <span style="color:#67e8f9">تصفح ←</span>
-          </div>
-        </div>
-      
+      `).join('')}
     </div>
 
     <!-- TOP AD -->
@@ -485,7 +372,7 @@
     <!-- محرك البحث الفوري -->
     <div class="sec-head" style="margin-top:36px;">
       <div class="sec-title">🔍 محرك البحث الشامل في المراجع والكتب</div>
-      <div class="sec-sub">ابحث في أكثر من ١٠٬٣٢٩ مرجع وموسوعة بالاسم أو المؤلف أو الموضوع</div>
+      <div class="sec-sub">ابحث في أكثر من ${catalog.totalItems.toLocaleString('ar-EG')} مرجع وموسوعة بالاسم أو المؤلف أو الموضوع</div>
     </div>
 
     <div class="search-wrapper">
@@ -495,8 +382,8 @@
     </div>
 
     <div class="filter-pills" id="branchFilterPills">
-      <button class="filter-btn active" data-bid="all">🌟 جميع المراجع (١٠٬٣٢٩)</button>
-      <button class="filter-btn" data-bid="civil">📕 القانون المدني والعقود (380)</button><button class="filter-btn" data-bid="criminal">⚖️ القانون الجنائي والإجراءات الجنائية (184)</button><button class="filter-btn" data-bid="personal-status">👨‍👩‍👧‍👦 الأحوال الشخصية والمواريث والأسرة (88)</button><button class="filter-btn" data-bid="admin">🏛️ القانون الإداري ومجلس الدولة (25)</button><button class="filter-btn" data-bid="commercial">💼 القانون التجاري والشركات والتحكيم (70)</button><button class="filter-btn" data-bid="leases">🏢 قانون الإيجارات والملكية العقارية (94)</button><button class="filter-btn" data-bid="procedures">📑 قانون المرافعات والإثبات والتنفيذ الجبري (69)</button><button class="filter-btn" data-bid="forms">📜 صيغ ونماذج العقود والصحف والدعاوى (2999)</button><button class="filter-btn" data-bid="precedents">🛡️ مبادئ وأحكام محكمة النقض والفتاوى (5757)</button><button class="filter-btn" data-bid="encyclopedias">📚 الموسوعات العامة والطب الشرعي والمذكرات (663)</button>
+      <button class="filter-btn active" data-bid="all">🌟 جميع المراجع (${catalog.totalItems.toLocaleString('ar-EG')})</button>
+      ${branches.map(b => `<button class="filter-btn" data-bid="${b.id}">${b.icon} ${b.name} (${b.count})</button>`).join('')}
     </div>
 
     <div class="books-grid" id="booksGridContainer"></div>
@@ -674,8 +561,8 @@
         var card = document.createElement('div');
         card.className = 'book-card';
         var actionBtn = b.downloadUrl
-          ? '<button class="btn-book-action" style="background:linear-gradient(135deg,var(--indigo),var(--purple));" onclick="openDirectReader(\'' + b.downloadUrl + '\', \'' + encodeURIComponent(b.title) + '\', \'' + encodeURIComponent(b.author) + '\', \'' + b.sizeFormatted + '\')">📖 قراءة أونلاين</button>'
-          : '<button class="btn-book-action" onclick="openBookInfo(\'' + encodeURIComponent(JSON.stringify(b)) + '\')">👁️ تفاصيل المرجع</button>';
+          ? '<button class="btn-book-action" style="background:linear-gradient(135deg,var(--indigo),var(--purple));" onclick="openDirectReader(\\'' + b.downloadUrl + '\\', \\'' + encodeURIComponent(b.title) + '\\', \\'' + encodeURIComponent(b.author) + '\\', \\'' + b.sizeFormatted + '\\')">📖 قراءة أونلاين</button>'
+          : '<button class="btn-book-action" onclick="openBookInfo(\\'' + encodeURIComponent(JSON.stringify(b)) + '\\')">👁️ تفاصيل المرجع</button>';
 
         card.innerHTML = 
           '<div class="book-top">' +
@@ -749,4 +636,8 @@
     modal.onclick = function(e) { if (e.target === modal) modal.classList.remove('open'); };
   </script>
 </body>
-</html>
+</html>`;
+}
+
+fs.writeFileSync(LIB_HTML_FILE, generateLegalLibraryHtml(), 'utf8');
+console.log(`✅ تم إنشاء وتحديث واجهة المكتبة القانونية الغنية بنجاح: ${LIB_HTML_FILE}`);
