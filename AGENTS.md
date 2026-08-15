@@ -608,8 +608,24 @@ commit `54e9559` — تم push. تحقق بـ `firebase deploy --only hosting:ap
 - فحص البصمة: أي صفحة = يجب أن تحوي `uh-bar` + `header.css?v=<VERSION>` ولا تحوي `class="site-header"` ولا `nav:not(.header-nav)`.
 
 ### متبقٍّ / تنبيهات
-- **CSS ميت** في `src/index.css`: selectors `.header-cta` القديمة + block `.public-theme-light .public-landing-page` (Session 19) — تنظيف اختياري لاحقاً.
+- **CSS ميت في `src/index.css`**: selectors `.header-cta` القديمة + block `.public-theme-light .public-landing-page` (Session 19) — تنظيف اختياري لاحقاً.
 - **`www.mohamidigital.online` لا يعمل** — معروف من Session 9.
 - **Search Console:** بانتظار المستخدم — إرسال `sitemap.xml`.
 - **YouTube tokens:** بانتظار إعادة ربط OAuth (`youtube-oauth.cjs login` + تحديث 5 secrets `YT_*`).
 - الفحوصات المحلية للـ HTTPS يعترضها كاسبرسكي — استخدم `curl -sk` أو `r.jina.ai`. الطرفية تعرض Mojibake للقوالب — لا تُنسخ منها.
+
+---
+
+## حالة الجلسة الحالية: Session 20b — تنظيف CSS الميت بعد الشريط الجديد (مكتمل)
+
+### ما أُنجز
+1. **`src/index.css`** — حذف كتل CSS الميتة (−142 سطراً): كتلة `.public-theme-light .public-landing-page` كاملة (صفحة الهبوط حُذفت في v2.20) + كتل `.public-header`/`.public-mobile-nav`/`.public-landing-page .public-header` (الهيدر القديم).
+2. **أُبقي بحذر:** `.public-auth-screen` و`.public-site` (مستخدمتان في `FirebaseLoginScreen.tsx:279`) و`html.public-theme-dark` و`.theme-slate` — تحقق مسبق بـ grep أن `public-landing-page`/`public-header`/`public-mobile-nav` لا تظهر في أي TSX/HTML.
+3. الباندل CSS انخفض 235544 → **225950 بايت** (−9.6KB).
+4. `npm run build` + deploy `hosting:app` → تحقق حي: `index-D8C8CiYD.css` بلا `public-landing-page`/`public-header`/`public-mobile-nav`، مع بقاء `public-auth-screen` ✓
+5. git: commit `a72b6c5` (1 ملف، −142) مدفوع بعد rebase على `86eea1b` (CI Smart-publish جديد). الـ repo متزامن.
+
+### تنبيهات
+- `public-theme-light` يُستخدم كـ toggle عبر `usePublicTheme.ts` و`theme-toggle.js` في الـ static — لا يُحذف.
+- معايير الـ `PUBLIC_HOME`/`InfoCenter` بلا `public-auth-screen` — هذه الكتل خاصة بشاشة الدخول فقط.
+- باقي تنبيهات Session 20 كما هي (www، Search Console، YouTube tokens).

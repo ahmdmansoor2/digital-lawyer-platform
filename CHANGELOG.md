@@ -4,6 +4,24 @@
 
 ---
 
+## [v2.21.1] — 2026-08-15 (🧹 تنظيف CSS الميت بعد الشريط الجديد)
+
+### ما تم
+- **`src/index.css`** — حذف كتل CSS الميتة (−142 سطراً):
+  - كتلة `.public-theme-light .public-landing-page` كاملة (1812-1881) — صفحة الهبوط حُذفت في v2.20.
+  - كتل `.public-header` / `.public-mobile-nav` / `.public-landing-page .public-header` (1952-2021) — الهيدر القديم.
+- أُبقيت كتل `.public-auth-screen` و`.public-site` (لا تزال مستخدمة في `FirebaseLoginScreen.tsx:279`).
+- الباندل CSS انخفض من 235544 إلى **225950 بايت** (−9.6KB).
+
+### التحقق
+- `npm run build` نجح + `npx firebase deploy --only hosting:app`.
+- حي: `index-D8C8CiYD.css` (225950 بايت) بلا `public-landing-page`/`public-header`/`public-mobile-nav`، مع بقاء `public-auth-screen` ✓
+
+### git
+- commit `a72b6c5` (1 ملف، −142).
+
+---
+
 ## [v2.21.0] — 2026-08-14 (🎨 الشريط العلوي الزجاجي الموحّد الجديد — كل صفحات الموقع)
 
 ### القرار
