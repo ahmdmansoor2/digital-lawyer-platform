@@ -182,6 +182,28 @@ function detectDocType(ext, fileName, branchId) {
   return 'وثيقة قانونية';
 }
 
+// ── خريطة الكتب المتاحة للتحميل المباشر والقراءة أونلاين ──
+const STAGED_BOOKS_MAP = {
+  '1_ الجزء الأول \' مصادر الإلتزام \' .pdf': { url: '/books/sanhouri-waseet-vol-1-sources-of-obligation.pdf', isMaster: true },
+  '2_ الجزء الثاني \' الإثبات و أثار الإلتزام \' .pdf': { url: '/books/sanhouri-waseet-vol-2-evidence-and-effects.pdf', isMaster: true },
+  '3_الجزء الثالث  الأوصاف  الحوالة  الإنقضاء \' .pdf': { url: '/books/sanhouri-waseet-vol-3-assignment-and-extinction.pdf', isMaster: true },
+  '4_الجزء الرابع عقود الملكية  البيع لمقايضة\'  .pdf': { url: '/books/sanhouri-waseet-vol-4-sale-and-barter-contracts.pdf', isMaster: true },
+  '5_ الجزء الخامس \' باقي العقود \' .pdf': { url: '/books/sanhouri-waseet-vol-5-remaining-contracts.pdf', isMaster: true },
+  '6_ الجزء السادس (1) العارية والايجار .pdf': { url: '/books/sanhouri-waseet-vol-6-1-lease-and-loan-for-use.pdf', isMaster: true },
+  '8_ الجزء الثامن \' حق الملكية \' .pdf': { url: '/books/sanhouri-waseet-vol-8-ownership-rights.pdf', isMaster: true },
+  '10_ الجزء العاشر \' تأمينات عينية و شخصية \' .pdf': { url: '/books/sanhouri-waseet-vol-10-collaterals-and-guarantees.pdf', isMaster: true },
+  'إجراءات جنائية. رؤوف عبيد.pdf': { url: '/books/raouf-obeid-criminal-procedures.pdf', isMaster: true },
+  'مرصفاوي اصول قانون الاجراءات الجنائية 1.pdf': { url: '/books/marsafawi-criminal-procedures-vol-1.pdf', isMaster: true },
+  'التنفيذ احمد مليجي 02.pdf': { url: '/books/meleigy-forced-execution-vol-2.pdf', isMaster: true },
+  'قضاء الامور المستعجلة على راتب.pdf': { url: '/books/ali-rateb-summary-judiciary.pdf', isMaster: true },
+  'المستحدث من المبادئ الصادرة من دوائر الإيجارات بمحكمة النقض 2013-2014.pdf': { url: '/books/cassation-leases-principles-2013-2014.pdf', isMaster: true },
+  'المستحدث من المبادئ الصادرة من الدوائر الجنائية 2011 - 2012.pdf': { url: '/books/cassation-criminal-principles-2011-2012.pdf', isMaster: true }
+};
+
+function detectStagedUrl(filename) {
+  return STAGED_BOOKS_MAP[filename] || null;
+}
+
 console.log('🚀 بدء الفحص الشامل وفهرسة المكتبة القانونية...');
 console.time('indexing');
 
@@ -214,6 +236,8 @@ function scanRecursive(dir) {
           const title = cleanTitle(entry.name);
           const docType = detectDocType(ext, entry.name, branch.id);
 
+          const staged = detectStagedUrl(entry.name);
+
           const item = {
             id: `lib-${totalFiles + 1}`,
             title,
@@ -229,6 +253,9 @@ function scanRecursive(dir) {
             isDownloadable: true,
             isPdf: ext === '.pdf',
             isWord: ext === '.doc' || ext === '.docx',
+            downloadUrl: staged ? staged.url : null,
+            hasDirectPdf: !!staged,
+            isMasterBook: staged ? staged.isMaster : false
           };
 
           allItems.push(item);

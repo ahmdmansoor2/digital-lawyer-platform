@@ -523,12 +523,46 @@
         var b = JSON.parse(decodeURIComponent(bookJsonStr));
         modalBookTitle.innerText = b.title;
         modalBookHead.innerText = b.title;
-        document.getElementById('modalBookDesc').innerText = 'المؤلف: ' + b.author + ' | الفرع: ' + b.branchName + ' | الحجم: ' + b.sizeFormatted + ' (' + b.ext.toUpperCase() + ')';
-        // الرابط المباشر
-        btnDownload.href = '/data/download?file=' + encodeURIComponent(b.relPath);
-        btnDownload.setAttribute('download', b.originalName);
+        var desc = document.getElementById('modalBookDesc');
+        var viewerBox = document.getElementById('viewerPlaceholder');
+
+        if (b.downloadUrl) {
+          desc.innerHTML = '<strong>المؤلف:</strong> ' + b.author + ' | <strong>الفرع:</strong> ' + b.branchName + ' | <strong>الحجم:</strong> ' + b.sizeFormatted + '<br/><span style="color:#6ee7b7; font-weight:800;">✅ متاح للقراءة والتحميل المباشر مجاناً 100%</span>';
+          btnDownload.href = b.downloadUrl;
+          btnDownload.setAttribute('download', b.title + '.' + b.ext);
+          btnDownload.style.display = 'inline-flex';
+          btnDownload.innerHTML = '📥 بدء تحميل الكتاب (' + b.sizeFormatted + ')';
+
+          // تضمين عارض PDF التفاعلي
+          viewerBox.innerHTML = 
+            '<div style="width:100%; display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:10px; flex-wrap:wrap;">' +
+              '<span style="font-size:14px; font-weight:800; color:#fff;">📖 ' + b.title + '</span>' +
+              '<a href="' + b.downloadUrl + '" download class="btn-action btn-download" style="padding:6px 16px; font-size:12px;">📥 تحميل مباشر (' + b.sizeFormatted + ')</a>' +
+            '</div>' +
+            '<iframe src="' + b.downloadUrl + '#toolbar=1" style="width:100%; height:68vh; border:1px solid var(--border); border-radius:14px; background:#1e293b;"></iframe>';
+        } else {
+          desc.innerHTML = '<strong>المؤلف:</strong> ' + b.author + ' | <strong>الفرع:</strong> ' + b.branchName + ' | <strong>الحجم:</strong> ' + b.sizeFormatted + ' (' + b.ext.toUpperCase() + ')<br/><span style="color:#a5b4fc; font-weight:700;">📂 هذا المرجع مفهرس ومتاح بالكامل على تطبيق الديسكتوب المحلي أو بطلب نسخة رقمية فورية.</span>';
+          btnDownload.href = 'mailto:ahmdmansoor222@gmail.com?subject=طلب مرجع: ' + encodeURIComponent(b.title);
+          btnDownload.removeAttribute('download');
+          btnDownload.style.display = 'inline-flex';
+          btnDownload.innerHTML = '📩 طلب تحميل هذا المرجع عبر البريد';
+
+          viewerBox.innerHTML = 
+            '<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; text-align:center; color:var(--muted); gap:16px; padding:40px 20px;">' +
+              '<span style="font-size:54px;">📚</span>' +
+              '<h3 style="color:#fff; font-size:18px;">' + b.title + '</h3>' +
+              '<p style="max-width:550px; line-height:1.8; font-size:14px;">' + desc.innerHTML + '</p>' +
+              '<div style="display:flex; gap:12px; margin-top:10px; flex-wrap:wrap; justify-content:center;">' +
+                '<a href="mailto:ahmdmansoor222@gmail.com?subject=طلب مرجع: ' + encodeURIComponent(b.title) + '" class="btn-action btn-copy" style="padding:10px 22px;">📩 إرسال طلب نسخة رقمية</a>' +
+                '<a href="/" class="btn-action btn-print" style="padding:10px 22px;">💻 فتح في تطبيق الديسكتوب</a>' +
+              '</div>' +
+            '</div>';
+        }
+
         modal.classList.add('open');
-      } catch(e) {}
+      } catch(e) {
+        console.error('Modal error:', e);
+      }
     };
 
     document.getElementById('modalBookClose').onclick = function() { modal.classList.remove('open'); };
