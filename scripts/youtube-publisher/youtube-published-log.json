@@ -857,6 +857,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1019510701083766",
       "publishedAt": "2026-08-15T15:37:43.747Z"
+    },
+    {
+      "topicId": "trend-official-holidays-overtime-labor-law",
+      "kind": "short",
+      "videoId": "ChNvxKj-iEo",
+      "url": "https://www.youtube.com/watch?v=ChNvxKj-iEo",
+      "fbPermalink": "https://www.facebook.com/reel/2939254133079486",
+      "publishedAt": "2026-08-15T18:47:15.901Z"
+    },
+    {
+      "topicId": "trend-official-holidays-overtime-labor-law",
+      "title": "حقوق العامل في الإجازات الرسمية والأعياد والعمل الإضافي وفق قانون العمل المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-official-holidays-overtime-labor-law-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "tqiHmAtO_BM",
+      "url": "https://www.youtube.com/watch?v=tqiHmAtO_BM",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2939254133079486",
+      "publishedAt": "2026-08-15T18:48:12.131Z"
     }
   ]
 }

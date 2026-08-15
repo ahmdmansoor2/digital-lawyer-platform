@@ -1098,6 +1098,27 @@
       "duration": "1د 9ث",
       "size": 27448753,
       "publishedAt": "2026-08-15T15:36:27.635Z"
+    },
+    {
+      "topicId": "trend-official-holidays-overtime-labor-law",
+      "title": "حقوق العامل في الإجازات الرسمية والأعياد والعمل الإضافي وفق قانون العمل المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون العمل",
+        "#أجر الإجازات الرسمية",
+        "#العمل الإضافي قانون العمل"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-official-holidays-overtime-labor-law.mp4",
+      "videoId": "2939254133079486",
+      "permalink": "https://www.facebook.com/reel/2939254133079486",
+      "source": "trending-topics.json",
+      "duration": "55ث",
+      "size": 17055457,
+      "publishedAt": "2026-08-15T18:47:14.070Z"
     }
   ]
 }
