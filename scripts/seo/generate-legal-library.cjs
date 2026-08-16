@@ -918,11 +918,12 @@ async function main() {
     }
   }
 
-  if (generated || skipped || !fs.existsSync(INDEX_FILE)) {
-    const indexHtml = buildIndexHtml(manifest);
-    fs.writeFileSync(INDEX_FILE, indexHtml, 'utf8');
-    console.log(`\n✅ إعادة بناء ${INDEX_FILE}`);
-  }
+  // تم تجميد وحماية public/legal-library.html نهائياً لمنع استبدال واجهة القراءة والكتالوج المعتمد
+  // if (generated || skipped || !fs.existsSync(INDEX_FILE)) {
+  //   const indexHtml = buildIndexHtml(manifest);
+  //   fs.writeFileSync(INDEX_FILE, indexHtml, 'utf8');
+  //   console.log(`\n✅ إعادة بناء ${INDEX_FILE}`);
+  // }
 
   const topicsCount = listHtml(TOPICS_DIR).length;
   const blogsCount = listHtml(BLOG_DIR).length;

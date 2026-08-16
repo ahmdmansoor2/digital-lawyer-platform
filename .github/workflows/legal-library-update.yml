@@ -46,8 +46,8 @@ jobs:
         run: |
           git config user.name  "Legal Library Bot 📚"
           git config user.email "bot@justice-91571.web.app"
-          git add public/legal-library.html public/legal-library-topics/ scripts/seo/legal-library-topics.json public/sitemap.xml public/sitemap.html public/search-index.json
-          git diff --staged --quiet || git commit -m "📚 Legal-library: $(date +'%Y-%m-%d %H:%M') — أدلة قانونية عبر Gemini + إحصاءات حقيقية"
+          git add public/legal-library-topics/ scripts/seo/legal-library-topics.json public/sitemap.xml public/sitemap.html public/search-index.json
+          git diff --staged --quiet || git commit -m "📚 Legal-library-topics: $(date +'%Y-%m-%d %H:%M') — أدلة قانونية عبر Gemini"
           git pull --rebase origin main 2>/dev/null || true
           git push
 

@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>المكتبة القانونية الشاملة (+10,300 كتاب وموسوعة فقه وقضاء) | منصة المحامي الرقمية</title>
-  <meta name="description" content="أضخم مكتبة قانونية مصرية مجانية: موسوعة الوسيط للسنهوري كاملة، مراجع الفقه الجنائي والمدني لمليجي والمرصفاوي، أحكام النقض، وأكثر من 10,300 كتاب ومرجع متاح للمطالعة والقراءة الفورية والتحميل المباشر مجاناً." />
+  <title>المكتبة القانونية الشاملة (+8,500 كتاب وموسوعة فقه وقضاء) | منصة المحامي الرقمية</title>
+  <meta name="description" content="أضخم مكتبة قانونية مصرية مجانية: موسوعة الوسيط للسنهوري كاملة، مراجع الفقه الجنائي والمدني لمليجي والمرصفاوي، أحكام النقض، وأكثر من 8,500 كتاب ومرجع متاح للمطالعة والقراءة الفورية والتحميل المباشر مجاناً." />
   <meta name="keywords" content="المكتبة القانونية, السنهوري, الوسيط في شرح القانون المدني, احمد مليجي, المرصفاوي, رؤوف عبيد, احكام النقض, قراءة كتب قانون, تحميل كتب قانونية, قانون مدني, قانون جنائي, مجلس الدولة, صيغ عقود" />
   <meta name="author" content="منصة المحامي الرقمية" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://mohamidigital.online/legal-library.html" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="المكتبة القانونية الشاملة (+10,300 كتاب وموسوعة فقه وقضاء)" />
+  <meta property="og:title" content="المكتبة القانونية الشاملة (+8,500 كتاب وموسوعة فقه وقضاء)" />
   <meta property="og:description" content="مطالعة وقراءة أمهات الكتب والموسوعات القانونية المصرية أونلاين مع إمكانية التحميل المباشر مجاناً 100%." />
   <meta property="og:url" content="https://mohamidigital.online/legal-library.html" />
   <meta property="og:site_name" content="منصة المحامي الرقمية" />
@@ -112,6 +112,7 @@
     /* Reader Modal */
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.88); backdrop-filter: blur(10px); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 14px; }
     .modal-overlay.open { display: flex; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .modal-box { background: #0f172a; border: 1px solid rgba(99,102,241,0.3); border-radius: 20px; width: 100%; max-width: 1000px; height: 92vh; display: flex; flex-direction: column; box-shadow: 0 25px 60px rgba(0,0,0,0.7); overflow: hidden; }
     .modal-header { padding: 14px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: rgba(30,41,59,0.5); }
     .modal-title { font-size: 16px; font-weight: 900; color: #fff; }
@@ -248,7 +249,7 @@
             <p class="master-desc">المرجع الفقهي الأكبر في القانون المدني المصري والعربي — العقد، الإرادة المنفردة، العمل غير المشروع، والإثراء بلا سبب.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/sanhouri-waseet-vol-1-sources-of-obligation.pdf', '%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D9%88%D8%B3%D9%8A%D8%B7%20%D9%81%D9%8A%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%A3%D9%88%D9%84%20(%D9%85%D8%B5%D8%A7%D8%AF%D8%B1%20%D8%A7%D9%84%D8%A7%D9%84%D8%AA%D8%B2%D8%A7%D9%85)', '%D8%AF.%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%B1%D8%B2%D8%A7%D9%82%20%D8%A7%D9%84%D8%B3%D9%86%D9%87%D9%88%D8%B1%D9%8A', '35.3 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/sanhouri-waseet-vol-1-sources-of-obligation.pdf" download="موسوعة الوسيط في شرح القانون المدني — الجزء الأول (مصادر الالتزام).pdf" class="btn-dl-now">📥 تحميل (35.3 MB)</a>
+              <button onclick="triggerPdfDownload('/books/sanhouri-waseet-vol-1-sources-of-obligation.pdf', 'موسوعة الوسيط في شرح القانون المدني — الجزء الأول (مصادر الالتزام)')" class="btn-dl-now">📥 تحميل (35.3 MB)</button>
             </div>
           </div>
         
@@ -259,7 +260,7 @@
             <p class="master-desc">قواعد الإثبات، التنفيذ العيني، بطريق التعويض، ووسائل ضمان حقوق الدائنين والوفاء بمقابل.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/sanhouri-waseet-vol-2-evidence-and-effects.pdf', '%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D9%88%D8%B3%D9%8A%D8%B7%20%D9%81%D9%8A%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A%20(%D8%A7%D9%84%D8%A5%D8%AB%D8%A8%D8%A7%D8%AA%20%D9%88%D8%A2%D8%AB%D8%A7%D8%B1%20%D8%A7%D9%84%D8%A7%D9%84%D8%AA%D8%B2%D8%A7%D9%85)', '%D8%AF.%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%B1%D8%B2%D8%A7%D9%82%20%D8%A7%D9%84%D8%B3%D9%86%D9%87%D9%88%D8%B1%D9%8A', '44.8 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/sanhouri-waseet-vol-2-evidence-and-effects.pdf" download="موسوعة الوسيط في شرح القانون المدني — الجزء الثاني (الإثبات وآثار الالتزام).pdf" class="btn-dl-now">📥 تحميل (44.8 MB)</a>
+              <button onclick="triggerPdfDownload('/books/sanhouri-waseet-vol-2-evidence-and-effects.pdf', 'موسوعة الوسيط في شرح القانون المدني — الجزء الثاني (الإثبات وآثار الالتزام)')" class="btn-dl-now">📥 تحميل (44.8 MB)</button>
             </div>
           </div>
         
@@ -270,7 +271,7 @@
             <p class="master-desc">الشرط والأجل، تعدد محل الالتزام، التضامن، حوالة الحق وحوالة الدين، وانقضاء الالتزام.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/sanhouri-waseet-vol-3-assignment-and-extinction.pdf', '%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D9%88%D8%B3%D9%8A%D8%B7%20%D9%81%D9%8A%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB%20(%D8%A7%D9%84%D8%A3%D9%88%D8%B5%D8%A7%D9%81%20%D9%88%D8%A7%D9%84%D8%AD%D9%88%D8%A7%D9%84%D8%A9%20%D9%88%D8%A7%D9%84%D8%A7%D9%86%D9%82%D8%B6%D8%A7%D8%A1)', '%D8%AF.%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%B1%D8%B2%D8%A7%D9%82%20%D8%A7%D9%84%D8%B3%D9%86%D9%87%D9%88%D8%B1%D9%8A', '40.6 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/sanhouri-waseet-vol-3-assignment-and-extinction.pdf" download="موسوعة الوسيط في شرح القانون المدني — الجزء الثالث (الأوصاف والحوالة والانقضاء).pdf" class="btn-dl-now">📥 تحميل (40.6 MB)</a>
+              <button onclick="triggerPdfDownload('/books/sanhouri-waseet-vol-3-assignment-and-extinction.pdf', 'موسوعة الوسيط في شرح القانون المدني — الجزء الثالث (الأوصاف والحوالة والانقضاء)')" class="btn-dl-now">📥 تحميل (40.6 MB)</button>
             </div>
           </div>
         
@@ -281,7 +282,7 @@
             <p class="master-desc">أركان عقد البيع، التزامات البائع والمشتري، دعوى الضمان، والمقايضة في التشريع المصري.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/sanhouri-waseet-vol-4-sale-and-barter-contracts.pdf', '%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D9%88%D8%B3%D9%8A%D8%B7%20%D9%81%D9%8A%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%B1%D8%A7%D8%A8%D8%B9%20(%D8%B9%D9%82%D9%88%D8%AF%20%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9%3A%20%D8%A7%D9%84%D8%A8%D9%8A%D8%B9%20%D9%88%D8%A7%D9%84%D9%85%D9%82%D8%A7%D9%8A%D8%B6%D8%A9)', '%D8%AF.%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%B1%D8%B2%D8%A7%D9%82%20%D8%A7%D9%84%D8%B3%D9%86%D9%87%D9%88%D8%B1%D9%8A', '25.5 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/sanhouri-waseet-vol-4-sale-and-barter-contracts.pdf" download="موسوعة الوسيط في شرح القانون المدني — الجزء الرابع (عقود الملكية: البيع والمقايضة).pdf" class="btn-dl-now">📥 تحميل (25.5 MB)</a>
+              <button onclick="triggerPdfDownload('/books/sanhouri-waseet-vol-4-sale-and-barter-contracts.pdf', 'موسوعة الوسيط في شرح القانون المدني — الجزء الرابع (عقود الملكية: البيع والمقايضة)')" class="btn-dl-now">📥 تحميل (25.5 MB)</button>
             </div>
           </div>
         
@@ -292,7 +293,7 @@
             <p class="master-desc">الشرح الشامل لأحكام الإيجار، التزامات المؤجر والمستأجر، انتهاء عقد الإيجار، وعقد العارية.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/sanhouri-waseet-vol-6-1-lease-and-loan-for-use.pdf', '%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D9%88%D8%B3%D9%8A%D8%B7%20%D9%81%D9%8A%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%B3%D8%A7%D8%AF%D8%B3%20(%D8%A7%D9%84%D8%B9%D8%A7%D8%B1%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1)', '%D8%AF.%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%B1%D8%B2%D8%A7%D9%82%20%D8%A7%D9%84%D8%B3%D9%86%D9%87%D9%88%D8%B1%D9%8A', '34.0 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/sanhouri-waseet-vol-6-1-lease-and-loan-for-use.pdf" download="موسوعة الوسيط في شرح القانون المدني — الجزء السادس (العارية والإيجار).pdf" class="btn-dl-now">📥 تحميل (34.0 MB)</a>
+              <button onclick="triggerPdfDownload('/books/sanhouri-waseet-vol-6-1-lease-and-loan-for-use.pdf', 'موسوعة الوسيط في شرح القانون المدني — الجزء السادس (العارية والإيجار)')" class="btn-dl-now">📥 تحميل (34.0 MB)</button>
             </div>
           </div>
         
@@ -303,7 +304,7 @@
             <p class="master-desc">الرهن الرسمي، حق الاختصاص، الرهن الحيازي، حقوق الامتياز، والكفالة الشخصية.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/sanhouri-waseet-vol-10-collaterals-and-guarantees.pdf', '%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D9%88%D8%B3%D9%8A%D8%B7%20%D9%81%D9%8A%20%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%B9%D8%A7%D8%B4%D8%B1%20(%D8%A7%D9%84%D8%AA%D8%A3%D9%85%D9%8A%D9%86%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B9%D9%8A%D9%86%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%B4%D8%AE%D8%B5%D9%8A%D8%A9)', '%D8%AF.%20%D8%B9%D8%A8%D8%AF%20%D8%A7%D9%84%D8%B1%D8%B2%D8%A7%D9%82%20%D8%A7%D9%84%D8%B3%D9%86%D9%87%D9%88%D8%B1%D9%8A', '27.3 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/sanhouri-waseet-vol-10-collaterals-and-guarantees.pdf" download="موسوعة الوسيط في شرح القانون المدني — الجزء العاشر (التأمينات العينية والشخصية).pdf" class="btn-dl-now">📥 تحميل (27.3 MB)</a>
+              <button onclick="triggerPdfDownload('/books/sanhouri-waseet-vol-10-collaterals-and-guarantees.pdf', 'موسوعة الوسيط في شرح القانون المدني — الجزء العاشر (التأمينات العينية والشخصية)')" class="btn-dl-now">📥 تحميل (27.3 MB)</button>
             </div>
           </div>
         
@@ -314,7 +315,7 @@
             <p class="master-desc">المرجع الكلاسيكي في شرح الدعوى الجنائية، جمع الاستدلالات، التحقيق الابتدائي، والمحاكمة الجنائية.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/raouf-obeid-criminal-procedures.pdf', '%D9%85%D8%A8%D8%A7%D8%AF%D8%A6%20%D8%A7%D9%84%D8%A5%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AC%D9%86%D8%A7%D8%A6%D9%8A%D8%A9%20%D9%81%D9%8A%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A', '%D8%AF.%20%D8%B1%D8%A4%D9%88%D9%81%20%D8%B9%D8%A8%D9%8A%D8%AF', '18.1 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/raouf-obeid-criminal-procedures.pdf" download="مبادئ الإجراءات الجنائية في القانون المصري.pdf" class="btn-dl-now">📥 تحميل (18.1 MB)</a>
+              <button onclick="triggerPdfDownload('/books/raouf-obeid-criminal-procedures.pdf', 'مبادئ الإجراءات الجنائية في القانون المصري')" class="btn-dl-now">📥 تحميل (18.1 MB)</button>
             </div>
           </div>
         
@@ -325,7 +326,7 @@
             <p class="master-desc">شرح متعمق للنظرية العامة للإجراءات الجنائية، البطلان، الضبطية القضائية، وأوامر الحبس الاحتياطي.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/marsafawi-criminal-procedures-vol-1.pdf', '%D8%A3%D8%B5%D9%88%D9%84%20%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D8%A5%D8%AC%D8%B1%D8%A7%D8%A1%D8%A7%D8%AA%20%D8%A7%D9%84%D8%AC%D9%86%D8%A7%D8%A6%D9%8A%D8%A9%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%A3%D9%88%D9%84', '%D8%AF.%20%D8%AD%D8%B3%D9%86%20%D8%B5%D8%A7%D8%AF%D9%82%20%D8%A7%D9%84%D9%85%D8%B1%D8%B5%D9%81%D8%A7%D9%88%D9%8A', '50.2 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/marsafawi-criminal-procedures-vol-1.pdf" download="أصول قانون الإجراءات الجنائية — الجزء الأول.pdf" class="btn-dl-now">📥 تحميل (50.2 MB)</a>
+              <button onclick="triggerPdfDownload('/books/marsafawi-criminal-procedures-vol-1.pdf', 'أصول قانون الإجراءات الجنائية — الجزء الأول')" class="btn-dl-now">📥 تحميل (50.2 MB)</button>
             </div>
           </div>
         
@@ -336,7 +337,7 @@
             <p class="master-desc">إجراءات الحجز التنفيذي، حجز ما للمدين لدى الغير، بيع المنقولات والعقارات، وإشكالات التنفيذ الوقتية والموضوعية.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/meleigy-forced-execution-vol-2.pdf', '%D8%A7%D9%84%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A7%D9%84%D8%B4%D8%A7%D9%85%D9%84%D8%A9%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D8%A7%D9%84%D8%AC%D8%A8%D8%B1%D9%8A%20%E2%80%94%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A', '%D8%AF.%20%D8%A3%D8%AD%D9%85%D8%AF%20%D9%85%D9%84%D9%8A%D8%AC%D9%8A', '51.0 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/meleigy-forced-execution-vol-2.pdf" download="الموسوعة الشاملة في التنفيذ الجبري — الجزء الثاني.pdf" class="btn-dl-now">📥 تحميل (51.0 MB)</a>
+              <button onclick="triggerPdfDownload('/books/meleigy-forced-execution-vol-2.pdf', 'الموسوعة الشاملة في التنفيذ الجبري — الجزء الثاني')" class="btn-dl-now">📥 تحميل (51.0 MB)</button>
             </div>
           </div>
         
@@ -347,7 +348,7 @@
             <p class="master-desc">شروط اختصاص قاضي الأمور المستعجلة، عدم المساس بأصل الحق، وتطبيقات الحراسة القضائية ووقف الأعمال الجديدة.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/ali-rateb-summary-judiciary.pdf', '%D9%82%D8%B6%D8%A7%D8%A1%20%D8%A7%D9%84%D8%A3%D9%85%D9%88%D8%B1%20%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B9%D8%AC%D9%84%D8%A9%20%D9%81%D9%8A%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A', '%D8%AF.%20%D8%B9%D9%84%D9%8A%20%D8%B1%D8%A7%D8%AA%D8%A8', '7.4 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/ali-rateb-summary-judiciary.pdf" download="قضاء الأمور المستعجلة في القانون المصري.pdf" class="btn-dl-now">📥 تحميل (7.4 MB)</a>
+              <button onclick="triggerPdfDownload('/books/ali-rateb-summary-judiciary.pdf', 'قضاء الأمور المستعجلة في القانون المصري')" class="btn-dl-now">📥 تحميل (7.4 MB)</button>
             </div>
           </div>
         
@@ -358,7 +359,7 @@
             <p class="master-desc">أحدث المبادئ القضائية المستقرة لدوائر الإيجارات في الامتداد القانوني، الهدم الكلي، والإخلاء لعدم سداد الأجرة.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/cassation-leases-principles-2013-2014.pdf', '%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AD%D8%AF%D8%AB%20%D9%85%D9%86%20%D9%85%D8%A8%D8%A7%D8%AF%D8%A6%20%D8%AF%D9%88%D8%A7%D8%A6%D8%B1%20%D8%A7%D9%84%D8%A5%D9%8A%D8%AC%D8%A7%D8%B1%D8%A7%D8%AA%20%D8%A8%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6', '%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9', '0.9 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/cassation-leases-principles-2013-2014.pdf" download="المستحدث من مبادئ دوائر الإيجارات بمحكمة النقض.pdf" class="btn-dl-now">📥 تحميل (0.9 MB)</a>
+              <button onclick="triggerPdfDownload('/books/cassation-leases-principles-2013-2014.pdf', 'المستحدث من مبادئ دوائر الإيجارات بمحكمة النقض')" class="btn-dl-now">📥 تحميل (0.9 MB)</button>
             </div>
           </div>
         
@@ -369,7 +370,7 @@
             <p class="master-desc">مبادئ الدوائر الجنائية في إجراءات القبض والتفتيش، تسبيب الأحكام، القصد الجنائي، والقصور في التسبيب.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/cassation-criminal-principles-2011-2012.pdf', '%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AD%D8%AF%D8%AB%20%D9%85%D9%86%20%D9%85%D8%A8%D8%A7%D8%AF%D8%A6%20%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A6%D8%B1%20%D8%A7%D9%84%D8%AC%D9%86%D8%A7%D8%A6%D9%8A%D8%A9%20%D8%A8%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6', '%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9', '3.5 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/cassation-criminal-principles-2011-2012.pdf" download="المستحدث من مبادئ الدوائر الجنائية بمحكمة النقض.pdf" class="btn-dl-now">📥 تحميل (3.5 MB)</a>
+              <button onclick="triggerPdfDownload('/books/cassation-criminal-principles-2011-2012.pdf', 'المستحدث من مبادئ الدوائر الجنائية بمحكمة النقض')" class="btn-dl-now">📥 تحميل (3.5 MB)</button>
             </div>
           </div>
         
@@ -380,7 +381,7 @@
             <p class="master-desc">موسوعة المبادئ المستقرة لمحكمة النقض في الإثبات بالكتابة، شهادة الشهود، القرائن، واليمين الحاسمة.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/cassation-evidence-principles-10-years.pdf', '%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AD%D8%AF%D8%AB%20%D9%85%D9%86%20%D9%85%D8%A8%D8%A7%D8%AF%D8%A6%20%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6%20%D9%81%D9%8A%20%D9%85%D9%88%D8%A7%D8%AF%20%D8%A7%D9%84%D8%A5%D8%AB%D8%A8%D8%A7%D8%AA%20(%D8%B9%D8%B4%D8%B1%20%D8%B3%D9%86%D9%88%D8%A7%D8%AA)', '%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9', '1.3 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/cassation-evidence-principles-10-years.pdf" download="المستحدث من مبادئ محكمة النقض في مواد الإثبات (عشر سنوات).pdf" class="btn-dl-now">📥 تحميل (1.3 MB)</a>
+              <button onclick="triggerPdfDownload('/books/cassation-evidence-principles-10-years.pdf', 'المستحدث من مبادئ محكمة النقض في مواد الإثبات (عشر سنوات)')" class="btn-dl-now">📥 تحميل (1.3 MB)</button>
             </div>
           </div>
         
@@ -391,7 +392,7 @@
             <p class="master-desc">المبادئ الكبرى في الاختصاص القضائي، صحف الدعاوى، المواعيد، الدفوع الشكلية والموضوعية، وطرق الطعن.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/cassation-pleadings-principles-10-years.pdf', '%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AD%D8%AF%D8%AB%20%D9%85%D9%86%20%D9%85%D8%A8%D8%A7%D8%AF%D8%A6%20%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6%20%D9%81%D9%8A%20%D9%85%D9%88%D8%A7%D8%AF%20%D8%A7%D9%84%D9%85%D8%B1%D8%A7%D9%81%D8%B9%D8%A7%D8%AA%20(%D8%B9%D8%B4%D8%B1%20%D8%B3%D9%86%D9%88%D8%A7%D8%AA)', '%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9', '3.2 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/cassation-pleadings-principles-10-years.pdf" download="المستحدث من مبادئ محكمة النقض في مواد المرافعات (عشر سنوات).pdf" class="btn-dl-now">📥 تحميل (3.2 MB)</a>
+              <button onclick="triggerPdfDownload('/books/cassation-pleadings-principles-10-years.pdf', 'المستحدث من مبادئ محكمة النقض في مواد المرافعات (عشر سنوات)')" class="btn-dl-now">📥 تحميل (3.2 MB)</button>
             </div>
           </div>
         
@@ -402,7 +403,7 @@
             <p class="master-desc">مبادئ النقض في دعاوى النفقات، الحضانة، الخلع، الطلاق للضرر، وثبوت النسب والتركات.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/cassation-personal-status-2010-2011.pdf', '%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AD%D8%AF%D8%AB%20%D9%85%D9%86%20%D9%85%D8%A8%D8%A7%D8%AF%D8%A6%20%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A3%D8%AD%D9%88%D8%A7%D9%84%20%D8%A7%D9%84%D8%B4%D8%AE%D8%B5%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D8%A3%D8%B3%D8%B1%D8%A9', '%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9', '0.9 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/cassation-personal-status-2010-2011.pdf" download="المستحدث من مبادئ محكمة النقض في الأحوال الشخصية والأسرة.pdf" class="btn-dl-now">📥 تحميل (0.9 MB)</a>
+              <button onclick="triggerPdfDownload('/books/cassation-personal-status-2010-2011.pdf', 'المستحدث من مبادئ محكمة النقض في الأحوال الشخصية والأسرة')" class="btn-dl-now">📥 تحميل (0.9 MB)</button>
             </div>
           </div>
         
@@ -413,7 +414,7 @@
             <p class="master-desc">أهم الدفوع الجنائية وأحكام البراءة الصادرة في بطلان القبض والتفتيش، الشك، وانتفاء أركان الجريمة.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/cassation-criminal-acquittals-compendium.pdf', '%D9%85%D9%88%D8%B3%D9%88%D8%B9%D8%A9%20%D8%A3%D8%AD%D9%83%D8%A7%D9%85%20%D8%A7%D9%84%D8%A8%D8%B1%D8%A7%D8%A1%D8%A9%20%D8%A7%D9%84%D8%B5%D8%A7%D8%AF%D8%B1%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%AF%D9%88%D8%A7%D8%A6%D8%B1%20%D8%A7%D9%84%D8%AC%D9%86%D8%A7%D8%A6%D9%8A%D8%A9%20%D8%A8%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6', '%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9', '7.8 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/cassation-criminal-acquittals-compendium.pdf" download="موسوعة أحكام البراءة الصادرة من الدوائر الجنائية بمحكمة النقض.pdf" class="btn-dl-now">📥 تحميل (7.8 MB)</a>
+              <button onclick="triggerPdfDownload('/books/cassation-criminal-acquittals-compendium.pdf', 'موسوعة أحكام البراءة الصادرة من الدوائر الجنائية بمحكمة النقض')" class="btn-dl-now">📥 تحميل (7.8 MB)</button>
             </div>
           </div>
         
@@ -424,7 +425,7 @@
             <p class="master-desc">مبادئ جرائم النقد، الشركات، غسل الأموال، وسوق رأس المال وحماية المنافسة.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/cassation-economic-crimes-principles.pdf', '%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%AF%D8%A6%20%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86%D9%8A%D8%A9%20%D9%84%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AC%D8%B1%D8%A7%D8%A6%D9%85%20%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A%D8%A9%20%D9%88%D8%BA%D8%B3%D9%84%20%D8%A7%D9%84%D8%A3%D9%85%D9%88%D8%A7%D9%84', '%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9', '2.5 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/cassation-economic-crimes-principles.pdf" download="المبادئ القانونية لمحكمة النقض في الجرائم الاقتصادية وغسل الأموال.pdf" class="btn-dl-now">📥 تحميل (2.5 MB)</a>
+              <button onclick="triggerPdfDownload('/books/cassation-economic-crimes-principles.pdf', 'المبادئ القانونية لمحكمة النقض في الجرائم الاقتصادية وغسل الأموال')" class="btn-dl-now">📥 تحميل (2.5 MB)</button>
             </div>
           </div>
         
@@ -435,7 +436,7 @@
             <p class="master-desc">الأحكام التاريخية الفاصلة الصادرة عن الهيئة العامة لتوحيد المبادئ القضائية والعدول عن الأحكام السابقة.</p>
             <div class="master-footer">
               <button class="btn-read-now" onclick="openDirectReader('/books/cassation-general-assembly-civil-criminal-2016.pdf', '%D8%A3%D8%AD%D9%83%D8%A7%D9%85%20%D8%A7%D9%84%D9%87%D9%8A%D8%A6%D8%A9%20%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9%20%D9%84%D9%84%D9%85%D9%88%D8%A7%D8%AF%20%D8%A7%D9%84%D8%AC%D9%86%D8%A7%D8%A6%D9%8A%D8%A9%20%D9%88%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A%D8%A9%20%D8%A8%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6', '%D8%A7%D9%84%D9%87%D9%8A%D8%A6%D8%A9%20%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9%20%D9%84%D9%85%D8%AD%D9%83%D9%85%D8%A9%20%D8%A7%D9%84%D9%86%D9%82%D8%B6', '4.3 MB')">📖 قراءة وتصفح الآن</button>
-              <a href="/books/cassation-general-assembly-civil-criminal-2016.pdf" download="أحكام الهيئة العامة للمواد الجنائية والمدنية بمحكمة النقض.pdf" class="btn-dl-now">📥 تحميل (4.3 MB)</a>
+              <button onclick="triggerPdfDownload('/books/cassation-general-assembly-civil-criminal-2016.pdf', 'أحكام الهيئة العامة للمواد الجنائية والمدنية بمحكمة النقض')" class="btn-dl-now">📥 تحميل (4.3 MB)</button>
             </div>
           </div>
         
@@ -636,38 +637,115 @@
     var modalBookTitle = document.getElementById('modalBookTitle');
     var modalBodyContainer = document.getElementById('modalBodyContainer');
 
-    // ── فتح عارض الكتاب المباشر ──
-    window.openDirectReader = function(url, encodedTitle, encodedAuthor, size) {
-      var title = decodeURIComponent(encodedTitle);
-      var author = decodeURIComponent(encodedAuthor);
-      modalBookTitle.innerText = '📖 ' + title;
+    // ── تنزيل ملف الـ PDF بأمان ومباشرة ──
+    window.triggerPdfDownload = function(url, filename) {
+      var fullUrl = url.startsWith('http') ? url : (window.location.origin + (url.startsWith('/') ? '' : '/') + url);
+      var safeName = (filename || 'كتاب-قانوني').replace(/[/\\?%*:|"<>]/g, ' ').trim() + '.pdf';
+      var a = document.createElement('a');
+      a.href = fullUrl;
+      a.download = safeName;
+      a.target = '_blank';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function() { if (a.parentNode) a.parentNode.removeChild(a); }, 1000);
+    };
 
-      modalBodyContainer.innerHTML = 
-        '<div style="width:100%; display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; gap:10px; flex-wrap:wrap;">' +
-          '<div>' +
-            '<span style="font-size:14px; font-weight:800; color:#fff;">' + title + '</span>' +
-            '<span style="font-size:12px; color:#67e8f9; margin-right:10px;">✍️ ' + author + '</span>' +
+    // ── فتح عارض الكتاب المباشر داخل نفس الصفحة ──
+    window.openDirectReader = function(url, title, author, size) {
+      var displayTitle = title ? (typeof title === 'string' && title.includes('%') ? decodeURIComponent(title) : title) : 'المستند القانوني';
+      var displayAuthor = author ? (typeof author === 'string' && author.includes('%') ? decodeURIComponent(author) : author) : 'المكتبة القانونية';
+      modalBookTitle.innerText = '📖 ' + displayTitle;
+
+      var cleanUrl = url.startsWith('http') ? url : (window.location.origin + (url.startsWith('/') ? '' : '/') + url);
+      var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      var safeTitle = displayTitle.replace(/'/g, "\\'");
+
+      // ── عرض حالة التحميل أولاً ──
+      modalBodyContainer.innerHTML =
+        '<div style="width:100%;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px;flex-wrap:wrap;background:rgba(15,23,42,0.85);padding:10px 16px;border-radius:12px;border:1px solid var(--border);">' +
+          '<div style="flex:1;min-width:0;">' +
+            '<div style="font-size:14.5px;font-weight:800;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + displayTitle + '</div>' +
+            '<div style="font-size:11.5px;color:#67e8f9;margin-top:2px;">✍️ ' + displayAuthor + ' &nbsp;|&nbsp; 📦 ' + size + ' (PDF)</div>' +
           '</div>' +
-          '<div style="display:flex; gap:8px;">' +
-            '<a href="' + url + '" download="' + title + '.pdf" class="btn-read-now" style="padding:6px 14px; font-size:11.5px;">📥 تحميل النسخة الكاملة (' + size + ')</a>' +
-            '<button class="btn-dl-now" onclick="toggleFullScreenFrame()" style="padding:6px 12px; font-size:11.5px;">🔍 شاشة كاملة</button>' +
+          '<div style="display:flex;gap:8px;flex-shrink:0;">' +
+            '<button onclick="triggerPdfDownload(\'' + cleanUrl + '\', \'' + safeTitle + '\')" class="btn-dl-now" style="padding:7px 16px;font-size:12.5px;font-weight:700;display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#059669,#10b981);color:#fff;border:none;border-radius:8px;cursor:pointer;">📥 تحميل الكتاب</button>' +
           '</div>' +
         '</div>' +
-        '<iframe id="pdfReaderFrame" src="' + url + '#toolbar=1&navpanes=1" style="width:100%; height:75vh; border:1px solid var(--border); border-radius:12px; background:#1e293b;" allowfullscreen></iframe>';
+        '<div id="pdfContainer" style="flex:1;width:100%;min-height:450px;height:calc(85vh - 90px);border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#0b1329;display:flex;flex-direction:column;">' +
+          (isMobile
+            ? '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;padding:24px;text-align:center;">' +
+                '<div style="font-size:52px;line-height:1;">📚</div>' +
+                '<div style="color:#fff;font-size:16px;font-weight:800;max-width:90%;line-height:1.6;">' + displayTitle + '</div>' +
+                '<div style="color:#67e8f9;font-size:13px;">✍️ ' + displayAuthor + ' &nbsp;|&nbsp; 📦 ' + size + ' (PDF)</div>' +
+                '<div style="display:flex;flex-direction:column;gap:10px;width:100%;max-width:320px;margin-top:10px;">' +
+                  '<a href="' + cleanUrl + '" target="_blank" class="btn-read-now" style="padding:12px 20px;font-size:14px;text-align:center;background:linear-gradient(135deg,#2563eb,#3b82f6);border-radius:10px;color:#fff;text-decoration:none;font-weight:700;">📖 فتح وقراءة الكتاب كاملاً</a>' +
+                  '<button onclick="triggerPdfDownload(\'' + cleanUrl + '\', \'' + safeTitle + '\')" class="btn-dl-now" style="padding:10px 20px;font-size:13px;text-align:center;border-radius:10px;color:#e2e8f0;cursor:pointer;border:1px solid rgba(255,255,255,0.15);background:transparent;">📥 تحميل النسخة الأصلية للجهاز</button>' +
+                '</div>' +
+              '</div>'
+            : '<div id="pdfLoadingState" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:14px;color:#94a3b8;">' +
+                '<div style="font-size:40px;animation:spin 1.2s linear infinite;">⏳</div>' +
+                '<div style="font-size:14px;">جاري تحميل الكتاب...</div>' +
+                '<div style="font-size:11px;color:#475569;">(' + size + ')</div>' +
+              '</div>' +
+              '<iframe id="pdfFrame" src="" style="display:none;width:100%;height:100%;border:none;background:#0b1329;flex:1;" allowfullscreen></iframe>'
+          ) +
+        '</div>';
 
       modal.classList.add('open');
+
+      if (!isMobile) {
+        // جلب الـ PDF كـ blob لتجاوز قيود CSP والـ X-Frame-Options
+        fetch(cleanUrl, { method: 'GET' })
+          .then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.blob();
+          })
+          .then(function(blob) {
+            var blobUrl = URL.createObjectURL(blob);
+            var frame = document.getElementById('pdfFrame');
+            var loading = document.getElementById('pdfLoadingState');
+            if (frame) {
+              frame.src = blobUrl + '#toolbar=1&navpanes=1&scrollbar=1';
+              frame.style.display = 'block';
+              frame.onload = function() {
+                if (loading) loading.style.display = 'none';
+              };
+              // إخفاء اللودر بعد ثانيتين على أي حال
+              setTimeout(function() {
+                if (loading) loading.style.display = 'none';
+              }, 2000);
+            }
+          })
+          .catch(function(err) {
+            // fallback: إظهار أزرار التحميل المباشر
+            var container = document.getElementById('pdfContainer');
+            if (container) {
+              container.innerHTML =
+                '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;padding:24px;text-align:center;">' +
+                  '<div style="font-size:48px;">📚</div>' +
+                  '<div style="color:#fff;font-size:15px;font-weight:700;">' + displayTitle + '</div>' +
+                  '<div style="color:#94a3b8;font-size:12px;">يمكنك تحميل الكتاب مباشرة على جهازك</div>' +
+                  '<button onclick="triggerPdfDownload(\'' + cleanUrl + '\', \'' + safeTitle + '\')" class="btn-dl-now" style="padding:12px 24px;font-size:14px;border-radius:10px;background:linear-gradient(135deg,#059669,#10b981);color:#fff;border:none;cursor:pointer;font-weight:700;">📥 تحميل الكتاب كاملاً</button>' +
+                  '<a href="' + cleanUrl + '" target="_blank" class="btn-read-now" style="padding:10px 20px;font-size:13px;border-radius:10px;color:#fff;text-decoration:none;">↗️ فتح في تبويب جديد</a>' +
+                '</div>';
+            }
+          });
+      }
     };
 
     window.toggleFullScreenFrame = function() {
-      var frame = document.getElementById('pdfReaderFrame');
+      var frame = document.querySelector('#pdfContainer iframe');
       if (frame) {
         if (frame.requestFullscreen) frame.requestFullscreen();
         else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen();
       }
     };
 
+
+    var LIB_DATA_VER = '2.6.5_' + (Math.floor(Date.now() / 3600000)); // cache buster per hour
+
     // تحميل الفهرس الخفيف الفوري
-    fetch('/data/legal-catalog-summary.json')
+    fetch('/data/legal-catalog-summary.json?v=' + LIB_DATA_VER)
       .then(function(r) { return r.json(); })
       .then(function(data) {
         allBooks = (data.items || []).map(function(item) {
@@ -684,6 +762,8 @@
             hasDirectPdf: item.h === 1,
             isMasterBook: item.m === 1
           };
+        }).filter(function(b) {
+          return b.title && b.title.trim().length >= 3;
         });
         filteredBooks = allBooks;
         renderBooks();
@@ -725,6 +805,193 @@
     searchInput.addEventListener('input', applyFilters);
     document.getElementById('libSearchBtn').addEventListener('click', applyFilters);
 
+    // كاش للأجزاء النصية المحملة
+    var loadedDocChunks = {};
+    var docIndexMap = null;
+    var docIndexPromise = null;
+
+    function getDocIndexMap() {
+      if (docIndexMap) return Promise.resolve(docIndexMap);
+      if (docIndexPromise) return docIndexPromise;
+      docIndexPromise = fetch('/data/library-docs-chunks/doc-index-map.json?v=' + LIB_DATA_VER)
+        .then(function(r) { return r.json(); })
+        .then(function(m) {
+          docIndexMap = m;
+          return m;
+        })
+        .catch(function(e) {
+          console.error('Error fetching doc-index-map:', e);
+          return {};
+        });
+      return docIndexPromise;
+    }
+
+    // بدء التحميل المسبق للفهرس فور فتح الصفحة
+    getDocIndexMap();
+
+    function normalizeSearchKey(str) {
+      return (str || '')
+        .trim()
+        .replace(/^[\d\s\-_.,#()\[\]$@~+*]+/g, '')
+        .replace(/[\$~\-_–—@#^*|\\\/]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .replace(/[أإآا]/g, 'ا')
+        .replace(/[ىي]/g, 'ي')
+        .replace(/ة/g, 'ه')
+        .toLowerCase()
+        .trim();
+    }
+
+    window.openDocTextReader = function(titleEncoded, authorEncoded, ext, size, bookId) {
+      var title = decodeURIComponent(titleEncoded || '');
+      var author = decodeURIComponent(authorEncoded || '');
+      modalBookTitle.innerText = '📑 ' + title;
+
+      modalBodyContainer.innerHTML = 
+        '<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; padding:50px 20px; color:var(--muted);">' +
+          '<div style="font-size:36px; margin-bottom:12px;">⏳</div>' +
+          '<div style="font-size:15px; color:#fff; font-weight:700;">جاري تحميل وعرض النص الكامل للمرجع...</div>' +
+        '</div>';
+      modal.classList.add('open');
+
+      getDocIndexMap().then(function(map) {
+        var titleKey = title.trim();
+        var key = titleKey;
+        var chunkId = (map && map[titleKey] !== undefined) ? map[titleKey] : null;
+
+        // fallback 1: normalized title search in index map
+        if (chunkId === null && map) {
+          var normTarget = normalizeSearchKey(titleKey);
+          for (var mapKey in map) {
+            if (normalizeSearchKey(mapKey) === normTarget) {
+              chunkId = map[mapKey];
+              key = mapKey;
+              break;
+            }
+          }
+        }
+
+        // fallback 2: substring keyword match in index map
+        if (chunkId === null && map) {
+          var normTarget2 = normalizeSearchKey(titleKey);
+          if (normTarget2.length >= 6) {
+            for (var mapKey2 in map) {
+              var nMapKey = normalizeSearchKey(mapKey2);
+              if (nMapKey.length >= 6 && (nMapKey.includes(normTarget2) || normTarget2.includes(nMapKey))) {
+                chunkId = map[mapKey2];
+                key = mapKey2;
+                break;
+              }
+            }
+          }
+        }
+
+        function displayDocContent(docItem) {
+          var isFound = docItem && docItem.text && docItem.text.trim().length > 0;
+          var textContent = isFound ? docItem.text : '';
+
+          if (!isFound) {
+            modalBodyContainer.innerHTML = 
+              '<div style="width:100%; padding:30px 20px; background:rgba(30,41,59,0.9); border:1px solid var(--border); border-radius:14px; text-align:center; direction:rtl;">' +
+                '<div style="font-size:40px; margin-bottom:12px;">📜</div>' +
+                '<h3 style="color:#fff; font-size:17px; margin-bottom:8px;">' + title + '</h3>' +
+                '<p style="color:#94a3b8; font-size:13px; margin-bottom:16px;">✍️ ' + author + ' | 📁 ' + (ext || 'DOC').toUpperCase() + ' (' + size + ')</p>' +
+                '<div style="background:rgba(15,23,42,0.8); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:16px; margin-bottom:20px; font-size:13.5px; color:#cbd5e1; line-height:1.9;">' +
+                  'جاري معالجة وتجهيز النص الإلكتروني الكامل لهذا المرجع.' +
+                '</div>' +
+                '<div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">' +
+                  '<button class="btn-read-now" onclick="openDocTextReader(\'' + encodeURIComponent(title) + '\', \'' + encodeURIComponent(author) + '\', \'' + ext + '\', \'' + size + '\')" style="padding:8px 20px; font-size:13px;">🔄 إعادة المحاولة</button>' +
+                  '<button class="btn-dl-now" onclick="document.getElementById(\'bookModal\').classList.remove(\'open\')" style="padding:8px 18px; font-size:13px;">إغلاق</button>' +
+                '</div>' +
+              '</div>';
+            return;
+          }
+
+          modalBodyContainer.innerHTML = 
+            '<div style="width:100%; display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; gap:10px; flex-wrap:wrap; background:rgba(30,41,59,0.8); padding:12px 16px; border-radius:12px; border:1px solid var(--border);">' +
+              '<div>' +
+                '<div style="font-size:15px; font-weight:800; color:#fff;">' + title + '</div>' +
+                '<div style="font-size:12px; color:#67e8f9; margin-top:3px;">✍️ ' + author + ' | 📦 ' + size + ' (' + ext.toUpperCase() + ')</div>' +
+              '</div>' +
+              '<div style="display:flex; gap:8px; flex-wrap:wrap;">' +
+                '<button class="btn-read-now" id="btnCopyDocText" style="padding:7px 16px; font-size:12px; background:linear-gradient(135deg,#059669,#10b981);">📋 نسخ النص</button>' +
+                '<button class="btn-read-now" id="btnDownloadDocWord" style="padding:7px 16px; font-size:12px; background:linear-gradient(135deg,#2563eb,#3b82f6);">📥 تنزيل Word (.doc)</button>' +
+                '<button class="btn-dl-now" id="btnPrintDocText" style="padding:7px 14px; font-size:12px;">🖨️ طباعة</button>' +
+              '</div>' +
+            '</div>' +
+            '<div id="docTextDisplayArea" style="width:100%; max-height:65vh; overflow-y:auto; padding:20px; background:#0b1329; border:1px solid var(--border); border-radius:12px; color:#e2e8f0; font-size:14.5px; line-height:2.1; white-space:pre-wrap; font-family:Cairo,sans-serif; text-align:justify; direction:rtl; user-select:text;">' +
+              textContent.replace(/</g, '&lt;').replace(/>/g, '&gt;') +
+            '</div>';
+
+          document.getElementById('btnCopyDocText').onclick = function() {
+            navigator.clipboard.writeText(textContent).then(function() {
+              var btn = document.getElementById('btnCopyDocText');
+              btn.innerText = '✅ تم النسخ!';
+              setTimeout(function() { btn.innerText = '📋 نسخ النص'; }, 2000);
+            });
+          };
+
+          document.getElementById('btnDownloadDocWord').onclick = function() {
+            var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>" + title + "</title><style>body{font-family:'Cairo','Traditional Arabic',Arial; direction:rtl; font-size:14pt; line-height:1.8;}</style></head><body><h2 style='text-align:center;'>" + title + "</h2><p style='text-align:center; color:#666;'>المؤلف: " + author + "</p><hr/><div style='white-space:pre-wrap;'>" + textContent.replace(/\n/g, '<br/>') + "</div></body></html>";
+            var blob = new Blob(['\ufeff', header], { type: 'application/msword' });
+            var link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = title + '.doc';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          };
+
+          document.getElementById('btnPrintDocText').onclick = function() {
+            var w = window.open('', '', 'width=800,height=600');
+            w.document.write('<html dir="rtl"><head><title>' + title + '</title><style>body{font-family:Cairo,sans-serif; padding:30px; font-size:14px; line-height:1.8;}</style></head><body><h2>' + title + '</h2><p>المؤلف: ' + author + '</p><hr/><div style="white-space:pre-wrap;">' + textContent + '</div></body></html>');
+            w.document.close();
+            w.focus();
+            w.print();
+            w.close();
+          };
+        }
+
+        function extractFromChunk(chunkData) {
+          if (!chunkData) return null;
+          var item = chunkData[key] || chunkData[titleKey];
+          if (!item) {
+            var nKey = normalizeSearchKey(titleKey);
+            for (var ck in chunkData) {
+              var entry = chunkData[ck];
+              if (normalizeSearchKey(ck) === nKey ||
+                  (entry && normalizeSearchKey(entry.title || '') === nKey) ||
+                  (entry && normalizeSearchKey(entry.name || '') === nKey)) {
+                item = entry;
+                break;
+              }
+            }
+          }
+          return item;
+        }
+
+        if (chunkId !== null) {
+          if (loadedDocChunks[chunkId]) {
+            var item = extractFromChunk(loadedDocChunks[chunkId]);
+            displayDocContent(item);
+          } else {
+            fetch('/data/library-docs-chunks/doc-chunk-' + chunkId + '.json?v=' + LIB_DATA_VER)
+              .then(function(r) { return r.json(); })
+              .then(function(data) {
+                loadedDocChunks[chunkId] = data;
+                var item = extractFromChunk(data);
+                displayDocContent(item);
+              })
+              .catch(function() {
+                displayDocContent(null);
+              });
+          }
+        } else {
+          displayDocContent(null);
+        }
+      });
+    };
+
     function renderBooks() {
       grid.innerHTML = '';
       var start = (currentPage - 1) * pageSize;
@@ -739,21 +1006,44 @@
       pageItems.forEach(function(b) {
         var card = document.createElement('div');
         card.className = 'book-card';
-        var actionBtn = b.downloadUrl
-          ? '<button class="btn-book-action" style="background:linear-gradient(135deg,var(--indigo),var(--purple));" onclick="openDirectReader(\'' + b.downloadUrl + '\', \'' + encodeURIComponent(b.title) + '\', \'' + encodeURIComponent(b.author) + '\', \'' + b.sizeFormatted + '\')">📖 قراءة أونلاين</button>'
-          : '<button class="btn-book-action" onclick="openBookInfo(\'' + encodeURIComponent(JSON.stringify(b)) + '\')">👁️ تفاصيل المرجع</button>';
+        card.style.cursor = 'pointer';
+
+        var btn = document.createElement('button');
+        btn.className = 'btn-book-action';
+
+        if (b.downloadUrl) {
+          btn.style.background = 'linear-gradient(135deg,var(--indigo),var(--purple))';
+          btn.innerText = '📖 قراءة PDF';
+          btn.onclick = function(e) {
+            e.stopPropagation();
+            openDirectReader(b.downloadUrl, b.title, b.author, b.sizeFormatted);
+          };
+        } else {
+          btn.style.background = 'linear-gradient(135deg,#0284c7,#2563eb)';
+          btn.innerText = '📑 قراءة ونسخ النص';
+          btn.onclick = function(e) {
+            e.stopPropagation();
+            openDocTextReader(encodeURIComponent(b.title), encodeURIComponent(b.author || ''), b.ext || 'doc', b.sizeFormatted, b.id);
+          };
+        }
+
+        card.onclick = function() {
+          btn.click();
+        };
 
         card.innerHTML = 
           '<div class="book-top">' +
-            '<span class="book-badge">' + b.branchName + '</span>' +
-            '<span style="font-size:11px; font-weight:800; color:' + (b.isPdf ? '#ef4444' : '#3b82f6') + '">' + (b.ext.toUpperCase()) + '</span>' +
+            '<span class="book-badge">' + (b.branchName || 'مرجع عام') + '</span>' +
+            '<span style="font-size:11px; font-weight:800; color:' + (b.isPdf ? '#ef4444' : '#38bdf8') + '">' + ((b.ext || (b.isPdf ? 'pdf' : 'doc')).toUpperCase()) + '</span>' +
           '</div>' +
-          '<h3>' + b.title + '</h3>' +
-          '<div class="book-author">✍️ ' + b.author + '</div>' +
+          '<h3>' + (b.title || '') + '</h3>' +
+          '<div class="book-author">✍️ ' + (b.author || 'المكتبة القانونية') + '</div>' +
           '<div class="book-footer">' +
-            '<span class="book-size">📦 ' + b.sizeFormatted + '</span>' +
-            '<div class="book-actions">' + actionBtn + '</div>' +
+            '<span class="book-size">📦 ' + (b.sizeFormatted || '1.0 MB') + '</span>' +
+            '<div class="book-actions"></div>' +
           '</div>';
+
+        card.querySelector('.book-actions').appendChild(btn);
         grid.appendChild(card);
       });
 
@@ -792,24 +1082,6 @@
       nextBtn.onclick = function() { if (currentPage < totalPages) { currentPage++; renderBooks(); window.scrollTo({top: document.querySelector('.search-wrapper').offsetTop - 90, behavior:'smooth'}); } };
       pagination.appendChild(nextBtn);
     }
-
-    window.openBookInfo = function(bookJsonStr) {
-      try {
-        var b = JSON.parse(decodeURIComponent(bookJsonStr));
-        modalBookTitle.innerText = '📚 تفاصيل المرجع: ' + b.title;
-        modalBodyContainer.innerHTML = 
-          '<div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; text-align:center; color:var(--muted); gap:16px; padding:30px 20px;">' +
-            '<span style="font-size:54px;">📖</span>' +
-            '<h3 style="color:#fff; font-size:18px;">' + b.title + '</h3>' +
-            '<p style="max-width:550px; line-height:1.8; font-size:14px;"><strong>المؤلف:</strong> ' + b.author + ' | <strong>الفرع:</strong> ' + b.branchName + ' | <strong>الحجم:</strong> ' + b.sizeFormatted + ' (' + b.ext.toUpperCase() + ')<br/><span style="color:#a5b4fc; font-weight:700;">📂 هذا المرجع مفهرس ومتاح بنسخته الكاملة على تطبيق الديسكتوب المحلي أو بطلب نسخة رقمية فورية.</span></p>' +
-            '<div style="display:flex; gap:12px; margin-top:10px; flex-wrap:wrap; justify-content:center;">' +
-              '<a href="mailto:ahmdmansoor222@gmail.com?subject=طلب مرجع: ' + encodeURIComponent(b.title) + '" class="btn-read-now" style="padding:10px 22px;">📩 إرسال طلب نسخة رقمية عبر البريد</a>' +
-              '<a href="/" class="btn-dl-now" style="padding:10px 22px;">💻 فتح في تطبيق الديسكتوب</a>' +
-            '</div>' +
-          '</div>';
-        modal.classList.add('open');
-      } catch(e) {}
-    };
 
     document.getElementById('modalBookClose').onclick = function() { modal.classList.remove('open'); };
     modal.onclick = function(e) { if (e.target === modal) modal.classList.remove('open'); };
