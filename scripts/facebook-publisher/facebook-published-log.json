@@ -1203,6 +1203,27 @@
       "duration": "57ث",
       "size": 36128124,
       "publishedAt": "2026-08-16T15:38:02.038Z"
+    },
+    {
+      "topicId": "trend-ai-intellectual-property-rights-egypt",
+      "title": "حماية الملكية الفكرية وتطبيقات الذكاء الاصطناعي في التشريع المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الملكية الفكرية والذكاء الاصطناعي",
+        "#ai",
+        "#الذكاء الاصطناعي والقانون"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-ai-intellectual-property-rights-egypt.mp4",
+      "videoId": "1076555564789159",
+      "permalink": "https://www.facebook.com/reel/1076555564789159",
+      "source": "trending-topics.json",
+      "duration": "1د 8ث",
+      "size": 32483380,
+      "publishedAt": "2026-08-16T18:47:19.169Z"
     }
   ]
 }
