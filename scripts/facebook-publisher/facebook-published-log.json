@@ -1161,6 +1161,27 @@
       "duration": "56ث",
       "size": 22013666,
       "publishedAt": "2026-08-16T09:42:18.961Z"
+    },
+    {
+      "topicId": "trend-cyber-defamation-slander-laws-egypt",
+      "title": "عقوبة السب والقذف والتشهير عبر مواقع التواصل الاجتماعي في مصر",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#جرائم تقنية المعلومات",
+        "#ريهام سعيد",
+        "#عقوبة السب والقذف"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cyber-defamation-slander-laws-egypt.mp4",
+      "videoId": "1438274511459906",
+      "permalink": "https://www.facebook.com/reel/1438274511459906",
+      "source": "trending-topics.json",
+      "duration": "1د 12ث",
+      "size": 28320275,
+      "publishedAt": "2026-08-16T13:02:05.813Z"
     }
   ]
 }

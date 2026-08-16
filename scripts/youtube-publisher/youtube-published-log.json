@@ -914,6 +914,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2506635743172703",
       "publishedAt": "2026-08-16T09:43:10.964Z"
+    },
+    {
+      "topicId": "trend-cyber-defamation-slander-laws-egypt",
+      "kind": "short",
+      "videoId": "2VQ0m-5IHOY",
+      "url": "https://www.youtube.com/watch?v=2VQ0m-5IHOY",
+      "fbPermalink": "https://www.facebook.com/reel/1438274511459906",
+      "publishedAt": "2026-08-16T13:02:07.947Z"
+    },
+    {
+      "topicId": "trend-cyber-defamation-slander-laws-egypt",
+      "title": "عقوبة السب والقذف والتشهير عبر مواقع التواصل الاجتماعي في مصر — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cyber-defamation-slander-laws-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "4iSpl4xbgDU",
+      "url": "https://www.youtube.com/watch?v=4iSpl4xbgDU",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1438274511459906",
+      "publishedAt": "2026-08-16T13:03:26.162Z"
     }
   ]
 }
