@@ -1182,6 +1182,27 @@
       "duration": "1د 12ث",
       "size": 28320275,
       "publishedAt": "2026-08-16T13:02:05.813Z"
+    },
+    {
+      "topicId": "trend-concert-event-licensing-regulations-egypt",
+      "title": "الإجراءات والتراخيص القانونية لتنظيم الحفلات والمهرجانات في مصر",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#تراخيص وملكية فكرية",
+        "#حفلة محمد رمضان",
+        "#تراخيص الحفلات"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-concert-event-licensing-regulations-egypt.mp4",
+      "videoId": "1563501208552026",
+      "permalink": "https://www.facebook.com/reel/1563501208552026",
+      "source": "trending-topics.json",
+      "duration": "57ث",
+      "size": 36128124,
+      "publishedAt": "2026-08-16T15:38:02.038Z"
     }
   ]
 }

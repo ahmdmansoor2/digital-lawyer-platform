@@ -933,6 +933,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1438274511459906",
       "publishedAt": "2026-08-16T13:03:26.162Z"
+    },
+    {
+      "topicId": "trend-concert-event-licensing-regulations-egypt",
+      "kind": "short",
+      "videoId": "FluhbFliIzA",
+      "url": "https://www.youtube.com/watch?v=FluhbFliIzA",
+      "fbPermalink": "https://www.facebook.com/reel/1563501208552026",
+      "publishedAt": "2026-08-16T15:38:03.825Z"
+    },
+    {
+      "topicId": "trend-concert-event-licensing-regulations-egypt",
+      "title": "الإجراءات والتراخيص القانونية لتنظيم الحفلات والمهرجانات في مصر — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-concert-event-licensing-regulations-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "lnPoBjIayFo",
+      "url": "https://www.youtube.com/watch?v=lnPoBjIayFo",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1563501208552026",
+      "publishedAt": "2026-08-16T15:39:15.681Z"
     }
   ]
 }
