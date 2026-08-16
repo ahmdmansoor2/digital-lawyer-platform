@@ -1488,6 +1488,42 @@
       ],
       "words": 1952,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبة الاتجار بالعملة الأجنبية والسوق السوداء في القانون المصري 2024",
+      "date": "2026-08-16",
+      "slug": "foreign-currency-trading-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/foreign-currency-trading-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/foreign-currency-trading-penalties-egypt.jpg",
+      "tags": [
+        "قانون البنوك والجرائم التمويلية"
+      ],
+      "words": 2396,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "شروط وطريقة الحصول على معاش تكافل وكرامة وفق قانون التضامن الاجتماعي",
+      "date": "2026-08-16",
+      "slug": "takaful-karama-social-pension-conditions",
+      "url": "https://mohamidigital.online/blog/takaful-karama-social-pension-conditions.html",
+      "image": "https://mohamidigital.online/blog/images/takaful-karama-social-pension-conditions.jpg",
+      "tags": [
+        "التأمينات والحماية الاجتماعية"
+      ],
+      "words": 0,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبة السب والقذف والتشهير عبر مواقع التواصل الاجتماعي في مصر",
+      "date": "2026-08-16",
+      "slug": "cyber-defamation-slander-laws-egypt",
+      "url": "https://mohamidigital.online/blog/cyber-defamation-slander-laws-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cyber-defamation-slander-laws-egypt.jpg",
+      "tags": [
+        "جرائم تقنية المعلومات"
+      ],
+      "words": 2777,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
