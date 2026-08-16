@@ -876,6 +876,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2939254133079486",
       "publishedAt": "2026-08-15T18:48:12.131Z"
+    },
+    {
+      "topicId": "trend-foreign-currency-trading-penalties-egypt",
+      "kind": "short",
+      "videoId": "YcPERmyvWvQ",
+      "url": "https://www.youtube.com/watch?v=YcPERmyvWvQ",
+      "fbPermalink": "https://www.facebook.com/reel/1005162619228346",
+      "publishedAt": "2026-08-16T07:01:39.415Z"
+    },
+    {
+      "topicId": "trend-foreign-currency-trading-penalties-egypt",
+      "title": "عقوبة الاتجار بالعملة الأجنبية والسوق السوداء في القانون المصري 2024 — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-foreign-currency-trading-penalties-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "2biCH3zWHms",
+      "url": "https://www.youtube.com/watch?v=2biCH3zWHms",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1005162619228346",
+      "publishedAt": "2026-08-16T07:03:14.711Z"
     }
   ]
 }

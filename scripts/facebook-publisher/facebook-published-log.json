@@ -1119,6 +1119,27 @@
       "duration": "55ث",
       "size": 17055457,
       "publishedAt": "2026-08-15T18:47:14.070Z"
+    },
+    {
+      "topicId": "trend-foreign-currency-trading-penalties-egypt",
+      "title": "عقوبة الاتجار بالعملة الأجنبية والسوق السوداء في القانون المصري 2024",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون البنوك والجرائم التمويلية",
+        "#سعر الدولار اليوم",
+        "#الاتجار بالعملة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-foreign-currency-trading-penalties-egypt.mp4",
+      "videoId": "1005162619228346",
+      "permalink": "https://www.facebook.com/reel/1005162619228346",
+      "source": "trending-topics.json",
+      "duration": "1د 18ث",
+      "size": 38246485,
+      "publishedAt": "2026-08-16T07:01:37.303Z"
     }
   ]
 }
