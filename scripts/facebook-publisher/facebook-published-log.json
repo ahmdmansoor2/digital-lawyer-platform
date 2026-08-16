@@ -1140,6 +1140,27 @@
       "duration": "1د 18ث",
       "size": 38246485,
       "publishedAt": "2026-08-16T07:01:37.303Z"
+    },
+    {
+      "topicId": "trend-takaful-karama-social-pension-conditions",
+      "title": "شروط وطريقة الحصول على معاش تكافل وكرامة وفق قانون التضامن الاجتماعي",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#التأمينات والحماية الاجتماعية",
+        "#وزارة التضامن الاجتماعي",
+        "#معاش تكافل وكرامة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-takaful-karama-social-pension-conditions.mp4",
+      "videoId": "2506635743172703",
+      "permalink": "https://www.facebook.com/reel/2506635743172703",
+      "source": "trending-topics.json",
+      "duration": "56ث",
+      "size": 22013666,
+      "publishedAt": "2026-08-16T09:42:18.961Z"
     }
   ]
 }
