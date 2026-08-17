@@ -90,6 +90,7 @@
     "electron-builder": "26.15.3",
     "esbuild": "^0.25.0",
     "express": "^4.21.2",
+    "firebase-admin": "^14.2.0",
     "firebase-tools": "^15.24.0",
     "jsdom": "^25.0.1",
     "tailwindcss": "^4.1.14",

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>صيغ العقود والدعاوي (2,690+ صيغة قانونية جاهزة للنسخ والتحميل) | منصة المحامي الرقمية</title>
   <meta name="description" content="أكبر مكتبة صيغ عقود وصحف دعاوى ومذكرات دفاع وإنذارات رسمية في مصر (+2,690 صيغة) جاهزة للنسخ والتحميل المباشر كملفات Word قابلة للتعديل والطباعة مجاناً 100%." />
-  <meta name="keywords" content="صيغ عقود, صيغ دعاوى, صحيفة دعوى, عقد بيع, عقد ايجار, مذكرات دفاع, جنحة ايصال امانة, جنحة شيك, دعوى خلع, دعوى طلاق, صحة توقيع, صحة ونفاذ, فرز وتجنيب, طرد للغصب, انذار عرض, توكيلات شهر عقاري" />
+  <meta name="keywords" content="صيغ عقود، صيغ دعاوى، صحيفة دعوى، عقد بيع، عقد ايجار، مذكرات دفاع، جنحة ايصال امانة، جنحة شيك، دعوى خلع، دعوى طلاق، صحة توقيع، صحة ونفاذ، فرز وتجنيب، طرد للغصب، انذار عرض، توكيلات شهر عقاري، صيغة عقد، صيغة دعوى، صيغة مذكرة، صيغة توكيل، صيغ قانونية، مذكرات قانونية، عقود بيع، عقود إيجار، توكيلات، صحف دعاوى، استئناف، طعن بالنقض، صيغ محاماة، نماذج قانونية، قالب قانوني، صيغة جاهزة، منصة المحامي الرقمية، برنامج محاماة مجاني، استشارات قانونية، قانون مصري، محامي مصر، مكتبة قانونية" />
   <meta name="author" content="منصة المحامي الرقمية" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="https://mohamidigital.online/legal-forms.html" />
@@ -20,7 +20,42 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/header.css?v=20260814-v5">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online","logo":"https://mohamidigital.online/logo.png"}</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "منصة المحامي الرقمية",
+  "url": "https://mohamidigital.online",
+  "logo": "https://mohamidigital.online/logo.png",
+  "keywords": [
+    "صيغة عقد",
+    "صيغة دعوى",
+    "صيغة مذكرة",
+    "صيغة توكيل",
+    "صيغ قانونية",
+    "صيغ عقود",
+    "صيغ دعاوى",
+    "مذكرات قانونية",
+    "عقود بيع",
+    "عقود إيجار",
+    "توكيلات",
+    "مذكرات دفاع",
+    "صحف دعاوى",
+    "استئناف",
+    "طعن بالنقض",
+    "صيغ محاماة",
+    "نماذج قانونية",
+    "قالب قانوني",
+    "صيغة جاهزة",
+    "منصة المحامي الرقمية",
+    "برنامج محاماة مجاني",
+    "استشارات قانونية",
+    "قانون مصري",
+    "محامي مصر",
+    "مكتبة قانونية"
+  ]
+}
+</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"صيغ العقود والدعاوي","url":"https://mohamidigital.online/legal-forms.html","inLanguage":"ar-EG"}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"https://mohamidigital.online"},{"@type":"ListItem","position":2,"name":"صيغ العقود والدعاوي","item":"https://mohamidigital.online/legal-forms.html"}]}</script>
   <style>
@@ -309,6 +344,21 @@
       var modalBody = document.getElementById('modalBodyText');
       var modalIcon = document.getElementById('modalIcon');
 
+      // دالة تنظيف النص العربي وتوحيد الحروف للبحث الفوري الذكي
+      function normAr(s) {
+        return (s || '')
+          .replace(/[\u064B-\u0652\u0670]/g, '') // إزالة التشكيل
+          .replace(/[أإآٱ]/g, 'ا')               // توحيد الألف
+          .replace(/[ىيئ]/g, 'ي')                // توحيد الياء
+          .replace(/ة/g, 'ه')                    // توحيد التاء المربوطة
+          .replace(/ؤ/g, 'و')                    // توحيد الواو
+          .replace(/\u0640/g, '')                // إزالة التطويل
+          .replace(/[-–—_~$@#^*|\\\/.,;:()!?"'«»]/g, ' ') // إزالة الرموز
+          .replace(/\s+/g, ' ')
+          .toLowerCase()
+          .trim();
+      }
+
       // جلب الفهرس الخفيف
       fetch('/data/legal-forms-summary.json')
         .then(function(res) { return res.json(); })
@@ -340,12 +390,39 @@
       }
 
       function filterForms() {
-        var q = (searchInput.value || '').trim().toLowerCase();
+        var rawQuery = (searchInput.value || '').trim();
+        var normalizedQuery = normAr(rawQuery);
+        var queryTokens = normalizedQuery ? normalizedQuery.split(' ').filter(function(t) { return t.length > 0; }) : [];
+
         filteredForms = allForms.filter(function(f) {
-          var matchCat = (currentCategory === 'all' || f.category === currentCategory);
-          var matchQuery = !q || f.title.toLowerCase().includes(q) || (f.preview && f.preview.toLowerCase().includes(q));
-          return matchCat && matchQuery;
+          // فلترة التصنيف
+          var matchCat = true;
+          if (currentCategory !== 'all') {
+            if (currentCategory === '⭐ النماذج المعتمدة الأكثر طلباً') {
+              matchCat = (f.isFeatured === true || (f.id && f.id.indexOf('featured') === 0));
+            } else {
+              matchCat = (f.category === currentCategory);
+            }
+          }
+
+          if (!matchCat) return false;
+          if (queryTokens.length === 0) return true;
+
+          // بحث بالكلمات المتعددة مع التوحيد اللغوي
+          var normTitle = normAr(f.title);
+          var normCat = normAr(f.category);
+          var normPrev = normAr(f.preview);
+          var fullSearchTarget = normTitle + ' ' + normCat + ' ' + normPrev;
+
+          // يجب أن تتطابق كل كلمات البحث داخل الصيغة
+          for (var i = 0; i < queryTokens.length; i++) {
+            if (fullSearchTarget.indexOf(queryTokens[i]) === -1) {
+              return false;
+            }
+          }
+          return true;
         });
+
         currentPage = 1;
         renderPage();
       }
@@ -367,7 +444,7 @@
         var pageItems = filteredForms.slice(start, start + pageSize);
 
         if (pageItems.length === 0) {
-          grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 50px 20px; color: var(--muted); font-size:16px;">لم يتم العثور على صيغ مطابقة لكلمات البحث. جرب كلمات أخرى مثل (عقد، خلع، شيك، إيجار).</div>';
+          grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 50px 20px; color: var(--muted); font-size:16px;">لم يتم العثور على صيغ مطابقة لكلمات البحث. جرب كلمات أخرى مثل (عقد، بيع، خلع، إيجار، شركة، إنذار).</div>';
           pagination.innerHTML = '';
           return;
         }
@@ -375,16 +452,19 @@
         pageItems.forEach(function(f) {
           var card = document.createElement('div');
           card.className = 'form-card';
+          var isStar = f.isFeatured || (f.id && f.id.indexOf('featured') === 0);
+          var badgeColor = isStar ? 'background:rgba(245,158,11,0.15); border-color:rgba(245,158,11,0.4); color:#fbbf24;' : '';
+
           card.innerHTML = 
             '<div class="form-card-top">' +
-              '<span class="form-badge">' + (f.icon || '📜') + ' ' + f.category + '</span>' +
-              '<span style="font-size:11px; opacity:.6;">Word</span>' +
+              '<span class="form-badge" style="' + badgeColor + '">' + (f.icon || (isStar ? '⭐' : '📜')) + ' ' + f.category + '</span>' +
+              '<span style="font-size:11px; opacity:.7; font-weight:800; color:' + (isStar ? '#fbbf24' : '#67e8f9') + '">' + (isStar ? 'معتمد ومكتمل' : 'Word') + '</span>' +
             '</div>' +
-            '<h3>' + f.title + '</h3>' +
+            '<h3 style="color:' + (isStar ? '#fef08a' : '#fff') + '">' + f.title + '</h3>' +
             '<p>' + (f.preview || 'اضغط لفتح الصيغة الكاملة والنسخ والتحميل.') + '</p>' +
             '<div class="form-card-footer">' +
               '<span class="form-words">' + (f.wordCount ? f.wordCount.toLocaleString('ar-EG') + ' كلمة' : '') + '</span>' +
-              '<span class="form-action-hint">عرض الصيغة ←</span>' +
+              '<span class="form-action-hint" style="' + (isStar ? 'color:#fbbf24;' : '') + '">عرض الصيغة والنسخ ←</span>' +
             '</div>';
           
           card.onclick = function() { openFormModal(f); };
@@ -435,17 +515,35 @@
         modalBody.innerText = 'جاري جلب النص الكامل للصيغة... ⏳';
         modal.classList.add('open');
 
+        // إذا كان نموذجاً معتمداً
+        if (f.isFeatured || (f.id && f.id.indexOf('featured') === 0)) {
+          if (chunksCache['featured']) {
+            displayChunkText('featured', f.id, f.preview, f.docUrl);
+          } else {
+            fetch('/data/forms-chunks/chunk-featured.json')
+              .then(function(r) { return r.json(); })
+              .then(function(chunk) {
+                chunksCache['featured'] = chunk;
+                displayChunkText('featured', f.id, f.preview, f.docUrl);
+              })
+              .catch(function() {
+                modalBody.innerText = f.preview || 'تعذر تحميل النص الكامل.';
+              });
+          }
+          return;
+        }
+
         var numId = parseInt(f.id.replace('form-', ''), 10);
         var chunkIdx = Math.floor((numId - 1) / 100);
 
         if (chunksCache[chunkIdx]) {
-          displayChunkText(chunkIdx, f.id, f.preview);
+          displayChunkText(chunkIdx, f.id, f.preview, null);
         } else {
           fetch('/data/forms-chunks/chunk-' + chunkIdx + '.json')
             .then(function(r) { return r.json(); })
             .then(function(chunk) {
               chunksCache[chunkIdx] = chunk;
-              displayChunkText(chunkIdx, f.id, f.preview);
+              displayChunkText(chunkIdx, f.id, f.preview, null);
             })
             .catch(function(e) {
               modalBody.innerText = f.preview || 'تعذر تحميل النص الكامل.';
@@ -453,12 +551,19 @@
         }
       }
 
-      function displayChunkText(chunkIdx, id, fallbackPreview) {
+      function displayChunkText(chunkIdx, id, fallbackPreview, docUrl) {
         var item = chunksCache[chunkIdx] && chunksCache[chunkIdx][id];
-        if (item && item.fullText && item.fullText.trim()) {
-          modalBody.innerText = item.fullText;
+        var text = (item && item.fullText && item.fullText.trim()) ? item.fullText : (fallbackPreview || 'نص الصيغة متاح في الأرشيف.');
+        
+        if (docUrl) {
+          modalBody.innerHTML = 
+            '<div style="margin-bottom:14px; padding:10px 16px; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.3); border-radius:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">' +
+              '<span style="font-size:12.5px; color:#c7d2fe; font-weight:700;">🌟 هذا نموذج معتمد ومكتمل البنود القانونية</span>' +
+              '<a href="' + docUrl + '" target="_blank" style="color:#67e8f9; font-size:12px; font-weight:800; text-decoration:underline;">فتح الصفحة التفاعلية المستقلة ↗</a>' +
+            '</div>' +
+            '<div style="white-space:pre-wrap;">' + text.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</div>';
         } else {
-          modalBody.innerText = fallbackPreview || 'نص الصيغة متاح في الأرشيف.';
+          modalBody.innerText = text;
         }
       }
 

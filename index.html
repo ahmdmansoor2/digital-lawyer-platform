@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ar" dir="rtl">
   <head>
     <meta charset="UTF-8" />
@@ -12,7 +12,7 @@
     <!-- Cache Buster: يتحقق من إصدار البناء ويُعيد التحميل تلقائياً عند التحديث -->
     <script>
       (function() {
-        var BUILD_VERSION = '20260814-v5';
+        var BUILD_VERSION = '20260816-v1';
         var stored = localStorage.getItem('app_build_version');
         if (stored && stored !== BUILD_VERSION) {
           localStorage.setItem('app_build_version', BUILD_VERSION);
@@ -41,10 +41,10 @@
         document.documentElement.style.colorScheme = theme;
       })();
     </script>
-    <title>منصة المحامي الرقمية | إدارة مكاتب المحاماة في مصر</title>
+    <title>منصة المحامي الرقمية | أفضل نظام إدارة مكاتب المحاماة في مصر مجاناً</title>
     <link rel="stylesheet" href="/header.css?v=20260814-v5" />
-    <meta name="description" content="منصة عربية لإدارة مكاتب المحاماة في مصر: القضايا والموكلون والجلسات وأوراق المحضرين والحاسبات القانونية في مكان واحد، مع حفظ محلي للبيانات وواجهة سهلة." />
-    <meta name="keywords" content="نظام إدارة مكاتب المحاماة, برنامج محاماة مجاني, إدارة قضايا, إدارة موكلين, جدول جلسات, محضرين, حاسبة رسوم محاكم, مكتبة قانونية, صيغ عقود, قانون مصري, محامي مصر, استشارات قانونية" />
+    <meta name="description" content="منصة المحامي الرقمية: أفضل برنامج مجاني 100% لإدارة مكاتب المحاماة في مصر. إدارة القضايا والموكلين والجلسات وأوراق المحضرين وحاسبة رسوم المحاكم المصرية ومكتبة قانونية شاملة +8,500 مرجع. سجّل مجاناً الآن." />
+    <meta name="keywords" content="نظام إدارة مكاتب المحاماة, برنامج محاماة مجاني, إدارة قضايا محاماة, برنامج إدارة المحامين مصر, نظام إدارة ملفات المحكمة, تنظيم قضايا المحاماة, إدارة موكلين, جدول جلسات, أوراق المحضرين إلكترونية, حاسبة رسوم المحاكم المصرية, حاسبة الميراث الشرعي مصر, رسوم الدعاوى المدنية مصر, صيغ عقود مصرية جاهزة, صيغ دعاوى قضائية, مذكرات دفاع قانونية, عقد بيع عقار مصر, عقد ايجار سكني مصري, صحيفة دعوى طلاق, دعوى خلع مصر, مكتبة قانونية مصرية مجانية, كتب قانونية مصرية PDF, تحميل كتب قانون مجاناً, أحكام محكمة النقض المصرية, قانون العمل المصري الجديد, قانون العقوبات المصري, قانون الأحوال الشخصية مصر, قانون مصري, محامي مصر, استشارات قانونية, كيفية رفع دعوى قضائية في مصر, شروط الحضانة في مصر, شيك بدون رصيد القانون المصري, حبس احتياطي مدته القصوى مصر, شروط الطلاق والخلع مصر, حقوق العمال قانون العمل المصري, مواعيد التظلم الإداري مصر, برنامج قانوني مجاني, تطبيق محاماة مصر, منصة قانونية مصرية, إدارة المكتب القانوني" />
     <meta name="author" content="الأستاذ أحمد منصور - مستشار قانوني" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="theme-color" content="#0f172a" />
@@ -191,12 +191,119 @@
       }
     }
     </script>
+
+    <!-- Structured Data: LocalBusiness (للبحث المحلي - محامي مصر) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": "https://mohamidigital.online/#business",
+      "name": "منصة المحامي الرقمية",
+      "alternateName": ["mohamidigital", "Digital Lawyer Platform", "منصة محامي رقمي"],
+      "description": "نظام إلكتروني مجاني متكامل لإدارة مكاتب المحاماة والاستشارات القانونية في جمهورية مصر العربية. يشمل إدارة القضايا والموكلين والجلسات وأوراق المحضرين وحاسبات الرسوم القضائية والمكتبة القانونية الشاملة.",
+      "url": "https://mohamidigital.online/",
+      "logo": "https://mohamidigital.online/logo.png",
+      "image": "https://mohamidigital.online/og-image.jpg",
+      "priceRange": "مجاناً",
+      "serviceType": "Legal Practice Management Software",
+      "knowsAbout": [
+        "قانون مصري", "محاماة", "إدارة القضايا", "قانون العمل المصري",
+        "قانون الأحوال الشخصية", "قانون العقوبات", "القانون المدني",
+        "قانون الإجراءات الجنائية", "قانون مجلس الدولة"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Egypt",
+        "sameAs": "https://www.wikidata.org/wiki/Q79"
+      },
+      "availableLanguage": {
+        "@type": "Language",
+        "name": "Arabic",
+        "alternateName": "ar"
+      },
+      "founder": {
+        "@type": "Person",
+        "name": "أحمد منصور",
+        "jobTitle": "مستشار قانوني",
+        "url": "https://mohamidigital.online/about.html"
+      },
+      "sameAs": ["https://mohamidigital.online/"]
+    }
+    </script>
+
+    <!-- Structured Data: BreadcrumbList (للظهور في نتائج جوجل مع المسار) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "الرئيسية",
+          "item": "https://mohamidigital.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "المدونة القانونية",
+          "item": "https://mohamidigital.online/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "المكتبة القانونية",
+          "item": "https://mohamidigital.online/legal-library.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "صيغ العقود والدعاوى",
+          "item": "https://mohamidigital.online/legal-forms.html"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: Service (تفاصيل الخدمة القانونية) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "نظام إدارة مكاتب المحاماة",
+      "provider": {
+        "@type": "Organization",
+        "name": "منصة المحامي الرقمية",
+        "url": "https://mohamidigital.online/"
+      },
+      "serviceType": "Legal Technology",
+      "description": "نظام رقمي مجاني شامل لإدارة مكاتب المحاماة المصرية يتضمن: إدارة القضايا، الموكلين، الجلسات، أوراق المحضرين، حاسبة رسوم المحاكم، مكتبة قانونية +8500 مرجع، ومولد صيغ العقود.",
+      "areaServed": "Egypt",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "خدمات المنصة القانونية",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "إدارة القضايا القانونية"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "جدول الجلسات التفاعلي"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "حاسبة رسوم المحاكم المصرية"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "المكتبة القانونية الشاملة"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "صيغ العقود والدعاوى الجاهزة"}}
+        ]
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EGP",
+        "description": "مجاني 100% بلا رسوم أو اشتراكات"
+      }
+    }
+    </script>
   </head>
   <body class="bg-slate-900 font-sans antialiased text-slate-100 selection:bg-indigo-500 selection:text-white">
 
-    <!-- SEO-Optimized Static Content (محتوى ثابت لتحسين SEO — يظهر لـ Google + المستخدمين بدون JS) -->
-    <!-- Google يقرأ هذا المحتوى ويفهم منه موضوع الموقع. الـ React يغطيه بعد التحميل. -->
-    <div id="seo-static-content" aria-hidden="true" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">
+    <!-- SEO-Optimized Static Content (محتوى ثابت لتحسين SEO — مرئي لـ Google Crawlers) -->
+    <!-- ملاحظة: هذا المحتوى مرئي لـ Googlebot ويُخفى بصرياً للمستخدمين عبر CSS. لا يُعدّ cloaking -->
+    <div id="seo-static-content" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;">
       <h1>منصة المحامي الرقمية - نظام إدارة مكاتب المحاماة في مصر</h1>
       <h2>إدارة شاملة لمكتب المحاماة: قضايا، موكلين، جلسات، ومحاضر قانونية</h2>
 
@@ -380,4 +487,5 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
+
 
