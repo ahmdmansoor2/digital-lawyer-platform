@@ -952,6 +952,120 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1563501208552026",
       "publishedAt": "2026-08-16T15:39:15.681Z"
+    },
+    {
+      "topicId": "trend-ai-intellectual-property-rights-egypt",
+      "kind": "short",
+      "videoId": "iM55XY1CMrM",
+      "url": "https://www.youtube.com/watch?v=iM55XY1CMrM",
+      "fbPermalink": "https://www.facebook.com/reel/1076555564789159",
+      "publishedAt": "2026-08-16T18:47:21.617Z"
+    },
+    {
+      "topicId": "trend-ai-intellectual-property-rights-egypt",
+      "title": "حماية الملكية الفكرية وتطبيقات الذكاء الاصطناعي في التشريع المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-ai-intellectual-property-rights-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "KJzX_OuMO3o",
+      "url": "https://www.youtube.com/watch?v=KJzX_OuMO3o",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1076555564789159",
+      "publishedAt": "2026-08-16T18:48:37.994Z"
+    },
+    {
+      "topicId": "trend-egyptian-rent-law-eviction-cases",
+      "kind": "short",
+      "videoId": "Frohoj15Xvw",
+      "url": "https://www.youtube.com/watch?v=Frohoj15Xvw",
+      "fbPermalink": "https://www.facebook.com/reel/1760154385230236",
+      "publishedAt": "2026-08-17T07:16:34.673Z"
+    },
+    {
+      "topicId": "trend-egyptian-rent-law-eviction-cases",
+      "title": "أحكام وثغرات عقد الإيجار الجديد وحالات الإخلاء الفوري في القانون المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-egyptian-rent-law-eviction-cases-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "EbJRsx5BcfY",
+      "url": "https://www.youtube.com/watch?v=EbJRsx5BcfY",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1760154385230236",
+      "publishedAt": "2026-08-17T07:17:28.125Z"
+    },
+    {
+      "topicId": "trend-currency-fluctuation-impact-contracts-egypt",
+      "kind": "short",
+      "videoId": "H0255YZmEXc",
+      "url": "https://www.youtube.com/watch?v=H0255YZmEXc",
+      "fbPermalink": "https://www.facebook.com/reel/1602880931488884",
+      "publishedAt": "2026-08-17T09:59:46.834Z"
+    },
+    {
+      "topicId": "trend-currency-fluctuation-impact-contracts-egypt",
+      "title": "تأثير تغير سعر الدولار على العقود والالتزامات المالية: نظرية الظروف الطارئة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-currency-fluctuation-impact-contracts-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "0c6U3eQYAvA",
+      "url": "https://www.youtube.com/watch?v=0c6U3eQYAvA",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1602880931488884",
+      "publishedAt": "2026-08-17T10:01:03.162Z"
+    },
+    {
+      "topicId": "trend-intellectual-property-rights-creators-egypt",
+      "kind": "short",
+      "videoId": "kqaEWvMaG8c",
+      "url": "https://www.youtube.com/watch?v=kqaEWvMaG8c",
+      "fbPermalink": "https://www.facebook.com/reel/1037293839279422",
+      "publishedAt": "2026-08-17T13:06:36.328Z"
+    },
+    {
+      "topicId": "trend-intellectual-property-rights-creators-egypt",
+      "title": "حقوق الملكية الفكرية لصناع المحتوى والفنانين وتوثيق الأعمال في مصر — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-intellectual-property-rights-creators-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "g_gfr89ertE",
+      "url": "https://www.youtube.com/watch?v=g_gfr89ertE",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1037293839279422",
+      "publishedAt": "2026-08-17T13:07:39.781Z"
+    },
+    {
+      "topicId": "trend-foreign-real-estate-ownership-egypt",
+      "kind": "short",
+      "videoId": "k52j5hKaPaE",
+      "url": "https://www.youtube.com/watch?v=k52j5hKaPaE",
+      "fbPermalink": "https://www.facebook.com/reel/1374604997453640",
+      "publishedAt": "2026-08-17T15:39:46.191Z"
+    },
+    {
+      "topicId": "trend-foreign-real-estate-ownership-egypt",
+      "title": "شروط وإجراءات تملك الأجانب للعقارات في مصر والتسجيل بالشهر العقاري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-foreign-real-estate-ownership-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "QvLGQXYOZFQ",
+      "url": "https://www.youtube.com/watch?v=QvLGQXYOZFQ",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1374604997453640",
+      "publishedAt": "2026-08-17T15:40:46.398Z"
+    },
+    {
+      "topicId": "trend-commercial-fraud-food-safety-laws-egypt",
+      "kind": "short",
+      "videoId": "Cmr5JjsEVaM",
+      "url": "https://www.youtube.com/watch?v=Cmr5JjsEVaM",
+      "fbPermalink": "https://www.facebook.com/reel/898030162995812",
+      "publishedAt": "2026-08-17T19:00:35.837Z"
+    },
+    {
+      "topicId": "trend-commercial-fraud-food-safety-laws-egypt",
+      "title": "عقوبات الغش التجاري وتداول الأغذية الفاسدة في قانون حماية المستهلك المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-commercial-fraud-food-safety-laws-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "mEvQ19uPslY",
+      "url": "https://www.youtube.com/watch?v=mEvQ19uPslY",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/898030162995812",
+      "publishedAt": "2026-08-17T19:01:52.381Z"
     }
   ]
 }
