@@ -1047,6 +1047,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1374604997453640",
       "publishedAt": "2026-08-17T15:40:46.398Z"
+    },
+    {
+      "topicId": "trend-commercial-fraud-food-safety-laws-egypt",
+      "kind": "short",
+      "videoId": "Cmr5JjsEVaM",
+      "url": "https://www.youtube.com/watch?v=Cmr5JjsEVaM",
+      "fbPermalink": "https://www.facebook.com/reel/898030162995812",
+      "publishedAt": "2026-08-17T19:00:35.837Z"
+    },
+    {
+      "topicId": "trend-commercial-fraud-food-safety-laws-egypt",
+      "title": "عقوبات الغش التجاري وتداول الأغذية الفاسدة في قانون حماية المستهلك المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-commercial-fraud-food-safety-laws-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "mEvQ19uPslY",
+      "url": "https://www.youtube.com/watch?v=mEvQ19uPslY",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/898030162995812",
+      "publishedAt": "2026-08-17T19:01:52.381Z"
     }
   ]
 }
