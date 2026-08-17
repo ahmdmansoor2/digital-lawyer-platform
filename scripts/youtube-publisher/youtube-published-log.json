@@ -990,6 +990,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1760154385230236",
       "publishedAt": "2026-08-17T07:17:28.125Z"
+    },
+    {
+      "topicId": "trend-currency-fluctuation-impact-contracts-egypt",
+      "kind": "short",
+      "videoId": "H0255YZmEXc",
+      "url": "https://www.youtube.com/watch?v=H0255YZmEXc",
+      "fbPermalink": "https://www.facebook.com/reel/1602880931488884",
+      "publishedAt": "2026-08-17T09:59:46.834Z"
+    },
+    {
+      "topicId": "trend-currency-fluctuation-impact-contracts-egypt",
+      "title": "تأثير تغير سعر الدولار على العقود والالتزامات المالية: نظرية الظروف الطارئة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-currency-fluctuation-impact-contracts-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "0c6U3eQYAvA",
+      "url": "https://www.youtube.com/watch?v=0c6U3eQYAvA",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1602880931488884",
+      "publishedAt": "2026-08-17T10:01:03.162Z"
     }
   ]
 }
