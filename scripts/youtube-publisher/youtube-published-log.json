@@ -971,6 +971,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1076555564789159",
       "publishedAt": "2026-08-16T18:48:37.994Z"
+    },
+    {
+      "topicId": "trend-egyptian-rent-law-eviction-cases",
+      "kind": "short",
+      "videoId": "Frohoj15Xvw",
+      "url": "https://www.youtube.com/watch?v=Frohoj15Xvw",
+      "fbPermalink": "https://www.facebook.com/reel/1760154385230236",
+      "publishedAt": "2026-08-17T07:16:34.673Z"
+    },
+    {
+      "topicId": "trend-egyptian-rent-law-eviction-cases",
+      "title": "أحكام وثغرات عقد الإيجار الجديد وحالات الإخلاء الفوري في القانون المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-egyptian-rent-law-eviction-cases-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "EbJRsx5BcfY",
+      "url": "https://www.youtube.com/watch?v=EbJRsx5BcfY",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1760154385230236",
+      "publishedAt": "2026-08-17T07:17:28.125Z"
     }
   ]
 }
