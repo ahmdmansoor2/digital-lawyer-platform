@@ -1287,6 +1287,27 @@
       "duration": "1د 4ث",
       "size": 18306823,
       "publishedAt": "2026-08-17T13:06:33.951Z"
+    },
+    {
+      "topicId": "trend-foreign-real-estate-ownership-egypt",
+      "title": "شروط وإجراءات تملك الأجانب للعقارات في مصر والتسجيل بالشهر العقاري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون العقارات",
+        "#تملك الأجانب في مصر",
+        "#شراء عقار للأجانب"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-foreign-real-estate-ownership-egypt.mp4",
+      "videoId": "1374604997453640",
+      "permalink": "https://www.facebook.com/reel/1374604997453640",
+      "source": "trending-topics.json",
+      "duration": "51ث",
+      "size": 23693377,
+      "publishedAt": "2026-08-17T15:39:44.588Z"
     }
   ]
 }

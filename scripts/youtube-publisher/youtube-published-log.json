@@ -1028,6 +1028,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1037293839279422",
       "publishedAt": "2026-08-17T13:07:39.781Z"
+    },
+    {
+      "topicId": "trend-foreign-real-estate-ownership-egypt",
+      "kind": "short",
+      "videoId": "k52j5hKaPaE",
+      "url": "https://www.youtube.com/watch?v=k52j5hKaPaE",
+      "fbPermalink": "https://www.facebook.com/reel/1374604997453640",
+      "publishedAt": "2026-08-17T15:39:46.191Z"
+    },
+    {
+      "topicId": "trend-foreign-real-estate-ownership-egypt",
+      "title": "شروط وإجراءات تملك الأجانب للعقارات في مصر والتسجيل بالشهر العقاري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-foreign-real-estate-ownership-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "QvLGQXYOZFQ",
+      "url": "https://www.youtube.com/watch?v=QvLGQXYOZFQ",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1374604997453640",
+      "publishedAt": "2026-08-17T15:40:46.398Z"
     }
   ]
 }
