@@ -1009,6 +1009,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1602880931488884",
       "publishedAt": "2026-08-17T10:01:03.162Z"
+    },
+    {
+      "topicId": "trend-intellectual-property-rights-creators-egypt",
+      "kind": "short",
+      "videoId": "kqaEWvMaG8c",
+      "url": "https://www.youtube.com/watch?v=kqaEWvMaG8c",
+      "fbPermalink": "https://www.facebook.com/reel/1037293839279422",
+      "publishedAt": "2026-08-17T13:06:36.328Z"
+    },
+    {
+      "topicId": "trend-intellectual-property-rights-creators-egypt",
+      "title": "حقوق الملكية الفكرية لصناع المحتوى والفنانين وتوثيق الأعمال في مصر — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-intellectual-property-rights-creators-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "g_gfr89ertE",
+      "url": "https://www.youtube.com/watch?v=g_gfr89ertE",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1037293839279422",
+      "publishedAt": "2026-08-17T13:07:39.781Z"
     }
   ]
 }
