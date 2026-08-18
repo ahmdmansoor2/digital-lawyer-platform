@@ -1584,6 +1584,18 @@
       ],
       "words": 2095,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "إجراءات الطعن على نتائج التنسيق والتحويلات الجامعية أمام مجلس الدولة 2026",
+      "date": "2026-08-18",
+      "slug": "university-tanseeq-appeals-egypt",
+      "url": "https://mohamidigital.online/blog/university-tanseeq-appeals-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/university-tanseeq-appeals-egypt.jpg",
+      "tags": [
+        "القضاء الإداري"
+      ],
+      "words": 2245,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
