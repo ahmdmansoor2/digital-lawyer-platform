@@ -1104,6 +1104,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1716197712998011",
       "publishedAt": "2026-08-18T09:50:00.966Z"
+    },
+    {
+      "topicId": "trend-gold-bullion-buying-selling-laws-egypt",
+      "kind": "short",
+      "videoId": "LUquPrx6d1A",
+      "url": "https://www.youtube.com/watch?v=LUquPrx6d1A",
+      "fbPermalink": "https://www.facebook.com/reel/1037446822390598",
+      "publishedAt": "2026-08-18T13:09:27.861Z"
+    },
+    {
+      "topicId": "trend-gold-bullion-buying-selling-laws-egypt",
+      "title": "أحكام شراء وبيع السبائك الذهبية في القانون المصري والضرائب المستحقة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-gold-bullion-buying-selling-laws-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "9kKs6Y-QYx4",
+      "url": "https://www.youtube.com/watch?v=9kKs6Y-QYx4",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1037446822390598",
+      "publishedAt": "2026-08-18T13:10:49.080Z"
     }
   ]
 }
