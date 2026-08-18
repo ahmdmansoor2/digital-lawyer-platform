@@ -1572,6 +1572,18 @@
       ],
       "words": 1564,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "كيفية الطعن على نتيجة التنسيق الجامعي أمام محكمة القضاء الإداري",
+      "date": "2026-08-18",
+      "slug": "university-admission-coordination-appeals-egypt",
+      "url": "https://mohamidigital.online/blog/university-admission-coordination-appeals-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/university-admission-coordination-appeals-egypt.jpg",
+      "tags": [
+        "القضاء الإداري"
+      ],
+      "words": 2095,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
