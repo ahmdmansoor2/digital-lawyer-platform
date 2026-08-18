@@ -1123,6 +1123,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1037446822390598",
       "publishedAt": "2026-08-18T13:10:49.080Z"
+    },
+    {
+      "topicId": "trend-university-tanseeq-appeals-egypt",
+      "kind": "short",
+      "videoId": "zP2Wg_g3LBo",
+      "url": "https://www.youtube.com/watch?v=zP2Wg_g3LBo",
+      "fbPermalink": "https://www.facebook.com/reel/2918027451863979",
+      "publishedAt": "2026-08-18T18:58:16.499Z"
+    },
+    {
+      "topicId": "trend-university-tanseeq-appeals-egypt",
+      "title": "إجراءات الطعن على نتائج التنسيق والتحويلات الجامعية أمام مجلس الدولة 2026 — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-university-tanseeq-appeals-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "2HtsSL5a2iM",
+      "url": "https://www.youtube.com/watch?v=2HtsSL5a2iM",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2918027451863979",
+      "publishedAt": "2026-08-18T18:59:21.686Z"
     }
   ]
 }

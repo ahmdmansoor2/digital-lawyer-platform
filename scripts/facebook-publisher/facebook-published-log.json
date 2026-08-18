@@ -1413,6 +1413,27 @@
       "duration": "1د 9ث",
       "size": 25149192,
       "publishedAt": "2026-08-18T15:47:04.251Z"
+    },
+    {
+      "topicId": "trend-university-tanseeq-appeals-egypt",
+      "title": "إجراءات الطعن على نتائج التنسيق والتحويلات الجامعية أمام مجلس الدولة 2026",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القضاء الإداري",
+        "#تنسيق المرحلة الثالثة",
+        "#طعن التنسيق"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-university-tanseeq-appeals-egypt.mp4",
+      "videoId": "2918027451863979",
+      "permalink": "https://www.facebook.com/reel/2918027451863979",
+      "source": "trending-topics.json",
+      "duration": "59ث",
+      "size": 28940253,
+      "publishedAt": "2026-08-18T18:58:13.210Z"
     }
   ]
 }
