@@ -1350,6 +1350,27 @@
       "duration": "1د 17ث",
       "size": 41941231,
       "publishedAt": "2026-08-18T07:06:06.353Z"
+    },
+    {
+      "topicId": "trend-takaful-karama-pension-legal-eligibility",
+      "title": "الشروط القانونية لاستحقاق معاش تكافل وكرامة وكيفية التظلم عند الرفض",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الحماية الاجتماعية",
+        "#استعلام تكافل وكرامة",
+        "#معاش تكافل وكرامة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-takaful-karama-pension-legal-eligibility.mp4",
+      "videoId": "1716197712998011",
+      "permalink": "https://www.facebook.com/reel/1716197712998011",
+      "source": "trending-topics.json",
+      "duration": "58ث",
+      "size": 18862042,
+      "publishedAt": "2026-08-18T09:49:02.673Z"
     }
   ]
 }
