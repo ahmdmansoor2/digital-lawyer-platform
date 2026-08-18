@@ -1066,6 +1066,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/898030162995812",
       "publishedAt": "2026-08-17T19:01:52.381Z"
+    },
+    {
+      "topicId": "trend-sports-contracts-player-rights-egypt",
+      "kind": "short",
+      "videoId": "9xb1Xhp4emE",
+      "url": "https://www.youtube.com/watch?v=9xb1Xhp4emE",
+      "fbPermalink": "https://www.facebook.com/reel/1066525169653938",
+      "publishedAt": "2026-08-18T07:06:08.641Z"
+    },
+    {
+      "topicId": "trend-sports-contracts-player-rights-egypt",
+      "title": "عقود الاحتراف الرياضي وحقوق اللاعبين والأندية وفق اتحاد الكرة والقانون المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-contracts-player-rights-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "PiPXMl2xnVI",
+      "url": "https://www.youtube.com/watch?v=PiPXMl2xnVI",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1066525169653938",
+      "publishedAt": "2026-08-18T07:07:27.402Z"
     }
   ]
 }
