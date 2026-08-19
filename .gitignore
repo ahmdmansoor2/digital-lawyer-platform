@@ -23,3 +23,7 @@ _staged_all_books/
 scripts/ia-upload-log.json
 scripts/test-ia-*.cjs
 scripts/test-storage-upload.cjs
+.ia-release-cache/
+.ia-books/
+scripts/ia-upload-log.json
+scripts/ia-upload-stats.json
