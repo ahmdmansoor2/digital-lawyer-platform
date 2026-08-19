@@ -1518,6 +1518,27 @@
       "duration": "1د 27ث",
       "size": 31277409,
       "publishedAt": "2026-08-19T15:48:03.019Z"
+    },
+    {
+      "topicId": "trend-foreign-marriage-divorce-alimony-egypt",
+      "title": "أحكام النفقة والحضانة في أحوال الزواج والطلاق من أجانب في القانون المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#أحوال شخصية",
+        "#الزواج من أجانب",
+        "#دعوى النفقة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-foreign-marriage-divorce-alimony-egypt.mp4",
+      "videoId": "1583844659916689",
+      "permalink": "https://www.facebook.com/reel/1583844659916689",
+      "source": "trending-topics.json",
+      "duration": "1د 2ث",
+      "size": 20905816,
+      "publishedAt": "2026-08-19T18:54:17.218Z"
     }
   ]
 }

@@ -1218,6 +1218,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1704114187367785",
       "publishedAt": "2026-08-19T15:49:34.450Z"
+    },
+    {
+      "topicId": "trend-foreign-marriage-divorce-alimony-egypt",
+      "kind": "short",
+      "videoId": "iN9uYSaAXZc",
+      "url": "https://www.youtube.com/watch?v=iN9uYSaAXZc",
+      "fbPermalink": "https://www.facebook.com/reel/1583844659916689",
+      "publishedAt": "2026-08-19T18:54:19.075Z"
+    },
+    {
+      "topicId": "trend-foreign-marriage-divorce-alimony-egypt",
+      "title": "أحكام النفقة والحضانة في أحوال الزواج والطلاق من أجانب في القانون المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-foreign-marriage-divorce-alimony-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "Znw2Xhl2isM",
+      "url": "https://www.youtube.com/watch?v=Znw2Xhl2isM",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1583844659916689",
+      "publishedAt": "2026-08-19T18:55:24.073Z"
     }
   ]
 }
