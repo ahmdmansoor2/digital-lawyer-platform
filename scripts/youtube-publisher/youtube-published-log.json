@@ -1199,6 +1199,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/805999555907645",
       "publishedAt": "2026-08-19T13:11:02.299Z"
+    },
+    {
+      "topicId": "trend-sports-contracts-player-disputes-egypt",
+      "kind": "short",
+      "videoId": "ivDxj7_-A3k",
+      "url": "https://www.youtube.com/watch?v=ivDxj7_-A3k",
+      "fbPermalink": "https://www.facebook.com/reel/1704114187367785",
+      "publishedAt": "2026-08-19T15:48:05.351Z"
+    },
+    {
+      "topicId": "trend-sports-contracts-player-disputes-egypt",
+      "title": "عقود الاحتراف الرياضي ونزاعات اللاعبين والأندية في القانون المصري والـ CAS — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-contracts-player-disputes-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "7DV_OiW_Oj8",
+      "url": "https://www.youtube.com/watch?v=7DV_OiW_Oj8",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1704114187367785",
+      "publishedAt": "2026-08-19T15:49:34.450Z"
     }
   ]
 }

@@ -1497,6 +1497,27 @@
       "duration": "53ث",
       "size": 23139624,
       "publishedAt": "2026-08-19T13:10:10.416Z"
+    },
+    {
+      "topicId": "trend-sports-contracts-player-disputes-egypt",
+      "title": "عقود الاحتراف الرياضي ونزاعات اللاعبين والأندية في القانون المصري والـ CAS",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون رياضي",
+        "#عقود اللاعبين",
+        "#النادي الإسماعيلي"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-contracts-player-disputes-egypt.mp4",
+      "videoId": "1704114187367785",
+      "permalink": "https://www.facebook.com/reel/1704114187367785",
+      "source": "trending-topics.json",
+      "duration": "1د 27ث",
+      "size": 31277409,
+      "publishedAt": "2026-08-19T15:48:03.019Z"
     }
   ]
 }
