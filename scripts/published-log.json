@@ -1596,6 +1596,42 @@
       ],
       "words": 2245,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "الجرائم الإلكترونية وتسريب البيانات: العقوبات الإجراءات وكيفية الإبلاغ في مصر",
+      "date": "2026-08-19",
+      "slug": "cybercrime-data-leaks-laws-egypt",
+      "url": "https://mohamidigital.online/blog/cybercrime-data-leaks-laws-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cybercrime-data-leaks-laws-egypt.jpg",
+      "tags": [
+        "جرائم إلكترونية"
+      ],
+      "words": 2423,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "العطلة القضائية في مصر: احتساب مواعيد الطعن والسقوط وحالات الاستثناء",
+      "date": "2026-08-19",
+      "slug": "judicial-recess-court-deadlines-egypt",
+      "url": "https://mohamidigital.online/blog/judicial-recess-court-deadlines-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/judicial-recess-court-deadlines-egypt.jpg",
+      "tags": [
+        "إجراءات تقاضي"
+      ],
+      "words": 2132,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "قواعد تقليل الاغتراب وتظلمات التنسيق الجامعي: الحماية القانونية للطلاب",
+      "date": "2026-08-19",
+      "slug": "student-transfer-university-appeals-egypt",
+      "url": "https://mohamidigital.online/blog/student-transfer-university-appeals-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/student-transfer-university-appeals-egypt.jpg",
+      "tags": [
+        "قانون تعليم"
+      ],
+      "words": 1539,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
