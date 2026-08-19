@@ -1455,6 +1455,27 @@
       "duration": "1د 11ث",
       "size": 15750399,
       "publishedAt": "2026-08-19T07:08:36.973Z"
+    },
+    {
+      "topicId": "trend-judicial-recess-court-deadlines-egypt",
+      "title": "العطلة القضائية في مصر: احتساب مواعيد الطعن والسقوط وحالات الاستثناء",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#إجراءات تقاضي",
+        "#العطلة القضائية",
+        "#إجازة المحاكم"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-judicial-recess-court-deadlines-egypt.mp4",
+      "videoId": "1597527678688485",
+      "permalink": "https://www.facebook.com/reel/1597527678688485",
+      "source": "trending-topics.json",
+      "duration": "1د 1ث",
+      "size": 23701259,
+      "publishedAt": "2026-08-19T09:48:19.769Z"
     }
   ]
 }
