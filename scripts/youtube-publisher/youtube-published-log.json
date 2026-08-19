@@ -1180,6 +1180,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1597527678688485",
       "publishedAt": "2026-08-19T09:49:12.896Z"
+    },
+    {
+      "topicId": "trend-student-transfer-university-appeals-egypt",
+      "kind": "short",
+      "videoId": "HD2_H1eKwD4",
+      "url": "https://www.youtube.com/watch?v=HD2_H1eKwD4",
+      "fbPermalink": "https://www.facebook.com/reel/805999555907645",
+      "publishedAt": "2026-08-19T13:10:13.089Z"
+    },
+    {
+      "topicId": "trend-student-transfer-university-appeals-egypt",
+      "title": "قواعد تقليل الاغتراب وتظلمات التنسيق الجامعي: الحماية القانونية للطلاب — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-student-transfer-university-appeals-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "urVoCa0KhGo",
+      "url": "https://www.youtube.com/watch?v=urVoCa0KhGo",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/805999555907645",
+      "publishedAt": "2026-08-19T13:11:02.299Z"
     }
   ]
 }

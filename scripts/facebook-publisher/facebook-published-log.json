@@ -1476,6 +1476,27 @@
       "duration": "1د 1ث",
       "size": 23701259,
       "publishedAt": "2026-08-19T09:48:19.769Z"
+    },
+    {
+      "topicId": "trend-student-transfer-university-appeals-egypt",
+      "title": "قواعد تقليل الاغتراب وتظلمات التنسيق الجامعي: الحماية القانونية للطلاب",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون تعليم",
+        "#تقليل الاغتراب",
+        "#تظلمات التنسيق"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-student-transfer-university-appeals-egypt.mp4",
+      "videoId": "805999555907645",
+      "permalink": "https://www.facebook.com/reel/805999555907645",
+      "source": "trending-topics.json",
+      "duration": "53ث",
+      "size": 23139624,
+      "publishedAt": "2026-08-19T13:10:10.416Z"
     }
   ]
 }
