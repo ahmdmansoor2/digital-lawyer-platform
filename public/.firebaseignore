@@ -1,3 +1,7 @@
+# Internet Archive migration — استثناء الملفات الضخمة
+# الكتب تُقدَّم من IA الآن (legal-library.html يشير لـ archive.org)
 books/**
+# chunks الكتب تُقدَّم من IA
 data/library-docs-chunks/**
+# كتالوج النماذج الضخم (82 MB) — يُحمَّل من backend
 data/legal-forms-catalog.json

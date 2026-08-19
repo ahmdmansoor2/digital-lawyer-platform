@@ -4,6 +4,40 @@
 
 ---
 
+## [v2.22.0] — 2026-08-18 (📚 ترحيل المكتبة القانونية إلى Internet Archive)
+
+### المشكلة
+- `public/books/` 6.25 GB + `public/data/library-docs-chunks/` 506 MB = Vite يُجمِّد أثناء `cp public/ dist/` ونشر Firebase Hosting بطيء ومكلف.
+- Firebase Storage يتطلب بطاقة بنكية (لا تتوفر لدى المستخدم). Cloudflare R2 كذلك.
+
+### الحل المعتمد
+- **Internet Archive** — 100% مجاني، بدون بطاقة، تخزين غير محدود. البند: `https://archive.org/details/mohamidigital-library` (CC BY-NC-SA 4.0).
+- **LOW-auth S3** يعمل (SigV4 يرجع `InvalidAccessKeyId` — لا يُستخدم).
+- رُفع **18 كتاباً** + **127 chunk** (~2.2 GB) في 15 دقيقة.
+
+### ما تم
+- **`public/legal-library.html`** — استبدال 36 مرجع كتاب + 2 chunk من `/books/...` و`/data/library-docs-chunks/...` إلى `https://archive.org/download/mohamidigital-library/...`.
+- **`public/.firebaseignore`** — استثناء `books/**` + `data/library-docs-chunks/**` + `data/legal-forms-catalog.json` (82 MB) من رفع Firebase Hosting.
+- **`scripts/upload-to-ia.cjs`** — سكريبت IA مع LOW-auth، concurrency 3، resume من السجل، retry × 3. **الاعتمادات تُقرأ من `IA_ACCESS_KEY`/`IA_SECRET_KEY` env أو `%USERPROFILE%\.ia-credentials.json`** (محلي، غير ملتزم).
+- **`scripts/test-ia-*.cjs`** — حُذفت (كانت تحوي اعتمادات مكشوفة).
+- **`.gitignore`** — إضافة `scripts/ia-upload-log.json` و`scripts/test-ia-*.cjs` و`scripts/test-storage-upload.cjs`.
+- **`index.html`** BUILD_VERSION: `20260816-v1` → `20260818-v1`.
+
+### التحقق
+- بناء نجح في 10 ثوانٍ (Vite مع 137 MB public/ فقط بعد نقل الكتب خارج).
+- `npx firebase deploy --only hosting:app --force` → 462 ملف، release complete.
+- حي: `https://mohamidigital.online/legal-library.html` يرجع 200 (78 KB) ويحتوي 38 رابط IA، 0 رابط قديم.
+- `https://archive.org/download/mohamidigital-library/sanhouri-waseet-vol-1-sources-of-obligation.pdf` → 200 (37 MB PDF, application/pdf).
+- `https://mohamidigital.online/` → 200 (27 KB).
+- `https://mohamidigital.online/sitemap.xml` → 200 (52 KB).
+
+### المتبقي
+- **`www.mohamidigital.online` لا يزال مكسوراً** (Connection reset) — لم يُضف في Firebase Hosting بعد. الرئيسي شغال.
+- **Search Console** بانتظار Verify من المستخدم.
+- الكتب الـ 20 المتعقبة في `public/books/` تبقى في الـ repo (لكن `.firebaseignore` يستبعدها من Firebase). الإضافة الجديدة لـ `public/books/` تُتجاهل من git (`public/books/` في `.gitignore`).
+
+---
+
 ## [v2.21.1] — 2026-08-15 (🧹 تنظيف CSS الميت بعد الشريط الجديد)
 
 ### ما تم

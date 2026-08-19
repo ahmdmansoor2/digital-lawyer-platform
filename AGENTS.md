@@ -635,3 +635,38 @@ commit `54e9559` — تم push. تحقق بـ `firebase deploy --only hosting:ap
 - `public-theme-light` يُستخدم كـ toggle عبر `usePublicTheme.ts` و`theme-toggle.js` في الـ static — لا يُحذف.
 - معايير الـ `PUBLIC_HOME`/`InfoCenter` بلا `public-auth-screen` — هذه الكتل خاصة بشاشة الدخول فقط.
 - باقي تنبيهات Session 20 كما هي (www، Search Console، YouTube tokens).
+
+---
+
+## حالة الجلسة الحالية: Session 21 — ترحيل المكتبة القانونية إلى Internet Archive (مكتمل)
+
+### المشكلة
+- Firebase Storage رفض النشر دون بطاقة بنكية (Cloudflare R2 كذلك).
+- `public/books/` كان 6.25 GB PDF + `public/data/library-docs-chunks/` 506 MB → Vite كان يُجمِّد أثناء `cp public/ dist/` (7+ GB).
+- النتيجة: `dist/` ضخم جداً، النشر بطيء، تكلفة Firebase Hosting المجانية تُستنزف بسرعة.
+
+### الحل المعتمد: Internet Archive
+- **100% مجاني**، بدون بطاقة، تخزين غير محدود.
+- **LOW-auth S3** يعمل (SigV4 يرجع `InvalidAccessKeyId` — لا داعي لمحاولته).
+- بند عالمي عام: `https://archive.org/details/mohamidigital-library` (CC BY-NC-SA 4.0).
+- رفع **18 كتاباً** (المُحال إليها في `legal-library.html`) + **127 chunk** = ~2.2 GB في 15 دقيقة.
+- الروابط العامة: `https://archive.org/download/mohamidigital-library/<file>.pdf` أو `/chunks/<file>.json`.
+
+### ما تم
+1. **`public/legal-library.html`** — استبدال 36 مرجع كتاب + 2 chunk من `/books/...` و`/data/library-docs-chunks/...` إلى `https://archive.org/download/mohamidigital-library/...`.
+2. **`public/.firebaseignore`** — استثناء `books/**` + `data/library-docs-chunks/**` + `data/legal-forms-catalog.json` (82 MB) من رفع Firebase.
+3. **`scripts/upload-to-ia.cjs`** — سكريبت رفع IA مع LOW-auth، concurrency 3، resume من السجل، retry × 3. **الاعتمادات تُقرأ من `IA_ACCESS_KEY`/`IA_SECRET_KEY` env أو `%USERPROFILE%\.ia-credentials.json`** (محلي، غير ملتزم).
+4. **`scripts/test-ia-*.cjs`** — حُذفت (كانت تحوي اعتمادات مكشوفة).
+5. **تأكيد حي** بعد النشر: 38 رابط IA في الصفحة (20 فريد، 0 تسريب للرابط القديم) + `archive.org/download/.../sanhouri-waseet-vol-1.pdf` يرجع 200 (37 MB PDF).
+
+### قيد الاستثناء من النشر (يبقى في الـ repo، .firebaseignore يستبعده من Firebase)
+- `public/books/*.pdf` — 20 PDF متعقبة (~50-200 MB). `public/books/` في `.gitignore` فلا يُلتزم منها جديد، لكن الـ 20 المتعقبة تاريخياً تبقى.
+- `public/data/legal-forms-catalog.json` — 82 MB كتالوج النماذج. يُحمَّل من backend إن لزم.
+
+### تنبيهات
+- **اعتمادات IA** في `C:\Users\احمد منصور\.ia-credentials.json` فقط (JSON). لا تُلزم أبداً.
+- `BOOKS_REF` في السكريبت كان في `D:\قانونi 7\...` (typo) — تم إصلاحه إلى `path.join(__dirname, 'ia-upload-log.json')`.
+- `.gitignore` أُضيف: `scripts/ia-upload-log.json` و`scripts/test-ia-*.cjs` و`scripts/test-storage-upload.cjs`.
+- **`www.mohamidigital.online`** لا يزال مكسوراً (Connection reset) — لم يُضف في Firebase Hosting بعد. `mohamidigital.online` (الرئيسي) شغال 100%.
+- **Search Console** لا يزال ينتظر Verify من المستخدم.
+- `index.html` BUILD_VERSION: `20260816-v1` → `20260818-v1`.
