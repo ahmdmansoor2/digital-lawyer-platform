@@ -1142,6 +1142,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2918027451863979",
       "publishedAt": "2026-08-18T18:59:21.686Z"
+    },
+    {
+      "topicId": "trend-cybercrime-data-leaks-laws-egypt",
+      "kind": "short",
+      "videoId": "_ZkTEF70ay4",
+      "url": "https://www.youtube.com/watch?v=_ZkTEF70ay4",
+      "fbPermalink": "https://www.facebook.com/reel/1721468359106692",
+      "publishedAt": "2026-08-19T07:08:39.458Z"
+    },
+    {
+      "topicId": "trend-cybercrime-data-leaks-laws-egypt",
+      "title": "الجرائم الإلكترونية وتسريب البيانات: العقوبات الإجراءات وكيفية الإبلاغ في مصر — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cybercrime-data-leaks-laws-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "fH7LQ2CueS8",
+      "url": "https://www.youtube.com/watch?v=fH7LQ2CueS8",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1721468359106692",
+      "publishedAt": "2026-08-19T07:09:45.300Z"
     }
   ]
 }
