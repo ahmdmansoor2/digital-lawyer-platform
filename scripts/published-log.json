@@ -1632,6 +1632,42 @@
       ],
       "words": 1539,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبات الاتجار بالنقد الأجنبي والسوق السوداء في القانون المصري",
+      "date": "2026-08-20",
+      "slug": "foreign-currency-laws-egypt",
+      "url": "https://mohamidigital.online/blog/foreign-currency-laws-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/foreign-currency-laws-egypt.jpg",
+      "tags": [
+        "القانون الجنائي"
+      ],
+      "words": 2476,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "تأثير تغير سعر الصرف والدولار على عقود التوريدات والمقاولات",
+      "date": "2026-08-20",
+      "slug": "currency-devaluation-contract-effects",
+      "url": "https://mohamidigital.online/blog/currency-devaluation-contract-effects.html",
+      "image": "https://mohamidigital.online/blog/images/currency-devaluation-contract-effects.jpg",
+      "tags": [
+        "القانون المدني"
+      ],
+      "words": 2142,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبات غش وغسل الأدوية والاتجار بالمهدئات وفق هيئة الدواء المصرية",
+      "date": "2026-08-20",
+      "slug": "egypt-pharmaceutical-law-counterfeit-drugs",
+      "url": "https://mohamidigital.online/blog/egypt-pharmaceutical-law-counterfeit-drugs.html",
+      "image": "https://mohamidigital.online/blog/images/egypt-pharmaceutical-law-counterfeit-drugs.jpg",
+      "tags": [
+        "الجرائم التموينية"
+      ],
+      "words": 1623,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
