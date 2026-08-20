@@ -1275,6 +1275,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/902002452564800",
       "publishedAt": "2026-08-20T09:51:00.646Z"
+    },
+    {
+      "topicId": "trend-currency-devaluation-contract-effects",
+      "kind": "short",
+      "videoId": "OOEvk9EtqIM",
+      "url": "https://www.youtube.com/watch?v=OOEvk9EtqIM",
+      "fbPermalink": "https://www.facebook.com/reel/1040420115293427",
+      "publishedAt": "2026-08-20T13:11:36.526Z"
+    },
+    {
+      "topicId": "trend-currency-devaluation-contract-effects",
+      "title": "تأثير تغير سعر الصرف والدولار على عقود التوريدات والمقاولات — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-currency-devaluation-contract-effects-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "XVvBDujEJsI",
+      "url": "https://www.youtube.com/watch?v=XVvBDujEJsI",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1040420115293427",
+      "publishedAt": "2026-08-20T13:12:52.750Z"
     }
   ]
 }
