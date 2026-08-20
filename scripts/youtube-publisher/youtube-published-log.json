@@ -1294,6 +1294,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1040420115293427",
       "publishedAt": "2026-08-20T13:12:52.750Z"
+    },
+    {
+      "topicId": "trend-egypt-pharmaceutical-law-counterfeit-drugs",
+      "kind": "short",
+      "videoId": "0TP3tZg9QIM",
+      "url": "https://www.youtube.com/watch?v=0TP3tZg9QIM",
+      "fbPermalink": "https://www.facebook.com/reel/1596393902220709",
+      "publishedAt": "2026-08-20T15:50:12.568Z"
+    },
+    {
+      "topicId": "trend-egypt-pharmaceutical-law-counterfeit-drugs",
+      "title": "عقوبات غش وغسل الأدوية والاتجار بالمهدئات وفق هيئة الدواء المصرية — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-egypt-pharmaceutical-law-counterfeit-drugs-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "mWfnLxNWfUk",
+      "url": "https://www.youtube.com/watch?v=mWfnLxNWfUk",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1596393902220709",
+      "publishedAt": "2026-08-20T15:51:41.955Z"
     }
   ]
 }
