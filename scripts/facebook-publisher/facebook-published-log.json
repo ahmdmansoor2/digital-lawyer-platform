@@ -1539,6 +1539,27 @@
       "duration": "1د 2ث",
       "size": 20905816,
       "publishedAt": "2026-08-19T18:54:17.218Z"
+    },
+    {
+      "topicId": "trend-e-signature-data-privacy-egypt",
+      "title": "حماية البيانات الشخصية والتوقيع الإلكتروني في التطبيقات والشركات الرقمية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#حماية البيانات",
+        "#حماية البيانات الشخصية",
+        "#التوقيع الإلكتروني"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-e-signature-data-privacy-egypt.mp4",
+      "videoId": "2127503728165837",
+      "permalink": "https://www.facebook.com/reel/2127503728165837",
+      "source": "trending-topics.json",
+      "duration": "56ث",
+      "size": 24920054,
+      "publishedAt": "2026-08-20T07:06:25.683Z"
     }
   ]
 }

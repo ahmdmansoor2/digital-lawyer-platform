@@ -1237,6 +1237,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1583844659916689",
       "publishedAt": "2026-08-19T18:55:24.073Z"
+    },
+    {
+      "topicId": "trend-e-signature-data-privacy-egypt",
+      "kind": "short",
+      "videoId": "fGu9Ka8qaL4",
+      "url": "https://www.youtube.com/watch?v=fGu9Ka8qaL4",
+      "fbPermalink": "https://www.facebook.com/reel/2127503728165837",
+      "publishedAt": "2026-08-20T07:06:27.926Z"
+    },
+    {
+      "topicId": "trend-e-signature-data-privacy-egypt",
+      "title": "حماية البيانات الشخصية والتوقيع الإلكتروني في التطبيقات والشركات الرقمية — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-e-signature-data-privacy-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "R-nmgC2M_HQ",
+      "url": "https://www.youtube.com/watch?v=R-nmgC2M_HQ",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2127503728165837",
+      "publishedAt": "2026-08-20T07:07:29.329Z"
     }
   ]
 }
