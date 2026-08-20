@@ -1560,6 +1560,27 @@
       "duration": "56ث",
       "size": 24920054,
       "publishedAt": "2026-08-20T07:06:25.683Z"
+    },
+    {
+      "topicId": "trend-foreign-currency-laws-egypt",
+      "title": "عقوبات الاتجار بالنقد الأجنبي والسوق السوداء في القانون المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون الجنائي",
+        "#سعر الدولار",
+        "#البنك المركزي المصري"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-foreign-currency-laws-egypt.mp4",
+      "videoId": "902002452564800",
+      "permalink": "https://www.facebook.com/reel/902002452564800",
+      "source": "trending-topics.json",
+      "duration": "1د 2ث",
+      "size": 20545181,
+      "publishedAt": "2026-08-20T09:49:59.767Z"
     }
   ]
 }
