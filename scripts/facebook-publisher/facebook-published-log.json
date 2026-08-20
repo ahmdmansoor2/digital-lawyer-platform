@@ -1623,6 +1623,27 @@
       "duration": "1د 23ث",
       "size": 31772791,
       "publishedAt": "2026-08-20T15:50:09.107Z"
+    },
+    {
+      "topicId": "trend-pharmacy-licensing-regulations-egypt",
+      "title": "شروط وإجراءات ترخيص الصيدليات والمؤسسات الطبية في مصر 2024",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#التراخيص والتأسيس",
+        "#هيئة الدواء المصرية",
+        "#ترخيص صيدلية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-pharmacy-licensing-regulations-egypt.mp4",
+      "videoId": "1661983342602150",
+      "permalink": "https://www.facebook.com/reel/1661983342602150",
+      "source": "trending-topics.json",
+      "duration": "1د 0ث",
+      "size": 20377610,
+      "publishedAt": "2026-08-20T18:59:34.552Z"
     }
   ]
 }

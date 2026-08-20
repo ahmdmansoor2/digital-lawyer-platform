@@ -1313,6 +1313,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1596393902220709",
       "publishedAt": "2026-08-20T15:51:41.955Z"
+    },
+    {
+      "topicId": "trend-pharmacy-licensing-regulations-egypt",
+      "kind": "short",
+      "videoId": "7mwjL1J4zpE",
+      "url": "https://www.youtube.com/watch?v=7mwjL1J4zpE",
+      "fbPermalink": "https://www.facebook.com/reel/1661983342602150",
+      "publishedAt": "2026-08-20T18:59:36.790Z"
+    },
+    {
+      "topicId": "trend-pharmacy-licensing-regulations-egypt",
+      "title": "شروط وإجراءات ترخيص الصيدليات والمؤسسات الطبية في مصر 2024 — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-pharmacy-licensing-regulations-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "l6hxCetHdyQ",
+      "url": "https://www.youtube.com/watch?v=l6hxCetHdyQ",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1661983342602150",
+      "publishedAt": "2026-08-20T19:00:37.267Z"
     }
   ]
 }
