@@ -8,7 +8,9 @@
         "**/.*",
         "**/node_modules/**",
         "dist/server.mjs",
-        "dist/server.mjs.map"
+        "dist/server.mjs.map",
+        "books/**",
+        "data/library-docs-chunks/**"
       ],
       "rewrites": [
         {

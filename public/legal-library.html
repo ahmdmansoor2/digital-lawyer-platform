@@ -998,6 +998,12 @@
               }
             }
           }
+          if (item) {
+            // Normalize body field — chunks use 'fullText', code expects 'text'
+            if (!item.text && item.fullText) {
+              item.text = item.fullText;
+            }
+          }
           return item;
         }
 
