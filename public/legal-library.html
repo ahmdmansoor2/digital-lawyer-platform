@@ -844,7 +844,7 @@
     function getDocIndexMap() {
       if (docIndexMap) return Promise.resolve(docIndexMap);
       if (docIndexPromise) return docIndexPromise;
-      docIndexPromise = fetch('https://archive.org/download/mohamidigital-library/chunks/doc-index-map.json?v=' + LIB_DATA_VER)
+      docIndexPromise = fetch('/data/doc-index-map.json?v=' + LIB_DATA_VER)
         .then(function(r) { return r.json(); })
         .then(function(m) {
           docIndexMap = m;
@@ -1006,7 +1006,7 @@
             var item = extractFromChunk(loadedDocChunks[chunkId]);
             displayDocContent(item);
           } else {
-            fetch('https://archive.org/download/mohamidigital-library/chunks/doc-chunk-' + chunkId + '.json?v=' + LIB_DATA_VER)
+            fetch('/data/forms-chunks/' + chunkId + '.json?v=' + LIB_DATA_VER)
               .then(function(r) { return r.json(); })
               .then(function(data) {
                 loadedDocChunks[chunkId] = data;
