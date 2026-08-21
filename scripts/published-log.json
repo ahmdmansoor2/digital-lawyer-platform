@@ -1668,6 +1668,42 @@
       ],
       "words": 1623,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقود الاحتراف الرياضي في القانون المصري واللائحية الدولية: حقوق اللاعب والأندية",
+      "date": "2026-08-21",
+      "slug": "sports-contracts-egyptian-law",
+      "url": "https://mohamidigital.online/blog/sports-contracts-egyptian-law.html",
+      "image": "https://mohamidigital.online/blog/images/sports-contracts-egyptian-law.jpg",
+      "tags": [
+        "القانون الرياضي"
+      ],
+      "words": 1963,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "جريمة الشيك بدون رصيد في مصر: العقوبات وحالات التصالح وثغرات البراءة",
+      "date": "2026-08-21",
+      "slug": "bounced-cheque-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/bounced-cheque-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/bounced-cheque-penalties-egypt.jpg",
+      "tags": [
+        "قانون العقوبات"
+      ],
+      "words": 1920,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبة الابتزاز الإلكتروني في القانون المصري وكيفية الإبلاغ رسمياً",
+      "date": "2026-08-21",
+      "slug": "cybercrime-blackmail-laws-egypt",
+      "url": "https://mohamidigital.online/blog/cybercrime-blackmail-laws-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cybercrime-blackmail-laws-egypt.jpg",
+      "tags": [
+        "الجرائم الإلكترونية"
+      ],
+      "words": 1674,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
