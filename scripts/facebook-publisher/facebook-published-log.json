@@ -1665,6 +1665,27 @@
       "duration": "55ث",
       "size": 21996318,
       "publishedAt": "2026-08-21T07:06:44.937Z"
+    },
+    {
+      "topicId": "trend-sports-contracts-egyptian-law",
+      "title": "عقود الاحتراف الرياضي في القانون المصري واللائحية الدولية: حقوق اللاعب والأندية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون الرياضي",
+        "#عقود الاحتراف الرياضي",
+        "#انتقال اللاعبين"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-contracts-egyptian-law.mp4",
+      "videoId": "1831672631173402",
+      "permalink": "https://www.facebook.com/reel/1831672631173402",
+      "source": "trending-topics.json",
+      "duration": "1د 3ث",
+      "size": 24785736,
+      "publishedAt": "2026-08-21T09:53:04.902Z"
     }
   ]
 }
