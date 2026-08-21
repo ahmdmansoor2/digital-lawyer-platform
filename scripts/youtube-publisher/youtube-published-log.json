@@ -1332,6 +1332,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1661983342602150",
       "publishedAt": "2026-08-20T19:00:37.267Z"
+    },
+    {
+      "topicId": "blog-real-estate-ownership-transfer",
+      "kind": "short",
+      "videoId": "BF4pt96yK7w",
+      "url": "https://www.youtube.com/watch?v=BF4pt96yK7w",
+      "fbPermalink": "https://www.facebook.com/reel/1429115699133788",
+      "publishedAt": "2026-08-21T07:06:47.222Z"
+    },
+    {
+      "topicId": "blog-real-estate-ownership-transfer",
+      "title": "نقل الملكية العقارية في مصر: دليل شامل للشهر العقاري والرسوم والمستندات القانوني — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-real-estate-ownership-transfer-wide.mp4",
+      "source": "blog",
+      "videoId": "I-cPK296QI4",
+      "url": "https://www.youtube.com/watch?v=I-cPK296QI4",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1429115699133788",
+      "publishedAt": "2026-08-21T07:07:45.067Z"
     }
   ]
 }
