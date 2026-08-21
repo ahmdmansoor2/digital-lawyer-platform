@@ -1728,6 +1728,27 @@
       "duration": "1د 10ث",
       "size": 25981482,
       "publishedAt": "2026-08-21T15:49:03.418Z"
+    },
+    {
+      "topicId": "trend-shahr-aqari-registration-steps",
+      "title": "خطوات تسجيل العقارات في الشهر العقاري وفقاً للقانون الجديد وتكلفتها",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الشهر العقاري",
+        "#تسجيل العقارات",
+        "#تسجيل شقة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-shahr-aqari-registration-steps.mp4",
+      "videoId": "1738869130769478",
+      "permalink": "https://www.facebook.com/reel/1738869130769478",
+      "source": "trending-topics.json",
+      "duration": "1د 5ث",
+      "size": 24547691,
+      "publishedAt": "2026-08-21T18:57:00.661Z"
     }
   ]
 }
