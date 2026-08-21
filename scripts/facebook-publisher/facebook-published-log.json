@@ -1707,6 +1707,27 @@
       "duration": "52ث",
       "size": 15500276,
       "publishedAt": "2026-08-21T13:10:39.005Z"
+    },
+    {
+      "topicId": "trend-cybercrime-blackmail-laws-egypt",
+      "title": "عقوبة الابتزاز الإلكتروني في القانون المصري وكيفية الإبلاغ رسمياً",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الجرائم الإلكترونية",
+        "#الابتزاز الإلكتروني",
+        "#مباحث الإنترنت"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cybercrime-blackmail-laws-egypt.mp4",
+      "videoId": "1066605985758562",
+      "permalink": "https://www.facebook.com/reel/1066605985758562",
+      "source": "trending-topics.json",
+      "duration": "1د 10ث",
+      "size": 25981482,
+      "publishedAt": "2026-08-21T15:49:03.418Z"
     }
   ]
 }
