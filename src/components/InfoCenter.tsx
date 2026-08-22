@@ -46,6 +46,16 @@ interface InfoCenterProps {
 // ── شبكة البطاقات الفاخرة للمميزات والخدمات ─────────────────────────────
 const PLATFORM_FEATURES = [
   {
+    href: '/citizen-complaints.html',
+    badge: '📢 المظلة الوطنية',
+    title: 'بوابة شكاوى وبلاغات المواطنين الموحدة',
+    desc: 'منظومة الشكاوى الحكومية الموحدة (shakwa.eg - 16528)، جهاز حماية المستهلك (19588)، تنظيم الاتصالات (155)، ومولد صيغ الشكاوى الرسمي.',
+    icon: MessageCircle,
+    gradient: 'from-rose-500 to-pink-600',
+    glow: 'rgba(244, 63, 94, 0.25)',
+    tag: 'مجلس الوزراء 16528'
+  },
+  {
     href: '/e-justice-services.html',
     badge: '🚀 منظومة 2026',
     title: 'التقاضي الإلكتروني والخدمات القضائية الرقمية',

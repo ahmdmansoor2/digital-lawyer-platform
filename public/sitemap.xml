@@ -901,6 +901,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/citizen-complaints.html</loc>
+    <lastmod>2026-08-22T20:17:05.539Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/company-incorporation.html</loc>
     <lastmod>2026-08-22T10:48:31.041Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -932,7 +938,7 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/e-justice-services.html</loc>
-    <lastmod>2026-08-22T20:05:58.830Z</lastmod>
+    <lastmod>2026-08-22T20:11:40.525Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

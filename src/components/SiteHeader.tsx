@@ -24,6 +24,7 @@ const PRIMARY = [
 ];
 
 const MORE = [
+  { href: '/citizen-complaints.html', label: '📢 بوابة شكاوى وبلاغات المواطنين', key: 'complaints' },
   { href: '/e-justice-services.html', label: '🏛️ التقاضي والخدمات القضائية الرقمية', key: 'ejustice' },
   { href: '/legal-radar.html', label: '🔍 رصد المحامي الذكي', key: 'radar' },
   { href: '/legal-calculators.html', label: '🧮 الحاسبات القانونية', key: 'calculators' },
