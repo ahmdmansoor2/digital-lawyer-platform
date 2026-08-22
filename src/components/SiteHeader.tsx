@@ -16,20 +16,18 @@ interface SiteHeaderProps {
 
 const PRIMARY = [
   { href: '/', label: '🏠 الرئيسية', key: 'home' },
-  { href: '/legal-consultations.html', label: '💬 طلب استشارة', key: 'consultations' },
+  { href: '/legal-consultations.html', label: '💬 استشارة فورية', key: 'consultations' },
   { href: '/lawyers-directory.html', label: '👨‍⚖️ دليل المحامين', key: 'lawyers' },
-  { href: '/blog/', label: '📰 المدونة القانونية', key: 'blog' },
-  { href: '/pillars/', label: '🏛️ المراجع الشاملة', key: 'pillars' },
-  { href: '/legal-forms.html', label: '📝 صيغ العقود والدعاوي', key: 'forms' },
-  { href: '/legal-radar.html', label: '🔍 رصد المحامي', key: 'radar' },
-  { href: '/legal-calculators.html', label: '🧮 الحاسبات القانونية', key: 'calculators' },
+  { href: '/legal-forms.html', label: '📝 صيغ العقود', key: 'forms' },
+  { href: '/pillars/', label: '🏛️ المراجع والأكواد', key: 'pillars' },
+  { href: '/blog/', label: '📰 المدونة', key: 'blog' },
 ];
 
 const MORE = [
-  { href: '/legal-consultations.html', label: '💬 الاستشارات القانونية الفورية', key: 'consultations_more' },
-  { href: '/lawyers-directory.html', label: '👨‍⚖️ دليل وتسجيل المحامين المشتغلين', key: 'lawyers_more' },
-  { href: '/courts-directory.html', label: '🏛️ دليل المحاكم والشهر العقاري', key: 'courts' },
+  { href: '/legal-radar.html', label: '🔍 رصد المحامي الذكي', key: 'radar' },
+  { href: '/legal-calculators.html', label: '🧮 الحاسبات القانونية', key: 'calculators' },
   { href: '/court-precedents.html', label: '⚖️ بنك مبادئ محكمة النقض', key: 'precedents' },
+  { href: '/courts-directory.html', label: '🏛️ دليل المحاكم والشهر العقاري', key: 'courts' },
   { href: '/company-incorporation.html', label: '💼 تأسيس الشركات والتراخيص', key: 'companies' },
   { href: '/legal-diagnostics.html', label: '🔍 تشخيص النزاع القضائي', key: 'diagnostics' },
   { href: '/about.html', label: '⚖️ عن المنصة', key: 'about' },
@@ -38,7 +36,6 @@ const MORE = [
   { href: '/why-trust-us.html', label: '🛡️ لماذا تثق بنا', key: 'trust' },
   { href: '/privacy.html', label: '🔐 سياسة الخصوصية', key: 'privacy' },
   { href: '/terms.html', label: '📜 الشروط والأحكام', key: 'terms' },
-  { href: '/disclaimer.html', label: '⚠️ إخلاء المسؤولية', key: 'disclaimer' },
   { href: '/contact.html', label: '📬 تواصل معنا', key: 'contact' },
 ];
 
