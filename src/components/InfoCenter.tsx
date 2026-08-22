@@ -46,14 +46,14 @@ interface InfoCenterProps {
 // ── شبكة البطاقات الفاخرة للمميزات والخدمات ─────────────────────────────
 const PLATFORM_FEATURES = [
   {
-    href: '/legal-library.html',
-    badge: 'المكتبة الشاملة',
-    title: 'المكتبة القانونية والبحث المتقدم',
-    desc: 'محرك بحث متطور في نصوص القوانين المصرية وأحكام محكمة النقض والمحكمة الدستورية العليا.',
-    icon: Library,
+    href: '/legal-forms.html',
+    badge: 'موسوعة الصيغ',
+    title: 'صيغ العقود والدعاوى الجاهزة',
+    desc: 'أكثر من 2,690 صيغة قانونية ونموذج عقد وصحيفة دعوى جاهزة للنسخ والتحميل المباشر.',
+    icon: FileSignature,
     gradient: 'from-blue-500 to-indigo-600',
     glow: 'rgba(59, 130, 246, 0.25)',
-    tag: 'مفهرس ومحدث'
+    tag: 'جاهز للتحميل'
   },
   {
     href: '/pillars/',
@@ -215,11 +215,11 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </button>
 
           <a
-            href="/legal-library.html"
+            href="/legal-forms.html"
             className="px-6 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-white/15 hover:border-indigo-500/50 text-slate-200 hover:text-white font-bold text-sm sm:text-base transition-all flex items-center gap-2 shadow-lg backdrop-blur-md cursor-pointer"
           >
-            <Library className="w-5 h-5 text-indigo-400" />
-            <span>تصفح المكتبة القانونية</span>
+            <FileSignature className="w-5 h-5 text-indigo-400" />
+            <span>صيغ العقود والدعاوي</span>
           </a>
         </div>
 
