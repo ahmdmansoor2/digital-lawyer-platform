@@ -60,3 +60,7 @@ jobs:
           npx firebase deploy --only hosting:app --token "$FIREBASE_TOKEN" --non-interactive
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: Submit new URLs to IndexNow
+        run: node scripts/submit-indexnow.cjs
+        if: success()

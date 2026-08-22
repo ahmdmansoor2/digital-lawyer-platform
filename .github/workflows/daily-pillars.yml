@@ -45,6 +45,10 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
+      - name: Submit new URLs to IndexNow
+        run: node scripts/submit-indexnow.cjs
+        if: success()
+
       - name: Commit published pillars & sitemaps back to Git
         run: |
           git config user.name  "Legal Pillars Bot 📚"
