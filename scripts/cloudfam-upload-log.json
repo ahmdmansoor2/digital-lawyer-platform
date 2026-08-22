@@ -1,0 +1,15 @@
+{
+  "uploaded": {},
+  "failed": {
+    "/books/.pdf-filename-utf-8-المادة-العلمية-لمحاضرة-جرائم-الضرب-والجرح-والايذاء.pdf": {
+      "error": "no_url"
+    },
+    "/books/00000.pdf": {
+      "error": "no_url"
+    },
+    "/books/01-أوراق-المحضرين.pdf": {
+      "error": "no_url"
+    }
+  },
+  "total": 0
+}

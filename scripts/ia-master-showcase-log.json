@@ -1,0 +1,41 @@
+{
+  "done": [],
+  "failed": [
+    {
+      "name": "sanhouri-waseet-vol-3-assignment-and-extinction.pdf",
+      "status": 404,
+      "body": "<?xml version='1.0' encoding='UTF-8'?>\n<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist.</Message><Resource>mohamidigital-law-books not found by _get_metadata</Resource><RequestId>88436a36-b177-4750-8c13-3225a8d945e8</RequestId></Error>",
+      "time": "2026-08-20T16:54:55.678Z"
+    },
+    {
+      "name": "sanhouri-waseet-vol-2-evidence-and-effects.pdf",
+      "status": 404,
+      "body": "<?xml version='1.0' encoding='UTF-8'?>\n<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist.</Message><Resource>mohamidigital-law-books not found by _get_metadata</Resource><RequestId>c1f80825-d42e-45f4-8279-31c03c776611</RequestId></Error>",
+      "time": "2026-08-20T16:54:57.545Z"
+    },
+    {
+      "name": "sanhouri-waseet-vol-1-sources-of-obligation.pdf",
+      "status": 404,
+      "body": "<?xml version='1.0' encoding='UTF-8'?>\n<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist.</Message><Resource>mohamidigital-law-books not found by _get_metadata</Resource><RequestId>c217c782-5e64-4ece-8d7e-46bdb924bbf1</RequestId></Error>",
+      "time": "2026-08-20T16:55:04.799Z"
+    },
+    {
+      "name": "sanhouri-waseet-vol-10-collaterals-and-guarantees.pdf",
+      "status": 404,
+      "body": "<?xml version='1.0' encoding='UTF-8'?>\n<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist.</Message><Resource>mohamidigital-law-books not found by _get_metadata</Resource><RequestId>fc09794f-4efb-40d7-b5b9-4d216f1b18de</RequestId></Error>",
+      "time": "2026-08-20T16:55:37.832Z"
+    },
+    {
+      "name": "sanhouri-waseet-vol-4-sale-and-barter-contracts.pdf",
+      "status": 404,
+      "body": "<?xml version='1.0' encoding='UTF-8'?>\n<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist.</Message><Resource>mohamidigital-law-books not found by _get_metadata</Resource><RequestId>941f0d3f-cfa4-4114-8e16-22c17e387397</RequestId></Error>",
+      "time": "2026-08-20T16:55:38.715Z"
+    },
+    {
+      "name": "sanhouri-waseet-vol-6-1-lease-and-loan-for-use.pdf",
+      "status": 404,
+      "body": "<?xml version='1.0' encoding='UTF-8'?>\n<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist.</Message><Resource>mohamidigital-law-books not found by _get_metadata</Resource><RequestId>2a66b4e7-38aa-4aba-854c-c090cb9af6ea</RequestId></Error>",
+      "time": "2026-08-20T16:55:39.493Z"
+    }
+  ]
+}

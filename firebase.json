@@ -9,12 +9,25 @@
         "**/node_modules/**",
         "dist/server.mjs",
         "dist/server.mjs.map",
+        "data/library-docs-chunks/**",
         "books/**",
-        "data/library-docs-chunks/**"
+        "legal-library.html"
+      ],
+      "redirects": [
+        {
+          "source": "/legal-library.html",
+          "destination": "/legal-forms.html",
+          "type": 302
+        },
+        {
+          "source": "/legal-library",
+          "destination": "/legal-forms.html",
+          "type": 302
+        }
       ],
       "rewrites": [
         {
-          "source": "!/+(blog|pillars)/**",
+          "source": "!/+(blog|pillars|library-pdfs)/**",
           "destination": "/index.html"
         }
       ],
@@ -69,7 +82,7 @@
           ]
         },
         {
-          "source": "/books/**.pdf",
+          "source": "/library-pdfs/**.pdf",
           "headers": [
             { "key": "Content-Type", "value": "application/pdf" },
             { "key": "Content-Disposition", "value": "inline" },

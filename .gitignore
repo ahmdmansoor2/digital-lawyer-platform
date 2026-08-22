@@ -17,6 +17,7 @@ scripts/facebook-publisher/output/
 # أسرار يوتيوب — لا تُلتزم أبداً في الـ repo (تحتوي refresh_token)
 scripts/youtube-publisher/youtube-tokens.json
 public/books/
+public/library-pdfs/
 public/data/library-docs-chunks/
 _staged_all_books/
 # Internet Archive — اعتمادات محلية + سجل الرفع

@@ -1,7 +1,6 @@
-# Internet Archive migration — استثناء الملفات الضخمة
-# الكتب تُقدَّم من IA الآن (legal-library.html يشير لـ archive.org)
+# الكتب (6.25 GB) — مُستضافة على CloudFam الآن
 books/**
-# chunks الكتب تُقدَّم من IA
+# chunks الكتب (غير مستخدمة)
 data/library-docs-chunks/**
 # كتالوج النماذج الضخم (82 MB) — يُحمَّل من backend
 data/legal-forms-catalog.json
