@@ -230,23 +230,24 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
   return (
     <div className="min-h-screen text-slate-100 relative overflow-hidden font-sans select-none" dir="rtl">
       
-      {/* Background Poster & Ambient Gradients */}
+      {/* Background Poster — Vivid High-Contrast Cinematic Quality */}
       <div 
-        className="fixed inset-0 z-0 bg-cover bg-center pointer-events-none opacity-40 mix-blend-luminosity transform scale-105"
+        className="fixed inset-0 z-0 bg-cover bg-center pointer-events-none opacity-85 transform scale-100 transition-all duration-1000"
         style={{
           backgroundImage: "url('/images/legal-bg.jpg')",
           backgroundAttachment: 'fixed',
-          backgroundPosition: 'center top'
+          backgroundPosition: 'center top',
+          filter: 'contrast(120%) saturate(130%) brightness(105%)'
         }}
       />
 
-      {/* Glass Overlay Veil */}
-      <div className="fixed inset-0 z-0 bg-gradient-to-b from-slate-950/75 via-slate-950/60 to-slate-950/90 pointer-events-none backdrop-blur-[1px]" />
+      {/* Cinematic Color Grade & Glow Overlay */}
+      <div className="fixed inset-0 z-0 bg-gradient-to-b from-slate-950/45 via-indigo-950/20 to-slate-950/75 pointer-events-none" />
 
-      {/* Dynamic Background Ambient Orbs */}
-      <div className="ambient-glow-indigo -top-20 -right-20 opacity-40 z-0 pointer-events-none" />
-      <div className="ambient-glow-purple top-1/3 -left-20 opacity-30 z-0 pointer-events-none" />
-      <div className="ambient-glow-emerald bottom-20 right-10 opacity-25 z-0 pointer-events-none" />
+      {/* Dynamic Colorful Cinematic Ambient Lights */}
+      <div className="fixed -top-24 -right-24 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-indigo-500/25 via-purple-500/20 to-transparent blur-3xl pointer-events-none z-0 animate-pulse" />
+      <div className="fixed top-1/3 -left-32 w-[650px] h-[650px] rounded-full bg-gradient-to-tr from-cyan-500/20 via-blue-600/15 to-transparent blur-3xl pointer-events-none z-0" />
+      <div className="fixed -bottom-20 right-1/4 w-[700px] h-[700px] rounded-full bg-gradient-to-tl from-amber-500/20 via-rose-500/15 to-transparent blur-3xl pointer-events-none z-0" />
 
       {/* Global Unified Header */}
       <div className="relative z-20">
