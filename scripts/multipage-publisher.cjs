@@ -28,7 +28,7 @@ if (fs.existsSync(LOG_FILE)) {
 const PRECEDENT_TOPICS = [
   {
     category: "criminal",
-    categoryName: "الجنائي والعقوبات",
+    categoryName: "جنائي وإجراءات",
     badgeClass: "badge-crim",
     topic: "بطلان الاستيقاف وتحوله إلى قبض غير مشروع في قضايا إحراز المواد المخدرة وتفتيش السيارات الخاصة",
     lawRef: "المادتين 34 و 35 من قانون الإجراءات الجنائية"
@@ -174,14 +174,15 @@ async function publishPrecedent() {
     category: targetTopic.category,
     badgeClass: targetTopic.badgeClass,
     categoryName: targetTopic.categoryName,
+    isDefense: true,
     citation: precData.citation,
     text: precData.text,
     keywords: precData.keywords
   };
 
-  const insertAnchor = 'const PRECEDENTS = [';
+  const insertAnchor = 'const PRECEDENTS_DATA = [';
   if (precHtml.includes(insertAnchor)) {
-    const insertStr = `const PRECEDENTS = [\n  ` + JSON.stringify(newPrecObj, null, 2) + ',';
+    const insertStr = `const PRECEDENTS_DATA = [\n  ` + JSON.stringify(newPrecObj, null, 2) + ',';
     precHtml = precHtml.replace(insertAnchor, insertStr);
 
     if (!isDryRun) {
