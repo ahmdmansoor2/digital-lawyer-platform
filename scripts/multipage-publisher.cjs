@@ -66,35 +66,21 @@ const PRECEDENT_TOPICS = [
 const FORM_TOPICS = [
   {
     title: "صحيفة دعوى طرد للغصب والريع والتعويض عن غصب عقار سكني",
-    category: "دعاوي مدنية وعقارية",
+    category: "دعاوي",
     tag: "طرد للغصب",
     court: "محكمة شمال القاهرة الابتدائية - الدائرة المدنية",
     subject: "طرد المستولى على العقار دون سند قانوني وإلزامه بريع المثل والتعويض",
-    lawRef: "المادة 802 مدني والمادة 63 مرافعات"
+    lawRef: "المادة 802 مدني والمادة 63 مرافعات",
+    fullText: "صحيفة دعوى طرد للغصب والريع والتعويض\nإنه في يوم .......... الموافق ...../..../2026\nبناءً على طلب السيد / ................. المقيم في ................. ومحله المختار مكتب الأستاذ / أحمد منصور المحامي بالنقض.\nأنا ........... محضر محكمة ........... الجزئية قد انتقلت وأعلنت:\nالسيد / ........... المقيم في ........... مخاطباً مع / ...........\nوأعلنته بالآتي:\nيمتلك الطالب العقار رقم .... بشارع .... والمشهر برقم .... لسنة .... شهر عقاري.\nوحيث إن المعلن إليه قد وضع يده على الشقة رقم .... دون سند قانوني أو اتفاق إيجاري وبطريق الغصب.\nوتنص المادة 802 مدني على أن لمالك الشيء وحده حق استعماله واستغلاله والتصرف فيه.\nبناءً عليه:\nأنا المحضر سالف الذكر قد أعلنت المعلن إليه بصورة من هذا الإعلان وكلفته بالحضور أمام محكمة .... الابتدائية الدائرة ( ) مدني لسماع الحكم بطرده من العين وتسليمها للطالب خالية من الأشخاص والشواغل مع إلزامه بالريع والتعويض.\nولأجل العلم ،،،"
   },
   {
     title: "عقد تأسيس شركة الشخص الواحد ذات المسؤولية المحدودة",
-    category: "عقود الشركات والاستثمار",
+    category: "عقود بيع وإيجار وشركات واتفاقيات",
     tag: "شركات واستثمار",
     court: "الهيئة العامة للاستثمار والمناطق الحرة (GAFI)",
     subject: "تأسيس شركة تجارية مملوكة لشخص واحد وفق القانون 4 لسنة 2018",
-    lawRef: "القانون رقم 4 لسنة 2018 بتعديل قانون الشركات 159 لسنة 1981"
-  },
-  {
-    title: "إنذار رسمي على يد محضر بسداد الأجرة والتكليف بالوفاء",
-    category: "إنذارات ومحضرين",
-    tag: "إيجارات وتكليف",
-    court: "محضرين المحكمة الجزئية المختصة",
-    subject: "تكليف المستأجر بالوفاء بالقيمة الإيجارية المستحقة خلال 15 يوماً",
-    lawRef: "المادة 18 من القانون رقم 136 لسنة 1981"
-  },
-  {
-    title: "مذكرة دفاع في جنحة إيصال أمانة بطلب البراءة لانتفاء التسليم",
-    category: "مذكرات دفاع جنائية",
-    tag: "إيصال أمانة وبراءة",
-    court: "محكمة جنح مستأنف",
-    subject: "الدفع بانتفاء ركن التسليم الفعلي للمال وانتفاء القصد الجنائي في المادة 341 عقوبات",
-    lawRef: "المادة 341 من قانون العقوبات"
+    lawRef: "القانون رقم 4 لسنة 2018 بتعديل قانون الشركات 159 لسنة 1981",
+    fullText: "عقد وقرار تأسيس شركة الشخص الواحد ذات المسؤولية المحدودة\nإنه في يوم .......... الموافق ...../..../2026\nأقر أنا / ........... مصري الجنسية، المقيم في ...........\nبأنني قد عزمت على تأسيس شركة شخص واحد ذات مسؤولية محدودة وفقاً لأحكام القانون رقم 159 لسنة 1981 وتعديلاته بالقانون رقم 4 لسنة 2018 ولائحته التنفيذية بالشروط الآتية:\nأولاً: اسم الشركة: شركة ........... (شركة شخص واحد - ذ.م.م)\nثانياً: غرض الشركة: ........... دون الإخلال بالقوانين السارية.\nثالثاً: المركز الرئيسي للشركة: محافظة ........... جمهورية مصر العربية.\nرابعاً: مدة الشركة: 25 سنة تبدأ من تاريخ قيدها بالسجل التجاري.\nخامساً: رأس مال الشركة: ........... جنيه مصري مقسم إلى حصص متساوية مدفوعة بالكامل.\nسادساً: الإدارة والتمثيل: يتولى إدارة الشركة والتوقيع عنها المؤسس منفرداً أو من يعينه مديراً للشركة.\nولأجل العلم تم التوقيع والتوثيق بهيئة الاستثمار ،،،"
   }
 ];
 
@@ -213,26 +199,37 @@ async function publishLegalForm() {
   const targetForm = FORM_TOPICS.find(f => !publishLog.forms.includes(f.title)) || FORM_TOPICS[0];
 
   const formsCatalogPath = path.join(__dirname, '..', 'public', 'data', 'legal-forms-catalog.json');
-  let catalog = [];
+  let catalogObj = { forms: [] };
   if (fs.existsSync(formsCatalogPath)) {
-    try { catalog = JSON.parse(fs.readFileSync(formsCatalogPath, 'utf8')); } catch (e) {}
+    try { catalogObj = JSON.parse(fs.readFileSync(formsCatalogPath, 'utf8')); } catch (e) {}
   }
 
   const newDocId = `auto-form-${Date.now()}`;
   const newFormEntry = {
     id: newDocId,
     title: targetForm.title,
+    originalName: `${targetForm.title}.doc`,
+    relPath: `الفلاشة 2/صيغ/${targetForm.title}.doc`,
     category: targetForm.category,
-    tag: targetForm.tag,
-    court: targetForm.court,
-    lawRef: targetForm.lawRef,
+    icon: "📜",
+    color: "#f59e0b",
+    ext: "doc",
+    sizeBytes: 30000,
+    sizeFormatted: "30.0 KB",
+    wordCount: 250,
+    hasText: true,
+    textPreview: targetForm.fullText.substring(0, 200) + '...',
+    fullText: targetForm.fullText,
     dateAdded: new Date().toISOString().split('T')[0],
     isVerified2026: true
   };
 
   if (!isDryRun) {
-    catalog.unshift(newFormEntry);
-    fs.writeFileSync(formsCatalogPath, JSON.stringify(catalog, null, 2), 'utf8');
+    if (Array.isArray(catalogObj.forms)) {
+      catalogObj.forms.unshift(newFormEntry);
+      if (catalogObj.totalForms) catalogObj.totalForms++;
+      fs.writeFileSync(formsCatalogPath, JSON.stringify(catalogObj), 'utf8');
+    }
     publishLog.forms.push(targetForm.title);
     console.log(`✅ [صيغ العقود والدعاوى] تم إضافة النموذج المعتمد: "${targetForm.title}"`);
   } else {
