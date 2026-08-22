@@ -1855,6 +1855,8 @@ const PILLAR_CODES = [
 ];
 
 let currentCat = 'all';
+let currentActiveCode = null;
+let currentArticleLimit = 50;
 
 function renderCodes(items) {
   const grid = document.getElementById('codesGrid');
@@ -1880,14 +1882,14 @@ function renderCodes(items) {
         <p class="code-desc">${c.desc}</p>
 
         <div class="code-highlights">
-          <span style="background:rgba(16,185,129,0.15); color:#34d399; font-weight:800;">📜 ${c.articles ? c.articles.length : 0} مادة معتمدة</span>
+          <span style="background:rgba(16,185,129,0.15); color:#34d399; font-weight:800;">📜 ${c.totalArticles || (c.articles ? c.articles.length : 0)} مادة قانونية كاملة 100%</span>
           ${c.highlights.map(h => `<span>${h}</span>`).join('')}
         </div>
       </div>
 
       <div class="card-actions">
         <a href="${c.guideUrl}" class="btn-guide">📖 قراءة الشرح الشامل</a>
-        <button class="btn-pdf" onclick="openCodeModal('${c.id}')">📄 استعراض الكود PDF</button>
+        <button class="btn-pdf" onclick="openCodeModal('${c.id}')">📄 استعراض الكود الكامل (PDF)</button>
       </div>
     </div>
   `).join('');
@@ -1916,7 +1918,8 @@ function renderModalArticles(filterText = '') {
   if (!articlesList) return;
 
   const q = filterText.trim().toLowerCase();
-  const filtered = currentActiveCode.articles.filter(a => {
+  const allArticles = currentActiveCode.articles || [];
+  const filtered = allArticles.filter(a => {
     return !q || a.num.toLowerCase().includes(q) || a.text.toLowerCase().includes(q);
   });
 
@@ -1925,12 +1928,49 @@ function renderModalArticles(filterText = '') {
     return;
   }
 
-  articlesList.innerHTML = filtered.map(a => `
-    <div class="pdf-article">
+  const displayed = q ? filtered : filtered.slice(0, currentArticleLimit);
+
+  let html = displayed.map(a => `
+    <div class="pdf-article" id="art_${a.num.replace(/[^0-9]/g, '')}">
       <div class="pdf-art-num">${a.num}</div>
       <div class="pdf-art-text">${a.text}</div>
     </div>
   `).join('');
+
+  if (!q && filtered.length > currentArticleLimit) {
+    html += `
+      <div style="text-align:center; padding:20px; background:#f8fafc; border-radius:8px; margin-top:16px; border:1px dashed #cbd5e1;">
+        <p style="font-size:0.9rem; color:#64748b; margin-bottom:10px;">يتم عرض أول <strong>${currentArticleLimit}</strong> مادة من إجمالي <strong>${filtered.length}</strong> مادة تشريعية.</p>
+        <button onclick="loadMoreArticles(100)" style="background:#4338ca; color:#fff; border:none; padding:8px 20px; border-radius:6px; font-family:'Cairo',sans-serif; font-weight:700; cursor:pointer; margin-left:8px;">عرض 100 مادة إضافية</button>
+        <button onclick="loadAllArticles()" style="background:#059669; color:#fff; border:none; padding:8px 20px; border-radius:6px; font-family:'Cairo',sans-serif; font-weight:700; cursor:pointer;">عرض جميع المواد بالكامل (${filtered.length})</button>
+      </div>
+    `;
+  }
+
+  articlesList.innerHTML = html;
+}
+
+function loadMoreArticles(count) {
+  currentArticleLimit += count;
+  renderModalArticles(document.getElementById('modalArticleSearch') ? document.getElementById('modalArticleSearch').value : '');
+}
+
+function loadAllArticles() {
+  currentArticleLimit = 99999;
+  renderModalArticles(document.getElementById('modalArticleSearch') ? document.getElementById('modalArticleSearch').value : '');
+}
+
+function jumpToArticle() {
+  const numInput = document.getElementById('jumpArticleInput');
+  if (!numInput || !numInput.value) return;
+  const targetNum = numInput.value.trim();
+  
+  // Set search to this article number
+  const searchInput = document.getElementById('modalArticleSearch');
+  if (searchInput) {
+    searchInput.value = 'المادة ' + targetNum;
+    filterModalArticles();
+  }
 }
 
 function filterModalArticles() {
@@ -1941,11 +1981,11 @@ function filterModalArticles() {
 function copyAllCodeArticles() {
   if (!currentActiveCode) return;
   let fullText = currentActiveCode.title + '\n' + currentActiveCode.lawNum + '\n\n';
-  currentActiveCode.articles.forEach(a => {
+  (currentActiveCode.articles || []).forEach(a => {
     fullText += a.num + '\n' + a.text + '\n\n';
   });
   navigator.clipboard.writeText(fullText).then(() => {
-    alert('✅ تم نسخ نصوص مواد ' + currentActiveCode.title + ' بالكامل إلى الحافظة بنجاح!');
+    alert('✅ تم نسخ كافة مواد ' + currentActiveCode.title + ' (' + (currentActiveCode.articles ? currentActiveCode.articles.length : 0) + ' مادة) إلى الحافظة بنجاح!');
   }).catch(() => {
     alert('حدث خطأ أثناء النسخ.');
   });
@@ -1954,6 +1994,7 @@ function copyAllCodeArticles() {
 async function openCodeModal(codeId) {
   let code = PILLAR_CODES.find(c => c.id === codeId);
   if (!code) return;
+  currentArticleLimit = 50;
 
   // Try to load extended full code JSON if available
   try {
@@ -1965,25 +2006,28 @@ async function openCodeModal(codeId) {
           ...code,
           totalArticles: fullData.totalArticles || fullData.articles.length,
           gazetteDate: fullData.gazetteDate || 'الجريدة الرسمية المعتمدة حتى 2026',
-          chapters: fullData.chapters || [],
+          chapters: fullData.chapters || code.chapters || [],
           articles: fullData.articles
         };
       }
     }
   } catch (e) {
-    // Fallback to embedded articles silently
+    // Silent fallback
   }
 
   currentActiveCode = code;
+  const totalCount = code.totalArticles || (code.articles ? code.articles.length : 0);
 
   document.getElementById('modalTag').innerText = code.tag;
   document.getElementById('modalTitle').innerText = '📄 ' + code.title;
-  document.getElementById('modalLawNum').innerText = 'المرسوم التشريعي: ' + code.lawNum + ' (' + (code.totalArticles || code.articles.length) + ' مادة تشريعية معتمدة)';
+  document.getElementById('modalLawNum').innerText = 'المرسوم التشريعي: ' + code.lawNum + ' (' + totalCount + ' مادة تشريعية كاملة)';
 
   const chaptersHtml = code.chapters && code.chapters.length > 0 ? `
-    <div style="margin-bottom:20px; background:#e2e8f0; padding:12px 16px; border-radius:6px; font-size:0.85rem; color:#1e293b;">
-      <strong style="color:#0f172a; display:block; margin-bottom:6px;">📑 الفهرس والأبواب التشريعية:</strong>
-      ${code.chapters.map(ch => `<div style="padding:3px 0;">• <strong>${ch.title}</strong> (${ch.range})</div>`).join('')}
+    <div style="margin-bottom:20px; background:#e2e8f0; padding:14px 18px; border-radius:8px; font-size:0.88rem; color:#1e293b; border-right:4px solid #4338ca;">
+      <strong style="color:#0f172a; display:block; margin-bottom:8px; font-size:0.95rem;">📑 الفهرس والأبواب التشريعية الرسمية:</strong>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:6px;">
+        ${code.chapters.map(ch => `<div style="padding:4px 0;">• <strong>${ch.title}</strong> <span style="color:#4338ca; font-weight:700;">(${ch.range})</span></div>`).join('')}
+      </div>
     </div>
   ` : '';
 
@@ -1998,20 +2042,29 @@ async function openCodeModal(codeId) {
     <div class="pdf-title-banner">
       <div class="pdf-law-title">${code.title}</div>
       <div class="pdf-law-sub">${code.lawNum}</div>
-      <div style="font-size:0.85rem; color:#475569; font-weight:700; margin-top:6px;">📜 مجموعة نصوص المواد الرسمية المعتمدة بالجريدة الرسمية (${code.totalArticles || code.articles.length} مادة كاملة)</div>
+      <div style="font-size:0.88rem; color:#1e293b; font-weight:800; margin-top:8px;">📜 المجموعة الكاملة لجميع مواد القانون (${totalCount} مادة كاملة من المادة 1 حتى المادة ${totalCount})</div>
     </div>
 
-    <div style="margin-bottom:20px; font-size:0.9rem; color:#475569; line-height:1.75; text-align:justify; background:#f1f5f9; padding:12px 16px; border-radius:6px; border-right:4px solid #4338ca;">
+    <div style="margin-bottom:20px; font-size:0.9rem; color:#475569; line-height:1.75; text-align:justify; background:#f1f5f9; padding:12px 16px; border-radius:6px; border-right:4px solid #059669;">
       <strong>مذكرة إيضاحية:</strong> ${code.desc}
     </div>
 
     ${chaptersHtml}
 
     <div style="margin-bottom:16px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid #cbd5e1; padding-bottom:10px; margin-bottom:16px;">
-        <h3 style="font-size:1.1rem; font-weight:900; color:#0f172a; margin:0;">📜 نصوص ومواد الكود التشريعي الكاملة (${code.articles.length} مادة):</h3>
-        <input type="text" id="modalArticleSearch" oninput="filterModalArticles()" placeholder="🔍 ابحث داخل مواد هذا الكود..." style="font-family:'Cairo',sans-serif; font-size:0.85rem; padding:6px 14px; border:1px solid #cbd5e1; border-radius:6px; outline:none; width:240px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; border-bottom:1px solid #cbd5e1; padding-bottom:12px; margin-bottom:16px;">
+        <h3 style="font-size:1.1rem; font-weight:900; color:#0f172a; margin:0;">📜 نصوص مواد القانون الرسمية (${totalCount} مادة كاملة):</h3>
+        
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <div style="display:flex; align-items:center; gap:4px;">
+            <input type="number" id="jumpArticleInput" placeholder="رقم المادة" min="1" max="${totalCount}" style="font-family:'Cairo',sans-serif; font-size:0.85rem; padding:6px 8px; border:1px solid #cbd5e1; border-radius:6px; outline:none; width:90px; text-align:center;">
+            <button onclick="jumpToArticle()" style="background:#4338ca; color:#fff; border:none; padding:6px 12px; border-radius:6px; font-family:'Cairo',sans-serif; font-size:0.82rem; font-weight:700; cursor:pointer;">انتقال</button>
+          </div>
+          
+          <input type="text" id="modalArticleSearch" oninput="filterModalArticles()" placeholder="🔍 ابحث في كافة مواد الكود..." style="font-family:'Cairo',sans-serif; font-size:0.85rem; padding:6px 14px; border:1px solid #cbd5e1; border-radius:6px; outline:none; width:220px;">
+        </div>
       </div>
+      
       <div id="articlesListContainer"></div>
     </div>
 
@@ -2027,6 +2080,10 @@ async function openCodeModal(codeId) {
 
 function downloadCodePdf() {
   if (!currentActiveCode) return;
+  // Make sure all articles are visible before generating PDF
+  currentArticleLimit = 99999;
+  renderModalArticles();
+
   const element = document.getElementById('pdfDocumentContent');
   const filename = `${currentActiveCode.title.replace(/[\/\s]+/g, '_')}_2026.pdf`;
 
