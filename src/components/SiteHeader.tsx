@@ -30,6 +30,7 @@ const MORE = [
   { href: '/why-trust-us.html', label: '🛡️ لماذا تثق بنا', key: 'trust' },
   { href: '/privacy.html', label: '🔐 سياسة الخصوصية', key: 'privacy' },
   { href: '/terms.html', label: '📜 الشروط والأحكام', key: 'terms' },
+  { href: '/disclaimer.html', label: '⚠️ إخلاء المسؤولية', key: 'disclaimer' },
   { href: '/contact.html', label: '📬 تواصل معنا', key: 'contact' },
 ];
 

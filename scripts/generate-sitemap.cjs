@@ -21,7 +21,7 @@ const BASE_URL = 'https://mohamidigital.online';
 
 // Priority rules
 const HIGH_PRIORITY = ['/', '/legal-calculators', '/legal-forms', '/blog/'];
-const MEDIUM_PRIORITY = ['/features', '/pricing', '/about', '/contact', '/search', '/legal-radar'];
+const MEDIUM_PRIORITY = ['/features', '/pricing', '/about', '/contact', '/privacy', '/terms', '/disclaimer', '/why-trust-us', '/search', '/legal-radar'];
 
 function walkDir(dir, base = dir) {
   const results = [];
