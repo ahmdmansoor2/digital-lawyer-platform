@@ -16,6 +16,8 @@ interface SiteHeaderProps {
 
 const PRIMARY = [
   { href: '/', label: '🏠 الرئيسية', key: 'home' },
+  { href: '/legal-consultations.html', label: '💬 طلب استشارة', key: 'consultations' },
+  { href: '/lawyers-directory.html', label: '👨‍⚖️ دليل المحامين', key: 'lawyers' },
   { href: '/blog/', label: '📰 المدونة القانونية', key: 'blog' },
   { href: '/pillars/', label: '🏛️ المراجع الشاملة', key: 'pillars' },
   { href: '/legal-forms.html', label: '📝 صيغ العقود والدعاوي', key: 'forms' },
@@ -24,6 +26,8 @@ const PRIMARY = [
 ];
 
 const MORE = [
+  { href: '/legal-consultations.html', label: '💬 الاستشارات القانونية الفورية', key: 'consultations_more' },
+  { href: '/lawyers-directory.html', label: '👨‍⚖️ دليل وتسجيل المحامين المشتغلين', key: 'lawyers_more' },
   { href: '/courts-directory.html', label: '🏛️ دليل المحاكم والشهر العقاري', key: 'courts' },
   { href: '/court-precedents.html', label: '⚖️ بنك مبادئ محكمة النقض', key: 'precedents' },
   { href: '/company-incorporation.html', label: '💼 تأسيس الشركات والتراخيص', key: 'companies' },
