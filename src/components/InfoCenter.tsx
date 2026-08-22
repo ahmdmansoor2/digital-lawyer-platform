@@ -2,8 +2,8 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  *
- * InfoCenter — البوابة الوطنية الكبرى لمنصة المحامي الرقمية 2026
- * تصميم سينمائي فائق الفخامة يخدم المحامين والمواطنين عبر مسارين تفاعليين
+ * InfoCenter — البوابة الوطنية الشاملة لكافة أقسام وخدمات منصة المحامي الرقمية 2026
+ * تصميم سينمائي فائق الفخامة يدمج كافة صفحات وبوابات المنصة الـ 14 في شبكة كروت تفاعلية
  */
 
 import React, { useState } from 'react';
@@ -17,12 +17,9 @@ import {
   BookOpen, 
   Library, 
   MessageCircle, 
-  Shield, 
   ShieldCheck, 
   ArrowLeft,
-  ArrowRight,
   CheckCircle2,
-  Lock,
   Zap,
   Globe,
   Award,
@@ -32,9 +29,8 @@ import {
   Film,
   Building2,
   Gavel,
-  BadgeCheck,
-  Send,
-  FileSpreadsheet
+  Radio,
+  Newspaper
 } from 'lucide-react';
 import SiteHeader from './SiteHeader';
 import InteractiveTourShowcase from './InteractiveTourShowcase';
@@ -46,16 +42,17 @@ interface InfoCenterProps {
   onLogout: () => void;
 }
 
-// ── البوابات الست الكبرى للمواطنين والمحامين ─────────────────────────────
-const CORE_PORTALS = [
+// ── شبكة كافة صفحات وبوابات المنصة الرئيسية الـ 14 ─────────────────────
+const ALL_PLATFORM_PORTALS = [
   {
     href: '/legal-consultations.html',
     badge: '💬 استشارة فورية',
-    title: 'بوابة الاستشارات القانونية الذكية',
+    title: 'بوابة الاستشارات القانونية والتكييف الذكي',
     desc: 'اطرح سؤالك القانوني واحصل على تكييف وتحليل قضائي فوري وفق القوانين المصرية 2026، مع ترشيح أفضل المحامين المتخصصين بمحافظتك.',
     icon: MessageCircle,
     gradient: 'from-emerald-500 to-teal-600',
-    tag: 'مجاناً للجمهور 100%'
+    tag: 'مجاناً للمواطنين',
+    category: 'citizens'
   },
   {
     href: '/lawyers-directory.html',
@@ -64,7 +61,8 @@ const CORE_PORTALS = [
     desc: 'ابحث عن أفضل محامٍ مشتغل بمحافظتك حسب التخصص ودرجة القيد (نقض، استئناف، ابتدائي) وتواصل مباشرة عبر الواتساب — أو سجّل مكتبك بالدليل.',
     icon: Users,
     gradient: 'from-indigo-500 to-purple-600',
-    tag: '27 محافظة مصرية'
+    tag: '27 محافظة مصرية',
+    category: 'lawyers'
   },
   {
     href: '/e-justice-services.html',
@@ -73,7 +71,8 @@ const CORE_PORTALS = [
     desc: 'دليلك الإجرائي المباشر لرفع الدعاوى القضائية أونلاين، عرائض وبلاغات النيابة العامة، إعلام الوراثة الرقمي، والمحاكم الاقتصادية.',
     icon: Globe,
     gradient: 'from-cyan-500 to-blue-600',
-    tag: 'وزارة العدل والنيابة'
+    tag: 'وزارة العدل والنيابة',
+    category: 'citizens'
   },
   {
     href: '/citizen-complaints.html',
@@ -82,7 +81,8 @@ const CORE_PORTALS = [
     desc: 'منظومة الشكاوى الحكومية بمجلس الوزراء (shakwa.eg - 16528)، جهاز حماية المستهلك (19588)، تنظيم الاتصالات (155)، ومولد صيغ الشكاوى الرسمي.',
     icon: ShieldCheck,
     gradient: 'from-rose-500 to-pink-600',
-    tag: 'مجلس الوزراء 16528'
+    tag: 'مجلس الوزراء 16528',
+    category: 'citizens'
   },
   {
     href: '/legal-forms.html',
@@ -91,7 +91,8 @@ const CORE_PORTALS = [
     desc: 'أكثر من 2,740 صيغة قانونية ونموذج عقد وصحيفة دعوى ومذكرة دفاع مصاغة وفق أحدث القوانين جاهزة للنسخ والتحميل المباشر.',
     icon: FileSignature,
     gradient: 'from-amber-500 to-orange-600',
-    tag: '+2,740 صيغة Word'
+    tag: '+2,740 صيغة Word',
+    category: 'library'
   },
   {
     href: '/legal-calculators.html',
@@ -100,7 +101,88 @@ const CORE_PORTALS = [
     desc: '11 حاسبة ذكية لرسوم تسجيل العقارات بالشهر العقاري 2026، المواريث والتركات، النفقات الأسرية، تعويضات العمل، ومواعيد وسقوط الطعون.',
     icon: Calculator,
     gradient: 'from-purple-500 to-indigo-600',
-    tag: '11 حاسبة ذكية'
+    tag: '11 حاسبة ذكية',
+    category: 'lawyers'
+  },
+  {
+    href: '/court-precedents.html',
+    badge: '⚖️ محكمة النقض',
+    title: 'بنك مبادئ وسوابق محكمة النقض الكبرى',
+    desc: 'أهم وأحدث المبادئ القضائية المستقرة لدوائر الجنايات والمدني والتجاري والعمال بمحكمة النقض المصرية جاهزة للنسخ في مذكراتك.',
+    icon: Scale,
+    gradient: 'from-blue-600 to-indigo-700',
+    tag: 'أحكام النقض الحديثة',
+    category: 'library'
+  },
+  {
+    href: '/courts-directory.html',
+    badge: '🏛️ دليل المقار',
+    title: 'دليل المحاكم ومكاتب الشهر العقاري',
+    desc: 'عناوين ومقار ودوائر محاكم الاستئناف والابتدائية ومجلس الدولة ومأموريات الشهر العقاري المطور في كافة أنحاء الجمهورية.',
+    icon: Building2,
+    gradient: 'from-slate-600 to-slate-800',
+    tag: 'جميع المحافظات',
+    category: 'citizens'
+  },
+  {
+    href: '/company-incorporation.html',
+    badge: '💼 تأسيس واستثمار',
+    title: 'دليل تأسيس الشركات والتراخيص (GAFI)',
+    desc: 'خطوات تأسيس الشركات (شخص واحد، ذ.م.م، مساهمة) بهيئة الاستثمار وحاسبة الرسوم الحكومية ونماذج عقود التأسيس المعتمدة.',
+    icon: Briefcase,
+    gradient: 'from-emerald-600 to-teal-700',
+    tag: 'هيئة الاستثمار',
+    category: 'lawyers'
+  },
+  {
+    href: '/legal-diagnostics.html',
+    badge: '🔍 تشخيص ذكي',
+    title: 'المساعد الذكي لتشخيص النزاع القضائي',
+    desc: 'أداة تفاعلية لتشخيص مشكلتك وتحديد نوع الدعوى والمحكمة المختصة نوعياً ومحلياً والمستندات المطلوبة والمواعيد الحاكمة فوراً.',
+    icon: Search,
+    gradient: 'from-cyan-600 to-teal-700',
+    tag: 'تشخيص فوري',
+    category: 'citizens'
+  },
+  {
+    href: '/legal-radar.html',
+    badge: '📡 رصد حي',
+    title: 'رصد المحامي والتحليلات القضائية العاجلة',
+    desc: 'متابعة لحظية لأحدث القوانين، القرارات الوزارية، وتعديلات التشريعات المصرية الصادرة بالجريدة الرسمية والوقائع المصرية.',
+    icon: Radio,
+    gradient: 'from-rose-600 to-orange-600',
+    tag: 'تحديث يومي مستمر',
+    category: 'library'
+  },
+  {
+    href: '/pillars/',
+    badge: '📚 الأكواد والمراجع',
+    title: 'المراجع القانونية والأكواد التشريعية الشاملة',
+    desc: 'نصوص القوانين المصرية كاملة 100% (القانون المدني، العقوبات، الإجراءات الجنائية، قانون العمل الجديد، الإيجارات، والمرافعات).',
+    icon: BookOpen,
+    gradient: 'from-indigo-600 to-violet-700',
+    tag: 'نصوص القوانين كاملة',
+    category: 'library'
+  },
+  {
+    href: '/blog/',
+    badge: '📰 مقالات متخصصة',
+    title: 'المدونة القانونية والرأي والتحليلات',
+    desc: 'مئات المقالات القانونية التخصصية التي تشرح القوانين وحقوق المواطنين وإجراءات التقاضي بلغة سهلة ورصينة وموثقة.',
+    icon: Newspaper,
+    gradient: 'from-purple-600 to-pink-600',
+    tag: '+50 مقال معتمد',
+    category: 'library'
+  },
+  {
+    href: '/features.html',
+    badge: '⚡ المنظومة الذكية',
+    title: 'المميزات الكاملة لإدارة مكاتب المحاماة',
+    desc: 'استكشف كافة إمكانيات منصة المحامي الرقمية: إدارة القضايا، رول الجلسات، المحضرين، المالية، والأرشفة السحابية الآمنة.',
+    icon: Zap,
+    gradient: 'from-amber-600 to-red-600',
+    tag: 'نظام إدارة متكامل',
+    category: 'lawyers'
   }
 ];
 
@@ -138,6 +220,12 @@ const LAW_FIRM_TOOLS = [
 
 export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCenterProps) {
   const [activeTab, setActiveTab] = useState<'lawyers' | 'citizens'>('lawyers');
+  const [portalCategory, setPortalCategory] = useState<'all' | 'citizens' | 'lawyers' | 'library'>('all');
+
+  const filteredPortals = ALL_PLATFORM_PORTALS.filter(p => {
+    if (portalCategory === 'all') return true;
+    return p.category === portalCategory;
+  });
 
   return (
     <div className="min-h-screen text-slate-100 relative overflow-hidden font-sans select-none" dir="rtl">
@@ -286,23 +374,67 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
       </section>
 
-      {/* ─── 2. THE 6 CORE NATIONAL PORTALS (البوابات الست الكبرى) ───────── */}
+      {/* ─── 2. ALL 14 PLATFORM PORTALS & MAIN PAGES GRID (كافة الصفحات الرئيسية) ─ */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-10">
+        <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-indigo-300 text-xs font-bold mb-3">
             <Zap className="w-3.5 h-3.5" />
-            <span>الخدمات التفاعلية المباشرة</span>
+            <span>دليل كافة أقسام وصفحات المنصة</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
-            بوابات الخدمات القانونية والقضائية الشاملة
+            بوابات الخدمات القانونية والقضائية الشاملة (14 بوابة)
           </h2>
           <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto mt-2">
-            منظومة متكاملة تضع كافة الأدوات القانونية الرسمية بين يديك بنقرة واحدة وبأعلى دقة إجرائية.
+            استكشف وتصفح جميع أقسام المنصة الرسمية المصممة لخدمة المواطن والمحامي على حد سواء.
           </p>
+
+          {/* Filter Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mt-6">
+            <button
+              onClick={() => setPortalCategory('all')}
+              className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                portalCategory === 'all'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white'
+              }`}
+            >
+              🌟 كافة الأقسام (14)
+            </button>
+            <button
+              onClick={() => setPortalCategory('citizens')}
+              className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                portalCategory === 'citizens'
+                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white'
+              }`}
+            >
+              👥 خدمات المواطنين
+            </button>
+            <button
+              onClick={() => setPortalCategory('lawyers')}
+              className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                portalCategory === 'lawyers'
+                  ? 'bg-purple-600 text-white shadow-md shadow-purple-600/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white'
+              }`}
+            >
+              👨‍⚖️ أدوات المحامين
+            </button>
+            <button
+              onClick={() => setPortalCategory('library')}
+              className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                portalCategory === 'library'
+                  ? 'bg-amber-600 text-white shadow-md shadow-amber-600/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white'
+              }`}
+            >
+              📚 المراجع والنقض
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {CORE_PORTALS.map((portal, idx) => {
+          {filteredPortals.map((portal, idx) => {
             const PortalIcon = portal.icon;
             return (
               <a
