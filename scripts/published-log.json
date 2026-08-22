@@ -1704,6 +1704,42 @@
       ],
       "words": 1674,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "حقوق العامل عند تأخير صرف المرتبات في قانون العمل المصري",
+      "date": "2026-08-22",
+      "slug": "salary-delay-penalties-egypt-labor-law",
+      "url": "https://mohamidigital.online/blog/salary-delay-penalties-egypt-labor-law.html",
+      "image": "https://mohamidigital.online/blog/images/salary-delay-penalties-egypt-labor-law.jpg",
+      "tags": [
+        "قانون العمل"
+      ],
+      "words": 2288,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "حكم الذهب والشبكة وقائمة المنقولات الزوجية عند الخلع والطلاق",
+      "date": "2026-08-22",
+      "slug": "gold-shabka-and-furniture-list-divorce-egypt",
+      "url": "https://mohamidigital.online/blog/gold-shabka-and-furniture-list-divorce-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/gold-shabka-and-furniture-list-divorce-egypt.jpg",
+      "tags": [
+        "الأحوال الشخصية"
+      ],
+      "words": 978,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "تطبيق نظرية الظروف الطارئة والقوة القاهرة في العقود التوريدية والعقارية",
+      "date": "2026-08-22",
+      "slug": "force-majeure-contract-law-egypt",
+      "url": "https://mohamidigital.online/blog/force-majeure-contract-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/force-majeure-contract-law-egypt.jpg",
+      "tags": [
+        "القانون المدني"
+      ],
+      "words": 2265,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
