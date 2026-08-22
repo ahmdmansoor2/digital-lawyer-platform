@@ -1832,6 +1832,27 @@
       "duration": "1د 5ث",
       "size": 29457793,
       "publishedAt": "2026-08-22T15:36:39.465Z"
+    },
+    {
+      "topicId": "trend-force-majeure-contract-law-egypt",
+      "title": "تطبيق نظرية الظروف الطارئة والقوة القاهرة في العقود التوريدية والعقارية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون المدني",
+        "#القوة القاهرة",
+        "#الظروف الطارئة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-force-majeure-contract-law-egypt.mp4",
+      "videoId": "1783486792678974",
+      "permalink": "https://www.facebook.com/reel/1783486792678974",
+      "source": "trending-topics.json",
+      "duration": "56ث",
+      "size": 23360040,
+      "publishedAt": "2026-08-22T18:48:47.528Z"
     }
   ]
 }
