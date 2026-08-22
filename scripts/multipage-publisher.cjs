@@ -66,21 +66,21 @@ const PRECEDENT_TOPICS = [
 const FORM_TOPICS = [
   {
     title: "صحيفة دعوى طرد للغصب والريع والتعويض عن غصب عقار سكني",
-    category: "دعاوي",
-    tag: "طرد للغصب",
-    court: "محكمة شمال القاهرة الابتدائية - الدائرة المدنية",
-    subject: "طرد المستولى على العقار دون سند قانوني وإلزامه بريع المثل والتعويض",
-    lawRef: "المادة 802 مدني والمادة 63 مرافعات",
-    fullText: "صحيفة دعوى طرد للغصب والريع والتعويض\nإنه في يوم .......... الموافق ...../..../2026\nبناءً على طلب السيد / ................. المقيم في ................. ومحله المختار مكتب الأستاذ / أحمد منصور المحامي بالنقض.\nأنا ........... محضر محكمة ........... الجزئية قد انتقلت وأعلنت:\nالسيد / ........... المقيم في ........... مخاطباً مع / ...........\nوأعلنته بالآتي:\nيمتلك الطالب العقار رقم .... بشارع .... والمشهر برقم .... لسنة .... شهر عقاري.\nوحيث إن المعلن إليه قد وضع يده على الشقة رقم .... دون سند قانوني أو اتفاق إيجاري وبطريق الغصب.\nوتنص المادة 802 مدني على أن لمالك الشيء وحده حق استعماله واستغلاله والتصرف فيه.\nبناءً عليه:\nأنا المحضر سالف الذكر قد أعلنت المعلن إليه بصورة من هذا الإعلان وكلفته بالحضور أمام محكمة .... الابتدائية الدائرة ( ) مدني لسماع الحكم بطرده من العين وتسليمها للطالب خالية من الأشخاص والشواغل مع إلزامه بالريع والتعويض.\nولأجل العلم ،،،"
+    category: "صحف دعاوى قضائية",
+    preview: "صحيفة دعوى طرد للغصب والتسليم مع المطالبة بريع المثل والتعويض عن الغصب بدون سند قانوني وفق المادتين 802 و 805 مدني.",
+    fullText: "صحيفة دعوى طرد للغصب والريع والتسليم\nإنه في يوم .......... الموافق ...../..../2026\nبناءً على طلب السيد / ................. المقيم في ................. ومحله المختار مكتب الأستاذ / أحمد منصور المحامي بالنقض.\nأنا ........... محضر محكمة ........... الجزئية قد انتقلت وأعلنت:\nالسيد / ........... المقيم في ........... مخاطباً مع / ...........\nوأعلنته بالآتي:\nيمتلك الطالب العقار رقم .... بشارع .... والمشهر برقم .... لسنة .... شهر عقاري.\nوحيث إن المعلن إليه قد وضع يده على الشقة رقم .... دون سند قانوني أو اتفاق إيجاري وبطريق الغصب.\nوتنص المادة 802 مدني على أن لمالك الشيء وحده حق استعماله واستغلاله والتصرف فيه.\nبناءً عليه:\nأنا المحضر سالف الذكر قد أعلنت المعلن إليه بصورة من هذا الإعلان وكلفته بالحضور أمام محكمة .... الابتدائية الدائرة ( ) مدني لسماع الحكم بطرده من العين وتسليمها للطالب خالية من الأشخاص والشواغل مع إلزامه بالريع والتعويض.\nولأجل العلم ،،،"
   },
   {
-    title: "عقد تأسيس شركة الشخص الواحد ذات المسؤولية المحدودة",
-    category: "عقود بيع وإيجار وشركات واتفاقيات",
-    tag: "شركات واستثمار",
-    court: "الهيئة العامة للاستثمار والمناطق الحرة (GAFI)",
-    subject: "تأسيس شركة تجارية مملوكة لشخص واحد وفق القانون 4 لسنة 2018",
-    lawRef: "القانون رقم 4 لسنة 2018 بتعديل قانون الشركات 159 لسنة 1981",
+    title: "عقد وقرار تأسيس شركة الشخص الواحد ذات المسؤولية المحدودة 2026",
+    category: "عقود الشركات والتضامن",
+    preview: "عقد وقرار تأسيس شركة الشخص الواحد ذات المسؤولية المحدودة وفق القانون 4 لسنة 2018 متضمناً رأس المال والإدارة والمسؤولية المحدودة.",
     fullText: "عقد وقرار تأسيس شركة الشخص الواحد ذات المسؤولية المحدودة\nإنه في يوم .......... الموافق ...../..../2026\nأقر أنا / ........... مصري الجنسية، المقيم في ...........\nبأنني قد عزمت على تأسيس شركة شخص واحد ذات مسؤولية محدودة وفقاً لأحكام القانون رقم 159 لسنة 1981 وتعديلاته بالقانون رقم 4 لسنة 2018 ولائحته التنفيذية بالشروط الآتية:\nأولاً: اسم الشركة: شركة ........... (شركة شخص واحد - ذ.م.م)\nثانياً: غرض الشركة: ........... دون الإخلال بالقوانين السارية.\nثالثاً: المركز الرئيسي للشركة: محافظة ........... جمهورية مصر العربية.\nرابعاً: مدة الشركة: 25 سنة تبدأ من تاريخ قيدها بالسجل التجاري.\nخامساً: رأس مال الشركة: ........... جنيه مصري مقسم إلى حصص متساوية مدفوعة بالكامل.\nسادساً: الإدارة والتمثيل: يتولى إدارة الشركة والتوقيع عنها المؤسس منفرداً أو من يعينه مديراً للشركة.\nولأجل العلم تم التوقيع والتوثيق بهيئة الاستثمار ،،،"
+  },
+  {
+    title: "إنذار رسمي على يد محضر بسداد الأجرة والتكليف بالوفاء",
+    category: "إنذارات رسمية",
+    preview: "إنذار رسمي على يد محضر بسداد القيمة الإيجارية المتأخرة خلال 15 يوماً وفق المادة 18 من القانون 136 لسنة 1981.",
+    fullText: "إنذار رسمي بالتكليف بالوفاء بالأجرة\nإنه في يوم .......... الموافق ...../..../2026\nبناءً على طلب السيد / ................. ومحله المختار مكتب الأستاذ / أحمد منصور المحامي.\nأنا ........... محضر محكمة ........... قد أنذرت:\nالسيد / ........... المستأجر للشقة رقم .... بالعقار ....\nوأنذرته بالآتي:\nحيث تأخر المنذر إليه عن سداد الأجرة المستحقة عن المدة من .... حتى .... بإجمالي مبلغ .... جنيه.\nلذلك يكلفه الطالب بالوفاء خلال 15 يوماً وإلا اتخذت إجراءات دعوى الإخلاء.\nولأجل العلم ،،،"
   }
 ];
 
@@ -199,38 +199,39 @@ async function publishLegalForm() {
   console.log('📝 [2/2] معالجة وتحديث بنك الصيغ القانونية والعقود (legal-forms.html)...');
   const targetForm = FORM_TOPICS.find(f => !publishLog.forms.includes(f.title)) || FORM_TOPICS[0];
 
-  const formsCatalogPath = path.join(__dirname, '..', 'public', 'data', 'legal-forms-catalog.json');
-  let catalogObj = { forms: [] };
-  if (fs.existsSync(formsCatalogPath)) {
-    try { catalogObj = JSON.parse(fs.readFileSync(formsCatalogPath, 'utf8')); } catch (e) {}
+  const summaryPath = path.join(__dirname, '..', 'public', 'data', 'legal-forms-summary.json');
+  const chunkPath = path.join(__dirname, '..', 'public', 'data', 'forms-chunks', 'chunk-featured.json');
+
+  let summaryData = { total: 0, categories: [], forms: [] };
+  if (fs.existsSync(summaryPath)) {
+    try { summaryData = JSON.parse(fs.readFileSync(summaryPath, 'utf8')); } catch (e) {}
   }
 
-  const newDocId = `auto-form-${Date.now()}`;
+  let chunkData = {};
+  if (fs.existsSync(chunkPath)) {
+    try { chunkData = JSON.parse(fs.readFileSync(chunkPath, 'utf8')); } catch (e) {}
+  }
+
+  const newFormId = `featured-auto-${Date.now()}`;
   const newFormEntry = {
-    id: newDocId,
+    id: newFormId,
     title: targetForm.title,
-    originalName: `${targetForm.title}.doc`,
-    relPath: `الفلاشة 2/صيغ/${targetForm.title}.doc`,
     category: targetForm.category,
-    icon: "📜",
-    color: "#f59e0b",
-    ext: "doc",
-    sizeBytes: 30000,
-    sizeFormatted: "30.0 KB",
-    wordCount: 250,
-    hasText: true,
-    textPreview: targetForm.fullText.substring(0, 200) + '...',
-    fullText: targetForm.fullText,
-    dateAdded: new Date().toISOString().split('T')[0],
+    icon: "⭐",
+    wordCount: targetForm.fullText.split(/\s+/).length,
+    preview: targetForm.preview,
+    isFeatured: true,
     isVerified2026: true
   };
 
   if (!isDryRun) {
-    if (Array.isArray(catalogObj.forms)) {
-      catalogObj.forms.unshift(newFormEntry);
-      if (catalogObj.totalForms) catalogObj.totalForms++;
-      fs.writeFileSync(formsCatalogPath, JSON.stringify(catalogObj), 'utf8');
-    }
+    chunkData[newFormId] = { id: newFormId, title: targetForm.title, fullText: targetForm.fullText };
+    summaryData.forms = summaryData.forms.filter(f => f.title !== targetForm.title);
+    summaryData.forms.unshift(newFormEntry);
+    summaryData.total = summaryData.forms.length;
+
+    fs.writeFileSync(chunkPath, JSON.stringify(chunkData, null, 2), 'utf8');
+    fs.writeFileSync(summaryPath, JSON.stringify(summaryData), 'utf8');
     publishLog.forms.push(targetForm.title);
     console.log(`✅ [صيغ العقود والدعاوى] تم إضافة النموذج المعتمد: "${targetForm.title}"`);
   } else {
