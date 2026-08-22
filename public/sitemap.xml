@@ -901,6 +901,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/legal-calculators.html</loc>
+    <lastmod>2026-08-22T10:17:53.228Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/legal-forms-docs/agricultural_land_sale.html</loc>
     <lastmod>2026-08-22T09:28:43.184Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -1246,7 +1252,7 @@
     <loc>https://mohamidigital.online/legal-radar.html</loc>
     <lastmod>2026-08-22T09:28:43.260Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mohamidigital.online/pillars/</loc>

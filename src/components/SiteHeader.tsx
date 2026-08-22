@@ -20,6 +20,7 @@ const PRIMARY = [
   { href: '/pillars/', label: '🏛️ المراجع الشاملة', key: 'pillars' },
   { href: '/legal-forms.html', label: '📝 صيغ العقود والدعاوي', key: 'forms' },
   { href: '/legal-radar.html', label: '🔍 رصد المحامي', key: 'radar' },
+  { href: '/legal-calculators.html', label: '🧮 الحاسبات القانونية', key: 'calculators' },
 ];
 
 const MORE = [
