@@ -265,7 +265,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-3.5 mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
           <button
             onClick={onEnterApp}
             className="btn-shimmer-cta px-7 py-3.5 text-sm sm:text-base flex items-center gap-2.5 shadow-xl shadow-indigo-600/30 cursor-pointer"
@@ -275,8 +275,16 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </button>
 
           <a
+            href="/citizen-complaints.html"
+            className="px-5 py-3.5 rounded-xl bg-rose-950/60 hover:bg-rose-900/80 border border-rose-500/30 hover:border-rose-400 text-rose-200 hover:text-white font-bold text-sm sm:text-base transition-all flex items-center gap-2 shadow-lg backdrop-blur-md cursor-pointer"
+          >
+            <MessageCircle className="w-5 h-5 text-rose-400" />
+            <span>📢 شكاوى وبلاغات المواطنين</span>
+          </a>
+
+          <a
             href="/legal-forms.html"
-            className="px-6 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-white/15 hover:border-indigo-500/50 text-slate-200 hover:text-white font-bold text-sm sm:text-base transition-all flex items-center gap-2 shadow-lg backdrop-blur-md cursor-pointer"
+            className="px-5 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-white/15 hover:border-indigo-500/50 text-slate-200 hover:text-white font-bold text-sm sm:text-base transition-all flex items-center gap-2 shadow-lg backdrop-blur-md cursor-pointer"
           >
             <FileSignature className="w-5 h-5 text-indigo-400" />
             <span>صيغ العقود والدعاوي</span>
