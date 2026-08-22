@@ -230,24 +230,24 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
   return (
     <div className="min-h-screen text-slate-100 relative overflow-hidden font-sans select-none" dir="rtl">
       
-      {/* Background Poster — Vivid High-Contrast Cinematic Quality */}
+      {/* Background Poster — Soft Cinematic, Eye-Friendly */}
       <div 
-        className="fixed inset-0 z-0 bg-cover bg-center pointer-events-none opacity-85 transform scale-100 transition-all duration-1000"
+        className="fixed inset-0 z-0 bg-cover bg-center pointer-events-none opacity-65 transform scale-100"
         style={{
           backgroundImage: "url('/images/legal-bg.jpg')",
           backgroundAttachment: 'fixed',
           backgroundPosition: 'center top',
-          filter: 'contrast(120%) saturate(130%) brightness(105%)'
+          filter: 'contrast(108%) saturate(110%) brightness(90%)'
         }}
       />
 
-      {/* Cinematic Color Grade & Glow Overlay */}
-      <div className="fixed inset-0 z-0 bg-gradient-to-b from-slate-950/45 via-indigo-950/20 to-slate-950/75 pointer-events-none" />
+      {/* Soft Color-Grade Overlay — Deep Navy with warm glow */}
+      <div className="fixed inset-0 z-0 bg-gradient-to-b from-slate-950/60 via-indigo-950/30 to-slate-950/80 pointer-events-none" />
 
-      {/* Dynamic Colorful Cinematic Ambient Lights */}
-      <div className="fixed -top-24 -right-24 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-indigo-500/25 via-purple-500/20 to-transparent blur-3xl pointer-events-none z-0 animate-pulse" />
-      <div className="fixed top-1/3 -left-32 w-[650px] h-[650px] rounded-full bg-gradient-to-tr from-cyan-500/20 via-blue-600/15 to-transparent blur-3xl pointer-events-none z-0" />
-      <div className="fixed -bottom-20 right-1/4 w-[700px] h-[700px] rounded-full bg-gradient-to-tl from-amber-500/20 via-rose-500/15 to-transparent blur-3xl pointer-events-none z-0" />
+      {/* Gentle Ambient Lights — Muted Tones */}
+      <div className="fixed -top-32 -right-32 w-[550px] h-[550px] rounded-full bg-gradient-to-br from-indigo-600/12 via-purple-600/8 to-transparent blur-3xl pointer-events-none z-0" />
+      <div className="fixed top-1/2 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-cyan-600/10 via-blue-700/8 to-transparent blur-3xl pointer-events-none z-0" />
+      <div className="fixed bottom-0 right-1/3 w-[500px] h-[500px] rounded-full bg-gradient-to-tl from-indigo-700/10 via-slate-800/5 to-transparent blur-3xl pointer-events-none z-0" />
 
       {/* Global Unified Header */}
       <div className="relative z-20">
