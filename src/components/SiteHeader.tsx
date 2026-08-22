@@ -24,6 +24,10 @@ const PRIMARY = [
 ];
 
 const MORE = [
+  { href: '/courts-directory.html', label: '🏛️ دليل المحاكم والشهر العقاري', key: 'courts' },
+  { href: '/court-precedents.html', label: '⚖️ بنك مبادئ محكمة النقض', key: 'precedents' },
+  { href: '/company-incorporation.html', label: '💼 تأسيس الشركات والتراخيص', key: 'companies' },
+  { href: '/legal-diagnostics.html', label: '🔍 تشخيص النزاع القضائي', key: 'diagnostics' },
   { href: '/about.html', label: '⚖️ عن المنصة', key: 'about' },
   { href: '/features.html', label: '⚡ المميزات الكاملة', key: 'features' },
   { href: '/pricing.html', label: '🎁 الأسعار — مجاني 100%', key: 'pricing' },

@@ -46,40 +46,80 @@ interface InfoCenterProps {
 // ── شبكة البطاقات الفاخرة للمميزات والخدمات ─────────────────────────────
 const PLATFORM_FEATURES = [
   {
+    href: '/legal-calculators.html',
+    badge: 'بوابة الحاسبات',
+    title: '11 حاسبة قانونية وشرعية تفاعلية',
+    desc: 'حاسبة المواريث والتركات، النفقات والأسرة، رسوم الشهر العقاري 2026، التصالح، وزيادات الإيجار القديم ومواعيد الطعون.',
+    icon: Calculator,
+    gradient: 'from-amber-500 to-orange-600',
+    glow: 'rgba(245, 158, 11, 0.25)',
+    tag: '11 حاسبة ذكية'
+  },
+  {
+    href: '/courts-directory.html',
+    badge: 'دليل شامل',
+    title: 'دليل المحاكم ومكاتب الشهر العقاري',
+    desc: 'عناوين ومقار ودوائر المحاكم الابتدائية والاستئناف ومجلس الدولة والشهر العقاري المطور في كافة المحافظات.',
+    icon: Library,
+    gradient: 'from-blue-500 to-indigo-600',
+    glow: 'rgba(59, 130, 246, 0.25)',
+    tag: 'جميع المحافظات'
+  },
+  {
+    href: '/court-precedents.html',
+    badge: 'سوابق قضائية',
+    title: 'بنك مبادئ محكمة النقض الكبرى',
+    desc: 'أهم المبادئ القضائية المستقرة لمحكمة النقض المصرية في الجنائي والمدني والإيجارات والأسرة جاهزة للنسخ المباشر.',
+    icon: Scale,
+    gradient: 'from-purple-500 to-indigo-600',
+    glow: 'rgba(168, 85, 247, 0.25)',
+    tag: 'نسخ فوري للمذكرات'
+  },
+  {
+    href: '/company-incorporation.html',
+    badge: 'استثمار وأعمال',
+    title: 'دليل تأسيس الشركات والتراخيص',
+    desc: 'خطوات تأسيس الشركات (LLC، فرد واحد، مساهمة) عبر هيئة الاستثمار GAFI وحاسبة الرسوم الحكومية والأوراق المطلوبة.',
+    icon: Briefcase,
+    gradient: 'from-emerald-500 to-teal-600',
+    glow: 'rgba(16, 185, 129, 0.25)',
+    tag: 'هيئة الاستثمار GAFI'
+  },
+  {
+    href: '/legal-diagnostics.html',
+    badge: 'تشخيص ذكي',
+    title: 'المساعد الذكي لتشخيص النزاع القضائي',
+    desc: 'أداة ذكية لتشخيص مشكلتك وتحديد نوع الدعوى والمحكمة المختصة نوعياً ومحلياً والمستندات والمواعيد الحاكمة فوراً.',
+    icon: Search,
+    gradient: 'from-cyan-500 to-blue-600',
+    glow: 'rgba(6, 182, 212, 0.25)',
+    tag: 'تشخيص فوري مجاني'
+  },
+  {
     href: '/legal-forms.html',
     badge: 'موسوعة الصيغ',
     title: 'صيغ العقود والدعاوى الجاهزة',
-    desc: 'أكثر من 2,690 صيغة قانونية ونموذج عقد وصحيفة دعوى جاهزة للنسخ والتحميل المباشر.',
+    desc: 'أكثر من 2,690 صيغة قانونية ونموذج عقد وصحيفة دعوى ومذكرة دفاع جاهزة للنسخ والتحميل المباشر.',
     icon: FileSignature,
-    gradient: 'from-blue-500 to-indigo-600',
-    glow: 'rgba(59, 130, 246, 0.25)',
-    tag: 'جاهز للتحميل'
+    gradient: 'from-indigo-500 to-purple-600',
+    glow: 'rgba(99, 102, 241, 0.25)',
+    tag: 'Word + PDF'
   },
   {
     href: '/pillars/',
     badge: 'المراجع التخصصية',
     title: 'المراجع القانونية وأدلة التقاضي',
     desc: 'شروح تفصيلية شاملة في القانون المدني، الجنائي، العمل 2026، الشهر العقاري، والمرافعات.',
-    icon: Scale,
-    gradient: 'from-indigo-500 to-purple-600',
-    glow: 'rgba(99, 102, 241, 0.25)',
+    icon: BookOpen,
+    gradient: 'from-rose-500 to-pink-600',
+    glow: 'rgba(244, 63, 94, 0.25)',
     tag: '15+ دليل شامل'
-  },
-  {
-    href: '/legal-forms.html',
-    badge: 'صيغ فورية',
-    title: 'صيغ العقود والصحف والدعاوى',
-    desc: 'أكثر من 100 صيغة ونموذج عقد (بيع، إيجار، شركات، عمل) ومذكرات دفاع جاهزة للتحميل والتعديل.',
-    icon: FileSignature,
-    gradient: 'from-cyan-500 to-blue-600',
-    glow: 'rgba(6, 182, 212, 0.25)',
-    tag: 'Word + PDF'
   },
   {
     href: '/features.html',
     badge: 'إدارة متكاملة',
     title: 'إدارة ملفات القضايا والموكلين',
-    desc: 'تنظيم قضايا المكتب وأرقام الدوائر ومواعيد الجلسات وأوراق المحضرين في منظومة واحدة.',
+    desc: 'تنظيم قضايا المكتب وأرقام الدوائر ومواعيد الجلسات وأوراق المحضرين في منظومة سحابية واحدة.',
     icon: Briefcase,
     gradient: 'from-purple-500 to-pink-600',
     glow: 'rgba(168, 85, 247, 0.25)',
@@ -103,7 +143,7 @@ const PLATFORM_FEATURES = [
     icon: BookOpen,
     gradient: 'from-pink-500 to-rose-600',
     glow: 'rgba(236, 72, 153, 0.25)',
-    tag: '+100 مقال'
+    tag: '+130 مقال'
   },
   {
     href: '/legal-radar.html',
@@ -113,7 +153,7 @@ const PLATFORM_FEATURES = [
     icon: Radio,
     gradient: 'from-rose-500 to-red-600',
     glow: 'rgba(244, 63, 94, 0.25)',
-    tag: 'تحديث Google Trends'
+    tag: 'Google Trends'
   },
   {
     href: '/why-trust-us.html',
@@ -124,26 +164,6 @@ const PLATFORM_FEATURES = [
     gradient: 'from-emerald-500 to-green-600',
     glow: 'rgba(16, 185, 129, 0.25)',
     tag: 'تشفير 256-bit'
-  },
-  {
-    href: '/about.html',
-    badge: 'قصة ورؤية',
-    title: 'عن منصة المحامي الرقمية',
-    desc: 'تعرف على قصة المنصة ورسالتنا في دعم التحول الرقمي لمنظومة المحاماة والعدالة المصرية.',
-    icon: Award,
-    gradient: 'from-amber-500 to-orange-600',
-    glow: 'rgba(245, 158, 11, 0.25)',
-    tag: 'فريق متخصص'
-  },
-  {
-    href: '/contact.html',
-    badge: 'دعم فني',
-    title: 'تواصل معنا والدعم الفني',
-    desc: 'فريقنا متاح دائماً لاستقبال استفساراتك واقتراحاتك لتطوير المنصة باستمرار.',
-    icon: MessageCircle,
-    gradient: 'from-blue-600 to-cyan-600',
-    glow: 'rgba(37, 99, 235, 0.25)',
-    tag: 'استجابة سريعة'
   }
 ];
 

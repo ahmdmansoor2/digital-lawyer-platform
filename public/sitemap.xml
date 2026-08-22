@@ -883,10 +883,28 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/company-incorporation.html</loc>
+    <lastmod>2026-08-22T10:48:31.041Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/contact.html</loc>
     <lastmod>2026-08-22T09:28:43.170Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/court-precedents.html</loc>
+    <lastmod>2026-08-22T10:48:15.835Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/courts-directory.html</loc>
+    <lastmod>2026-08-22T10:47:54.596Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://mohamidigital.online/disclaimer.html</loc>
@@ -908,7 +926,13 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/legal-calculators.html</loc>
-    <lastmod>2026-08-22T10:20:39.273Z</lastmod>
+    <lastmod>2026-08-22T10:36:04.398Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/legal-diagnostics.html</loc>
+    <lastmod>2026-08-22T10:48:51.642Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
