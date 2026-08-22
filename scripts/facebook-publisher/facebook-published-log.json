@@ -1790,6 +1790,27 @@
       "duration": "59ث",
       "size": 20457513,
       "publishedAt": "2026-08-22T09:42:03.402Z"
+    },
+    {
+      "topicId": "trend-salary-delay-penalties-egypt-labor-law",
+      "title": "حقوق العامل عند تأخير صرف المرتبات في قانون العمل المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون العمل",
+        "#صرف المرتبات",
+        "#قانون العمل المصري"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-salary-delay-penalties-egypt-labor-law.mp4",
+      "videoId": "1618321133017426",
+      "permalink": "https://www.facebook.com/reel/1618321133017426",
+      "source": "trending-topics.json",
+      "duration": "1د 1ث",
+      "size": 20733515,
+      "publishedAt": "2026-08-22T13:00:50.238Z"
     }
   ]
 }
