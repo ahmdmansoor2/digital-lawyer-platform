@@ -1,4 +1,4 @@
-﻿/**
+/**
  * sidebar.js — Global Glassmorphism Sidebar for static HTML pages & blog
  * Vanilla JS, <4KB, zero dependencies. 
  * @license SPDX-License-Identifier: Apache-2.0
@@ -97,7 +97,7 @@
   var style = document.createElement('style');
   style.textContent = `
     #gs-trigger {
-      position: fixed; bottom: 24px; left: 24px; z-index: 9990;
+      position: fixed; bottom: 24px; right: 24px; z-index: 999990;
       display: flex; align-items: center; gap: 10px;
       padding: 12px 18px; border-radius: 16px;
       background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255, 255, 255, 0.15);
