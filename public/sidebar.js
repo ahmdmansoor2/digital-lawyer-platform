@@ -602,14 +602,12 @@
     isOpen = true;
     drawer.classList.add('gs-active');
     backdrop.classList.add('gs-active');
-    document.body.style.overflow = 'hidden';
   }
 
   function closeDrawer() {
     isOpen = false;
     drawer.classList.remove('gs-active');
     backdrop.classList.remove('gs-active');
-    document.body.style.overflow = '';
   }
 
   if (document.readyState === 'loading') {

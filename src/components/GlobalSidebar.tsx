@@ -147,16 +147,6 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
     };
   }, []);
 
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [open]);
 
   const toggleSection = useCallback((id: string) => {
     setExpandedSections(prev => ({ ...prev, [id]: !prev[id] }));
