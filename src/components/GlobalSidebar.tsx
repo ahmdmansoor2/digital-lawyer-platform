@@ -1,9 +1,9 @@
 ﻿/**
- * GlobalSidebar.tsx - شريط جانبي زجاجي فاخر يغطي كافة أقسام المنصة
+ * GlobalSidebar.tsx - شريط جانبي زجاجي فاخر ذكي فائق السلاسة
  * @license SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Compass,
   X,
@@ -104,7 +104,7 @@ const SIDEBAR_SECTIONS: SidebarSection[] = [
     links: [
       { label: 'المدونة القانونية (+140 مقال)', href: '/blog/', icon: '📰' },
       { label: 'الميزات والتعريف بالمنصة', href: '/features.html', icon: '🎬' },
-      { label: 'سياسة الخصوصية والتواصل', href: '/privacy-policy.html', icon: '🛡️' },
+      { label: 'سياسة الخصوصية والتواصل', href: '/privacy.html', icon: '🛡️' },
     ],
   },
 ];
@@ -122,7 +122,6 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
     library: false,
     blog: false,
   });
-  const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -133,8 +132,14 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
   }, [open]);
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [open]);
 
   const toggleSection = useCallback((id: string) => {
@@ -150,83 +155,95 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
 
   return (
     <>
-      {/* Floating Trigger */}
+      {/* Floating Trigger Button */}
       <button
-        onClick={() => setOpen(true)}
+        type="button"
+        onClick={() => setOpen(prev => !prev)}
         aria-label="فتح فهرس المنصة السريع"
-        className="fixed bottom-6 start-6 z-[9000] flex items-center gap-2 px-4 py-3 rounded-2xl bg-slate-900/80 hover:bg-slate-800/90 border border-white/10 hover:border-indigo-400/40 text-slate-200 hover:text-white text-sm font-bold shadow-xl shadow-black/40 backdrop-blur-xl transition-all duration-300 hover:scale-105 group"
+        className="fixed bottom-6 left-6 z-[9990] flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900/90 hover:bg-slate-800 border border-white/15 hover:border-indigo-400/50 text-white text-sm font-bold shadow-2xl shadow-black/60 backdrop-blur-2xl transition-all duration-300 hover:scale-105 active:scale-95 group cursor-pointer"
         style={{ direction: 'rtl' }}
       >
-        <Compass className="w-5 h-5 text-indigo-400 group-hover:rotate-12 transition-transform duration-300" />
-        <span className="hidden sm:inline">فهرس المنصة</span>
+        <div className="w-6 h-6 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:rotate-12 transition-transform duration-300">
+          <Compass className="w-4 h-4" />
+        </div>
+        <span className="font-bold text-xs sm:text-sm">فهرس المنصة</span>
       </button>
 
       {/* Backdrop */}
-      {open && (
-        <div
-          className="fixed inset-0 z-[9001] bg-black/50 backdrop-blur-sm"
-          onClick={() => setOpen(false)}
-          aria-hidden="true"
-        />
-      )}
-
-      {/* Glass Drawer */}
       <div
-        ref={drawerRef}
+        className={`fixed inset-0 z-[9991] bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
+          open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={() => setOpen(false)}
+        aria-hidden={!open}
+      />
+
+      {/* Glass Drawer Container */}
+      <aside
         role="navigation"
         aria-label="الشريط الجانبي للمنصة"
         dir="rtl"
-        className="fixed top-0 end-0 h-full w-80 z-[9002] flex flex-col bg-slate-950/85 backdrop-blur-2xl border-s border-white/8 shadow-2xl shadow-black/60 transition-transform duration-300 ease-out"
+        className={`fixed top-0 right-0 h-full w-[320px] max-w-[85vw] z-[9992] flex flex-col bg-slate-950/95 backdrop-blur-2xl border-l border-white/10 shadow-2xl shadow-black/80 transition-transform duration-300 ease-out ${
+          open ? 'translate-x-0 pointer-events-auto visible' : 'translate-x-full pointer-events-none invisible'
+        }`}
         style={{
-          transform: open ? 'translateX(0)' : 'translateX(100%)',
-          overflowY: 'auto',
-          scrollbarWidth: 'thin' as const,
-          scrollbarColor: 'rgba(148,163,184,0.2) transparent',
+          boxShadow: '-10px 0 30px rgba(0, 0, 0, 0.7)'
         }}
       >
         {/* Header */}
-        <div className="sticky top-0 z-10 flex items-center justify-between px-5 py-4 bg-gradient-to-b from-slate-950 via-slate-950/95 to-transparent border-b border-white/6">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
-              <Compass className="w-4 h-4 text-white" />
+        <div className="flex-shrink-0 flex items-center justify-between px-5 py-4 bg-slate-900/60 border-b border-white/10">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+              <Compass className="w-5 h-5 text-white" />
             </div>
             <div>
-              <p className="text-white font-black text-sm leading-tight">فهرس المنصة السريع</p>
-              <p className="text-slate-400 text-[10px]">منصة المحامي الرقمية 2026</p>
+              <h3 className="text-white font-black text-sm leading-tight">فهرس المنصة الشامل</h3>
+              <p className="text-slate-400 text-[10.5px]">منصة المحامي الرقمية 2026</p>
             </div>
           </div>
           <button
+            type="button"
             onClick={() => setOpen(false)}
-            aria-label="إغلاق القائمة"
-            className="w-8 h-8 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all duration-200"
+            aria-label="إغلاق الفهرس"
+            className="w-8 h-8 rounded-xl flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Sections */}
-        <div className="flex-1 px-3 py-3 space-y-2">
+        {/* Scrollable Sections */}
+        <div 
+          className="flex-1 overflow-y-auto px-3 py-4 space-y-2.5"
+          style={{
+            scrollbarWidth: 'thin',
+            scrollbarColor: 'rgba(148,163,184,0.3) transparent'
+          }}
+        >
           {SIDEBAR_SECTIONS.map((section) => {
             const isExpanded = expandedSections[section.id];
             const SectionIcon = section.Icon;
             return (
-              <div key={section.id} className={`rounded-xl border ${section.borderColor} ${section.bgColor} overflow-hidden transition-all duration-200`}>
+              <div 
+                key={section.id} 
+                className={`rounded-xl border ${section.borderColor} ${section.bgColor} overflow-hidden transition-all duration-200`}
+              >
                 <button
+                  type="button"
                   onClick={() => toggleSection(section.id)}
-                  className="w-full flex items-center justify-between px-3.5 py-3 text-right hover:bg-white/5 transition-colors duration-200"
+                  className="w-full flex items-center justify-between px-3.5 py-3 text-right hover:bg-white/5 transition-colors duration-200 cursor-pointer"
                 >
                   <div className="flex items-center gap-2.5">
                     <SectionIcon className={`w-4 h-4 ${section.color} flex-shrink-0`} />
                     <span className={`text-xs font-bold ${section.color}`}>{section.title}</span>
                   </div>
                   {isExpanded
-                    ? <ChevronUp className="w-3.5 h-3.5 text-slate-500" />
-                    : <ChevronDown className="w-3.5 h-3.5 text-slate-500" />
+                    ? <ChevronUp className="w-3.5 h-3.5 text-slate-400" />
+                    : <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
                   }
                 </button>
 
                 {isExpanded && (
-                  <div className="pb-2 px-2 space-y-0.5">
+                  <div className="pb-2.5 px-2 space-y-1">
                     {section.links.map((link) => (
                       <a
                         key={link.href + link.label}
@@ -235,13 +252,13 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
                           if (link.isApp) e.preventDefault();
                           handleLinkClick(link);
                         }}
-                        className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/8 text-xs font-medium transition-all duration-150 group"
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 text-xs font-medium transition-all duration-150 group cursor-pointer"
                       >
                         <span className="text-sm flex-shrink-0">{link.icon}</span>
                         <span className="flex-1 leading-snug">{link.label}</span>
                         {link.isApp
-                          ? <LogIn className="w-3 h-3 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-                          : <ExternalLink className="w-3 h-3 text-slate-600 opacity-0 group-hover:opacity-60 transition-opacity" />
+                          ? <LogIn className="w-3.5 h-3.5 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          : <ExternalLink className="w-3.5 h-3.5 text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                         }
                       </a>
                     ))}
@@ -253,12 +270,12 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
         </div>
 
         {/* Footer */}
-        <div className="px-5 py-4 border-t border-white/6 mt-auto">
-          <p className="text-slate-600 text-[10px] text-center leading-relaxed">
+        <div className="flex-shrink-0 px-4 py-3 bg-slate-900/40 border-t border-white/10 text-center">
+          <p className="text-slate-500 text-[10px] leading-relaxed">
             © 2026 منصة المحامي الرقمية — mohamidigital.online
           </p>
         </div>
-      </div>
+      </aside>
     </>
   );
 }
