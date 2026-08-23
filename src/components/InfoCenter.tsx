@@ -2,8 +2,8 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  *
- * InfoCenter — البوابة الوطنية الشاملة لكافة أقسام وخدمات منصة المحامي الرقمية 2026
- * تصميم سينمائي فائق الفخامة يدمج كافة صفحات وبوابات المنصة الـ 14 في شبكة كروت تفاعلية
+ * InfoCenter — البوابة الوطنية والإقليمية الشاملة لمنصة المحامي الرقمية 2026
+ * تغطي مصر والدول الخليجية الكبرى (السعودية · الإمارات · قطر) في شبكة كروت تفاعلية
  */
 
 import React, { useState } from 'react';
@@ -15,7 +15,6 @@ import {
   FileText, 
   Calculator, 
   BookOpen, 
-  Library, 
   MessageCircle, 
   ShieldCheck, 
   ArrowLeft,
@@ -42,8 +41,41 @@ interface InfoCenterProps {
   onLogout: () => void;
 }
 
-// ── شبكة كافة صفحات وبوابات المنصة الرئيسية الـ 14 ─────────────────────
+// ── شبكة كافة صفحات وبوابات المنصة الرئيسية الـ 17 ─────────────────────
 const ALL_PLATFORM_PORTALS = [
+  // ── بوابات الخليج العربي (جديد 2026) ─────────────────────────────
+  {
+    href: '/saudi-legal-hub.html',
+    badge: '🇸🇦 المملكة العربية السعودية',
+    title: 'بوابة الأنظمة والخدمات القانونية السعودية 2026',
+    desc: 'حاسبة مكافأة نهاية الخدمة وفق نظام العمل السعودي (المادتين 84 و85)، دليل منصة ناجز وديوان المظالم (معين)، وتأسيس الشركات MISA والأنظمة الحديثة.',
+    icon: Scale,
+    gradient: 'from-emerald-600 to-green-700',
+    tag: 'ناجز ونظام العمل 1447هـ',
+    category: 'gulf'
+  },
+  {
+    href: '/uae-legal-hub.html',
+    badge: '🇦🇪 دولة الإمارات العربية المتحدة',
+    title: 'بوابة التشريعات والخدمات القانونية الإماراتية 2026',
+    desc: 'حاسبة مستحقات نهاية الخدمة بقانون العمل الاتحادي (مرسوم 33/2021)، بوابات محاكم دبي وأبوظبي، تأسيس الشركات والمناطق الحرة وتعديلات الشيكات.',
+    icon: Building2,
+    gradient: 'from-blue-600 to-indigo-700',
+    tag: 'محاكم دبي والعمل الاتحادي',
+    category: 'gulf'
+  },
+  {
+    href: '/qatar-legal-hub.html',
+    badge: '🇶🇦 دولة قطر',
+    title: 'بوابة التشريعات والخدمات القانونية القطرية 2026',
+    desc: 'حاسبة مكافأة نهاية الخدمة بقانون العمل القطري (قانون 14/2004)، بوابة المجلس الأعلى للقضاء، لجان فض المنازعات، وتأسيس الشركات بمركز قطر للمال QFC.',
+    icon: Gavel,
+    gradient: 'from-rose-600 to-red-800',
+    tag: 'المجلس الأعلى للقضاء وQFC',
+    category: 'gulf'
+  },
+
+  // ── البوابات والخدمات العامة ──────────────────────────────────────
   {
     href: '/legal-consultations.html',
     badge: '💬 استشارة فورية',
@@ -171,7 +203,7 @@ const ALL_PLATFORM_PORTALS = [
     desc: 'مئات المقالات القانونية التخصصية التي تشرح القوانين وحقوق المواطنين وإجراءات التقاضي بلغة سهلة ورصينة وموثقة.',
     icon: Newspaper,
     gradient: 'from-purple-600 to-pink-600',
-    tag: '+50 مقال معتمد',
+    tag: '+140 مقال معتمد',
     category: 'library'
   },
   {
@@ -220,7 +252,7 @@ const LAW_FIRM_TOOLS = [
 
 export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCenterProps) {
   const [activeTab, setActiveTab] = useState<'lawyers' | 'citizens'>('lawyers');
-  const [portalCategory, setPortalCategory] = useState<'all' | 'citizens' | 'lawyers' | 'library'>('all');
+  const [portalCategory, setPortalCategory] = useState<'all' | 'gulf' | 'citizens' | 'lawyers' | 'library'>('all');
 
   const filteredPortals = ALL_PLATFORM_PORTALS.filter(p => {
     if (portalCategory === 'all') return true;
@@ -260,7 +292,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
         {/* Release Pill Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-bold mb-6 backdrop-blur-md shadow-lg shadow-indigo-950/40">
           <Sparkles className="w-4 h-4 text-indigo-400 animate-pulse" />
-          <span>المنظومة القانونية والقضائية الرقمية الأولى في مصر 2026</span>
+          <span>المنظومة القانونية والقضائية الرقمية الأولى في مصر والعالم العربي 2026</span>
         </div>
 
         {/* Grand Headline */}
@@ -273,7 +305,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
         {/* Hero Subtitle */}
         <p className="text-base sm:text-lg md:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8 font-normal">
-          منصة وطنية متكاملة تدمج <strong className="text-white">نظام إدارة مكاتب المحاماة</strong> للمحترفين، مع <strong className="text-white">بوابة الخدمات والاستشارات القضائية</strong> للمواطنين والشركات.
+          منصة وطنية وإقليمية متكاملة تدمج <strong className="text-white">نظام إدارة مكاتب المحاماة</strong> للمحترفين، مع <strong className="text-white">بوابات الخدمات القضائية والاستشارات وحاسبات العمل</strong> لمصر والدول الخليجية.
         </p>
 
         {/* Dual Track Switcher Tabs */}
@@ -365,17 +397,128 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </div>
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-            <span>تشفير وأمان بيانات محلي وسحابي</span>
+            <span>تغطية متكاملة لمصر والدول الخليجية</span>
           </div>
           <div className="flex items-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-            <span>وفق القوانين واللوائح المصرية 2026</span>
+            <span>وفق أحدث القوانين والأنظمة 2026</span>
           </div>
         </div>
 
       </section>
 
-      {/* ─── 2. ALL 14 PLATFORM PORTALS & MAIN PAGES GRID (كافة الصفحات الرئيسية) ─ */}
+      {/* ─── 2. DEDICATED GULF HUB SHOWCASE (كروت الخليج العربي الثلاثة المستقلة) ── */}
+      <section className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+        <div className="p-8 sm:p-10 rounded-3xl bg-slate-900/80 border border-indigo-500/25 backdrop-blur-2xl shadow-2xl">
+          <div className="text-center max-w-3xl mx-auto mb-8">
+            <span className="text-xs font-black px-4 py-1.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 inline-flex items-center gap-2 mb-3">
+              <span>🌍 التغطية الإقليمية المعتمدة 2026</span>
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+              البوابات القانونية لدول الخليج العربي
+            </h2>
+            <p className="text-sm sm:text-base text-slate-300 mt-2">
+              بوابات مستقلة متخصصة تضم حاسبات مكافأة نهاية الخدمة الدقيقة، منصات التقاضي الإلكتروني، وتأسيس الشركات والأنظمة المعتمدة في السعودية والإمارات وقطر.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            {/* Card 1: Saudi Arabia */}
+            <a
+              href="/saudi-legal-hub.html"
+              className="group relative p-6 rounded-2xl bg-gradient-to-b from-emerald-950/60 to-slate-900/90 hover:to-slate-900 border border-emerald-500/30 hover:border-emerald-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-3xl">🇸🇦</span>
+                  <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    رؤية 2030 ونظام العمل
+                  </span>
+                </div>
+                <h3 className="text-lg font-black text-white group-hover:text-emerald-300 transition-colors mb-2">
+                  بوابة المملكة العربية السعودية
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                  حاسبة مكافأة نهاية الخدمة (المادتين 84 و85)، دليل منصة ناجز وديوان المظالم (معين)، الاستثمار وتأسيس الشركات MISA، ونظام المعاملات المدنية.
+                </p>
+                <div className="space-y-1.5 text-xs text-slate-400 border-t border-emerald-900/60 pt-3">
+                  <div className="flex items-center gap-1.5">✓ حاسبة نظام العمل السعودي المحدثة</div>
+                  <div className="flex items-center gap-1.5">✓ منصة ناجز وقوى وديوان المظالم</div>
+                  <div className="flex items-center gap-1.5">✓ تراخيص الاستثمار الأجنبي MISA</div>
+                </div>
+              </div>
+              <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-emerald-400 group-hover:text-emerald-300">
+                <span>دخول بوابة السعودية</span>
+                <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+              </div>
+            </a>
+
+            {/* Card 2: UAE */}
+            <a
+              href="/uae-legal-hub.html"
+              className="group relative p-6 rounded-2xl bg-gradient-to-b from-blue-950/60 to-slate-900/90 hover:to-slate-900 border border-blue-500/30 hover:border-blue-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-3xl">🇦🇪</span>
+                  <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
+                    المرسوم بقانون 33/2021
+                  </span>
+                </div>
+                <h3 className="text-lg font-black text-white group-hover:text-blue-300 transition-colors mb-2">
+                  بوابة دولة الإمارات العربية المتحدة
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                  حاسبة مستحقات نهاية الخدمة بقانون العمل الاتحادي، محاكم دبي وأبوظبي الذكية، تسهيل، تأسيس الشركات بالبر الرئيسي والمناطق الحرة، وقانون الشيكات.
+                </p>
+                <div className="space-y-1.5 text-xs text-slate-400 border-t border-blue-900/60 pt-3">
+                  <div className="flex items-center gap-1.5">✓ حاسبة العمل الإماراتي (21 و 30 يوماً)</div>
+                  <div className="flex items-center gap-1.5">✓ محاكم دبي والقضاء الاتحادي وتسهيل</div>
+                  <div className="flex items-center gap-1.5">✓ تملك أجنبي 100% والمناطق الحرة</div>
+                </div>
+              </div>
+              <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-blue-400 group-hover:text-blue-300">
+                <span>دخول بوابة الإمارات</span>
+                <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+              </div>
+            </a>
+
+            {/* Card 3: Qatar */}
+            <a
+              href="/qatar-legal-hub.html"
+              className="group relative p-6 rounded-2xl bg-gradient-to-b from-rose-950/60 to-slate-900/90 hover:to-slate-900 border border-rose-500/30 hover:border-rose-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-3xl">🇶🇦</span>
+                  <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                    قانون العمل رقم 14/2004
+                  </span>
+                </div>
+                <h3 className="text-lg font-black text-white group-hover:text-rose-300 transition-colors mb-2">
+                  بوابة دولة قطر
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                  حاسبة مكافأة نهاية الخدمة (أجر 3 أسابيع/سنة)، المجلس الأعلى للقضاء، لجان فض المنازعات العمالية، توثيق صك، وتأسيس الشركات بمركز قطر للمال QFC.
+                </p>
+                <div className="space-y-1.5 text-xs text-slate-400 border-t border-rose-900/60 pt-3">
+                  <div className="flex items-center gap-1.5">✓ حاسبة العمل القطري وبدل الإجازات</div>
+                  <div className="flex items-center gap-1.5">✓ المجلس الأعلى للقضاء ولجان المنازعات</div>
+                  <div className="flex items-center gap-1.5">✓ مركز قطر للمال QFC والنافذة الواحدة</div>
+                </div>
+              </div>
+              <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-rose-400 group-hover:text-rose-300">
+                <span>دخول بوابة قطر</span>
+                <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 3. ALL 17 PLATFORM PORTALS & MAIN PAGES GRID (كافة الصفحات الرئيسية) ─ */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/25 text-indigo-300 text-xs font-bold mb-3">
@@ -383,10 +526,10 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             <span>دليل كافة أقسام وصفحات المنصة</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
-            بوابات الخدمات القانونية والقضائية الشاملة (14 بوابة)
+            بوابات الخدمات القانونية والقضائية الشاملة (17 بوابة)
           </h2>
           <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto mt-2">
-            استكشف وتصفح جميع أقسام المنصة الرسمية المصممة لخدمة المواطن والمحامي على حد سواء.
+            استكشف وتصفح جميع أقسام المنصة الرسمية المصممة لخدمة المواطن والمحامي والمستثمر.
           </p>
 
           {/* Filter Pills */}
@@ -399,13 +542,23 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                   : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white'
               }`}
             >
-              🌟 كافة الأقسام (14)
+              🌟 كافة الأقسام (17)
+            </button>
+            <button
+              onClick={() => setPortalCategory('gulf')}
+              className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                portalCategory === 'gulf'
+                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white'
+              }`}
+            >
+              🌍 بوابات الخليج العربي (3)
             </button>
             <button
               onClick={() => setPortalCategory('citizens')}
               className={`px-4 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 portalCategory === 'citizens'
-                  ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30'
+                  ? 'bg-teal-600 text-white shadow-md shadow-teal-600/30'
                   : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white'
               }`}
             >
@@ -477,7 +630,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
         </div>
       </section>
 
-      {/* ─── 3. LAW FIRM MANAGEMENT SYSTEM SHOWCASE (قسم المحامين) ──────── */}
+      {/* ─── 4. LAW FIRM MANAGEMENT SYSTEM SHOWCASE (قسم المحامين) ──────── */}
       <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
         <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-slate-900/90 to-slate-950/95 border border-indigo-500/20 backdrop-blur-2xl shadow-2xl">
           <div className="max-w-3xl mb-8 text-start">
@@ -534,7 +687,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
         </div>
       </section>
 
-      {/* ─── 4. METRICS & NATIONAL SCALE BAR ─────────────────────────────── */}
+      {/* ─── 5. METRICS & NATIONAL SCALE BAR ─────────────────────────────── */}
       <section className="py-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 p-5 sm:p-6 rounded-3xl bg-slate-900/70 border border-white/10 backdrop-blur-xl shadow-2xl">
           
@@ -554,9 +707,9 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
           <div className="text-center p-3 border-e border-slate-800/80 last:border-0">
             <span className="text-2xl sm:text-4xl font-black bg-gradient-to-l from-cyan-400 to-blue-400 bg-clip-text text-transparent block">
-              27 محافظة
+              4 دول
             </span>
-            <span className="text-xs text-slate-400 font-bold mt-1 block">تغطية شاملة للمحاكم والمحامين</span>
+            <span className="text-xs text-slate-400 font-bold mt-1 block">مصر · السعودية · الإمارات · قطر</span>
           </div>
 
           <div className="text-center p-3">
@@ -569,7 +722,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
         </div>
       </section>
 
-      {/* ─── 5. PLATFORM VIDEO GUIDE ────────────────────────────────────── */}
+      {/* ─── 6. PLATFORM VIDEO GUIDE ────────────────────────────────────── */}
       <section className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10" id="video-guide">
         <div className="text-center mb-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-xs font-bold mb-3 backdrop-blur-md">
@@ -587,25 +740,26 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
         <PromoVideoPlayer onEnterApp={onEnterApp} />
       </section>
 
-      {/* ─── 6. FOOTER ─────────────────────────────────────────────────── */}
+      {/* ─── 7. FOOTER ─────────────────────────────────────────────────── */}
       <footer className="relative z-10 border-t border-slate-800/80 bg-slate-950/90 backdrop-blur-xl py-12 px-4 sm:px-6 lg:px-8 mt-12 text-center">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm font-bold text-slate-400 mb-6">
             <a href="/" className="hover:text-indigo-400 transition-colors">الرئيسية</a>
-            <a href="/legal-consultations.html" className="hover:text-emerald-400 transition-colors">💬 الاستشارات القانونية</a>
+            <a href="/saudi-legal-hub.html" className="hover:text-emerald-400 transition-colors">🇸🇦 السعودية</a>
+            <a href="/uae-legal-hub.html" className="hover:text-blue-400 transition-colors">🇦🇪 الإمارات</a>
+            <a href="/qatar-legal-hub.html" className="hover:text-rose-400 transition-colors">🇶🇦 قطر</a>
+            <a href="/legal-consultations.html" className="hover:text-emerald-400 transition-colors">💬 الاستشارات</a>
             <a href="/lawyers-directory.html" className="hover:text-indigo-400 transition-colors">👨‍⚖️ دليل المحامين</a>
             <a href="/e-justice-services.html" className="hover:text-cyan-400 transition-colors">🏛️ التقاضي الإلكتروني</a>
             <a href="/citizen-complaints.html" className="hover:text-rose-400 transition-colors">📢 شكاوى المواطنين</a>
-            <a href="/court-precedents.html" className="hover:text-indigo-400 transition-colors">⚖️ مبادئ النقض</a>
             <a href="/legal-forms.html" className="hover:text-indigo-400 transition-colors">📝 صيغ العقود</a>
-            <a href="/pillars/" className="hover:text-indigo-400 transition-colors">🏛️ المراجع والأكواد</a>
             <a href="/legal-calculators.html" className="hover:text-indigo-400 transition-colors">🧮 الحاسبات</a>
             <a href="/blog/" className="hover:text-indigo-400 transition-colors">📰 المدونة</a>
             <a href="/privacy.html" className="hover:text-indigo-400 transition-colors">الخصوصية</a>
             <a href="/contact.html" className="hover:text-indigo-400 transition-colors">تواصل معنا</a>
           </div>
           <p className="text-xs text-slate-400 font-medium">
-            © 2026 منصة المحامي الرقمية · المنظومة القانونية والقضائية الشاملة في مصر · إشراف الأستاذ أحمد منصور (مستشار قانوني)
+            © 2026 منصة المحامي الرقمية · المنظومة القانونية والقضائية الشاملة في مصر والعالم العربي · إشراف الأستاذ أحمد منصور (مستشار قانوني)
           </p>
         </div>
       </footer>
