@@ -1937,6 +1937,27 @@
       "duration": "1د 6ث",
       "size": 29669564,
       "publishedAt": "2026-08-23T15:38:11.443Z"
+    },
+    {
+      "topicId": "trend-intellectual-property-copyright-artistic-works",
+      "title": "حقوق الملكية الفكرية وحماية الأعمال الفنية والسينمائية في القانون المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الملكية الفكرية",
+        "#حق المؤلف",
+        "#حماية المصنفات الفنية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-intellectual-property-copyright-artistic-works.mp4",
+      "videoId": "1453692273482473",
+      "permalink": "https://www.facebook.com/reel/1453692273482473",
+      "source": "trending-topics.json",
+      "duration": "1د 5ث",
+      "size": 21999006,
+      "publishedAt": "2026-08-23T18:48:12.070Z"
     }
   ]
 }
