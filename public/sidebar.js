@@ -1,7 +1,7 @@
 /**
  * sidebar.js — Global Glassmorphism Sidebar for static HTML pages & blog
- * High-definition SVG icons, smooth right-coordinate animation (RTL-proof),
- * auto-injected top navbar trigger button, and crisp Cairo typography.
+ * 1:1 Pixel-Perfect Replica of React GlobalSidebar.tsx
+ * Explicit Cairo font loader, Lucide SVGs, exact sizing & smooth accordion.
  * @license SPDX-License-Identifier: Apache-2.0
  */
 (function () {
@@ -13,18 +13,29 @@
   }
 
   // Prevent duplicate mounts
-  if (document.getElementById('gs-trigger') || document.getElementById('gs-drawer')) return;
+  if (document.getElementById('global-sidebar-trigger') || document.getElementById('gs-drawer')) return;
+
+  // ── Ensure Google Cairo Font is Loaded ──
+  if (!document.querySelector('link[href*="family=Cairo"]')) {
+    var fontLink = document.createElement('link');
+    fontLink.rel = 'stylesheet';
+    fontLink.href = 'https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap';
+    document.head.appendChild(fontLink);
+  }
 
   var ICONS = {
-    compass: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>',
+    compass: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>',
+    compassSm: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>',
     globe: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>',
     users: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
     gavel: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14.5 12.5-8 8a2.12 2.12 0 0 1-3-3l8-8"/><path d="m16 16 6-6"/><path d="m8 8 6-6"/><path d="m9 7 8 8"/><path d="m21 11-8-8"/></svg>',
     book: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
     newspaper: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>',
-    chevron: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>',
-    close: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
-    extLink: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>',
+    chevronDown: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>',
+    chevronUp: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>',
+    close: '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+    extLink: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>',
+    logIn: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>',
   };
 
   var SECTIONS = [
@@ -67,7 +78,7 @@
       bg: 'rgba(129, 140, 248, 0.05)',
       iconSvg: ICONS.gavel,
       links: [
-        { label: 'دخول نظام إدارة القضايا والمكاتب', href: '/', icon: '🚀' },
+        { label: 'دخول نظام إدارة القضايا والمكاتب', href: '/', icon: '🚀', isApp: true },
         { label: 'دليل وتسجيل المحامين', href: '/lawyers-directory.html', icon: '👨‍⚖️' },
         { label: 'موسوعة صيغ العقود والدعاوى', href: '/legal-forms.html', icon: '📝' },
         { label: 'بوابة الحاسبات القانونية', href: '/legal-calculators.html', icon: '🧮' },
@@ -113,17 +124,17 @@
   // ── Inject CSS ──
   var style = document.createElement('style');
   style.textContent = `
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
-
-    #gs-trigger, #gs-trigger *,
-    #gs-drawer, #gs-drawer * {
+    #global-sidebar-trigger, #global-sidebar-trigger *,
+    #gs-backdrop, #gs-drawer, #gs-drawer * {
       box-sizing: border-box !important;
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
       -webkit-font-smoothing: antialiased !important;
       -moz-osx-font-smoothing: grayscale !important;
       text-rendering: optimizeLegibility !important;
     }
 
-    #gs-trigger {
+    /* ── Floating Trigger Button ── */
+    #global-sidebar-trigger {
       position: fixed !important;
       bottom: 24px !important;
       right: 24px !important;
@@ -132,50 +143,51 @@
       display: flex !important;
       align-items: center !important;
       gap: 10px !important;
-      padding: 12px 18px !important;
+      padding: 12px 16px !important;
       border-radius: 16px !important;
       background: rgba(15, 23, 42, 0.95) !important;
-      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
       color: #ffffff !important;
       font-size: 13.5px !important;
-      font-weight: 800 !important;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7) !important;
+      font-weight: 700 !important;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.8) !important;
       backdrop-filter: blur(24px) !important;
       -webkit-backdrop-filter: blur(24px) !important;
       cursor: pointer !important;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
       direction: rtl !important;
       user-select: none !important;
+      outline: none !important;
     }
-    #gs-trigger:hover {
-      background: rgba(30, 41, 59, 0.98) !important;
-      border-color: rgba(99, 102, 241, 0.7) !important;
+    #global-sidebar-trigger:hover {
+      background: rgba(30, 41, 59, 1) !important;
+      border-color: rgba(99, 102, 241, 0.8) !important;
       transform: scale(1.05) !important;
-      box-shadow: 0 16px 40px rgba(99, 102, 241, 0.3), 0 12px 36px rgba(0, 0, 0, 0.7) !important;
+      box-shadow: 0 16px 40px rgba(99, 102, 241, 0.25), 0 12px 36px rgba(0, 0, 0, 0.8) !important;
     }
-    #gs-trigger .gs-icon-wrap {
-      width: 24px;
-      height: 24px;
-      border-radius: 8px;
-      background: rgba(99, 102, 241, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #818cf8;
-      transition: transform 0.3s ease;
+    #global-sidebar-trigger:active {
+      transform: scale(0.96) !important;
     }
-    #gs-trigger:hover .gs-icon-wrap {
-      transform: rotate(20deg) scale(1.1);
+    .gs-trigger-icon-box {
+      width: 24px !important;
+      height: 24px !important;
+      border-radius: 8px !important;
+      background: rgba(99, 102, 241, 0.2) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      color: #818cf8 !important;
+      flex-shrink: 0 !important;
     }
 
+    /* ── Backdrop ── */
     #gs-backdrop {
       position: fixed !important;
       inset: 0 !important;
       z-index: 999998 !important;
       background: rgba(0, 0, 0, 0.65) !important;
-      backdrop-filter: blur(6px) !important;
-      -webkit-backdrop-filter: blur(6px) !important;
+      backdrop-filter: blur(4px) !important;
+      -webkit-backdrop-filter: blur(4px) !important;
       opacity: 0 !important;
       pointer-events: none !important;
       transition: opacity 0.3s ease !important;
@@ -185,27 +197,27 @@
       pointer-events: auto !important;
     }
 
+    /* ── Glass Drawer Container ── */
     #gs-drawer {
       position: fixed !important;
       top: 0 !important;
-      right: -380px !important;
-      bottom: 0 !important;
+      right: -360px !important;
+      height: 100% !important;
       height: 100vh !important;
       width: 330px !important;
       max-width: 85vw !important;
       z-index: 999999 !important;
       background: rgba(2, 6, 23, 0.96) !important;
-      backdrop-filter: blur(28px) !important;
-      -webkit-backdrop-filter: blur(28px) !important;
+      backdrop-filter: blur(24px) !important;
+      -webkit-backdrop-filter: blur(24px) !important;
       border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
       display: flex !important;
       flex-direction: column !important;
       visibility: hidden !important;
       pointer-events: none !important;
-      transition: right 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s, box-shadow 0.32s !important;
+      transition: right 0.3s ease-out, box-shadow 0.3s ease-out, visibility 0.3s !important;
       overflow: hidden !important;
       direction: rtl !important;
-      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
       user-select: none !important;
     }
     #gs-drawer.gs-active {
@@ -215,216 +227,243 @@
       box-shadow: -12px 0 40px rgba(0, 0, 0, 0.85) !important;
     }
 
+    /* ── Drawer Header ── */
     .gs-header {
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      background: rgba(15, 23, 42, 0.7);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 16px 20px !important;
+      background: rgba(15, 23, 42, 0.7) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
-    .gs-header-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .gs-header-brand {
+      display: flex !important;
+      align-items: center !important;
+      gap: 12px !important;
     }
-    .gs-logo-box {
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #6366f1, #9333ea);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
-      flex-shrink: 0;
+    .gs-header-logo-box {
+      width: 36px !important;
+      height: 36px !important;
+      border-radius: 12px !important;
+      background: linear-gradient(135deg, #6366f1, #9333ea) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35) !important;
+      flex-shrink: 0 !important;
     }
-    .gs-logo-title {
-      color: #ffffff;
-      font-weight: 900;
-      font-size: 14px;
-      line-height: 1.25;
-      margin: 0;
+    .gs-header-title {
+      color: #ffffff !important;
+      font-weight: 900 !important;
+      font-size: 14px !important;
+      line-height: 1.25 !important;
+      margin: 0 !important;
     }
-    .gs-logo-sub {
-      color: #94a3b8;
-      font-size: 10.5px;
-      font-weight: 500;
-      margin: 0;
+    .gs-header-sub {
+      color: #94a3b8 !important;
+      font-size: 10.5px !important;
+      font-weight: 500 !important;
+      margin: 0 !important;
     }
-    .gs-close {
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      background: transparent;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #94a3b8;
-      transition: all 0.2s;
+    .gs-close-btn {
+      width: 32px !important;
+      height: 32px !important;
+      border-radius: 12px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      color: #94a3b8 !important;
+      background: transparent !important;
+      border: none !important;
+      cursor: pointer !important;
+      transition: all 0.2s !important;
+      outline: none !important;
     }
-    .gs-close:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
+    .gs-close-btn:hover {
+      color: #ffffff !important;
+      background: rgba(255, 255, 255, 0.1) !important;
     }
 
+    /* ── Scrollable Sections Body ── */
     .gs-body {
-      flex: 1;
-      padding: 16px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+      flex: 1 !important;
+      overflow-y: auto !important;
+      padding: 16px 12px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      scrollbar-width: thin !important;
+      scrollbar-color: rgba(148, 163, 184, 0.3) transparent !important;
     }
 
+    /* ── Section Cards ── */
     .gs-section {
-      border-radius: 12px;
-      overflow: hidden;
-      transition: all 0.2s ease;
+      border-radius: 12px !important;
+      border-width: 1px !important;
+      border-style: solid !important;
+      overflow: hidden !important;
+      transition: all 0.2s ease !important;
     }
     .gs-section-btn {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 14px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      text-align: right;
-      transition: background 0.18s;
-      font-family: inherit;
+      width: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 12px 14px !important;
+      text-align: right !important;
+      background: transparent !important;
+      border: none !important;
+      cursor: pointer !important;
+      transition: background 0.2s !important;
+      outline: none !important;
     }
     .gs-section-btn:hover {
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.05) !important;
     }
     .gs-section-title-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
     }
     .gs-section-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      width: 16px !important;
+      height: 16px !important;
+      flex-shrink: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
     .gs-section-title {
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 12px !important;
+      font-weight: 700 !important;
     }
     .gs-chevron {
-      display: flex;
-      align-items: center;
-      color: #94a3b8;
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .gs-chevron.open {
-      transform: rotate(180deg);
+      width: 14px !important;
+      height: 14px !important;
+      color: #94a3b8 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
     }
 
+    /* ── Links ── */
     .gs-links {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      padding: 4px 8px 10px;
+      padding: 0 8px 10px 8px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 4px !important;
     }
     .gs-link {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      border-radius: 8px;
-      color: #cbd5e1;
-      font-size: 12px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.15s ease;
-      line-height: 1.4;
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      padding: 8px 12px !important;
+      border-radius: 8px !important;
+      color: #cbd5e1 !important;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      text-decoration: none !important;
+      transition: all 0.15s ease !important;
+      line-height: 1.4 !important;
+      cursor: pointer !important;
     }
     .gs-link:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: #ffffff !important;
     }
     .gs-link-icon {
-      font-size: 14px;
-      flex-shrink: 0;
+      font-size: 14px !important;
+      flex-shrink: 0 !important;
+      line-height: 1 !important;
     }
     .gs-link-label {
-      flex: 1;
+      flex: 1 !important;
+      line-height: 1.4 !important;
     }
     .gs-link-arrow {
-      color: #64748b;
-      opacity: 0;
-      display: flex;
-      align-items: center;
-      transition: opacity 0.15s, color 0.15s;
+      width: 14px !important;
+      height: 14px !important;
+      color: #64748b !important;
+      opacity: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      flex-shrink: 0 !important;
+      transition: opacity 0.15s, color 0.15s !important;
     }
     .gs-link:hover .gs-link-arrow {
-      opacity: 1;
-      color: #818cf8;
+      opacity: 1 !important;
+      color: #818cf8 !important;
     }
 
+    /* ── Drawer Footer ── */
     .gs-footer {
-      flex-shrink: 0;
-      padding: 12px 20px;
-      background: rgba(15, 23, 42, 0.4);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      text-align: center;
-      color: #64748b;
-      font-size: 10px;
-      line-height: 1.5;
+      flex-shrink: 0 !important;
+      padding: 12px 16px !important;
+      background: rgba(15, 23, 42, 0.4) !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+      text-align: center !important;
+    }
+    .gs-footer-text {
+      color: #64748b !important;
+      font-size: 10px !important;
+      line-height: 1.5 !important;
+      margin: 0 !important;
+      font-weight: 500 !important;
     }
 
     @media (max-width: 480px) {
       #gs-drawer { width: 300px !important; }
-      #gs-trigger span { display: none; }
-      #gs-trigger { padding: 12px !important; border-radius: 50% !important; }
+      #global-sidebar-trigger span { display: none !important; }
+      #global-sidebar-trigger { padding: 12px !important; border-radius: 50% !important; }
     }
   `;
   document.head.appendChild(style);
 
-  // ── Build DOM ──
+  // ── Build Floating Trigger ──
   var trigger = document.createElement('button');
-  trigger.id = 'gs-trigger';
+  trigger.id = 'global-sidebar-trigger';
   trigger.type = 'button';
   trigger.setAttribute('aria-label', 'فتح فهرس المنصة السريع');
-  trigger.innerHTML = '<div class="gs-icon-wrap">' + ICONS.compass + '</div><span>فهرس المنصة</span>';
+  trigger.innerHTML = '<div class="gs-trigger-icon-box">' + ICONS.compassSm + '</div><span>فهرس المنصة</span>';
 
+  // ── Build Backdrop ──
   var backdrop = document.createElement('div');
   backdrop.id = 'gs-backdrop';
 
+  // ── Build Drawer Container ──
   var drawer = document.createElement('aside');
   drawer.id = 'gs-drawer';
+  drawer.setAttribute('role', 'navigation');
   drawer.setAttribute('aria-label', 'الشريط الجانبي للمنصة');
+  drawer.setAttribute('dir', 'rtl');
 
+  // ── Build Header ──
   var header = document.createElement('div');
   header.className = 'gs-header';
   header.innerHTML = `
-    <div class="gs-header-logo">
-      <div class="gs-logo-box">${ICONS.compass}</div>
+    <div class="gs-header-brand">
+      <div class="gs-header-logo-box">${ICONS.compass}</div>
       <div>
-        <h3 class="gs-logo-title">فهرس المنصة الشامل</h3>
-        <p class="gs-logo-sub">منصة المحامي الرقمية 2026</p>
+        <h3 class="gs-header-title">فهرس المنصة الشامل</h3>
+        <p class="gs-header-sub">منصة المحامي الرقمية 2026</p>
       </div>
     </div>
-    <button class="gs-close" id="gs-close-btn" type="button" aria-label="إغلاق الفهرس">${ICONS.close}</button>
+    <button class="gs-close-btn" id="gs-close-btn" type="button" aria-label="إغلاق الفهرس">${ICONS.close}</button>
   `;
 
+  // ── Build Scrollable Body ──
   var body = document.createElement('div');
   body.className = 'gs-body';
 
   SECTIONS.forEach(function (section) {
     var sectionEl = document.createElement('div');
     sectionEl.className = 'gs-section';
-    sectionEl.style.border = '1px solid ' + section.borderColor;
-    sectionEl.style.background = section.bg;
+    sectionEl.style.borderColor = section.borderColor;
+    sectionEl.style.backgroundColor = section.bg;
 
     var btn = document.createElement('button');
     btn.className = 'gs-section-btn';
@@ -434,7 +473,7 @@
         <span class="gs-section-icon" style="color:${section.color}">${section.iconSvg}</span>
         <span class="gs-section-title" style="color:${section.color}">${section.title}</span>
       </div>
-      <span class="gs-chevron ${openState[section.id] ? 'open' : ''}">${ICONS.chevron}</span>
+      <span class="gs-chevron">${openState[section.id] ? ICONS.chevronUp : ICONS.chevronDown}</span>
     `;
 
     var linksEl = document.createElement('div');
@@ -448,7 +487,7 @@
       a.innerHTML = `
         <span class="gs-link-icon">${link.icon}</span>
         <span class="gs-link-label">${link.label}</span>
-        <span class="gs-link-arrow">${ICONS.extLink}</span>
+        <span class="gs-link-arrow">${link.isApp ? ICONS.logIn : ICONS.extLink}</span>
       `;
       a.addEventListener('click', function () { closeDrawer(); });
       linksEl.appendChild(a);
@@ -457,7 +496,7 @@
     btn.addEventListener('click', function () {
       openState[section.id] = !openState[section.id];
       var chevron = btn.querySelector('.gs-chevron');
-      if (chevron) chevron.classList.toggle('open', openState[section.id]);
+      if (chevron) chevron.innerHTML = openState[section.id] ? ICONS.chevronUp : ICONS.chevronDown;
       linksEl.style.display = openState[section.id] ? 'flex' : 'none';
     });
 
@@ -466,9 +505,10 @@
     body.appendChild(sectionEl);
   });
 
+  // ── Build Footer ──
   var footer = document.createElement('div');
   footer.className = 'gs-footer';
-  footer.textContent = '© 2026 منصة المحامي الرقمية — mohamidigital.online';
+  footer.innerHTML = '<p class="gs-footer-text">© 2026 منصة المحامي الرقمية — mohamidigital.online</p>';
 
   drawer.appendChild(header);
   drawer.appendChild(body);
@@ -492,7 +532,7 @@
       if (e.key === 'Escape' && isOpen) closeDrawer();
     });
 
-    // ── Global Custom Event Listeners (من الهيدر أو أي زر) ──
+    // ── Global Custom Event Listeners ──
     window.addEventListener('toggle-mohami-sidebar', function () {
       if (isOpen) closeDrawer();
       else openDrawer();
@@ -504,13 +544,13 @@
       closeDrawer();
     });
 
-    // ── Auto-inject Top Navbar Trigger into .uh-actions if missing ──
+    // ── Top Navbar Trigger Injection ──
     var uhActions = document.querySelector('.uh-actions');
     if (uhActions && !uhActions.querySelector('.gs-nav-trigger') && !uhActions.querySelector('[title*="فهرس"]')) {
       var navBtn = document.createElement('button');
       navBtn.type = 'button';
       navBtn.className = 'uh-cta uh-cta--ghost gs-nav-trigger';
-      navBtn.style.cssText = 'padding: 7px 12px; font-size: 0.82rem; border-color: rgba(99, 102, 241, 0.4); cursor: pointer; display: inline-flex; align-items: center; gap: 6px;';
+      navBtn.style.cssText = 'padding: 7px 12px !important; font-size: 0.82rem !important; border-color: rgba(99, 102, 241, 0.4) !important; cursor: pointer !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; font-family: "Cairo", sans-serif !important; font-weight: 700 !important; color: #e2e8f0 !important;';
       navBtn.title = 'فتح فهرس المنصة الشامل';
       navBtn.innerHTML = '<span>🧭 الفهرس</span>';
       navBtn.addEventListener('click', function () {
