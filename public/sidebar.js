@@ -338,6 +338,7 @@
       cursor: pointer !important;
       transition: background 0.2s !important;
       outline: none !important;
+      pointer-events: auto !important;
     }
     .gs-section-btn:hover {
       background: rgba(255, 255, 255, 0.05) !important;
@@ -346,6 +347,7 @@
       display: flex !important;
       align-items: center !important;
       gap: 10px !important;
+      pointer-events: none !important;
     }
     .gs-section-icon {
       width: 16px !important;
@@ -367,13 +369,11 @@
       align-items: center !important;
       justify-content: center !important;
       flex-shrink: 0 !important;
+      pointer-events: none !important;
       transition: transform 0.25s ease !important;
     }
-    .gs-chevron.gs-open {
-      transform: rotate(180deg) !important;
-    }
 
-    /* ── Links ── */
+    /* ── Links Container ── */
     .gs-links {
       padding: 0 8px 10px 8px !important;
       flex-direction: column !important;
@@ -496,12 +496,12 @@
         <span class="gs-section-icon" style="color:${section.color}">${section.iconSvg}</span>
         <span class="gs-section-title" style="color:${section.color}">${section.title}</span>
       </div>
-      <span class="gs-chevron${openState[section.id] ? ' gs-open' : ''}">${ICONS.chevronDown}</span>
+      <span class="gs-chevron">${openState[section.id] ? ICONS.chevronUp : ICONS.chevronDown}</span>
     `;
 
     var linksEl = document.createElement('div');
     linksEl.className = 'gs-links';
-    linksEl.style.display = openState[section.id] ? 'flex' : 'none';
+    linksEl.style.setProperty('display', openState[section.id] ? 'flex' : 'none', 'important');
     linksEl.style.flexDirection = 'column';
     linksEl.style.gap = '4px';
 
@@ -518,20 +518,23 @@
       linksEl.appendChild(a);
     });
 
-    btn.addEventListener('click', function () {
+    btn.onclick = function (e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
       openState[section.id] = !openState[section.id];
+      var isNowOpen = openState[section.id];
+      
       var chevron = btn.querySelector('.gs-chevron');
       if (chevron) {
-        if (openState[section.id]) {
-          chevron.classList.add('gs-open');
-        } else {
-          chevron.classList.remove('gs-open');
-        }
+        chevron.innerHTML = isNowOpen ? ICONS.chevronUp : ICONS.chevronDown;
       }
-      linksEl.style.display = openState[section.id] ? 'flex' : 'none';
+      
+      linksEl.style.setProperty('display', isNowOpen ? 'flex' : 'none', 'important');
       linksEl.style.flexDirection = 'column';
       linksEl.style.gap = '4px';
-    });
+    };
 
     sectionEl.appendChild(btn);
     sectionEl.appendChild(linksEl);
