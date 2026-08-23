@@ -112,6 +112,17 @@ export default function SiteHeader({ activeKey, variant = 'default', onEnterApp,
         </nav>
 
         <div className="uh-actions">
+          <button
+            type="button"
+            className="uh-cta uh-cta--ghost"
+            style={{ padding: '7px 12px', fontSize: '0.82rem', borderColor: 'rgba(99, 102, 241, 0.4)' }}
+            onClick={() => {
+              window.dispatchEvent(new CustomEvent('toggle-mohami-sidebar'));
+            }}
+            title="فتح فهرس المنصة الشامل"
+          >
+            <span>🧭 الفهرس</span>
+          </button>
           {isAuth ? (
             <button type="button" className="uh-cta uh-cta--ghost" onClick={onLogout}>
               <span>خروج · {userName}</span>

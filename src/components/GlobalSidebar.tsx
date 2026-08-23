@@ -124,12 +124,28 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
   });
 
   useEffect(() => {
+    (window as any).__REACT_SIDEBAR_ACTIVE__ = true;
+
+    const handleToggleEvent = () => setOpen(prev => !prev);
+    const handleOpenEvent = () => setOpen(true);
+    const handleCloseEvent = () => setOpen(false);
+
+    window.addEventListener('toggle-mohami-sidebar', handleToggleEvent);
+    window.addEventListener('open-mohami-sidebar', handleOpenEvent);
+    window.addEventListener('close-mohami-sidebar', handleCloseEvent);
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && open) setOpen(false);
+      if (e.key === 'Escape') setOpen(false);
     };
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [open]);
+
+    return () => {
+      window.removeEventListener('toggle-mohami-sidebar', handleToggleEvent);
+      window.removeEventListener('open-mohami-sidebar', handleOpenEvent);
+      window.removeEventListener('close-mohami-sidebar', handleCloseEvent);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
 
   useEffect(() => {
     if (open) {
@@ -158,12 +174,13 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
       {/* Floating Trigger Button */}
       <button
         type="button"
+        id="global-sidebar-trigger"
         onClick={() => setOpen(prev => !prev)}
         aria-label="فتح فهرس المنصة السريع"
-        className="fixed bottom-6 left-6 z-[9990] flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900/90 hover:bg-slate-800 border border-white/15 hover:border-indigo-400/50 text-white text-sm font-bold shadow-2xl shadow-black/60 backdrop-blur-2xl transition-all duration-300 hover:scale-105 active:scale-95 group cursor-pointer"
+        className="fixed bottom-6 left-6 z-[999990] flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900/95 hover:bg-slate-800 border border-white/20 hover:border-indigo-400 text-white text-sm font-bold shadow-2xl shadow-black/80 backdrop-blur-2xl transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer select-none"
         style={{ direction: 'rtl' }}
       >
-        <div className="w-6 h-6 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 group-hover:rotate-12 transition-transform duration-300">
+        <div className="w-6 h-6 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400">
           <Compass className="w-4 h-4" />
         </div>
         <span className="font-bold text-xs sm:text-sm">فهرس المنصة</span>
@@ -171,7 +188,7 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
 
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 z-[9991] bg-black/60 backdrop-blur-sm transition-opacity duration-300 ${
+        className={`fixed inset-0 z-[999998] bg-black/65 backdrop-blur-sm transition-opacity duration-300 ${
           open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         onClick={() => setOpen(false)}
@@ -183,15 +200,16 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
         role="navigation"
         aria-label="الشريط الجانبي للمنصة"
         dir="rtl"
-        className={`fixed top-0 right-0 h-full w-[320px] max-w-[85vw] z-[9992] flex flex-col bg-slate-950/95 backdrop-blur-2xl border-l border-white/10 shadow-2xl shadow-black/80 transition-transform duration-300 ease-out ${
-          open ? 'translate-x-0 pointer-events-auto visible' : 'translate-x-full pointer-events-none invisible'
-        }`}
+        className="fixed top-0 h-full w-[330px] max-w-[85vw] z-[999999] flex flex-col bg-slate-950/95 backdrop-blur-2xl border-l border-white/10 shadow-2xl transition-all duration-300 ease-out select-none"
         style={{
-          boxShadow: '-10px 0 30px rgba(0, 0, 0, 0.7)'
+          right: open ? '0px' : '-360px',
+          boxShadow: open ? '-12px 0 40px rgba(0, 0, 0, 0.85)' : 'none',
+          visibility: open ? 'visible' : 'hidden',
+          pointerEvents: open ? 'auto' : 'none',
         }}
       >
         {/* Header */}
-        <div className="flex-shrink-0 flex items-center justify-between px-5 py-4 bg-slate-900/60 border-b border-white/10">
+        <div className="flex-shrink-0 flex items-center justify-between px-5 py-4 bg-slate-900/70 border-b border-white/10">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
               <Compass className="w-5 h-5 text-white" />
@@ -216,7 +234,7 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
           className="flex-1 overflow-y-auto px-3 py-4 space-y-2.5"
           style={{
             scrollbarWidth: 'thin',
-            scrollbarColor: 'rgba(148,163,184,0.3) transparent'
+            scrollbarColor: 'rgba(148,163,184,0.3) transparent',
           }}
         >
           {SIDEBAR_SECTIONS.map((section) => {
