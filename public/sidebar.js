@@ -293,6 +293,7 @@
       overflow-x: hidden !important;
       -webkit-overflow-scrolling: touch !important;
       overscroll-behavior: contain !important;
+      scroll-behavior: auto !important;
       padding: 16px 12px !important;
       display: flex !important;
       flex-direction: column !important;
@@ -567,26 +568,6 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && isOpen) closeDrawer();
     });
-
-    // ── Dedicated Wheel & Touch Forwarding ──
-    drawer.addEventListener('wheel', function (e) {
-      if (body) {
-        body.scrollTop += e.deltaY;
-      }
-    }, { passive: true });
-
-    var touchStartY = 0;
-    drawer.addEventListener('touchstart', function (e) {
-      if (e.touches && e.touches[0]) touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-    drawer.addEventListener('touchmove', function (e) {
-      if (e.touches && e.touches[0] && body) {
-        var currentY = e.touches[0].clientY;
-        var deltaY = touchStartY - currentY;
-        touchStartY = currentY;
-        body.scrollTop += deltaY;
-      }
-    }, { passive: true });
 
     // ── Global Custom Event Listeners ──
     window.addEventListener('toggle-mohami-sidebar', function () {
