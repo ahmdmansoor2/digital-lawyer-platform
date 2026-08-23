@@ -1,7 +1,6 @@
 /**
  * sidebar.js — Global Glassmorphism Sidebar for static HTML pages & blog
  * 1:1 Pixel-Perfect Replica of React GlobalSidebar.tsx
- * Explicit Cairo font loader, Lucide SVGs, exact sizing & smooth accordion.
  * @license SPDX-License-Identifier: Apache-2.0
  */
 (function () {
@@ -68,7 +67,7 @@
         { label: 'تشخيص النزاع القضائي الذكي', href: '/legal-diagnostics.html', icon: '🔍' },
         { label: 'دليل المحاكم والشهر العقاري', href: '/courts-directory.html', icon: '🗺️' },
       ],
-      open: false,
+      open: true,
     },
     {
       id: 'lawyers',
@@ -201,6 +200,7 @@
     #gs-drawer {
       position: fixed !important;
       top: 0 !important;
+      bottom: 0 !important;
       right: -360px !important;
       height: 100% !important;
       height: 100vh !important;
@@ -216,7 +216,6 @@
       visibility: hidden !important;
       pointer-events: none !important;
       transition: right 0.3s ease-out, box-shadow 0.3s ease-out, visibility 0.3s !important;
-      overflow: hidden !important;
       direction: rtl !important;
       user-select: none !important;
     }
@@ -286,40 +285,37 @@
       background: rgba(255, 255, 255, 0.1) !important;
     }
 
-    /* ── Scrollable Sections Body & Permanent Visible Scrollbar ── */
+    /* ── Scrollable Sections Body ── */
     .gs-body {
       flex: 1 1 0% !important;
       min-height: 0 !important;
-      max-height: calc(100vh - 120px) !important;
-      overflow-y: scroll !important;
+      overflow-y: auto !important;
       overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch !important;
       overscroll-behavior: contain !important;
       padding: 16px 12px !important;
       display: flex !important;
       flex-direction: column !important;
       gap: 10px !important;
       scrollbar-width: thin !important;
-      scrollbar-color: rgba(148, 163, 184, 0.5) rgba(15, 23, 42, 0.6) !important;
+      scrollbar-color: rgba(148, 163, 184, 0.45) rgba(15, 23, 42, 0.5) !important;
     }
     .gs-body::-webkit-scrollbar {
-      width: 7px !important;
+      width: 6px !important;
       display: block !important;
     }
     .gs-body::-webkit-scrollbar-track {
-      background: rgba(15, 23, 42, 0.6) !important;
+      background: rgba(15, 23, 42, 0.5) !important;
       border-radius: 999px !important;
-      margin: 4px 0 !important;
     }
     .gs-body::-webkit-scrollbar-thumb {
-      background: rgba(148, 163, 184, 0.5) !important;
+      background: rgba(148, 163, 184, 0.4) !important;
       border-radius: 999px !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
     }
     .gs-body::-webkit-scrollbar-thumb:hover {
-      background: rgba(99, 102, 241, 0.9) !important;
+      background: rgba(99, 102, 241, 0.8) !important;
     }
-
-
 
     /* ── Section Cards ── */
     .gs-section {
@@ -328,6 +324,7 @@
       border-style: solid !important;
       overflow: hidden !important;
       transition: all 0.2s ease !important;
+      flex-shrink: 0 !important;
     }
     .gs-section-btn {
       width: 100% !important;
@@ -554,30 +551,6 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && isOpen) closeDrawer();
     });
-
-    // ── Dedicated Mouse Wheel & Touch Scrolling Engine ──
-    drawer.addEventListener('wheel', function (e) {
-      if (body) {
-        var prev = body.scrollTop;
-        body.scrollTop += e.deltaY;
-        if (body.scrollTop !== prev || (e.deltaY > 0 && body.scrollTop < body.scrollHeight - body.clientHeight) || (e.deltaY < 0 && body.scrollTop > 0)) {
-          e.preventDefault();
-        }
-      }
-    }, { passive: false });
-
-    var touchStartY = 0;
-    drawer.addEventListener('touchstart', function (e) {
-      if (e.touches && e.touches[0]) touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-    drawer.addEventListener('touchmove', function (e) {
-      if (e.touches && e.touches[0] && body) {
-        var currentY = e.touches[0].clientY;
-        var deltaY = touchStartY - currentY;
-        touchStartY = currentY;
-        body.scrollTop += deltaY;
-      }
-    }, { passive: true });
 
     // ── Global Custom Event Listeners ──
     window.addEventListener('toggle-mohami-sidebar', function () {

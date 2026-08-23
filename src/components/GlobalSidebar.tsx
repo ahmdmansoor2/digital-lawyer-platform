@@ -117,7 +117,7 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
   const [open, setOpen] = useState(false);
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     gulf: true,
-    citizens: false,
+    citizens: true,
     lawyers: false,
     library: false,
     blog: false,
