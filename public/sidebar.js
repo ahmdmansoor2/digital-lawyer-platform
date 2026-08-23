@@ -97,7 +97,7 @@
   var style = document.createElement('style');
   style.textContent = `
     #gs-trigger {
-      position: fixed; bottom: 24px; right: 24px; z-index: 999990;
+      position: fixed !important; bottom: 24px !important; right: 24px !important; left: auto !important; z-index: 999990 !important;
       display: flex; align-items: center; gap: 10px;
       padding: 12px 18px; border-radius: 16px;
       background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255, 255, 255, 0.15);
