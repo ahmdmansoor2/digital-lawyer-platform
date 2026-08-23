@@ -1853,6 +1853,27 @@
       "duration": "56ث",
       "size": 23360040,
       "publishedAt": "2026-08-22T18:48:47.528Z"
+    },
+    {
+      "topicId": "trend-salary-deductions-delay-labor-law",
+      "title": "تأخير خصم المرتبات والأجور: العقوبات القانونية على الشركات وحقوق الموظف",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون العمل",
+        "#مرتبات",
+        "#تأخير الراتب"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-salary-deductions-delay-labor-law.mp4",
+      "videoId": "2215347412586124",
+      "permalink": "https://www.facebook.com/reel/2215347412586124",
+      "source": "trending-topics.json",
+      "duration": "54ث",
+      "size": 23333196,
+      "publishedAt": "2026-08-23T07:01:59.350Z"
     }
   ]
 }
