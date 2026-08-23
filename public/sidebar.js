@@ -372,7 +372,6 @@
     /* ── Links ── */
     .gs-links {
       padding: 0 8px 10px 8px !important;
-      display: flex !important;
       flex-direction: column !important;
       gap: 4px !important;
     }
