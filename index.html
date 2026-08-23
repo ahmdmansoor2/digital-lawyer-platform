@@ -13,7 +13,13 @@
     <!-- Cache Buster: يتحقق من إصدار البناء ويُعيد التحميل تلقائياً عند التحديث -->
     <script>
       (function() {
-        var BUILD_VERSION = '20260818-v1';
+        var BUILD_VERSION = '20260823-v2';
+        try {
+          localStorage.removeItem('mohamidigital_theme');
+          document.documentElement.classList.remove('public-theme-light');
+          document.documentElement.classList.remove('public-theme-dark');
+          delete document.documentElement.dataset.publicTheme;
+        } catch(e) {}
         var stored = localStorage.getItem('app_build_version');
         if (stored && stored !== BUILD_VERSION) {
           localStorage.setItem('app_build_version', BUILD_VERSION);
@@ -30,20 +36,8 @@
         }
       })();
     </script>
-    <script>
-      (function() {
-        var key = 'mohamidigital_theme';
-        var saved = localStorage.getItem(key);
-        var theme = saved === 'light' || saved === 'dark'
-          ? saved
-          : (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-        document.documentElement.dataset.publicTheme = theme;
-        document.documentElement.classList.add('public-theme-' + theme);
-        document.documentElement.style.colorScheme = theme;
-      })();
-    </script>
     <title>منصة المحامي الرقمية | استشارات قانونية مجانية · دليل المحامين المشتغلين في مصر · إدارة مكاتب المحاماة</title>
-    <link rel="stylesheet" href="/header.css?v=20260822-v6" />
+    <link rel="stylesheet" href="/header.css?v=20260823-v7" />
     <meta name="description" content="منصة المحامي الرقمية: استشارات قانونية فورية ومجانية للمواطنين · دليل أفضل المحامين المشتغلين بمصر حسب المحافظة والتخصص · برنامج إدارة مكاتب المحاماة مجاناً 100% · صيغ عقود ودعاوى جاهزة · حاسبة رسوم المحاكم · مكتبة قانونية +8,500 مرجع." />
     <meta name="keywords" content="استشارة قانونية مجانية, استشارات قانونية مصر, محامي مصر, دليل المحامين في مصر, ارقام محامين مصر, محامي في القاهرة, محامي في الجيزة, محامي في الاسكندرية, محامي في المنصورة, محامي في طنطا, محامي في اسيوط, محامي متخصص في الطلاق, محامي متخصص في قضايا النفقة, محامي جنايات مصر, محامي عقارات مصر, محامي شركات مصر, محامي نقض مصر, محامي استئناف, محامي مجلس دولة, نظام إدارة مكاتب المحاماة, برنامج محاماة مجاني, إدارة قضايا محاماة, برنامج إدارة المحامين مصر, تنظيم قضايا المحاماة, إدارة موكلين, جدول جلسات, أوراق المحضرين إلكترونية, حاسبة رسوم المحاكم المصرية, حاسبة الميراث الشرعي مصر, رسوم الدعاوى المدنية مصر, صيغ عقود مصرية جاهزة, صيغ دعاوى قضائية, مذكرات دفاع قانونية, عقد بيع عقار مصر, عقد ايجار سكني مصري, صحيفة دعوى طلاق, دعوى خلع مصر, مكتبة قانونية مصرية مجانية, كتب قانونية مصرية PDF, أحكام محكمة النقض المصرية, قانون العمل المصري الجديد 2025, قانون العقوبات المصري, قانون الأحوال الشخصية مصر, قانون مصري, كيفية رفع دعوى قضائية في مصر, شروط الحضانة في مصر, شيك بدون رصيد القانون المصري, حبس احتياطي مدته القصوى مصر, شروط الطلاق والخلع مصر, حقوق العمال قانون العمل المصري 2025, مواعيد التظلم الإداري مصر, تأسيس شركة مصر 2026, تسجيل شركة في مصر, محامي تأسيس شركات, دعوى ثبوت ملكية, دعوى إخلاء مستأجر, دعوى نفقة, سابقة قضائية محكمة النقض, طعن بالنقض مصر, استشارة محامي مجانية اونلاين, برنامج قانوني مجاني, تطبيق محاماة مصر, منصة قانونية مصرية" />
     <meta name="author" content="الأستاذ أحمد منصور - مستشار قانوني بالنقض والاستئناف العالي" />
