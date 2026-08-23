@@ -1,12 +1,13 @@
 /**
  * sidebar.js — Global Glassmorphism Sidebar for static HTML pages & blog
- * Vanilla JS, ultra-fast, zero dependencies, high-contrast & crisp Cairo typography.
+ * High-definition SVG icons, smooth right-coordinate animation (RTL-proof),
+ * auto-injected top navbar trigger button, and crisp Cairo typography.
  * @license SPDX-License-Identifier: Apache-2.0
  */
 (function () {
   'use strict';
 
-  // Do not initialize if React's root is on the page to prevent duplicate triggers
+  // Do not initialize if React's root is active on the page
   if (document.getElementById('lawfirm-app-root') || document.getElementById('root')) {
     if (window.__REACT_SIDEBAR_ACTIVE__) return;
   }
@@ -14,13 +15,26 @@
   // Prevent duplicate mounts
   if (document.getElementById('gs-trigger') || document.getElementById('gs-drawer')) return;
 
-  const SECTIONS = [
+  var ICONS = {
+    compass: '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>',
+    globe: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>',
+    users: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+    gavel: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14.5 12.5-8 8a2.12 2.12 0 0 1-3-3l8-8"/><path d="m16 16 6-6"/><path d="m8 8 6-6"/><path d="m9 7 8 8"/><path d="m21 11-8-8"/></svg>',
+    book: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>',
+    newspaper: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>',
+    chevron: '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>',
+    close: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>',
+    extLink: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>',
+  };
+
+  var SECTIONS = [
     {
       id: 'gulf',
       title: 'بوابات الدول والخدمات الإقليمية',
       color: '#34d399',
-      borderColor: 'rgba(52, 211, 153, 0.35)',
-      bg: 'rgba(52, 211, 153, 0.06)',
+      borderColor: 'rgba(52, 211, 153, 0.3)',
+      bg: 'rgba(52, 211, 153, 0.05)',
+      iconSvg: ICONS.globe,
       links: [
         { label: 'مصر — المنصة الرئيسية', href: '/', icon: '🇪🇬' },
         { label: 'المملكة العربية السعودية', href: '/saudi-legal-hub.html', icon: '🇸🇦' },
@@ -33,8 +47,9 @@
       id: 'citizens',
       title: 'خدمات واستشارات المواطنين',
       color: '#22d3ee',
-      borderColor: 'rgba(34, 211, 238, 0.35)',
-      bg: 'rgba(34, 211, 238, 0.06)',
+      borderColor: 'rgba(34, 211, 238, 0.3)',
+      bg: 'rgba(34, 211, 238, 0.05)',
+      iconSvg: ICONS.users,
       links: [
         { label: 'الاستشارات القانونية الفورية', href: '/legal-consultations.html', icon: '💬' },
         { label: 'شكاوى وبلاغات المواطنين', href: '/citizen-complaints.html', icon: '📢' },
@@ -48,8 +63,9 @@
       id: 'lawyers',
       title: 'أدوات ومنظومة المحامين',
       color: '#818cf8',
-      borderColor: 'rgba(129, 140, 248, 0.35)',
-      bg: 'rgba(129, 140, 248, 0.06)',
+      borderColor: 'rgba(129, 140, 248, 0.3)',
+      bg: 'rgba(129, 140, 248, 0.05)',
+      iconSvg: ICONS.gavel,
       links: [
         { label: 'دخول نظام إدارة القضايا والمكاتب', href: '/', icon: '🚀' },
         { label: 'دليل وتسجيل المحامين', href: '/lawyers-directory.html', icon: '👨‍⚖️' },
@@ -64,8 +80,9 @@
       id: 'library',
       title: 'الموسوعات والأكواد ومبادئ النقض',
       color: '#a78bfa',
-      borderColor: 'rgba(167, 139, 250, 0.35)',
-      bg: 'rgba(167, 139, 250, 0.06)',
+      borderColor: 'rgba(167, 139, 250, 0.3)',
+      bg: 'rgba(167, 139, 250, 0.05)',
+      iconSvg: ICONS.book,
       links: [
         { label: 'بنك مبادئ محكمة النقض الكبرى', href: '/court-precedents.html', icon: '⚖️' },
         { label: 'المراجع والأكواد التشريعية الشاملة', href: '/pillars/', icon: '📚' },
@@ -77,8 +94,9 @@
       id: 'blog',
       title: 'المدونة والتعريف بالمنصة',
       color: '#f472b6',
-      borderColor: 'rgba(244, 114, 182, 0.35)',
-      bg: 'rgba(244, 114, 182, 0.06)',
+      borderColor: 'rgba(244, 114, 182, 0.3)',
+      bg: 'rgba(244, 114, 182, 0.05)',
+      iconSvg: ICONS.newspaper,
       links: [
         { label: 'المدونة القانونية (+140 مقال)', href: '/blog/', icon: '📰' },
         { label: 'الميزات والتعريف بالمنصة', href: '/features.html', icon: '🎬' },
@@ -88,8 +106,8 @@
     },
   ];
 
-  let isOpen = false;
-  const openState = {};
+  var isOpen = false;
+  var openState = {};
   SECTIONS.forEach(function (s) { openState[s.id] = s.open; });
 
   // ── Inject CSS ──
@@ -134,17 +152,17 @@
       background: rgba(30, 41, 59, 0.98) !important;
       border-color: rgba(99, 102, 241, 0.7) !important;
       transform: scale(1.05) !important;
-      box-shadow: 0 16px 40px rgba(99, 102, 241, 0.25), 0 12px 36px rgba(0, 0, 0, 0.7) !important;
+      box-shadow: 0 16px 40px rgba(99, 102, 241, 0.3), 0 12px 36px rgba(0, 0, 0, 0.7) !important;
     }
     #gs-trigger .gs-icon-wrap {
-      width: 26px;
-      height: 26px;
+      width: 24px;
+      height: 24px;
       border-radius: 8px;
-      background: rgba(99, 102, 241, 0.25);
+      background: rgba(99, 102, 241, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 15px;
+      color: #818cf8;
       transition: transform 0.3s ease;
     }
     #gs-trigger:hover .gs-icon-wrap {
@@ -155,7 +173,7 @@
       position: fixed !important;
       inset: 0 !important;
       z-index: 999998 !important;
-      background: rgba(0, 0, 0, 0.7) !important;
+      background: rgba(0, 0, 0, 0.65) !important;
       backdrop-filter: blur(6px) !important;
       -webkit-backdrop-filter: blur(6px) !important;
       opacity: 0 !important;
@@ -170,31 +188,31 @@
     #gs-drawer {
       position: fixed !important;
       top: 0 !important;
-      right: 0 !important;
+      right: -380px !important;
       bottom: 0 !important;
       height: 100vh !important;
-      width: 350px !important;
-      max-width: 88vw !important;
+      width: 330px !important;
+      max-width: 85vw !important;
       z-index: 999999 !important;
-      background: rgba(2, 6, 23, 0.98) !important;
-      backdrop-filter: blur(32px) !important;
-      -webkit-backdrop-filter: blur(32px) !important;
-      border-left: 1px solid rgba(255, 255, 255, 0.12) !important;
-      box-shadow: -12px 0 45px rgba(0, 0, 0, 0.9) !important;
+      background: rgba(2, 6, 23, 0.96) !important;
+      backdrop-filter: blur(28px) !important;
+      -webkit-backdrop-filter: blur(28px) !important;
+      border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
       display: flex !important;
       flex-direction: column !important;
-      transform: translateX(100%) !important;
       visibility: hidden !important;
       pointer-events: none !important;
-      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s !important;
+      transition: right 0.32s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.32s, box-shadow 0.32s !important;
       overflow: hidden !important;
       direction: rtl !important;
       font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      user-select: none !important;
     }
     #gs-drawer.gs-active {
-      transform: translateX(0) !important;
+      right: 0px !important;
       visibility: visible !important;
       pointer-events: auto !important;
+      box-shadow: -12px 0 40px rgba(0, 0, 0, 0.85) !important;
     }
 
     .gs-header {
@@ -202,9 +220,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 20px;
-      background: rgba(15, 23, 42, 0.75);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 16px 20px;
+      background: rgba(15, 23, 42, 0.7);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     .gs-header-logo {
       display: flex;
@@ -212,64 +230,61 @@
       gap: 12px;
     }
     .gs-logo-box {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       border-radius: 12px;
       background: linear-gradient(135deg, #6366f1, #9333ea);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      box-shadow: 0 4px 18px rgba(99, 102, 241, 0.45);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
       flex-shrink: 0;
     }
     .gs-logo-title {
       color: #ffffff;
       font-weight: 900;
-      font-size: 14.5px;
-      line-height: 1.3;
+      font-size: 14px;
+      line-height: 1.25;
       margin: 0;
     }
     .gs-logo-sub {
       color: #94a3b8;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 500;
       margin: 0;
     }
     .gs-close {
-      width: 34px;
-      height: 34px;
+      width: 32px;
+      height: 32px;
       border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid transparent;
+      background: transparent;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #94a3b8;
-      font-size: 16px;
-      font-weight: 700;
       transition: all 0.2s;
     }
     .gs-close:hover {
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.1);
       color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.25);
     }
 
     .gs-body {
       flex: 1;
-      padding: 16px 14px;
+      padding: 16px 12px;
       display: flex;
       flex-direction: column;
       gap: 10px;
       overflow-y: auto;
       scrollbar-width: thin;
-      scrollbar-color: rgba(148, 163, 184, 0.35) transparent;
+      scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
     }
 
     .gs-section {
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
       transition: all 0.2s ease;
     }
@@ -278,7 +293,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 13px 15px;
+      padding: 12px 14px;
       background: transparent;
       border: none;
       cursor: pointer;
@@ -287,7 +302,7 @@
       font-family: inherit;
     }
     .gs-section-btn:hover {
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.05);
     }
     .gs-section-title-wrap {
       display: flex;
@@ -295,15 +310,18 @@
       gap: 10px;
     }
     .gs-section-icon {
-      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
     }
     .gs-section-title {
-      font-size: 13px;
-      font-weight: 800;
+      font-size: 12px;
+      font-weight: 700;
     }
     .gs-chevron {
-      font-size: 11px;
+      display: flex;
+      align-items: center;
       color: #94a3b8;
       transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -316,57 +334,56 @@
       flex-direction: column;
       gap: 4px;
       padding: 4px 8px 10px;
-      transition: all 0.25s ease;
     }
     .gs-link {
       display: flex;
       align-items: center;
-      gap: 11px;
-      padding: 9px 13px;
-      border-radius: 10px;
-      color: #e2e8f0;
-      font-size: 13px;
-      font-weight: 600;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: #cbd5e1;
+      font-size: 12px;
+      font-weight: 500;
       text-decoration: none;
       transition: all 0.15s ease;
-      line-height: 1.45;
+      line-height: 1.4;
     }
     .gs-link:hover {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.1);
       color: #ffffff;
-      transform: translateX(-3px);
     }
     .gs-link-icon {
-      font-size: 16px;
+      font-size: 14px;
       flex-shrink: 0;
     }
     .gs-link-label {
       flex: 1;
     }
     .gs-link-arrow {
-      font-size: 12px;
-      color: #818cf8;
+      color: #64748b;
       opacity: 0;
-      transition: opacity 0.15s, transform 0.15s;
+      display: flex;
+      align-items: center;
+      transition: opacity 0.15s, color 0.15s;
     }
     .gs-link:hover .gs-link-arrow {
       opacity: 1;
-      transform: translateX(-2px);
+      color: #818cf8;
     }
 
     .gs-footer {
       flex-shrink: 0;
-      padding: 14px 20px;
-      background: rgba(15, 23, 42, 0.5);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 20px;
+      background: rgba(15, 23, 42, 0.4);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       text-align: center;
-      color: #94a3b8;
-      font-size: 11px;
-      font-weight: 600;
+      color: #64748b;
+      font-size: 10px;
+      line-height: 1.5;
     }
 
     @media (max-width: 480px) {
-      #gs-drawer { width: 310px !important; }
+      #gs-drawer { width: 300px !important; }
       #gs-trigger span { display: none; }
       #gs-trigger { padding: 12px !important; border-radius: 50% !important; }
     }
@@ -378,7 +395,7 @@
   trigger.id = 'gs-trigger';
   trigger.type = 'button';
   trigger.setAttribute('aria-label', 'فتح فهرس المنصة السريع');
-  trigger.innerHTML = '<span class="gs-icon-wrap">🧭</span><span>فهرس المنصة</span>';
+  trigger.innerHTML = '<div class="gs-icon-wrap">' + ICONS.compass + '</div><span>فهرس المنصة</span>';
 
   var backdrop = document.createElement('div');
   backdrop.id = 'gs-backdrop';
@@ -391,13 +408,13 @@
   header.className = 'gs-header';
   header.innerHTML = `
     <div class="gs-header-logo">
-      <div class="gs-logo-box">🧭</div>
+      <div class="gs-logo-box">${ICONS.compass}</div>
       <div>
-        <div class="gs-logo-title">فهرس المنصة الشامل</div>
-        <div class="gs-logo-sub">منصة المحامي الرقمية 2026</div>
+        <h3 class="gs-logo-title">فهرس المنصة الشامل</h3>
+        <p class="gs-logo-sub">منصة المحامي الرقمية 2026</p>
       </div>
     </div>
-    <button class="gs-close" id="gs-close-btn" aria-label="إغلاق الفهرس">✕</button>
+    <button class="gs-close" id="gs-close-btn" type="button" aria-label="إغلاق الفهرس">${ICONS.close}</button>
   `;
 
   var body = document.createElement('div');
@@ -414,10 +431,10 @@
     btn.type = 'button';
     btn.innerHTML = `
       <div class="gs-section-title-wrap">
-        <span class="gs-section-icon" style="color:${section.color}">●</span>
+        <span class="gs-section-icon" style="color:${section.color}">${section.iconSvg}</span>
         <span class="gs-section-title" style="color:${section.color}">${section.title}</span>
       </div>
-      <span class="gs-chevron ${openState[section.id] ? 'open' : ''}">▼</span>
+      <span class="gs-chevron ${openState[section.id] ? 'open' : ''}">${ICONS.chevron}</span>
     `;
 
     var linksEl = document.createElement('div');
@@ -431,7 +448,7 @@
       a.innerHTML = `
         <span class="gs-link-icon">${link.icon}</span>
         <span class="gs-link-label">${link.label}</span>
-        <span class="gs-link-arrow">↗</span>
+        <span class="gs-link-arrow">${ICONS.extLink}</span>
       `;
       a.addEventListener('click', function () { closeDrawer(); });
       linksEl.appendChild(a);
@@ -475,7 +492,7 @@
       if (e.key === 'Escape' && isOpen) closeDrawer();
     });
 
-    // ── Global Custom Event Listeners (من الهيدر أو أي زر في الصفحة) ──
+    // ── Global Custom Event Listeners (من الهيدر أو أي زر) ──
     window.addEventListener('toggle-mohami-sidebar', function () {
       if (isOpen) closeDrawer();
       else openDrawer();
@@ -486,6 +503,22 @@
     window.addEventListener('close-mohami-sidebar', function () {
       closeDrawer();
     });
+
+    // ── Auto-inject Top Navbar Trigger into .uh-actions if missing ──
+    var uhActions = document.querySelector('.uh-actions');
+    if (uhActions && !uhActions.querySelector('.gs-nav-trigger') && !uhActions.querySelector('[title*="فهرس"]')) {
+      var navBtn = document.createElement('button');
+      navBtn.type = 'button';
+      navBtn.className = 'uh-cta uh-cta--ghost gs-nav-trigger';
+      navBtn.style.cssText = 'padding: 7px 12px; font-size: 0.82rem; border-color: rgba(99, 102, 241, 0.4); cursor: pointer; display: inline-flex; align-items: center; gap: 6px;';
+      navBtn.title = 'فتح فهرس المنصة الشامل';
+      navBtn.innerHTML = '<span>🧭 الفهرس</span>';
+      navBtn.addEventListener('click', function () {
+        if (isOpen) closeDrawer();
+        else openDrawer();
+      });
+      uhActions.insertBefore(navBtn, uhActions.firstChild);
+    }
   }
 
   function openDrawer() {
