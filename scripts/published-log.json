@@ -1764,6 +1764,18 @@
       ],
       "words": 1693,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "جرائم التسريبات الرقمية والقرصنة: عقوبات قانون مكافحة تقنية المعلومات",
+      "date": "2026-08-23",
+      "slug": "cybercrime-law-data-leaks-egypt",
+      "url": "https://mohamidigital.online/blog/cybercrime-law-data-leaks-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cybercrime-law-data-leaks-egypt.jpg",
+      "tags": [
+        "الجرائم الإلكترونية"
+      ],
+      "words": 1742,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
