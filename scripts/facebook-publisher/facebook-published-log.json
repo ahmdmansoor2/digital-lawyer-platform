@@ -1895,6 +1895,27 @@
       "duration": "1د 22ث",
       "size": 33798007,
       "publishedAt": "2026-08-23T09:44:26.966Z"
+    },
+    {
+      "topicId": "trend-cybercrime-law-data-leaks-egypt",
+      "title": "جرائم التسريبات الرقمية والقرصنة: عقوبات قانون مكافحة تقنية المعلومات",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الجرائم الإلكترونية",
+        "#تسريب البيانات",
+        "#القرصنة الرقمية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cybercrime-law-data-leaks-egypt.mp4",
+      "videoId": "1776092026944210",
+      "permalink": "https://www.facebook.com/reel/1776092026944210",
+      "source": "trending-topics.json",
+      "duration": "1د 6ث",
+      "size": 23874145,
+      "publishedAt": "2026-08-23T13:02:22.735Z"
     }
   ]
 }
