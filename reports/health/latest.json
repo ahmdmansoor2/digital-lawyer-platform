@@ -1,11 +1,20 @@
 {
   "date": "2026-08-23",
+<<<<<<< HEAD
   "generatedAt": "2026-08-23T06:22:53.973Z",
   "status": "error",
   "blogArticles": 140,
   "fbPosts": 0,
   "reels": 0,
   "ghRuns": 22,
+=======
+  "generatedAt": "2026-08-23T08:30:53.067Z",
+  "status": "warn",
+  "blogArticles": 142,
+  "fbPosts": 4,
+  "reels": 1,
+  "ghRuns": null,
+>>>>>>> 04297eb (feat(perf): permanently remove legal library and 6.8GB book/pdf assets to optimize space)
   "checks": [
     {
       "name": "site_root",
@@ -40,7 +49,7 @@
     {
       "name": "github_runs",
       "label": "GitHub: نتائج تشغيل الـ workflows (آخر 24 ساعة)",
-      "status": "error",
+      "status": "warn",
       "findings": 1
     },
     {

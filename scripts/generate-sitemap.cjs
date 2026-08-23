@@ -20,7 +20,10 @@ const SITEMAP_OUT = path.join(PUBLIC_DIR, 'sitemap.xml');
 const BASE_URL = 'https://mohamidigital.online';
 
 // Priority rules
-const HIGH_PRIORITY = ['/', '/legal-calculators', '/legal-forms', '/blog/'];
+const HIGH_PRIORITY = [
+  '/', '/legal-calculators', '/legal-forms', '/blog/',
+  '/courts-directory', '/court-precedents', '/company-incorporation', '/legal-diagnostics'
+];
 const MEDIUM_PRIORITY = ['/features', '/pricing', '/about', '/contact', '/privacy', '/terms', '/disclaimer', '/why-trust-us', '/search', '/legal-radar'];
 
 function walkDir(dir, base = dir) {

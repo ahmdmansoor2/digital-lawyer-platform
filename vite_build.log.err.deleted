@@ -1,0 +1,8 @@
+[33m[plugin vite:reporter] 
+(!) D:/قانوني 7/src/utils/migrationHelper.ts is dynamically imported by D:/قانوني 7/src/utils/indexedDBHelper.ts but also statically imported by D:/قانوني 7/src/components/BackupRestorePanel.tsx, D:/قانوني 7/src/hooks/useAppData.ts, dynamic import will not move module into another chunk.
+[39m
+[33m
+(!) Some chunks are larger than 800 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m

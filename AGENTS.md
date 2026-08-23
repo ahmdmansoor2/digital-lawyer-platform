@@ -106,12 +106,9 @@ src/
 3. **`contextIsolation: true`** و **`nodeIntegration: false`** في Electron.
 4. **CSP header** محدد في BrowserWindow.
 5. **ملفات المستخدم معقّمة** قبل المعالجة (XSS prevention).
-6. 🔒 **تجميد المكتبة القانونية (LEGAL LIBRARY FREEZE — نهائي وثابت):**
-   - يُمنع منعاً باتاً من أي Agent أو Script مستقبلي تعديل، أو إعادة توليد، أو مسح، أو الكتابة فوق ملفات قسم المكتبة القانونية التالية:
-     * `public/legal-library.html` و `dist/legal-library.html`
-     * `public/data/legal-catalog-summary.json` و `dist/data/legal-catalog-summary.json`
-     * `public/data/library-docs-chunks/*` و `dist/data/library-docs-chunks/*`
-   - تم تثبيت واجهة القراءة المباشرة (Blob PDF Reader + Multi-fallback Full Text Reader) مع كاسر الكاش الديناميكي والكتالوج المنقح (8,539 كتاباً ومرجعاً معتمداً شغالاً 100%). هذا الوضع نهائي ومجمد تماماً بقرار صريح من الأستاذ أحمد.
+6. 🗑️ **إلغاء وتفريغ المكتبة القانونية الموسوعية (LEGAL LIBRARY REMOVED):**
+   - تم فك التجميد وحذف قسم المكتبة القانونية والكتب الضخمة والـ PDFs بالكامل بناءً على طلب الأستاذ أحمد الصريح لتخفيض المساحة (تم توفير +6.8GB).
+   - المنصة تعتمد الآن على المراجع التشريعية الكاملة، وبنك مبادئ محكمة النقض، وموسوعة الصيغ والعقود، وبوابات الخدمات القضائية والاستشارات.
 
 ---
 

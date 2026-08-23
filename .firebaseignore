@@ -1,0 +1,6 @@
+# الكتب (6.25 GB) — مُستضافة على CloudFam الآن (upload-to-cloudfam.cjs)
+books/**
+# chunks الكتب (غير مستخدمة)
+data/library-docs-chunks/**
+# كتالوج النماذج الضخم (82 MB) — يُحمَّل من backend
+data/legal-forms-catalog.json
