@@ -360,13 +360,17 @@
       font-weight: 700 !important;
     }
     .gs-chevron {
-      width: 14px !important;
-      height: 14px !important;
+      width: 18px !important;
+      height: 18px !important;
       color: #94a3b8 !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
       flex-shrink: 0 !important;
+      transition: transform 0.25s ease !important;
+    }
+    .gs-chevron.gs-open {
+      transform: rotate(180deg) !important;
     }
 
     /* ── Links ── */
@@ -492,12 +496,14 @@
         <span class="gs-section-icon" style="color:${section.color}">${section.iconSvg}</span>
         <span class="gs-section-title" style="color:${section.color}">${section.title}</span>
       </div>
-      <span class="gs-chevron">${openState[section.id] ? ICONS.chevronUp : ICONS.chevronDown}</span>
+      <span class="gs-chevron${openState[section.id] ? ' gs-open' : ''}">${ICONS.chevronDown}</span>
     `;
 
     var linksEl = document.createElement('div');
     linksEl.className = 'gs-links';
     linksEl.style.display = openState[section.id] ? 'flex' : 'none';
+    linksEl.style.flexDirection = 'column';
+    linksEl.style.gap = '4px';
 
     section.links.forEach(function (link) {
       var a = document.createElement('a');
@@ -515,8 +521,16 @@
     btn.addEventListener('click', function () {
       openState[section.id] = !openState[section.id];
       var chevron = btn.querySelector('.gs-chevron');
-      if (chevron) chevron.innerHTML = openState[section.id] ? ICONS.chevronUp : ICONS.chevronDown;
+      if (chevron) {
+        if (openState[section.id]) {
+          chevron.classList.add('gs-open');
+        } else {
+          chevron.classList.remove('gs-open');
+        }
+      }
       linksEl.style.display = openState[section.id] ? 'flex' : 'none';
+      linksEl.style.flexDirection = 'column';
+      linksEl.style.gap = '4px';
     });
 
     sectionEl.appendChild(btn);
