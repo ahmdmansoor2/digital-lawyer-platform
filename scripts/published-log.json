@@ -1740,6 +1740,30 @@
       ],
       "words": 2265,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "تأخير خصم المرتبات والأجور: العقوبات القانونية على الشركات وحقوق الموظف",
+      "date": "2026-08-23",
+      "slug": "salary-deductions-delay-labor-law",
+      "url": "https://mohamidigital.online/blog/salary-deductions-delay-labor-law.html",
+      "image": "https://mohamidigital.online/blog/images/salary-deductions-delay-labor-law.jpg",
+      "tags": [
+        "قانون العمل"
+      ],
+      "words": 2159,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبة السجن المؤبد في القانون المصري: المدة الفعلية وقواعد الإفراج الشرطي",
+      "date": "2026-08-23",
+      "slug": "life-imprisonment-laws-egypt",
+      "url": "https://mohamidigital.online/blog/life-imprisonment-laws-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/life-imprisonment-laws-egypt.jpg",
+      "tags": [
+        "القانون الجنائي"
+      ],
+      "words": 1693,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
