@@ -63,6 +63,7 @@ import PrintPreviewModal from './PrintPreviewModal';
 import SearchModal from './SearchModal';
 import PrivacyPolicyModal from './PrivacyPolicyModal';
 import ProfilePage from './ProfilePage';
+import GlobalSidebar from './GlobalSidebar';
 
 // v2.9.11: Extended lazy loading to more heavy components for better initial load performance
 const ReportsPanel = lazy(() => import('./ReportsPanel'));
@@ -337,6 +338,9 @@ export default function AppLayout(props: AppLayoutProps) {
 
   return (
     <div className={`theme-${appTheme} min-h-screen flex flex-col md:flex-row text-end font-sans transition-colors duration-200 ${getThemeBgClass(appTheme)}`} dir="rtl" id="lawfirm-app-root">
+
+      {/* Global Sidebar — شريط التنقل الزجاجي الفاخر */}
+      <GlobalSidebar onEnterApp={onShowInfoCenter} />
 
       {/* Dynamic typography scale overrides */}
       <style>{`

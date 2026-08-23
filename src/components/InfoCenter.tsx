@@ -34,6 +34,7 @@ import {
 import SiteHeader from './SiteHeader';
 import InteractiveTourShowcase from './InteractiveTourShowcase';
 import PromoVideoPlayer from './PromoVideoPlayer';
+import GlobalSidebar from './GlobalSidebar';
 
 interface InfoCenterProps {
   userName?: string;
@@ -261,7 +262,10 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
   return (
     <div className="min-h-screen text-slate-100 relative overflow-hidden font-sans select-none" dir="rtl">
-      
+
+      {/* Global Sidebar — شريط التنقل الزجاجي الفاخر */}
+      <GlobalSidebar onEnterApp={onEnterApp} />
+
       {/* Background Poster — Soft Cinematic, Eye-Friendly */}
       <div 
         className="fixed inset-0 z-0 bg-cover bg-center pointer-events-none opacity-65 transform scale-100"
