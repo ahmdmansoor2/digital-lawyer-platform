@@ -423,3 +423,34 @@ body {
   }
 }
 
+/* ── Custom Scrollbar for Drawer ── */
+.gs-body, #gs-drawer .overflow-y-auto, aside[role="navigation"] .overflow-y-auto {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(148, 163, 184, 0.45) rgba(15, 23, 42, 0.5) !important;
+}
+.gs-body::-webkit-scrollbar,
+#gs-drawer .overflow-y-auto::-webkit-scrollbar,
+aside[role="navigation"] .overflow-y-auto::-webkit-scrollbar {
+  width: 6px !important;
+  display: block !important;
+}
+.gs-body::-webkit-scrollbar-track,
+#gs-drawer .overflow-y-auto::-webkit-scrollbar-track,
+aside[role="navigation"] .overflow-y-auto::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5) !important;
+  border-radius: 999px !important;
+}
+.gs-body::-webkit-scrollbar-thumb,
+#gs-drawer .overflow-y-auto::-webkit-scrollbar-thumb,
+aside[role="navigation"] .overflow-y-auto::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4) !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+.gs-body::-webkit-scrollbar-thumb:hover,
+#gs-drawer .overflow-y-auto::-webkit-scrollbar-thumb:hover,
+aside[role="navigation"] .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.8) !important;
+}
+
+

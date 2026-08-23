@@ -286,7 +286,7 @@
       background: rgba(255, 255, 255, 0.1) !important;
     }
 
-    /* ── Scrollable Sections Body ── */
+    /* ── Scrollable Sections Body & Custom Scrollbar ── */
     .gs-body {
       flex: 1 !important;
       overflow-y: auto !important;
@@ -295,8 +295,25 @@
       flex-direction: column !important;
       gap: 10px !important;
       scrollbar-width: thin !important;
-      scrollbar-color: rgba(148, 163, 184, 0.3) transparent !important;
+      scrollbar-color: rgba(148, 163, 184, 0.45) rgba(15, 23, 42, 0.5) !important;
     }
+    .gs-body::-webkit-scrollbar {
+      width: 6px !important;
+      display: block !important;
+    }
+    .gs-body::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.5) !important;
+      border-radius: 999px !important;
+    }
+    .gs-body::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.4) !important;
+      border-radius: 999px !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+    .gs-body::-webkit-scrollbar-thumb:hover {
+      background: rgba(99, 102, 241, 0.8) !important;
+    }
+
 
     /* ── Section Cards ── */
     .gs-section {
