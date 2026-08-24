@@ -186,8 +186,11 @@ export default function FirebaseLoginScreen({ onSuccess }: FirebaseLoginScreenPr
       const f = await getFirebase();
       if (f.disabled) throw new Error('Firebase disabled');
       const { sendPasswordResetEmail } = await import('firebase/auth');
-      await sendPasswordResetEmail(f.auth, email);
-      setInfo(`✅ تم إرسال رابط إعادة تعيين كلمة المرور إلى ${email}. تحقق من صندوق الوارد (وربما مجلد Spam).`);
+      // continueUrl ضروري جداً: يخلي رابط الـ email يفتح على دوميننا (mohamidigital.online)
+      // بدل الدومين الافتراضي firebaseapp.com
+      const continueUrl = `${window.location.origin}/__/auth/action`;
+      await sendPasswordResetEmail(f.auth, email, { url: continueUrl });
+      setInfo(`✅ تم إرسال رابط إعادة تعيين كلمة المرور إلى ${email}. تحقق من صندوق الوارد (وربما مجلد Spam). الرابط صالح لمدة ساعة واحدة.`);
       setMode('login');
     } catch (err: unknown) {
       const code = (err as { code?: string })?.code;
