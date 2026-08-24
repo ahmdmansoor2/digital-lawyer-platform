@@ -2000,6 +2000,27 @@
       "duration": "1د 1ث",
       "size": 39830214,
       "publishedAt": "2026-08-24T10:05:23.844Z"
+    },
+    {
+      "topicId": "trend-employee-holiday-rights-egyptian-labor-law",
+      "title": "حقوق العامل في إجازة المولد النبوي والأعياد الرسمية وأجر تشغيلها",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون العمل",
+        "#مولد النبي",
+        "#إجازة المولد النبوي"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-employee-holiday-rights-egyptian-labor-law.mp4",
+      "videoId": "27995926446734600",
+      "permalink": "https://www.facebook.com/reel/27995926446734600",
+      "source": "trending-topics.json",
+      "duration": "59ث",
+      "size": 21984771,
+      "publishedAt": "2026-08-24T13:13:10.149Z"
     }
   ]
 }
