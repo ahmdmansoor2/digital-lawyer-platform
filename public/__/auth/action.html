@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>إعادة تعيين كلمة المرور | منصة المحامي الرقمية</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a;
+      --indigo: #6366f1;
+      --emerald: #10b981;
+      --red: #ef4444;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+    }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      background-image: radial-gradient(ellipse at top, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      line-height: 1.7;
+    }
+    .card {
+      max-width: 460px;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 24px;
+      padding: 40px 32px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(20px);
+    }
+    .icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--indigo), #7c3aed);
+      border-radius: 18px;
+      font-size: 28px;
+    }
+    h1 { font-size: 24px; font-weight: 800; text-align: center; margin-bottom: 8px; color: white; }
+    .sub { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+    label { display: block; font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    input[type="password"] {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: white;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 16px;
+      direction: ltr;
+      text-align: left;
+    }
+    input[type="password"]:focus { border-color: var(--indigo); }
+    button {
+      width: 100%;
+      background: var(--indigo);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    button:hover:not(:disabled) { background: #4f46e5; transform: translateY(-1px); }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .msg {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 13px;
+      display: none;
+    }
+    .msg.show { display: block; }
+    .msg.success { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #6ee7b7; }
+    .msg.error { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; }
+    .footer { margin-top: 20px; text-align: center; font-size: 12px; color: var(--muted); }
+    .footer a { color: var(--indigo); text-decoration: none; }
+    .back-link { display: block; text-align: center; margin-top: 16px; color: var(--muted); font-size: 12px; text-decoration: none; }
+    .back-link:hover { color: var(--text); }
+    .loader {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">🔐</div>
+    <h1>إعادة تعيين كلمة المرور</h1>
+    <p class="sub" id="sub">جارٍ التحقق من الرابط...</p>
+    <form id="resetForm" style="display:none">
+      <label for="newPassword">كلمة المرور الجديدة</label>
+      <input type="password" id="newPassword" placeholder="6 أحرف على الأقل" minlength="6" required autocomplete="new-password" />
+      <label for="confirmPassword">تأكيد كلمة المرور</label>
+      <input type="password" id="confirmPassword" placeholder="أعد إدخال كلمة المرور" minlength="6" required autocomplete="new-password" />
+      <button type="submit" id="submitBtn">تعيين كلمة المرور الجديدة</button>
+    </form>
+    <div id="msg" class="msg"></div>
+    <a href="/?from=reset" class="back-link">← العودة إلى المنصة</a>
+    <div class="footer">© 2026 منصة المحامي الرقمية</div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import {
+      getAuth,
+      verifyPasswordResetCode,
+      confirmPasswordReset
+    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCYzLif-sT3dFqezeHJnRvK0o52ENBMzu4",
+      authDomain: "justice-91571.firebaseapp.com",
+      projectId: "justice-91571",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const sub = document.getElementById('sub');
+    const form = document.getElementById('resetForm');
+    const msg = document.getElementById('msg');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function showMsg(text, type) {
+      msg.className = 'msg show ' + type;
+      msg.textContent = text;
+    }
+
+    // استخراج oobCode من URL
+    const params = new URLSearchParams(window.location.search);
+    const oobCode = params.get('oobCode');
+    const mode = params.get('mode');
+
+    if (!oobCode || mode !== 'resetPassword') {
+      sub.textContent = 'رابط غير صالح أو منتهي الصلاحية';
+      showMsg('الرابط غير صالح. اطلب رابطاً جديداً من شاشة تسجيل الدخول.', 'error');
+      throw new Error('Invalid oobCode');
+    }
+
+    // التحقق من صحة الكود
+    try {
+      const email = await verifyPasswordResetCode(auth, oobCode);
+      sub.textContent = 'أدخل كلمة مرور جديدة للحساب: ' + email;
+      form.style.display = 'block';
+    } catch (err) {
+      console.error('Verify error:', err);
+      sub.textContent = 'الرابط منتهي الصلاحية أو غير صالح';
+      if (err.code === 'auth/invalid-action-code') {
+        showMsg('انتهت صلاحية الرابط أو تم استخدامه. اطلب رابطاً جديداً من شاشة "نسيت كلمة المرور".', 'error');
+      } else if (err.code === 'auth/expired-action-code') {
+        showMsg('انتهت صلاحية الرابط. اطلب رابطاً جديداً من شاشة "نسيت كلمة المرور".', 'error');
+      } else {
+        showMsg('حدث خطأ: ' + (err.message || err.code), 'error');
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (newPassword !== confirmPassword) {
+        showMsg('كلمتا المرور غير متطابقتين', 'error');
+        return;
+      }
+      if (newPassword.length < 6) {
+        showMsg('كلمة المرور يجب أن تكون 6 أحرف على الأقل', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'جاري الحفظ<span class="loader"></span>';
+
+      try {
+        await confirmPasswordReset(auth, oobCode, newPassword);
+        form.style.display = 'none';
+        sub.textContent = '✅ تم تغيير كلمة المرور بنجاح!';
+        showMsg('تم حفظ كلمة المرور الجديدة. يمكنك الآن تسجيل الدخول بحسابك.', 'success');
+        // إعادة التوجيه لصفحة تسجيل الدخول بعد 3 ثوان
+        setTimeout(() => { window.location.href = '/?from=reset&password_changed=1'; }, 3000);
+      } catch (err) {
+        console.error('Confirm reset error:', err);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'تعيين كلمة المرور الجديدة';
+        if (err.code === 'auth/weak-password') {
+          showMsg('كلمة المرور ضعيفة. استخدم 6 أحرف على الأقل مع أحرف وأرقام.', 'error');
+        } else if (err.code === 'auth/invalid-action-code') {
+          showMsg('انتهت صلاحية الرابط. اطلب رابطاً جديداً.', 'error');
+        } else {
+          showMsg('فشل تغيير كلمة المرور. حاول مرة أخرى.', 'error');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
