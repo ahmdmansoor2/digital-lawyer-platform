@@ -27,7 +27,7 @@
       ],
       "rewrites": [
         {
-          "source": "!/+(blog|pillars|library-pdfs|__/auth|__/oauth)/**",
+          "source": "!/+(blog|pillars|library-pdfs)/**",
           "destination": "/index.html"
         }
       ],
