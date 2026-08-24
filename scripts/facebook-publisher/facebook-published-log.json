@@ -1979,6 +1979,27 @@
       "duration": "58ث",
       "size": 34478000,
       "publishedAt": "2026-08-24T07:20:41.355Z"
+    },
+    {
+      "topicId": "trend-illegal-currency-trading-penalties-egypt",
+      "title": "عقوبات التجارة في العملة الأجنبية والسوق السوداء في القانون المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون الجنائي",
+        "#أسعار الدولار",
+        "#تجارة العملة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-illegal-currency-trading-penalties-egypt.mp4",
+      "videoId": "1652495726408120",
+      "permalink": "https://www.facebook.com/reel/1652495726408120",
+      "source": "trending-topics.json",
+      "duration": "1د 1ث",
+      "size": 39830214,
+      "publishedAt": "2026-08-24T10:05:23.844Z"
     }
   ]
 }
