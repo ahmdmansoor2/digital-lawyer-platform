@@ -1958,6 +1958,27 @@
       "duration": "1د 5ث",
       "size": 21999006,
       "publishedAt": "2026-08-23T18:48:12.070Z"
+    },
+    {
+      "topicId": "trend-bounced-check-penalties-egyptian-law",
+      "title": "قضايا الشيك بدون رصيد: العقوبات والإجراءات وتعديلات قانون التجارة",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون التجاري",
+        "#شيك بدون رصيد",
+        "#الشيك المرتجع"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-bounced-check-penalties-egyptian-law.mp4",
+      "videoId": "1645713393871031",
+      "permalink": "https://www.facebook.com/reel/1645713393871031",
+      "source": "trending-topics.json",
+      "duration": "58ث",
+      "size": 34478000,
+      "publishedAt": "2026-08-24T07:20:41.355Z"
     }
   ]
 }
