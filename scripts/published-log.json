@@ -1776,6 +1776,42 @@
       ],
       "words": 1742,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبات التجارة في العملة الأجنبية والسوق السوداء في القانون المصري",
+      "date": "2026-08-24",
+      "slug": "illegal-currency-trading-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/illegal-currency-trading-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/illegal-currency-trading-penalties-egypt.jpg",
+      "tags": [
+        "القانون الجنائي"
+      ],
+      "words": 2153,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "حقوق العامل في إجازة المولد النبوي والأعياد الرسمية وأجر تشغيلها",
+      "date": "2026-08-24",
+      "slug": "employee-holiday-rights-egyptian-labor-law",
+      "url": "https://mohamidigital.online/blog/employee-holiday-rights-egyptian-labor-law.html",
+      "image": "https://mohamidigital.online/blog/images/employee-holiday-rights-egyptian-labor-law.jpg",
+      "tags": [
+        "قانون العمل"
+      ],
+      "words": 2339,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "حقوق شراء الذهب في مصر: كيفية تجنب الغش والضمانات القانونية للدمغة",
+      "date": "2026-08-24",
+      "slug": "gold-purchase-consumer-rights-egypt",
+      "url": "https://mohamidigital.online/blog/gold-purchase-consumer-rights-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/gold-purchase-consumer-rights-egypt.jpg",
+      "tags": [
+        "حماية المستهلك"
+      ],
+      "words": 1723,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
