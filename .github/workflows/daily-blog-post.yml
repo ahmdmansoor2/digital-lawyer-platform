@@ -48,11 +48,16 @@ jobs:
       - name: Rebuild site search index
         run: node scripts/seo/build-search-index.cjs
 
+      - name: Generate news sitemap + RSS + weekly digest
+        run: |
+          node scripts/seo/generate-news-sitemap.cjs
+          node scripts/newsletter/generate-rss-digest.cjs
+
       - name: Commit & Push changes
         run: |
           git config user.name  "Smart Legal Publisher 🤖"
           git config user.email "bot@justice-91571.web.app"
-          git add scripts/published-log.json scripts/trending-topics.json scripts/blog-publisher/facebook-published-log.json public/blog/ public/legal-radar.html public/radar-archive.json public/radar-topics/ public/sitemap.xml public/sitemap.html public/search-index.json
+          git add scripts/published-log.json scripts/trending-topics.json scripts/blog-publisher/facebook-published-log.json public/blog/ public/legal-radar.html public/radar-archive.json public/radar-topics/ public/sitemap.xml public/sitemap.html public/search-index.json public/news-sitemap.xml public/rss.xml public/newsletter/latest.html
           git diff --staged --quiet || git commit -m "🤖 Smart-publish: $(date +'%Y-%m-%d %H:%M') — مقالات قانونية + رصد المحامي"
           git pull --rebase origin main 2>/dev/null || true
           git push

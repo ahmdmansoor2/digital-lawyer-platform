@@ -1,0 +1,4 @@
+{
+  "vapidKey": "",
+  "_تعليمات": "ضع هنا مفتاح Web Push (VAPID) بعد توليده: Firebase Console → Project settings → Cloud Messaging → Web Push certificates → Generate key pair، ثم الصق القيمة في vapidKey والتزم الملف."
+}

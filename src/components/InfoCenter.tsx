@@ -38,6 +38,8 @@ import GlobalSidebar from './GlobalSidebar';
 import HeroSearchBar from './HeroSearchBar';
 import SiteSearchModal from './SiteSearchModal';
 import AIAdvisor from './AIAdvisor';
+import NotificationCenter from './NotificationCenter';
+import NewsletterBox from './NewsletterBox';
 
 interface InfoCenterProps {
   userName?: string;
@@ -851,6 +853,12 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
       {/* ─── المستشار الذكي (RAG من محتوى المنصة) ───────────────────────── */}
       <AIAdvisor />
+
+      {/* ─── جرس الإشعارات (الجديد اليومي من المدونة والرادار) ───────────── */}
+      <NotificationCenter />
+
+      {/* ─── النشرة البريدية الأسبوعية ────────────────────────────────────── */}
+      <NewsletterBox />
 
     </div>
   );

@@ -32,6 +32,24 @@ service cloud.firestore {
       }
     }
 
+    // ── النشرة البريدية: اشتراك عام (إنشاء فقط) بلا أي قراءة/تعديل من العملاء ──
+    match /newsletter_subscribers/{subId} {
+      allow create: if request.resource.data.keys().hasOnly(['email', 'createdAt', 'src'])
+                    && request.resource.data.email is string
+                    && request.resource.data.email.size() > 5
+                    && request.resource.data.email.size() < 120
+                    && request.resource.data.src in ['home', 'blog', 'digest'];
+      allow read, update, delete: if false; // الإدارة تتم عبر Admin SDK من CI فقط
+    }
+
+    // ── توكنات إشعارات المتصفح (Push) — نفس المنطق ─────────────────────
+    match /push_tokens/{tokenId} {
+      allow create: if request.resource.data.keys().hasOnly(['token', 'ts', 'ua'])
+                    && request.resource.data.token is string
+                    && request.resource.data.token.size() > 20;
+      allow read, update, delete: if false;
+    }
+
     // ── منع أي وصول غير مُصرَّح به ──────────────────────────────────
     match /{document=**} {
       allow read, write: if false;

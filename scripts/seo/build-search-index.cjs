@@ -158,6 +158,7 @@ function processFile(filePath, type, urlPrefix) {
   const html = fs.readFileSync(filePath, 'utf8');
   const filename = path.basename(filePath);
   const relativeUrl = urlPrefix + filename;
+  const stat = fs.statSync(filePath);
 
   // canonical لو موجود أفضل من التركيب
   let url = extractCanonical(html);
@@ -187,6 +188,7 @@ function processFile(filePath, type, urlPrefix) {
     image: ogImage,
     snippet: snippet,
     wordCount: content.split(/\s+/).filter(Boolean).length,
+    dateModified: stat.mtime.toISOString(),
   };
 }
 
