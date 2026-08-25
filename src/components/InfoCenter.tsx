@@ -6,7 +6,7 @@
  * تغطي مصر ودول الخليج الكبرى (السعودية · الإمارات · قطر · سلطنة عمان) في شبكة كروت تفاعلية
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   Scale, 
   Sparkles, 
