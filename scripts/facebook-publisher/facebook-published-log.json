@@ -2147,6 +2147,27 @@
       "duration": "52ث",
       "size": 36375310,
       "publishedAt": "2026-08-25T15:59:19.280Z"
+    },
+    {
+      "topicId": "trend-egyptian-labor-law-salary-deductions",
+      "title": "خصم الراتب والجزاءات التاديبية: حقوق العامل في قانون العمل المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون العمل",
+        "#قانون العمل المصري",
+        "#خصم المرتب"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-egyptian-labor-law-salary-deductions.mp4",
+      "videoId": "2075551823324307",
+      "permalink": "https://www.facebook.com/reel/2075551823324307",
+      "source": "trending-topics.json",
+      "duration": "53ث",
+      "size": 20652986,
+      "publishedAt": "2026-08-25T18:57:26.595Z"
     }
   ]
 }
