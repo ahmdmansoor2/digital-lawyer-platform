@@ -878,7 +878,7 @@ ${sectionsHtml}
     .ad-slot--bottom { margin: 32px auto 8px; }
     .ad-label { display: block; font-size: 10px; color: var(--muted); text-align: center; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.5px; }
   </style>
-  <script src="/related-articles.js?v=20260826v1" defer></script><!-- mohami-related -->
+  <script src="/related-articles.js?v=20260826v3" defer></script><!-- mohami-related -->
   <script src="/sw-register.js?v=20260826v1" defer></script><!-- mohami-sw -->
 </body>
 </html>

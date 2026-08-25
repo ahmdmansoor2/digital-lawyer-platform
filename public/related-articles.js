@@ -36,20 +36,29 @@
   fetch('/search-index.json', { headers: { 'X-Mohami-Rel': META_VER } })
     .then(function (r) { return r.json(); })
     .then(function (idx) {
+      // ترشيح IDF خفيف: تجاهل الكلمات الواردة في كلمات مفتاحية لأكثر من 20% من العناصر
+      var df = {};
+      idx.items.forEach(function (it) {
+        var seen = {};
+        tokens(it.keywords).forEach(function (t) { if (!seen[t]) { df[t] = (df[t] || 0) + 1; seen[t] = 1; } });
+      });
+      var threshold = Math.max(8, idx.items.length * 0.2);
+
       var scored = [];
       for (var i = 0; i < idx.items.length; i++) {
         var it = idx.items[i];
         if (it.url === curUrl) continue;
         if (!(it.type === 'blog' || it.type === 'pillar')) continue;
         var s = 0;
-        var kwTok = tokens(it.keywords);
-        var tiTok = tokens(it.title);
-        for (var k = 0; k < kwTok.length; k++) if (curTokens[kwTok[k]]) s += 3;
-        for (var j = 0; j < tiTok.length; j++) if (curTokens[tiTok[j]]) s += 2;
+        tokens(it.keywords).forEach(function (t) {
+          if (curTokens[t] && (df[t] || 0) <= threshold) s += 4;
+        });
+        tokens(it.title).forEach(function (t) {
+          if (curTokens[t] && (df[t] || 0) <= threshold) s += 3;
+        });
         if (curCat && norm(it.category) === curCat) s += 6;
-        // تفضيل خفيف للمقالات الأغنى محتوىً
-        s += Math.min(2, (it.wordCount || 0) / 4000);
-        if (s >= 5) scored.push({ it: it, s: s });
+        s += Math.min(1, (it.wordCount || 0) / 5000);
+        if (s >= 6) scored.push({ it: it, s: s });
       }
       scored.sort(function (a, b) { return b.s - a.s; });
 
@@ -100,7 +109,10 @@
     html += '</div>';
 
     sec.innerHTML = html;
-    var anchor = document.querySelector('footer');
+    // الأفضلية: بعد نهاية محتوى المقال وقبل الإعلان السفلي، وإلا قبل الفوتر
+    var anchor =
+      document.querySelector('.ad-slot--bottom') ||
+      document.querySelector('footer');
     if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(sec, anchor);
     else document.body.appendChild(sec);
   }
