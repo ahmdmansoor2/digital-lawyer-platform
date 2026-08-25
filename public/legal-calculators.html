@@ -3,8 +3,8 @@
 <head><script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script><!-- www-mohami-guard -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>بوابة الحاسبات القانونية والشرعية الذكية 2026 - 11 حاسبة تفاعلية متكاملة | منصة المحامي الرقمية</title>
-  <meta name="description" content="11 حاسبة قانونية وشرعية تفاعلية مجانية 100%: المواريث والتركات، النفقات الشرعية، الشهر العقاري، التصالح في مخالفات البناء، الإيجار القديم، مواعيد الطعون، مستحقات نهاية الخدمة، ضريبة الرواتب والتأمينات، رسوم المحاكم، التقادم، والفائدة القانونية." />
+  <title>بوابة الحاسبات القانونية والشرعية الذكية 2026 - 15 حاسبة تفاعلية متكاملة | منصة المحامي الرقمية</title>
+  <meta name="description" content="15 حاسبة قانونية وشرعية تفاعلية مجانية 100%: المواريث والتركات، النفقات الشرعية، الشهر العقاري، التصالح في مخالفات البناء، الإيجار القديم، مواعيد الطعون، مستحقات نهاية الخدمة، ضريبة الرواتب والتأمينات، رسوم المحاكم، التقادم، والفائدة القانونية." />
   <meta name="keywords" content="حاسبة المواريث, حاسبة النفقات, رسوم الشهر العقاري 2026, حاسبة التصالح في البناء, زيادة الإيجار القديم, مواعيد الطعون, مستحقات نهاية الخدمة, حساب ضريبة الدخل, رسوم المحاكم, الفائدة القانونية, منصة المحامي الرقمية" />
   <link rel="canonical" href="https://mohamidigital.online/legal-calculators.html" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
@@ -195,9 +195,9 @@
 <header class="hero">
   <div class="hero-badge">🧮 أدوات وحاسبات قانونية وشرعية ذكية</div>
   <h1>بوابة <span>الحاسبات القانونية والشرعية</span><br>لمصر 2026</h1>
-  <p>11 حاسبة تفاعلية دقيقة للمحامين والمواطنين والمحاسبين — مجانية 100% بدون تسجيل</p>
+  <p>15 حاسبة تفاعلية دقيقة للمحامين والمواطنين والمحاسبين — مجانية 100% بدون تسجيل</p>
   <div class="hero-stats">
-    <div class="hero-stat"><span class="num">11</span> حاسبة ذكية</div>
+    <div class="hero-stat"><span class="num">15</span> حاسبة ذكية</div>
     <div class="hero-stat"><span class="num">100%</span> مجاني</div>
     <div class="hero-stat">⚡ وفق قوانين مصر 2026</div>
     <div class="hero-stat">🖨️ تقرير PDF قابل للطباعة</div>
@@ -226,6 +226,10 @@
     <button class="tab-btn" onclick="switchTab('court', this)">🏛️ رسوم المحاكم</button>
     <button class="tab-btn" onclick="switchTab('limitations', this)">⏳ مدد التقادم والسقوط</button>
     <button class="tab-btn" onclick="switchTab('interest', this)">📈 الفائدة القانونية</button>
+    <button class="tab-btn" onclick="switchTab('devdelay', this)">🏢 تأخر تسليم المطوّرين</button>
+    <button class="tab-btn" onclick="switchTab('overtime', this)">⏰ العمل الإضافي</button>
+    <button class="tab-btn" onclick="switchTab('diwan', this)">🚗 ديوان المسؤولية</button>
+    <button class="tab-btn" onclick="switchTab('socialins', this)">🛡️ التأمينات على الأجور</button>
   </div>
 
   <!-- TAB 1: حاسبة المواريث والتركات -->
@@ -729,6 +733,168 @@
         <div class="result-rows" id="int-rows"></div>
         <div class="result-total" id="int-total-box"></div>
         <div class="result-note" id="int-note"></div>
+        <div style="margin-top:12px; text-align:left;"><button class="print-btn" onclick="window.print()">🖨️ طباعة / حفظ PDF</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 12: غرامة تأخر تسليم المطوّرين -->
+  <div class="tab-panel" id="tab-devdelay">
+    <div class="calc-card">
+      <div class="calc-header">
+        <div class="calc-icon">🏢</div>
+        <div>
+          <div class="calc-title">حاسبة غرامة تأخر تسليم الوحدات من المطوّرين</div>
+          <div class="calc-subtitle">وفق قانون حماية المشتري رقم 116 لسنة 2019 وتعديله بالقانون 143 لسنة 2020</div>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>القيمة الإجمالية للوحدة (بالجنيه)</label>
+          <input type="number" id="dev-total" min="1" placeholder="مثال: 2000000">
+        </div>
+        <div class="form-group">
+          <label>المبلغ المدفوع فعلياً للمطوّر (بالجنيه)</label>
+          <input type="number" id="dev-paid" min="0" placeholder="مثال: 800000">
+        </div>
+        <div class="form-group">
+          <label>تاريخ التسليم المتفق عليه بالعقد</label>
+          <input type="date" id="dev-due-date">
+        </div>
+        <div class="form-group">
+          <label>تاريخ التسليم الفعلي (أو اتركه فارغاً ليوم اليوم)</label>
+          <input type="date" id="dev-actual-date">
+        </div>
+        <div class="form-group">
+          <label>نسبة الغرامة السنوية التعاقدية (إن وُجدت)</label>
+          <select id="dev-rate-type">
+            <option value="statutory">5% سنوياً — الحد القانوني الأدنى (مادة تعديل 2020)</option>
+            <option value="custom">نسبة أعلى منصوص عليها في العقد</option>
+            <option value="none">لا توجد نسبة في العقد — تطبيق الحد القانوني</option>
+          </select>
+        </div>
+        <div class="form-group" id="dev-custom-rate-group" style="display:none;">
+          <label>النسبة التعاقدية السنوية (%)</label>
+          <input type="number" id="dev-custom-rate" min="5" max="20" value="8" step="0.5">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcDevDelay()">🏢 احسب الغرامة والتعويض المستحق</button>
+      <div class="result-box" id="dev-result">
+        <div class="result-title">🏢 نتيجة حساب غرامة التأخير</div>
+        <div class="result-rows" id="dev-rows"></div>
+        <div class="result-total" id="dev-total-box"></div>
+        <div class="result-note" id="dev-note"></div>
+        <div style="margin-top:12px; text-align:left;"><button class="print-btn" onclick="window.print()">🖨️ طباعة / حفظ PDF</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 13: أجر العمل الإضافي -->
+  <div class="tab-panel" id="tab-overtime">
+    <div class="calc-card">
+      <div class="calc-header">
+        <div class="calc-icon">⏰</div>
+        <div>
+          <div class="calc-title">حاسبة أجر العمل الإضافي ووقت الضياع</div>
+          <div class="calc-subtitle">وفق قانون العمل المصري — نسب الزيادة المقررة قانوناً للعمل خارج ساعات الدوام</div>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group"><label>الأجر الشهري الأساسي (بالجنيه)</label><input type="number" id="ot-basic" min="1" placeholder="مثال: 6000"></div>
+        <div class="form-group"><label>عدد أيام العمل الشهرية</label><select id="ot-days"><option value="26">26 يوماً (6 أيام عمل أسبوعياً)</option><option value="22">22 يوماً (5 أيام عمل أسبوعياً)</option></select></div>
+        <div class="form-group"><label>ساعات العمل اليومية النظامية</label><select id="ot-daily"><option value="8">8 ساعات</option><option value="7">7 ساعات</option><option value="6">6 ساعات</option></select></div>
+        <div class="form-group"><label>ساعات إضافية نهارية (خلال أيام العمل)</label><input type="number" id="ot-day-hours" min="0" max="200" value="10"></div>
+        <div class="form-group"><label>ساعات إضافية ليلية (من 7 مساءً إلى 6 صباحاً)</label><input type="number" id="ot-night-hours" min="0" max="200" value="0"></div>
+        <div class="form-group"><label>ساعات عمل في يوم الراحة الأسبوعية</label><input type="number" id="ot-rest-hours" min="0" max="100" value="0"></div>
+        <div class="form-group"><label>ساعات عمل في العطلات الرسمية</label><input type="number" id="ot-holiday-hours" min="0" max="100" value="0"></div>
+      </div>
+      <button class="calc-btn" onclick="calcOvertime()">⏰ احسب أجر الساعات الإضافية</button>
+      <div class="result-box" id="ot-result">
+        <div class="result-title">⏰ تفاصيل مستحقات العمل الإضافي الشهرية</div>
+        <div class="result-rows" id="ot-rows"></div>
+        <div class="result-total" id="ot-total-box"></div>
+        <div class="result-note" id="ot-note"></div>
+        <div style="margin-top:12px; text-align:left;"><button class="print-btn" onclick="window.print()">🖨️ طباعة / حفظ PDF</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 14: ديوان المسؤولية -->
+  <div class="tab-panel" id="tab-diwan">
+    <div class="calc-card">
+      <div class="calc-header">
+        <div class="calc-icon">🚗</div>
+        <div>
+          <div class="calc-title">حاسبة تعويض ديوان المسؤولية لحوادث الطرق</div>
+          <div class="calc-subtitle">وفق قانون ديوان المسؤولية رقم 66 لسنة 2010 وقواعد التعويض المحدثة بقرار وزاري سنوي</div>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>نوع الإصابة أو الضرر</label>
+          <select id="dw-type" onchange="toggleDiwanInputs()">
+            <option value="death">وفاة (تعويض المعتمين)</option>
+            <option value="total_disability">عجز كلي دائم</option>
+            <option value="partial_disability">عجز جزئي دائم</option>
+            <option value="temporary">إصابة مؤقتة (علاج وانقطاع عن العمل)</option>
+          </select>
+        </div>
+        <div class="form-group" id="dw-base-group">
+          <label>الحد المعياري للتعويض المحدث (بالجنيه) — يُحدَّث بقرار وزاري سنوي</label>
+          <input type="number" id="dw-base" min="1" value="240000" placeholder="مثال: 240000">
+        </div>
+        <div class="form-group" id="dw-percentage-group" style="display:none;">
+          <label>نسبة العجز الجزئي (%) كما قررها الطبيب الشرعي</label>
+          <input type="number" id="dw-percentage" min="1" max="99" value="25">
+        </div>
+        <div class="form-group" id="dw-days-group" style="display:none;">
+          <label>عدد أيام الانقطاع عن العمل بسبب الإصابة</label>
+          <input type="number" id="dw-days" min="1" max="365" value="30">
+        </div>
+        <div class="form-group" id="dw-wage-group" style="display:none;">
+          <label>متوسط الأجر اليومي للمتضرر (بالجنيه)</label>
+          <input type="number" id="dw-wage" min="50" value="300">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcDiwan()">🚗 احسب التعويض التقديري من الديوان</button>
+      <div class="result-box" id="dw-result">
+        <div class="result-title">🚗 التعويض التقديري من ديوان المسؤولية</div>
+        <div class="result-rows" id="dw-rows"></div>
+        <div class="result-total" id="dw-total-box"></div>
+        <div class="result-note" id="dw-note"></div>
+        <div style="margin-top:12px; text-align:left;"><button class="print-btn" onclick="window.print()">🖨️ طباعة / حفظ PDF</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 15: التأمينات على الأجور -->
+  <div class="tab-panel" id="tab-socialins">
+    <div class="calc-card">
+      <div class="calc-header">
+        <div class="calc-icon">🛡️</div>
+        <div>
+          <div class="calc-title">حاسبة التأمينات الاجتماعية على الأجور 2026</div>
+          <div class="calc-subtitle">وفق قانون التأمينات الاجتماعية رقم 148 لسنة 2019 — حصة العامل وصاحب العمل</div>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group"><label>الأجر الشامل الشهري الفعلي (بالجنيه)</label><input type="number" id="si-gross" min="1000" placeholder="مثال: 12000"></div>
+        <div class="form-group"><label>الحد الأدنى للأجر المؤمَّن عليه (يُحدَّث سنوياً بقرار)</label><input type="number" id="si-min" min="1" value="2300"></div>
+        <div class="form-group"><label>الحد الأقصى للأجر المؤمَّن عليه (يُحدَّث سنوياً بقرار)</label><input type="number" id="si-max" min="1000" value="14500"></div>
+        <div class="form-group">
+          <label>قطاع العمل</label>
+          <select id="si-sector">
+            <option value="private">القطاع الخاص (العامل 11% · صاحب العمل 18.75%)</option>
+            <option value="government">الجهات الحكومية والعامة (العامل 11% · الجهة 18.75%)</option>
+          </select>
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcSocialInsurance()">🛡️ احسب اشتراكات التأمينات وصافي الراتب</button>
+      <div class="result-box" id="si-result">
+        <div class="result-title">🛡️ تفصيل اشتراكات التأمينات الاجتماعية</div>
+        <div class="result-rows" id="si-rows"></div>
+        <div class="result-total" id="si-total-box"></div>
+        <div class="result-note" id="si-note"></div>
         <div style="margin-top:12px; text-align:left;"><button class="print-btn" onclick="window.print()">🖨️ طباعة / حفظ PDF</button></div>
       </div>
     </div>
@@ -1497,6 +1663,193 @@ function calcLegalInterest() {
 // ─── FAQ TOGGLE ──────────────────────────────────────────────────────
 function toggleFaq(el) {
   el.classList.toggle('open');
+}
+
+// ═══════════════ الحاسبات الجديدة (12-15) ═══════════════
+
+// ── 12: غرامة تأخر تسليم المطوّرين ──
+function toggleDevRate() {
+  var t = document.getElementById('dev-rate-type').value;
+  document.getElementById('dev-custom-rate-group').style.display = t === 'custom' ? 'flex' : 'none';
+}
+document.getElementById('dev-rate-type').addEventListener('change', toggleDevRate);
+
+function calcDevDelay() {
+  var totalV = parseFloat(document.getElementById('dev-total').value) || 0;
+  var paidV = parseFloat(document.getElementById('dev-paid').value) || 0;
+  var dueDate = document.getElementById('dev-due-date').value;
+  var actualDate = document.getElementById('dev-actual-date').value;
+  var rateType = document.getElementById('dev-rate-type').value;
+
+  if (!totalV || !paidV || !dueDate) { alert('يرجى إدخال القيمة الإجمالية والمبلغ المدفوع وتاريخ التسليم المتفق عليه.'); return; }
+
+  var due = new Date(dueDate);
+  var actual = actualDate ? new Date(actualDate) : new Date();
+  var delayDays = Math.floor((actual - due) / 86400000);
+
+  if (delayDays <= 0) {
+    document.getElementById('dev-rows').innerHTML = '<div class="result-row"><span class="result-row-value" style="color:var(--emerald)">✅ لا يوجد تأخير — الوحدة لم تتجاوز موعد التسليم التعاقدي بعد.</span></div>';
+    document.getElementById('dev-total-box').innerHTML = '';
+    document.getElementById('dev-note').innerText = 'الغرامة تُحتسب من اليوم التالي لتاريخ التسليم المتفق عليه في العقد.';
+    document.getElementById('dev-result').classList.add('show');
+    return;
+  }
+
+  var annualRate;
+  var rateLabel;
+  if (rateType === 'statutory') {
+    annualRate = 5; rateLabel = '5% سنوياً — الحد القانوني الأدنى';
+  } else if (rateType === 'custom') {
+    annualRate = parseFloat(document.getElementById('dev-custom-rate').value) || 8;
+    rateLabel = annualRate + '% سنوياً — النسبة التعاقدية';
+  } else {
+    annualRate = 5; rateLabel = '5% سنوياً — تطبيق الحد القانوني لغياب نص تعاقدي';
+  }
+
+  var dailyPenalty = paidV * (annualRate / 100) / 365;
+  var totalPenalty = dailyPenalty * delayDays;
+  var delayMonths = Math.floor(delayDays / 30);
+  var graceNote = '';
+
+  if (delayDays <= 240) {
+    graceNote = 'التأخر ضمن مهلة الثمانية أشهر الإضافية التي يمنحها قانون 143/2020 للمطوّر قبل استحقاق الغرامة القضائية.';
+  } else {
+    graceNote = 'تجاوزت مدة الـ 8 أشهر الممنوحة للمطوّر — يستحق المشتري كامل الغرامة المحسوبة مع حق فسخ العقد عند تجاوز سنة كاملة.';
+  }
+
+  function fmt(n) { return n.toLocaleString('en-US', {maximumFractionDigits: 0}); }
+  document.getElementById('dev-rows').innerHTML =
+    '<div class="result-row"><span class="result-row-label">قيمة الوحدة:</span><span class="result-row-value">' + fmt(totalV) + ' ج.م</span></div>' +
+    '<div class="result-row"><span class="result-row-label">المدفوع فعلياً (أساس الحساب):</span><span class="result-row-value">' + fmt(paidV) + ' ج.م</span></div>' +
+    '<div class="result-row"><span class="result-row-label">أيام التأخير:</span><span class="result-row-value">' + delayDays + ' يوم (' + delayMonths + ' شهر)</span></div>' +
+    '<div class="result-row"><span class="result-row-label">نسبة الغرامة المطبقة:</span><span class="result-row-value">' + rateLabel + '</span></div>' +
+    '<div class="result-row"><span class="result-row-label">الغرامة اليومية:</span><span class="result-row-value">' + fmt(dailyPenalty) + ' ج.م</span></div>';
+
+  document.getElementById('dev-total-box').innerHTML =
+    '<span class="result-total-label">إجمالي الغرامة المستحقة حتى تاريخ الحساب:</span><span class="result-total-value">' + fmt(totalPenalty) + ' ج.م</span>';
+  document.getElementById('dev-note').innerText =
+    'الأساس: قانون 116/2019 وتعديله بقانون 143/2020. ' + graceNote + ' النتائج تقديرية — للتحكيم أو التقاضي قد يحكم القاضي بنسب مختلفة حسب الظروف.';
+  document.getElementById('dev-result').classList.add('show');
+}
+
+// ── 13: أجر العمل الإضافي ──
+function calcOvertime() {
+  var basic = parseFloat(document.getElementById('ot-basic').value) || 0;
+  var workDays = parseInt(document.getElementById('ot-days').value) || 26;
+  var dailyHours = parseInt(document.getElementById('ot-daily').value) || 8;
+  var dayHrs = parseFloat(document.getElementById('ot-day-hours').value) || 0;
+  var nightHrs = parseFloat(document.getElementById('ot-night-hours').value) || 0;
+  var restHrs = parseFloat(document.getElementById('ot-rest-hours').value) || 0;
+  var holidayHrs = parseFloat(document.getElementById('ot-holiday-hours').value) || 0;
+
+  if (!basic) { alert('يرجى إدخال الأجر الشهري الأساسي.'); return; }
+
+  var hourlyWage = basic / (workDays * dailyHours);
+  // نسب الزيادة وفق قانون العمل المصري
+  var rates = { day: 0.35, night: 0.70, rest: 1.00, holiday: 2.00 };
+  var dayPay = hourlyWage * (1 + rates.day) * dayHrs;
+  var nightPay = hourlyWage * (1 + rates.night) * nightHrs;
+  var restPay = hourlyWage * (1 + rates.rest) * restHrs;
+  var holidayPay = hourlyWage * (1 + rates.holiday) * holidayHrs;
+  var totalOT = dayPay + nightPay + restPay + holidayPay;
+
+  function fmt(n) { return n.toLocaleString('en-US', {maximumFractionDigits: 2}); }
+  document.getElementById('ot-rows').innerHTML =
+    '<div class="result-row"><span class="result-row-label">الأجر بالساعة الأساسي:</span><span class="result-row-value">' + fmt(hourlyWage) + ' ج.م</span></div>' +
+    '<div class="result-row"><span class="result-row-label">إضافي نهاري (' + dayHrs + ' س × ' + (100+rates.day*100) + '%):</span><span class="result-row-value">' + fmt(dayPay) + ' ج.م</span></div>' +
+    '<div class="result-row"><span class="result-row-label">إضافي ليلي (' + nightHrs + ' س × ' + (100+rates.night*100) + '%):</span><span class="result-row-value">' + fmt(nightPay) + ' ج.م</span></div>' +
+    '<div class="result-row"><span class="result-row-label">راحة أسبوعية (' + restHrs + ' س × ' + (100+rates.rest*100) + '%):</span><span class="result-row-value">' + fmt(restPay) + ' ج.م</span></div>' +
+    '<div class="result-row"><span class="result-row-label">عطلة رسمية (' + holidayHrs + ' س × ' + (100+rates.holiday*100) + '%):</span><span class="result-row-value">' + fmt(holidayPay) + ' ج.م</span></div>';
+
+  document.getElementById('ot-total-box').innerHTML =
+    '<span class="result-total-label">إجمالي مستحقات العمل الإضافي الشهرية:</span><span class="result-total-value">' + fmt(totalOT) + ' ج.م</span>';
+  document.getElementById('ot-note').innerText =
+    'الأساس: نسب زيادة أجر الساعة وفق قانون العمل المصري — نهاري +35%، ليلي +70%، راحة أسبوعية +100%، عطلة رسمية +200%. النتائج استرشادية للتفاوض والتقدير.';
+  document.getElementById('ot-result').classList.add('show');
+}
+
+// ── 14: ديوان المسؤولية ──
+function toggleDiwanInputs() {
+  var type = document.getElementById('dw-type').value;
+  document.getElementById('dw-base-group').style.display = (type === 'death' || type === 'total_disability' || type === 'partial_disability') ? 'flex' : 'none';
+  document.getElementById('dw-percentage-group').style.display = type === 'partial_disability' ? 'flex' : 'none';
+  document.getElementById('dw-days-group').style.display = type === 'temporary' ? 'flex' : 'none';
+  document.getElementById('dw-wage-group').style.display = type === 'temporary' ? 'flex' : 'none';
+}
+
+function calcDiwan() {
+  var type = document.getElementById('dw-type').value;
+  var base = parseFloat(document.getElementById('dw-base').value) || 240000;
+  var rows = '', totalText = '', note = '';
+
+  if (type === 'death') {
+    rows = '<div class="result-row"><span class="result-row-label">نوع الضرر:</span><span class="result-row-value">وفاة نتيجة حادث طريق</span></div>' +
+           '<div class="result-row"><span class="result-row-label">التعويض المعياري المعتمد:</span><span class="result-row-value">' + base.toLocaleString() + ' ج.م</span></div>';
+    totalText = base.toLocaleString() + ' ج.م';
+    note = 'الحد الأدنى للتعويض عن الوفاة يُحدَّث بقرار من وزير التأمينات والمعاشات سنوياً. يشمل التعويض جميع المعتمين الشرعيين ويُوزَّع بينهم بالأنصبة.';
+  } else if (type === 'total_disability') {
+    rows = '<div class="result-row"><span class="result-row-label">نوع الضرر:</span><span class="result-row-value">عجز كلي دائم</span></div>' +
+           '<div class="result-row"><span class="result-row-label">التعويض المعياري:</span><span class="result-row-value">' + base.toLocaleString() + ' ج.م</span></div>';
+    totalText = base.toLocaleString() + ' ج.م';
+    note = 'العجز الكلي الدائم يعادل تعويض الوفاة وفق قواعد الديوان، بالإضافة إلى مصاريف العلاج والأجهزة الطبية المؤثبة إن وجدت.';
+  } else if (type === 'partial_disability') {
+    var pct = parseFloat(document.getElementById('dw-percentage').value) || 25;
+    var comp = base * (pct / 100);
+    rows = '<div class="result-row"><span class="result-row-label">نسبة العجز الجزئي:</span><span class="result-row-value">' + pct + '%</span></div>' +
+           '<div class="result-row"><span class="result-row-label">الحد المعياري الكامل:</span><span class="result-row-value">' + base.toLocaleString() + ' ج.م</span></div>' +
+           '<div class="result-row"><span class="result-row-label">المعادلة: الحد × نسبة العجز:</span><span class="result-row-value">' + base.toLocaleString() + ' × ' + pct + '%</span></div>';
+    totalText = Math.round(comp).toLocaleString() + ' ج.م';
+    note = 'تُحتسب نسبة العجز بناءً على تقرير اللجنة الطبية، ويُطبَّق على الحد المعياري المحدث بقرار وزاري.';
+  } else if (type === 'temporary') {
+    var days = parseInt(document.getElementById('dw-days').value) || 30;
+    var wage = parseFloat(document.getElementById('dw-wage').value) || 300;
+    var interruptionComp = days * wage * 0.75; // 75% من الأجر اليومي
+    rows = '<div class="result-row"><span class="result-row-label">أيام الانقطاع:</span><span class="result-row-value">' + days + ' يوم</span></div>' +
+           '<div class="result-row"><span class="result-row-label">متوسط الأجر اليومي:</span><span class="result-row-value">' + wage.toLocaleString() + ' ج.م</span></div>' +
+           '<div class="result-row"><span class="result-row-label">تعويض أيام الانقطاع (75%):</span><span class="result-row-value">' + Math.round(interruptionComp).toLocaleString() + ' ج.م</span></div>';
+    totalText = Math.round(interruptionComp).toLocaleString() + ' ج.م';
+    note = 'يشمل تعويض أيام الانقطاع فقط — مصاريف العلاج الفعلية تُردّ إضافةً إلى هذا المبلغ بحدود ما يثبت بالفواتير والتقارير الطبية.';
+  }
+
+  document.getElementById('dw-rows').innerHTML = rows;
+  document.getElementById('dw-total-box').innerHTML =
+    '<span class="result-total-label">إجمالي التعويض التقديري من الديوان:</span><span class="result-total-value">' + totalText + '</span>';
+  document.getElementById('dw-note').innerText =
+    '⚠️ ' + note + ' النتيجة تقديرية استرشادية — القيمة النهائية يقررها الديوان أو المحكمة.';
+  document.getElementById('dw-result').classList.add('show');
+}
+
+// ── 15: التأمينات على الأجور ──
+function calcSocialInsurance() {
+  var gross = parseFloat(document.getElementById('si-gross').value) || 0;
+  var minInsurable = parseFloat(document.getElementById('si-min').value) || 2300;
+  var maxInsurable = parseFloat(document.getElementById('si-max').value) || 14500;
+  var sector = document.getElementById('si-sector').value;
+
+  if (!gross) { alert('يرجى إدخال الأجر الشامل الشهري.'); return; }
+
+  // الأجر الخاضع للتأمين = الأجر الفعلي محصور بين الحدين
+  var insurable = Math.max(minInsurable, Math.min(gross, maxInsurable));
+  var clamped = insurable !== gross;
+  var empRate = 11, erRate = 18.75;
+  var employeeShare = insurable * (empRate / 100);
+  var employerShare = insurable * (erRate / 100);
+  var totalContribution = employeeShare + employerShare;
+  var netAfterInsurance = gross - employeeShare;
+
+  function fmt(n) { return n.toLocaleString('en-US', {maximumFractionDigits: 2}); }
+  document.getElementById('si-rows').innerHTML =
+    '<div class="result-row"><span class="result-row-label">الأجر الشامل الشهري:</span><span class="result-row-value">' + fmt(gross) + ' ج.م</span></div>' +
+    '<div class="result-row"><span class="result-row-label">الأجر الخاضع للتأمين (بعد التقييد):</span><span class="result-row-value">' + fmt(insurable) + ' ج.م' + (clamped ? ' ← مُقيَّد بالحدود القانونية' : '') + '</span></div>' +
+    '<div class="result-row"><span class="result-row-label">حصة العامل (' + empRate + '%):</span><span class="result-row-value">− ' + fmt(employeeShare) + ' ج.م</span></div>' +
+    '<div class="result-row"><span class="result-row-label">حصة صاحب العمل (' + erRate + '%):</span><span class="result-row-value">' + fmt(employerShare) + ' ج.م (يتحمّلها صاحب العمل)</span></div>' +
+    '<div class="result-row"><span class="result-row-label">إجمالي الاشتراك الشهري المرسل للهيئة:</span><span class="result-row-value">' + fmt(totalContribution) + ' ج.م</span></div>';
+
+  document.getElementById('si-total-box').innerHTML =
+    '<span class="result-total-label">صافي الراتب بعد خصم حصة العامل:</span><span class="result-total-value">' + fmt(netAfterInsurance) + ' ج.م</span>';
+  document.getElementById('si-note').innerText =
+    'الأساس: قانون التأمينات الاجتماعية رقم 148/2019 — نسبة العامل 11% وصاحب العمل 18.75% على الأجر الخاضع المحصور بين الحدين الأدنى والأقصى المحدثين سنوياً بقرار من رئيس الهيئة القومية للتأمين Social. لا تشمل هذه النتيجة ضريبة كسب العمل.';
+  document.getElementById('si-result').classList.add('show');
 }
 </script>
 <script src="/sidebar.js?v=20260823v10"></script><script src="/sw-register.js?v=20260826v1" defer></script><!-- mohami-sw --></body>

@@ -87,7 +87,9 @@ function buildSitemap() {
     { loc: '/legal-radar.html', pri: '0.6', freq: 'daily' },
     // بوابات دول الخليج
     { loc: '/saudi-legal-hub.html', pri: '0.85', freq: 'monthly' },
+    { loc: '/saudi-legal-hub-en.html', pri: '0.8', freq: 'monthly' },
     { loc: '/uae-legal-hub.html', pri: '0.85', freq: 'monthly' },
+    { loc: '/uae-legal-hub-en.html', pri: '0.8', freq: 'monthly' },
     { loc: '/qatar-legal-hub.html', pri: '0.85', freq: 'monthly' },
     { loc: '/oman-legal-hub.html', pri: '0.85', freq: 'monthly' },
     // البوابات والخدمات العامة
