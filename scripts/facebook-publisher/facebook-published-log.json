@@ -2084,6 +2084,27 @@
       "duration": "1د 2ث",
       "size": 22602910,
       "publishedAt": "2026-08-25T07:09:08.899Z"
+    },
+    {
+      "topicId": "trend-official-holidays-labor-rights-egypt",
+      "title": "حقوق العمال في الإجازات الرسمية مثل المولد النبوي وفق قانون العمل المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون العمل",
+        "#قانون العمل المصري",
+        "#إجازة المولد النبوي"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-official-holidays-labor-rights-egypt.mp4",
+      "videoId": "1069822082693982",
+      "permalink": "https://www.facebook.com/reel/1069822082693982",
+      "source": "trending-topics.json",
+      "duration": "54ث",
+      "size": 23731540,
+      "publishedAt": "2026-08-25T09:52:32.337Z"
     }
   ]
 }
