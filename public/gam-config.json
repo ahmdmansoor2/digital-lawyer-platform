@@ -1,0 +1,13 @@
+{
+  "networkCode": "",
+  "_تعليمات_سريعة": [
+    "1) ادخل admanager.google.com → Admin ← Global settings ← انسخ Network Code (رقم ~10 خانات)",
+    "2) Inventory ← Ad units ← أنشئ ثلاث وحدات بهذه الأسماء حرفياً: Top_Banner و In_Article و Bottom_Banner",
+    "3) الصق الرقم في networkCode أعلاه والتزم الملف — الإعلانات تُفعَّل فوراً بلا أي تعديل آخر"
+  ],
+  "adUnits": {
+    "top": "Top_Banner",
+    "inArticle": "In_Article",
+    "bottom": "Bottom_Banner"
+  }
+}

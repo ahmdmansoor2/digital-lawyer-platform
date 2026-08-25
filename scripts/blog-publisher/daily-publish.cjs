@@ -681,6 +681,7 @@ ${list}${midImage}`;
   ${HEADER_CSS}
   <link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest -->
   <meta name="theme-color" content="#0f172a"><!-- mohami-theme -->
+  <link rel="alternate" type="application/rss+xml" title="RSS - منصة المحامي الرقمية" href="/rss.xml"><!-- mohami-rss -->
   <script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script><!-- www-mohami-guard -->
   <style>${articleCardCss}</style>
 </head>
@@ -879,6 +880,8 @@ ${sectionsHtml}
     .ad-label { display: block; font-size: 10px; color: var(--muted); text-align: center; margin-bottom: 6px; font-weight: 700; letter-spacing: 0.5px; }
   </style>
   <script src="/related-articles.js?v=20260826v3" defer></script><!-- mohami-related -->
+  <script src="/tts-reader.js?v=20260826v1" defer></script><!-- mohami-tts -->
+  <script src="/gam.js?v=20260826v1" defer></script><!-- mohami-gam -->
   <script src="/sw-register.js?v=20260826v1" defer></script><!-- mohami-sw -->
 </body>
 </html>
