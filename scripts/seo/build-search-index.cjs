@@ -31,6 +31,8 @@ const SEARCH_PATHS = [
   { dir: path.join(PUBLIC_DIR, 'blog'), type: 'blog', urlPrefix: '/blog/' },
   { dir: path.join(PUBLIC_DIR, 'pillars'), type: 'pillar', urlPrefix: '/pillars/' },
   { dir: path.join(PUBLIC_DIR, 'legal-library-topics'), type: 'pillar', urlPrefix: '/legal-library-topics/' },
+  { dir: path.join(PUBLIC_DIR, 'radar-topics'), type: 'radar', urlPrefix: '/radar-topics/' },
+  { dir: path.join(PUBLIC_DIR, 'legal-forms-docs'), type: 'form', urlPrefix: '/legal-forms-docs/' },
   { dir: PUBLIC_DIR, type: 'page', urlPrefix: '/', filter: (f) => f.endsWith('.html') && !f.startsWith('blog') && !f.startsWith('pillars') && !f.startsWith('assets') && !f.startsWith('legal-library-topics') },
 ];
 
@@ -41,6 +43,7 @@ const SKIP_FILES = new Set([
   '62c624f591cc714b7d28bf2c04c7966e.txt',
   'robots.txt',
   'sitemap.xml',
+  'search.html',
 ]);
 
 /**
@@ -143,6 +146,8 @@ function extractCategory(html, filename, type) {
     if (filename.match(/tech|تكنولوجيا|تسويق|إدارة|مكتب/)) return 'إدارة مكاتب';
   }
   if (type === 'pillar') return 'مراجع شاملة';
+  if (type === 'radar') return 'رصد المحامي';
+  if (type === 'form') return 'صيغ قانونية';
   return 'صفحات';
 }
 
@@ -221,8 +226,8 @@ function buildIndex() {
     console.log(`[search] ${p.type}: ${items.length} صفحة من ${path.relative(ROOT, p.dir)}`);
   }
 
-  // ترتيب: pillars أولاً، ثم blog، ثم page
-  const typeOrder = { pillar: 0, page: 1, blog: 2 };
+  // ترتيب: pillars أولاً، ثم page، ثم blog/radar/form
+  const typeOrder = { pillar: 0, page: 1, blog: 2, radar: 3, form: 4 };
   all.sort((a, b) => {
     if (typeOrder[a.type] !== typeOrder[b.type]) return typeOrder[a.type] - typeOrder[b.type];
     return a.title.localeCompare(b.title, 'ar');

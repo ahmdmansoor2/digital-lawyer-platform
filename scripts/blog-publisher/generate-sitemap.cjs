@@ -85,6 +85,22 @@ function buildSitemap() {
     { loc: '/sitemap.html', pri: '0.3', freq: 'monthly' },
     { loc: '/legal-forms.html', pri: '0.8', freq: 'monthly' },
     { loc: '/legal-radar.html', pri: '0.6', freq: 'daily' },
+    // بوابات دول الخليج
+    { loc: '/saudi-legal-hub.html', pri: '0.85', freq: 'monthly' },
+    { loc: '/uae-legal-hub.html', pri: '0.85', freq: 'monthly' },
+    { loc: '/qatar-legal-hub.html', pri: '0.85', freq: 'monthly' },
+    { loc: '/oman-legal-hub.html', pri: '0.85', freq: 'monthly' },
+    // البوابات والخدمات العامة
+    { loc: '/courts-directory.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/legal-calculators.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/court-precedents.html', pri: '0.85', freq: 'weekly' },
+    { loc: '/lawyers-directory.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/legal-consultations.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/citizen-complaints.html', pri: '0.75', freq: 'monthly' },
+    { loc: '/e-justice-services.html', pri: '0.75', freq: 'monthly' },
+    { loc: '/company-incorporation.html', pri: '0.75', freq: 'monthly' },
+    { loc: '/legal-diagnostics.html', pri: '0.7', freq: 'monthly' },
+    { loc: '/disclaimer.html', pri: '0.3', freq: 'yearly' },
   ];
   for (const m of main) {
     urls.push(`  <url>\n    <loc>${BASE_URL}${m.loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${m.freq}</changefreq>\n    <priority>${m.pri}</priority>\n  </url>`);

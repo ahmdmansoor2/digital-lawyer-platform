@@ -45,11 +45,14 @@ jobs:
           FILL_ARTICLES: '1'
           CI: true
 
+      - name: Rebuild site search index
+        run: node scripts/seo/build-search-index.cjs
+
       - name: Commit & Push changes
         run: |
           git config user.name  "Smart Legal Publisher 🤖"
           git config user.email "bot@justice-91571.web.app"
-          git add scripts/published-log.json scripts/trending-topics.json scripts/blog-publisher/facebook-published-log.json public/blog/ public/legal-radar.html public/radar-archive.json public/radar-topics/ public/sitemap.xml public/sitemap.html
+          git add scripts/published-log.json scripts/trending-topics.json scripts/blog-publisher/facebook-published-log.json public/blog/ public/legal-radar.html public/radar-archive.json public/radar-topics/ public/sitemap.xml public/sitemap.html public/search-index.json
           git diff --staged --quiet || git commit -m "🤖 Smart-publish: $(date +'%Y-%m-%d %H:%M') — مقالات قانونية + رصد المحامي"
           git pull --rebase origin main 2>/dev/null || true
           git push
@@ -57,6 +60,7 @@ jobs:
       - name: Build & Deploy to Firebase Hosting
         run: |
           npm run build
+          rm -f .firebase/hosting.*.cache
           npx firebase deploy --only hosting:app --token "$FIREBASE_TOKEN" --non-interactive
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

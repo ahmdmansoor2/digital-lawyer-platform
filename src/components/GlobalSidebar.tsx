@@ -48,6 +48,7 @@ const SIDEBAR_SECTIONS: SidebarSection[] = [
       { label: 'المملكة العربية السعودية', href: '/saudi-legal-hub.html', icon: '🇸🇦' },
       { label: 'دولة الإمارات العربية المتحدة', href: '/uae-legal-hub.html', icon: '🇦🇪' },
       { label: 'دولة قطر', href: '/qatar-legal-hub.html', icon: '🇶🇦' },
+      { label: 'سلطنة عمان', href: '/oman-legal-hub.html', icon: '🇴🇲' },
     ],
   },
   {

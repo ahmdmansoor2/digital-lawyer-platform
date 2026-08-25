@@ -13,117 +13,31 @@
 
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import { Search, X, FileText, BookOpen, Layers, ExternalLink } from 'lucide-react';
+import { Search, X, FileText, BookOpen, Layers, ExternalLink, Radio, ScrollText, Globe } from 'lucide-react';
+import {
+  loadSearchIndex,
+  search as runSearch,
+  highlight,
+  type SearchIndex,
+  type IndexType,
+} from '../utils/siteSearch';
 
-interface IndexItem {
-  id: string;
-  title: string;
-  description: string;
-  url: string;
-  type: 'blog' | 'pillar' | 'page';
-  category: string;
-  keywords: string;
-  image: string;
-  snippet: string;
-  wordCount: number;
-}
-
-interface SearchIndex {
-  generatedAt: string;
-  baseUrl: string;
-  count: number;
-  totalWords: number;
-  items: IndexItem[];
-}
-
-interface RankedResult {
-  item: IndexItem;
-  score: number;
-}
-
-const TYPE_META: Record<IndexItem['type'], { label: string; icon: React.ComponentType<any>; color: string; bg: string }> = {
-  blog:   { label: 'مقال',         icon: FileText,  color: 'text-amber-700',   bg: 'bg-amber-50' },
-  pillar: { label: 'مرجع شامل',     icon: BookOpen,  color: 'text-purple-700',  bg: 'bg-purple-50' },
-  page:   { label: 'صفحة',         icon: Layers,    color: 'text-emerald-700', bg: 'bg-emerald-50' },
+const TYPE_META: Record<IndexType | 'default', { label: string; icon: React.ComponentType<any>; color: string; bg: string }> = {
+  blog:   { label: 'مقال',         icon: FileText,   color: 'text-amber-300',   bg: 'bg-amber-400/15' },
+  pillar: { label: 'مرجع شامل',     icon: BookOpen,   color: 'text-purple-300',  bg: 'bg-purple-400/15' },
+  page:   { label: 'صفحة',         icon: Layers,     color: 'text-emerald-300', bg: 'bg-emerald-400/15' },
+  radar:  { label: 'رصد المحامي',   icon: Radio,      color: 'text-cyan-300',    bg: 'bg-cyan-400/15' },
+  form:   { label: 'صيغة قانونية',  icon: ScrollText, color: 'text-indigo-300',  bg: 'bg-indigo-400/15' },
+  default:{ label: 'نتيجة',        icon: Globe,      color: 'text-slate-300',   bg: 'bg-slate-400/15' },
 };
-
-function normalize(s: string): string {
-  return (s || '').toLowerCase()
-    .replace(/[\u064B-\u0652\u0670\u0640]/g, '')
-    .replace(/[إأآا]/g, 'ا')
-    .replace(/[ىي]/g, 'ي')
-    .replace(/ة/g, 'ه')
-    .replace(/[^\u0600-\u06FFa-z0-9\s]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function escapeHtml(s: string): string {
-  return String(s)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-function escapeRegex(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-function highlight(text: string, q: string): string {
-  if (!text) return '';
-  if (!q || !q.trim()) return escapeHtml(text);
-  const tokens = q.trim().split(/\s+/).filter(Boolean);
-  let out = escapeHtml(text);
-  for (const t of tokens) {
-    if (t.length < 2) continue;
-    out = out.replace(new RegExp('(' + escapeRegex(t) + ')', 'gi'), '<mark>$1</mark>');
-  }
-  return out;
-}
-
-function scoreItem(item: IndexItem, q: string): number {
-  const qn = normalize(q);
-  if (!qn) return 0;
-  const title = normalize(item.title);
-  const desc = normalize(item.description || '');
-  const cat = normalize(item.category || '');
-  const kw = normalize(item.keywords || '');
-  const snip = normalize(item.snippet || '');
-  const tokens = qn.split(/\s+/).filter(Boolean);
-  if (!tokens.length) return 0;
-  let s = 0;
-  for (const t of tokens) {
-    if (title.includes(t)) s += 20;
-    if (desc.includes(t)) s += 8;
-    if (cat.includes(t)) s += 5;
-    if (kw.includes(t)) s += 4;
-    if (snip.includes(t)) s += 2;
-    if (title === qn) s += 30;
-    const re = new RegExp('\\b' + escapeRegex(t) + '\\b', 'i');
-    if (re.test(title)) s += 5;
-  }
-  return s;
-}
-
-function search(index: SearchIndex | null, q: string): RankedResult[] {
-  if (!index || !q.trim()) return [];
-  const results: RankedResult[] = [];
-  for (const item of index.items) {
-    const s = scoreItem(item, q);
-    if (s > 0) results.push({ item, score: s });
-  }
-  results.sort((a, b) => b.score - a.score);
-  return results.slice(0, 12);
-}
 
 interface SiteSearchModalProps {
   open: boolean;
   onClose: () => void;
+  initialQuery?: string;
 }
 
-export default function SiteSearchModal({ open, onClose }: SiteSearchModalProps) {
+export default function SiteSearchModal({ open, onClose, initialQuery }: SiteSearchModalProps) {
   const [indexData, setIndexData] = useState<SearchIndex | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [query, setQuery] = useState('');
@@ -136,17 +50,21 @@ export default function SiteSearchModal({ open, onClose }: SiteSearchModalProps)
   // حمّل الفهرس عند فتح الـ modal أول مرة
   useEffect(() => {
     if (!open || indexData) return;
-    fetch('/search-index.json')
-      .then(r => {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      })
+    loadSearchIndex()
       .then((data: SearchIndex) => setIndexData(data))
       .catch(err => {
         console.error('[SiteSearch] فشل تحميل الفهرس:', err);
         setLoadError(String(err));
       });
   }, [open, indexData]);
+
+  // استعلام مبدئي يُمرر من شريط البحث الرئيسي
+  useEffect(() => {
+    if (open) {
+      setQuery(initialQuery || '');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
 
   // Debounce للبحث
   useEffect(() => {
@@ -164,7 +82,7 @@ export default function SiteSearchModal({ open, onClose }: SiteSearchModalProps)
     }
   }, [open]);
 
-  const results = useMemo(() => search(indexData, debounced), [indexData, debounced]);
+  const results = useMemo(() => runSearch(indexData, debounced), [indexData, debounced]);
 
   useEffect(() => {
     setActiveIndex(0);

@@ -115,6 +115,18 @@ export default function SiteHeader({ activeKey, variant = 'default', onEnterApp,
           <button
             type="button"
             className="uh-cta uh-cta--ghost"
+            style={{ padding: '7px 11px', fontSize: '0.85rem' }}
+            onClick={() => {
+              window.dispatchEvent(new CustomEvent('open-mohami-search'));
+            }}
+            title="البحث في المنصة (Ctrl+K)"
+            aria-label="بحث"
+          >
+            <span>🔍</span>
+          </button>
+          <button
+            type="button"
+            className="uh-cta uh-cta--ghost"
             style={{ padding: '7px 12px', fontSize: '0.82rem', borderColor: 'rgba(99, 102, 241, 0.4)' }}
             onClick={() => {
               window.dispatchEvent(new CustomEvent('toggle-mohami-sidebar'));

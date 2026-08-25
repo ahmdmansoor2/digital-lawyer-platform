@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  *
  * InfoCenter — البوابة الوطنية والإقليمية الشاملة لمنصة المحامي الرقمية 2026
- * تغطي مصر والدول الخليجية الكبرى (السعودية · الإمارات · قطر) في شبكة كروت تفاعلية
+ * تغطي مصر ودول الخليج الكبرى (السعودية · الإمارات · قطر · سلطنة عمان) في شبكة كروت تفاعلية
  */
 
 import React, { useState } from 'react';
@@ -35,6 +35,8 @@ import SiteHeader from './SiteHeader';
 import InteractiveTourShowcase from './InteractiveTourShowcase';
 import PromoVideoPlayer from './PromoVideoPlayer';
 import GlobalSidebar from './GlobalSidebar';
+import HeroSearchBar from './HeroSearchBar';
+import SiteSearchModal from './SiteSearchModal';
 
 interface InfoCenterProps {
   userName?: string;
@@ -73,6 +75,16 @@ const ALL_PLATFORM_PORTALS = [
     icon: Gavel,
     gradient: 'from-rose-600 to-red-800',
     tag: 'المجلس الأعلى للقضاء وQFC',
+    category: 'gulf'
+  },
+  {
+    href: '/oman-legal-hub.html',
+    badge: '🇴🇲 سلطنة عمان',
+    title: 'بوابة الأنظمة والخدمات القانونية العمانية 2026',
+    desc: 'حاسبة ذكية لمكافأة نهاية الخدمة تفصل تلقائياً بين النظامين (مرسوما 35/2003 و53/2023) وفق المادة 61 وتعميم وزارة العمل، بوابات المحاكم والنيابة العامة، وتأسيس الشركات عبر Invest Oman والمناطق الحرة.',
+    icon: Globe,
+    gradient: 'from-green-600 to-emerald-900',
+    tag: 'قانون العمل الجديد 53/2023',
     category: 'gulf'
   },
 
@@ -254,11 +266,36 @@ const LAW_FIRM_TOOLS = [
 export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCenterProps) {
   const [activeTab, setActiveTab] = useState<'lawyers' | 'citizens'>('lawyers');
   const [portalCategory, setPortalCategory] = useState<'all' | 'gulf' | 'citizens' | 'lawyers' | 'library'>('all');
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchInitialQuery, setSearchInitialQuery] = useState('');
 
   const filteredPortals = ALL_PLATFORM_PORTALS.filter(p => {
     if (portalCategory === 'all') return true;
     return p.category === portalCategory;
   });
+
+  // فتح البحث الكامل من شريط الهيرو أو زر 🔍 في الهيدر أو Ctrl+K
+  const openFullSearch = (q?: string) => {
+    setSearchInitialQuery(q || '');
+    setSearchOpen(true);
+  };
+
+  useEffect(() => {
+    const onOpenEvent = () => openFullSearch();
+    const onKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setSearchOpen(v => { if (!v) setSearchInitialQuery(''); return true; });
+      }
+    };
+    window.addEventListener('open-mohami-search', onOpenEvent);
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('open-mohami-search', onOpenEvent);
+      window.removeEventListener('keydown', onKeyDown);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="min-h-screen text-slate-100 relative overflow-hidden font-sans select-none" dir="rtl">
@@ -288,6 +325,11 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
       {/* Global Unified Header */}
       <div className="relative z-20">
         <SiteHeader activeKey="home" onEnterApp={onEnterApp} userName={userName} onLogout={onLogout} />
+      </div>
+
+      {/* ─── شريط البحث الذكي (أسفل الهيدر مباشرة) ───────────────────────── */}
+      <div className="relative z-30 pt-5 px-4 sm:px-6 lg:px-8" data-search-section>
+        <HeroSearchBar onOpenFullSearch={openFullSearch} />
       </div>
 
       {/* ─── 1. GRAND HERO SECTION WITH DUAL-TRACK SWITCHER ──────────────── */}
@@ -422,11 +464,11 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               البوابات القانونية لدول الخليج العربي
             </h2>
             <p className="text-sm sm:text-base text-slate-300 mt-2">
-              بوابات مستقلة متخصصة تضم حاسبات مكافأة نهاية الخدمة الدقيقة، منصات التقاضي الإلكتروني، وتأسيس الشركات والأنظمة المعتمدة في السعودية والإمارات وقطر.
+              بوابات مستقلة متخصصة تضم حاسبات مكافأة نهاية الخدمة الدقيقة، منصات التقاضي الإلكتروني، وتأسيس الشركات والأنظمة المعتمدة في السعودية والإمارات وقطر وسلطنة عمان.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             
             {/* Card 1: Saudi Arabia */}
             <a
@@ -514,6 +556,36 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               </div>
               <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-rose-400 group-hover:text-rose-300">
                 <span>دخول بوابة قطر</span>
+                <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+              </div>
+            </a>
+
+            {/* Card 4: Oman */}
+            <a
+              href="/oman-legal-hub.html"
+              className="group relative p-6 rounded-2xl bg-gradient-to-b from-green-950/60 to-slate-900/90 hover:to-slate-900 border border-green-500/30 hover:border-green-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-3xl">🇴🇲</span>
+                  <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-red-500/20 text-red-300 border border-red-500/30">
+                    قانون العمل الجديد 53/2023
+                  </span>
+                </div>
+                <h3 className="text-lg font-black text-white group-hover:text-green-300 transition-colors mb-2">
+                  بوابة سلطنة عمان
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed mb-4">
+                  حاسبة ذكية تفصل تلقائياً بين نظامي المرسومين 35/2003 و53/2023 وفق المادة 61 وتعميم وزارة العمل، بوابات المحاكم والنيابة العامة، وتأسيس الشركات عبر Invest Oman.
+                </p>
+                <div className="space-y-1.5 text-xs text-slate-400 border-t border-green-900/60 pt-3">
+                  <div className="flex items-center gap-1.5">✓ حاسبة ذكية تفصل النظامين بالتاريخ</div>
+                  <div className="flex items-center gap-1.5">✓ المحاكم والنيابة العامة ووزارة العمل</div>
+                  <div className="flex items-center gap-1.5">✓ Invest Oman والمناطق الحرة الثلاث</div>
+                </div>
+              </div>
+              <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-green-400 group-hover:text-green-300">
+                <span>دخول بوابة عُمان</span>
                 <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
               </div>
             </a>
@@ -752,6 +824,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             <a href="/saudi-legal-hub.html" className="hover:text-emerald-400 transition-colors">🇸🇦 السعودية</a>
             <a href="/uae-legal-hub.html" className="hover:text-blue-400 transition-colors">🇦🇪 الإمارات</a>
             <a href="/qatar-legal-hub.html" className="hover:text-rose-400 transition-colors">🇶🇦 قطر</a>
+            <a href="/oman-legal-hub.html" className="hover:text-red-400 transition-colors">🇴🇲 عُمان</a>
             <a href="/legal-consultations.html" className="hover:text-emerald-400 transition-colors">💬 الاستشارات</a>
             <a href="/lawyers-directory.html" className="hover:text-indigo-400 transition-colors">👨‍⚖️ دليل المحامين</a>
             <a href="/e-justice-services.html" className="hover:text-cyan-400 transition-colors">🏛️ التقاضي الإلكتروني</a>
@@ -767,6 +840,13 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </p>
         </div>
       </footer>
+
+      {/* ─── نافذة البحث الكاملة (تُفتح من الشريط أو 🔍 الهيدر أو Ctrl+K) ── */}
+      <SiteSearchModal
+        open={searchOpen}
+        onClose={() => setSearchOpen(false)}
+        initialQuery={searchInitialQuery}
+      />
 
     </div>
   );
