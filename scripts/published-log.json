@@ -1836,6 +1836,18 @@
       ],
       "words": 1913,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "خصم الراتب والجزاءات التاديبية: حقوق العامل في قانون العمل المصري",
+      "date": "2026-08-25",
+      "slug": "egyptian-labor-law-salary-deductions",
+      "url": "https://mohamidigital.online/blog/egyptian-labor-law-salary-deductions.html",
+      "image": "https://mohamidigital.online/blog/images/egyptian-labor-law-salary-deductions.jpg",
+      "tags": [
+        "قانون العمل"
+      ],
+      "words": 2147,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
