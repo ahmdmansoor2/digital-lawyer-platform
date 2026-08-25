@@ -154,7 +154,7 @@
     .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
     @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
   </style>
-</head>
+<link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest --><meta name="theme-color" content="#0f172a"><!-- mohami-theme --><link rel="apple-touch-icon" href="/icon.svg"><!-- mohami-apple --></head>
 <body>
   <header class="uh-bar" id="siteHeader">
     <div class="uh-inner">
@@ -585,7 +585,7 @@
         var text = modalBody.innerText;
         var title = modalTitle.innerText;
         var endScript = '<' + '/script>';
-        var htmlContent = '<html><head><meta charset="utf-8"><title>' + title + '</title></head><body style="font-family:Arial, sans-serif; direction:rtl; text-align:right;"><h2>' + title + '</h2><hr/><pre style="white-space:pre-wrap; font-family:Arial, sans-serif;">' + text + '</pre>' + endScript + '</body></html>';
+        var htmlContent = '<html><head><meta charset="utf-8"><script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script><!-- www-mohami-guard --><title>' + title + '</title></head><body style="font-family:Arial, sans-serif; direction:rtl; text-align:right;"><h2>' + title + '</h2><hr/><pre style="white-space:pre-wrap; font-family:Arial, sans-serif;">' + text + '</pre>' + endScript + '<script src="/sw-register.js?v=20260826v1" defer></script><!-- mohami-sw --></body></html>';
         var blob = new Blob(['\ufeff' + htmlContent], { type: 'application/msword;charset=utf-8' });
         var url = URL.createObjectURL(blob);
         var a = document.createElement('a');

@@ -37,6 +37,7 @@ import PromoVideoPlayer from './PromoVideoPlayer';
 import GlobalSidebar from './GlobalSidebar';
 import HeroSearchBar from './HeroSearchBar';
 import SiteSearchModal from './SiteSearchModal';
+import AIAdvisor from './AIAdvisor';
 
 interface InfoCenterProps {
   userName?: string;
@@ -847,6 +848,9 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
         onClose={() => setSearchOpen(false)}
         initialQuery={searchInitialQuery}
       />
+
+      {/* ─── المستشار الذكي (RAG من محتوى المنصة) ───────────────────────── */}
+      <AIAdvisor />
 
     </div>
   );
