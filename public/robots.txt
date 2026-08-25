@@ -8,3 +8,4 @@ User-agent: Googlebot
 Allow: /
 
 Sitemap: https://mohamidigital.online/sitemap.xml
+Sitemap: https://mohamidigital.online/news-sitemap.xml
