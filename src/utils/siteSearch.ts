@@ -7,7 +7,7 @@
  * تطبيع عربي، ترتيب ذكي، إبراز المطابقات، أنواع المحتوى.
  */
 
-export type IndexType = 'blog' | 'pillar' | 'page' | 'radar' | 'form';
+export type IndexType = 'blog' | 'pillar' | 'page' | 'radar' | 'form' | 'court';
 
 export interface IndexItem {
   id: string;

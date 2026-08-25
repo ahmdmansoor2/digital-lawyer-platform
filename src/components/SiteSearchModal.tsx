@@ -13,7 +13,7 @@
 
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import { Search, X, FileText, BookOpen, Layers, ExternalLink, Radio, ScrollText, Globe } from 'lucide-react';
+import { Search, X, FileText, BookOpen, Layers, ExternalLink, Radio, ScrollText, Globe, Landmark } from 'lucide-react';
 import {
   loadSearchIndex,
   search as runSearch,
@@ -28,6 +28,7 @@ const TYPE_META: Record<IndexType | 'default', { label: string; icon: React.Comp
   page:   { label: 'صفحة',         icon: Layers,     color: 'text-emerald-300', bg: 'bg-emerald-400/15' },
   radar:  { label: 'رصد المحامي',   icon: Radio,      color: 'text-cyan-300',    bg: 'bg-cyan-400/15' },
   form:   { label: 'صيغة قانونية',  icon: ScrollText, color: 'text-indigo-300',  bg: 'bg-indigo-400/15' },
+  court:  { label: 'محكمة / توثيق', icon: Landmark,   color: 'text-rose-300',    bg: 'bg-rose-400/15' },
   default:{ label: 'نتيجة',        icon: Globe,      color: 'text-slate-300',   bg: 'bg-slate-400/15' },
 };
 

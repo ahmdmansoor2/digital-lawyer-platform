@@ -226,8 +226,39 @@ function buildIndex() {
     console.log(`[search] ${p.type}: ${items.length} صفحة من ${path.relative(ROOT, p.dir)}`);
   }
 
-  // ترتيب: pillars أولاً، ثم page، ثم blog/radar/form
-  const typeOrder = { pillar: 0, page: 1, blog: 2, radar: 3, form: 4 };
+  // فروع المحاكم والشهر العقاري — كل فرع نتيجة بحث مستقلة
+  try {
+    const courtsHtml = fs.readFileSync(path.join(PUBLIC_DIR, 'courts-directory.html'), 'utf8');
+    const cm = courtsHtml.match(/const COURTS_DATA = \[([\s\S]*?)\n\];/);
+    if (cm) {
+      const courts = eval('[' + cm[1] + '\n]');
+      const courtUrl = BASE_URL + '/courts-directory.html';
+      const typeLabel = { shahr: 'مكتب توثيق', primary: 'محكمة ابتدائية/جزئية', appeal: 'محكمة استئناف', council: 'مجلس الدولة', economic: 'محكمة اقتصادية' };
+      let added = 0;
+      for (const c of courts) {
+        if (!c.name || !c.gov) continue;
+        all.push({
+          id: '/courts-directory#' + c.name,
+          title: c.name,
+          description: (typeLabel[c.type] || 'مقر قضائي') + ' — ' + (c.govName || '') + ' | ' + (c.hours || ''),
+          url: courtUrl,
+          type: 'court',
+          category: c.govName || 'دليل المحاكم',
+          keywords: ['محاكم','شهر عقاري','توثيق','توكيل','مأمورية',(c.govName||''),(c.address||'')].filter(Boolean).join('، '),
+          image: '',
+          snippet: [c.address, c.hours, c.scope].filter(Boolean).join(' | ').slice(0, 280),
+          wordCount: ((c.scope||'') + ' ' + (c.address||'')).split(/\s+/).filter(Boolean).length,
+        });
+        added++;
+      }
+      console.log(`[search] court: ${added} فرعاً من دليل المحاكم والشهر العقاري`);
+    }
+  } catch (e) {
+    console.warn('[search] تعذر فهرسة دليل المحاكم:', e.message);
+  }
+
+  // ترتيب: pillars أولاً، ثم page، ثم blog/radar/form/court
+  const typeOrder = { pillar: 0, page: 1, blog: 2, radar: 3, form: 4, court: 5 };
   all.sort((a, b) => {
     if (typeOrder[a.type] !== typeOrder[b.type]) return typeOrder[a.type] - typeOrder[b.type];
     return a.title.localeCompare(b.title, 'ar');
