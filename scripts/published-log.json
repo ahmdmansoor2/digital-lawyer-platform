@@ -1812,6 +1812,30 @@
       ],
       "words": 1723,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "حقوق العمال في الإجازات الرسمية مثل المولد النبوي وفق قانون العمل المصري",
+      "date": "2026-08-25",
+      "slug": "official-holidays-labor-rights-egypt",
+      "url": "https://mohamidigital.online/blog/official-holidays-labor-rights-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/official-holidays-labor-rights-egypt.jpg",
+      "tags": [
+        "قانون العمل"
+      ],
+      "words": 2144,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "إجراءات التعويض عن حوادث السيارات من شركات التأمين الإجباري في مصر",
+      "date": "2026-08-25",
+      "slug": "car-insurance-compensation-claims-egypt",
+      "url": "https://mohamidigital.online/blog/car-insurance-compensation-claims-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/car-insurance-compensation-claims-egypt.jpg",
+      "tags": [
+        "التأمين والتعويضات"
+      ],
+      "words": 1913,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
