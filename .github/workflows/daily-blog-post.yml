@@ -53,6 +53,9 @@ jobs:
           node scripts/seo/generate-news-sitemap.cjs
           node scripts/newsletter/generate-rss-digest.cjs
 
+      - name: Apply Google News on-site requirements (SWG + NewsArticle schema)
+        run: node scripts/seo/news-requirements.cjs
+
       - name: Commit & Push changes
         run: |
           git config user.name  "Smart Legal Publisher 🤖"

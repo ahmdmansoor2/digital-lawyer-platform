@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="120" viewBox="0 0 600 120">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset=".55" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="120" rx="24" fill="#0f172a"/>
+  <!-- شعار الميزان -->
+  <g transform="translate(28,18)">
+    <rect width="84" height="84" rx="20" fill="url(#lg)" opacity=".22"/>
+    <g transform="translate(14,14) scale(1.55)" stroke="url(#lg)" stroke-width="4.5" stroke-linecap="round" fill="none">
+      <path d="M36 12v56M18 20h36M36 68h-16m16 0h16"/>
+      <path d="M18 20l-11 26a13 13 0 0 0 22 0z" fill="url(#lg)" opacity=".45"/>
+      <path d="M54 20l11 26a13 13 0 0 1-22 0z" fill="url(#lg)" opacity=".45"/>
+      <circle cx="36" cy="9.5" r="4.5" fill="url(#lg)"/>
+    </g>
+  </g>
+  <!-- النص -->
+  <text x="140" y="58" font-family="Cairo, 'Segoe UI', Tahoma, sans-serif" font-size="34" font-weight="900" fill="#ffffff">منصة المحامي الرقمية</text>
+  <text x="141" y="92" font-family="Cairo, 'Segoe UI', Tahoma, sans-serif" font-size="19" font-weight="700" fill="#8b96b5">المنظومة القانونية والقضائية الشاملة</text>
+</svg>

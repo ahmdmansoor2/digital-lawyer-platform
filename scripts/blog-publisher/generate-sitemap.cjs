@@ -101,6 +101,7 @@ function buildSitemap() {
     { loc: '/company-incorporation.html', pri: '0.75', freq: 'monthly' },
     { loc: '/legal-diagnostics.html', pri: '0.7', freq: 'monthly' },
     { loc: '/disclaimer.html', pri: '0.3', freq: 'yearly' },
+    { loc: '/editorial-policy.html', pri: '0.6', freq: 'yearly' },
   ];
   for (const m of main) {
     urls.push(`  <url>\n    <loc>${BASE_URL}${m.loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${m.freq}</changefreq>\n    <priority>${m.pri}</priority>\n  </url>`);

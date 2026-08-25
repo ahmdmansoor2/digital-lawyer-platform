@@ -33,6 +33,7 @@ const MORE = [
   { href: '/company-incorporation.html', label: '💼 تأسيس الشركات والتراخيص', key: 'companies' },
   { href: '/legal-diagnostics.html', label: '🔍 تشخيص النزاع القضائي', key: 'diagnostics' },
   { href: '/about.html', label: '⚖️ عن المنصة', key: 'about' },
+  { href: '/editorial-policy.html', label: '📋 معايير النشر والتحرير', key: 'editorial' },
   { href: '/features.html', label: '⚡ المميزات الكاملة', key: 'features' },
   { href: '/pricing.html', label: '🎁 الأسعار — مجاني 100%', key: 'pricing' },
   { href: '/why-trust-us.html', label: '🛡️ لماذا تثق بنا', key: 'trust' },
