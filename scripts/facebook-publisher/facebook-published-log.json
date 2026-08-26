@@ -2210,6 +2210,27 @@
       "duration": "52ث",
       "size": 17603242,
       "publishedAt": "2026-08-26T09:58:19.008Z"
+    },
+    {
+      "topicId": "trend-cybercrime-law-defamation-egypt",
+      "title": "عقوبة السب والقذف الإلكتروني على مواقع التواصل في القانون المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#جرائم إلكترونية",
+        "#السب والقذف",
+        "#الجرائم الإلكترونية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cybercrime-law-defamation-egypt.mp4",
+      "videoId": "1352045953765718",
+      "permalink": "https://www.facebook.com/reel/1352045953765718",
+      "source": "trending-topics.json",
+      "duration": "1د 2ث",
+      "size": 25591612,
+      "publishedAt": "2026-08-26T13:15:23.184Z"
     }
   ]
 }
