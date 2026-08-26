@@ -475,13 +475,13 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             
             {/* Card 1: Saudi Arabia */}
             <div className="group relative p-6 rounded-2xl bg-gradient-to-b from-emerald-950/60 to-slate-900/90 hover:to-slate-900 border border-emerald-500/30 hover:border-emerald-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between">
-              <a href="/saudi-legal-hub-en.html" className="absolute top-3 end-3 z-20 text-[10px] font-black px-2.5 py-1 rounded-full bg-emerald-500/25 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 hover:border-emerald-300 hover:bg-emerald-500/35 transition-all shadow-md whitespace-nowrap">🌐 EN</a>
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-3xl">🇸🇦</span>
-                  <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                    رؤية 2030 ونظام العمل
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <a href="/saudi-legal-hub-en.html" className="text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 hover:text-emerald-100 border border-emerald-500/35 hover:border-emerald-300 transition-all whitespace-nowrap">🌐 EN</a>
+                    <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">رؤية 2030 ونظام العمل</span>
+                  </div>
                 </div>
                 <h3 className="text-lg font-black text-white group-hover:text-emerald-300 transition-colors mb-2">
                   بوابة المملكة العربية السعودية
@@ -503,13 +503,13 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
             {/* Card 2: UAE */}
             <div className="group relative p-6 rounded-2xl bg-gradient-to-b from-blue-950/60 to-slate-900/90 hover:to-slate-900 border border-blue-500/30 hover:border-blue-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between">
-              <a href="/uae-legal-hub-en.html" className="absolute top-3 end-3 z-20 text-[10px] font-black px-2.5 py-1 rounded-full bg-blue-500/25 text-blue-300 hover:text-blue-100 border border-blue-500/40 hover:border-blue-300 hover:bg-blue-500/35 transition-all shadow-md whitespace-nowrap">🌐 EN</a>
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-3xl">🇦🇪</span>
-                  <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">
-                    المرسوم بقانون 33/2021
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <a href="/uae-legal-hub-en.html" className="text-[10px] font-black px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 hover:text-blue-100 border border-blue-500/35 hover:border-blue-300 transition-all whitespace-nowrap">🌐 EN</a>
+                    <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30">المرسوم بقانون 33/2021</span>
+                  </div>
                 </div>
                 <h3 className="text-lg font-black text-white group-hover:text-blue-300 transition-colors mb-2">
                   بوابة دولة الإمارات العربية المتحدة
@@ -531,13 +531,13 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
             {/* Card 3: Qatar */}
             <div className="group relative p-6 rounded-2xl bg-gradient-to-b from-rose-950/60 to-slate-900/90 hover:to-slate-900 border border-rose-500/30 hover:border-rose-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between">
-              <a href="/qatar-legal-hub-en.html" className="absolute top-3 end-3 z-20 text-[10px] font-black px-2.5 py-1 rounded-full bg-rose-500/25 text-rose-300 hover:text-rose-100 border border-rose-500/40 hover:border-rose-300 hover:bg-rose-500/35 transition-all shadow-md whitespace-nowrap">🌐 EN</a>
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-3xl">🇶🇦</span>
-                  <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
-                    قانون العمل رقم 14/2004
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <a href="/qatar-legal-hub-en.html" className="text-[10px] font-black px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 hover:text-rose-100 border border-rose-500/35 hover:border-rose-300 transition-all whitespace-nowrap">🌐 EN</a>
+                    <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">قانون العمل رقم 14/2004</span>
+                  </div>
                 </div>
                 <h3 className="text-lg font-black text-white group-hover:text-rose-300 transition-colors mb-2">
                   بوابة دولة قطر
@@ -559,13 +559,13 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
             {/* Card 4: Oman */}
             <div className="group relative p-6 rounded-2xl bg-gradient-to-b from-green-950/60 to-slate-900/90 hover:to-slate-900 border border-green-500/30 hover:border-green-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between">
-              <a href="/oman-legal-hub-en.html" className="absolute top-3 end-3 z-20 text-[10px] font-black px-2.5 py-1 rounded-full bg-green-500/25 text-green-300 hover:text-green-100 border border-green-500/40 hover:border-green-300 hover:bg-green-500/35 transition-all shadow-md whitespace-nowrap">🌐 EN</a>
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-3xl">🇴🇲</span>
-                  <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-red-500/20 text-red-300 border border-red-500/30">
-                    قانون العمل الجديد 53/2023
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <a href="/oman-legal-hub-en.html" className="text-[10px] font-black px-2 py-0.5 rounded-full bg-green-500/20 text-green-300 hover:text-green-100 border border-green-500/35 hover:border-green-300 transition-all whitespace-nowrap">🌐 EN</a>
+                    <span className="text-[11px] font-bold px-2.5 py-1 rounded-full bg-red-500/20 text-red-300 border border-red-500/30">قانون العمل الجديد 53/2023</span>
+                  </div>
                 </div>
                 <h3 className="text-lg font-black text-white group-hover:text-green-300 transition-colors mb-2">
                   بوابة سلطنة عمان
