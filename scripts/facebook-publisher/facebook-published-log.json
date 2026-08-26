@@ -2168,6 +2168,27 @@
       "duration": "53ث",
       "size": 20652986,
       "publishedAt": "2026-08-25T18:57:26.595Z"
+    },
+    {
+      "topicId": "trend-awqaf-property-leasing-regulations-egypt",
+      "title": "دليل استئجار وشراء أراضي وممتلكات وزارة الأوقاف المصرية 2024",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#أراضي الأوقاف",
+        "#وزارة الأوقاف",
+        "#هيئة الأوقاف المصرية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-awqaf-property-leasing-regulations-egypt.mp4",
+      "videoId": "3068712260127093",
+      "permalink": "https://www.facebook.com/reel/3068712260127093",
+      "source": "trending-topics.json",
+      "duration": "59ث",
+      "size": 29459198,
+      "publishedAt": "2026-08-26T07:09:19.210Z"
     }
   ]
 }
