@@ -474,10 +474,8 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             
             {/* Card 1: Saudi Arabia */}
-            <a
-              href="/saudi-legal-hub.html"
-              className="group relative p-6 rounded-2xl bg-gradient-to-b from-emerald-950/60 to-slate-900/90 hover:to-slate-900 border border-emerald-500/30 hover:border-emerald-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between"
-            >
+            <div className="group relative p-6 rounded-2xl bg-gradient-to-b from-emerald-950/60 to-slate-900/90 hover:to-slate-900 border border-emerald-500/30 hover:border-emerald-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between">
+              <a href="/saudi-legal-hub-en.html" className="absolute -top-1.5 end-3 z-20 text-[10px] font-black px-2.5 py-1 rounded-full bg-emerald-500/25 text-emerald-300 hover:text-emerald-100 border border-emerald-500/40 hover:border-emerald-300 hover:bg-emerald-500/35 transition-all shadow-md whitespace-nowrap">🌐 English</a>
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-3xl">🇸🇦</span>
@@ -497,17 +495,15 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                   <div className="flex items-center gap-1.5">✓ تراخيص الاستثمار الأجنبي MISA</div>
                 </div>
               </div>
-              <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-emerald-400 group-hover:text-emerald-300">
+              <a href="/saudi-legal-hub.html" className="block pt-4 mt-4 border-t border-slate-800 text-xs font-bold text-emerald-400 group-hover:text-emerald-300 flex items-center justify-between">
                 <span>دخول بوابة السعودية</span>
                 <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-              </div>
-            </a>
+              </a>
+            </div>
 
             {/* Card 2: UAE */}
-            <a
-              href="/uae-legal-hub.html"
-              className="group relative p-6 rounded-2xl bg-gradient-to-b from-blue-950/60 to-slate-900/90 hover:to-slate-900 border border-blue-500/30 hover:border-blue-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between"
-            >
+            <div className="group relative p-6 rounded-2xl bg-gradient-to-b from-blue-950/60 to-slate-900/90 hover:to-slate-900 border border-blue-500/30 hover:border-blue-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between">
+              <a href="/uae-legal-hub-en.html" className="absolute -top-1.5 end-3 z-20 text-[10px] font-black px-2.5 py-1 rounded-full bg-blue-500/25 text-blue-300 hover:text-blue-100 border border-blue-500/40 hover:border-blue-300 hover:bg-blue-500/35 transition-all shadow-md whitespace-nowrap">🌐 English</a>
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-3xl">🇦🇪</span>
@@ -527,17 +523,15 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                   <div className="flex items-center gap-1.5">✓ تملك أجنبي 100% والمناطق الحرة</div>
                 </div>
               </div>
-              <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-blue-400 group-hover:text-blue-300">
+              <a href="/uae-legal-hub.html" className="block pt-4 mt-4 border-t border-slate-800 text-xs font-bold text-blue-400 group-hover:text-blue-300 flex items-center justify-between">
                 <span>دخول بوابة الإمارات</span>
                 <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-              </div>
-            </a>
+              </a>
+            </div>
 
             {/* Card 3: Qatar */}
-            <a
-              href="/qatar-legal-hub.html"
-              className="group relative p-6 rounded-2xl bg-gradient-to-b from-rose-950/60 to-slate-900/90 hover:to-slate-900 border border-rose-500/30 hover:border-rose-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between"
-            >
+            <div className="group relative p-6 rounded-2xl bg-gradient-to-b from-rose-950/60 to-slate-900/90 hover:to-slate-900 border border-rose-500/30 hover:border-rose-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between">
+              <a href="/qatar-legal-hub-en.html" className="absolute -top-1.5 end-3 z-20 text-[10px] font-black px-2.5 py-1 rounded-full bg-rose-500/25 text-rose-300 hover:text-rose-100 border border-rose-500/40 hover:border-rose-300 hover:bg-rose-500/35 transition-all shadow-md whitespace-nowrap">🌐 English</a>
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-3xl">🇶🇦</span>
@@ -557,17 +551,15 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                   <div className="flex items-center gap-1.5">✓ مركز قطر للمال QFC والنافذة الواحدة</div>
                 </div>
               </div>
-              <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-rose-400 group-hover:text-rose-300">
+              <a href="/qatar-legal-hub.html" className="block pt-4 mt-4 border-t border-slate-800 text-xs font-bold text-rose-400 group-hover:text-rose-300 flex items-center justify-between">
                 <span>دخول بوابة قطر</span>
                 <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-              </div>
-            </a>
+              </a>
+            </div>
 
             {/* Card 4: Oman */}
-            <a
-              href="/oman-legal-hub.html"
-              className="group relative p-6 rounded-2xl bg-gradient-to-b from-green-950/60 to-slate-900/90 hover:to-slate-900 border border-green-500/30 hover:border-green-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between"
-            >
+            <div className="group relative p-6 rounded-2xl bg-gradient-to-b from-green-950/60 to-slate-900/90 hover:to-slate-900 border border-green-500/30 hover:border-green-400 transition-all duration-300 hover:-translate-y-1.5 shadow-xl flex flex-col justify-between">
+              <a href="/oman-legal-hub-en.html" className="absolute -top-1.5 end-3 z-20 text-[10px] font-black px-2.5 py-1 rounded-full bg-green-500/25 text-green-300 hover:text-green-100 border border-green-500/40 hover:border-green-300 hover:bg-green-500/35 transition-all shadow-md whitespace-nowrap">🌐 English</a>
               <div>
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-3xl">🇴🇲</span>
@@ -587,11 +579,11 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                   <div className="flex items-center gap-1.5">✓ Invest Oman والمناطق الحرة الثلاث</div>
                 </div>
               </div>
-              <div className="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs font-bold text-green-400 group-hover:text-green-300">
-                <span>دخول بوابة عُمان</span>
+              <a href="/oman-legal-hub.html" className="block pt-4 mt-4 border-t border-slate-800 text-xs font-bold text-green-400 group-hover:text-green-300 flex items-center justify-between">
+                <span>دخول بوابة عمان</span>
                 <ArrowLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-              </div>
-            </a>
+              </a>
+            </div>
 
           </div>
         </div>
