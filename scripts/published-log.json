@@ -1848,6 +1848,42 @@
       ],
       "words": 2147,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "الضرائب على أرباح البورصة المصرية: الجوانب القانونية وكيفية التداول بأمان",
+      "date": "2026-08-26",
+      "slug": "egyptian-stock-exchange-taxes-laws",
+      "url": "https://mohamidigital.online/blog/egyptian-stock-exchange-taxes-laws.html",
+      "image": "https://mohamidigital.online/blog/images/egyptian-stock-exchange-taxes-laws.jpg",
+      "tags": [
+        "قانون الاستثمار والضرائب"
+      ],
+      "words": 1576,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبة السب والقذف الإلكتروني على مواقع التواصل في القانون المصري",
+      "date": "2026-08-26",
+      "slug": "cybercrime-law-defamation-egypt",
+      "url": "https://mohamidigital.online/blog/cybercrime-law-defamation-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cybercrime-law-defamation-egypt.jpg",
+      "tags": [
+        "جرائم إلكترونية"
+      ],
+      "words": 2557,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقود اللاعبين والاحتراف الرياضي: الإجراءات الشروط وفسخ العقد في مصر",
+      "date": "2026-08-26",
+      "slug": "sports-contracts-player-transfers-egypt",
+      "url": "https://mohamidigital.online/blog/sports-contracts-player-transfers-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-contracts-player-transfers-egypt.jpg",
+      "tags": [
+        "القانون الرياضي"
+      ],
+      "words": 2544,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
