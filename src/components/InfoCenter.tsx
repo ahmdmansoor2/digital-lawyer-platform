@@ -378,11 +378,11 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           منصة وطنية وإقليمية متكاملة تدمج <strong className="text-white">نظام إدارة مكاتب المحاماة</strong> للمحترفين، مع <strong className="text-white">بوابات الخدمات القضائية والاستشارات وحاسبات العمل</strong> لمصر والدول الخليجية.
         </p>
 
-        {/* Dual Track Switcher Tabs */}
-        <div className="inline-flex items-center p-1.5 rounded-2xl bg-slate-900/80 border border-white/15 backdrop-blur-xl shadow-2xl mb-8">
+        {/* 3-Track Switcher Tabs */}
+        <div className="inline-flex flex-wrap justify-center items-center p-1.5 rounded-2xl bg-slate-900/80 border border-white/15 backdrop-blur-xl shadow-2xl mb-8 gap-1">
           <button
             onClick={() => setActiveTab('lawyers')}
-            className={`px-6 py-2.5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center gap-2 cursor-pointer ${
+            className={`px-5 py-2.5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center gap-2 cursor-pointer ${
               activeTab === 'lawyers'
                 ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-600/40 scale-102'
                 : 'text-slate-400 hover:text-slate-200'
@@ -392,8 +392,19 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             <span>👨‍⚖️ أنا محامٍ / مستشار قانوني</span>
           </button>
           <button
+            onClick={() => setActiveTab('students')}
+            className={`px-5 py-2.5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center gap-2 cursor-pointer ${
+              activeTab === 'students'
+                ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-600/40 scale-102'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <GraduationCap className="w-4 h-4 text-amber-300" />
+            <span>🎓 أنا طالب حقوق / باحث</span>
+          </button>
+          <button
             onClick={() => setActiveTab('citizens')}
-            className={`px-6 py-2.5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center gap-2 cursor-pointer ${
+            className={`px-5 py-2.5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center gap-2 cursor-pointer ${
               activeTab === 'citizens'
                 ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-600/40 scale-102'
                 : 'text-slate-400 hover:text-slate-200'
