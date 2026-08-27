@@ -1,7 +1,6 @@
 /**
- * SiteHeader — الشريط العلوي الزجاجي 2026 (نسخة React)
- * يستخدم نفس كلاسات .uh-* في public/header.css (يُحمَّل عبر index.html).
- * لا يظهر في لوحة التحكم (AppLayout) — فقط صفحات الموقع.
+ * SiteHeader — الشريط العلوي الزجاجي الفاخر 2026 (نسخة React)
+ * شريط متناسق وأنيق خالي من الأزرار الزائدة مع أسماء الأقسام الجديدة
  */
 
 import React, { useEffect, useState } from 'react';
@@ -16,34 +15,27 @@ interface SiteHeaderProps {
 
 const PRIMARY = [
   { href: '/', label: '🏠 الرئيسية', key: 'home' },
-  { href: '/legal-library.html', label: '📚 المكتبة السحابية', key: 'library' },
-  { href: '/legal-consultations.html', label: '💬 استشارة فورية', key: 'consultations' },
-  { href: '/lawyers-directory.html', label: '👨‍⚖️ دليل المحامين', key: 'lawyers' },
-  { href: '/legal-forms.html', label: '📝 صيغ العقود', key: 'forms' },
+  { href: '/legal-library.html', label: '📚 المكتبة القانونية', key: 'library' },
+  { href: '/court-precedents.html', label: '⚖️ موسوعة النقض', key: 'precedents' },
   { href: '/pillars/', label: '🏛️ المراجع والأكواد', key: 'pillars' },
+  { href: '/legal-forms.html', label: '📝 صيغ العقود', key: 'forms' },
+  { href: '/legal-calculators.html', label: '🧮 الحاسبات', key: 'calculators' },
   { href: '/blog/', label: '📰 المدونة', key: 'blog' },
 ];
 
 const MORE = [
-  { href: '/citizen-complaints.html', label: '📢 بوابة شكاوى وبلاغات المواطنين', key: 'complaints' },
-  { href: '/e-justice-services.html', label: '🏛️ التقاضي والخدمات القضائية الرقمية', key: 'ejustice' },
-  { href: '/legal-radar.html', label: '🔍 رصد المحامي الذكي', key: 'radar' },
-  { href: '/legal-calculators.html', label: '🧮 الحاسبات القانونية', key: 'calculators' },
-  { href: '/court-precedents.html', label: '⚖️ بنك مبادئ محكمة النقض', key: 'precedents' },
+  { href: '/legal-consultations.html', label: '💬 استشارات فورية', key: 'consultations' },
+  { href: '/citizen-complaints.html', label: '📢 شكاوى وبلاغات المواطنين', key: 'complaints' },
+  { href: '/lawyers-directory.html', label: '👨‍⚖️ دليل المحامين المعتمدين', key: 'lawyers' },
+  { href: '/company-incorporation.html', label: '🏢 تأسيس الشركات والتراخيص', key: 'companies' },
   { href: '/courts-directory.html', label: '🏛️ دليل المحاكم والشهر العقاري', key: 'courts' },
-  { href: '/company-incorporation.html', label: '💼 تأسيس الشركات والتراخيص', key: 'companies' },
-  { href: '/legal-diagnostics.html', label: '🔍 تشخيص النزاع القضائي', key: 'diagnostics' },
-  { href: '/about.html', label: '⚖️ عن المنصة', key: 'about' },
-  { href: '/editorial-policy.html', label: '📋 معايير النشر والتحرير', key: 'editorial' },
-  { href: '/features.html', label: '⚡ المميزات الكاملة', key: 'features' },
-  { href: '/pricing.html', label: '🎁 الأسعار — مجاني 100%', key: 'pricing' },
-  { href: '/why-trust-us.html', label: '🛡️ لماذا تثق بنا', key: 'trust' },
-  { href: '/privacy.html', label: '🔐 سياسة الخصوصية', key: 'privacy' },
-  { href: '/terms.html', label: '📜 الشروط والأحكام', key: 'terms' },
+  { href: '/legal-radar.html', label: '🔍 رصد المحامي والجريدة الرسمية', key: 'radar' },
+  { href: '/about.html', label: '⚖️ عن منصة المحامي الرقمية', key: 'about' },
+  { href: '/privacy.html', label: '🔐 سياسة الخصوصية والأمان', key: 'privacy' },
   { href: '/contact.html', label: '📬 تواصل معنا', key: 'contact' },
 ];
 
-export default function SiteHeader({ activeKey, variant = 'default', onEnterApp, userName, onLogout }: SiteHeaderProps) {
+export default function SiteHeader({ activeKey = 'home', onEnterApp, userName, onLogout }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
@@ -69,8 +61,14 @@ export default function SiteHeader({ activeKey, variant = 'default', onEnterApp,
     return () => document.removeEventListener('click', onClick);
   }, [mobileOpen, moreOpen]);
 
-  const showCta = variant !== 'login';
   const isAuth = Boolean(userName && onLogout);
+
+  const handleCtaClick = (e: React.MouseEvent) => {
+    if (onEnterApp) {
+      e.preventDefault();
+      onEnterApp();
+    }
+  };
 
   return (
     <header className={`uh-bar${scrolled ? ' scrolled' : ''}`} id="siteHeader">
@@ -114,38 +112,15 @@ export default function SiteHeader({ activeKey, variant = 'default', onEnterApp,
         </nav>
 
         <div className="uh-actions">
-          <button
-            type="button"
-            className="uh-cta uh-cta--ghost"
-            style={{ padding: '7px 11px', fontSize: '0.85rem' }}
-            onClick={() => {
-              window.dispatchEvent(new CustomEvent('open-mohami-search'));
-            }}
-            title="البحث في المنصة (Ctrl+K)"
-            aria-label="بحث"
-          >
-            <span>🔍</span>
-          </button>
-          <button
-            type="button"
-            className="uh-cta uh-cta--ghost"
-            style={{ padding: '7px 12px', fontSize: '0.82rem', borderColor: 'rgba(99, 102, 241, 0.4)' }}
-            onClick={() => {
-              window.dispatchEvent(new CustomEvent('toggle-mohami-sidebar'));
-            }}
-            title="فتح فهرس المنصة الشامل"
-          >
-            <span>🧭 الفهرس</span>
-          </button>
           {isAuth ? (
             <button type="button" className="uh-cta uh-cta--ghost" onClick={onLogout}>
               <span>خروج · {userName}</span>
             </button>
-          ) : showCta ? (
-            <button type="button" className="uh-cta" onClick={onEnterApp}>
+          ) : (
+            <a href="/" className="uh-cta" onClick={handleCtaClick}>
               <span>🚀 دخول التطبيق</span>
-            </button>
-          ) : null}
+            </a>
+          )}
           <button
             className="uh-burger"
             id="uhBurger"

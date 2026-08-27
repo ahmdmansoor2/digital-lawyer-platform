@@ -331,8 +331,18 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
       </div>
 
       {/* ─── شريط البحث الذكي (أسفل الهيدر مباشرة) ───────────────────────── */}
-      <div className="relative z-30 pt-5 px-4 sm:px-6 lg:px-8" data-search-section>
-        <HeroSearchBar onOpenFullSearch={openFullSearch} />
+      <div className="relative z-30 pt-5 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3" data-search-section>
+        <div className="w-full flex-1">
+          <HeroSearchBar onOpenFullSearch={openFullSearch} />
+        </div>
+        <button
+          type="button"
+          onClick={onEnterApp}
+          className="w-full sm:w-auto shrink-0 flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-extrabold text-sm sm:text-base shadow-xl shadow-indigo-600/35 border border-white/20 transition-all hover:scale-103 cursor-pointer whitespace-nowrap"
+          title="دخول المنصة ونظام إدارة القضايا"
+        >
+          <span>🚀 دخول التطبيق</span>
+        </button>
       </div>
 
       {/* ─── 1. GRAND HERO SECTION WITH DUAL-TRACK SWITCHER ──────────────── */}
