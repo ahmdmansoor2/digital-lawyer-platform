@@ -787,53 +787,39 @@
 
   </main>
 
-  <!-- Trust & Download Options Modal -->
+  <!-- Book Action Modal (Preview & Download) -->
   <div class="modal-overlay" id="downloadModal" onclick="closeDownloadModal(event)">
     <div class="modal-box" onclick="event.stopPropagation()">
       <button class="modal-close-btn" onclick="closeDownloadModal()">✕</button>
-      <h3 class="modal-title" id="modalBookTitle">عنوان الكتاب</h3>
-      <div class="modal-meta" id="modalBookMeta">✍️ المؤلف · 📁 الحجم</div>
-      
+
+      <!-- Book Identity -->
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-left:40px;">
+        <div id="modalBookIcon" style="font-size:2.2rem;flex-shrink:0;">📖</div>
+        <div>
+          <h3 class="modal-title" id="modalBookTitle" style="padding-left:0;margin-bottom:4px;">عنوان الكتاب</h3>
+          <div class="modal-meta" id="modalBookMeta">✍️ المؤلف · 📁 الحجم</div>
+        </div>
+      </div>
+
+      <!-- Trust Note -->
       <div class="modal-trust-box">
-        🛡️ <strong>إشعار الأمان والتحميل الرسمي:</strong><br>
-        هذا المرجع الموسوعي معتمد ومفحوص بالكامل 100% ومستضاف على سحابة Google الرسمية. نظراً لضخامة حجم الكتاب، إذا ظهرت لك رسالة تلقائية من Google بسبب حجم الملف، فالمرجع آمن تماماً وخالٍ من أي برمجيات ضارة.
+        🛡️ <strong>مرجع معتمد ومحمي:</strong><br>
+        مستضاف على سحابة Google الرسمية — آمن 100% وخالٍ من أي برمجيات ضارة. إذا ظهرت رسالة تلقائية من Google بسبب حجم الملف الكبير، اضغط «تنزيل على أي حال».
       </div>
 
+      <!-- Actions -->
       <div class="modal-actions">
-        <button class="btn-modal-action btn-modal-indigo" id="modalBtnPreview" onclick="openEmbeddedReader()">
-          <span>📖 قراءة ومعاينة المرجع داخل المنصة</span>
-          <span>👁️</span>
-        </button>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-modal-action btn-modal-indigo" id="modalBtnPreview">
+          <span>👁️ قراءة ومعاينة في Google Drive</span>
+          <span style="font-size:0.8rem;opacity:0.7;">↗ يفتح في تاب جديد</span>
+        </a>
         <a href="#" target="_blank" rel="noopener noreferrer" class="btn-modal-action btn-modal-gold" id="modalBtnDownload">
-          <span>⚡ بدء التنزيل المباشر من Google Drive</span>
-          <span>📥</span>
+          <span>📥 تنزيل PDF مباشرة</span>
         </a>
       </div>
     </div>
   </div>
 
-  <!-- Embedded Fullscreen Reader Overlay -->
-  <div class="reader-overlay" id="readerOverlay">
-    <div class="reader-header">
-      <div class="reader-title-box" id="readerTitle">معاينة الكتاب</div>
-      <div class="reader-actions">
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open" id="readerExternalBtn" style="padding: 6px 14px; font-size: 0.85rem; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.4); color: #a5b4fc;">
-          <span>↗ فتح في نافذة مستقلة</span>
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open" id="readerDownloadBtn" style="padding: 6px 14px; font-size: 0.85rem;">
-          <span>📥 تنزيل المرجع</span>
-        </a>
-        <button onclick="closeEmbeddedReader()" class="modal-close-btn" style="position: static; width: 34px; height: 34px;">✕</button>
-      </div>
-    </div>
-    <!-- Loading Spinner -->
-    <div id="readerLoader" style="position:absolute;inset:68px 0 0;display:flex;align-items:center;justify-content:center;background:rgba(10,15,35,0.97);z-index:10;flex-direction:column;gap:16px;">
-      <div style="width:52px;height:52px;border:4px solid rgba(99,102,241,0.25);border-top-color:#6366f1;border-radius:50%;animation:spinLoader 0.9s linear infinite;"></div>
-      <p style="color:#94a3b8;font-size:1rem;font-weight:700;">جارٍ تحميل المرجع...</p>
-      <p style="color:#64748b;font-size:0.85rem;">قد يستغرق بعض الوقت للمراجع الكبيرة</p>
-    </div>
-    <iframe class="reader-iframe" id="readerIframe" src="about:blank" allow="autoplay" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
-  </div>
 
   <!-- Unified Footer -->
   <footer class="footer">
@@ -964,103 +950,41 @@
       updateGrid(true);
     }
 
-    // Modal and Reader Handling
+    // Modal Handling — unified for preview + download
     function handleBookAction(bookId, actionType) {
       selectedBook = ALL_BOOKS.find(b => b.id === bookId);
       if (!selectedBook) return;
-
-      if (actionType === 'preview') {
-        openEmbeddedReader();
-      } else {
-        showDownloadModal();
-      }
+      showBookModal();
     }
 
-    function showDownloadModal() {
+    function showBookModal() {
       if (!selectedBook) return;
-      document.getElementById('modalBookTitle').innerText = selectedBook.title;
-      document.getElementById('modalBookMeta').innerText = `✍️ ${selectedBook.author} · 📁 الحجم: ${selectedBook.size}`;
-      
-      const downloadUrl = `https://drive.usercontent.google.com/download?id=${selectedBook.id}&export=download&confirm=t`;
+      const book = selectedBook;
+
+      // عبّئ بيانات الكتاب
+      document.getElementById('modalBookTitle').innerText = book.title;
+      document.getElementById('modalBookMeta').innerText = `✍️ ${book.author} · 📁 الحجم: ${book.size || 'PDF'}`;
+      const iconEl = document.getElementById('modalBookIcon');
+      if (iconEl) iconEl.innerText = book.icon || '📖';
+
+      // رابط المعاينة في Drive (يفتح في تاب جديد)
+      const viewUrl     = `https://drive.google.com/file/d/${book.id}/view`;
+      const downloadUrl = `https://drive.usercontent.google.com/download?id=${book.id}&export=download&confirm=t`;
+
+      const previewBtn = document.getElementById('modalBtnPreview');
+      if (previewBtn) previewBtn.href = viewUrl;
+
       const dlBtn = document.getElementById('modalBtnDownload');
-      dlBtn.href = downloadUrl;
+      if (dlBtn) dlBtn.href = downloadUrl;
 
       document.getElementById('downloadModal').classList.add('active');
     }
 
+    // للتوافق مع الكود القديم
+    function showDownloadModal() { showBookModal(); }
+
     function closeDownloadModal(e) {
       document.getElementById('downloadModal').classList.remove('active');
-    }
-
-    function openEmbeddedReader() {
-      if (!selectedBook) return;
-      closeDownloadModal();
-
-      const book = selectedBook;
-      document.getElementById('readerTitle').innerText = book.title;
-
-      // روابط الكتاب
-      const viewUrl      = `https://drive.google.com/file/d/${book.id}/view`;
-      const downloadUrl  = `https://drive.usercontent.google.com/download?id=${book.id}&export=download&confirm=t`;
-      // Google Docs Viewer — يتجاوز X-Frame-Options ويدعم PDFs الكبيرة
-      const gviewUrl     = `https://docs.google.com/gview?url=https://drive.google.com/uc%3Fid%3D${book.id}&embedded=true`;
-
-      document.getElementById('readerDownloadBtn').href = downloadUrl;
-      const extBtn = document.getElementById('readerExternalBtn');
-      if (extBtn) extBtn.href = viewUrl;
-
-      // أظهر الـ overlay أولاً
-      document.getElementById('readerOverlay').classList.add('active');
-
-      // أظهر spinner، أخفِ iframe حتى يتحمّل
-      const loader = document.getElementById('readerLoader');
-      const iframe = document.getElementById('readerIframe');
-      if (loader) { loader.style.display = 'flex'; loader.innerHTML = `
-        <div style="width:52px;height:52px;border:4px solid rgba(99,102,241,0.25);border-top-color:#6366f1;border-radius:50%;animation:spinLoader 0.9s linear infinite;"></div>
-        <p style="color:#94a3b8;font-size:1rem;font-weight:700;">جارٍ تحميل المرجع...</p>
-        <p style="color:#64748b;font-size:0.85rem;">قد يستغرق بعض الوقت للمراجع الكبيرة</p>
-      `; }
-
-      // عند تحمّل الـ iframe أخفِ الـ spinner
-      iframe.onload = () => {
-        clearTimeout(window._readerTimeout);
-        if (loader) loader.style.display = 'none';
-      };
-      iframe.onerror = () => showReaderFallback(downloadUrl, viewUrl);
-      iframe.src = gviewUrl;
-
-      // Fallback: إذا لم يتحمّل بعد 15 ثانية → رسالة بديلة
-      clearTimeout(window._readerTimeout);
-      window._readerTimeout = setTimeout(() => {
-        if (loader && loader.style.display !== 'none') {
-          showReaderFallback(downloadUrl, viewUrl);
-        }
-      }, 15000);
-    }
-
-    function showReaderFallback(downloadUrl, viewUrl) {
-      const loader = document.getElementById('readerLoader');
-      if (!loader) return;
-      loader.style.display = 'flex';
-      loader.innerHTML = `
-        <div style="text-align:center;padding:30px;max-width:480px;">
-          <p style="font-size:3.5rem;margin-bottom:14px;">📄</p>
-          <p style="color:#f8fafc;font-weight:800;font-size:1.2rem;margin-bottom:8px;">تعذّرت المعاينة المدمجة</p>
-          <p style="color:#94a3b8;font-size:0.92rem;margin-bottom:22px;line-height:1.6;">ملفات Google Drive الكبيرة لا تدعم المعاينة المضمّنة دائماً. استخدم أحد الخيارين أدناه:</p>
-          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-            <a href="${viewUrl}" target="_blank" style="padding:11px 22px;background:rgba(99,102,241,0.2);border:1px solid rgba(99,102,241,0.4);color:#a5b4fc;border-radius:12px;font-weight:800;text-decoration:none;font-size:0.95rem;">↗ فتح في نافذة مستقلة</a>
-            <a href="${downloadUrl}" target="_blank" style="padding:11px 22px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;border-radius:12px;font-weight:800;text-decoration:none;font-size:0.95rem;">📥 تنزيل مباشر</a>
-          </div>
-        </div>
-      `;
-    }
-
-    function closeEmbeddedReader() {
-      clearTimeout(window._readerTimeout);
-      document.getElementById('readerOverlay').classList.remove('active');
-      document.getElementById('readerIframe').src = 'about:blank';
-      const loader = document.getElementById('readerLoader');
-      if (loader) loader.style.display = 'none';
     }
 
     // Load Catalog Data
