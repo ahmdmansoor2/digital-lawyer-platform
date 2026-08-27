@@ -16,6 +16,7 @@ interface SiteHeaderProps {
 
 const PRIMARY = [
   { href: '/', label: '🏠 الرئيسية', key: 'home' },
+  { href: '/legal-library.html', label: '📚 المكتبة السحابية', key: 'library' },
   { href: '/legal-consultations.html', label: '💬 استشارة فورية', key: 'consultations' },
   { href: '/lawyers-directory.html', label: '👨‍⚖️ دليل المحامين', key: 'lawyers' },
   { href: '/legal-forms.html', label: '📝 صيغ العقود', key: 'forms' },

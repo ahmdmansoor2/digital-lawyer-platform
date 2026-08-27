@@ -90,6 +90,7 @@ const SIDEBAR_SECTIONS: SidebarSection[] = [
     bgColor: 'bg-violet-500/5',
     Icon: BookOpen,
     links: [
+      { label: 'المكتبة القانونية السحابية (5TB)', href: '/legal-library.html', icon: '🏛️' },
       { label: 'بنك مبادئ محكمة النقض الكبرى', href: '/court-precedents.html', icon: '⚖️' },
       { label: 'المراجع والأكواد التشريعية الشاملة', href: '/pillars/', icon: '📚' },
       { label: 'رصد المحامي والجريدة الرسمية', href: '/legal-radar.html', icon: '📡' },

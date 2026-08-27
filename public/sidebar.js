@@ -95,6 +95,7 @@
       bg: 'rgba(167, 139, 250, 0.05)',
       iconSvg: ICONS.book,
       links: [
+        { label: 'المكتبة القانونية السحابية (5TB)', href: '/legal-library.html', icon: '🏛️' },
         { label: 'بنك مبادئ محكمة النقض الكبرى', href: '/court-precedents.html', icon: '⚖️' },
         { label: 'المراجع والأكواد التشريعية الشاملة', href: '/pillars/', icon: '📚' },
         { label: 'رصد المحامي والجريدة الرسمية', href: '/legal-radar.html', icon: '📡' },
