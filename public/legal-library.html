@@ -1243,6 +1243,32 @@
       }, 4500);
     }
 
+    // ═══════════════════════════════════════════════════════════
+    // Async Full 9,607 Books Catalog Loader & Sync Engine
+    // ═══════════════════════════════════════════════════════════
+    async function initCatalog() {
+      const statusEl = document.getElementById('resultsStatus');
+      try {
+        if (statusEl) statusEl.innerText = 'جاري مزامنة الفهرس السحابي الكامل (+9,600 مرجع)...';
+        const res = await fetch('/data/legal-library-catalog.json');
+        if (!res.ok) throw new Error('Catalog HTTP error: ' + res.status);
+        
+        const fullCatalog = await res.json();
+        if (Array.isArray(fullCatalog) && fullCatalog.length > 0) {
+          ALL_BOOKS = fullCatalog;
+          if (statusEl) {
+            statusEl.innerText = '✓ تم تحميل وتحديث ' + ALL_BOOKS.length.toLocaleString('ar-EG') + ' مرجع وموسوعة قانونية مفهرسة';
+          }
+          filterData();
+        }
+      } catch (err) {
+        console.warn('Could not load full catalog JSON, using pre-inlined featured references:', err);
+        if (statusEl) {
+          statusEl.innerText = '✓ يتم تصفح المراجع الرئيسية المعتمدة';
+        }
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       filterData();
       initCatalog();
