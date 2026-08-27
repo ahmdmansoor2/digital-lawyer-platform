@@ -30,7 +30,7 @@ import {
   Gavel,
   Radio,
   Newspaper
-} from 'lucide-react';
+, GraduationCap, Calculator, BookOpen} from 'lucide-react';
 import SiteHeader from './SiteHeader';
 import InteractiveTourShowcase from './InteractiveTourShowcase';
 import PromoVideoPlayer from './PromoVideoPlayer';
@@ -49,6 +49,17 @@ interface InfoCenterProps {
 
 // ── شبكة كافة صفحات وبوابات المنصة الرئيسية الـ 17 ─────────────────────
 const ALL_PLATFORM_PORTALS = [
+  // ── بوابة طلاب كلية الحقوق (جديد 2026) ──────────────────────────
+  {
+    href: '/law-students-hub.html',
+    badge: '🎓 الأكاديمية وطلاب الجامعات',
+    title: 'بوابة طلاب كليات الحقوق والشريعة والقانون 2026',
+    desc: 'مناهج الفرق الأربعة كاملة، مذكرات وملخصات مركزة، بنك امتحانات بابل شيت تفاعلية مجانية، حاسبة التقدير التراكمي وتنسيق الهيئات القضائية، ودليل القيد بالنقابة.',
+    icon: GraduationCap,
+    gradient: 'from-blue-600 via-indigo-600 to-purple-700',
+    tag: 'مناهج وبابل شيت مجاني 100%',
+  },
+
   // ── بوابات الخليج العربي (جديد 2026) ─────────────────────────────
   {
     href: '/saudi-legal-hub.html',
@@ -267,7 +278,7 @@ const LAW_FIRM_TOOLS = [
 ];
 
 export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCenterProps) {
-  const [activeTab, setActiveTab] = useState<'lawyers' | 'citizens'>('lawyers');
+  const [activeTab, setActiveTab] = useState<'lawyers' | 'citizens' | 'students'>('lawyers');
   const [portalCategory, setPortalCategory] = useState<'all' | 'gulf' | 'citizens' | 'lawyers' | 'library'>('all');
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchInitialQuery, setSearchInitialQuery] = useState('');
@@ -418,6 +429,33 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             >
               <FileSignature className="w-5 h-5 text-purple-400" />
               <span>بنك صيغ العقود والدعاوى</span>
+            </a>
+          </div>
+        ) : activeTab === 'students' ? (
+          <div className="flex flex-wrap items-center justify-center gap-3.5 mb-10 animation-fade-in">
+            <a
+              href="/law-students-hub.html"
+              className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-black text-sm sm:text-base flex items-center gap-2.5 shadow-xl shadow-indigo-600/35 transition-all cursor-pointer hover:scale-103"
+            >
+              <GraduationCap className="w-5 h-5 text-amber-300" />
+              <span>🎓 دخول بوابة طلاب كليات الحقوق (مناهج وبابل شيت مجاناً)</span>
+              <ArrowLeft className="w-5 h-5" />
+            </a>
+
+            <a
+              href="/law-students-hub.html"
+              className="px-5 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-white/15 hover:border-indigo-500/50 text-slate-200 hover:text-white font-bold text-sm sm:text-base transition-all flex items-center gap-2 shadow-lg backdrop-blur-md cursor-pointer"
+            >
+              <Calculator className="w-5 h-5 text-indigo-400" />
+              <span>🧮 حاسبة التقدير التراكمي وتنسيق الهيئات</span>
+            </a>
+
+            <a
+              href="/law-students-hub.html"
+              className="px-5 py-3.5 rounded-xl bg-slate-900/80 hover:bg-slate-800 border border-white/15 hover:border-purple-500/50 text-slate-200 hover:text-white font-bold text-sm sm:text-base transition-all flex items-center gap-2 shadow-lg backdrop-blur-md cursor-pointer"
+            >
+              <BookOpen className="w-5 h-5 text-purple-400" />
+              <span>📜 دليل القيد بنقابة المحامين 2026</span>
             </a>
           </div>
         ) : (
