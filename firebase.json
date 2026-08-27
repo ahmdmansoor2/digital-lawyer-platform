@@ -10,21 +10,9 @@
         "dist/server.mjs",
         "dist/server.mjs.map",
         "data/library-docs-chunks/**",
-        "books/**",
-        "legal-library.html"
+        "books/**"
       ],
-      "redirects": [
-        {
-          "source": "/legal-library.html",
-          "destination": "/legal-forms.html",
-          "type": 302
-        },
-        {
-          "source": "/legal-library",
-          "destination": "/legal-forms.html",
-          "type": 302
-        }
-      ],
+      "redirects": [],
       "rewrites": [
         {
           "source": "!/+(blog|pillars|library-pdfs)/**",
