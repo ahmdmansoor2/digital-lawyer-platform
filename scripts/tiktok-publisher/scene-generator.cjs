@@ -28,12 +28,13 @@ if (!GEMINI_API_KEY) {
 
 const ai = GEMINI_API_KEY ? new GoogleGenAI({ apiKey: GEMINI_API_KEY }) : null;
 
-// نماذج النص — نوزّع عليها زي نظام daily-publish.cjs
 const TEXT_MODELS = [
-  process.env.TEXT_MODEL || 'gemini-3.5-flash',
+  process.env.TEXT_MODEL || 'gemini-2.5-pro',
+  'gemini-1.5-pro',
+  'gemini-2.5-flash',
+  'gemini-3.5-flash',
   'gemini-3-flash-preview',
   'gemini-flash-lite-latest',
-  'gemini-3.1-flash-lite-preview',
 ];
 let textModelIdx = 0;
 const currentTextModel = () => TEXT_MODELS[textModelIdx % TEXT_MODELS.length];

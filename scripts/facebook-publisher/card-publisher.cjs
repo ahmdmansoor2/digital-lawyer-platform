@@ -167,9 +167,14 @@ function pickTopTrend(opts) {
 
 // ─── توليد محتوى البطاقة عبر Gemini ───────────────────────────────────────
 async function generateCardContent(topic, retryIdx = 0) {
-  if (!ai) throw new Error('GEMINI_API_KEY مش متضبط');
-
-  const models = ['gemini-3.5-flash', 'gemini-3-flash-preview', 'gemini-flash-lite-latest', 'gemini-2.0-flash'];
+  const models = [
+    process.env.TEXT_MODEL || 'gemini-2.5-pro',
+    'gemini-1.5-pro',
+    'gemini-2.5-flash',
+    'gemini-3.5-flash',
+    'gemini-3-flash-preview',
+    'gemini-flash-lite-latest',
+  ];
   const model = models[retryIdx % models.length];
 
   const prompt = `أنت خبير قانوني مصري + كاتب إعلانات (copywriter) محترف متخصص في محتوى فيسبوك التعليمي عالي التفاعل.
