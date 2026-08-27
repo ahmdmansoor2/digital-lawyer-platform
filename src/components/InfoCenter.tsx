@@ -326,12 +326,12 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
       <div className="fixed bottom-0 right-1/3 w-[500px] h-[500px] rounded-full bg-gradient-to-tl from-indigo-700/10 via-slate-800/5 to-transparent blur-3xl pointer-events-none z-0" />
 
       {/* Global Unified Header */}
-      <div className="relative z-20">
+      <div className="relative z-50">
         <SiteHeader activeKey="home" onEnterApp={onEnterApp} userName={userName} onLogout={onLogout} />
       </div>
 
       {/* ─── شريط البحث الذكي (أسفل الهيدر مباشرة) ───────────────────────── */}
-      <div className="relative z-30 pt-5 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3" data-search-section>
+      <div className="relative z-10 pt-5 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3" data-search-section>
         <div className="w-full flex-1">
           <HeroSearchBar onOpenFullSearch={openFullSearch} />
         </div>
