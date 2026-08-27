@@ -110,15 +110,25 @@ body {
   transition: transform 0.2s ease;
 }
 
-.uh-logo:hover .uh-badge {
-  transform: scale(1.06);
+.uh-brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
 }
 
 .uh-title {
-  font-size: 15px;
+  font-size: 15.5px;
   font-weight: 800;
   color: #f1f5f9;
   letter-spacing: -0.2px;
+  white-space: nowrap;
+}
+
+.uh-sub {
+  font-size: 10px;
+  font-weight: 700;
+  color: #a5b4fc;
+  margin-top: 1px;
   white-space: nowrap;
 }
 
