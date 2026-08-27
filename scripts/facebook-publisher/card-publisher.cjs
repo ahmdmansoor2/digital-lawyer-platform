@@ -293,7 +293,7 @@ function buildCardSvg(card) {
 </defs>
 
 <!-- === الخلفية === -->
-<rect width="${W}" height="${H}" fill="url(#bgTop)"/>
+<rect width="${W}" height="${H}" fill="url(#bgTop)" fill-opacity="0.82"/>
 <rect width="${W}" height="${H}" fill="url(#gGold)"/>
 <rect width="${W}" height="${H}" fill="url(#gGreen)"/>
 
@@ -356,18 +356,81 @@ ${tipLines[1] ? `<text x="${rX - 22}" y="820" font-family="${FONT}" font-size="2
 </svg>`;
 }
 
+// ─── توليد صورة توضيحية حية بالذكاء الاصطناعي ──────────────────────────────
+async function generateCardIllustration(card) {
+  const promptEn = `Egyptian legal and judicial concept, ${card.category || 'Law'} theme, ${card.title}, scales of justice, law books, elegant gavel, dramatic cinematic lighting, deep blue and gold atmosphere, ultra realistic 3D digital art, 8k resolution, no text, no letters, no typography`;
+
+  // 1. تجربة Nano Banana عبر Gemini إن كان متاحاً
+  if (ai) {
+    for (const model of ['gemini-2.5-flash-image', 'gemini-3-pro-image', 'gemini-3.1-flash-image']) {
+      try {
+        const resp = await ai.models.generateContent({
+          model,
+          contents: [{ text: promptEn }],
+          config: {
+            responseModalities: ['IMAGE', 'TEXT'],
+            imageConfig: { aspectRatio: '1:1', imageSize: '1K' },
+          },
+        });
+        const parts = resp.candidates?.[0]?.content?.parts || [];
+        const img = parts.find((p) => p.inlineData && p.inlineData.data);
+        if (img) {
+          console.log(`  ✓ صورة توضيحية حية مولدة عبر Nano Banana (${model})`);
+          return Buffer.from(img.inlineData.data, 'base64');
+        }
+      } catch (err) {
+        // تابع للـ fallback
+      }
+    }
+  }
+
+  // 2. Fallback: توليد صورة حية بالذكاء الاصطناعي عبر Pollinations / AI Engine
+  try {
+    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(promptEn)}?width=1080&height=1080&nologo=true&seed=${Math.floor(Math.random() * 100000)}`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(20000) });
+    if (res.ok) {
+      const buf = Buffer.from(await res.arrayBuffer());
+      if (buf.length > 5000) {
+        console.log(`  ✓ صورة توضيحية حية مولدة بالذكاء الاصطناعي (AI Engine)`);
+        return buf;
+      }
+    }
+  } catch (err) {
+    console.warn(`  ⚠️ تعذر جلب الصورة التوضيحية الحية: ${err.message}`);
+  }
+
+  return null;
+}
+
 // ─── توليد البطاقة PNG عبر sharp ─────────────────────────────────────────
 async function renderCard(card, slug) {
   const sharp = require('sharp');
   if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-  const svg = buildCardSvg(card);
   const pngPath = path.join(OUTPUT_DIR, `${slug}.png`);
+  const svg = buildCardSvg(card);
+  const svgBuf = Buffer.from(svg);
 
-  await sharp(Buffer.from(svg), { density: 200 })
-    .resize(CARD_WIDTH, CARD_HEIGHT)
-    .png({ quality: 95 })
-    .toFile(pngPath);
+  // توليد صورة توضيحية حية بالذكاء الاصطناعي
+  const aiIllustrationBuf = await generateCardIllustration(card);
+
+  if (aiIllustrationBuf) {
+    // دمج الصورة التوضيحية الحية في خلفية البطاقة مع تعتيم فخم وSVG Glassmorphism
+    const darkenedBg = await sharp(aiIllustrationBuf)
+      .resize(CARD_WIDTH, CARD_HEIGHT, { fit: 'cover' })
+      .modulate({ brightness: 0.38, saturation: 1.15 })
+      .toBuffer();
+
+    await sharp(darkenedBg)
+      .composite([{ input: svgBuf, top: 0, left: 0 }])
+      .png({ quality: 95 })
+      .toFile(pngPath);
+  } else {
+    await sharp(svgBuf, { density: 200 })
+      .resize(CARD_WIDTH, CARD_HEIGHT)
+      .png({ quality: 95 })
+      .toFile(pngPath);
+  }
 
   console.log(`  ✓ البطاقة: ${pngPath} (${(fs.statSync(pngPath).size / 1024).toFixed(0)} KB)`);
   return pngPath;
@@ -389,6 +452,7 @@ function buildCaption(card) {
     hashtags,
     ``,
     `⚖️ منصة المحامي الرقمية — ${card.cta}`,
+    `🌐 تصفح المنصة واستشر محاميك مجاناً: https://mohamidigital.online`,
   ].join('\n');
 }
 
