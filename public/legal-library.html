@@ -814,13 +814,16 @@
     <div class="reader-header">
       <div class="reader-title-box" id="readerTitle">معاينة الكتاب</div>
       <div class="reader-actions">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open" id="readerExternalBtn" style="padding: 6px 14px; font-size: 0.85rem; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.4); color: #a5b4fc;">
+          <span>↗ فتح في نافذة مستقلة</span>
+        </a>
         <a href="#" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open" id="readerDownloadBtn" style="padding: 6px 14px; font-size: 0.85rem;">
-          <span>📥 تنزيل الملف</span>
+          <span>📥 تنزيل المرجع</span>
         </a>
         <button onclick="closeEmbeddedReader()" class="modal-close-btn" style="position: static; width: 34px; height: 34px;">✕</button>
       </div>
     </div>
-    <iframe class="reader-iframe" id="readerIframe" src="about:blank" allow="autoplay"></iframe>
+    <iframe class="reader-iframe" id="readerIframe" src="about:blank" allow="autoplay" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
   </div>
 
   <!-- Unified Footer -->
@@ -986,9 +989,13 @@
 
       document.getElementById('readerTitle').innerText = selectedBook.title;
       const previewUrl = `https://drive.google.com/file/d/${selectedBook.id}/preview`;
+      const viewUrl = `https://drive.google.com/file/d/${selectedBook.id}/view`;
       const downloadUrl = `https://drive.usercontent.google.com/download?id=${selectedBook.id}&export=download&confirm=t`;
       
       document.getElementById('readerDownloadBtn').href = downloadUrl;
+      const extBtn = document.getElementById('readerExternalBtn');
+      if (extBtn) extBtn.href = viewUrl;
+
       document.getElementById('readerIframe').src = previewUrl;
       document.getElementById('readerOverlay').classList.add('active');
     }
