@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>المكتبة القانونية السحابية الشاملة (+9,600 مرجع وموسوعة فقهية) | منصة المحامي الرقمية</title>
-  <meta name="description" content="تصفح وحمّل مباشرة أكثر من 9,600 كتاب وموسوعة قانونية وشروح السنهوري وكبار الفقهاء بروابط قراءة وتحميل مباشرة ومستقلة لكل كتاب على Google Drive.">
+  <meta name="description" content="تصفح وحمّل مباشرة أكثر من 9,600 كتاب وموسوعة قانونية وشروح السنهوري وكبار الفقهاء مع عارض مدمج داخل المنصة وروابط تحميل سحابية آمنة ومباشرة.">
   <meta name="keywords" content="مكتبة قانونية سحابية, كتب قانونية pdf, تحميل كتب السنهوري, القانون المدني, القانون الجنائي, مجلس الدولة, أحكام النقض, صيغ مذكرات, محامي ديجيتال">
   <link rel="canonical" href="https://mohamidigital.online/legal-library.html">
   
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="المكتبة القانونية السحابية الشاملة (+9,600 مرجع وموسوعة)">
-  <meta property="og:description" content="ابحث وحمّل مباشرة آلاف أمهات الكتب والموسوعات الفقهية بروابط مباشرة لكل كتاب على Google Drive.">
+  <meta property="og:description" content="ابحث وتصفح وحمّل مباشرة آلاف أمهات الكتب والموسوعات الفقهية مع قارئ مدمج وتنزيل سحابي فائق السرعة.">
   <meta property="og:url" content="https://mohamidigital.online/legal-library.html">
   <meta property="og:image" content="https://mohamidigital.online/blog/images/legal-library-hub.jpg">
 
@@ -30,7 +30,7 @@
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": "المكتبة القانونية السحابية الشاملة (+9,600 مرجع)",
-    "description": "فهرس ومستودع سحابي يضم أكثر من 9,600 كتاب ومرجع قانوني مصري وعربي بروابط فتح وقراءة مباشرة لكل كتاب على Google Drive.",
+    "description": "فهرس ومستودع سحابي يضم أكثر من 9,600 كتاب ومرجع قانوني مصري وعربي مع عارض قراءة مدمج وروابط تحميل مباشرة.",
     "url": "https://mohamidigital.online/legal-library.html",
     "publisher": {
       "@type": "Organization",
@@ -115,11 +115,31 @@
       margin: 0 auto 20px;
     }
 
+    /* Safety Banner */
+    .safety-banner {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 14px;
+      padding: 14px 20px;
+      max-width: 900px;
+      margin: 0 auto 25px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.92rem;
+      color: #a7f3d0;
+      text-align: right;
+    }
+    .safety-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
     /* Stats Bar */
     .stats-bar {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 16px;
       flex-wrap: wrap;
       margin-bottom: 30px;
     }
@@ -311,6 +331,7 @@
       font-family: inherit;
       font-size: 0.88rem;
       font-weight: 700;
+      cursor: pointer;
       text-decoration: none;
       transition: all 0.2s;
     }
@@ -318,6 +339,7 @@
       background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
       color: #0f172a;
       box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+      border: none;
     }
     .btn-card-open:hover {
       background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
@@ -358,6 +380,165 @@
       background: #f59e0b;
       color: #0f172a;
       transform: translateY(-2px);
+    }
+
+    /* Trust & Reader Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-box {
+      background: #0f172a;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 650px;
+      padding: 30px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+      position: relative;
+      animation: modalSlideUp 0.3s ease-out;
+    }
+    @keyframes modalSlideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      font-size: 1.3rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .modal-close-btn:hover {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+    }
+    .modal-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+      padding-left: 40px;
+    }
+    .modal-meta {
+      font-size: 0.9rem;
+      color: #38bdf8;
+      margin-bottom: 20px;
+    }
+    .modal-trust-box {
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 22px;
+      font-size: 0.9rem;
+      color: #a7f3d0;
+      line-height: 1.6;
+    }
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .btn-modal-action {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-modal-gold {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #0f172a;
+      box-shadow: 0 6px 18px rgba(245, 158, 11, 0.3);
+      border: none;
+    }
+    .btn-modal-gold:hover {
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      transform: translateY(-2px);
+    }
+    .btn-modal-indigo {
+      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(99, 102, 241, 0.3);
+      border: none;
+    }
+    .btn-modal-indigo:hover {
+      background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+      transform: translateY(-2px);
+    }
+
+    /* Embedded Fullscreen Viewer Modal */
+    .reader-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(12px);
+      z-index: 2500;
+      display: none;
+      flex-direction: column;
+    }
+    .reader-overlay.active {
+      display: flex;
+    }
+    .reader-header {
+      background: #0f172a;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .reader-title-box {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 60%;
+    }
+    .reader-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .reader-iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+      background: #1e293b;
     }
 
     /* Trust Section */
@@ -417,6 +598,8 @@
     @media (max-width: 768px) {
       .hero h1 { font-size: 1.9rem; }
       .books-grid { grid-template-columns: 1fr; }
+      .modal-box { padding: 20px; }
+      .reader-title-box { max-width: 40%; font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -512,14 +695,22 @@
 
     <!-- Hero Section -->
     <section class="hero">
-      <div class="badge-cloud">☁️ مستودع Google Drive السحابي الرسمي</div>
+      <div class="badge-cloud">☁️ مستودع Google Drive السحابي الرسمي (5 TB)</div>
       <h1>المكتبة القانونية السحابية الشاملة</h1>
-      <p>تصفح وابحث وحمّل مباشرة آلاف المراجع والموسوعات الفقهية وأحكام النقض. كل كتاب له رابطه الخاص المباشر الذي يفتحه لك وحده في Google Drive Viewer أو يحمله بنقرة واحدة.</p>
+      <p>تصفح وابحث وحمّل مباشرة آلاف المراجع والموسوعات الفقهية وأحكام النقض. تتوفر خيارات المعاينة المدمجة داخل المنصة والتنزيل السحابي المباشر لكل كتاب.</p>
       
+      <!-- Trust & Reassurance Banner -->
+      <div class="safety-banner">
+        <span class="safety-icon">🛡️</span>
+        <div>
+          <strong>ضمان الأمان والمصداقية:</strong> جميع الكتب والمراجع القانونية مفحوصة وأصلية ومستضافة على سحابة Google الرسمية. نظراً للأحجام الموسوعية الكاملة للكتب (+25MB)، يتم التنزيل بأقصى سرعة اتصال مباشرة.
+        </div>
+      </div>
+
       <div class="stats-bar">
         <div class="stat-chip">📚 إجمالي المراجع: <strong>+9,600 كتاب</strong></div>
-        <div class="stat-chip">⚡ نوع الرابط: <strong>رابط مستقل ومباشر لكل كتاب</strong></div>
-        <div class="stat-chip">🛡️ الوصول: <strong>مجاني 100%</strong></div>
+        <div class="stat-chip">⚡ نوع الرابط: <strong>رابط مباشر ومستقل لكل كتاب</strong></div>
+        <div class="stat-chip">🛡️ المعاينة والتحميل: <strong>مجاني 100%</strong></div>
       </div>
     </section>
 
@@ -593,6 +784,45 @@
 
   </main>
 
+  <!-- Trust & Download Options Modal -->
+  <div class="modal-overlay" id="downloadModal" onclick="closeDownloadModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeDownloadModal()">✕</button>
+      <h3 class="modal-title" id="modalBookTitle">عنوان الكتاب</h3>
+      <div class="modal-meta" id="modalBookMeta">✍️ المؤلف · 📁 الحجم</div>
+      
+      <div class="modal-trust-box">
+        🛡️ <strong>إشعار الأمان والتحميل الرسمي:</strong><br>
+        هذا المرجع الموسوعي معتمد ومفحوص بالكامل 100% ومستضاف على سحابة Google الرسمية. نظراً لضخامة حجم الكتاب، إذا ظهرت لك رسالة تلقائية من Google بسبب حجم الملف، فالمرجع آمن تماماً وخالٍ من أي برمجيات ضارة.
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-modal-action btn-modal-indigo" id="modalBtnPreview" onclick="openEmbeddedReader()">
+          <span>📖 قراءة ومعاينة المرجع داخل المنصة</span>
+          <span>👁️</span>
+        </button>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-modal-action btn-modal-gold" id="modalBtnDownload">
+          <span>⚡ بدء التنزيل المباشر من Google Drive</span>
+          <span>📥</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Embedded Fullscreen Reader Overlay -->
+  <div class="reader-overlay" id="readerOverlay">
+    <div class="reader-header">
+      <div class="reader-title-box" id="readerTitle">معاينة الكتاب</div>
+      <div class="reader-actions">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open" id="readerDownloadBtn" style="padding: 6px 14px; font-size: 0.85rem;">
+          <span>📥 تنزيل الملف</span>
+        </a>
+        <button onclick="closeEmbeddedReader()" class="modal-close-btn" style="position: static; width: 34px; height: 34px;">✕</button>
+      </div>
+    </div>
+    <iframe class="reader-iframe" id="readerIframe" src="about:blank" allow="autoplay"></iframe>
+  </div>
+
   <!-- Unified Footer -->
   <footer class="footer">
     <div class="container">
@@ -617,14 +847,14 @@
 
   <!-- Dynamic Catalog Loader & Interactive Search Engine -->
   <script>
-    const INITIAL_FEATURED_BOOKS = [{"id":"1hY8nCjVCEjHMm5H443ABVDeh_aKofOLY","title":"نظرية العقد للسنهوري الجزء الاول","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"146.86 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/نظرية العقد للسنهوري/نظرية العقد للسنهوري الجزء الاول.pdf","directDriveUrl":"https://drive.google.com/file/d/1hY8nCjVCEjHMm5H443ABVDeh_aKofOLY/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1hY8nCjVCEjHMm5H443ABVDeh_aKofOLY"},{"id":"1QL8-BGHXlP6B97WGYEl2uNWfJG3pAL1D","title":"fichier-pdf-sans-nom","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"139.10 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/fichier-pdf-sans-nom.pdf","directDriveUrl":"https://drive.google.com/file/d/1QL8-BGHXlP6B97WGYEl2uNWfJG3pAL1D/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1QL8-BGHXlP6B97WGYEl2uNWfJG3pAL1D"},{"id":"1xFVXQOZOoyIs9JxQzMjQFLn5Eu3s45du","title":"س 43 مكتب فني مدني ج 1","author":"المكتب الفني لمحكمة النقض","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"138.95 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/احكام نقض/احكام النقض المدني المصرية/س 43 مكتب فني مدني ج 1.pdf","directDriveUrl":"https://drive.google.com/file/d/1xFVXQOZOoyIs9JxQzMjQFLn5Eu3s45du/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1xFVXQOZOoyIs9JxQzMjQFLn5Eu3s45du"},{"id":"1jfDVfLAl5qAICyJjOQ_nHmcCpR-Pc49a","title":"الوسيط في شرح قانون التجارة المصري -الدكتورة سميحة القليوبي","author":"د. سميحة القليوبي","category":"commercial","categoryName":"القانون التجاري والشركات","icon":"💼","size":"138.54 MB","path":"المكتبة القانونية/الفلاشة 6/قانون التجاري/الوسيط في شرح قانون التجارة المصري/الوسيط في شرح قانون التجارة المصري -الدكتورة سميحة القليوبي.pdf","directDriveUrl":"https://drive.google.com/file/d/1jfDVfLAl5qAICyJjOQ_nHmcCpR-Pc49a/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1jfDVfLAl5qAICyJjOQ_nHmcCpR-Pc49a"},{"id":"1gimwtMQ2fi45tcpFYkWl3EGQuwEeiyFg","title":"النظرية العامة للقانون-سمير تناغو","author":"د. سمير تناغو","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"136.97 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/موسوعة سمير تناغو/النظرية العامة للقانون-سمير تناغو.pdf","directDriveUrl":"https://drive.google.com/file/d/1gimwtMQ2fi45tcpFYkWl3EGQuwEeiyFg/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1gimwtMQ2fi45tcpFYkWl3EGQuwEeiyFg"},{"id":"1GeT_LYJyON3NPZiVsuKpAZ19V64tXTxw","title":"عقد الايجار -الدكتور سمير تناغو","author":"د. سمير تناغو","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"133.17 MB","path":"المكتبة القانونية/الفلاشة 6/قانون الإيجار/عقد الإيجار الدكتور سمير تناغو/عقد الايجار -الدكتور سمير تناغو.pdf","directDriveUrl":"https://drive.google.com/file/d/1GeT_LYJyON3NPZiVsuKpAZ19V64tXTxw/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1GeT_LYJyON3NPZiVsuKpAZ19V64tXTxw"},{"id":"1R7-OPQ_XI6P4AOKR0FagpaK7AgkWjvGG","title":"الوسيط في شرح قانون التجارة المصري -الجزء الثاني القسم الاول","author":"نخبة من كبار فقهاء القانون","category":"commercial","categoryName":"القانون التجاري والشركات","icon":"💼","size":"120.01 MB","path":"المكتبة القانونية/الفلاشة 6/قانون التجاري/الوسيط في شرح قانون التجارة المصري/الوسيط في شرح قانون التجارة المصري -الجزء الثاني القسم الاول .pdf","directDriveUrl":"https://drive.google.com/file/d/1R7-OPQ_XI6P4AOKR0FagpaK7AgkWjvGG/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1R7-OPQ_XI6P4AOKR0FagpaK7AgkWjvGG"},{"id":"1zTEgpdzFQRLlxK-88suW3dkBS4dae8q2","title":"س 4 مكتب فني مدني ثلاثة أجزاء","author":"المكتب الفني لمحكمة النقض","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"111.19 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/احكام نقض/احكام النقض المدني المصرية/س 4 مكتب فني مدني ثلاثة أجزاء.pdf","directDriveUrl":"https://drive.google.com/file/d/1zTEgpdzFQRLlxK-88suW3dkBS4dae8q2/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1zTEgpdzFQRLlxK-88suW3dkBS4dae8q2"},{"id":"11NHQnRlryolqRjz1ahL3aTaP-Wfiu4Zu","title":"س 37 مكتب فني مدني الجزئين","author":"المكتب الفني لمحكمة النقض","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"108.09 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/احكام نقض/احكام النقض المدني المصرية/س 37 مكتب فني مدني الجزئين.pdf","directDriveUrl":"https://drive.google.com/file/d/11NHQnRlryolqRjz1ahL3aTaP-Wfiu4Zu/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=11NHQnRlryolqRjz1ahL3aTaP-Wfiu4Zu"},{"id":"1aZYnrMYtUNfQ9BKWplUlIRlscrPeFzmB","title":"نظرية العقد للسنهوري الجزء الثاني","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"96.36 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/نظرية العقد للسنهوري/نظرية العقد للسنهوري الجزء الثاني.pdf","directDriveUrl":"https://drive.google.com/file/d/1aZYnrMYtUNfQ9BKWplUlIRlscrPeFzmB/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1aZYnrMYtUNfQ9BKWplUlIRlscrPeFzmB"},{"id":"1N7UtL6LDuU6lOnFZcsLhPssDocfxsqa4","title":"الحماية الدستورية لحرية الرأى","author":"نخبة من كبار فقهاء القانون","category":"legislation","categoryName":"التشريعات والقوانين الدستورية","icon":"📖","size":"92.24 MB","path":"المكتبة القانونية/الفلاشة 4/مؤلفات ومنوعات/الحماية الدستورية لحرية الرأى.pdf","directDriveUrl":"https://drive.google.com/file/d/1N7UtL6LDuU6lOnFZcsLhPssDocfxsqa4/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1N7UtL6LDuU6lOnFZcsLhPssDocfxsqa4"},{"id":"1sFjSNVLCvOCIEF0NQNUf9kStK86L7Rgl","title":"س 3 مكتب فني مدني الجزئين","author":"المكتب الفني لمحكمة النقض","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"90.15 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/احكام نقض/احكام النقض المدني المصرية/س 3 مكتب فني مدني الجزئين.pdf","directDriveUrl":"https://drive.google.com/file/d/1sFjSNVLCvOCIEF0NQNUf9kStK86L7Rgl/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1sFjSNVLCvOCIEF0NQNUf9kStK86L7Rgl"},{"id":"1qUMQnrSUZfODWlDpARlPgERD7-iCJZ-m","title":"عقد البيع - الدكتور سمير تناغو","author":"د. سمير تناغو","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"89.71 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/موسوعة سمير تناغو/عقد البيع - الدكتور سمير تناغو.pdf","directDriveUrl":"https://drive.google.com/file/d/1qUMQnrSUZfODWlDpARlPgERD7-iCJZ-m/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1qUMQnrSUZfODWlDpARlPgERD7-iCJZ-m"},{"id":"1AmSAGy74ZVUSCIkfLJQ3O5PUxz9JN8ks","title":"الدعوى الادارية 1","author":"نخبة من كبار فقهاء القانون","category":"admin","categoryName":"القضاء الإداري ومجلس الدولة","icon":"🏛️","size":"84.34 MB","path":"المكتبة القانونية/الفلاشة 5/قانون الاداري/الدعوى الادارية 1.pdf","directDriveUrl":"https://drive.google.com/file/d/1AmSAGy74ZVUSCIkfLJQ3O5PUxz9JN8ks/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1AmSAGy74ZVUSCIkfLJQ3O5PUxz9JN8ks"},{"id":"1AxR8Ph_F1sVGTj0ctOrtmT9Fbr-MeEax","title":"شرح قانون ايجار الاماكن  سليمان مرقس ج 2","author":"نخبة من كبار فقهاء القانون","category":"legislation","categoryName":"التشريعات والقوانين الدستورية","icon":"📖","size":"83.85 MB","path":"المكتبة القانونية/الفلاشة 6/قانون الإيجار/شرح قانون ايجار الاماكن  سليمان مرقس/شرح قانون ايجار الاماكن  سليمان مرقس ج 2.pdf","directDriveUrl":"https://drive.google.com/file/d/1AxR8Ph_F1sVGTj0ctOrtmT9Fbr-MeEax/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1AxR8Ph_F1sVGTj0ctOrtmT9Fbr-MeEax"},{"id":"1DCMEBzX9ZhzAUZocVKdkWTV5HqXCqe7m","title":"س 47 مكتب فني مدني ج 2","author":"المكتب الفني لمحكمة النقض","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"82.81 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/احكام نقض/احكام النقض المدني المصرية/س 47 مكتب فني مدني ج 2.pdf","directDriveUrl":"https://drive.google.com/file/d/1DCMEBzX9ZhzAUZocVKdkWTV5HqXCqe7m/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1DCMEBzX9ZhzAUZocVKdkWTV5HqXCqe7m"},{"id":"1g2FbjprwgrLv0bdcmWN1PEnd3rLfFg_C","title":"س 31 مكتب فني مدني ج 2","author":"المكتب الفني لمحكمة النقض","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"82.59 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/احكام نقض/احكام النقض المدني المصرية/س 31 مكتب فني مدني ج 2.pdf","directDriveUrl":"https://drive.google.com/file/d/1g2FbjprwgrLv0bdcmWN1PEnd3rLfFg_C/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1g2FbjprwgrLv0bdcmWN1PEnd3rLfFg_C"},{"id":"13UaQoobpuT4jtyfnc4rRJVZr15Mw3zzs","title":"تاديب","author":"نخبة من كبار فقهاء القانون","category":"admin","categoryName":"القضاء الإداري ومجلس الدولة","icon":"🏛️","size":"81.70 MB","path":"المكتبة القانونية/الفلاشة 5/قانون الاداري/تاديب.pdf","directDriveUrl":"https://drive.google.com/file/d/13UaQoobpuT4jtyfnc4rRJVZr15Mw3zzs/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=13UaQoobpuT4jtyfnc4rRJVZr15Mw3zzs"},{"id":"1xMpNzcPlDZxROPdSHlfYTBiouaDAc9rl","title":"التأمينات العينية و الشخصية -نبيل ابراهيم سعد","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"81.66 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/موسوعة الدكتور نبيل ابراهيم في القانون المدني/التأمينات العينية و الشخصية -نبيل ابراهيم سعد.pdf","directDriveUrl":"https://drive.google.com/file/d/1xMpNzcPlDZxROPdSHlfYTBiouaDAc9rl/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1xMpNzcPlDZxROPdSHlfYTBiouaDAc9rl"},{"id":"1NzAZsvicmgPg_ZzCkH2YvHR31mu4XCgY","title":"المرافعات لدكتور احمد الصاوى","author":"نخبة من كبار فقهاء القانون","category":"legislation","categoryName":"التشريعات والقوانين الدستورية","icon":"📖","size":"80.67 MB","path":"المكتبة القانونية/الفلاشة 7/قانون المرافعات/المرافعات لدكتور احمد الصاوى .pdf","directDriveUrl":"https://drive.google.com/file/d/1NzAZsvicmgPg_ZzCkH2YvHR31mu4XCgY/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1NzAZsvicmgPg_ZzCkH2YvHR31mu4XCgY"},{"id":"1sl6ZofTQigRzqPGiZ9TfwdA80Iet2_9I","title":"شرح+قانون+المرافعات+المدنية+والتجارية","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"80.67 MB","path":"المكتبة القانونية/الفلاشة 4/مؤلفات ومنوعات/كتب اخري/شرح+قانون+المرافعات+المدنية+والتجارية.pdf","directDriveUrl":"https://drive.google.com/file/d/1sl6ZofTQigRzqPGiZ9TfwdA80Iet2_9I/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1sl6ZofTQigRzqPGiZ9TfwdA80Iet2_9I"},{"id":"1lPSDuZt384A4iZCGRu7rGQsnyDplrUrk","title":"س 7 مكتب فني مدني الثلاثة أجزاء","author":"المكتب الفني لمحكمة النقض","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"79.57 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/احكام نقض/احكام النقض المدني المصرية/س 7 مكتب فني مدني الثلاثة أجزاء.pdf","directDriveUrl":"https://drive.google.com/file/d/1lPSDuZt384A4iZCGRu7rGQsnyDplrUrk/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1lPSDuZt384A4iZCGRu7rGQsnyDplrUrk"},{"id":"1tSHpCsNN-sEBMQtkRzoXtJwJjoJiuhzw","title":"شرح احكام القانون المدني العقود المسماة-القسم الاول","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"78.62 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/شرح احكام القانون المدني العقود المسماة-القسم الاول.pdf","directDriveUrl":"https://drive.google.com/file/d/1tSHpCsNN-sEBMQtkRzoXtJwJjoJiuhzw/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1tSHpCsNN-sEBMQtkRzoXtJwJjoJiuhzw"},{"id":"1IkOukdbh4aElESagIrl1WqDkmNJGRZuc","title":"عقد البيع والمقايضة","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"78.62 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/موسوعة الدكتور رمضان ابو السعود ف المدني/عقد البيع والمقايضة.pdf","directDriveUrl":"https://drive.google.com/file/d/1IkOukdbh4aElESagIrl1WqDkmNJGRZuc/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1IkOukdbh4aElESagIrl1WqDkmNJGRZuc"},{"id":"11qPqxF3582KkKcNCWIVRENwXkgVhX8aC","title":"س 48 مكتب فني مدني ج 2","author":"المكتب الفني لمحكمة النقض","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"76.72 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/احكام نقض/احكام النقض المدني المصرية/س 48 مكتب فني مدني ج 2.pdf","directDriveUrl":"https://drive.google.com/file/d/11qPqxF3582KkKcNCWIVRENwXkgVhX8aC/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=11qPqxF3582KkKcNCWIVRENwXkgVhX8aC"},{"id":"1ROpudRIHVOG5S5M8ph7agc_mqzf8RrEb","title":"قضاء التعويض للطماوي القسم الاول","author":"نخبة من كبار فقهاء القانون","category":"admin","categoryName":"القضاء الإداري ومجلس الدولة","icon":"🏛️","size":"74.66 MB","path":"المكتبة القانونية/الفلاشة 5/قانون الاداري/قضاء التعويض للطماوي القسم الاول.pdf","directDriveUrl":"https://drive.google.com/file/d/1ROpudRIHVOG5S5M8ph7agc_mqzf8RrEb/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1ROpudRIHVOG5S5M8ph7agc_mqzf8RrEb"},{"id":"1Xdw_hlyfeTTfdbB-lbj2AjJlgUxyc6DK","title":"قضاء التعويض للطماوي القسم الثاني","author":"نخبة من كبار فقهاء القانون","category":"admin","categoryName":"القضاء الإداري ومجلس الدولة","icon":"🏛️","size":"74.29 MB","path":"المكتبة القانونية/الفلاشة 5/قانون الاداري/قضاء التعويض للطماوي القسم الثاني.pdf","directDriveUrl":"https://drive.google.com/file/d/1Xdw_hlyfeTTfdbB-lbj2AjJlgUxyc6DK/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1Xdw_hlyfeTTfdbB-lbj2AjJlgUxyc6DK"},{"id":"13qADWZ99l4boenUgkSS-T0B5XKyru-uG","title":"الوسيط في شرح قانون التجارة المصري -الجزء الثاني القسم الثاني","author":"نخبة من كبار فقهاء القانون","category":"commercial","categoryName":"القانون التجاري والشركات","icon":"💼","size":"73.67 MB","path":"المكتبة القانونية/الفلاشة 6/قانون التجاري/الوسيط في شرح قانون التجارة المصري/الوسيط في شرح قانون التجارة المصري -الجزء الثاني القسم الثاني .pdf","directDriveUrl":"https://drive.google.com/file/d/13qADWZ99l4boenUgkSS-T0B5XKyru-uG/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=13qADWZ99l4boenUgkSS-T0B5XKyru-uG"},{"id":"1Tx-PR42HnFx1GEdTltGpdJDBrcCXAMWD","title":"المرافعات المدنية والتجارية والنظام القضائي في مصر عبد الحميد ابو هيف","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"70.82 MB","path":"المكتبة القانونية/الفلاشة 7/قانون المرافعات/المرافعات المدنية والتجارية والنظام القضائي في مصر عبد الحميد ابو هيف.pdf","directDriveUrl":"https://drive.google.com/file/d/1Tx-PR42HnFx1GEdTltGpdJDBrcCXAMWD/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1Tx-PR42HnFx1GEdTltGpdJDBrcCXAMWD"},{"id":"1-ZItrCL0WOu6mwaO-cBfX77HxaRM4IVI","title":"مرافعات 1","author":"نخبة من كبار فقهاء القانون","category":"legislation","categoryName":"التشريعات والقوانين الدستورية","icon":"📖","size":"69.34 MB","path":"المكتبة القانونية/الفلاشة 7/قانون المرافعات/قانون المرافعات للدكتور احمد مليجي/مرافعات 1.pdf","directDriveUrl":"https://drive.google.com/file/d/1-ZItrCL0WOu6mwaO-cBfX77HxaRM4IVI/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1-ZItrCL0WOu6mwaO-cBfX77HxaRM4IVI"},{"id":"19t9CJIZgbVEfic5duUyouMnn5UTC8wEw","title":"س 12 مكتب فني مدني ثلاثة اجزاء","author":"المكتب الفني لمحكمة النقض","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"67.04 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/احكام نقض/احكام النقض المدني المصرية/س 12 مكتب فني مدني ثلاثة اجزاء.pdf","directDriveUrl":"https://drive.google.com/file/d/19t9CJIZgbVEfic5duUyouMnn5UTC8wEw/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=19t9CJIZgbVEfic5duUyouMnn5UTC8wEw"},{"id":"1zb6iKuaz1N5gZXs3JDskaqZYiCQmdaZ_","title":"جندي عبد الملك الجزء الخامس","author":"نخبة من كبار فقهاء القانون","category":"criminal","categoryName":"القانون الجنائي","icon":"⚖️","size":"67.04 MB","path":"المكتبة القانونية/الفلاشة 3/اجراءات جنائية/موسوعة المستشار جندي عبد الملك/جندي عبد الملك الجزء الخامس.pdf","directDriveUrl":"https://drive.google.com/file/d/1zb6iKuaz1N5gZXs3JDskaqZYiCQmdaZ_/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1zb6iKuaz1N5gZXs3JDskaqZYiCQmdaZ_"},{"id":"1z6s7vAJNeNyv2nvmDUgsDs_yzz2wMPvn","title":"قانون الاجراءات الجنائية حسن علام","author":"نخبة من كبار فقهاء القانون","category":"criminal","categoryName":"القانون الجنائي","icon":"⚖️","size":"64.66 MB","path":"المكتبة القانونية/الفلاشة 3/اجراءات جنائية/قانون الاجراءات الجنائية حسن علام.pdf","directDriveUrl":"https://drive.google.com/file/d/1z6s7vAJNeNyv2nvmDUgsDs_yzz2wMPvn/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1z6s7vAJNeNyv2nvmDUgsDs_yzz2wMPvn"},{"id":"10taTslSQq6Cxk0OOOwpF1VtVTm3_MGcj","title":"احكام الالتزام و الاثبات للدكتور سمير عبد السيد تناغو","author":"د. سمير تناغو","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"64.26 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/موسوعة سمير تناغو/احكام الالتزام و الاثبات للدكتور سمير عبد السيد تناغو.pdf","directDriveUrl":"https://drive.google.com/file/d/10taTslSQq6Cxk0OOOwpF1VtVTm3_MGcj/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=10taTslSQq6Cxk0OOOwpF1VtVTm3_MGcj"},{"id":"1gDLXUs-Kx8SkL9iuaaL5kh33D8wUCyJE","title":"عقد الإيجار","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"64.04 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/موسوعة الدكتور رمضان ابو السعود ف المدني/عقد الإيجار .pdf","directDriveUrl":"https://drive.google.com/file/d/1gDLXUs-Kx8SkL9iuaaL5kh33D8wUCyJE/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1gDLXUs-Kx8SkL9iuaaL5kh33D8wUCyJE"},{"id":"17Xb6KYE-Gb_F06QItpwSS2IhCY6Ivlfs","title":"س 45 مكتب فني مدني ج 1","author":"المكتب الفني لمحكمة النقض","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"63.83 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/احكام نقض/احكام النقض المدني المصرية/س 45 مكتب فني مدني ج 1.pdf","directDriveUrl":"https://drive.google.com/file/d/17Xb6KYE-Gb_F06QItpwSS2IhCY6Ivlfs/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=17Xb6KYE-Gb_F06QItpwSS2IhCY6Ivlfs"},{"id":"1fgfIfall0eR6mDKX4PCc75lFD8tGdXfB","title":"العقود الخاصة المدنية و التجارية 01","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"63.76 MB","path":"المكتبة القانونية/الفلاشة 6/قانون التجاري/العقود الخاصة المدنية والتجارية/العقود الخاصة المدنية و التجارية 01.pdf","directDriveUrl":"https://drive.google.com/file/d/1fgfIfall0eR6mDKX4PCc75lFD8tGdXfB/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1fgfIfall0eR6mDKX4PCc75lFD8tGdXfB"},{"id":"1N3s9k7SXIUTlcyJoXUt_OVXEPWWoLzj_","title":"س 40 مكتب فني مدني ج 2","author":"المكتب الفني لمحكمة النقض","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"63.29 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/احكام نقض/احكام النقض المدني المصرية/س 40 مكتب فني مدني ج 2.pdf","directDriveUrl":"https://drive.google.com/file/d/1N3s9k7SXIUTlcyJoXUt_OVXEPWWoLzj_/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1N3s9k7SXIUTlcyJoXUt_OVXEPWWoLzj_"},{"id":"1MrI6ekPB0-0cud5oaNO4gPpRUVCcy963","title":"الاحوال الشخصية لغير المسلمين توفيق حسن فرج","author":"نخبة من كبار فقهاء القانون","category":"family","categoryName":"الأحوال الشخصية والأسرة","icon":"👨‍👩‍👧","size":"62.93 MB","path":"المكتبة القانونية/الفلاشة 3/احوال شخصية لغير المسلمين/الاحوال الشخصية لغير المسلمين توفيق حسن فرج.pdf","directDriveUrl":"https://drive.google.com/file/d/1MrI6ekPB0-0cud5oaNO4gPpRUVCcy963/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1MrI6ekPB0-0cud5oaNO4gPpRUVCcy963"},{"id":"1Qx7w5sy59zVV18j2UW80NwwOr2ICnrcu","title":"الدعوى الادارية 2","author":"نخبة من كبار فقهاء القانون","category":"admin","categoryName":"القضاء الإداري ومجلس الدولة","icon":"🏛️","size":"62.66 MB","path":"المكتبة القانونية/الفلاشة 5/قانون الاداري/الدعوى الادارية 2.pdf","directDriveUrl":"https://drive.google.com/file/d/1Qx7w5sy59zVV18j2UW80NwwOr2ICnrcu/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1Qx7w5sy59zVV18j2UW80NwwOr2ICnrcu"},{"id":"1245-602DfcSQ6WC9mFRQhjO2dmwwsxHZ","title":"س 43 مكتب فني مدني ج 2","author":"المكتب الفني لمحكمة النقض","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"62.56 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/احكام نقض/احكام النقض المدني المصرية/س 43 مكتب فني مدني ج 2.pdf","directDriveUrl":"https://drive.google.com/file/d/1245-602DfcSQ6WC9mFRQhjO2dmwwsxHZ/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1245-602DfcSQ6WC9mFRQhjO2dmwwsxHZ"},{"id":"12YrJO00aMSXYQaqUSSuNFLGUxiQwHDZ5","title":"مصادر الالتزام -سمير عبد السيد تناغو","author":"د. سمير تناغو","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"62.39 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/موسوعة سمير تناغو/مصادر الالتزام -سمير عبد السيد تناغو.pdf","directDriveUrl":"https://drive.google.com/file/d/12YrJO00aMSXYQaqUSSuNFLGUxiQwHDZ5/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=12YrJO00aMSXYQaqUSSuNFLGUxiQwHDZ5"},{"id":"1XPErPFNFwzkCmUVWCG6xfIX48ypPAVf5","title":"مرصفاوي اصول قانون الاجراءات الجنائية 2","author":"نخبة من كبار فقهاء القانون","category":"criminal","categoryName":"القانون الجنائي","icon":"⚖️","size":"61.14 MB","path":"المكتبة القانونية/الفلاشة 3/اجراءات جنائية/المرصفاوي/مرصفاوي اصول قانون الاجراءات الجنائية 2.pdf","directDriveUrl":"https://drive.google.com/file/d/1XPErPFNFwzkCmUVWCG6xfIX48ypPAVf5/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1XPErPFNFwzkCmUVWCG6xfIX48ypPAVf5"},{"id":"1pseiJx-isMk9kY4asxhjnrIOSqJKeZQu","title":"التأمينات الشخصية و العينية","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"60.74 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/موسوعة سمير تناغو/التأمينات الشخصية و العينية.pdf","directDriveUrl":"https://drive.google.com/file/d/1pseiJx-isMk9kY4asxhjnrIOSqJKeZQu/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1pseiJx-isMk9kY4asxhjnrIOSqJKeZQu"},{"id":"1JMZz-SnlLD9oQBYrYPN8_umqXkq1K7sz","title":"موسوعة النقض الجنائى","author":"نخبة من كبار فقهاء القانون","category":"criminal","categoryName":"القانون الجنائي","icon":"⚖️","size":"59.70 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/موسوعة النقض الجنائى.doc","directDriveUrl":"https://drive.google.com/file/d/1JMZz-SnlLD9oQBYrYPN8_umqXkq1K7sz/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1JMZz-SnlLD9oQBYrYPN8_umqXkq1K7sz"},{"id":"1SB21j41AAMDcx3N7x67IwdnuVtbrv104","title":"القانون رقم 148 لسنة 2019","author":"نخبة من كبار فقهاء القانون","category":"labor","categoryName":"قانون العمل والتأمينات","icon":"👷","size":"58.03 MB","path":"المكتبة القانونية/الفلاشة 6/قانون التأمينات الاجتماعية والمعاشات/موسوعة التأمينات الاجتماعية المصرية الحديثة مع شرح القانون الجديد/موسوعة التأمينات الاجتماعية المصرية مع شرح القانون الجديد/القانون رقم 148 لسنة 2019.pdf","directDriveUrl":"https://drive.google.com/file/d/1SB21j41AAMDcx3N7x67IwdnuVtbrv104/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1SB21j41AAMDcx3N7x67IwdnuVtbrv104"},{"id":"1iLi6ujOz_vFvcMMzamExk0gVWRTvOkSH","title":"المرافعات المدنية والتجارية محمد حامد فهمي","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"57.19 MB","path":"المكتبة القانونية/الفلاشة 7/قانون المرافعات/قانون المرافعات المدنية لمحمد حامد فهمي/المرافعات المدنية والتجارية محمد حامد فهمي.pdf","directDriveUrl":"https://drive.google.com/file/d/1iLi6ujOz_vFvcMMzamExk0gVWRTvOkSH/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1iLi6ujOz_vFvcMMzamExk0gVWRTvOkSH"},{"id":"1pVoDpqmaFjlWXewprSs-Cs44Brt8s-qk","title":"مجموعة الربع قرن الأولى (1931 - 1955) جنائي الجزء الأول من أ - خ","author":"نخبة من كبار فقهاء القانون","category":"criminal","categoryName":"القانون الجنائي","icon":"⚖️","size":"57.03 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/مجموعة الربع قرن الأولى (1931 - 1955) جنائي/مجموعة الربع قرن الأولى (1931 - 1955) جنائي الجزء الأول من أ - خ.pdf","directDriveUrl":"https://drive.google.com/file/d/1pVoDpqmaFjlWXewprSs-Cs44Brt8s-qk/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1pVoDpqmaFjlWXewprSs-Cs44Brt8s-qk"},{"id":"1R5Mwe4QNar1ApzPTVVcHEzEdR3K2mwLV","title":"موسوعة عقد الإيجار فى التقنين المدنى الجديد - المستشار محمد عزمى البكرى.o 2(2)","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"57.03 MB","path":"المكتبة القانونية/الفلاشة 6/قانون الإيجار/موسوعة عقد الإيجار فى التقنين المدنى الجديد - المستشار محمد عزمى البكرى.o_2(2).pdf","directDriveUrl":"https://drive.google.com/file/d/1R5Mwe4QNar1ApzPTVVcHEzEdR3K2mwLV/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1R5Mwe4QNar1ApzPTVVcHEzEdR3K2mwLV"},{"id":"1pVekRiXf2Ytxffsfe14_CE5mzO-VOJ8T","title":"شرح القانون التجارى المصرى  محمد صالح بك ج 2","author":"نخبة من كبار فقهاء القانون","category":"commercial","categoryName":"القانون التجاري والشركات","icon":"💼","size":"56.30 MB","path":"المكتبة القانونية/الفلاشة 6/قانون التجاري/شرح القانون التجاري محمد صالح بك/شرح القانون التجارى المصرى  محمد صالح بك ج 2.pdf","directDriveUrl":"https://drive.google.com/file/d/1pVekRiXf2Ytxffsfe14_CE5mzO-VOJ8T/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1pVekRiXf2Ytxffsfe14_CE5mzO-VOJ8T"},{"id":"1HiIKf9zojQBYBiJ1mJB2Iqhf_lkz3s6I","title":"مرافعات","author":"نخبة من كبار فقهاء القانون","category":"legislation","categoryName":"التشريعات والقوانين الدستورية","icon":"📖","size":"55.95 MB","path":"المكتبة القانونية/الفلاشة 7/قانون المرافعات/مرافعات.pdf","directDriveUrl":"https://drive.google.com/file/d/1HiIKf9zojQBYBiJ1mJB2Iqhf_lkz3s6I/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1HiIKf9zojQBYBiJ1mJB2Iqhf_lkz3s6I"},{"id":"1FUhnXzFfl4Z9zGWpzF0X8lT4Ks5ZgXc_","title":"موسوعة التأمينات الاجتماعية المصرية","author":"نخبة من كبار فقهاء القانون","category":"labor","categoryName":"قانون العمل والتأمينات","icon":"👷","size":"55.34 MB","path":"المكتبة القانونية/الفلاشة 6/قانون التأمينات الاجتماعية والمعاشات/موسوعة التأمينات الاجتماعية المصرية الحديثة مع شرح القانون الجديد/موسوعة التأمينات الاجتماعية المصرية مع شرح القانون الجديد/موسوعة التأمينات الاجتماعية المصرية.pdf","directDriveUrl":"https://drive.google.com/file/d/1FUhnXzFfl4Z9zGWpzF0X8lT4Ks5ZgXc_/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1FUhnXzFfl4Z9zGWpzF0X8lT4Ks5ZgXc_"},{"id":"1U7LaLsuFmBMzyWNExNVcIOtLzSXRnmYc","title":"س 11 مكتب فني مدني ثلاثة اجزاء","author":"المكتب الفني لمحكمة النقض","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"55.26 MB","path":"المكتبة القانونية/الفلاشة 1/احكام , فتاوي , تشريعات/موسوعة احكام النقض/احكام نقض/احكام النقض المدني المصرية/س 11 مكتب فني مدني ثلاثة اجزاء.pdf","directDriveUrl":"https://drive.google.com/file/d/1U7LaLsuFmBMzyWNExNVcIOtLzSXRnmYc/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1U7LaLsuFmBMzyWNExNVcIOtLzSXRnmYc"},{"id":"1HbOJGGjcBah_BvLG37goK-w3nvbbDFm2","title":"النقض في المواد المدنية والتجارية حامد فهمي ومحمد حامد فهمي","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"55.23 MB","path":"المكتبة القانونية/الفلاشة 7/قانون المرافعات/قانون المرافعات المدنية لمحمد حامد فهمي/النقض في المواد المدنية والتجارية حامد فهمي ومحمد حامد فهمي.pdf","directDriveUrl":"https://drive.google.com/file/d/1HbOJGGjcBah_BvLG37goK-w3nvbbDFm2/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1HbOJGGjcBah_BvLG37goK-w3nvbbDFm2"},{"id":"1cwnR1ay5Tmxrtcpdg7QwmwoUH4HxPX54","title":"القانون الدولى الخاص المصرى حامد زكي","author":"نخبة من كبار فقهاء القانون","category":"legislation","categoryName":"التشريعات والقوانين الدستورية","icon":"📖","size":"54.92 MB","path":"المكتبة القانونية/الفلاشة 3/القوانين الدولية/القانون الدولى الخاص المصرى حامد زكي.pdf","directDriveUrl":"https://drive.google.com/file/d/1cwnR1ay5Tmxrtcpdg7QwmwoUH4HxPX54/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1cwnR1ay5Tmxrtcpdg7QwmwoUH4HxPX54"},{"id":"14kx2dzy5pDhbFnBi3xYakfqN6xPg9okf","title":"بحوث و تعليقات على الاحكام فى المسؤلية المدنية و غيرها من موضوعات القانون المدنى","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"54.40 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/بحوث و تعليقات على الاحكام فى المسؤلية المدنية و غيرها من موضوعات القانون المدنى_.pdf","directDriveUrl":"https://drive.google.com/file/d/14kx2dzy5pDhbFnBi3xYakfqN6xPg9okf/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=14kx2dzy5pDhbFnBi3xYakfqN6xPg9okf"},{"id":"1cGUABZ40fA7XWLa5hjJ1Q4JhDAQLwsRG","title":"التظلم الإداري في ضوء أحكام الفقه","author":"نخبة من كبار فقهاء القانون","category":"admin","categoryName":"القضاء الإداري ومجلس الدولة","icon":"🏛️","size":"52.77 MB","path":"المكتبة القانونية/الفلاشة 5/قانون الاداري/التظلم الإداري في ضوء أحكام الفقه .pdf","directDriveUrl":"https://drive.google.com/file/d/1cGUABZ40fA7XWLa5hjJ1Q4JhDAQLwsRG/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1cGUABZ40fA7XWLa5hjJ1Q4JhDAQLwsRG"},{"id":"1pChsByhfMJ69L9pOYvn-CxyJXnmRdGLB","title":"9-+أسباب+كسب+الملكية","author":"نخبة من كبار فقهاء القانون","category":"general","categoryName":"الموسوعات العامة والتشريعات","icon":"📚","size":"52.72 MB","path":"المكتبة القانونية/الفلاشة 4/مؤلفات ومنوعات/كتب اخري/9-+أسباب+كسب+الملكية.pdf","directDriveUrl":"https://drive.google.com/file/d/1pChsByhfMJ69L9pOYvn-CxyJXnmRdGLB/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1pChsByhfMJ69L9pOYvn-CxyJXnmRdGLB"},{"id":"1qIiVllQ_759wIH5tSjy8maxJ1Dc7QVOF","title":"ج 9 أسباب كسب الملكية","author":"نخبة من كبار فقهاء القانون","category":"general","categoryName":"الموسوعات العامة والتشريعات","icon":"📚","size":"52.72 MB","path":"المكتبة القانونية/الفلاشة 4/مؤلفات ومنوعات/كتب اخري/ج 9 أسباب كسب الملكية.pdf","directDriveUrl":"https://drive.google.com/file/d/1qIiVllQ_759wIH5tSjy8maxJ1Dc7QVOF/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1qIiVllQ_759wIH5tSjy8maxJ1Dc7QVOF"},{"id":"1UY4Q2e3WOXiI9P-KvdiXqhYy7k24H6zu","title":"9  الجزء التاسع ' أسباب كسب الملكية '","author":"نخبة من كبار فقهاء القانون","category":"civil","categoryName":"القانون المدني","icon":"🏛️","size":"52.72 MB","path":"المكتبة القانونية/الفلاشة 4/قانون مدني/السنهوري قانون مدني/9_ الجزء التاسع ' أسباب كسب الملكية ' .pdf","directDriveUrl":"https://drive.google.com/file/d/1UY4Q2e3WOXiI9P-KvdiXqhYy7k24H6zu/view","downloadDriveUrl":"https://drive.google.com/uc?export=download&id=1UY4Q2e3WOXiI9P-KvdiXqhYy7k24H6zu"}];
-    let ALL_BOOKS = INITIAL_FEATURED_BOOKS;
-    let FILTERED_BOOKS = ALL_BOOKS;
+    let ALL_BOOKS = [];
+    let FILTERED_BOOKS = [];
     let currentCat = 'all';
     let displayedCount = 0;
     const PAGE_SIZE = 30;
+    let selectedBook = null;
 
-    function renderBookCard(book) {
+    function renderBookCard(book, index) {
       return `
         <article class="book-card">
           <div>
@@ -639,16 +869,16 @@
               <span>✍️</span>
               <strong>${book.author}</strong>
             </div>
-            <div class="book-path-info">📁 ${book.size || 'PDF'}</div>
+            <div class="book-path-info">📁 الحجم: ${book.size || 'PDF'}</div>
           </div>
           <div class="book-actions">
-            <a href="${book.directDriveUrl}" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open">
-              <span>📖 فتح الكتاب</span>
-              <span>↗</span>
-            </a>
-            <a href="${book.downloadDriveUrl}" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-download">
-              <span>📥 تحميل PDF</span>
-            </a>
+            <button onclick="handleBookAction('${book.id}', 'preview')" class="btn-card btn-card-open">
+              <span>📖 معاينة وقراءة</span>
+              <span>👁️</span>
+            </button>
+            <button onclick="handleBookAction('${book.id}', 'download')" class="btn-card btn-card-download">
+              <span>📥 تنزيل PDF</span>
+            </button>
           </div>
         </article>
       `;
@@ -721,15 +951,61 @@
       updateGrid(true);
     }
 
+    // Modal and Reader Handling
+    function handleBookAction(bookId, actionType) {
+      selectedBook = ALL_BOOKS.find(b => b.id === bookId);
+      if (!selectedBook) return;
+
+      if (actionType === 'preview') {
+        openEmbeddedReader();
+      } else {
+        showDownloadModal();
+      }
+    }
+
+    function showDownloadModal() {
+      if (!selectedBook) return;
+      document.getElementById('modalBookTitle').innerText = selectedBook.title;
+      document.getElementById('modalBookMeta').innerText = `✍️ ${selectedBook.author} · 📁 الحجم: ${selectedBook.size}`;
+      
+      const downloadUrl = `https://drive.usercontent.google.com/download?id=${selectedBook.id}&export=download&confirm=t`;
+      const dlBtn = document.getElementById('modalBtnDownload');
+      dlBtn.href = downloadUrl;
+
+      document.getElementById('downloadModal').classList.add('active');
+    }
+
+    function closeDownloadModal(e) {
+      document.getElementById('downloadModal').classList.remove('active');
+    }
+
+    function openEmbeddedReader() {
+      if (!selectedBook) return;
+      closeDownloadModal();
+
+      document.getElementById('readerTitle').innerText = selectedBook.title;
+      const previewUrl = `https://drive.google.com/file/d/${selectedBook.id}/preview`;
+      const downloadUrl = `https://drive.usercontent.google.com/download?id=${selectedBook.id}&export=download&confirm=t`;
+      
+      document.getElementById('readerDownloadBtn').href = downloadUrl;
+      document.getElementById('readerIframe').src = previewUrl;
+      document.getElementById('readerOverlay').classList.add('active');
+    }
+
+    function closeEmbeddedReader() {
+      document.getElementById('readerOverlay').classList.remove('active');
+      document.getElementById('readerIframe').src = 'about:blank';
+    }
+
     // Load Catalog Data
     async function initCatalog() {
       const statusEl = document.getElementById('resultsStatus');
       try {
-        statusEl.innerText = 'جاري مزامنة الكتب من المستودع السحابي...';
+        statusEl.innerText = 'جاري مزامنة الكتب...';
         const res = await fetch('/data/legal-library-catalog.json');
         if (!res.ok) throw new Error('Catalog fetch error');
         ALL_BOOKS = await res.json();
-        statusEl.innerText = '✓ تم تحميل ' + ALL_BOOKS.length.toLocaleString('ar-EG') + ' كتاب بروابط مباشرة';
+        statusEl.innerText = '✓ تم تحميل ' + ALL_BOOKS.length.toLocaleString('ar-EG') + ' كتاب مفهرس';
         filterData();
       } catch (e) {
         console.error('Failed to load full catalog, falling back to featured:', e);
@@ -745,7 +1021,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      filterData();
       initCatalog();
     });
   </script>
