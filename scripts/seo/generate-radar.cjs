@@ -709,19 +709,19 @@ const RADAR_CSS = `    *, *::before, *::after { box-sizing: border-box; margin: 
     .topic-card:hover .topic-hint::after { transform: translateX(-4px); }
 
     .topic-full { padding: 8px 22px 22px; border-top: 1px dashed var(--border); margin-top: 4px; }
-    .full-sec { padding: 16px 0 4px; }
-    .full-sec h4 { font-size: 16px; font-weight: 900; color: #fda4af; margin-bottom: 10px; }
-    .full-sec p { font-size: 14.5px; color: #e2e8f0; margin-bottom: 12px; line-height: 1.9; }
+    .full-sec { padding: 18px 0 6px; }
+    .full-sec h4 { font-size: 19px; font-weight: 900; color: #38bdf8; margin: 24px 0 12px; line-height: 1.5; }
+    .full-sec p { font-size: 17.5px; color: #f1f5f9; font-weight: 500; margin-bottom: 18px; line-height: 2.05; text-align: justify; letter-spacing: 0.015em; }
     .full-empty { border-top: none !important; text-align: center; }
-    .full-empty p { color: var(--muted); font-size: 13px; margin: 8px 0; }
+    .full-empty p { color: var(--muted); font-size: 14px; margin: 8px 0; }
 
     .topic-page-head { margin: 24px 0 20px; }
     .topic-page-date { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: var(--cyan); background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.25); padding: 5px 14px; border-radius: 999px; margin-bottom: 14px; }
-    .topic-page-head h1 { font-size: clamp(1.6rem, 4.5vw, 2.4rem); font-weight: 900; color: #fff; line-height: 1.35; margin-bottom: 12px; }
-    .topic-page-head p { font-size: 15px; color: var(--muted); line-height: 1.8; }
+    .topic-page-head h1 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); font-weight: 900; color: #fff; line-height: 1.35; margin-bottom: 14px; }
+    .topic-page-head p { font-size: 16px; color: var(--muted); line-height: 1.85; }
     .topic-page-body { padding: 22px 4px 10px; }
-    .topic-page-body .full-sec h4 { font-size: 18px; }
-    .topic-page-body .full-sec p { font-size: 15px; line-height: 2; }
+    .topic-page-body .full-sec h4 { font-size: 21px; font-weight: 900; color: #38bdf8; margin: 32px 0 14px; border-right: 4px solid var(--cyan); padding-right: 12px; }
+    .topic-page-body .full-sec p { font-size: 17.5px; color: #f1f5f9; font-weight: 500; line-height: 2.05; text-align: justify; }
 
     .ad-slot { margin: 28px auto; max-width: 100%; text-align: center; min-height: 90px; }
     .ad-label { display: block; font-size: 10px; color: var(--muted); text-align: center; margin-bottom: 6px; letter-spacing: 0.5px; font-weight: 700; }

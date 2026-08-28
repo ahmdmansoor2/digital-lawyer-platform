@@ -449,4 +449,83 @@ aside[role="navigation"] .overflow-y-auto::-webkit-scrollbar-thumb:hover {
   background: rgba(99, 102, 241, 0.8) !important;
 }
 
+/* ============================================================================
+   GLOBAL ARTICLE & SUBHEADING TYPOGRAPHY UPGRADE
+   ============================================================================ */
+.article-card, .topic-page-body, .topic-full, .full-sec, .article-content, .article-rich-text {
+  font-family: 'Cairo', 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+/* 1. ترويسات وعناوين الأقسام الرئيسية (H2) */
+.article-card h2, .topic-page-body h2, .topic-full h2 {
+  font-size: clamp(22px, 3.5vw, 28px) !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  line-height: 1.45 !important;
+  margin: 44px 0 20px !important;
+  padding: 8px 18px 8px 0 !important;
+  border-right: 5px solid #6366f1 !important;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.25) !important;
+  letter-spacing: -0.01em !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 2. الترويسات الفرعية (H3) */
+.article-card h3, .topic-page-body h3, .topic-full h3 {
+  font-size: clamp(19px, 2.5vw, 22px) !important;
+  font-weight: 800 !important;
+  color: #f8fafc !important;
+  line-height: 1.5 !important;
+  margin: 32px 0 16px !important;
+  padding-right: 12px !important;
+  border-right: 4px solid #10b981 !important;
+}
+
+/* 3. النقاط والملاحظات الفرعية (H4) */
+.article-card h4, .topic-page-body h4, .topic-full h4, .full-sec h4 {
+  font-size: clamp(17px, 2vw, 19px) !important;
+  font-weight: 800 !important;
+  color: #38bdf8 !important;
+  line-height: 1.55 !important;
+  margin: 24px 0 12px !important;
+}
+
+/* 4. فقرات المحتوى القرائي فائق الوضوح والراحة (P) */
+.article-card p, .topic-page-body p, .topic-full p, .full-sec p {
+  font-size: 17.5px !important;
+  font-weight: 500 !important;
+  color: #f1f5f9 !important;
+  line-height: 2.05 !important;
+  margin-bottom: 20px !important;
+  text-align: justify !important;
+  text-justify: inter-word !important;
+  letter-spacing: 0.015em !important;
+}
+
+/* 5. الكلمات البارزة والمهمة (Strong) */
+.article-card strong, .topic-page-body strong, .full-sec strong {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 6. القوائم النقطية والرقمية (Lists) */
+.article-card li, .topic-page-body li, .full-sec li {
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  color: #e2e8f0 !important;
+  line-height: 2.0 !important;
+  margin-bottom: 12px !important;
+}
+
+@media (max-width: 768px) {
+  .article-card h2, .topic-page-body h2 { font-size: 21px !important; margin: 32px 0 16px !important; }
+  .article-card h3, .topic-page-body h3 { font-size: 18.5px !important; margin: 26px 0 14px !important; }
+  .article-card p, .topic-page-body p, .full-sec p { font-size: 16px !important; line-height: 1.95 !important; }
+}
+
+
 

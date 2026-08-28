@@ -2058,26 +2058,65 @@ p {
   color: #94a3b8 !important; /* slate-400 بدلاً من slate-500 */
 }
 
-/* 4. تحسين نصوص المذكرات والعقود والمكتبة القانونية */
+/* 4. تحسين نصوص المذكرات والعقود والمكتبة والمقالات */
 .legal-content-body,
 .article-rich-text,
 .contract-view-body,
-.doc-reader-text {
-  font-family: 'Cairo', 'IBM Plex Sans Arabic', sans-serif;
-  font-size: 1.05rem;
-  line-height: 1.95;
+.doc-reader-text,
+.article-card {
+  font-family: 'Cairo', 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.1rem;
+  line-height: 2.05;
   font-weight: 500;
-  color: inherit;
+  color: #f1f5f9;
   text-align: justify;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.015em;
 }
 
-.legal-content-body h1, .legal-content-body h2, .legal-content-body h3,
-.article-rich-text h1, .article-rich-text h2, .article-rich-text h3 {
-  margin-top: 1.8rem;
-  margin-bottom: 0.8rem;
-  font-weight: 800;
-  color: #6366f1;
+.legal-content-body h2,
+.article-rich-text h2,
+.article-card h2 {
+  font-size: 1.65rem !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  line-height: 1.45 !important;
+  margin-top: 2.4rem !important;
+  margin-bottom: 1.2rem !important;
+  padding-right: 14px !important;
+  border-right: 4px solid #6366f1 !important;
+}
+
+.legal-content-body h3,
+.article-rich-text h3,
+.article-card h3 {
+  font-size: 1.35rem !important;
+  font-weight: 800 !important;
+  color: #f8fafc !important;
+  line-height: 1.5 !important;
+  margin-top: 1.8rem !important;
+  margin-bottom: 0.9rem !important;
+  padding-right: 10px !important;
+  border-right: 3px solid #10b981 !important;
+}
+
+.legal-content-body h4,
+.article-rich-text h4,
+.article-card h4 {
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  color: #38bdf8 !important;
+  margin-top: 1.4rem !important;
+  margin-bottom: 0.7rem !important;
+}
+
+.legal-content-body p,
+.article-rich-text p,
+.article-card p {
+  font-size: 1.1rem !important;
+  line-height: 2.05 !important;
+  font-weight: 500 !important;
+  color: #f1f5f9 !important;
+  margin-bottom: 1.25rem !important;
 }
 
 /* 5. تحسين نصوص البطاقات والأزرار لحدة بصرية متناهية */
