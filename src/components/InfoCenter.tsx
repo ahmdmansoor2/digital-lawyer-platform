@@ -652,17 +652,17 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-black px-3.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 inline-flex items-center gap-1.5">
                     <Calculator className="w-4 h-4 text-emerald-400" />
-                    <span>🧮 بوابة الحاسبات القانونية والشرعية الذكية 2026</span>
+                    <span>🧮 الموسوعة الشاملة للحاسبات القانونية والشرعية 2026</span>
                   </span>
                   <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-green-500/20 text-green-300 border border-green-500/30">
-                    11 حاسبة تفاعلية دقيقة
+                    12 حاسبة تفاعلية متخصصة
                   </span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-black text-white">
-                  بوابة الحاسبات القانونية والشرعية ومواعيد الطعون
+                  بوابة الحاسبات القانونية والشرعية ومواعيد الطعون والعمل
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-                  أدوات حسابية ذكية وفق أحدث القوانين والقرارات المصرية 2026: حساب رسوم تسجيل العقارات بالشهر العقاري، المواريث والتركات، مكافأة نهاية الخدمة وتعويض الفصل، ومواعيد وسقوط الطعون.
+                  أكبر منظومة حسابية قضائية متكاملة لمصر ودول الخليج العربي: تشمل حاسبات الشهر العقاري، المواريث والتركات، مستحقات نهاية الخدمة بمصر والسعودية والإمارات وقطر وعمان، مواعيد وسقوط الطعون، رسوم الدعاوى وتأسيس الشركات والتقدير التراكمي.
                 </p>
               </div>
               <a
@@ -674,16 +674,18 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               </a>
             </div>
 
-            {/* Sub-features Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Sub-features Grid (All 12 Calculators Displayed in Full) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              
+              {/* 1. Real Estate Registration */}
               <a href="/legal-calculators.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">🏠</div>
                   <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
-                    رسوم تسجيل الشهر العقاري 2026
+                    1. رسوم الشهر العقاري 2026
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    حساب تكاليف تسجيل الشقق والعقارات وفق القانون 9 لسنة 2022، ضريبة التصرفات 2.5% ورسوم الرفع المساحي.
+                    حساب تكاليف تسجيل الشقق والعقارات طبقاً للقانون 9 لسنة 2022، ضريبة التصرفات العقارية 2.5% ورسوم الرفع المساحي.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
@@ -692,14 +694,15 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 </div>
               </a>
 
+              {/* 2. Legal Deadlines & Appeals */}
               <a href="/legal-calculators.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">⚖️</div>
                   <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
-                    مواعيد وسقوط الطعون والمدد
+                    2. مواعيد وسقوط الطعون والمدد
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    حاسبة دقيقة لمواعيد الاستئناف والنقض والمعارضة مع استبعاد العطلات الرسمية وأيام الجمع والسبت تلقائياً.
+                    حاسبة دقيقة لمواعيد الاستئناف والنقض والمعارضة وقضاء مجلس الدولة مع استبعاد العطلات الرسمية وأيام الجمع والسبت.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
@@ -708,14 +711,15 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 </div>
               </a>
 
+              {/* 3. Egypt Labor End of Service */}
               <a href="/legal-calculators.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">💼</div>
                   <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
-                    مستحقات نهاية الخدمة والعمل
+                    3. مستحقات العمل وإنهاء الخدمة بمصر
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    حساب مكافأة نهاية الخدمة، المقابل النقدي للإجازات، وتعويض الفصل التعسفي بقانون العمل المصري رقم 12/2003.
+                    حساب مكافأة نهاية الخدمة، المقابل النقدي لرصيد الإجازات، وتعويض الفصل التعسفي بقانون العمل المصري رقم 12/2003.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
@@ -724,14 +728,15 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 </div>
               </a>
 
+              {/* 4. Court Fees */}
               <a href="/legal-calculators.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">🏛️</div>
                   <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
-                    رسوم وتكاليف رفع الدعاوى القضائية
+                    4. رسوم وتكاليف رفع الدعاوى القضائية
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    حساب الرسوم النسبية، الدمغات القضائية، ورسوم الإعلانات القضائية وأمانات الخبراء بالمحاكم المصرية.
+                    حساب الرسم النسبي، رسم الجدول، الدمغات القضائية، رسم الإعلانات بالمحضرين وأمانات الخبراء بالمحاكم المصرية.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
@@ -739,6 +744,143 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>
+
+              {/* 5. Islamic Inheritance */}
+              <div onClick={onEnterApp} className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between cursor-pointer">
+                <div>
+                  <div className="text-2xl mb-3">🧮</div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
+                    5. المواريث وتوزيع التركات الشرعية
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    توزيع الأنصبة الشرعية الدقيقة لأصحاب الفروض والعصبات، مع معالجة العول والرد والوصية الواجبة وتفصيل حصة كل وارث.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
+                  <span>حساب التركة الشرعية</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </div>
+
+              {/* 6. Company Incorporation Fees */}
+              <a href="/company-incorporation.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🏢</div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
+                    6. رسوم تأسيس الشركات (GAFI)
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    حساب رسوم تأسيس شركات الأموال والأشخاص، السجل التجاري، الغرفة التجارية، ونشر صحيفة الاستثمار بحسب رأس المال.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
+                  <span>احسب تكلفة التأسيس</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* 7. Saudi Labor Calculator */}
+              <a href="/saudi-legal-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🇸🇦</div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
+                    7. حاسبة العمل السعودي 1447هـ
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    حساب مكافأة نهاية الخدمة بنظام العمل السعودي طبقاً للمادتين 84 و 85 لحالات إنهاء العقد والاستقالة وفسخ العقد.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
+                  <span>حاسبة العمل السعودي</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* 8. UAE Labor Calculator */}
+              <a href="/uae-legal-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🇦🇪</div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
+                    8. حاسبة العمل الإماراتي الاتحادي
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    حساب مستحقات نهاية الخدمة بقانون العمل الاتحادي (مرسوم بقانون 33/2021) للعقود محددة المدة والقطاع الخاص.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
+                  <span>حاسبة العمل الإماراتي</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* 9. Qatar Labor Calculator */}
+              <a href="/qatar-legal-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🇶🇦</div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
+                    9. حاسبة العمل القطري
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    حساب مكافأة نهاية الخدمة بقانون العمل القطري رقم 14 لسنة 2004 وبدلات الإجازات ومستحقات اللجان العمالية.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
+                  <span>حاسبة العمل القطري</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* 10. Oman Labor Calculator */}
+              <a href="/oman-legal-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🇴🇲</div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
+                    10. حاسبة العمل العماني الجديد
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    فصل تلقائي دقيق للمستحقات بين قانوني العمل (35/2003 و 53/2023) طبقاً للمادة 61 وحساب شهر كامل عن كل سنة.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
+                  <span>حاسبة العمل العماني</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* 11. GPA & Bar Eligibility */}
+              <a href="/law-students-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🎓</div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
+                    11. حاسبة التقدير وتنسيق الهيئات
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    حساب النسبة المئوية والمجموع التراكمي لطلاب الحقوق والشريعة وشروط القيد بنقابة المحامين وتنسيق القضاء والنيابة.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
+                  <span>احسب النسبة والتقدير</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* 12. Legal Diagnostics */}
+              <a href="/legal-diagnostics.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🔍</div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
+                    12. تشخيص الاختصاص القضائي والميعاد
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    تحليل آلي للنزاع لتحديد المحكمة المختصة نوعياً ومحلياً (جزئي، ابتدائي، اقتصادي، مجلس دولة) والمستندات المطلوبة.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
+                  <span>تشخيص الاختصاص</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
             </div>
           </section>
         )}
