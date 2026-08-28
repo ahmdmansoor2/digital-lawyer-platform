@@ -527,5 +527,24 @@ aside[role="navigation"] .overflow-y-auto::-webkit-scrollbar-thumb:hover {
   .article-card p, .topic-page-body p, .full-sec p { font-size: 16px !important; line-height: 1.95 !important; }
 }
 
+/* 7. إبراز النصوص البيضاء والعناوين (Crisp White Typography) */
+.text-white,
+h1, h2, h3, h4,
+.article-card h1, .article-card h2, .article-card h3,
+.topic-page-head h1, .topic-page-body h2, .topic-page-body h3,
+.hero h1, .section-title {
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65) !important;
+}
+
+.article-card strong,
+.topic-page-body strong,
+.full-sec strong {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
+}
+
+
 
 
