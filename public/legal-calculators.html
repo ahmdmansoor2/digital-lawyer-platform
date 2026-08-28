@@ -175,6 +175,19 @@
 <link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest --><meta name="theme-color" content="#0f172a"><!-- mohami-theme --><link rel="apple-touch-icon" href="/icon.svg"><!-- mohami-apple --><link rel="alternate" type="application/rss+xml" title="RSS - منصة المحامي الرقمية" href="/rss.xml"/><!-- mohami-rss --></head>
 <body>
 
+    <!-- Top Back Navigation Bar -->
+    <div class="top-nav-back-bar" style="max-width: 1200px; margin: 16px auto 0; padding: 0 16px; display: flex; align-items: center; justify-content: space-between;">
+      <a href="/" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 12px; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; text-decoration: none; font-weight: 800; font-size: 0.88rem; transition: all 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <span style="font-size: 1.1rem;">←</span>
+        <span>العودة للرئيسية</span>
+      </a>
+
+      <button onclick="if(window.history.length > 1) window.history.back(); else window.location.href='/';" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 12px; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.4); color: #c7d2fe; cursor: pointer; font-family: inherit; font-weight: 800; font-size: 0.88rem; transition: all 0.2s;">
+        <span>↩️ رجوع للصفحة السابقة</span>
+      </button>
+    </div>
+  
+
 <!-- NAVBAR -->
 <nav class="uh-nav">
   <div class="uh-nav-inner">

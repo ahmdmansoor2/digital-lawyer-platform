@@ -441,6 +441,40 @@
       font-weight: 500 !important;
     }
 
+    
+    /* ── Floating Back Button ── */
+    #global-back-trigger {
+      position: fixed !important;
+      bottom: 24px !important;
+      right: 140px !important;
+      z-index: 999990 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      padding: 10px 16px !important;
+      border-radius: 9999px !important;
+      background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%) !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+      cursor: pointer !important;
+      font-family: 'Cairo', sans-serif !important;
+      font-size: 13px !important;
+      font-weight: 800 !important;
+      text-decoration: none !important;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      backdrop-filter: blur(12px) !important;
+    }
+    #global-back-trigger:hover {
+      transform: translateY(-3px) scale(1.03) !important;
+      box-shadow: 0 12px 30px rgba(79, 70, 229, 0.6) !important;
+      background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%) !important;
+      color: #ffffff !important;
+    }
+    @media (max-width: 480px) {
+      #global-back-trigger { right: 76px !important; padding: 10px 12px !important; font-size: 12px !important; }
+    }
+
     @media (max-width: 480px) {
       #gs-drawer { width: 300px !important; }
       #global-sidebar-trigger span { display: none !important; }
@@ -555,6 +589,26 @@
 
   function mount() {
     document.body.appendChild(trigger);
+
+  // ── Build Floating Back Button on subpages ──
+  var currentPath = window.location.pathname;
+  if (currentPath !== '/' && currentPath !== '/index.html' && currentPath !== '') {
+    var backBtn = document.createElement('a');
+    backBtn.id = 'global-back-trigger';
+    backBtn.href = '/';
+    backBtn.setAttribute('aria-label', 'الرجوع للرئيسية');
+    backBtn.innerHTML = '<span>← العودة للرئيسية</span>';
+    
+    backBtn.addEventListener('click', function(e) {
+      if (window.history.length > 1 && document.referrer && document.referrer.includes(window.location.host)) {
+        e.preventDefault();
+        window.history.back();
+      }
+    });
+
+    document.body.appendChild(backBtn);
+  }
+
     document.body.appendChild(backdrop);
     document.body.appendChild(drawer);
 

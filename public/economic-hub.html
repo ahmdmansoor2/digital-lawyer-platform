@@ -440,6 +440,19 @@
   <div id="siteHeaderContainer"></div>
 
   <main class="container">
+
+    <!-- Top Back Navigation Bar -->
+    <div class="top-nav-back-bar" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 0 6px;">
+      <a href="/" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 12px; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; text-decoration: none; font-weight: 800; font-size: 0.88rem; transition: all 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+        <span style="font-size: 1.1rem;">←</span>
+        <span>العودة للرئيسية</span>
+      </a>
+
+      <button onclick="if(window.history.length > 1) window.history.back(); else window.location.href='/';" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 12px; background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.4); color: #fde68a; cursor: pointer; font-family: inherit; font-weight: 800; font-size: 0.88rem; transition: all 0.2s;">
+        <span>↩️ رجوع للصفحة السابقة</span>
+      </button>
+    </div>
+  
     
     <!-- Hero -->
     <section class="hero-sec">
