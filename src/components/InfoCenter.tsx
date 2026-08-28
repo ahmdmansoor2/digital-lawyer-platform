@@ -31,7 +31,8 @@ import {
   Radio,
   Newspaper,
   GraduationCap,
-  ChevronLeft
+  ChevronLeft,
+  Play
 } from 'lucide-react';
 import SiteHeader from './SiteHeader';
 import InteractiveTourShowcase from './InteractiveTourShowcase';
@@ -84,8 +85,6 @@ const LAW_FIRM_TOOLS = [
 export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCenterProps) {
   const [activeTab, setActiveTab] = useState<'all' | 'students' | 'lawyers' | 'citizens' | 'calculators' | 'gulf' | 'corporate'>('all');
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
-  const [isTourOpen, setIsTourOpen] = useState(false);
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isAIAdvisorOpen, setIsAIAdvisorOpen] = useState(false);
 
   // SEO & Head tags
@@ -100,6 +99,11 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
     }
   }, []);
 
+  const scrollToVideos = () => {
+    const el = document.getElementById('explainerVideosSection');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-[#070b14] text-slate-100 font-['Cairo',sans-serif] selection:bg-indigo-600 selection:text-white relative overflow-x-hidden" dir="rtl">
       
@@ -113,23 +117,9 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
       {/* Global Right-Side Floating Navigation */}
       <GlobalSidebar 
-        onOpenTour={() => setIsTourOpen(true)}
-        onOpenVideo={() => setIsVideoOpen(true)}
+        onOpenTour={scrollToVideos}
+        onOpenVideo={scrollToVideos}
         onOpenAI={() => setIsAIAdvisorOpen(true)}
-        onEnterApp={onEnterApp}
-      />
-
-      {/* Interactive Tour Modal */}
-      <InteractiveTourShowcase 
-        isOpen={isTourOpen} 
-        onClose={() => setIsTourOpen(false)} 
-        onEnterApp={onEnterApp}
-      />
-
-      {/* Promo Video Player Modal */}
-      <PromoVideoPlayer 
-        isOpen={isVideoOpen} 
-        onClose={() => setIsVideoOpen(false)} 
         onEnterApp={onEnterApp}
       />
 
@@ -920,7 +910,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             })}
           </div>
 
-          {/* Interactive Tour & Direct Launch Banner */}
+          {/* Direct Launch Banner */}
           <div className="flex flex-wrap items-center justify-between gap-4 p-5 rounded-2xl bg-indigo-950/40 border border-indigo-500/30">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-black">
@@ -933,23 +923,42 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             </div>
             <div className="flex items-center gap-3">
               <button
-                onClick={() => setIsTourOpen(true)}
-                className="px-4 py-2 rounded-xl bg-slate-800 text-slate-200 hover:text-white border border-white/10 hover:border-white/20 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
-              >
-                <span>جولة تفاعلية</span>
-              </button>
-              <button
                 onClick={onEnterApp}
-                className="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all cursor-pointer"
+                className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-bold shadow-lg shadow-indigo-600/30 transition-all cursor-pointer flex items-center gap-1.5"
               >
-                دخول التطبيق الآن
+                <span>دخول التطبيق الآن مجاناً</span>
+                <ArrowLeft className="w-4 h-4" />
               </button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── 4. NEWSLETTER & NOTIFICATIONS SECTION ──────────────────────── */}
+      {/* ─── 4. EXPLAINER VIDEOS & INTERACTIVE TOUR SECTION (في آخر الصفحة بعد الكروت) ── */}
+      <section id="explainerVideosSection" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-8">
+          <span className="text-xs font-black px-4 py-1.5 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 inline-flex items-center gap-2 mb-3">
+            <Film className="w-4 h-4 text-indigo-400" />
+            <span>🎬 العرض التعريفي والجولة الحية</span>
+          </span>
+          <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+            استكشف منصة المحامي الرقمية بالصوت والصورة
+          </h2>
+          <p className="text-sm sm:text-base text-slate-300 mt-2">
+            شاهد الفيديو التعريفي الشامل واستمتع بالجولة التفاعلية الحية لاكتشاف كافة مزايا وأقسام المنظومة قبل البدء في استخدامها.
+          </p>
+        </div>
+
+        <div className="space-y-10">
+          {/* 1. Promo Video Player */}
+          <PromoVideoPlayer onEnterApp={onEnterApp} />
+
+          {/* 2. Interactive Tour Showcase */}
+          <InteractiveTourShowcase onEnterApp={onEnterApp} />
+        </div>
+      </section>
+
+      {/* ─── 5. NEWSLETTER & NOTIFICATIONS SECTION ──────────────────────── */}
       <section className="py-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <NotificationCenter />
@@ -957,7 +966,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
         </div>
       </section>
 
-      {/* ─── 5. FOOTER ─────────────────────────────────────────────────── */}
+      {/* ─── 6. FOOTER ─────────────────────────────────────────────────── */}
       <footer className="mt-16 border-t border-slate-800/80 bg-slate-950/90 py-12 px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-400 font-bold">
