@@ -93,12 +93,12 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
   // SEO & Head tags
   useEffect(() => {
-    document.title = 'منصة المحامي الرقمية 2026 — البوابة القانونية الشاملة لمصر ودول الخليج العربي';
+    document.title = 'منظومة العدالة القانونية لمصر والوطن العربي — منصة المحامي الرقمية 2026';
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute(
         'content',
-        'المنظومة القانونية المتكاملة 2026: بوابة طلاب كليات الحقوق والمناهج المصورة، المكتبة القانونية الكبرى، موسوعة صيغ العقود والنقض، نظام إدارة مكاتب المحاماة، بوابات التقاضي والشكاوى، بوابات الخليج العربي (السعودية والإمارات وقطر وعمان)، حاسبات نهاية الخدمة والشهر العقاري.'
+        'المنصة المتكاملة لإدارة مكاتب المحاماة، المكتبة القانونية المصورة، صيغ العقود والدعاوى، أحكام محكمة النقض، وحاسبات الرسوم ومستحقات العمل وبوابات التقاضي لمصر ودول الخليج.'
       );
     }
   }, []);
@@ -155,15 +155,15 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
         {/* Hero Title */}
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-[1.25] sm:leading-[1.2] mb-6">
-          بوابتك القانونية الموحدة <br className="hidden sm:block" />
+          منظومة العدالة القانونية <br className="hidden sm:block" />
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-300 to-emerald-400">
-            لمصر ودول الخليج العربي
+            لمصر والوطن العربي
           </span>
         </h1>
 
         {/* Hero Subtitle */}
         <p className="text-sm sm:text-base lg:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
-          منظومة رقمية شاملة تجمع <strong className="text-white">بوابة طلاب كليات الحقوق</strong>، مع <strong className="text-white">المكتبة القانونية وصيغ العقود والنقض</strong>، و<strong className="text-white">برنامج إدارة مكاتب المحاماة</strong>، و<strong className="text-white">بوابات التقاضي والشكاوى</strong>، و<strong className="text-white">بوابات الخليج العربي الأربعة</strong> في كروت مجمعة متكاملة.
+          المنصة المتكاملة <strong className="text-white">لإدارة مكاتب المحاماة</strong>، و<strong className="text-white">المكتبة القانونية المصورة</strong>، و<strong className="text-white">صيغ العقود والدعاوى</strong>، و<strong className="text-white">أحكام محكمة النقض</strong>، وحاسبات الرسوم ومستحقات العمل وبوابات التقاضي لمصر ودول الخليج.
         </p>
 
         {/* Hero Action Buttons */}
