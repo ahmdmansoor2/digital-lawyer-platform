@@ -48,7 +48,7 @@ const MAX_ARCHIVE = 12;
 const MAX_ARCHIVE_SHOWN = 7;
 const AD_CLIENT = 'ca-pub-7725405859334364';
 const AD_SLOT = '2168039898';
-const MODELS = ['gemini-flash-latest', 'gemini-3.6-flash', 'gemini-2.0-flash'];
+const MODELS = ['gemini-3.6-flash', 'gemini-3.5-flash', 'gemini-3.1-flash-lite', 'gemini-3.7-flash'];
 
 let log = console.log;
 

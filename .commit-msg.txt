@@ -1,0 +1,4 @@
+﻿revert: remove public/__/auth/action.html
+
+Was added for the custom password reset handler that's no longer needed
+after reverting the login system to its original state.

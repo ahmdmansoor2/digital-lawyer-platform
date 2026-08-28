@@ -118,7 +118,7 @@ export function search(index: SearchIndex | null, q: string, limit = 12): Ranked
 
 /** تحميل فهرس الموقع (مرة واحدة، مع تخزين مؤقت خارجي اختياري) */
 export async function loadSearchIndex(): Promise<SearchIndex> {
-  const r = await fetch('/search-index.json');
+  const r = await fetch('/search-index.json?t=' + Date.now());
   if (!r.ok) throw new Error('HTTP ' + r.status);
   return r.json() as Promise<SearchIndex>;
 }
