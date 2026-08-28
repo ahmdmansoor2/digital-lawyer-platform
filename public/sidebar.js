@@ -442,37 +442,56 @@
     }
 
     
-    /* ── Floating Back Button ── */
-    #global-back-trigger {
+    /* ── Floating Navigation Group (Bottom Left - Never overlaps Index) ── */
+    #global-nav-floating-wrap {
       position: fixed !important;
       bottom: 24px !important;
-      right: 140px !important;
+      left: 24px !important;
       z-index: 999990 !important;
       display: inline-flex !important;
       align-items: center !important;
       gap: 8px !important;
-      padding: 10px 16px !important;
+      font-family: 'Cairo', sans-serif !important;
+      direction: rtl !important;
+    }
+    .global-nav-pill-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      padding: 9px 14px !important;
       border-radius: 9999px !important;
-      background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%) !important;
       color: #ffffff !important;
-      border: 1px solid rgba(255, 255, 255, 0.25) !important;
-      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35) !important;
       cursor: pointer !important;
       font-family: 'Cairo', sans-serif !important;
       font-size: 13px !important;
-      font-weight: 800 !important;
+      font-weight: 700 !important;
       text-decoration: none !important;
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
       backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      border: 1px solid rgba(255, 255, 255, 0.2) !important;
     }
-    #global-back-trigger:hover {
-      transform: translateY(-3px) scale(1.03) !important;
-      box-shadow: 0 12px 30px rgba(79, 70, 229, 0.6) !important;
+    #global-prev-page-trigger {
+      background: linear-gradient(135deg, rgba(79, 70, 229, 0.9) 0%, rgba(55, 48, 163, 0.9) 100%) !important;
+    }
+    #global-prev-page-trigger:hover {
+      transform: translateY(-2px) scale(1.03) !important;
       background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%) !important;
-      color: #ffffff !important;
+      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5) !important;
+    }
+    #global-home-trigger {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%) !important;
+    }
+    #global-home-trigger:hover {
+      transform: translateY(-2px) scale(1.03) !important;
+      background: linear-gradient(135deg, rgba(51, 65, 85, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%) !important;
+      box-shadow: 0 8px 25px rgba(15, 23, 42, 0.6) !important;
+      border-color: rgba(99, 102, 241, 0.5) !important;
     }
     @media (max-width: 480px) {
-      #global-back-trigger { right: 76px !important; padding: 10px 12px !important; font-size: 12px !important; }
+      #global-nav-floating-wrap { bottom: 16px !important; left: 16px !important; gap: 6px !important; }
+      .global-nav-pill-btn { padding: 8px 10px !important; font-size: 11.5px !important; }
     }
 
     @media (max-width: 480px) {
@@ -590,23 +609,40 @@
   function mount() {
     document.body.appendChild(trigger);
 
-  // ── Build Floating Back Button on subpages ──
+  // ── Build Floating Navigation Group on subpages ──
   var currentPath = window.location.pathname;
   if (currentPath !== '/' && currentPath !== '/index.html' && currentPath !== '') {
-    var backBtn = document.createElement('a');
-    backBtn.id = 'global-back-trigger';
-    backBtn.href = '/';
-    backBtn.setAttribute('aria-label', 'الرجوع للرئيسية');
-    backBtn.innerHTML = '<span>← العودة للرئيسية</span>';
-    
-    backBtn.addEventListener('click', function(e) {
-      if (window.history.length > 1 && document.referrer && document.referrer.includes(window.location.host)) {
-        e.preventDefault();
+    var navWrap = document.createElement('div');
+    navWrap.id = 'global-nav-floating-wrap';
+
+    // 1. Previous Page Button
+    var prevBtn = document.createElement('button');
+    prevBtn.id = 'global-prev-page-trigger';
+    prevBtn.className = 'global-nav-pill-btn';
+    prevBtn.setAttribute('aria-label', 'الرجوع للصفحة السابقة');
+    prevBtn.setAttribute('title', 'الرجوع للصفحة السابقة');
+    prevBtn.innerHTML = '<span>↩️ رجوع</span>';
+    prevBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (window.history.length > 1) {
         window.history.back();
+      } else {
+        window.location.href = '/';
       }
     });
 
-    document.body.appendChild(backBtn);
+    // 2. Home Button
+    var homeBtn = document.createElement('a');
+    homeBtn.id = 'global-home-trigger';
+    homeBtn.className = 'global-nav-pill-btn';
+    homeBtn.href = '/';
+    homeBtn.setAttribute('aria-label', 'العودة للرئيسية');
+    homeBtn.setAttribute('title', 'العودة للصفحة الرئيسية للمنصة');
+    homeBtn.innerHTML = '<span>🏠 الرئيسية</span>';
+
+    navWrap.appendChild(prevBtn);
+    navWrap.appendChild(homeBtn);
+    document.body.appendChild(navWrap);
   }
 
     document.body.appendChild(backdrop);
