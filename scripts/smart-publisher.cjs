@@ -144,7 +144,7 @@ async function downloadFile(url, dest) {
 // استدعاء Gemini مع إعادة المحاولة التلقائية عند 429 (Rate Limit) أو 503/5xx (UNAVAILABLE)
 // يحاول عبر النماذج الثلاثة بالتناوب مع مهلة قصيرة حتى ينجح أو تنتهي المحاولات
 async function generateContentWithRetry(prompt, config = {}, modelIndex = 0, attempt = 0) {
-  const models = ['gemini-flash-latest', 'gemini-3.6-flash', 'gemini-2.0-flash'];
+  const models = ['gemini-3.6-flash', 'gemini-3.5-flash', 'gemini-3.1-flash-lite', 'gemini-3.7-flash'];
   const modelName = models[modelIndex % models.length];
   const MAX_ATTEMPTS = 9;
 
@@ -248,7 +248,7 @@ ${trendsHint}
 
   const result = await generateContentWithRetry(prompt, { temperature: 0.9, maxOutputTokens: 4000 });
 
-  let raw = result.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
+  let raw = result.text || result.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
   raw = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
 
   let topics = [];
@@ -310,7 +310,7 @@ async function generateArticleContent(topic) {
 
   const result = await generateContentWithRetry(prompt, { temperature: 0.7, maxOutputTokens: 8000 });
 
-  let content = result.candidates?.[0]?.content?.parts?.[0]?.text || '';
+  let content = result.text || result.candidates?.[0]?.content?.parts?.[0]?.text || '';
   content = content.replace(/```html\n?/g, '').replace(/```\n?/g, '').trim();
 
   const wordCount = content.replace(/<[^>]+>/g, '').split(/\s+/).filter(Boolean).length;
@@ -804,7 +804,7 @@ async function main() {
       title: topic.title, date: today, slug: topic.slug,
       url: articleUrl, image: imageUrl,
       tags: [topic.tag], words: wordCount,
-      model: 'gemini-2.0-flash'
+      model: 'gemini-3.6-flash'
     });
   }
   writeJson(LOG_FILE, publishedLog);

@@ -1884,6 +1884,42 @@
       ],
       "words": 2544,
       "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "الإجراءات القانونية لصرف شهادات بنك مصر للورثة الشرعيين",
+      "date": "2026-08-28",
+      "slug": "bank-certificates-inheritance-procedures-egypt",
+      "url": "https://mohamidigital.online/blog/bank-certificates-inheritance-procedures-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/bank-certificates-inheritance-procedures-egypt.jpg",
+      "tags": [
+        "قانون البنوك والميراث"
+      ],
+      "words": 2025,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقوبة الابتزاز الإلكتروني والاحتيال البنكي في القانون المصري",
+      "date": "2026-08-28",
+      "slug": "cybercrime-extortion-banking-fraud-egypt",
+      "url": "https://mohamidigital.online/blog/cybercrime-extortion-banking-fraud-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cybercrime-extortion-banking-fraud-egypt.jpg",
+      "tags": [
+        "الجرائم الإلكترونية"
+      ],
+      "words": 2025,
+      "model": "gemini-2.0-flash"
+    },
+    {
+      "title": "عقود اللاعبين المحترفين وانتقالاتهم في قانون الرياضة المصري",
+      "date": "2026-08-28",
+      "slug": "sports-player-contracts-law-egypt",
+      "url": "https://mohamidigital.online/blog/sports-player-contracts-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-player-contracts-law-egypt.jpg",
+      "tags": [
+        "القانون الرياضي"
+      ],
+      "words": 2296,
+      "model": "gemini-2.0-flash"
     }
   ]
 }
