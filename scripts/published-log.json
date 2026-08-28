@@ -1886,40 +1886,40 @@
       "model": "gemini-2.0-flash"
     },
     {
-      "title": "الإجراءات القانونية لصرف شهادات بنك مصر للورثة الشرعيين",
+      "title": "أحكام استرداد وميراث شهادات بنك مصر والبنك الأهلي في القانون المصري",
       "date": "2026-08-28",
-      "slug": "bank-certificates-inheritance-procedures-egypt",
-      "url": "https://mohamidigital.online/blog/bank-certificates-inheritance-procedures-egypt.html",
-      "image": "https://mohamidigital.online/blog/images/bank-certificates-inheritance-procedures-egypt.jpg",
+      "slug": "inheritance-bank-certificates-egypt",
+      "url": "https://mohamidigital.online/blog/inheritance-bank-certificates-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/inheritance-bank-certificates-egypt.jpg",
       "tags": [
-        "قانون البنوك والميراث"
+        "الأحوال الشخصية والبنوك"
       ],
-      "words": 2025,
-      "model": "gemini-2.0-flash"
+      "words": 1666,
+      "model": "gemini-3.6-flash"
     },
     {
-      "title": "عقوبة الابتزاز الإلكتروني والاحتيال البنكي في القانون المصري",
+      "title": "العقوبات القانونية للشيك بدون رصيد وإجراءات رفعه في مصر 2024",
       "date": "2026-08-28",
-      "slug": "cybercrime-extortion-banking-fraud-egypt",
-      "url": "https://mohamidigital.online/blog/cybercrime-extortion-banking-fraud-egypt.html",
-      "image": "https://mohamidigital.online/blog/images/cybercrime-extortion-banking-fraud-egypt.jpg",
+      "slug": "bounced-check-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/bounced-check-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/bounced-check-penalties-egypt.jpg",
       "tags": [
-        "الجرائم الإلكترونية"
+        "قانون التجارة"
       ],
-      "words": 2025,
-      "model": "gemini-2.0-flash"
+      "words": 1984,
+      "model": "gemini-3.6-flash"
     },
     {
-      "title": "عقود اللاعبين المحترفين وانتقالاتهم في قانون الرياضة المصري",
+      "title": "الموقف القانوني لعقود اللاعبين والأندية في قانون الرياضة المصري رقم 71 لسنة 2017",
       "date": "2026-08-28",
-      "slug": "sports-player-contracts-law-egypt",
-      "url": "https://mohamidigital.online/blog/sports-player-contracts-law-egypt.html",
-      "image": "https://mohamidigital.online/blog/images/sports-player-contracts-law-egypt.jpg",
+      "slug": "sports-contracts-law-egypt",
+      "url": "https://mohamidigital.online/blog/sports-contracts-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-contracts-law-egypt.jpg",
       "tags": [
-        "القانون الرياضي"
+        "قانون الرياضة"
       ],
-      "words": 2296,
-      "model": "gemini-2.0-flash"
+      "words": 2048,
+      "model": "gemini-3.6-flash"
     }
   ]
 }
