@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>بوابة الاقتصاد والأسواق ومؤشرات الذهب والعملات والشموع اليابانية الحية 2026 - منصة المحامي الرقمية</title>
-  <meta name="description" content="البوابة الاقتصادية والمالية الحية 2026: أسعار الذهب لحظة بلحظة بمصر عيار 21 و 24 والجنيه الذهب، رسم بياني احترافي بالشموع اليابانية الحية (OHLC)، حاسبة المصنعية والدمغة، وأسعار العملات بالبنوك." />
-  <meta name="keywords" content="شموع يابانية لسعر الذهب في مصر, رسم بياني للذهب, سعر الذهب اليوم في مصر لحظة بلحظة, سعر الذهب عيار 21 مباشر, الجنيه الذهب اليوم, سعر الدولار اليوم في البنوك, أسعار العملات في مصر, حاسبة مصنعية الذهب" />
+  <meta name="description" content="البوابة الاقتصادية والمالية الحية 2026: أسعار الذهب لحظة بلحظة بمصر عيار 24 و 21 و 18 و 14 والجنيه الذهب والأونصة العالمية، رسم بياني احترافي بالشموع اليابانية الحية (OHLC)، حاسبة المصنعية والدمغة، وأسعار العملات بالبنوك." />
+  <meta name="keywords" content="سعر أونصة الذهب عالميا بالدولار, شموع يابانية لسعر الذهب في مصر, سعر الذهب عيار 24, سعر الذهب عيار 21 مباشر, سعر الذهب عيار 18, سعر الذهب عيار 14, الجنيه الذهب اليوم, سعر الدولار اليوم في البنوك" />
   <link rel="canonical" href="https://mohamidigital.online/economic-hub.html" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="بوابة الاقتصاد والأسواق ومؤشرات الذهب والعملات والشموع اليابانية الحية 2026" />
-  <meta property="og:description" content="بث حي ومباشر لأسعار الذهب والعملات بمصر لحظة بلحظة مع رسم بياني احترافي بالشموع اليابانية الحية وحاسبة المصنعية." />
+  <meta property="og:description" content="بث حي ومباشر لأسعار الذهب بكافة الأعيرة والأونصة العالمية بالدولار والعملات بمصر لحظة بلحظة مع رسم بياني احترافي بالشموع اليابانية الحية." />
   <meta property="og:url" content="https://mohamidigital.online/economic-hub.html" />
   <meta property="og:image" content="https://mohamidigital.online/images/legal-bg.jpg" />
 
@@ -29,9 +29,9 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "بوابة الاقتصاد والأسواق ومخطط الشموع اليابانية الحية",
+    "name": "بوابة الاقتصاد والأسواق ومخطط الشموع اليابانية الحية لكافة أعيرة الذهب والأونصة",
     "url": "https://mohamidigital.online/economic-hub.html",
-    "description": "مؤشرات حية ومباشرة لأسعار الذهب والعملات ورسم بياني تفاعلي بالشموع اليابانية الحية وحاسبة مصنعية الذهب بمصر.",
+    "description": "مؤشرات حية ومباشرة لأسعار الذهب بكافة الأعيرة (24، 21، 18، 14) والأونصة العالمية والعملات ورسم بياني تفاعلي بالشموع اليابانية الحية بمصر.",
     "applicationCategory": "FinancialApplication",
     "operatingSystem": "All",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EGP" }
@@ -193,14 +193,20 @@
     /* Chart Controls */
     .chart-controls {
       display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .chart-controls-row {
+      display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 16px;
     }
     .btn-group {
       display: inline-flex;
+      flex-wrap: wrap;
       background: rgba(30, 41, 59, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 12px;
@@ -208,16 +214,17 @@
       gap: 3px;
     }
     .chart-tab-btn {
-      padding: 6px 14px;
+      padding: 6px 12px;
       border-radius: 9px;
       border: none;
       background: transparent;
       color: #94a3b8;
       font-family: inherit;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.2s;
+      white-space: nowrap;
     }
     .chart-tab-btn.active {
       background: #f59e0b;
@@ -230,7 +237,7 @@
     .chart-container {
       position: relative;
       width: 100%;
-      height: 340px;
+      height: 350px;
       background: #0b1120;
       border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -293,15 +300,15 @@
     /* Price Table */
     .price-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
       margin-bottom: 20px;
     }
     .price-tile {
       background: rgba(30, 41, 59, 0.6);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 14px;
-      padding: 14px;
+      padding: 12px 10px;
       text-align: center;
       transition: all 0.2s;
     }
@@ -310,9 +317,9 @@
       background: rgba(245, 158, 11, 0.08);
       transform: translateY(-2px);
     }
-    .tile-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; margin-bottom: 4px; }
-    .tile-val { font-size: 1.2rem; font-weight: 900; color: #fde68a; }
-    .tile-unit { font-size: 0.72rem; color: #cbd5e1; }
+    .tile-label { font-size: 0.78rem; color: var(--text-muted); font-weight: 700; margin-bottom: 3px; }
+    .tile-val { font-size: 1.15rem; font-weight: 900; color: #fde68a; }
+    .tile-unit { font-size: 0.7rem; color: #cbd5e1; }
 
     /* Calculator form */
     .form-group { margin-bottom: 14px; }
@@ -444,7 +451,7 @@
       <h1 class="hero-title">مؤشرات الذهب والعملات والقرارات الاقتصادية</h1>
       
       <p class="hero-desc">
-        تحديث لحظي مباشر لأسعار الذهب بمصر (عيار 21 و 24 والجنيه الذهب)، رسم بياني احترافي بالشموع اليابانية الحية (OHLC)، حاسبة المصنعية والدمغة، وأسعار العملات بالبنوك.
+        تحديث لحظي مباشر لأسعار الذهب بمصر (عيار 24، 21، 18، 14 والجنيه الذهب والأونصة العالمية)، رسم بياني احترافي بالشموع اليابانية الحية (OHLC)، حاسبة المصنعية والدمغة، وأسعار العملات بالبنوك.
       </p>
 
       <!-- Live Status & Refresh -->
@@ -465,8 +472,16 @@
           <span id="tickGold21" class="ticker-val">جاري الجلب...</span>
         </div>
         <div class="ticker-item">
+          <span>👑 عيار 24:</span>
+          <span id="tickGold24" class="ticker-val">جاري الجلب...</span>
+        </div>
+        <div class="ticker-item">
           <span>🥇 الجنيه الذهب:</span>
           <span id="tickGoldPound" class="ticker-val">جاري الجلب...</span>
+        </div>
+        <div class="ticker-item">
+          <span>🌍 الأونصة:</span>
+          <span id="tickGoldOunce" class="ticker-val">جاري الجلب...</span>
         </div>
         <div class="ticker-item">
           <span>💵 الدولار:</span>
@@ -476,45 +491,50 @@
           <span>💶 اليورو:</span>
           <span id="tickEUR" class="ticker-val">جاري الجلب...</span>
         </div>
-        <div class="ticker-item">
-          <span>🏗️ حديد عز:</span>
-          <span id="tickSteel" class="ticker-val">41,500 ج.م</span>
-        </div>
       </div>
     </section>
 
-    <!-- 🕯️ INTERACTIVE CANDLESTICK CHART -->
+    <!-- 🕯️ INTERACTIVE CANDLESTICK CHART FOR ALL METRICS & GOLD OUNCE -->
     <div class="card">
       <div class="chart-controls">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <h2 style="font-size: 1.15rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px; margin: 0;">
-            <span>🕯️</span>
-            <span>مخطط الشموع اليابانية التفاعلي الحي (OHLC Live)</span>
-          </h2>
-          <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 6px; background: rgba(16, 185, 129, 0.2); color: #6ee7b7; font-weight: 800;">
-            ● لحظي
-          </span>
+        <div class="chart-controls-row">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <h2 style="font-size: 1.15rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px; margin: 0;">
+              <span>🕯️</span>
+              <span>مخطط الشموع اليابانية التفاعلي الحي (OHLC Live)</span>
+            </h2>
+            <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 6px; background: rgba(16, 185, 129, 0.2); color: #6ee7b7; font-weight: 800;">
+              ● لحظي
+            </span>
+          </div>
+
+          <!-- Style Mode (Candles vs Line) & Timeframes -->
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <div class="btn-group">
+              <button id="btnModeCandles" class="chart-tab-btn active" onclick="setChartType('candles', this)">🕯️ شموع يابانية</button>
+              <button id="btnModeLine" class="chart-tab-btn" onclick="setChartType('line', this)">📈 خطي</button>
+            </div>
+
+            <div class="btn-group">
+              <button class="chart-tab-btn" onclick="setChartTimeframe('15m', this)">15 دقيقة</button>
+              <button class="chart-tab-btn active" onclick="setChartTimeframe('1h', this)">1 ساعة</button>
+              <button class="chart-tab-btn" onclick="setChartTimeframe('1d', this)">1 يوم</button>
+            </div>
+          </div>
         </div>
 
-        <!-- Metric Selectors -->
-        <div class="btn-group">
-          <button class="chart-tab-btn active" onclick="setChartMetric('gold21', this)">🪙 عيار 21</button>
-          <button class="chart-tab-btn" onclick="setChartMetric('goldPound', this)">🥇 الجنيه الذهب</button>
-          <button class="chart-tab-btn" onclick="setChartMetric('usd', this)">💵 الدولار</button>
-          <button class="chart-tab-btn" onclick="setChartMetric('eur', this)">💶 اليورو</button>
-        </div>
-
-        <!-- Style Mode (Candles vs Line) -->
-        <div class="btn-group">
-          <button id="btnModeCandles" class="chart-tab-btn active" onclick="setChartType('candles', this)">🕯️ شموع يابانية</button>
-          <button id="btnModeLine" class="chart-tab-btn" onclick="setChartType('line', this)">📈 خطي</button>
-        </div>
-
-        <!-- Timeframe Selectors -->
-        <div class="btn-group">
-          <button class="chart-tab-btn" onclick="setChartTimeframe('15m', this)">15 دقيقة</button>
-          <button class="chart-tab-btn active" onclick="setChartTimeframe('1h', this)">1 ساعة</button>
-          <button class="chart-tab-btn" onclick="setChartTimeframe('1d', this)">1 يوم</button>
+        <!-- All Gold Karats, Ounce & Currencies Selectors -->
+        <div class="chart-controls-row" style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 10px;">
+          <div class="btn-group" style="width: 100%; justify-content: flex-start;">
+            <button class="chart-tab-btn active" onclick="setChartMetric('gold21', this)">🪙 عيار 21</button>
+            <button class="chart-tab-btn" onclick="setChartMetric('gold24', this)">👑 عيار 24 (الخام)</button>
+            <button class="chart-tab-btn" onclick="setChartMetric('gold18', this)">✨ عيار 18</button>
+            <button class="chart-tab-btn" onclick="setChartMetric('gold14', this)">🌟 عيار 14</button>
+            <button class="chart-tab-btn" onclick="setChartMetric('goldPound', this)">🥇 الجنيه الذهب</button>
+            <button class="chart-tab-btn" onclick="setChartMetric('goldOunce', this)" style="color: #fde68a;">🌍 الأونصة العالمية ($)</button>
+            <button class="chart-tab-btn" onclick="setChartMetric('usd', this)">💵 الدولار</button>
+            <button class="chart-tab-btn" onclick="setChartMetric('eur', this)">💶 اليورو</button>
+          </div>
         </div>
       </div>
 
@@ -556,30 +576,40 @@
       <div class="card">
         <h2 class="card-title">
           <span>🪙</span>
-          <span>أسعار الذهب الحية وحاسبة المصنعية والضريبة والدمغة</span>
+          <span>أسعار الذهب بكافة الأعيرة وحاسبة المصنعية والضريبة</span>
         </h2>
 
-        <!-- Gold Price Grid -->
+        <!-- Gold Price Grid (All 6 Gold Metrics) -->
         <div class="price-grid">
           <div class="price-tile">
             <div class="tile-label">عيار 24 (الخام)</div>
-            <div id="dispGold24" class="tile-val">4,080</div>
+            <div id="dispGold24" class="tile-val">7,437</div>
             <div class="tile-unit">جنيه / جرام</div>
           </div>
           <div class="price-tile" style="border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.12);">
             <div class="tile-label" style="color: #fde68a;">عيار 21 (الأكثر طلباً)</div>
-            <div id="dispGold21" class="tile-val" style="color: #fff;">3,570</div>
+            <div id="dispGold21" class="tile-val" style="color: #fff;">6,507</div>
             <div class="tile-unit">جنيه / جرام</div>
           </div>
           <div class="price-tile">
             <div class="tile-label">عيار 18</div>
-            <div id="dispGold18" class="tile-val">3,060</div>
+            <div id="dispGold18" class="tile-val">5,578</div>
             <div class="tile-unit">جنيه / جرام</div>
           </div>
           <div class="price-tile">
-            <div class="tile-label">الجنيه الذهب (8 جم 21k)</div>
-            <div id="dispGoldPound" class="tile-val">28,560</div>
+            <div class="tile-label">عيار 14</div>
+            <div id="dispGold14" class="tile-val">4,338</div>
+            <div class="tile-unit">جنيه / جرام</div>
+          </div>
+          <div class="price-tile">
+            <div class="tile-label">الجنيه الذهب (8 جم)</div>
+            <div id="dispGoldPound" class="tile-val">52,056</div>
             <div class="tile-unit">جنيه مصري</div>
+          </div>
+          <div class="price-tile" style="border-color: rgba(245, 158, 11, 0.35);">
+            <div class="tile-label" style="color: #fde68a;">🌍 الأونصة العالمية</div>
+            <div id="dispGoldOunce" class="tile-val" style="color: #fde68a;">$2,515</div>
+            <div class="tile-unit">دولار / أونصة</div>
           </div>
         </div>
 
@@ -592,10 +622,11 @@
             <div class="form-group">
               <label class="form-label">العيار المطلوب:</label>
               <select id="goldKarat" class="form-control">
-                <option value="21" selected>عيار 21</option>
-                <option value="24">عيار 24</option>
+                <option value="21" selected>عيار 21 (الأكثر طلباً)</option>
+                <option value="24">عيار 24 (الخالص)</option>
                 <option value="18">عيار 18</option>
-                <option value="pound">جنيه ذهب (8 جرام)</option>
+                <option value="14">عيار 14</option>
+                <option value="pound">جنيه ذهب (8 جرام 21k)</option>
               </select>
             </div>
             <div class="form-group">
@@ -728,8 +759,8 @@
         </div>
 
         <div class="faq-item">
-          <div class="faq-q">أين تُصرف الحوالات بالعملات الأجنبية رسمياً؟</div>
-          <div class="faq-a">عبر فروع البنوك المعتمدة وشركات الصرافة المرخصة من البنك المركزي المصري بالأسعار الرسمية المعلنة دون أي عمولات إضافية غير مقررة.</div>
+          <div class="faq-q">كم يبلغ وزن أونصة الذهب وكيف يرتبط سعرها بالسوق المصري؟</div>
+          <div class="faq-a">أونصة الذهب (Troy Ounce) تزن 31.1035 جرام من الذهب الخالص عيار 24، وسعر الذهب في مصر يُحسب بتحويل سعر الأونصة بالدولار لسعر الجرام عيار 24 بالجنيه المصري بناءً على سعر صرف الدولار الحي.</div>
         </div>
 
         <div class="faq-item">
@@ -750,7 +781,9 @@
       24: 7437,
       21: 6507,
       18: 5578,
-      pound: 52056
+      14: 4338,
+      pound: 52056,
+      ounceUSD: 2515.50
     };
 
     let liveCurrencies = {
@@ -770,11 +803,27 @@
     function generateCandlestickData() {
       let basePrice = 6507;
       let unit = 'ج.م';
+      let isUSD = false;
 
-      if (currentMetric === 'gold21') basePrice = liveGoldPrices[21] || 6507;
-      else if (currentMetric === 'goldPound') basePrice = liveGoldPrices.pound || 52056;
-      else if (currentMetric === 'usd') basePrice = liveCurrencies.USD || 50.25;
-      else if (currentMetric === 'eur') basePrice = liveCurrencies.EUR || 58.55;
+      if (currentMetric === 'gold21') {
+        basePrice = liveGoldPrices[21] || 6507;
+      } else if (currentMetric === 'gold24') {
+        basePrice = liveGoldPrices[24] || 7437;
+      } else if (currentMetric === 'gold18') {
+        basePrice = liveGoldPrices[18] || 5578;
+      } else if (currentMetric === 'gold14') {
+        basePrice = liveGoldPrices[14] || 4338;
+      } else if (currentMetric === 'goldPound') {
+        basePrice = liveGoldPrices.pound || 52056;
+      } else if (currentMetric === 'goldOunce') {
+        basePrice = liveGoldPrices.ounceUSD || 2515.50;
+        unit = '$';
+        isUSD = true;
+      } else if (currentMetric === 'usd') {
+        basePrice = liveCurrencies.USD || 50.25;
+      } else if (currentMetric === 'eur') {
+        basePrice = liveCurrencies.EUR || 58.55;
+      }
 
       let candleCount = 20;
       let intervalMs = 3600 * 1000;
@@ -796,6 +845,7 @@
       const candles = [];
       let lastClose = basePrice * (1 - 0.012);
       const spread = basePrice * 0.003;
+      const decimals = (isUSD || currentMetric === 'usd' || currentMetric === 'eur') ? 2 : 0;
 
       for (let i = candleCount - 1; i >= 1; i--) {
         const time = new Date(now.getTime() - i * intervalMs);
@@ -808,11 +858,12 @@
 
         candles.push({
           timeLabel: time.toLocaleTimeString('ar-EG', timeFormat),
-          open: parseFloat(open.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
-          high: parseFloat(high.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
-          low: parseFloat(low.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
-          close: parseFloat(close.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
-          isBullish: close >= open
+          open: parseFloat(open.toFixed(decimals)),
+          high: parseFloat(high.toFixed(decimals)),
+          low: parseFloat(low.toFixed(decimals)),
+          close: parseFloat(close.toFixed(decimals)),
+          isBullish: close >= open,
+          unit: unit
         });
       }
 
@@ -824,12 +875,13 @@
 
       candles.push({
         timeLabel: now.toLocaleTimeString('ar-EG', timeFormat) + ' (مباشر)',
-        open: parseFloat(currentOpen.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
-        high: parseFloat(currentHigh.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
-        low: parseFloat(currentLow.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
-        close: parseFloat(currentClose.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
+        open: parseFloat(currentOpen.toFixed(decimals)),
+        high: parseFloat(currentHigh.toFixed(decimals)),
+        low: parseFloat(currentLow.toFixed(decimals)),
+        close: parseFloat(currentClose.toFixed(decimals)),
         isBullish: currentClose >= currentOpen,
-        isLive: true
+        isLive: true,
+        unit: unit
       });
 
       candleData = candles;
@@ -843,10 +895,13 @@
       const latestClose = candles[candles.length - 1].close;
       const changeRate = (((latestClose - periodOpen) / periodOpen) * 100).toFixed(2);
 
-      document.getElementById('statCurrentPrice').textContent = latestClose.toLocaleString('ar-EG') + ' ' + unit;
-      document.getElementById('statHighPrice').textContent = maxPrice.toLocaleString('ar-EG') + ' ' + unit;
-      document.getElementById('statLowPrice').textContent = minPrice.toLocaleString('ar-EG') + ' ' + unit;
-      document.getElementById('statOpenPrice').textContent = periodOpen.toLocaleString('ar-EG') + ' ' + unit;
+      const formatPrefix = isUSD ? '$' : '';
+      const formatSuffix = isUSD ? '' : (' ' + unit);
+
+      document.getElementById('statCurrentPrice').textContent = formatPrefix + latestClose.toLocaleString('ar-EG') + formatSuffix;
+      document.getElementById('statHighPrice').textContent = formatPrefix + maxPrice.toLocaleString('ar-EG') + formatSuffix;
+      document.getElementById('statLowPrice').textContent = formatPrefix + minPrice.toLocaleString('ar-EG') + formatSuffix;
+      document.getElementById('statOpenPrice').textContent = formatPrefix + periodOpen.toLocaleString('ar-EG') + formatSuffix;
 
       const changeEl = document.getElementById('statChangeRate');
       if (changeRate >= 0) {
@@ -1021,16 +1076,17 @@
         const isBull = candle.close >= candle.open;
         const badgeColor = isBull ? '#10b981' : '#ef4444';
         const changeTxt = isBull ? '🟢 شمعة صاعدة' : '🔴 شمعة هابطة';
+        const u = candle.unit || 'ج.م';
 
         tooltip.style.display = 'block';
         tooltip.style.left = pointX + 'px';
         tooltip.style.top = pointY + 'px';
         tooltip.innerHTML = `
           <div style="font-weight:900;color:${badgeColor};margin-bottom:4px;">${changeTxt} (${candle.timeLabel})</div>
-          <div><strong>الإغلاق (Close):</strong> ${candle.close.toLocaleString('ar-EG')} ج.م</div>
-          <div><strong>الافتتاح (Open):</strong> ${candle.open.toLocaleString('ar-EG')} ج.م</div>
-          <div><strong>الأعلى (High):</strong> ${candle.high.toLocaleString('ar-EG')} ج.م</div>
-          <div><strong>الأدنى (Low):</strong> ${candle.low.toLocaleString('ar-EG')} ج.م</div>
+          <div><strong>الإغلاق (Close):</strong> ${candle.close.toLocaleString('ar-EG')} ${u}</div>
+          <div><strong>الافتتاح (Open):</strong> ${candle.open.toLocaleString('ar-EG')} ${u}</div>
+          <div><strong>الأعلى (High):</strong> ${candle.high.toLocaleString('ar-EG')} ${u}</div>
+          <div><strong>الأدنى (Low):</strong> ${candle.low.toLocaleString('ar-EG')} ${u}</div>
         `;
       }
 
@@ -1070,7 +1126,7 @@
       renderCanvas();
     }
 
-    function updateUIWithData(usdEgp, eurEgp, sarEgp, aedEgp, kwdEgp, gram24k, gram21k, gram18k, pound) {
+    function updateUIWithData(usdEgp, eurEgp, sarEgp, aedEgp, kwdEgp, gram24k, gram21k, gram18k, gram14k, pound, ounceUSD) {
       if (document.getElementById('dispCurUSD')) document.getElementById('dispCurUSD').textContent = usdEgp.toFixed(2) + ' ج.م';
       if (document.getElementById('dispCurEUR')) document.getElementById('dispCurEUR').textContent = eurEgp.toFixed(2) + ' ج.م';
       if (document.getElementById('dispCurSAR')) document.getElementById('dispCurSAR').textContent = sarEgp.toFixed(2) + ' ج.م';
@@ -1083,12 +1139,16 @@
       if (document.getElementById('dispGold24')) document.getElementById('dispGold24').textContent = gram24k.toLocaleString('ar-EG');
       if (document.getElementById('dispGold21')) document.getElementById('dispGold21').textContent = gram21k.toLocaleString('ar-EG');
       if (document.getElementById('dispGold18')) document.getElementById('dispGold18').textContent = gram18k.toLocaleString('ar-EG');
+      if (document.getElementById('dispGold14')) document.getElementById('dispGold14').textContent = gram14k.toLocaleString('ar-EG');
       if (document.getElementById('dispGoldPound')) document.getElementById('dispGoldPound').textContent = pound.toLocaleString('ar-EG');
+      if (document.getElementById('dispGoldOunce')) document.getElementById('dispGoldOunce').textContent = '$' + ounceUSD.toLocaleString('ar-EG', { minimumFractionDigits: 1, maximumFractionDigits: 2 });
 
       if (document.getElementById('tickGold21')) document.getElementById('tickGold21').textContent = gram21k.toLocaleString('ar-EG') + ' ج.م';
+      if (document.getElementById('tickGold24')) document.getElementById('tickGold24').textContent = gram24k.toLocaleString('ar-EG') + ' ج.م';
       if (document.getElementById('tickGoldPound')) document.getElementById('tickGoldPound').textContent = pound.toLocaleString('ar-EG') + ' ج.م';
+      if (document.getElementById('tickGoldOunce')) document.getElementById('tickGoldOunce').textContent = '$' + ounceUSD.toFixed(1);
 
-      liveGoldPrices = { 24: gram24k, 21: gram21k, 18: gram18k, pound: pound };
+      liveGoldPrices = { 24: gram24k, 21: gram21k, 18: gram18k, 14: gram14k, pound: pound, ounceUSD: ounceUSD };
       liveCurrencies = { USD: usdEgp, EUR: eurEgp, SAR: sarEgp, AED: aedEgp, KWD: kwdEgp };
 
       // Update interactive candlestick chart
@@ -1114,14 +1174,15 @@
         const aedEgp = usdEgp / (fxData.rates.AED || 3.672);
         const kwdEgp = usdEgp / (fxData.rates.KWD || 0.308);
 
-        const ounceUsd = goldData.price || 2515;
+        const ounceUsd = goldData.price || 2515.50;
         const gram24kUsd = ounceUsd / 31.1034768;
         const gram24kEgp = Math.round(gram24kUsd * usdEgp);
         const gram21kEgp = Math.round(gram24kEgp * (21 / 24));
         const gram18kEgp = Math.round(gram24kEgp * (18 / 24));
+        const gram14kEgp = Math.round(gram24kEgp * (14 / 24));
         const goldPoundEgp = Math.round(gram21kEgp * 8);
 
-        updateUIWithData(usdEgp, eurEgp, sarEgp, aedEgp, kwdEgp, gram24kEgp, gram21kEgp, gram18kEgp, goldPoundEgp);
+        updateUIWithData(usdEgp, eurEgp, sarEgp, aedEgp, kwdEgp, gram24kEgp, gram21kEgp, gram18kEgp, gram14kEgp, goldPoundEgp, ounceUsd);
 
         const timeStr = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
         if (statusEl) statusEl.textContent = '● بث حي مباشر (تحديث تلقائي: ' + timeStr + ')';
@@ -1132,16 +1193,25 @@
           const localRes = await fetch('/data/economic-rates.json');
           const localData = await localRes.json();
           if (localData && localData.gold && localData.currencies) {
+            const g24 = localData.gold.k24 || 7437;
+            const g21 = localData.gold.k21 || 6507;
+            const g18 = localData.gold.k18 || 5578;
+            const g14 = Math.round(g24 * (14 / 24));
+            const gp = localData.gold.goldPound || 52056;
+            const ounce = localData.gold.ounceUSD || 2515.50;
+
             updateUIWithData(
               localData.currencies.USD.sell,
               localData.currencies.EUR.sell,
               localData.currencies.SAR.sell,
               localData.currencies.AED.sell,
               localData.currencies.KWD.sell,
-              localData.gold.k24,
-              localData.gold.k21,
-              localData.gold.k18,
-              localData.gold.goldPound
+              g24,
+              g21,
+              g18,
+              g14,
+              gp,
+              ounce
             );
             if (statusEl) statusEl.textContent = '● أسعار اليوم المعتمدة (' + (localData.dateDisplay || 'اليوم') + ')';
           }
