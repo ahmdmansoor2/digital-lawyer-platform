@@ -1053,9 +1053,6 @@ const EGYPT_UNIVERSITIES = [
   }
 ];
 
-// ════════════════════════════════════════════════════════════════════════════
-// 2. FULL TEXTBOOKS ENGINE WITH CHAPTERS, PRECEDENTS & MULTI-PROFESSOR MAPPING
-// ════════════════════════════════════════════════════════════════════════════
 const LAW_CURRICULUM = {
   1: [
     {
@@ -1426,7 +1423,7 @@ function renderUniversitiesList() {
     : EGYPT_UNIVERSITIES.filter(u => u.region === currentRegion);
 
   scroll.innerHTML = filtered.map(u => 
-    '<button class="uni-card-btn' + (u.id === currentUniId ? ' active' : '') + '" onclick="selectUniversity(\'' + u.id + '\')">' +
+    '<button class="uni-card-btn' + (u.id === currentUniId ? ' active' : '') + '" onclick="selectUniversity(\\'' + u.id + '\\')">' +
       '<span>' + u.icon + '</span>' +
       '<span>' + u.name + '</span>' +
     '</button>'
@@ -1487,10 +1484,10 @@ function renderSubjects(year) {
         s.topics.map(t => '<span class="topic-pill"># ' + t + '</span>').join('') +
       '</div>' +
       '<div class="card-actions">' +
-        '<button class="btn-action btn-book" onclick="openFullBook(\'' + s.id + '\')">' +
+        '<button class="btn-action btn-book" onclick="openFullBook(\\'' + s.id + '\\')">' +
           '📖 قراءة الكتاب الجامعي الكامل' +
         '</button>' +
-        '<button class="btn-action btn-quiz" onclick="openQuiz(\'' + s.id + '\')">' +
+        '<button class="btn-action btn-quiz" onclick="openQuiz(\\'' + s.id + '\\')">' +
           '📝 بنك أسئلة بابل شيت' +
         '</button>' +
       '</div>' +
@@ -1553,7 +1550,7 @@ function renderBookReaderModal() {
               : '<div></div>') +
             (currentActiveChapterIdx < s.chapters.length - 1 
               ? '<button class="reader-btn-ctrl" style="padding:10px 18px; background:rgba(99,102,241,0.3); color:#fff;" onclick="selectChapter(' + (currentActiveChapterIdx + 1) + ')">الباب التالي ➡️</button>' 
-              : '<button class="reader-btn-ctrl" style="padding:10px 18px; background:rgba(16,185,129,0.3); color:#a7f3d0;" onclick="openQuiz(\'' + s.id + '\')">الانتقال لامتحان البابل شيت 📝</button>') +
+              : '<button class="reader-btn-ctrl" style="padding:10px 18px; background:rgba(16,185,129,0.3); color:#a7f3d0;" onclick="openQuiz(\\'' + s.id + '\\')">الانتقال لامتحان البابل شيت 📝</button>') +
           '</div>' +
         '</div>' +
       '</div>' +
@@ -1808,6 +1805,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+`;
+
+fs.writeFileSync('d:/قانوني 7/public/js/law-hub-data.js', jsContent, 'utf8');
+
+// Also update inlined script in law-students-hub.html
+let html = fs.readFileSync('d:/قانوني 7/public/law-students-hub.html', 'utf8');
+html = html.replace(/<script src="\/js\/law-hub-data\.js"><\/script>|<script>[\s\S]*?<\/script>\s*<\/body>/, '<script>\n' + jsContent + '\n</script>\n</body>');
+fs.writeFileSync('d:/قانوني 7/public/law-students-hub.html', html, 'utf8');
+
+console.log('✓ Successfully wrote smart book reader and multi-professor data engine');
 
 </script>
 </body>
