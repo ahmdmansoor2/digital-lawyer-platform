@@ -220,16 +220,6 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             🌟 كافة المنظومة المجمعة (7 قطاعات)
           </button>
           <button
-            onClick={() => setActiveTab('students')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-              activeTab === 'students'
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105'
-                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            🎓 الأكاديمية والطلاب
-          </button>
-          <button
             onClick={() => setActiveTab('library')}
             className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
               activeTab === 'library'
@@ -280,6 +270,16 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             🌍 دول الخليج العربي
           </button>
           <button
+            onClick={() => setActiveTab('students')}
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+              activeTab === 'students'
+                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105'
+                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            🎓 الأكاديمية والطلاب
+          </button>
+          <button
             onClick={() => setActiveTab('corporate')}
             className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
               activeTab === 'corporate'
@@ -297,105 +297,6 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
       {/* ─── 2. MASTER HUB CARDS SHOWCASE (الكروت المجمعة الذكية) ───────── */}
       {/* ════════════════════════════════════════════════════════════════════ */}
       <div className="space-y-12 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-
-        {/* ── MASTER HUB 1: STUDENTS & ACADEMICS (كارت الأكاديمية والطلاب) ── */}
-        {(activeTab === 'all' || activeTab === 'students') && (
-          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-blue-950/60 via-slate-900/90 to-slate-950 border border-blue-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-blue-400/50">
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-blue-900/50">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-black px-3.5 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 inline-flex items-center gap-1.5">
-                    <GraduationCap className="w-4 h-4 text-blue-400" />
-                    <span>🎓 المنظومة الأكاديمية والتعليم الجامعي 2026</span>
-                  </span>
-                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                    24 كلية بالجمهورية
-                  </span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-white">
-                  بوابة طلاب كليات الحقوق والشريعة والقانون
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-                  منصة تعليمية متكاملة لطلاب كليات الحقوق والشريعة بمصر: كتب ومقررات الفرق الأربعة المصورة (PDF)، بنك امتحانات بابل شيت تفاعلية مع التأصيل القضائي، حاسبة التقدير التراكمي وتنسيق الهيئات، ودليل القيد بالنقابة.
-                </p>
-              </div>
-              <a
-                href="/law-students-hub.html"
-                className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-extrabold text-sm shadow-xl shadow-blue-600/30 hover:scale-105 transition-all flex items-center gap-2 whitespace-nowrap self-stretch lg:self-auto justify-center"
-              >
-                <span>دخول البوابة الأكاديمية كاملة</span>
-                <ArrowLeft className="w-4 h-4" />
-              </a>
-            </div>
-
-            {/* Sub-features Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <a href="/law-students-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-blue-500/20 hover:border-blue-400 transition-all flex flex-col justify-between">
-                <div>
-                  <div className="text-2xl mb-3">📚</div>
-                  <h3 className="text-base font-black text-white group-hover:text-blue-300 transition-colors mb-1.5">
-                    الكتب الجامعية المصورة (PDF)
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    مؤلفات وشروح أمهات القانون المصري (السنهوري، حسني، سرور، الطماوي) بعارض PDF تفاعلي مدمج وتحميل مباشر.
-                  </p>
-                </div>
-                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-blue-400 flex items-center justify-between">
-                  <span>تصفح الكتب</span>
-                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-                </div>
-              </a>
-
-              <a href="/law-students-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-blue-500/20 hover:border-blue-400 transition-all flex flex-col justify-between">
-                <div>
-                  <div className="text-2xl mb-3">🏛️</div>
-                  <h3 className="text-base font-black text-white group-hover:text-blue-300 transition-colors mb-1.5">
-                    دليل 24 كلية حقوق وأزهر
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    تقسيم شامل لكليات القاهرة، عين شمس، الإسكندرية، المنصورة، أسيوط، وباقي المحافظات وكليات الشريعة بالأزهر.
-                  </p>
-                </div>
-                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-blue-400 flex items-center justify-between">
-                  <span>اختر كليتك</span>
-                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-                </div>
-              </a>
-
-              <a href="/law-students-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-blue-500/20 hover:border-blue-400 transition-all flex flex-col justify-between">
-                <div>
-                  <div className="text-2xl mb-3">📝</div>
-                  <h3 className="text-base font-black text-white group-hover:text-blue-300 transition-colors mb-1.5">
-                    بنك امتحانات بابل شيت
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    أسئلة تدريبية مؤصلة مع التقييم الفوري وشرح السند القانوني وأحكام محكمة النقض لكل خيار.
-                  </p>
-                </div>
-                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-blue-400 flex items-center justify-between">
-                  <span>بدء الاختبار</span>
-                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-                </div>
-              </a>
-
-              <a href="/law-students-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-blue-500/20 hover:border-blue-400 transition-all flex flex-col justify-between">
-                <div>
-                  <div className="text-2xl mb-3">🧮</div>
-                  <h3 className="text-base font-black text-white group-hover:text-blue-300 transition-colors mb-1.5">
-                    حاسبة التقدير ودليل القيد
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    حساب النسبة التراكمية وتنسيق الهيئات القضائية (النيابة، مجلس الدولة) والشروط الرسمية للقيد بنقابة المحامين 2026.
-                  </p>
-                </div>
-                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-blue-400 flex items-center justify-between">
-                  <span>احسب تقديرك</span>
-                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-                </div>
-              </a>
-            </div>
-          </section>
-        )}
 
         {/* ── MASTER HUB 2: LEGAL LIBRARY, PRECEDENTS & FORMS (كارت المكتبة والموسوعات والصيغ والنقض) ── */}
         {(activeTab === 'all' || activeTab === 'library') && (
@@ -1120,6 +1021,105 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                   <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
                 </a>
               </div>
+            </div>
+          </section>
+        )}
+
+        {/* ── MASTER HUB 1: STUDENTS & ACADEMICS (كارت الأكاديمية والطلاب) ── */}
+        {(activeTab === 'all' || activeTab === 'students') && (
+          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-blue-950/60 via-slate-900/90 to-slate-950 border border-blue-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-blue-400/50">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-blue-900/50">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-black px-3.5 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 inline-flex items-center gap-1.5">
+                    <GraduationCap className="w-4 h-4 text-blue-400" />
+                    <span>🎓 المنظومة الأكاديمية والتعليم الجامعي 2026</span>
+                  </span>
+                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    24 كلية بالجمهورية
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-white">
+                  بوابة طلاب كليات الحقوق والشريعة والقانون
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+                  منصة تعليمية متكاملة لطلاب كليات الحقوق والشريعة بمصر: كتب ومقررات الفرق الأربعة المصورة (PDF)، بنك امتحانات بابل شيت تفاعلية مع التأصيل القضائي، حاسبة التقدير التراكمي وتنسيق الهيئات، ودليل القيد بالنقابة.
+                </p>
+              </div>
+              <a
+                href="/law-students-hub.html"
+                className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-extrabold text-sm shadow-xl shadow-blue-600/30 hover:scale-105 transition-all flex items-center gap-2 whitespace-nowrap self-stretch lg:self-auto justify-center"
+              >
+                <span>دخول البوابة الأكاديمية كاملة</span>
+                <ArrowLeft className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Sub-features Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <a href="/law-students-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-blue-500/20 hover:border-blue-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">📚</div>
+                  <h3 className="text-base font-black text-white group-hover:text-blue-300 transition-colors mb-1.5">
+                    الكتب الجامعية المصورة (PDF)
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    مؤلفات وشروح أمهات القانون المصري (السنهوري، حسني، سرور، الطماوي) بعارض PDF تفاعلي مدمج وتحميل مباشر.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-blue-400 flex items-center justify-between">
+                  <span>تصفح الكتب</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              <a href="/law-students-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-blue-500/20 hover:border-blue-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🏛️</div>
+                  <h3 className="text-base font-black text-white group-hover:text-blue-300 transition-colors mb-1.5">
+                    دليل 24 كلية حقوق وأزهر
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    تقسيم شامل لكليات القاهرة، عين شمس، الإسكندرية، المنصورة، أسيوط، وباقي المحافظات وكليات الشريعة بالأزهر.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-blue-400 flex items-center justify-between">
+                  <span>اختر كليتك</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              <a href="/law-students-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-blue-500/20 hover:border-blue-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">📝</div>
+                  <h3 className="text-base font-black text-white group-hover:text-blue-300 transition-colors mb-1.5">
+                    بنك امتحانات بابل شيت
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    أسئلة تدريبية مؤصلة مع التقييم الفوري وشرح السند القانوني وأحكام محكمة النقض لكل خيار.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-blue-400 flex items-center justify-between">
+                  <span>بدء الاختبار</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              <a href="/law-students-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-blue-500/20 hover:border-blue-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🧮</div>
+                  <h3 className="text-base font-black text-white group-hover:text-blue-300 transition-colors mb-1.5">
+                    حاسبة التقدير ودليل القيد
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    حساب النسبة التراكمية وتنسيق الهيئات القضائية (النيابة، مجلس الدولة) والشروط الرسمية للقيد بنقابة المحامين 2026.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-blue-400 flex items-center justify-between">
+                  <span>احسب تقديرك</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
             </div>
           </section>
         )}
