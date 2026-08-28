@@ -1155,7 +1155,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             </div>
 
             {/* Sub-features Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <a href="/company-incorporation.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-amber-500/20 hover:border-amber-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">🏢</div>
@@ -1188,14 +1188,30 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 </div>
               </a>
 
+              <a href="/search.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-amber-500/20 hover:border-amber-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🔎</div>
+                  <h3 className="text-base font-black text-white group-hover:text-amber-300 transition-colors mb-1.5">
+                    محرك البحث القانوني الشامل
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    بحث فوري فائق السرعة في كافة مواد القوانين، أحكام محكمة النقض، المقالات، والصيغ والمذكرات بنقرة واحدة.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-amber-400 flex items-center justify-between">
+                  <span>فتح محرك البحث</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
               <a href="/sitemap.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-amber-500/20 hover:border-amber-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">🗺️</div>
                   <h3 className="text-base font-black text-white group-hover:text-amber-300 transition-colors mb-1.5">
-                    خريطة الموقع الكاملة وفهرس المنصة
+                    خريطة الموقع وفهرس المنصة
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    فهرس متكامل يضم كافة صفحات المنصة، الأدلة التشريعية، المقالات، والبوابات الإقليمية للوصول السريع.
+                    فهرس متكامل يضم كافة صفحات وبوابات المنصة، الأدلة التشريعية، والمقالات للوصول المباشر.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-amber-400 flex items-center justify-between">
