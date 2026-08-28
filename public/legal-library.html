@@ -1059,7 +1059,7 @@
       const isDoc = book.path && (book.path.toLowerCase().endsWith('.doc') || book.path.toLowerCase().endsWith('.docx'));
       
       if (isDoc) {
-        // Word Document Layout: Download-only (preview not possible without Google login)
+        // Word Document Layout: Download + Popup Preview (bypasses iframe cookie restrictions)
         return `
           <article class="book-card" style="border-top: 3px solid #3b82f6;">
             <div>
@@ -1077,11 +1077,14 @@
                 <span>✍️</span>
                 <strong>${book.author}</strong>
               </div>
-              <div class="book-path-info" style="color:#93c5fd;">💡 هذه الصيغة جاهزة للتحرير في Microsoft Word — نزّلها مباشرة وعدّل عليها · ${book.size || 'سحابي'}</div>
+              <div class="book-path-info">📁 مستند وورد جاهز للتحرير والطباعة · ${book.size || 'سحابي'}</div>
             </div>
-            <div class="book-actions">
-              <button onclick="handleBookAction('${book.id}', 'download')" class="btn-card" style="width:100%; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: #ffffff; border: 1px solid rgba(147,197,253,0.4); font-weight: 800; box-shadow: 0 4px 14px rgba(37,99,235,0.35); font-size: 1rem; padding: 12px;">
-                <span>📥 تنزيل المستند (Word) مباشرة</span>
+            <div class="book-actions" style="display: flex; gap: 8px;">
+              <button onclick="handleBookAction('${book.id}', 'preview')" class="btn-card btn-card-open" style="flex: 1.3; background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); color: #ffffff; border: 1px solid rgba(165,180,252,0.4); font-weight: 800;">
+                <span>📖 معاينة كافة الصفحات</span>
+              </button>
+              <button onclick="handleBookAction('${book.id}', 'download')" class="btn-card" style="flex: 1; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: #ffffff; border: 1px solid rgba(147,197,253,0.4); font-weight: 800;">
+                <span>📥 تنزيل Word</span>
               </button>
             </div>
           </article>
@@ -1219,9 +1222,16 @@
 
       if (actionType === 'preview') {
         if (isDoc) {
-          // For Word documents, open the full multi-page document view directly so ALL pages load without iframe restrictions
-          showToast(`📖 جارٍ فتح المستند الكامل «${selectedBook.title}» للقراءة والتصفح...`);
-          window.open(`https://drive.google.com/file/d/${selectedBook.id}/view`, '_blank');
+          // Word docs: open in popup window (top-level context = all pages load, no iframe cookie blocks)
+          const pw = window.open(
+            `https://drive.google.com/file/d/${selectedBook.id}/preview`,
+            'word_reader',
+            'width=1200,height=860,menubar=no,toolbar=no,location=no,status=no,resizable=yes,scrollbars=yes'
+          );
+          if (!pw) {
+            // popup blocked — fallback to new tab
+            window.open(`https://drive.google.com/file/d/${selectedBook.id}/preview`, '_blank');
+          }
         } else {
           // For PDF books, open the in-page streaming reader
           openReader(selectedBook);
