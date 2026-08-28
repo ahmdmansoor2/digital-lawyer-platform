@@ -1084,7 +1084,7 @@
                 <span>📥 تنزيل Word للتعديل</span>
               </button>
               <button onclick="handleBookAction('${book.id}', 'preview')" class="btn-card btn-card-open" style="flex: 1; background: rgba(30,41,59,0.8); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1;">
-                <span>📖 قراءة سريعة</span>
+                <span>📖 قراءة كامل المستند</span>
               </button>
             </div>
           </article>
@@ -1218,8 +1218,17 @@
       selectedBook = ALL_BOOKS.find(b => b.id === bookId);
       if (!selectedBook) return;
 
+      const isDoc = selectedBook.path && (selectedBook.path.toLowerCase().endsWith('.doc') || selectedBook.path.toLowerCase().endsWith('.docx'));
+
       if (actionType === 'preview') {
-        openReader(selectedBook);
+        if (isDoc) {
+          // For Word documents, open the full multi-page document view directly so ALL pages load without iframe restrictions
+          showToast(`📖 جارٍ فتح المستند الكامل «${selectedBook.title}» للقراءة والتصفح...`);
+          window.open(`https://drive.google.com/file/d/${selectedBook.id}/view`, '_blank');
+        } else {
+          // For PDF books, open the in-page streaming reader
+          openReader(selectedBook);
+        }
       } else {
         triggerInPageDownload(selectedBook);
       }
@@ -1227,10 +1236,8 @@
 
     function openReader(book) {
       selectedBook = book;
-      const isDoc = book.path && (book.path.toLowerCase().endsWith('.doc') || book.path.toLowerCase().endsWith('.docx'));
-
       document.getElementById('readerTitle').innerText = book.title;
-      document.getElementById('readerAuthor').innerText = `✍️ ${book.author} · 📁 ${isDoc ? 'مستند Word قابل للتعديل' : 'كتاب إلكتروني PDF'} · ${book.size || 'سحابي'}`;
+      document.getElementById('readerAuthor').innerText = `✍️ ${book.author} · 📁 كتاب إلكتروني PDF · ${book.size || 'سحابي'}`;
       
       const fullViewUrl = `https://drive.google.com/file/d/${book.id}/view`;
       const downloadUrl = `https://drive.usercontent.google.com/download?id=${book.id}&export=download&confirm=t`;
@@ -1240,7 +1247,7 @@
         extBtn.href = fullViewUrl;
         const extBtnText = document.getElementById('readerExternalBtnText');
         if (extBtnText) {
-          extBtnText.innerText = '📖 قراءة كامل المستند';
+          extBtnText.innerText = '📖 قراءة كامل الشاشة';
         }
       }
 
@@ -1249,7 +1256,7 @@
         dlBtn.href = downloadUrl;
         const dlBtnText = document.getElementById('readerDownloadBtnText');
         if (dlBtnText) {
-          dlBtnText.innerText = isDoc ? '📥 تنزيل Word للتعديل' : '📥 تنزيل كتاب PDF';
+          dlBtnText.innerText = '📥 تنزيل الكتاب (PDF)';
         }
       }
 
