@@ -937,6 +937,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/bahrain-legal-hub-en.html</loc>
+    <lastmod>2026-08-28T09:20:21.707Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/bahrain-legal-hub.html</loc>
+    <lastmod>2026-08-28T09:20:21.706Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/citizen-complaints.html</loc>
     <lastmod>2026-08-27T21:12:45.811Z</lastmod>
     <changefreq>monthly</changefreq>
@@ -997,8 +1009,20 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/kuwait-legal-hub-en.html</loc>
+    <lastmod>2026-08-28T09:20:21.705Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/kuwait-legal-hub.html</loc>
+    <lastmod>2026-08-28T09:20:21.700Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/law-students-hub.html</loc>
-    <lastmod>2026-08-27T21:31:37.064Z</lastmod>
+    <lastmod>2026-08-28T07:36:29.008Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

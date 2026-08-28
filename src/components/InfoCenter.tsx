@@ -267,7 +267,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
             }`}
           >
-            🌍 دول الخليج العربي
+            🌍 دول الخليج العربي الستة
           </button>
           <button
             onClick={() => setActiveTab('students')}
@@ -556,7 +556,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                     <span>🧮 الموسوعة الشاملة للحاسبات القانونية والشرعية 2026</span>
                   </span>
                   <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-green-500/20 text-green-300 border border-green-500/30">
-                    12 حاسبة تفاعلية متخصصة
+                    14 حاسبة تفاعلية متخصصة
                   </span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-black text-white">
@@ -753,7 +753,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 <div>
                   <div className="text-2xl mb-3">🎓</div>
                   <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
-                    11. حاسبة التقدير وتنسيق الهيئات
+                    13. حاسبة التقدير وتنسيق الهيئات
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
                     حساب النسبة المئوية والمجموع التراكمي لطلاب الحقوق والشريعة وشروط القيد بنقابة المحامين وتنسيق القضاء والنيابة.
@@ -770,7 +770,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 <div>
                   <div className="text-2xl mb-3">🔍</div>
                   <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
-                    12. تشخيص الاختصاص القضائي والميعاد
+                    14. تشخيص الاختصاص القضائي والميعاد
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
                     تحليل آلي للنزاع لتحديد المحكمة المختصة نوعياً ومحلياً (جزئي، ابتدائي، اقتصادي، مجلس دولة) والمستندات المطلوبة.
@@ -901,7 +901,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </section>
         )}
 
-        {/* ── MASTER HUB 6: GULF REGIONAL HUB (كارت دول الخليج العربي الأربعة) ── */}
+        {/* ── MASTER HUB 6: GULF REGIONAL HUB (كارت دول الخليج العربي الستة) ── */}
         {(activeTab === 'all' || activeTab === 'gulf') && (
           <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-green-950/60 via-slate-900/90 to-slate-950 border border-green-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-green-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-green-900/50">
@@ -909,24 +909,24 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-black px-3.5 py-1 rounded-full bg-green-500/20 text-green-300 border border-green-500/30 inline-flex items-center gap-1.5">
                     <Globe className="w-4 h-4 text-green-400" />
-                    <span>🌍 البوابات القانونية الإقليمية المعتمدة 2026</span>
+                    <span>🌐 البوابات القانونية الإقليمية المعتمدة 2026</span>
                   </span>
                   <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                    4 دول خليجية (عربي + إنجليزي)
+                    6 دول خليجية (عربي + إنجليزي)
                   </span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-black text-white">
-                  البوابات القانونية لدول الخليج العربي
+                  البوابات القانونية لدول الخليج العربي الستة
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-                  بوابات مستقلة متخصصة تضم حاسبات مكافأة نهاية الخدمة الدقيقة، منصات التقاضي الإلكتروني، وتأسيس الشركات والأنظمة المعتمدة في السعودية والإمارات وقطر وسلطنة عمان باللغتين العربية والإنجليزية.
+                  بوابات مستقلة متخصصة تضم حاسبات مكافأة نهاية الخدمة الدقيقة، منصات التقاضي الإلكتروني، وتأسيس الشركات والأنظمة المعتمدة في السعودية والإمارات والكويت وقطر والبحرين وسلطنة عمان باللغتين العربية والإنجليزية.
                 </p>
               </div>
             </div>
 
-            {/* Gulf Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-              {/* Saudi Arabia */}
+            {/* Gulf Cards Grid (6 Countries) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {/* 1. Saudi Arabia */}
               <div className="group relative p-5 rounded-2xl bg-gradient-to-b from-emerald-950/70 to-slate-900/90 border border-emerald-500/30 hover:border-emerald-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-3">
@@ -950,7 +950,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 </a>
               </div>
 
-              {/* UAE */}
+              {/* 2. UAE */}
               <div className="group relative p-5 rounded-2xl bg-gradient-to-b from-blue-950/70 to-slate-900/90 border border-blue-500/30 hover:border-blue-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-3">
@@ -974,7 +974,31 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 </a>
               </div>
 
-              {/* Qatar */}
+              {/* 3. Kuwait (New) */}
+              <div className="group relative p-5 rounded-2xl bg-gradient-to-b from-sky-950/70 to-slate-900/90 border border-sky-500/30 hover:border-sky-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-2xl">🇰🇼</span>
+                    <a href="/kuwait-legal-hub-en.html" className="text-[10px] font-black px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/35 hover:border-sky-300 transition-all">🌐 EN</a>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-sky-300 transition-colors mb-1.5">
+                    دولة الكويت
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed mb-3">
+                    حاسبة نهاية الخدمة بقانون العمل (قانون 6/2010)، بوابة وزارة العدل الكويتية، منصة «سهل»، وهيئة تشجيع الاستثمار KDIPA.
+                  </p>
+                  <div className="space-y-1 text-[11px] text-slate-400 border-t border-sky-900/60 pt-2.5">
+                    <div>✓ حاسبة العمل الكويتي (م 51 و 53)</div>
+                    <div>✓ وزارة العدل ومنصة سهل</div>
+                  </div>
+                </div>
+                <a href="/kuwait-legal-hub.html" className="block pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-sky-400 group-hover:text-sky-300 flex items-center justify-between">
+                  <span>دخول بوابة الكويت</span>
+                  <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
+                </a>
+              </div>
+
+              {/* 4. Qatar */}
               <div className="group relative p-5 rounded-2xl bg-gradient-to-b from-rose-950/70 to-slate-900/90 border border-rose-500/30 hover:border-rose-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-3">
@@ -998,7 +1022,31 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 </a>
               </div>
 
-              {/* Oman */}
+              {/* 5. Bahrain (New) */}
+              <div className="group relative p-5 rounded-2xl bg-gradient-to-b from-red-950/70 to-slate-900/90 border border-red-500/30 hover:border-red-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-2xl">🇧🇭</span>
+                    <a href="/bahrain-legal-hub-en.html" className="text-[10px] font-black px-2 py-0.5 rounded-full bg-red-500/20 text-red-300 border border-red-500/35 hover:border-red-300 transition-all">🌐 EN</a>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-red-300 transition-colors mb-1.5">
+                    مملكة البحرين
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed mb-3">
+                    حاسبة مكافأة نهاية الخدمة (قانون 36/2012)، خدمات المحاكم والاستعلام القضائي، نظام «سجلات» ومجلس التنمية EDB.
+                  </p>
+                  <div className="space-y-1 text-[11px] text-slate-400 border-t border-red-900/60 pt-2.5">
+                    <div>✓ حاسبة العمل البحريني (م 116)</div>
+                    <div>✓ نظام سجلات والبوابة الوطنية</div>
+                  </div>
+                </div>
+                <a href="/bahrain-legal-hub.html" className="block pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-red-400 group-hover:text-red-300 flex items-center justify-between">
+                  <span>دخول بوابة البحرين</span>
+                  <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
+                </a>
+              </div>
+
+              {/* 6. Oman */}
               <div className="group relative p-5 rounded-2xl bg-gradient-to-b from-green-950/70 to-slate-900/90 border border-green-500/30 hover:border-green-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-3">
