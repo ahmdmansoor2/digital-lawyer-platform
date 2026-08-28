@@ -896,7 +896,7 @@
       <p>تصفح وابحث وحمّل مباشرة آلاف المراجع والموسوعات الفقهية وأحكام النقض. تتوفر خيارات المعاينة المدمجة داخل المنصة والتنزيل السحابي المباشر لكل كتاب.</p>
 
       <div class="stats-bar">
-        <div class="stat-chip">📚 إجمالي المراجع: <strong>+9,600 كتاب</strong></div>
+        <div class="stat-chip">📚 إجمالي المحتوى: <strong>9,607 مرجع (7,725 ملف Word + 1,880 كتاب PDF)</strong></div>
         <div class="stat-chip">⚡ نوع الرابط: <strong>رابط مباشر ومستقل لكل كتاب</strong></div>
         <div class="stat-chip">🛡️ المعاينة والتحميل: <strong>مجاني 100%</strong></div>
       </div>
@@ -909,7 +909,9 @@
         <input type="text" id="librarySearch" placeholder="ابحث باسم الكتاب، اسم الفقيه/المؤلف (مثل: السنهوري، تناغو، سرور، حسني، أبو الوفا)، أو الموضوع..." oninput="handleSearch()">
       </div>
       <div class="categories-bar" id="categoryChips">
-        <button class="cat-btn active" onclick="setCategory('all', this)">كل الأقسام (الكل)</button>
+        <button class="cat-btn active" onclick="setCategoryAndFormat('all', 'all', this)">🌐 كل المراجع (9,607)</button>
+        <button class="cat-btn" onclick="setCategoryAndFormat(currentCat, 'doc', this)" style="background: rgba(37, 99, 235, 0.15); border-color: rgba(59, 130, 246, 0.5); color: #93c5fd; font-weight: 800;">📝 ملفات Word قابلة للتعديل (7,725)</button>
+        <button class="cat-btn" onclick="setCategoryAndFormat(currentCat, 'pdf', this)" style="background: rgba(220, 38, 38, 0.15); border-color: rgba(239, 68, 68, 0.5); color: #fca5a5; font-weight: 800;">📕 كتب وموسوعات PDF (1,880)</button>
         <button class="cat-btn" onclick="setCategory('civil', this)">🏛️ القانون المدني</button>
         <button class="cat-btn" onclick="setCategory('criminal', this)">⚖️ القانون الجنائي</button>
         <button class="cat-btn" onclick="setCategory('admin', this)">🏛️ مجلس الدولة والقضاء الإداري</button>
@@ -1032,84 +1034,41 @@
     let ALL_BOOKS = INITIAL_FEATURED_BOOKS;
     let FILTERED_BOOKS = ALL_BOOKS;
     let currentCat = 'all';
-    let displayedCount = 0;
-    const PAGE_SIZE = 30;
-    let selectedBook = null;
+    let currentFormat = 'all'; // 'all', 'doc', 'pdf'
 
-    function renderBookCard(book, index) {
-      return `
-        <article class="book-card">
-          <div>
-            <div class="book-header">
-              <div class="book-icon">${book.icon || '📖'}</div>
-              <div class="book-meta-top">
-                <span class="book-tag">${book.categoryName}</span>
-                <h3 class="book-title">${book.title}</h3>
-              </div>
-            </div>
-            <div class="book-author">
-              <span>✍️</span>
-              <strong>${book.author}</strong>
-            </div>
-            <div class="book-path-info">📁 الحجم: ${book.size || 'PDF'}</div>
-          </div>
-          <div class="book-actions">
-            <button onclick="handleBookAction('${book.id}', 'preview')" class="btn-card btn-card-open">
-              <span>📖 معاينة وقراءة</span>
-              <span>👁️</span>
-            </button>
-            <button onclick="handleBookAction('${book.id}', 'download')" class="btn-card btn-card-download">
-              <span>📥 تنزيل PDF</span>
-            </button>
-          </div>
-        </article>
-      `;
+    function setCategoryAndFormat(cat, fmt, btn) {
+      currentCat = cat;
+      currentFormat = fmt;
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      filterData();
     }
 
-    function updateGrid(append = false) {
-      const grid = document.getElementById('booksGrid');
-      const loadMoreWrap = document.getElementById('loadMoreWrap');
-      const countEl = document.getElementById('resultsCount');
+    function setCategory(cat, btn) {
+      currentCat = cat;
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      filterData();
+    }
 
-      if (FILTERED_BOOKS.length === 0) {
-        grid.innerHTML = `
-          <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; background: rgba(30,41,59,0.4); border-radius: 16px; border: 1px dashed rgba(255,255,255,0.1);">
-            <p style="font-size: 1.25rem; color: #94a3b8; margin-bottom: 8px;">لم يتم العثور على كتب مطابقة لبحثك</p>
-            <p style="font-size: 0.95rem; color: #64748b;">جرب البحث بكلمات أخرى أو تصفح كل الأقسام.</p>
-          </div>`;
-        loadMoreWrap.style.display = 'none';
-        countEl.innerText = '0 كتاب';
-        return;
-      }
-
-      const nextBatch = FILTERED_BOOKS.slice(displayedCount, displayedCount + PAGE_SIZE);
-      const html = nextBatch.map(renderBookCard).join('');
-
-      if (append) {
-        grid.insertAdjacentHTML('beforeend', html);
-      } else {
-        grid.innerHTML = html;
-      }
-
-      displayedCount += nextBatch.length;
-      countEl.innerText = `يتم عرض ${displayedCount} من إجمالي ${FILTERED_BOOKS.length.toLocaleString('ar-EG')} كتاب`;
-
-      if (displayedCount < FILTERED_BOOKS.length) {
-        loadMoreWrap.style.display = 'block';
-      } else {
-        loadMoreWrap.style.display = 'none';
-      }
+    function setFormat(fmt, btn) {
+      currentFormat = (currentFormat === fmt) ? 'all' : fmt;
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      if (btn && currentFormat !== 'all') btn.classList.add('active');
+      filterData();
     }
 
     function filterData() {
       const query = document.getElementById('librarySearch').value.toLowerCase().trim();
       FILTERED_BOOKS = ALL_BOOKS.filter(b => {
+        const isDoc = b.path && (b.path.toLowerCase().endsWith('.doc') || b.path.toLowerCase().endsWith('.docx'));
+        const matchFormat = currentFormat === 'all' || (currentFormat === 'doc' && isDoc) || (currentFormat === 'pdf' && !isDoc);
         const matchCat = currentCat === 'all' || b.category === currentCat;
         const matchQuery = !query ||
           b.title.toLowerCase().includes(query) ||
           (b.author && b.author.toLowerCase().includes(query)) ||
           (b.path && b.path.toLowerCase().includes(query));
-        return matchCat && matchQuery;
+        return matchFormat && matchCat && matchQuery;
       });
 
       displayedCount = 0;
