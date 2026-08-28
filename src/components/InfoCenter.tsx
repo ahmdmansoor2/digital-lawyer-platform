@@ -8,6 +8,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { 
+  TrendingUp,
   Scale, 
   Sparkles, 
   Briefcase, 
@@ -87,7 +88,7 @@ const LAW_FIRM_TOOLS = [
 ];
 
 export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCenterProps) {
-  const [activeTab, setActiveTab] = useState<'all' | 'students' | 'library' | 'lawyers' | 'citizens' | 'calculators' | 'gulf' | 'corporate'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'students' | 'library' | 'lawyers' | 'citizens' | 'calculators' | 'gulf' | 'corporate' | 'economic'>('all');
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [isAIAdvisorOpen, setIsAIAdvisorOpen] = useState(false);
 
@@ -217,7 +218,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
             }`}
           >
-            🌟 كافة المنظومة المجمعة (7 قطاعات)
+            🌟 كافة المنظومة المجمعة (8 قطاعات)
           </button>
           <button
             onClick={() => setActiveTab('library')}
@@ -288,6 +289,16 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             }`}
           >
             🏢 الشركات والاستثمار
+          </button>
+          <button
+            onClick={() => setActiveTab('economic')}
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+              activeTab === 'economic'
+                ? 'bg-yellow-500 text-slate-950 shadow-lg shadow-yellow-500/30 scale-105'
+                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            📈 الاقتصاد والأسواق والذهب
           </button>
         </div>
 
@@ -1264,6 +1275,105 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-amber-400 flex items-center justify-between">
                   <span>استعراض خريطة الموقع</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+            </div>
+          </section>
+        )}
+
+        {/* ── MASTER HUB 8: ECONOMIC & MARKET INDICATORS (كارت الاقتصاد والأسواق والذهب) ── */}
+        {(activeTab === 'all' || activeTab === 'economic') && (
+          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-amber-950/60 via-slate-900/90 to-slate-950 border border-amber-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-amber-400/50">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-amber-900/50">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-black px-3.5 py-1 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 inline-flex items-center gap-1.5">
+                    <TrendingUp className="w-4 h-4 text-amber-400" />
+                    <span>📈 مؤشرات الأسواق والذهب والعملات 2026</span>
+                  </span>
+                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    مُحدَّث يومياً تلقائياً
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-white">
+                  بوابة الاقتصاد والأسواق ومؤشرات الذهب والعملات والسلع
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+                  متابعة يومية دقيقة لأسعار الذهب بمصر (عيار 21 و 24 والجنيه الذهب)، حاسبة المصنعية والدمغة، أسعار العملات الرسمية، مؤشرات مواد البناء والحديد، وموجز القرارات التشريعية والضريبية.
+                </p>
+              </div>
+              <a
+                href="/economic-hub.html"
+                className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 text-slate-950 font-black text-sm shadow-xl shadow-amber-500/30 hover:scale-105 transition-all flex items-center gap-2 whitespace-nowrap self-stretch lg:self-auto justify-center"
+              >
+                <span>دخول البوابة الاقتصادية</span>
+                <ArrowLeft className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Sub-features Grid (4 Distinctive Modules) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <a href="/economic-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-amber-500/20 hover:border-amber-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🪙</div>
+                  <h3 className="text-base font-black text-white group-hover:text-amber-300 transition-colors mb-1.5">
+                    أسعار الذهب ومصنعية الجرام
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    مؤشرات لحظية لعيار 21 و 24 والجنيه الذهب، مع حاسبة ذكية لاحتساب قيمة المصنعية وضريبة القيمة المضافة.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-amber-400 flex items-center justify-between">
+                  <span>أسعار الذهب اليوم</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              <a href="/economic-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-amber-500/20 hover:border-amber-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">💱</div>
+                  <h3 className="text-base font-black text-white group-hover:text-amber-300 transition-colors mb-1.5">
+                    أسعار العملات والتحويل البنكي
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    أسعار الصرف الرسمية بالبنك المركزي (الدولار، اليورو، الريال، الدرهم، والدينار الكويتي) وحاسبة التحويل.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-amber-400 flex items-center justify-between">
+                  <span>أسعار العملات الرسمية</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              <a href="/economic-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-amber-500/20 hover:border-amber-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🏗️</div>
+                  <h3 className="text-base font-black text-white group-hover:text-amber-300 transition-colors mb-1.5">
+                    مواد البناء والسلع الاستراتيجية
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    أسعار طن حديد عز وبشاي والأسمنت المسلح، وتأثير تقلبات الأسعار على عقود المقاولات والتوريدات قانونياً.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-amber-400 flex items-center justify-between">
+                  <span>مؤشرات السلع والحديد</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              <a href="/economic-hub.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-amber-500/20 hover:border-amber-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">📑</div>
+                  <h3 className="text-base font-black text-white group-hover:text-amber-300 transition-colors mb-1.5">
+                    القرارات الاقتصادية والضريبية
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    موجز يومي بقرارات البنك المركزي، وزارة المالية، التعريفات الجمركية، والتشريعات المنظمة للاستثمار.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-amber-400 flex items-center justify-between">
+                  <span>النشرة الاقتصادية</span>
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>

@@ -1,0 +1,62 @@
+name: 📈 الناشر الاقتصادي اليومي — أسعار الذهب والعملات والسلع
+
+on:
+  schedule:
+    # 07:30 UTC = 10:30 ص بتوقيت القاهرة
+    - cron: '30 7 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-economic
+  cancel-in-progress: false
+
+jobs:
+  update-economic-hub:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Daily Economic Updater
+        run: node scripts/economic/daily-economic-updater.cjs
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Generate Sitemap
+        run: node scripts/generate-sitemap.cjs
+
+      - name: Build & Deploy to Firebase
+        run: |
+          npm run build
+          npx firebase-tools deploy --only hosting:app --token "${{ secrets.FIREBASE_TOKEN }}" --project justice-91571
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: Commit & Push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/economic-rates.json public/economic-hub.html public/sitemap.xml dist/
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore(economic): update daily gold, currency rates and market news [${{ github.run_number }}]"
+            git pull --rebase origin main
+            git push origin main
+          fi
