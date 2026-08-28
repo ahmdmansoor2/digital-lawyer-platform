@@ -515,15 +515,15 @@
        PDF Reader Overlay — Full Screen Professional
     ═══════════════════════════════════════════════════════════ */
     .reader-overlay {
-      position: fixed;
-      inset: 0;
-      background: #0a0f1e;
-      z-index: 3000;
+      position: fixed !important;
+      inset: 0 !important;
+      background: #0a0f1e !important;
+      z-index: 9999999 !important;
       display: none;
       flex-direction: column;
       font-family: 'Cairo', sans-serif;
     }
-    .reader-overlay.active { display: flex; }
+    .reader-overlay.active { display: flex !important; }
 
     /* Header Bar */
     .reader-bar {
@@ -999,13 +999,30 @@
       </div>
 
       <!-- Actions -->
-      <a href="#" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open" id="readerExternalBtn" style="padding: 6px 14px; font-size: 0.85rem; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.4); color: #a5b4fc; text-decoration: none;">
-        <span>↗ فتح في نافذة مستقلة</span>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="btn-card btn-card-open" id="readerExternalBtn" style="padding: 6px 14px; font-size: 0.85rem; background: rgba(99, 102, 241, 0.25); border: 1px solid rgba(99, 102, 241, 0.5); color: #c7d2fe; text-decoration: none; font-weight: 700;">
+        <span id="readerExternalBtnText">↗ فتح كامل الصفحات</span>
       </a>
       <a href="#" target="_blank" rel="noopener noreferrer" class="reader-btn-dl" id="readerDownloadBtn" style="text-decoration: none;">
-        <span>📥 تنزيل المرجع</span>
+        <span id="readerDownloadBtnText">📥 تنزيل المرجع</span>
       </a>
       <button onclick="closeReader()" class="reader-btn-close" title="إغلاق">✕</button>
+    </div>
+
+    <!-- Word Document Multi-Page Helper Notice -->
+    <div id="wordDocBanner" style="display: none; background: linear-gradient(90deg, #1e3a8a 0%, #1e1b4b 100%); border-bottom: 1px solid rgba(59, 130, 246, 0.4); padding: 10px 20px; font-size: 0.88rem; color: #bfdbfe; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 1.1rem;">📝</span>
+        <span><strong>مستند Word قابل للتعديل:</strong> لعرض كافة الصفحات بدون أي قيود للمتصفح، أو للتعديل والطباعة الفورية:</span>
+      </div>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+        <a id="wordOpenDocsBtn" href="#" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 14px; border-radius: 8px; background: #2563eb; color: #ffffff; text-decoration: none; font-weight: 800; font-size: 0.82rem; box-shadow: 0 2px 8px rgba(37,99,235,0.4);">
+          <span>🌐 تصفح كافة الصفحات في Google Docs</span>
+          <span>↗</span>
+        </a>
+        <a id="wordDlBtn" href="#" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 5px; padding: 5px 14px; border-radius: 8px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); color: #ffffff; text-decoration: none; font-weight: 700; font-size: 0.82rem;">
+          <span>📥 تنزيل Word للتعديل المباشر</span>
+        </a>
+      </div>
     </div>
 
     <!-- Viewport Container -->
@@ -1088,7 +1105,7 @@
           </div>
           <div class="book-actions">
             <button onclick="handleBookAction('${book.id}', 'preview')" class="btn-card btn-card-open">
-              <span>📖 معاينة فورية</span>
+              <span>📖 معاينة وقراءة</span>
               <span>👁️</span>
             </button>
             <button onclick="handleBookAction('${book.id}', 'download')" class="btn-card btn-card-download" style="${dlBtnStyle}">
@@ -1118,12 +1135,12 @@
       }
 
       const nextBatch = FILTERED_BOOKS.slice(displayedCount, displayedCount + PAGE_SIZE);
-      const html = nextBatch.map(renderBookCard).join('');
+      const cardsHtml = nextBatch.map(renderBookCard).join('');
 
       if (append) {
-        grid.insertAdjacentHTML('beforeend', html);
+        grid.insertAdjacentHTML('beforeend', cardsHtml);
       } else {
-        grid.innerHTML = html;
+        grid.innerHTML = cardsHtml;
       }
 
       displayedCount += nextBatch.length;
@@ -1203,20 +1220,47 @@
 
     function openReader(book) {
       selectedBook = book;
+      const isDoc = book.path && (book.path.toLowerCase().endsWith('.doc') || book.path.toLowerCase().endsWith('.docx'));
+
       document.getElementById('readerTitle').innerText = book.title;
-      document.getElementById('readerAuthor').innerText = `✍️ ${book.author} · 📁 ${book.size || 'سحابي'}`;
+      document.getElementById('readerAuthor').innerText = `✍️ ${book.author} · 📁 ${isDoc ? 'مستند Word (.doc)' : 'كتاب إلكتروني (.pdf)'} · ${book.size || 'سحابي'}`;
       
+      const fullViewUrl = `https://drive.google.com/file/d/${book.id}/view`;
+      const downloadUrl = `https://drive.usercontent.google.com/download?id=${book.id}&export=download&confirm=t`;
+
       const extBtn = document.getElementById('readerExternalBtn');
-      if (extBtn) extBtn.href = `https://drive.google.com/file/d/${book.id}/view`;
+      if (extBtn) {
+        extBtn.href = fullViewUrl;
+        const extBtnText = document.getElementById('readerExternalBtnText');
+        if (extBtnText) {
+          extBtnText.innerText = isDoc ? '🌐 تصفح كافة الصفحات في Google Docs' : '↗ فتح في نافذة مستقلة';
+        }
+      }
 
       const dlBtn = document.getElementById('readerDownloadBtn');
-      if (dlBtn) dlBtn.href = `https://drive.usercontent.google.com/download?id=${book.id}&export=download&confirm=t`;
+      if (dlBtn) {
+        dlBtn.href = downloadUrl;
+        const dlBtnText = document.getElementById('readerDownloadBtnText');
+        if (dlBtnText) {
+          dlBtnText.innerText = isDoc ? '📥 تنزيل Word (جاهز للتعديل)' : '📥 تنزيل كتاب PDF';
+        }
+      }
+
+      const banner = document.getElementById('wordDocBanner');
+      if (banner) {
+        banner.style.display = isDoc ? 'flex' : 'none';
+        const bannerDocsBtn = document.getElementById('wordOpenDocsBtn');
+        if (bannerDocsBtn) bannerDocsBtn.href = fullViewUrl;
+        const bannerDlBtn = document.getElementById('wordDlBtn');
+        if (bannerDlBtn) bannerDlBtn.href = downloadUrl;
+      }
 
       const overlay = document.getElementById('readerOverlay');
       overlay.classList.add('active');
       document.body.style.overflow = 'hidden';
 
       const iframe = document.getElementById('readerIframe');
+      // For Word documents, Google Drive preview iframe provides page 1 snapshot + full viewer link
       iframe.src = `https://drive.google.com/file/d/${book.id}/preview`;
     }
 
@@ -1241,7 +1285,8 @@
     // Seamless Direct In-Page Download
     // ═══════════════════════════════════════════════════════════
     function triggerInPageDownload(book) {
-      showToast(`⚡ جارٍ بدء تنزيل «${book.title}» مباشرة إلى جهازك...`);
+      const isDoc = book.path && (book.path.toLowerCase().endsWith('.doc') || book.path.toLowerCase().endsWith('.docx'));
+      showToast(`⚡ جارٍ بدء تنزيل ${isDoc ? 'مستند Word' : 'كتاب'} «${book.title}» مباشرة إلى جهازك...`);
       const downloadUrl = `https://drive.usercontent.google.com/download?id=${book.id}&export=download&confirm=t`;
       window.open(downloadUrl, '_blank');
     }
