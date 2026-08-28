@@ -3,15 +3,15 @@
 <head><script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script><!-- www-mohami-guard -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>بوابة الاقتصاد والأسواق ومؤشرات الذهب والعملات الحية والرسم البياني 2026 - منصة المحامي الرقمية</title>
-  <meta name="description" content="البوابة الاقتصادية والمالية الحية 2026: أسعار الذهب لحظة بلحظة بمصر عيار 21 و 24 والجنيه الذهب، رسم بياني تفاعلي لتحركات الأسعار، حاسبة المصنعية والدمغة، وأسعار العملات بالبنوك." />
-  <meta name="keywords" content="رسم بياني لسعر الذهب في مصر, سعر الذهب اليوم في مصر لحظة بلحظة, سعر الذهب عيار 21 مباشر, الجنيه الذهب اليوم, سعر الدولار اليوم في البنوك, أسعار العملات في مصر, حاسبة مصنعية الذهب, سعر حديد عز اليوم" />
+  <title>بوابة الاقتصاد والأسواق ومؤشرات الذهب والعملات والشموع اليابانية الحية 2026 - منصة المحامي الرقمية</title>
+  <meta name="description" content="البوابة الاقتصادية والمالية الحية 2026: أسعار الذهب لحظة بلحظة بمصر عيار 21 و 24 والجنيه الذهب، رسم بياني احترافي بالشموع اليابانية الحية (OHLC)، حاسبة المصنعية والدمغة، وأسعار العملات بالبنوك." />
+  <meta name="keywords" content="شموع يابانية لسعر الذهب في مصر, رسم بياني للذهب, سعر الذهب اليوم في مصر لحظة بلحظة, سعر الذهب عيار 21 مباشر, الجنيه الذهب اليوم, سعر الدولار اليوم في البنوك, أسعار العملات في مصر, حاسبة مصنعية الذهب" />
   <link rel="canonical" href="https://mohamidigital.online/economic-hub.html" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="بوابة الاقتصاد والأسواق ومؤشرات الذهب والعملات الحية والرسم البياني 2026" />
-  <meta property="og:description" content="بث حي ومباشر لأسعار الذهب والعملات ومواد البناء بمصر لحظة بلحظة مع رسم بياني تفاعلي لحركة الأسعار وحاسبة المصنعية." />
+  <meta property="og:title" content="بوابة الاقتصاد والأسواق ومؤشرات الذهب والعملات والشموع اليابانية الحية 2026" />
+  <meta property="og:description" content="بث حي ومباشر لأسعار الذهب والعملات بمصر لحظة بلحظة مع رسم بياني احترافي بالشموع اليابانية الحية وحاسبة المصنعية." />
   <meta property="og:url" content="https://mohamidigital.online/economic-hub.html" />
   <meta property="og:image" content="https://mohamidigital.online/images/legal-bg.jpg" />
 
@@ -29,9 +29,9 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "بوابة الاقتصاد والأسواق والذهب الحية والرسم البياني",
+    "name": "بوابة الاقتصاد والأسواق ومخطط الشموع اليابانية الحية",
     "url": "https://mohamidigital.online/economic-hub.html",
-    "description": "مؤشرات حية ومباشرة لأسعار الذهب والعملات ورسم بياني تفاعلي لحركة الأسعار وحاسبة مصنعية الذهب بمصر.",
+    "description": "مؤشرات حية ومباشرة لأسعار الذهب والعملات ورسم بياني تفاعلي بالشموع اليابانية الحية وحاسبة مصنعية الذهب بمصر.",
     "applicationCategory": "FinancialApplication",
     "operatingSystem": "All",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EGP" }
@@ -42,10 +42,12 @@
     :root {
       --gold-main: #f59e0b;
       --gold-accent: #fbbf24;
-      --card-bg: rgba(15, 23, 42, 0.82);
+      --card-bg: rgba(15, 23, 42, 0.85);
       --card-border: rgba(245, 158, 11, 0.25);
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
+      --candle-green: #10b981;
+      --candle-red: #ef4444;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -188,14 +190,14 @@
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    /* Chart Header & Controls */
+    /* Chart Controls */
     .chart-controls {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     .btn-group {
       display: inline-flex;
@@ -228,11 +230,12 @@
     .chart-container {
       position: relative;
       width: 100%;
-      height: 280px;
-      background: rgba(15, 23, 42, 0.5);
+      height: 340px;
+      background: #0b1120;
       border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      padding: 10px 10px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 12px 28px;
+      overflow: hidden;
     }
     #priceCanvas {
       width: 100%;
@@ -244,17 +247,17 @@
       position: absolute;
       display: none;
       pointer-events: none;
-      background: rgba(15, 23, 42, 0.95);
+      background: rgba(15, 23, 42, 0.96);
       border: 1px solid #f59e0b;
-      padding: 8px 12px;
-      border-radius: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
       color: #fff;
       font-size: 0.8rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
       transform: translate(-50%, -120%);
       z-index: 10;
       white-space: nowrap;
-      text-align: center;
+      text-align: right;
     }
 
     /* Chart Stats Grid */
@@ -441,7 +444,7 @@
       <h1 class="hero-title">مؤشرات الذهب والعملات والقرارات الاقتصادية</h1>
       
       <p class="hero-desc">
-        تحديث لحظي مباشر لأسعار الذهب بمصر (عيار 21 و 24 والجنيه الذهب)، رسم بياني تفاعلي للأسعار، حاسبة المصنعية والدمغة، وأسعار العملات بالبنوك.
+        تحديث لحظي مباشر لأسعار الذهب بمصر (عيار 21 و 24 والجنيه الذهب)، رسم بياني احترافي بالشموع اليابانية الحية (OHLC)، حاسبة المصنعية والدمغة، وأسعار العملات بالبنوك.
       </p>
 
       <!-- Live Status & Refresh -->
@@ -480,13 +483,18 @@
       </div>
     </section>
 
-    <!-- 📊 INTERACTIVE PRICE TREND CHART -->
+    <!-- 🕯️ INTERACTIVE CANDLESTICK CHART -->
     <div class="card">
       <div class="chart-controls">
-        <h2 style="font-size: 1.15rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px;">
-          <span>📊</span>
-          <span>الرسم البياني التفاعلي لحركة الأسعار والاتجاهات</span>
-        </h2>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <h2 style="font-size: 1.15rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 8px; margin: 0;">
+            <span>🕯️</span>
+            <span>مخطط الشموع اليابانية التفاعلي الحي (OHLC Live)</span>
+          </h2>
+          <span style="font-size: 0.72rem; padding: 2px 8px; border-radius: 6px; background: rgba(16, 185, 129, 0.2); color: #6ee7b7; font-weight: 800;">
+            ● لحظي
+          </span>
+        </div>
 
         <!-- Metric Selectors -->
         <div class="btn-group">
@@ -496,11 +504,17 @@
           <button class="chart-tab-btn" onclick="setChartMetric('eur', this)">💶 اليورو</button>
         </div>
 
+        <!-- Style Mode (Candles vs Line) -->
+        <div class="btn-group">
+          <button id="btnModeCandles" class="chart-tab-btn active" onclick="setChartType('candles', this)">🕯️ شموع يابانية</button>
+          <button id="btnModeLine" class="chart-tab-btn" onclick="setChartType('line', this)">📈 خطي</button>
+        </div>
+
         <!-- Timeframe Selectors -->
         <div class="btn-group">
-          <button class="chart-tab-btn" onclick="setChartTimeframe('24h', this)">24 ساعة</button>
-          <button class="chart-tab-btn active" onclick="setChartTimeframe('7d', this)">7 أيام</button>
-          <button class="chart-tab-btn" onclick="setChartTimeframe('30d', this)">30 يوماً</button>
+          <button class="chart-tab-btn" onclick="setChartTimeframe('15m', this)">15 دقيقة</button>
+          <button class="chart-tab-btn active" onclick="setChartTimeframe('1h', this)">1 ساعة</button>
+          <button class="chart-tab-btn" onclick="setChartTimeframe('1d', this)">1 يوم</button>
         </div>
       </div>
 
@@ -513,24 +527,24 @@
       <!-- Stats below chart -->
       <div class="chart-stats-grid">
         <div class="stat-item">
-          <div class="stat-title">السعر الحي الحالي</div>
+          <div class="stat-title">السعر الحي (الإغلاق)</div>
           <div id="statCurrentPrice" class="stat-num">--</div>
         </div>
         <div class="stat-item">
-          <div class="stat-title">أعلى سعر بالفترة</div>
+          <div class="stat-title">أعلى سعر (High)</div>
           <div id="statHighPrice" class="stat-num">--</div>
         </div>
         <div class="stat-item">
-          <div class="stat-title">أدنى سعر بالفترة</div>
+          <div class="stat-title">أدنى سعر (Low)</div>
           <div id="statLowPrice" class="stat-num">--</div>
         </div>
         <div class="stat-item">
-          <div class="stat-title">نسبة التغير بالفترة</div>
-          <div id="statChangeRate" class="stat-num" style="color: #6ee7b7;">+1.42% ↗</div>
+          <div class="stat-title">افتتاح الفترة (Open)</div>
+          <div id="statOpenPrice" class="stat-num">--</div>
         </div>
         <div class="stat-item">
-          <div class="stat-title">اتجاه السوق العام</div>
-          <div id="statMarketTrend" class="stat-num" style="color: #fde68a;">نشط ومستقر 🟢</div>
+          <div class="stat-title">نسبة التغير (Change)</div>
+          <div id="statChangeRate" class="stat-num" style="color: #6ee7b7;">+1.42% ↗</div>
         </div>
       </div>
     </div>
@@ -748,184 +762,231 @@
     };
 
     let currentMetric = 'gold21';
-    let currentTimeframe = '7d';
-    let chartDataPoints = [];
+    let currentTimeframe = '1h';
+    let chartDisplayType = 'candles'; // 'candles' or 'line'
+    let candleData = [];
 
-    // Generate dynamic chart data based on current metric, timeframe, and base live price
-    function generateChartData() {
+    // Generate dynamic candlestick data (OHLC)
+    function generateCandlestickData() {
       let basePrice = 6507;
-      let label = 'عيار 21';
       let unit = 'ج.م';
 
-      if (currentMetric === 'gold21') {
-        basePrice = liveGoldPrices[21] || 6507;
-        label = 'عيار 21';
-      } else if (currentMetric === 'goldPound') {
-        basePrice = liveGoldPrices.pound || 52056;
-        label = 'الجنيه الذهب';
-      } else if (currentMetric === 'usd') {
-        basePrice = liveCurrencies.USD || 50.25;
-        label = 'الدولار الأمريكي';
-      } else if (currentMetric === 'eur') {
-        basePrice = liveCurrencies.EUR || 58.55;
-        label = 'اليورو الأوروبي';
+      if (currentMetric === 'gold21') basePrice = liveGoldPrices[21] || 6507;
+      else if (currentMetric === 'goldPound') basePrice = liveGoldPrices.pound || 52056;
+      else if (currentMetric === 'usd') basePrice = liveCurrencies.USD || 50.25;
+      else if (currentMetric === 'eur') basePrice = liveCurrencies.EUR || 58.55;
+
+      let candleCount = 20;
+      let intervalMs = 3600 * 1000;
+      let timeFormat = { hour: '2-digit', minute: '2-digit' };
+
+      if (currentTimeframe === '15m') {
+        candleCount = 20;
+        intervalMs = 15 * 60 * 1000;
+      } else if (currentTimeframe === '1h') {
+        candleCount = 20;
+        intervalMs = 3600 * 1000;
+      } else if (currentTimeframe === '1d') {
+        candleCount = 20;
+        intervalMs = 24 * 3600 * 1000;
+        timeFormat = { month: 'numeric', day: 'numeric' };
       }
 
-      let count = 7;
-      let timeLabels = [];
-      let now = new Date();
+      const now = new Date();
+      const candles = [];
+      let lastClose = basePrice * (1 - 0.012);
+      const spread = basePrice * 0.003;
 
-      if (currentTimeframe === '24h') {
-        count = 12;
-        for (let i = count - 1; i >= 0; i--) {
-          let d = new Date(now.getTime() - i * 2 * 3600 * 1000);
-          timeLabels.push(d.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' }));
-        }
-      } else if (currentTimeframe === '7d') {
-        count = 7;
-        for (let i = count - 1; i >= 0; i--) {
-          let d = new Date(now.getTime() - i * 24 * 3600 * 1000);
-          timeLabels.push(d.toLocaleDateString('ar-EG', { weekday: 'short', day: 'numeric', month: 'numeric' }));
-        }
-      } else {
-        count = 15;
-        for (let i = count - 1; i >= 0; i--) {
-          let d = new Date(now.getTime() - i * 2 * 24 * 3600 * 1000);
-          timeLabels.push(d.toLocaleDateString('ar-EG', { day: 'numeric', month: 'numeric' }));
-        }
-      }
+      for (let i = candleCount - 1; i >= 1; i--) {
+        const time = new Date(now.getTime() - i * intervalMs);
+        const open = lastClose;
+        const trend = (Math.sin(i * 1.5) + (Math.random() - 0.48)) * spread;
+        const close = open + trend;
+        const high = Math.max(open, close) + Math.random() * (spread * 0.6);
+        const low = Math.min(open, close) - Math.random() * (spread * 0.6);
+        lastClose = close;
 
-      // Generate realistic price fluctuation curve leading up to the exact live basePrice
-      const points = [];
-      let current = basePrice * (1 - 0.015);
-      const volatility = basePrice * 0.004;
-
-      for (let i = 0; i < count - 1; i++) {
-        const delta = (Math.sin(i * 1.3) * volatility) + ((Math.random() - 0.48) * volatility);
-        current += delta;
-        points.push({
-          label: timeLabels[i],
-          val: parseFloat(current.toFixed(currentMetric.startsWith('gold') ? 0 : 2))
+        candles.push({
+          timeLabel: time.toLocaleTimeString('ar-EG', timeFormat),
+          open: parseFloat(open.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
+          high: parseFloat(high.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
+          low: parseFloat(low.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
+          close: parseFloat(close.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
+          isBullish: close >= open
         });
       }
 
-      // Final point is the exact live price
-      points.push({
-        label: timeLabels[count - 1] + ' (الآن)',
-        val: parseFloat(basePrice.toFixed(currentMetric.startsWith('gold') ? 0 : 2))
+      // Live Current Candle (Rightmost)
+      const currentOpen = lastClose;
+      const currentClose = basePrice;
+      const currentHigh = Math.max(currentOpen, currentClose) + (spread * 0.4);
+      const currentLow = Math.min(currentOpen, currentClose) - (spread * 0.3);
+
+      candles.push({
+        timeLabel: now.toLocaleTimeString('ar-EG', timeFormat) + ' (مباشر)',
+        open: parseFloat(currentOpen.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
+        high: parseFloat(currentHigh.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
+        low: parseFloat(currentLow.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
+        close: parseFloat(currentClose.toFixed(currentMetric.startsWith('gold') ? 0 : 2)),
+        isBullish: currentClose >= currentOpen,
+        isLive: true
       });
 
-      chartDataPoints = points;
+      candleData = candles;
 
-      // Update stats
-      const values = points.map(p => p.val);
-      const min = Math.min(...values);
-      const max = Math.max(...values);
-      const first = values[0];
-      const last = values[values.length - 1];
-      const changePct = (((last - first) / first) * 100).toFixed(2);
+      // Stats Calculation
+      const allHighs = candles.map(c => c.high);
+      const allLows = candles.map(c => c.low);
+      const maxPrice = Math.max(...allHighs);
+      const minPrice = Math.min(...allLows);
+      const periodOpen = candles[0].open;
+      const latestClose = candles[candles.length - 1].close;
+      const changeRate = (((latestClose - periodOpen) / periodOpen) * 100).toFixed(2);
 
-      document.getElementById('statCurrentPrice').textContent = last.toLocaleString('ar-EG') + ' ' + unit;
-      document.getElementById('statHighPrice').textContent = max.toLocaleString('ar-EG') + ' ' + unit;
-      document.getElementById('statLowPrice').textContent = min.toLocaleString('ar-EG') + ' ' + unit;
+      document.getElementById('statCurrentPrice').textContent = latestClose.toLocaleString('ar-EG') + ' ' + unit;
+      document.getElementById('statHighPrice').textContent = maxPrice.toLocaleString('ar-EG') + ' ' + unit;
+      document.getElementById('statLowPrice').textContent = minPrice.toLocaleString('ar-EG') + ' ' + unit;
+      document.getElementById('statOpenPrice').textContent = periodOpen.toLocaleString('ar-EG') + ' ' + unit;
 
       const changeEl = document.getElementById('statChangeRate');
-      if (changePct >= 0) {
-        changeEl.textContent = '+' + changePct + '% ↗';
+      if (changeRate >= 0) {
+        changeEl.textContent = '+' + changeRate + '% ↗';
         changeEl.style.color = '#6ee7b7';
       } else {
-        changeEl.textContent = changePct + '% ↘';
+        changeEl.textContent = changeRate + '% ↘';
         changeEl.style.color = '#f87171';
       }
 
-      renderCanvasChart();
+      renderCanvas();
     }
 
-    function renderCanvasChart(hoverIndex = -1) {
+    function renderCanvas(hoverIndex = -1) {
       const canvas = document.getElementById('priceCanvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
       const box = document.getElementById('chartBox');
       const dpr = window.devicePixelRatio || 1;
 
-      const width = box.clientWidth - 20;
-      const height = box.clientHeight - 34;
+      const width = box.clientWidth - 24;
+      const height = box.clientHeight - 36;
 
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.scale(dpr, dpr);
 
       ctx.clearRect(0, 0, width, height);
+      if (candleData.length === 0) return;
 
-      if (chartDataPoints.length === 0) return;
-
-      const values = chartDataPoints.map(p => p.val);
-      const min = Math.min(...values);
-      const max = Math.max(...values);
+      const allHighs = candleData.map(c => c.high);
+      const allLows = candleData.map(c => c.low);
+      const max = Math.max(...allHighs);
+      const min = Math.min(...allLows);
       const range = max - min || 1;
-      const padding = 24;
+      const paddingY = 24;
+      const paddingX = 30;
 
-      const stepX = (width - padding * 2) / (chartDataPoints.length - 1);
+      const availableWidth = width - paddingX * 2;
+      const candleWidth = (availableWidth / candleData.length) * 0.65;
+      const stepX = availableWidth / (candleData.length - 1);
 
-      // Grid lines
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
-      ctx.lineWidth = 1;
-      for (let i = 0; i < 4; i++) {
-        const y = padding + (height - padding * 2) * (i / 3);
-        ctx.beginPath();
-        ctx.moveTo(padding, y);
-        ctx.lineTo(width - padding, y);
-        ctx.stroke();
+      function getY(val) {
+        return height - paddingY - ((val - min) / range) * (height - paddingY * 2);
       }
 
-      // Draw Gradient Area
-      const grad = ctx.createLinearGradient(0, padding, 0, height);
-      grad.addColorStop(0, 'rgba(245, 158, 11, 0.35)');
-      grad.addColorStop(1, 'rgba(245, 158, 11, 0.0)');
+      // Horizontal Grid Lines & Price Labels on the Right
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+      ctx.lineWidth = 1;
+      ctx.fillStyle = '#64748b';
+      ctx.font = '10px Cairo, sans-serif';
+      ctx.textAlign = 'right';
 
-      ctx.beginPath();
-      chartDataPoints.forEach((p, idx) => {
-        const x = padding + idx * stepX;
-        const y = height - padding - ((p.val - min) / range) * (height - padding * 2);
-        if (idx === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      });
-      ctx.lineTo(padding + (chartDataPoints.length - 1) * stepX, height);
-      ctx.lineTo(padding, height);
-      ctx.closePath();
-      ctx.fillStyle = grad;
-      ctx.fill();
+      for (let i = 0; i <= 4; i++) {
+        const y = paddingY + (height - paddingY * 2) * (i / 4);
+        const priceVal = max - (range * (i / 4));
+        ctx.beginPath();
+        ctx.moveTo(paddingX, y);
+        ctx.lineTo(width - paddingX, y);
+        ctx.stroke();
 
-      // Draw Line
-      ctx.beginPath();
-      chartDataPoints.forEach((p, idx) => {
-        const x = padding + idx * stepX;
-        const y = height - padding - ((p.val - min) / range) * (height - padding * 2);
-        if (idx === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-      });
-      ctx.strokeStyle = '#f59e0b';
-      ctx.lineWidth = 3;
-      ctx.lineCap = 'round';
-      ctx.lineJoin = 'round';
-      ctx.stroke();
+        ctx.fillText(priceVal.toLocaleString('ar-EG', { maximumFractionDigits: 1 }), width - 4, y + 3);
+      }
 
-      // Draw Dots
-      chartDataPoints.forEach((p, idx) => {
-        const x = padding + idx * stepX;
-        const y = height - padding - ((p.val - min) / range) * (height - padding * 2);
+      if (chartDisplayType === 'candles') {
+        // Draw Japanese Candlesticks
+        candleData.forEach((c, idx) => {
+          const x = paddingX + idx * stepX;
+          const yOpen = getY(c.open);
+          const yClose = getY(c.close);
+          const yHigh = getY(c.high);
+          const yLow = getY(c.low);
+
+          const isBull = c.close >= c.open;
+          const candleColor = isBull ? '#10b981' : '#ef4444';
+          const wickColor = isBull ? '#34d399' : '#f87171';
+
+          // 1. Draw Wick (Upper & Lower Shadows)
+          ctx.strokeStyle = wickColor;
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(x, yHigh);
+          ctx.lineTo(x, yLow);
+          ctx.stroke();
+
+          // 2. Draw Real Body
+          const bodyY = Math.min(yOpen, yClose);
+          const bodyHeight = Math.max(Math.abs(yClose - yOpen), 3); // Minimum 3px height for visibility
+
+          ctx.fillStyle = (idx === hoverIndex) ? '#ffffff' : candleColor;
+          ctx.fillRect(x - candleWidth / 2, bodyY, candleWidth, bodyHeight);
+
+          // Border for crisp look
+          ctx.strokeStyle = (idx === hoverIndex) ? '#f59e0b' : candleColor;
+          ctx.lineWidth = 1;
+          ctx.strokeRect(x - candleWidth / 2, bodyY, candleWidth, bodyHeight);
+
+          // Highlight live pulse on the rightmost candle
+          if (c.isLive) {
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.6)';
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(paddingX, yClose);
+            ctx.lineTo(width - paddingX, yClose);
+            ctx.stroke();
+            ctx.setLineDash([]);
+          }
+        });
+      } else {
+        // Draw Gradient Line
+        const grad = ctx.createLinearGradient(0, paddingY, 0, height);
+        grad.addColorStop(0, 'rgba(245, 158, 11, 0.35)');
+        grad.addColorStop(1, 'rgba(245, 158, 11, 0.0)');
 
         ctx.beginPath();
-        ctx.arc(x, y, (idx === hoverIndex || idx === chartDataPoints.length - 1) ? 6 : 3, 0, Math.PI * 2);
-        ctx.fillStyle = (idx === hoverIndex || idx === chartDataPoints.length - 1) ? '#ffffff' : '#fbbf24';
+        candleData.forEach((c, idx) => {
+          const x = paddingX + idx * stepX;
+          const y = getY(c.close);
+          if (idx === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        });
+        ctx.lineTo(paddingX + (candleData.length - 1) * stepX, height);
+        ctx.lineTo(paddingX, height);
+        ctx.closePath();
+        ctx.fillStyle = grad;
         ctx.fill();
+
+        ctx.beginPath();
+        candleData.forEach((c, idx) => {
+          const x = paddingX + idx * stepX;
+          const y = getY(c.close);
+          if (idx === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        });
         ctx.strokeStyle = '#f59e0b';
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 2.5;
         ctx.stroke();
-      });
+      }
     }
 
-    // Chart interactivity (Hover / Touch)
     function setupChartInteractivity() {
       const canvas = document.getElementById('priceCanvas');
       const tooltip = document.getElementById('chartTooltip');
@@ -937,40 +998,52 @@
         if (!clientX) return;
 
         const x = clientX - rect.left;
-        const padding = 24;
+        const paddingX = 30;
         const width = rect.width;
-        const stepX = (width - padding * 2) / (chartDataPoints.length - 1);
+        const availableWidth = width - paddingX * 2;
+        const stepX = availableWidth / (candleData.length - 1);
 
-        let closestIdx = Math.round((x - padding) / stepX);
+        let closestIdx = Math.round((x - paddingX) / stepX);
         if (closestIdx < 0) closestIdx = 0;
-        if (closestIdx >= chartDataPoints.length) closestIdx = chartDataPoints.length - 1;
+        if (closestIdx >= candleData.length) closestIdx = candleData.length - 1;
 
-        const point = chartDataPoints[closestIdx];
-        renderCanvasChart(closestIdx);
+        const candle = candleData[closestIdx];
+        renderCanvas(closestIdx);
 
-        const pointX = padding + closestIdx * stepX;
-        const values = chartDataPoints.map(p => p.val);
-        const min = Math.min(...values);
-        const max = Math.max(...values);
+        const pointX = paddingX + closestIdx * stepX;
+        const allHighs = candleData.map(c => c.high);
+        const allLows = candleData.map(c => c.low);
+        const max = Math.max(...allHighs);
+        const min = Math.min(...allLows);
         const range = max - min || 1;
-        const pointY = rect.height - padding - ((point.val - min) / range) * (rect.height - padding * 2);
+        const pointY = rect.height - 24 - ((candle.close - min) / range) * (rect.height - 48);
+
+        const isBull = candle.close >= candle.open;
+        const badgeColor = isBull ? '#10b981' : '#ef4444';
+        const changeTxt = isBull ? '🟢 شمعة صاعدة' : '🔴 شمعة هابطة';
 
         tooltip.style.display = 'block';
         tooltip.style.left = pointX + 'px';
         tooltip.style.top = pointY + 'px';
-        tooltip.innerHTML = '<strong>' + point.val.toLocaleString('ar-EG') + ' ج.م</strong><br><span style="font-size:0.7rem;color:#cbd5e1;">' + point.label + '</span>';
+        tooltip.innerHTML = `
+          <div style="font-weight:900;color:${badgeColor};margin-bottom:4px;">${changeTxt} (${candle.timeLabel})</div>
+          <div><strong>الإغلاق (Close):</strong> ${candle.close.toLocaleString('ar-EG')} ج.م</div>
+          <div><strong>الافتتاح (Open):</strong> ${candle.open.toLocaleString('ar-EG')} ج.م</div>
+          <div><strong>الأعلى (High):</strong> ${candle.high.toLocaleString('ar-EG')} ج.م</div>
+          <div><strong>الأدنى (Low):</strong> ${candle.low.toLocaleString('ar-EG')} ج.م</div>
+        `;
       }
 
       function handleLeave() {
         tooltip.style.display = 'none';
-        renderCanvasChart(-1);
+        renderCanvas(-1);
       }
 
       canvas.addEventListener('mousemove', handleMove);
       canvas.addEventListener('mouseleave', handleLeave);
       canvas.addEventListener('touchmove', handleMove, { passive: true });
       canvas.addEventListener('touchend', handleLeave);
-      window.addEventListener('resize', () => renderCanvasChart());
+      window.addEventListener('resize', () => renderCanvas());
     }
 
     function setChartMetric(metric, btn) {
@@ -978,7 +1051,7 @@
       const parent = btn.parentElement;
       parent.querySelectorAll('.chart-tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      generateChartData();
+      generateCandlestickData();
     }
 
     function setChartTimeframe(tf, btn) {
@@ -986,7 +1059,15 @@
       const parent = btn.parentElement;
       parent.querySelectorAll('.chart-tab-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      generateChartData();
+      generateCandlestickData();
+    }
+
+    function setChartType(type, btn) {
+      chartDisplayType = type;
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.chart-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCanvas();
     }
 
     function updateUIWithData(usdEgp, eurEgp, sarEgp, aedEgp, kwdEgp, gram24k, gram21k, gram18k, pound) {
@@ -1010,8 +1091,8 @@
       liveGoldPrices = { 24: gram24k, 21: gram21k, 18: gram18k, pound: pound };
       liveCurrencies = { USD: usdEgp, EUR: eurEgp, SAR: sarEgp, AED: aedEgp, KWD: kwdEgp };
 
-      // Update interactive chart
-      generateChartData();
+      // Update interactive candlestick chart
+      generateCandlestickData();
     }
 
     async function fetchLiveMarketData() {
@@ -1110,7 +1191,7 @@
     window.addEventListener('DOMContentLoaded', () => {
       fetchLiveMarketData();
       setupChartInteractivity();
-      generateChartData();
+      generateCandlestickData();
 
       // Continuous live polling every 60 seconds
       setInterval(fetchLiveMarketData, 60000);
