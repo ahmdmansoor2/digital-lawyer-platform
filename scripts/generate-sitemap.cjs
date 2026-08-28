@@ -21,10 +21,10 @@ const BASE_URL = 'https://mohamidigital.online';
 
 // Priority rules
 const HIGH_PRIORITY = [
-  '/', '/legal-calculators', '/legal-forms', '/blog/',
+  '/', '/legal-library', '/legal-calculators', '/legal-forms', '/pillars', '/legal-radar', '/blog/',
   '/courts-directory', '/court-precedents', '/company-incorporation', '/legal-diagnostics'
 ];
-const MEDIUM_PRIORITY = ['/features', '/pricing', '/about', '/contact', '/privacy', '/terms', '/disclaimer', '/why-trust-us', '/search', '/legal-radar'];
+const MEDIUM_PRIORITY = ['/features', '/pricing', '/about', '/contact', '/privacy', '/terms', '/disclaimer', '/why-trust-us', '/search'];
 
 function walkDir(dir, base = dir) {
   const results = [];
