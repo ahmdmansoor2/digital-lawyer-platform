@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  *
  * InfoCenter — البوابة الوطنية والإقليمية الشاملة لمنصة المحامي الرقمية 2026
- * تغطي مصر ودول الخليج الكبرى (السعودية · الإمارات · قطر · سلطنة عمان) في شبكة كروت مجمعة احترافية (Master Hub Cards)
+ * تغطي مصر ودول الخليج الكبرى في شبكة كروت مجمعة احترافية (Master Hub Cards) تشمل كافة صفحات وبوابات الموقع 100%
  */
 
 import React, { useEffect, useState } from 'react';
@@ -32,7 +32,11 @@ import {
   Newspaper,
   GraduationCap,
   ChevronLeft,
-  Play
+  Play,
+  Library,
+  Layers,
+  MapPin,
+  Tag
 } from 'lucide-react';
 import SiteHeader from './SiteHeader';
 import InteractiveTourShowcase from './InteractiveTourShowcase';
@@ -83,7 +87,7 @@ const LAW_FIRM_TOOLS = [
 ];
 
 export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCenterProps) {
-  const [activeTab, setActiveTab] = useState<'all' | 'students' | 'lawyers' | 'citizens' | 'calculators' | 'gulf' | 'corporate'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'students' | 'library' | 'lawyers' | 'citizens' | 'calculators' | 'gulf' | 'corporate'>('all');
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [isAIAdvisorOpen, setIsAIAdvisorOpen] = useState(false);
 
@@ -94,7 +98,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
     if (metaDesc) {
       metaDesc.setAttribute(
         'content',
-        'المنظومة القانونية المتكاملة 2026: بوابة طلاب كليات الحقوق والمناهج المصورة، نظام إدارة مكاتب المحاماة، بوابات التقاضي والشكاوى، بوابات الخليج العربي (السعودية والإمارات وقطر وعمان)، حاسبات نهاية الخدمة والشهر العقاري، وموسوعة الصيغ والنقض.'
+        'المنظومة القانونية المتكاملة 2026: بوابة طلاب كليات الحقوق والمناهج المصورة، المكتبة القانونية الكبرى، موسوعة صيغ العقود والنقض، نظام إدارة مكاتب المحاماة، بوابات التقاضي والشكاوى، بوابات الخليج العربي (السعودية والإمارات وقطر وعمان)، حاسبات نهاية الخدمة والشهر العقاري.'
       );
     }
   }, []);
@@ -159,7 +163,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
         {/* Hero Subtitle */}
         <p className="text-sm sm:text-base lg:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
-          منظومة رقمية شاملة تجمع <strong className="text-white">بوابة طلاب كليات الحقوق والمناهج المصورة</strong>، مع <strong className="text-white">برنامج إدارة مكاتب المحاماة</strong>، و<strong className="text-white">بوابات التقاضي والخدمات القضائية</strong>، و<strong className="text-white">بوابات الخليج العربي الأربعة</strong> في كروت مجمعة ذكية.
+          منظومة رقمية شاملة تجمع <strong className="text-white">بوابة طلاب كليات الحقوق</strong>، مع <strong className="text-white">المكتبة القانونية وصيغ العقود والنقض</strong>، و<strong className="text-white">برنامج إدارة مكاتب المحاماة</strong>، و<strong className="text-white">بوابات التقاضي والشكاوى</strong>، و<strong className="text-white">بوابات الخليج العربي الأربعة</strong> في كروت مجمعة متكاملة.
         </p>
 
         {/* Hero Action Buttons */}
@@ -179,6 +183,14 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           >
             <GraduationCap className="w-5 h-5 text-blue-400" />
             <span>بوابة طلاب الحقوق 2026</span>
+          </a>
+
+          <a
+            href="/legal-library.html"
+            className="px-6 py-3.5 rounded-2xl bg-slate-900/90 text-slate-100 hover:text-white font-bold text-sm sm:text-base border border-indigo-500/40 hover:border-indigo-400 hover:bg-slate-800/90 transition-all duration-200 flex items-center gap-2 shadow-lg"
+          >
+            <Library className="w-5 h-5 text-indigo-400" />
+            <span>المكتبة القانونية الكبرى</span>
           </a>
 
           <button
@@ -205,7 +217,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
             }`}
           >
-            🌟 كافة المنظومة المجمعة (6 كروت)
+            🌟 كافة المنظومة المجمعة (7 قطاعات)
           </button>
           <button
             onClick={() => setActiveTab('students')}
@@ -218,14 +230,34 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             🎓 الأكاديمية والطلاب
           </button>
           <button
-            onClick={() => setActiveTab('lawyers')}
+            onClick={() => setActiveTab('library')}
             className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-              activeTab === 'lawyers'
+              activeTab === 'library'
                 ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30 scale-105'
                 : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
             }`}
           >
+            📚 المكتبة والموسوعات والصيغ
+          </button>
+          <button
+            onClick={() => setActiveTab('lawyers')}
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+              activeTab === 'lawyers'
+                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 scale-105'
+                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
+            }`}
+          >
             👨‍⚖️ المحامين والمكاتب
+          </button>
+          <button
+            onClick={() => setActiveTab('calculators')}
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+              activeTab === 'calculators'
+                ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30 scale-105'
+                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            🧮 الحاسبات القانونية
           </button>
           <button
             onClick={() => setActiveTab('citizens')}
@@ -236,16 +268,6 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             }`}
           >
             👥 المواطنين والعدالة
-          </button>
-          <button
-            onClick={() => setActiveTab('calculators')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-              activeTab === 'calculators'
-                ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30 scale-105'
-                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            🧮 الموسوعات والحاسبات
           </button>
           <button
             onClick={() => setActiveTab('gulf')}
@@ -375,7 +397,155 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </section>
         )}
 
-        {/* ── MASTER HUB 2: LAWYERS PROFESSIONAL HUB (كارت المحامين وإدارة المكاتب) ── */}
+        {/* ── MASTER HUB 2: LEGAL LIBRARY, PRECEDENTS & FORMS (كارت المكتبة والموسوعات والصيغ والنقض) ── */}
+        {(activeTab === 'all' || activeTab === 'library') && (
+          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-purple-950/60 via-slate-900/90 to-slate-950 border border-purple-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-purple-400/50">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-purple-900/50">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-black px-3.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 inline-flex items-center gap-1.5">
+                    <Library className="w-4 h-4 text-purple-400" />
+                    <span>📚 المكتبة القانونية والموسوعات التشريعية وصيغ العقود</span>
+                  </span>
+                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                    +2,740 صيغة و 19 قانوناً وكتب PDF
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-white">
+                  المكتبة القانونية الرقمية وموسوعات الأكواد وصيغ العقود والنقض
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+                  أضخم مستودع وموسوعة رقمية للمحامي والباحث: تشمل المكتبة القانونية السحابية للكتب والرسائل (PDF)، نصوص 19 قانوناً مصرياً كاملاً، بنك مبادئ وسوابق محكمة النقض، موسوعة صيغ العقود والدعاوى المعتمدة، والمدونة القانونية.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href="/legal-library.html"
+                  className="px-5 py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-extrabold text-xs sm:text-sm shadow-xl shadow-purple-600/30 hover:scale-105 transition-all flex items-center gap-2 whitespace-nowrap"
+                >
+                  <Library className="w-4 h-4" />
+                  <span>المكتبة القانونية</span>
+                </a>
+                <a
+                  href="/legal-forms.html"
+                  className="px-5 py-3 rounded-2xl bg-slate-850 text-slate-100 hover:text-white font-bold text-xs sm:text-sm border border-purple-500/40 hover:bg-slate-800 transition-all flex items-center gap-2 whitespace-nowrap"
+                >
+                  <FileSignature className="w-4 h-4 text-purple-400" />
+                  <span>صيغ العقود</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Sub-features Grid (6 Distinctive Portals) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              
+              {/* 1. Legal Library */}
+              <a href="/legal-library.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">📚</div>
+                  <h3 className="text-base font-black text-white group-hover:text-purple-300 transition-colors mb-1.5">
+                    المكتبة القانونية الرقمية الكبرى (PDF)
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    مئات أمهات الكتب والموسوعات الفقهية ورسائل الدكتوراه والماجستير بعارض PDF المدمج وقراءة وتحميل فوري عبر السحابة.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-purple-400 flex items-center justify-between">
+                  <span>فتح المكتبة القانونية</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* 2. Legal Forms & Contracts */}
+              <a href="/legal-forms.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">📝</div>
+                  <h3 className="text-base font-black text-white group-hover:text-purple-300 transition-colors mb-1.5">
+                    موسوعة صيغ العقود والدعاوى المعتمدة
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    أكثر من 2,740 نموذج عقد وصحيفة دعوى ومذكرة دفاع وإنذار رسمي مصاغة طبقاً لأحدث القوانين جاهزة للتنزيل والنسخ بصيغة Word.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-purple-400 flex items-center justify-between">
+                  <span>تحميل الصيغ والنماذج</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* 3. Legislative Pillars & Codes */}
+              <a href="/pillars/" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🏛️</div>
+                  <h3 className="text-base font-black text-white group-hover:text-purple-300 transition-colors mb-1.5">
+                    المراجع والأكواد التشريعية الشاملة (19 قانوناً)
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    نصوص كاملة لـ 19 قانوناً مصرياً (المدني، الجنائي، الإجراءات، قانون العمل الجديد، المرافعات، الإيجارات، وحماية المستهلك).
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-purple-400 flex items-center justify-between">
+                  <span>تصفح الأكواد التشريعية</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* 4. Court Precedents */}
+              <a href="/court-precedents.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">⚖️</div>
+                  <h3 className="text-base font-black text-white group-hover:text-purple-300 transition-colors mb-1.5">
+                    بنك مبادئ وسوابق محكمة النقض الكبرى
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    أهم وأحدث المبادئ القضائية المستقرة لدوائر الجنايات والمدني والتجاري والعمال بمحكمة النقض المصرية جاهزة للنسخ في مذكراتك.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-purple-400 flex items-center justify-between">
+                  <span>استعراض أحكام النقض</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* 5. Legal Blog */}
+              <a href="/blog/" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">📰</div>
+                  <h3 className="text-base font-black text-white group-hover:text-purple-300 transition-colors mb-1.5">
+                    المدونة القانونية والرأي والتحليلات القضائية
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    مئات المقالات القانونية التخصصية التي تشرح القوانين وحقوق المواطنين وإجراءات التقاضي والعمل بلغة موثقة ورصينة.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-purple-400 flex items-center justify-between">
+                  <span>تصفح المدونة (+140 مقال)</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* 6. Legal Radar */}
+              <a href="/legal-radar.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">📡</div>
+                  <h3 className="text-base font-black text-white group-hover:text-purple-300 transition-colors mb-1.5">
+                    رصد المحامي والجريدة الرسمية والوقائع
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    متابعة لحظية لأحدث القوانين، القرارات الجمهورية والوزارية، وتعديلات التشريعات الصادرة بالجريدة الرسمية.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-purple-400 flex items-center justify-between">
+                  <span>استعراض الرصد الحي</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+            </div>
+          </section>
+        )}
+
+        {/* ── MASTER HUB 3: LAWYERS PROFESSIONAL HUB (كارت المحامين وإدارة المكاتب) ── */}
         {(activeTab === 'all' || activeTab === 'lawyers') && (
           <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-indigo-950/60 via-slate-900/90 to-slate-950 border border-indigo-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-indigo-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-indigo-900/50">
@@ -385,15 +555,15 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                     <Scale className="w-4 h-4 text-indigo-400" />
                     <span>👨‍⚖️ منظومة المحامين والمستشارين وإدارة المكاتب</span>
                   </span>
-                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30">
-                    +2,740 صيغة و 27 محافظة
+                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    نظام إدارة ودليل 27 محافظة
                   </span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-black text-white">
                   منظومة المحاماة وإدارة المكاتب القضائية المتكاملة
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-                  بيئة عمل رقمية مصممة خصيصاً للمحامي المصري: تشمل نظام إدارة القضايا والملفات، دليل المحامين المشتغلين المعتمدين بجميع المحافظات، موسوعة صيغ العقود والمذكرات، ورصد التشريعات والجريدة الرسمية.
+                  بيئة عمل رقمية مصممة للمحامي المصري: تشمل نظام إدارة القضايا والملفات، دليل المحامين المشتغلين المعتمدين بجميع المحافظات، مميزات المنظومة، وباقة الاشتراك المجانية مدى الحياة.
                 </p>
               </div>
               <button
@@ -414,7 +584,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                     برنامج إدارة المكاتب (Law Firm OS)
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    إدارة ملفات القضايا، رول الجلسات، أوراق المحضرين، الموكلين، والتقارير المالية والأرشفة السحابية.
+                    إدارة ملفات القضايا، رول الجلسات، أوراق المحضرين، الموكلين، والتقارير المالية والأرشفة السحابية المشفرة.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-indigo-400 flex items-center justify-between">
@@ -430,43 +600,43 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                     دليل المحامين المشتغلين بمصر
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    دليل شامل يغطي 27 محافظة مصنفة حسب التخصص ودرجة القيد (نقض، استئناف، ابتدائي) مع التواصل عبر واتساب.
+                    دليل شامل يغطي 27 محافظة مصنفة حسب التخصص ودرجة القيد (نقض، استئناف، ابتدائي) مع التواصل المباشر عبر واتساب.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-indigo-400 flex items-center justify-between">
-                  <span>تصفح الدليل أو سجّل</span>
+                  <span>تصفح الدليل أو سجّل مكتبك</span>
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>
 
-              <a href="/legal-forms.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-indigo-500/20 hover:border-indigo-400 transition-all flex flex-col justify-between">
+              <a href="/features.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-indigo-500/20 hover:border-indigo-400 transition-all flex flex-col justify-between">
                 <div>
-                  <div className="text-2xl mb-3">📝</div>
+                  <div className="text-2xl mb-3">⚡</div>
                   <h3 className="text-base font-black text-white group-hover:text-indigo-300 transition-colors mb-1.5">
-                    موسوعة صيغ العقود والدعاوى
+                    المميزات الكاملة لمنظومة المحاماة
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    أكثر من 2,740 نموذج عقد وصحيفة دعوى ومذكرة دفاع ومحضر إداري جاهزة للتعديل والتحميل بصيغة Word.
+                    استكشف بالتفصيل إمكانيات المنصة: جدول الجلسات، أوراق التنفيذ، حفظ التوكيلات، وحاسبات الرسوم.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-indigo-400 flex items-center justify-between">
-                  <span>تحميل الصيغ</span>
+                  <span>استكشف المميزات</span>
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>
 
-              <a href="/legal-radar.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-indigo-500/20 hover:border-indigo-400 transition-all flex flex-col justify-between">
+              <a href="/pricing.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-indigo-500/20 hover:border-indigo-400 transition-all flex flex-col justify-between">
                 <div>
-                  <div className="text-2xl mb-3">📡</div>
+                  <div className="text-2xl mb-3">🎁</div>
                   <h3 className="text-base font-black text-white group-hover:text-indigo-300 transition-colors mb-1.5">
-                    رصد المحامي والجريدة الرسمية
+                    مجانية بالكامل 100% مدى الحياة
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    متابعة لحظية لأحدث القوانين، القرارات الوزارية، وتعديلات التشريعات الصادرة بالجريدة الرسمية والوقائع المصرية.
+                    لا توجد أي خطط مدفوعة أو رسوم اشتراك، كافة خصائص المنصة متاحة مجاناً لكافة المحامين والطلاب والمواطنين.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-indigo-400 flex items-center justify-between">
-                  <span>استعراض الرصد</span>
+                  <span>تفاصيل المجانية</span>
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>
@@ -474,7 +644,106 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </section>
         )}
 
-        {/* ── MASTER HUB 3: CITIZENS & E-JUSTICE HUB (كارت المواطنين والعدالة والشكاوى) ── */}
+        {/* ── MASTER HUB 4: LEGAL CALCULATORS (كارت الحاسبات القانونية والشرعية) ── */}
+        {(activeTab === 'all' || activeTab === 'calculators') && (
+          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-emerald-950/60 via-slate-900/90 to-slate-950 border border-emerald-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-emerald-400/50">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-emerald-900/50">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-black px-3.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 inline-flex items-center gap-1.5">
+                    <Calculator className="w-4 h-4 text-emerald-400" />
+                    <span>🧮 بوابة الحاسبات القانونية والشرعية الذكية 2026</span>
+                  </span>
+                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-green-500/20 text-green-300 border border-green-500/30">
+                    11 حاسبة تفاعلية دقيقة
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-white">
+                  بوابة الحاسبات القانونية والشرعية ومواعيد الطعون
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+                  أدوات حسابية ذكية وفق أحدث القوانين والقرارات المصرية 2026: حساب رسوم تسجيل العقارات بالشهر العقاري، المواريث والتركات، مكافأة نهاية الخدمة وتعويض الفصل، ومواعيد وسقوط الطعون.
+                </p>
+              </div>
+              <a
+                href="/legal-calculators.html"
+                className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-green-600 text-white font-extrabold text-sm shadow-xl shadow-emerald-600/30 hover:scale-105 transition-all flex items-center gap-2 whitespace-nowrap self-stretch lg:self-auto justify-center"
+              >
+                <span>دخول بوابة كافة الحاسبات</span>
+                <ArrowLeft className="w-4 h-4" />
+              </a>
+            </div>
+
+            {/* Sub-features Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <a href="/legal-calculators.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🏠</div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
+                    رسوم تسجيل الشهر العقاري 2026
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    حساب تكاليف تسجيل الشقق والعقارات وفق القانون 9 لسنة 2022، ضريبة التصرفات 2.5% ورسوم الرفع المساحي.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
+                  <span>احسب رسوم التسجيل</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              <a href="/legal-calculators.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">⚖️</div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
+                    مواعيد وسقوط الطعون والمدد
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    حاسبة دقيقة لمواعيد الاستئناف والنقض والمعارضة مع استبعاد العطلات الرسمية وأيام الجمع والسبت تلقائياً.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
+                  <span>احسب موعد الطعن</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              <a href="/legal-calculators.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">💼</div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
+                    مستحقات نهاية الخدمة والعمل
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    حساب مكافأة نهاية الخدمة، المقابل النقدي للإجازات، وتعويض الفصل التعسفي بقانون العمل المصري رقم 12/2003.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
+                  <span>احسب المستحقات</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              <a href="/legal-calculators.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+                <div>
+                  <div className="text-2xl mb-3">🏛️</div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
+                    رسوم وتكاليف رفع الدعاوى القضائية
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed">
+                    حساب الرسوم النسبية، الدمغات القضائية، ورسوم الإعلانات القضائية وأمانات الخبراء بالمحاكم المصرية.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 flex items-center justify-between">
+                  <span>احسب رسوم الدعوى</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+            </div>
+          </section>
+        )}
+
+        {/* ── MASTER HUB 5: CITIZENS & E-JUSTICE HUB (كارت المواطنين والعدالة والشكاوى) ── */}
         {(activeTab === 'all' || activeTab === 'citizens') && (
           <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-teal-950/60 via-slate-900/90 to-slate-950 border border-teal-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-teal-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-teal-900/50">
@@ -482,7 +751,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-black px-3.5 py-1 rounded-full bg-teal-500/20 text-teal-300 border border-teal-500/30 inline-flex items-center gap-1.5">
                     <ShieldCheck className="w-4 h-4 text-teal-400" />
-                    <span>👥 خدمات المواطنين والعدالة الرقمية والشكاوى</span>
+                    <span>👥 خدمات المواطنين والعدالة الرقمية والشكاوى الرسمية</span>
                   </span>
                   <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                     استشارات وشكاوى رسمية
@@ -504,20 +773,20 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               </a>
             </div>
 
-            {/* Sub-features Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* Sub-features Grid (5 Distinctive Portals) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
               <a href="/legal-consultations.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-teal-500/20 hover:border-teal-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">💬</div>
-                  <h3 className="text-base font-black text-white group-hover:text-teal-300 transition-colors mb-1.5">
-                    الاستشارات القانونية والتكييف
+                  <h3 className="text-sm font-black text-white group-hover:text-teal-300 transition-colors mb-1.5">
+                    الاستشارات والتكييف الذكي
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
                     اطرح سؤالك القانوني واحصل على تكييف وتحليل قضائي فوري مع ترشيح أفضل المحامين المتخصصين بمحافظتك.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-teal-400 flex items-center justify-between">
-                  <span>استشر الآن مجاناً</span>
+                  <span>استشر الآن</span>
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>
@@ -525,8 +794,8 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               <a href="/citizen-complaints.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-teal-500/20 hover:border-teal-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">📢</div>
-                  <h3 className="text-base font-black text-white group-hover:text-teal-300 transition-colors mb-1.5">
-                    منظومة الشكاوى والبلاغات الرسمية
+                  <h3 className="text-sm font-black text-white group-hover:text-teal-300 transition-colors mb-1.5">
+                    منظومة الشكاوى الرسمية
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
                     مجلس الوزراء (shakwa.eg - 16528)، جهاز حماية المستهلك (19588)، تنظيم الاتصالات (155)، وصيغ الشكاوى.
@@ -541,8 +810,8 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               <a href="/e-justice-services.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-teal-500/20 hover:border-teal-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">🏛️</div>
-                  <h3 className="text-base font-black text-white group-hover:text-teal-300 transition-colors mb-1.5">
-                    التقاضي الإلكتروني ومصر الرقمية
+                  <h3 className="text-sm font-black text-white group-hover:text-teal-300 transition-colors mb-1.5">
+                    التقاضي ومصر الرقمية
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
                     دليلك الإجرائي لرفع الدعاوى أونلاين، عرائض النيابة العامة، إعلام الوراثة الرقمي، والمحاكم الاقتصادية.
@@ -557,11 +826,11 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               <a href="/courts-directory.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-teal-500/20 hover:border-teal-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">📍</div>
-                  <h3 className="text-base font-black text-white group-hover:text-teal-300 transition-colors mb-1.5">
-                    دليل المحاكم والشهر العقاري
+                  <h3 className="text-sm font-black text-white group-hover:text-teal-300 transition-colors mb-1.5">
+                    دليل مقار المحاكم والشهر
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    عناوين ومقار ودوائر محاكم الاستئناف والابتدائية ومجلس الدولة ومأموريات الشهر العقاري المطور بكافة المحافظات.
+                    عناوين ومقار ودوائر محاكم الاستئناف والابتدائية ومجلس الدولة ومأموريات الشهر العقاري المطور بالمحافظات.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-teal-400 flex items-center justify-between">
@@ -569,102 +838,19 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>
-            </div>
-          </section>
-        )}
 
-        {/* ── MASTER HUB 4: ENCYCLOPEDIAS & CALCULATORS (كارت الموسوعات والحاسبات والأكواد) ── */}
-        {(activeTab === 'all' || activeTab === 'calculators') && (
-          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-purple-950/60 via-slate-900/90 to-slate-950 border border-purple-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-purple-400/50">
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-purple-900/50">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-black px-3.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 inline-flex items-center gap-1.5">
-                    <Calculator className="w-4 h-4 text-purple-400" />
-                    <span>🧮 الموسوعات التشريعية والحاسبات المعتمدة 2026</span>
-                  </span>
-                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                    11 حاسبة و 19 قانوناً
-                  </span>
-                </div>
-                <h2 className="text-2xl sm:text-3xl font-black text-white">
-                  الموسوعات القانونية والأكواد والحاسبات الذكية
-                </h2>
-                <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-                  أكبر قاعدة بيانات تفاعلية تجمع الحاسبات القانونية والشرعية، المراجع والأكواد التشريعية الكاملة لـ 19 قانوناً مصرياً، وبنك مبادئ وسوابق محكمة النقض المصرية الكبرى.
-                </p>
-              </div>
-              <a
-                href="/legal-calculators.html"
-                className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-emerald-600 text-white font-extrabold text-sm shadow-xl shadow-purple-600/30 hover:scale-105 transition-all flex items-center gap-2 whitespace-nowrap self-stretch lg:self-auto justify-center"
-              >
-                <span>دخول بوابة الحاسبات القانونية</span>
-                <ArrowLeft className="w-4 h-4" />
-              </a>
-            </div>
-
-            {/* Sub-features Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <a href="/legal-calculators.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between">
+              <a href="/legal-diagnostics.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-teal-500/20 hover:border-teal-400 transition-all flex flex-col justify-between">
                 <div>
-                  <div className="text-2xl mb-3">🧮</div>
-                  <h3 className="text-base font-black text-white group-hover:text-purple-300 transition-colors mb-1.5">
-                    بوابة الحاسبات القانونية الذكية
+                  <div className="text-2xl mb-3">🔍</div>
+                  <h3 className="text-sm font-black text-white group-hover:text-teal-300 transition-colors mb-1.5">
+                    تشخيص النزاع والمحكمة
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    رسوم تسجيل الشهر العقاري 2026، المواريث والتركات، مستحقات العمل، ومواعيد وسقوط الطعون.
+                    أداة تفاعلية لتشخيص مشكلتك وتحديد نوع الدعوى والمحكمة المختصة نوعياً ومحلياً والمستندات فوراً.
                   </p>
                 </div>
-                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-purple-400 flex items-center justify-between">
-                  <span>فتح الحاسبات</span>
-                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-                </div>
-              </a>
-
-              <a href="/pillars/" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between">
-                <div>
-                  <div className="text-2xl mb-3">📚</div>
-                  <h3 className="text-base font-black text-white group-hover:text-purple-300 transition-colors mb-1.5">
-                    المراجع والأكواد التشريعية (19 قانوناً)
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    نصوص كاملة للقوانين المصرية (المدني، الجنائي، الإجراءات، العمل الجديد، الإيجارات، والمرافعات).
-                  </p>
-                </div>
-                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-purple-400 flex items-center justify-between">
-                  <span>تصفح القوانين كاملة</span>
-                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-                </div>
-              </a>
-
-              <a href="/court-precedents.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between">
-                <div>
-                  <div className="text-2xl mb-3">⚖️</div>
-                  <h3 className="text-base font-black text-white group-hover:text-purple-300 transition-colors mb-1.5">
-                    بنك مبادئ وسوابق محكمة النقض
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    أهم وأحدث المبادئ القضائية المستقرة لدوائر الجنايات والمدني والتجاري والعمال جاهزة للنسخ في مذكراتك.
-                  </p>
-                </div>
-                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-purple-400 flex items-center justify-between">
-                  <span>استعراض أحكام النقض</span>
-                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-                </div>
-              </a>
-
-              <a href="/blog/" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between">
-                <div>
-                  <div className="text-2xl mb-3">📰</div>
-                  <h3 className="text-base font-black text-white group-hover:text-purple-300 transition-colors mb-1.5">
-                    المدونة القانونية والرأي والتحليلات
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    مئات المقالات القانونية التخصصية التي تشرح القوانين وحقوق المواطنين وإجراءات التقاضي بلغة سهلة وموثقة.
-                  </p>
-                </div>
-                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-purple-400 flex items-center justify-between">
-                  <span>تصفح المقالات (+140)</span>
+                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-teal-400 flex items-center justify-between">
+                  <span>تشخيص النزاع</span>
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>
@@ -672,25 +858,25 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </section>
         )}
 
-        {/* ── MASTER HUB 5: GULF REGIONAL HUB (كارت دول الخليج العربي الأربعة) ── */}
+        {/* ── MASTER HUB 6: GULF REGIONAL HUB (كارت دول الخليج العربي الأربعة) ── */}
         {(activeTab === 'all' || activeTab === 'gulf') && (
-          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-emerald-950/60 via-slate-900/90 to-slate-950 border border-emerald-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-emerald-400/50">
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-emerald-900/50">
+          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-green-950/60 via-slate-900/90 to-slate-950 border border-green-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-green-400/50">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-green-900/50">
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-black px-3.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 inline-flex items-center gap-1.5">
-                    <Globe className="w-4 h-4 text-emerald-400" />
+                  <span className="text-xs font-black px-3.5 py-1 rounded-full bg-green-500/20 text-green-300 border border-green-500/30 inline-flex items-center gap-1.5">
+                    <Globe className="w-4 h-4 text-green-400" />
                     <span>🌍 البوابات القانونية الإقليمية المعتمدة 2026</span>
                   </span>
-                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-green-500/20 text-green-300 border border-green-500/30">
-                    4 دول خليجية
+                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    4 دول خليجية (عربي + إنجليزي)
                   </span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-black text-white">
                   البوابات القانونية لدول الخليج العربي
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-                  بوابات مستقلة متخصصة تضم حاسبات مكافأة نهاية الخدمة الدقيقة، منصات التقاضي الإلكتروني، وتأسيس الشركات والأنظمة المعتمدة في السعودية والإمارات وقطر وسلطنة عمان.
+                  بوابات مستقلة متخصصة تضم حاسبات مكافأة نهاية الخدمة الدقيقة، منصات التقاضي الإلكتروني، وتأسيس الشركات والأنظمة المعتمدة في السعودية والإمارات وقطر وسلطنة عمان باللغتين العربية والإنجليزية.
                 </p>
               </div>
             </div>
@@ -796,7 +982,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </section>
         )}
 
-        {/* ── MASTER HUB 6: CORPORATE & BUSINESS (كارت تأسيس الشركات والاستثمار) ── */}
+        {/* ── MASTER HUB 7: CORPORATE & BUSINESS (كارت تأسيس الشركات والاستثمار) ── */}
         {(activeTab === 'all' || activeTab === 'corporate') && (
           <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-amber-950/60 via-slate-900/90 to-slate-950 border border-amber-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-amber-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-amber-900/50">
@@ -832,7 +1018,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 <div>
                   <div className="text-2xl mb-3">🏢</div>
                   <h3 className="text-base font-black text-white group-hover:text-amber-300 transition-colors mb-1.5">
-                    تأسيس الشركات بالهيئة العامة للاستثمار
+                    تأسيس الشركات بهيئة الاستثمار (GAFI)
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
                     خطوات تأسيس الشركات (شخص واحد، ذ.م.م، مساهمة) بهيئة الاستثمار وحاسبة الرسوم الحكومية ونماذج عقود التأسيس.
@@ -860,18 +1046,18 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 </div>
               </a>
 
-              <a href="/features.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-amber-500/20 hover:border-amber-400 transition-all flex flex-col justify-between">
+              <a href="/sitemap.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-amber-500/20 hover:border-amber-400 transition-all flex flex-col justify-between">
                 <div>
-                  <div className="text-2xl mb-3">⚡</div>
+                  <div className="text-2xl mb-3">🗺️</div>
                   <h3 className="text-base font-black text-white group-hover:text-amber-300 transition-colors mb-1.5">
-                    المميزات الشاملة لمنظومة المحامي الرقمية
+                    خريطة الموقع الكاملة وفهرس المنصة
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    استكشف كافة إمكانيات المنصة: حاسبات النفقات والرسوم، الأرشفة المشفرة، والتحديثات المستمرة بدون أي رسوم.
+                    فهرس متكامل يضم كافة صفحات المنصة، الأدلة التشريعية، المقالات، والبوابات الإقليمية للوصول السريع.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-amber-400 flex items-center justify-between">
-                  <span>استكشف المميزات</span>
+                  <span>استعراض خريطة الموقع</span>
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>
@@ -974,9 +1160,15 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             <span>·</span>
             <a href="/law-students-hub.html" className="hover:text-white transition-colors">بوابة طلاب الحقوق</a>
             <span>·</span>
-            <a href="/legal-calculators.html" className="hover:text-white transition-colors">الحاسبات القانونية</a>
+            <a href="/legal-library.html" className="hover:text-white transition-colors">المكتبة القانونية</a>
+            <span>·</span>
+            <a href="/court-precedents.html" className="hover:text-white transition-colors">موسوعة النقض</a>
+            <span>·</span>
+            <a href="/pillars/" className="hover:text-white transition-colors">المراجع والأكواد</a>
             <span>·</span>
             <a href="/legal-forms.html" className="hover:text-white transition-colors">صيغ العقود والدعاوى</a>
+            <span>·</span>
+            <a href="/legal-calculators.html" className="hover:text-white transition-colors">الحاسبات القانونية</a>
             <span>·</span>
             <a href="/saudi-legal-hub.html" className="hover:text-white transition-colors">بوابة السعودية</a>
             <span>·</span>
@@ -988,7 +1180,15 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             <span>·</span>
             <a href="/about.html" className="hover:text-white transition-colors">عن المنصة</a>
             <span>·</span>
+            <a href="/why-trust-us.html" className="hover:text-white transition-colors">معايير الثقة</a>
+            <span>·</span>
+            <a href="/editorial-policy.html" className="hover:text-white transition-colors">السياسة التحريرية</a>
+            <span>·</span>
+            <a href="/disclaimer.html" className="hover:text-white transition-colors">إخلاء المسؤولية</a>
+            <span>·</span>
             <a href="/privacy.html" className="hover:text-white transition-colors">سياسة الخصوصية</a>
+            <span>·</span>
+            <a href="/terms.html" className="hover:text-white transition-colors">شروط الاستخدام</a>
             <span>·</span>
             <a href="/contact.html" className="hover:text-white transition-colors">تواصل معنا</a>
           </div>
