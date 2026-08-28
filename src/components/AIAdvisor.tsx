@@ -48,8 +48,21 @@ function bumpCount(): number {
   return n;
 }
 
-export default function AIAdvisor() {
-  const [open, setOpen] = useState(false);
+interface AIAdvisorProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export default function AIAdvisor({ isOpen, onClose }: AIAdvisorProps = {}) {
+  const [internalOpen, setInternalOpen] = useState(false);
+  const open = isOpen !== undefined ? isOpen : internalOpen;
+  
+  const setOpen = (val: boolean | ((prev: boolean) => boolean)) => {
+    const next = typeof val === 'function' ? val(open) : val;
+    if (!next && onClose) onClose();
+    setInternalOpen(next);
+  };
+
   const [apiKey, setApiKey] = useState('');
   const [keyInput, setKeyInput] = useState('');
   const [showKeyBox, setShowKeyBox] = useState(false);
