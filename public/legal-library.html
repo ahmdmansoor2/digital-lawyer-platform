@@ -1059,7 +1059,7 @@
       const isDoc = book.path && (book.path.toLowerCase().endsWith('.doc') || book.path.toLowerCase().endsWith('.docx'));
       
       if (isDoc) {
-        // Word Document Layout: Emphasize direct editable download & full reading mode
+        // Word Document Layout: Download-only (preview not possible without Google login)
         return `
           <article class="book-card" style="border-top: 3px solid #3b82f6;">
             <div>
@@ -1077,14 +1077,11 @@
                 <span>✍️</span>
                 <strong>${book.author}</strong>
               </div>
-              <div class="book-path-info">📁 مستند وورد جاهز للتحرير والطباعة · ${book.size || 'سحابي'}</div>
+              <div class="book-path-info" style="color:#93c5fd;">💡 هذه الصيغة جاهزة للتحرير في Microsoft Word — نزّلها مباشرة وعدّل عليها · ${book.size || 'سحابي'}</div>
             </div>
-            <div class="book-actions" style="display: flex; gap: 8px;">
-              <button onclick="handleBookAction('${book.id}', 'download')" class="btn-card" style="flex: 1.3; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: #ffffff; border: 1px solid rgba(147,197,253,0.4); font-weight: 800; box-shadow: 0 4px 14px rgba(37,99,235,0.35);">
-                <span>📥 تنزيل Word للتعديل</span>
-              </button>
-              <button onclick="handleBookAction('${book.id}', 'preview')" class="btn-card btn-card-open" style="flex: 1; background: rgba(30,41,59,0.8); border: 1px solid rgba(255,255,255,0.15); color: #cbd5e1;">
-                <span>📖 قراءة كامل المستند</span>
+            <div class="book-actions">
+              <button onclick="handleBookAction('${book.id}', 'download')" class="btn-card" style="width:100%; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: #ffffff; border: 1px solid rgba(147,197,253,0.4); font-weight: 800; box-shadow: 0 4px 14px rgba(37,99,235,0.35); font-size: 1rem; padding: 12px;">
+                <span>📥 تنزيل المستند (Word) مباشرة</span>
               </button>
             </div>
           </article>
