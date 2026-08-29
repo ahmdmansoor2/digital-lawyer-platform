@@ -2,8 +2,13 @@ name: 🌐 الناشر التخصصي الذكي — تغذية صفحات ال
 
 on:
   schedule:
-    # يومياً الساعة 2:00 ظهراً بتوقيت القاهرة (11:00 UTC)
-    - cron: '0 11 * * *'
+    # يعمل 3 مرات يومياً لتغذية صفحات وأقسام المنصة في أوقات الذروة (بتوقيت القاهرة UTC+3 / UTC+2)
+    # 1:00 ظهراً بتوقيت القاهرة (10:00 UTC)
+    - cron: '0 10 * * *'
+    # 4:30 عصراً بتوقيت القاهرة (13:30 UTC)
+    - cron: '30 13 * * *'
+    # 6:00 مساءً بتوقيت القاهرة (15:00 UTC)
+    - cron: '0 15 * * *'
   workflow_dispatch:
 
 permissions:
@@ -44,9 +49,9 @@ jobs:
         run: |
           git config user.name  "Multi-Page Legal Bot 🌐"
           git config user.email "bot@mohamidigital.online"
-          git add public/court-precedents.html public/data/ scripts/multipage-published-log.json public/sitemap.xml public/sitemap.html
+          git add public/court-precedents.html public/legal-diagnostics.html public/data/ scripts/multipage-published-log.json public/sitemap.xml public/sitemap.html
           if ! git diff --cached --quiet; then
-            git commit -m "🌐 Multi-Page Publish: $(date +'%Y-%m-%d %H:%M') — مبادئ نقض + صيغ جديدة"
+            git commit -m "🌐 Multi-Page Publish: $(date +'%Y-%m-%d %H:%M') — مبادئ نقض + صيغ + تشخيص نزاعات"
             git pull --rebase origin main 2>/dev/null || true
             git push || echo "⚠️ push تعذر — سيُلتقط في الدورة التالية"
           else
