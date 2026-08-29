@@ -62,18 +62,17 @@
     /* Hero */
     .hero-sec { padding: 36px 0 18px; text-align: center; }
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 18px;
-      border-radius: 9999px;
-      background: rgba(245, 158, 11, 0.18);
-      border: 1px solid rgba(251, 191, 36, 0.35);
-      color: #fde68a;
-      font-size: 0.85rem;
-      font-weight: 800;
-      margin-bottom: 16px;
-      backdrop-filter: blur(8px);
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(99, 102, 241, 0.2) !important;
+      border: 1px solid rgba(99, 102, 241, 0.45) !important;
+      color: #c7d2fe !important;
+      font-size: 0.85rem !important;
+      font-weight: 800 !important;
+      padding: 6px 18px !important;
+      border-radius: 99px !important;
+      margin-bottom: 20px !important;
+      backdrop-filter: blur(12px) !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
     }
     .hero-title {
       font-size: 2.3rem;
@@ -440,69 +439,7 @@
   <main class="container">
 
     <!-- Top Back Navigation Bar -->
-    <div class="top-nav-back-bar" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 0 6px;">
-      <a href="/" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 12px; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; text-decoration: none; font-weight: 800; font-size: 0.88rem; transition: all 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-        <span style="font-size: 1.1rem;">←</span>
-        <span>العودة للرئيسية</span>
-      </a>
-
-      <button onclick="if(window.history.length > 1) window.history.back(); else window.location.href='/';" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 12px; background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.4); color: #fde68a; cursor: pointer; font-family: inherit; font-weight: 800; font-size: 0.88rem; transition: all 0.2s;">
-        <span>↩️ رجوع للصفحة السابقة</span>
-      </button>
-    </div>
-  
     
-    <!-- Hero -->
-    <section class="hero-sec">
-      <div class="hero-badge">
-        <span>📈</span>
-        <span>بوابة الاقتصاد والأسواق ومؤشرات الذهب والسلع 2026</span>
-      </div>
-
-      <h1 class="hero-title">مؤشرات الذهب والعملات والقرارات الاقتصادية</h1>
-      
-      <p class="hero-desc">
-        تحديث لحظي مباشر لأسعار الذهب بمصر (عيار 24، 21، 18، 14 والجنيه الذهب والأونصة العالمية)، رسم بياني احترافي بالشموع اليابانية الحية (OHLC)، حاسبة المصنعية والدمغة، وأسعار العملات بالبنوك.
-      </p>
-
-      <!-- Live Status & Refresh -->
-      <div class="live-status-wrap">
-        <div class="pulse-badge">
-          <div class="pulse-dot"></div>
-          <span id="liveStatusText">● بث حي مباشر للأسعار (تحديث تلقائي مستمر)</span>
-        </div>
-        <button onclick="fetchLiveMarketData()" class="btn-refresh">
-          <span>🔄 تحديث الأسعار اللحظية</span>
-        </button>
-      </div>
-
-      <!-- Live Ticker Bar -->
-      <div class="ticker-bar">
-        <div class="ticker-item">
-          <span>🪙 عيار 21:</span>
-          <span id="tickGold21" class="ticker-val">جاري الجلب...</span>
-        </div>
-        <div class="ticker-item">
-          <span>👑 عيار 24:</span>
-          <span id="tickGold24" class="ticker-val">جاري الجلب...</span>
-        </div>
-        <div class="ticker-item">
-          <span>🥇 الجنيه الذهب:</span>
-          <span id="tickGoldPound" class="ticker-val">جاري الجلب...</span>
-        </div>
-        <div class="ticker-item">
-          <span>🌍 الأونصة:</span>
-          <span id="tickGoldOunce" class="ticker-val">جاري الجلب...</span>
-        </div>
-        <div class="ticker-item">
-          <span>💵 الدولار:</span>
-          <span id="tickUSD" class="ticker-val">جاري الجلب...</span>
-        </div>
-        <div class="ticker-item">
-          <span>💶 اليورو:</span>
-          <span id="tickEUR" class="ticker-val">جاري الجلب...</span>
-        </div>
-      </div>
     </section>
 
     <!-- 🕯️ INTERACTIVE CANDLESTICK CHART FOR ALL METRICS & GOLD OUNCE -->

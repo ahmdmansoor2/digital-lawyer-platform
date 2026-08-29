@@ -44,7 +44,19 @@
 
     /* ─── HERO ─── */
     .hero { padding: 110px 20px 40px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.15) 0%, transparent 70%); }
-    .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3); color: var(--indigo-light); font-size: 0.78rem; font-weight: 700; padding: 5px 14px; border-radius: 99px; margin-bottom: 18px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(99, 102, 241, 0.2) !important;
+      border: 1px solid rgba(99, 102, 241, 0.45) !important;
+      color: #c7d2fe !important;
+      font-size: 0.85rem !important;
+      font-weight: 800 !important;
+      padding: 6px 18px !important;
+      border-radius: 99px !important;
+      margin-bottom: 20px !important;
+      backdrop-filter: blur(12px) !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+    }
     .hero h1 {
       font-size: clamp(2rem, 5vw, 3.2rem);
       font-weight: 900;
@@ -73,7 +85,18 @@
     
     }
     .hero-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-bottom: 32px; }
-    .hero-stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 10px 20px; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+    .hero-stat {
+      background: rgba(15, 23, 42, 0.75) !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 14px !important;
+      padding: 8px 18px !important;
+      font-size: 0.85rem !important;
+      font-weight: 700 !important;
+      color: #f1f5f9 !important;
+      display: flex; align-items: center; gap: 8px !important;
+      backdrop-filter: blur(12px) !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
+    }
     .hero-stat .num { font-size: 1.2rem; color: var(--indigo-light); }
 
     /* ─── TABS ─── */
@@ -154,7 +177,19 @@
     .footer-copy { font-size: 0.75rem; color: #4b5563; }
 
     @media print {
-      .uh-nav, .tabs-nav, .calc-btn, .print-btn, .ad-slot, .faq-section, .footer, .hero-stats, .hero-badge { display: none !important; }
+      .uh-nav, .tabs-nav, .calc-btn, .print-btn, .ad-slot, .faq-section, .footer, .hero-stats, .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(99, 102, 241, 0.2) !important;
+      border: 1px solid rgba(99, 102, 241, 0.45) !important;
+      color: #c7d2fe !important;
+      font-size: 0.85rem !important;
+      font-weight: 800 !important;
+      padding: 6px 18px !important;
+      border-radius: 99px !important;
+      margin-bottom: 20px !important;
+      backdrop-filter: blur(12px) !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+    }
       body { background: #fff; color: #000; font-size: 12pt; }
       .hero { padding: 20px; }
       .calc-card { border: 1px solid #ccc; break-inside: avoid; }
@@ -180,45 +215,7 @@
 <body>
 
     <!-- Top Back Navigation Bar -->
-    <div class="top-nav-back-bar" style="max-width: 1200px; margin: 16px auto 0; padding: 0 16px; display: flex; align-items: center; justify-content: space-between;">
-      <a href="/" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 12px; background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; text-decoration: none; font-weight: 800; font-size: 0.88rem; transition: all 0.2s; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-        <span style="font-size: 1.1rem;">←</span>
-        <span>العودة للرئيسية</span>
-      </a>
-
-      <button onclick="if(window.history.length > 1) window.history.back(); else window.location.href='/';" style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 12px; background: rgba(99, 102, 241, 0.2); border: 1px solid rgba(99, 102, 241, 0.4); color: #c7d2fe; cursor: pointer; font-family: inherit; font-weight: 800; font-size: 0.88rem; transition: all 0.2s;">
-        <span>↩️ رجوع للصفحة السابقة</span>
-      </button>
-    </div>
-  
-
-<!-- NAVBAR -->
-<nav class="uh-nav">
-  <div class="uh-nav-inner">
-    <a class="uh-logo" href="/">⚖️ المحامي الرقمي</a>
-    <div class="uh-links">
-      <a class="uh-link" href="/">🏠 الرئيسية</a>
-      <a class="uh-link" href="/blog/">📰 المدونة</a>
-      <a class="uh-link" href="/pillars/">🏛️ المراجع</a>
-      <a class="uh-link" href="/legal-forms.html">📝 الصيغ</a>
-      <a class="uh-link" href="/legal-radar.html">🔍 رصد</a>
-      <a class="uh-link active" href="/legal-calculators.html">🧮 الحاسبات</a>
-    </div>
-    <a class="uh-cta" href="/">دخول المنصة مجاناً</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-badge">🧮 أدوات وحاسبات قانونية وشرعية ذكية</div>
-  <h1>بوابة <span>الحاسبات القانونية والشرعية</span><br>لمصر 2026</h1>
-  <p>15 حاسبة تفاعلية دقيقة للمحامين والمواطنين والمحاسبين — مجانية 100% بدون تسجيل</p>
-  <div class="hero-stats">
-    <div class="hero-stat"><span class="num">15</span> حاسبة ذكية</div>
-    <div class="hero-stat"><span class="num">100%</span> مجاني</div>
-    <div class="hero-stat">⚡ وفق قوانين مصر 2026</div>
-    <div class="hero-stat">🖨️ تقرير PDF قابل للطباعة</div>
-  </div>
+    
 </header>
 
 <!-- AD SLOT 1 -->
