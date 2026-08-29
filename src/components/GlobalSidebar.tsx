@@ -169,18 +169,11 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
         id="global-sidebar-trigger"
         onClick={() => setOpen(prev => !prev)}
         aria-label="فتح فهرس المنصة السريع"
-        className="flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-slate-900/95 hover:bg-slate-800 border border-white/20 hover:border-indigo-400 text-white text-sm font-bold shadow-2xl shadow-black/80 backdrop-blur-2xl transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer select-none"
-        style={{
-          position: 'fixed',
-          bottom: '24px',
-          right: '24px',
-          left: 'auto',
-          zIndex: 999990,
-          direction: 'rtl'
-        }}
+        className="flex items-center gap-2 px-3 py-2.5 sm:px-4 sm:py-3 rounded-2xl bg-slate-900/95 hover:bg-slate-800 border border-white/20 hover:border-indigo-400 text-white text-xs sm:text-sm font-bold shadow-2xl shadow-black/80 backdrop-blur-2xl transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer select-none fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[999990]"
+        style={{ direction: 'rtl' }}
       >
-        <div className="w-6 h-6 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400">
-          <Compass className="w-4 h-4" />
+        <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400">
+          <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </div>
         <span className="font-bold text-xs sm:text-sm">فهرس المنصة</span>
       </button>

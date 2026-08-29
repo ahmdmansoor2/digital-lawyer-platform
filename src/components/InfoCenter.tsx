@@ -141,98 +141,102 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
       />
 
       {/* ─── 1. HERO SECTION ────────────────────────────────────────────── */}
-      <section className="relative pt-10 pb-12 sm:pt-14 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 text-center">
+      <section className="relative pt-6 pb-8 sm:pt-14 sm:pb-16 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 text-center">
         
-        {/* Top Badges */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 mb-6">
-          <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 backdrop-blur-md shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400 animate-pulse" />
-            <span>المنظومة الوطنية والإقليمية الموحدة 2026</span>
-          </span>
-          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">
-            <span>✨ مجانية 100% للمواطنين والمحامين والطلاب</span>
-          </span>
-        </div>
+        <div className="bg-slate-950/55 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-4 sm:p-0 rounded-3xl border border-white/10 sm:border-none shadow-2xl sm:shadow-none mb-6">
+          {/* Top Badges */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-4 sm:mb-6">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 backdrop-blur-md shadow-sm">
+              <Sparkles className="w-3.5 h-3.5 text-indigo-400 animate-pulse" />
+              <span>المنظومة الوطنية والإقليمية الموحدة 2026</span>
+            </span>
+            <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 backdrop-blur-md">
+              <span>✨ مجانية 100% للجميع</span>
+            </span>
+          </div>
 
-        {/* Hero Title */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-[1.25] sm:leading-[1.2] mb-6">
-          منظومة العدالة القانونية <br className="hidden sm:block" />
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-300 to-emerald-400">
-            لمصر والوطن العربي
-          </span>
-        </h1>
+          {/* Hero Title */}
+          <h1 className="text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-[1.3] sm:leading-[1.2] mb-4 sm:mb-6">
+            منظومة العدالة القانونية <br className="hidden sm:block" />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-200 to-emerald-300 drop-shadow-md">
+              لمصر والوطن العربي
+            </span>
+          </h1>
 
-        {/* Hero Subtitle */}
-        <p className="text-sm sm:text-base lg:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
-          المنصة المتكاملة <strong className="text-white">لإدارة مكاتب المحاماة</strong>، و<strong className="text-white">المكتبة القانونية المصورة</strong>، و<strong className="text-white">صيغ العقود والدعاوى</strong>، و<strong className="text-white">أحكام محكمة النقض</strong>، وحاسبات الرسوم ومستحقات العمل وبوابات التقاضي لمصر ودول الخليج.
-        </p>
+          {/* Hero Subtitle */}
+          <p className="text-xs sm:text-base lg:text-lg text-slate-200 max-w-3xl mx-auto leading-relaxed mb-6 font-medium">
+            المنصة المتكاملة <strong className="text-white font-bold">لإدارة مكاتب المحاماة</strong>، و<strong className="text-white font-bold">المكتبة القانونية المصورة</strong>، و<strong className="text-white font-bold">صيغ العقود والدعاوى</strong>، و<strong className="text-white font-bold">أحكام محكمة النقض</strong>، وحاسبات الرسوم ومستحقات العمل وبوابات التقاضي لمصر ودول الخليج.
+          </p>
 
-        {/* Hero Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-3.5 mb-10">
-          <button
-            onClick={onEnterApp}
-            className="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 text-white font-extrabold text-sm sm:text-base shadow-xl shadow-indigo-600/30 hover:shadow-indigo-600/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer flex items-center gap-2.5"
-          >
-            <Briefcase className="w-5 h-5" />
-            <span>دخول برنامج المحامين مجاناً</span>
-            <ArrowLeft className="w-4 h-4" />
-          </button>
+          {/* Hero Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 mb-6 w-full max-w-2xl mx-auto">
+            <button
+              onClick={onEnterApp}
+              className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 text-white font-extrabold text-sm sm:text-base shadow-xl shadow-indigo-600/30 hover:shadow-indigo-600/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5"
+            >
+              <Briefcase className="w-5 h-5 shrink-0" />
+              <span>دخول برنامج المحامين مجاناً</span>
+              <ArrowLeft className="w-4 h-4 shrink-0" />
+            </button>
 
-          <a
-            href="/law-students-hub.html"
-            className="px-6 py-3.5 rounded-2xl bg-slate-900/90 text-slate-100 hover:text-white font-bold text-sm sm:text-base border border-blue-500/40 hover:border-blue-400 hover:bg-slate-800/90 transition-all duration-200 flex items-center gap-2 shadow-lg"
-          >
-            <GraduationCap className="w-5 h-5 text-blue-400" />
-            <span>بوابة طلاب الحقوق 2026</span>
-          </a>
+            <div className="grid grid-cols-3 gap-2 w-full sm:w-auto">
+              <a
+                href="/law-students-hub.html"
+                className="px-2.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-slate-900/90 text-slate-100 hover:text-white font-bold text-[11px] sm:text-sm border border-blue-500/40 hover:border-blue-400 hover:bg-slate-800/90 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg text-center"
+              >
+                <GraduationCap className="w-4 h-4 text-blue-400 shrink-0" />
+                <span>طلاب الحقوق</span>
+              </a>
 
-          <a
-            href="/legal-library.html"
-            className="px-6 py-3.5 rounded-2xl bg-slate-900/90 text-slate-100 hover:text-white font-bold text-sm sm:text-base border border-indigo-500/40 hover:border-indigo-400 hover:bg-slate-800/90 transition-all duration-200 flex items-center gap-2 shadow-lg"
-          >
-            <Library className="w-5 h-5 text-indigo-400" />
-            <span>المكتبة القانونية الكبرى</span>
-          </a>
+              <a
+                href="/legal-library.html"
+                className="px-2.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-slate-900/90 text-slate-100 hover:text-white font-bold text-[11px] sm:text-sm border border-indigo-500/40 hover:border-indigo-400 hover:bg-slate-800/90 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg text-center"
+              >
+                <Library className="w-4 h-4 text-indigo-400 shrink-0" />
+                <span>المكتبة الكبرى</span>
+              </a>
 
-          <button
-            onClick={() => setIsAIAdvisorOpen(true)}
-            className="px-6 py-3.5 rounded-2xl bg-emerald-950/60 text-emerald-300 hover:text-emerald-100 font-bold text-sm sm:text-base border border-emerald-500/40 hover:border-emerald-400 hover:bg-emerald-900/50 transition-all duration-200 flex items-center gap-2 shadow-lg cursor-pointer"
-          >
-            <Sparkles className="w-5 h-5 text-emerald-400" />
-            <span>المستشار الذكي AI</span>
-          </button>
+              <button
+                onClick={() => setIsAIAdvisorOpen(true)}
+                className="px-2.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-emerald-950/70 text-emerald-300 hover:text-emerald-100 font-bold text-[11px] sm:text-sm border border-emerald-500/40 hover:border-emerald-400 hover:bg-emerald-900/50 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg cursor-pointer text-center"
+              >
+                <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>مستشار AI</span>
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Global Live Search Bar */}
-        <div className="max-w-3xl mx-auto mb-6">
+        <div className="max-w-3xl mx-auto mb-4 sm:mb-6">
           <HeroSearchBar onOpenFullSearch={() => setIsSearchModalOpen(true)} />
         </div>
 
-        {/* Quick Filter Navigation Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 pt-4 border-t border-slate-800/80">
+        {/* Quick Filter Navigation Tabs (Swipeable on Mobile) */}
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-2.5 px-2 -mx-3 sm:mx-0 sm:px-0 sm:flex-wrap sm:justify-center border-t border-slate-800/80">
           <button
             onClick={() => setActiveTab('all')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
               activeTab === 'all'
                 ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 scale-105'
                 : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
             }`}
           >
-            🌟 كافة المنظومة المجمعة (8 قطاعات)
+            🌟 كافة المنظومة (8 قطاعات)
           </button>
           <button
             onClick={() => setActiveTab('library')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
               activeTab === 'library'
                 ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30 scale-105'
                 : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
             }`}
           >
-            📚 المكتبة والموسوعات والصيغ
+            📚 المكتبة والموسوعات
           </button>
           <button
             onClick={() => setActiveTab('lawyers')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
               activeTab === 'lawyers'
                 ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 scale-105'
                 : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
@@ -242,7 +246,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </button>
           <button
             onClick={() => setActiveTab('calculators')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
               activeTab === 'calculators'
                 ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30 scale-105'
                 : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
@@ -252,7 +256,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </button>
           <button
             onClick={() => setActiveTab('citizens')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
               activeTab === 'citizens'
                 ? 'bg-teal-600 text-white shadow-lg shadow-teal-600/30 scale-105'
                 : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
@@ -262,43 +266,43 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </button>
           <button
             onClick={() => setActiveTab('gulf')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
               activeTab === 'gulf'
                 ? 'bg-green-700 text-white shadow-lg shadow-green-700/30 scale-105'
                 : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
             }`}
           >
-            🌍 دول الخليج العربي الستة
+            🌍 دول الخليج
           </button>
           <button
             onClick={() => setActiveTab('students')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
               activeTab === 'students'
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105'
                 : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
             }`}
           >
-            🎓 الأكاديمية والطلاب
+            🎓 طلاب الحقوق
           </button>
           <button
             onClick={() => setActiveTab('corporate')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
               activeTab === 'corporate'
                 ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30 scale-105'
                 : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
             }`}
           >
-            🏢 الشركات والاستثمار
+            🏢 الشركات
           </button>
           <button
             onClick={() => setActiveTab('economic')}
-            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
               activeTab === 'economic'
                 ? 'bg-yellow-500 text-slate-950 shadow-lg shadow-yellow-500/30 scale-105'
                 : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
             }`}
           >
-            📈 الاقتصاد والأسواق والذهب
+            📈 الاقتصاد والذهب
           </button>
         </div>
 

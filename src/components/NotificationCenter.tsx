@@ -226,7 +226,7 @@ export default function NotificationCenter() {
         onClick={() => setOpen(v => !v)}
         aria-label="إشعارات المنصة"
         title="الجديد على المنصة"
-        className="fixed bottom-[88px] left-5 z-[9889] w-12 h-12 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+        className="fixed bottom-[68px] sm:bottom-[88px] left-4 sm:left-5 z-[9889] w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all hover:scale-110 active:scale-95"
         style={{
           background: 'rgba(15,23,42,.92)',
           border: '1px solid rgba(99,102,241,.45)',
@@ -234,10 +234,10 @@ export default function NotificationCenter() {
           backdropFilter: 'blur(10px)',
         }}
       >
-        <Bell className={'w-5 h-5 ' + (count > 0 ? 'text-indigo-300' : 'text-slate-400')} />
+        <Bell className={'w-4 h-4 sm:w-5 sm:h-5 ' + (count > 0 ? 'text-indigo-300' : 'text-slate-400')} />
         {count > 0 && (
           <>
-            <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] px-1 rounded-full bg-emerald-500 text-white text-[10px] font-black flex items-center justify-center border-2 border-slate-900">
+            <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-[16px] sm:min-w-[18px] sm:h-[18px] px-1 rounded-full bg-emerald-500 text-white text-[9px] sm:text-[10px] font-black flex items-center justify-center border-2 border-slate-900">
               {count > 9 ? '٩+' : count.toLocaleString('ar-EG')}
             </span>
             <span className="absolute inset-0 rounded-full animate-ping pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(16,185,129,.4), transparent 70%)' }} />

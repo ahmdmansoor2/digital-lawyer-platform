@@ -347,13 +347,13 @@ export default function AIAdvisor({ isOpen, onClose }: AIAdvisorProps = {}) {
         data-ai-advisor
         aria-label="المستشار الذكي"
         title="المستشار الذكي — اسأل من محتوى المنصة"
-        className="fixed bottom-5 left-5 z-[9890] w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 group"
+        className="fixed bottom-4 sm:bottom-5 left-4 sm:left-5 z-[9890] w-11 h-11 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 group"
         style={{
           background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
-          boxShadow: '0 10px 30px rgba(99,102,241,.45)',
+          boxShadow: '0 8px 24px rgba(99,102,241,.45)',
         }}
       >
-        <Sparkles className="w-6 h-6 text-white" />
+        <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
         <span
           className="absolute inset-0 rounded-full opacity-60 animate-ping pointer-events-none"
           style={{ background: 'radial-gradient(circle, rgba(139,92,246,.55), transparent 65%)' }}
