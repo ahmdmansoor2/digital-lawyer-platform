@@ -609,41 +609,7 @@
   function mount() {
     document.body.appendChild(trigger);
 
-  // ── Build Floating Navigation Group on subpages ──
-  var currentPath = window.location.pathname;
-  if (currentPath !== '/' && currentPath !== '/index.html' && currentPath !== '') {
-    var navWrap = document.createElement('div');
-    navWrap.id = 'global-nav-floating-wrap';
 
-    // 1. Previous Page Button
-    var prevBtn = document.createElement('button');
-    prevBtn.id = 'global-prev-page-trigger';
-    prevBtn.className = 'global-nav-pill-btn';
-    prevBtn.setAttribute('aria-label', 'الرجوع للصفحة السابقة');
-    prevBtn.setAttribute('title', 'الرجوع للصفحة السابقة');
-    prevBtn.innerHTML = '<span>↩️ رجوع</span>';
-    prevBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = '/';
-      }
-    });
-
-    // 2. Home Button
-    var homeBtn = document.createElement('a');
-    homeBtn.id = 'global-home-trigger';
-    homeBtn.className = 'global-nav-pill-btn';
-    homeBtn.href = '/';
-    homeBtn.setAttribute('aria-label', 'العودة للرئيسية');
-    homeBtn.setAttribute('title', 'العودة للصفحة الرئيسية للمنصة');
-    homeBtn.innerHTML = '<span>🏠 الرئيسية</span>';
-
-    navWrap.appendChild(prevBtn);
-    navWrap.appendChild(homeBtn);
-    document.body.appendChild(navWrap);
-  }
 
     document.body.appendChild(backdrop);
     document.body.appendChild(drawer);
