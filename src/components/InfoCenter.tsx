@@ -157,9 +157,9 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </div>
 
           {/* Hero Title */}
-          <h1 className="text-2xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-[1.3] sm:leading-[1.2] mb-4 sm:mb-6">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl mx-auto leading-[1.3] sm:leading-[1.2] mb-4 sm:mb-6">
             منظومة العدالة القانونية <br className="hidden sm:block" />
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-200 to-emerald-300 drop-shadow-md">
+            <span className="text-amber-400 font-black inline-block mt-1">
               لمصر والوطن العربي
             </span>
           </h1>

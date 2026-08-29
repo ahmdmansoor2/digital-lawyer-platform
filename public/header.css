@@ -587,21 +587,27 @@ aside[role="navigation"] .overflow-y-auto::-webkit-scrollbar-thumb:hover {
   .article-card p, .topic-page-body p, .full-sec p { font-size: 16px !important; line-height: 1.95 !important; }
 }
 
-/* 7. إبراز النصوص البيضاء والعناوين (Crisp White Typography) */
-.text-white,
+/* 7. إبراز النصوص البيضاء والعناوين (Ultra-Crisp Razor-Sharp Typography) */
 h1, h2, h3, h4,
 .article-card h1, .article-card h2, .article-card h3,
 .topic-page-head h1, .topic-page-body h2, .topic-page-body h3,
 .hero h1, .section-title {
   color: #ffffff !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65) !important;
+  font-weight: 900 !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.text-white {
+  color: #ffffff !important;
+  -webkit-font-smoothing: antialiased;
 }
 
 .text-transparent,
 [class*="text-transparent"],
 [class*="bg-clip-text"] {
   color: transparent !important;
-  text-shadow: none !important;
 }
 
 .article-card strong,
@@ -609,8 +615,8 @@ h1, h2, h3, h4,
 .full-sec strong {
   color: #ffffff !important;
   font-weight: 800 !important;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
 }
+
 
 
 
