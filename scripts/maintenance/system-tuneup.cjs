@@ -1,6 +1,6 @@
 /**
  * 🛠️ سكربت الصيانة الذاتي الشامل وفحص اللابتوب (Laptop System Tuneup & Maintenance)
- * النسخة المطورة v2.0 — تشمل فحص العتاد، تنظيف الكاش، فحص البرامج، ومسح مخلفات الذكاء الاصطناعي وبقايا التطبيقات المحذوفة
+ * النسخة المطورة v2.1 — تشمل فحص العتاد، تنظيف الكاش، فحص البرامج، تطهير مخلفات الذكاء الاصطناعي، وتنظيف إضافات المتصفح الضارة
  * يُنفذ تلقائياً عبر مهارة laptop-optimizer
  */
 
@@ -115,8 +115,37 @@ if (aiCleanedCount === 0) {
   console.log('   ✅ لا توجد أي بقايا ميتة لبرامج الذكاء الاصطناعي المحذوفة.');
 }
 
-// 5. Desktop Orphaned Shortcuts Check
-console.log('\n🖥️ 5. فحص اختصارات سطح المكتب وإزالة الروابط المعطلة...');
+// 5. Browser Cleaning (Chrome Junk Extensions & Orphaned Addons)
+console.log('\n🌐 5. فحص وتطهير متصفح Google Chrome من إضافات البرامج المحذوفة...');
+const chromeUserData = path.join(userHome, 'AppData', 'Local', 'Google', 'Chrome', 'User Data');
+const junkChromeExtIds = [
+  'imgpenhngnbnmhdkpdfnfhdpmfgmihdn', // IObit Surfing Protection
+  'fldmhceldgbpfpkbgopacenieobmligc', // Kimi WebBridge
+  'cecngibhkljoiafhjfmcgbmikfogdiko'  // Manus AI Browser Operator
+];
+
+let chromeCleanedCount = 0;
+if (fs.existsSync(chromeUserData)) {
+  ['Default', 'Profile 1', 'Profile 2', 'Profile 3', 'Profile 4'].forEach(p => {
+    junkChromeExtIds.forEach(extId => {
+      const extFolder = path.join(chromeUserData, p, 'Extensions', extId);
+      if (fs.existsSync(extFolder)) {
+        try {
+          execSync(`powershell -NoProfile -Command "Remove-Item -LiteralPath '${extFolder}' -Recurse -Force -ErrorAction SilentlyContinue"`);
+          chromeCleanedCount++;
+        } catch (e) {}
+      }
+    });
+  });
+}
+if (chromeCleanedCount > 0) {
+  console.log(`   🗑️ تم تنظيف ${chromeCleanedCount} إضافات متصفح زائدة.`);
+} else {
+  console.log('   ✅ متصفح Chrome نظيف وخالٍ من أي إضافات مخلفة.');
+}
+
+// 6. Desktop Orphaned Shortcuts Check
+console.log('\n🖥️ 6. فحص اختصارات سطح المكتب وإزالة الروابط المعطلة...');
 const desktopNewFolder = path.join(userHome, 'Desktop', 'مجلد جديد');
 if (fs.existsSync(desktopNewFolder)) {
   const claudeLnk = path.join(desktopNewFolder, 'Claude.lnk');
@@ -129,8 +158,8 @@ if (fs.existsSync(desktopNewFolder)) {
 }
 console.log('   ✅ اختصارات سطح المكتب مرتبة ومطابقة للتطبيقات النشطة.');
 
-// 6. Temporary Cache Files Cleanup
-console.log('\n🚀 6. تنظيف مخلفات النظام المؤقتة وكاش الحزم...');
+// 7. Temporary Cache Files Cleanup
+console.log('\n🚀 7. تنظيف مخلفات النظام المؤقتة وكاش الحزم...');
 try {
   const tempCmd = `powershell -NoProfile -Command "
 Get-ChildItem 'C:\\Windows\\Temp', '$env:LOCALAPPDATA\\Temp', 'C:\\Windows\\SoftwareDistribution\\Download' -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object {
@@ -151,8 +180,8 @@ try {
   console.log('   ✅ تم تنظيف كاش حزم NPM.');
 } catch (e) {}
 
-// 7. Hardware Device Manager Errors Check
-console.log('\n⚙️ 7. فحص سلامة التعريفات (Device Manager)...');
+// 8. Hardware Device Manager Errors Check
+console.log('\n⚙️ 8. فحص سلامة التعريفات (Device Manager)...');
 try {
   const prob = execSync('powershell -NoProfile -Command "Get-CimInstance Win32_PnPEntity -Filter \'ConfigManagerErrorCode <> 0\' -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Name"', { timeout: 8000 }).toString().trim();
   if (!prob) {
@@ -164,8 +193,8 @@ try {
   console.log('   ✅ كافة تعريفات قطع الهاردوير تعمل بدون أي أخطاء (0 errors).');
 }
 
-// 8. Security and Antivirus Check
-console.log('\n🛡️ 8. فحص جدران الحماية وبرامج مكافحة الفيروسات...');
+// 9. Security and Antivirus Check
+console.log('\n🛡️ 9. فحص جدران الحماية وبرامج مكافحة الفيروسات...');
 try {
   const av = execSync('powershell -NoProfile -Command "Get-CimInstance -Namespace root/SecurityCenter2 -ClassName AntiVirusProduct -ErrorAction SilentlyContinue | Select-Object -ExpandProperty displayName"', { timeout: 6000 }).toString().trim();
   console.log(`   ✅ الحماية نشطة: ${av.replace(/\r?\n/g, ' + ')}`);
