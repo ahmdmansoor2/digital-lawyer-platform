@@ -1,11 +1,11 @@
 {
   "date": "2026-08-29",
-  "generatedAt": "2026-08-29T07:23:17.036Z",
-  "status": "warn",
+  "generatedAt": "2026-08-29T17:07:45.904Z",
+  "status": "error",
   "blogArticles": 158,
   "fbPosts": 0,
   "reels": 0,
-  "ghRuns": null,
+  "ghRuns": 18,
   "checks": [
     {
       "name": "site_root",
@@ -40,7 +40,7 @@
     {
       "name": "github_runs",
       "label": "GitHub: نتائج تشغيل الـ workflows (آخر 24 ساعة)",
-      "status": "warn",
+      "status": "error",
       "findings": 1
     },
     {
