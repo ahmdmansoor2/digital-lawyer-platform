@@ -118,14 +118,22 @@
     }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
     .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 900; line-height: 1.2; margin-bottom: 20px;
-      background: linear-gradient(135deg, #e2e8f0 0%, #a5b4fc 50%, #c084fc 100%);
-      -webkit-background-clip: text; background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 18px;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      text-shadow: none !important;
     }
     .hero p {
-      font-size: 17px; color: var(--muted); max-width: 600px; margin: 0 auto; font-weight: 600;
+      font-size: 16px;
+      color: #cbd5e1 !important;
+      max-width: 700px;
+      margin: 0 auto 24px;
+      font-weight: 600;
+      line-height: 1.8;
     }
 
     /* ── CARDS ── */
@@ -156,7 +164,7 @@
       font-size: 26px;
       box-shadow: 0 4px 20px rgba(99,102,241,0.3);
     }
-    .vision-content h2 { font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 10px; }
+    .vision-content h2 { font-size: 22px; font-weight: 900; color: #ffffff !important; margin-bottom: 10px; }
     .vision-content p { font-size: 14px; color: var(--muted); line-height: 1.8; }
     .vision-content strong { color: var(--emerald); font-weight: 800; }
 

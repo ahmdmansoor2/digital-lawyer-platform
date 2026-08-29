@@ -83,8 +83,24 @@
 
     .hero { max-width: 900px; margin: 0 auto; padding: 50px 24px 24px; text-align: center; }
     .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: 999px; background: rgba(6,182,212,0.12); border: 1px solid rgba(6,182,212,0.3); color: #67e8f9; font-size: 11px; font-weight: 800; margin-bottom: 20px; }
-    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.25; margin-bottom: 16px; background: linear-gradient(135deg, #e2e8f0 0%, #a5b4fc 50%, #67e8f9 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero p { font-size: 16px; color: var(--muted); max-width: 680px; margin: 0 auto; font-weight: 600; line-height: 1.8; }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 18px;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      text-shadow: none !important;
+    }
+    .hero p {
+      font-size: 16px;
+      color: #cbd5e1 !important;
+      max-width: 700px;
+      margin: 0 auto 24px;
+      font-weight: 600;
+      line-height: 1.8;
+    }
     
     .hero-stats { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 24px; }
     .stat-pill { background: var(--card-bg); border: 1px solid var(--border); padding: 8px 20px; border-radius: 14px; display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 800; color: #fff; }
