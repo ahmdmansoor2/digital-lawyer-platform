@@ -597,6 +597,13 @@ h1, h2, h3, h4,
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.65) !important;
 }
 
+.text-transparent,
+[class*="text-transparent"],
+[class*="bg-clip-text"] {
+  color: transparent !important;
+  text-shadow: none !important;
+}
+
 .article-card strong,
 .topic-page-body strong,
 .full-sec strong {
@@ -604,6 +611,7 @@ h1, h2, h3, h4,
   font-weight: 800 !important;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6) !important;
 }
+
 
 
 
