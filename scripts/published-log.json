@@ -1920,6 +1920,42 @@
       ],
       "words": 2048,
       "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "إجراءات ورسوم التصالح في مخالفات البناء في محافظة الجيزة 2024",
+      "date": "2026-08-29",
+      "slug": "giza-building-reconciliation-law-egypt",
+      "url": "https://mohamidigital.online/blog/giza-building-reconciliation-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/giza-building-reconciliation-law-egypt.jpg",
+      "tags": [
+        "عقارات وبناء"
+      ],
+      "words": 1508,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "عقوبة السب والقذف والتشهير عبر مواقع التواصل الاجتماعي في مصر",
+      "date": "2026-08-29",
+      "slug": "cyberbullying-defamation-law-egypt",
+      "url": "https://mohamidigital.online/blog/cyberbullying-defamation-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cyberbullying-defamation-law-egypt.jpg",
+      "tags": [
+        "جرائم إلكترونية"
+      ],
+      "words": 1932,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "قضايا الشيك بدون رصيد في القانون المصري: الأحكام وإجراءات الدفاع",
+      "date": "2026-08-29",
+      "slug": "bounced-check-laws-egypt",
+      "url": "https://mohamidigital.online/blog/bounced-check-laws-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/bounced-check-laws-egypt.jpg",
+      "tags": [
+        "قانون تجاري"
+      ],
+      "words": 2334,
+      "model": "gemini-3.6-flash"
     }
   ]
 }
