@@ -2231,6 +2231,27 @@
       "duration": "1د 2ث",
       "size": 25591612,
       "publishedAt": "2026-08-26T13:15:23.184Z"
+    },
+    {
+      "topicId": "trend-giza-building-reconciliation-law-egypt",
+      "title": "إجراءات ورسوم التصالح في مخالفات البناء في محافظة الجيزة 2024",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#عقارات وبناء",
+        "#التصالح في مخالفات البناء",
+        "#محافظة الجيزة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-giza-building-reconciliation-law-egypt.mp4",
+      "videoId": "926733460499495",
+      "permalink": "https://www.facebook.com/reel/926733460499495",
+      "source": "trending-topics.json",
+      "duration": "1د 4ث",
+      "size": 24090231,
+      "publishedAt": "2026-08-29T18:25:08.708Z"
     }
   ]
 }
