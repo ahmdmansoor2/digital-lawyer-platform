@@ -587,38 +587,32 @@ aside[role="navigation"] .overflow-y-auto::-webkit-scrollbar-thumb:hover {
   .article-card p, .topic-page-body p, .full-sec p { font-size: 16px !important; line-height: 1.95 !important; }
 }
 
-/* 7. إبراز النصوص البيضاء والعناوين (Ultra-Crisp Razor-Sharp Typography) */
+
+/* ══════════════════════════════════════════════════════════════════════
+   UNIFIED GLASSMORPHIC HEADINGS (تأثير زجاجي فخم وواضح مريح للعين)
+   ══════════════════════════════════════════════════════════════════════ */
 h1, h2, h3, h4,
+.hero h1, .hero h2,
+.section-title,
 .article-card h1, .article-card h2, .article-card h3,
-.topic-page-head h1, .topic-page-body h2, .topic-page-body h3,
-.hero h1, .section-title {
+.topic-page-head h1, .topic-page-body h2, .topic-page-body h3 {
   color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
   font-weight: 900 !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.75), 0 0 25px rgba(99, 102, 241, 0.25) !important;
 }
 
 .text-white {
   color: #ffffff !important;
-  -webkit-font-smoothing: antialiased;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
-.text-transparent,
-[class*="text-transparent"],
-[class*="bg-clip-text"] {
-  color: transparent !important;
+.hero p, .sub-title, .section-desc {
+  color: #cbd5e1 !important;
+  font-weight: 500;
+  line-height: 1.8;
 }
-
-.article-card strong,
-.topic-page-body strong,
-.full-sec strong {
-  color: #ffffff !important;
-  font-weight: 800 !important;
-}
-
-
-
-
-
-

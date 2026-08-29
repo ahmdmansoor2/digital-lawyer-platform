@@ -48,7 +48,7 @@
     /* NAVBAR */
     .uh-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(15,23,42,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); padding: 0 20px; }
     .uh-nav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 8px; }
-    .uh-logo { font-size: 1.1rem; font-weight: 900; background: linear-gradient(135deg, #818cf8, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+    .uh-logo { font-size: 1.1rem; font-weight: 900; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; background: none !important; text-decoration: none; }
     .uh-links { display: flex; align-items: center; gap: 2px; }
     .uh-link { color: #94a3b8; text-decoration: none; font-size: 0.78rem; font-weight: 600; padding: 6px 10px; border-radius: 8px; transition: all 0.2s; white-space: nowrap; }
     .uh-link:hover { background: rgba(99,102,241,0.12); color: #e2e8f0; }
@@ -59,9 +59,28 @@
     /* HERO */
     .hero { padding: 110px 20px 30px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.15) 0%, transparent 70%); }
     .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3); color: var(--indigo-light); font-size: 0.78rem; font-weight: 700; padding: 5px 14px; border-radius: 99px; margin-bottom: 16px; }
-    .hero h1 { font-size: clamp(1.6rem, 4vw, 2.7rem); font-weight: 900; line-height: 1.25; margin-bottom: 12px; }
-    .hero h1 span { background: linear-gradient(135deg, var(--indigo-light), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero p { font-size: 0.95rem; color: var(--muted); max-width: 640px; margin: 0 auto 24px; }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 16px;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.75), 0 0 25px rgba(99, 102, 241, 0.25) !important;
+    }
+    .hero h1 span {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      background: none !important;
+    }
+    .hero p {
+      font-size: 16px;
+      color: #cbd5e1 !important;
+      max-width: 760px;
+      margin: 0 auto 24px;
+      line-height: 1.8; max-width: 640px; margin: 0 auto 24px; 
+    }
 
     /* MAIN CONTAINER */
     .main-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
