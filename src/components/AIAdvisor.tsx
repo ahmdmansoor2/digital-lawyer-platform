@@ -51,15 +51,20 @@ function bumpCount(): number {
 interface AIAdvisorProps {
   isOpen?: boolean;
   onClose?: () => void;
+  onOpen?: () => void;
 }
 
-export default function AIAdvisor({ isOpen, onClose }: AIAdvisorProps = {}) {
+export default function AIAdvisor({ isOpen, onClose, onOpen }: AIAdvisorProps = {}) {
   const [internalOpen, setInternalOpen] = useState(false);
   const open = isOpen !== undefined ? isOpen : internalOpen;
   
   const setOpen = (val: boolean | ((prev: boolean) => boolean)) => {
     const next = typeof val === 'function' ? val(open) : val;
-    if (!next && onClose) onClose();
+    if (next) {
+      if (onOpen) onOpen();
+    } else {
+      if (onClose) onClose();
+    }
     setInternalOpen(next);
   };
 
@@ -90,7 +95,11 @@ export default function AIAdvisor({ isOpen, onClose }: AIAdvisorProps = {}) {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
     const onDown = (e: PointerEvent) => {
-      if (panelRef.current && !panelRef.current.contains(e.target as Node)) setOpen(false);
+      const target = e.target as Node;
+      if (panelRef.current && !panelRef.current.contains(target)) {
+        if ((target as HTMLElement).closest?.('[data-ai-advisor]')) return;
+        setOpen(false);
+      }
     };
     window.addEventListener('keydown', onKey);
     const t = setTimeout(() => document.addEventListener('pointerdown', onDown), 0);

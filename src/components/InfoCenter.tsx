@@ -131,6 +131,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
       {/* Global AI Advisor Modal */}
       <AIAdvisor 
         isOpen={isAIAdvisorOpen} 
+        onOpen={() => setIsAIAdvisorOpen(true)}
         onClose={() => setIsAIAdvisorOpen(false)} 
       />
 
@@ -212,98 +213,202 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           <HeroSearchBar onOpenFullSearch={() => setIsSearchModalOpen(true)} />
         </div>
 
-        {/* Quick Filter Navigation Tabs (Swipeable on Mobile) */}
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-2.5 px-2 -mx-3 sm:mx-0 sm:px-0 sm:flex-wrap sm:justify-center border-t border-slate-800/80">
-          <button
-            onClick={() => setActiveTab('all')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
-              activeTab === 'all'
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 scale-105'
-                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            🌟 كافة المنظومة (8 قطاعات)
-          </button>
-          <button
-            onClick={() => setActiveTab('library')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
-              activeTab === 'library'
-                ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30 scale-105'
-                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            📚 المكتبة والموسوعات
-          </button>
-          <button
-            onClick={() => setActiveTab('lawyers')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
-              activeTab === 'lawyers'
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30 scale-105'
-                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            👨‍⚖️ المحامين والمكاتب
-          </button>
-          <button
-            onClick={() => setActiveTab('calculators')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
-              activeTab === 'calculators'
-                ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30 scale-105'
-                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            🧮 الحاسبات القانونية
-          </button>
-          <button
-            onClick={() => setActiveTab('citizens')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
-              activeTab === 'citizens'
-                ? 'bg-teal-600 text-white shadow-lg shadow-teal-600/30 scale-105'
-                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            👥 المواطنين والعدالة
-          </button>
-          <button
-            onClick={() => setActiveTab('gulf')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
-              activeTab === 'gulf'
-                ? 'bg-green-700 text-white shadow-lg shadow-green-700/30 scale-105'
-                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            🌍 دول الخليج
-          </button>
-          <button
-            onClick={() => setActiveTab('students')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
-              activeTab === 'students'
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30 scale-105'
-                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            🎓 طلاب الحقوق
-          </button>
-          <button
-            onClick={() => setActiveTab('corporate')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
-              activeTab === 'corporate'
-                ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30 scale-105'
-                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            🏢 الشركات
-          </button>
-          <button
-            onClick={() => setActiveTab('economic')}
-            className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
-              activeTab === 'economic'
-                ? 'bg-yellow-500 text-slate-950 shadow-lg shadow-yellow-500/30 scale-105'
-                : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            📈 الاقتصاد والذهب
-          </button>
+        {/* Quick Filter Navigation Tabs (Mobile swipe track / Desktop 2-tier balanced dock) */}
+        <div className="max-w-5xl mx-auto mt-2">
+          {/* Mobile view: Swipeable track */}
+          <div className="flex sm:hidden items-center gap-2 overflow-x-auto no-scrollbar py-2 px-1">
+            <button
+              onClick={() => setActiveTab('all')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
+                activeTab === 'all'
+                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              🌟 كافة المنظومة
+            </button>
+            <button
+              onClick={() => setActiveTab('library')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
+                activeTab === 'library'
+                  ? 'bg-purple-600 text-white shadow-lg shadow-purple-600/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              📚 المكتبة والموسوعات
+            </button>
+            <button
+              onClick={() => setActiveTab('lawyers')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
+                activeTab === 'lawyers'
+                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              👨‍⚖️ المحامين والمكاتب
+            </button>
+            <button
+              onClick={() => setActiveTab('calculators')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
+                activeTab === 'calculators'
+                  ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              🧮 الحاسبات القانونية
+            </button>
+            <button
+              onClick={() => setActiveTab('citizens')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
+                activeTab === 'citizens'
+                  ? 'bg-teal-600 text-white shadow-lg shadow-teal-600/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              👥 المواطنين والعدالة
+            </button>
+            <button
+              onClick={() => setActiveTab('gulf')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
+                activeTab === 'gulf'
+                  ? 'bg-green-700 text-white shadow-lg shadow-green-700/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              🌍 دول الخليج
+            </button>
+            <button
+              onClick={() => setActiveTab('students')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
+                activeTab === 'students'
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              🎓 طلاب الحقوق
+            </button>
+            <button
+              onClick={() => setActiveTab('corporate')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
+                activeTab === 'corporate'
+                  ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              🏢 الشركات
+            </button>
+            <button
+              onClick={() => setActiveTab('economic')}
+              className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 whitespace-nowrap ${
+                activeTab === 'economic'
+                  ? 'bg-yellow-500 text-slate-950 shadow-lg shadow-yellow-500/30'
+                  : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
+              }`}
+            >
+              📈 الاقتصاد والذهب
+            </button>
+          </div>
+
+          {/* Desktop & Tablet View: Clean Balanced 2-Tier Glassmorphic Dock */}
+          <div className="hidden sm:block p-2 rounded-2xl bg-slate-900/70 border border-white/10 shadow-2xl backdrop-blur-xl">
+            {/* Top Tier (5 Core Sectors) */}
+            <div className="grid grid-cols-5 gap-1.5 mb-1.5">
+              <button
+                onClick={() => setActiveTab('all')}
+                className={`px-3 py-2 rounded-xl text-xs lg:text-sm font-bold transition-all cursor-pointer text-center truncate ${
+                  activeTab === 'all'
+                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/40 font-black scale-[1.02]'
+                    : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-700/60'
+                }`}
+              >
+                🌟 كافة المنظومة
+              </button>
+              <button
+                onClick={() => setActiveTab('library')}
+                className={`px-3 py-2 rounded-xl text-xs lg:text-sm font-bold transition-all cursor-pointer text-center truncate ${
+                  activeTab === 'library'
+                    ? 'bg-purple-600 text-white shadow-md shadow-purple-600/40 font-black scale-[1.02]'
+                    : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-700/60'
+                }`}
+              >
+                📚 المكتبة والموسوعات
+              </button>
+              <button
+                onClick={() => setActiveTab('lawyers')}
+                className={`px-3 py-2 rounded-xl text-xs lg:text-sm font-bold transition-all cursor-pointer text-center truncate ${
+                  activeTab === 'lawyers'
+                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/40 font-black scale-[1.02]'
+                    : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-700/60'
+                }`}
+              >
+                👨‍⚖️ المحامين والمكاتب
+              </button>
+              <button
+                onClick={() => setActiveTab('calculators')}
+                className={`px-3 py-2 rounded-xl text-xs lg:text-sm font-bold transition-all cursor-pointer text-center truncate ${
+                  activeTab === 'calculators'
+                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/40 font-black scale-[1.02]'
+                    : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-700/60'
+                }`}
+              >
+                🧮 الحاسبات القانونية
+              </button>
+              <button
+                onClick={() => setActiveTab('citizens')}
+                className={`px-3 py-2 rounded-xl text-xs lg:text-sm font-bold transition-all cursor-pointer text-center truncate ${
+                  activeTab === 'citizens'
+                    ? 'bg-teal-600 text-white shadow-md shadow-teal-600/40 font-black scale-[1.02]'
+                    : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-700/60'
+                }`}
+              >
+                👥 المواطنين والعدالة
+              </button>
+            </div>
+
+            {/* Bottom Tier (4 Specialized Sectors Centered) */}
+            <div className="grid grid-cols-4 gap-1.5 max-w-3xl mx-auto">
+              <button
+                onClick={() => setActiveTab('gulf')}
+                className={`px-3 py-2 rounded-xl text-xs lg:text-sm font-bold transition-all cursor-pointer text-center truncate ${
+                  activeTab === 'gulf'
+                    ? 'bg-green-700 text-white shadow-md shadow-green-700/40 font-black scale-[1.02]'
+                    : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-700/60'
+                }`}
+              >
+                🌍 دول الخليج
+              </button>
+              <button
+                onClick={() => setActiveTab('students')}
+                className={`px-3 py-2 rounded-xl text-xs lg:text-sm font-bold transition-all cursor-pointer text-center truncate ${
+                  activeTab === 'students'
+                    ? 'bg-blue-600 text-white shadow-md shadow-blue-600/40 font-black scale-[1.02]'
+                    : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-700/60'
+                }`}
+              >
+                🎓 طلاب الحقوق
+              </button>
+              <button
+                onClick={() => setActiveTab('corporate')}
+                className={`px-3 py-2 rounded-xl text-xs lg:text-sm font-bold transition-all cursor-pointer text-center truncate ${
+                  activeTab === 'corporate'
+                    ? 'bg-amber-600 text-white shadow-md shadow-amber-600/40 font-black scale-[1.02]'
+                    : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-700/60'
+                }`}
+              >
+                🏢 الشركات والاستثمار
+              </button>
+              <button
+                onClick={() => setActiveTab('economic')}
+                className={`px-3 py-2 rounded-xl text-xs lg:text-sm font-bold transition-all cursor-pointer text-center truncate ${
+                  activeTab === 'economic'
+                    ? 'bg-yellow-500 text-slate-950 shadow-md shadow-yellow-500/40 font-black scale-[1.02]'
+                    : 'bg-slate-800/60 text-slate-300 hover:text-white hover:bg-slate-700/60'
+                }`}
+              >
+                📈 الاقتصاد والذهب
+              </button>
+            </div>
+          </div>
         </div>
 
       </section>
