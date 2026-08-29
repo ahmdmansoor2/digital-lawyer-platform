@@ -1,0 +1,8 @@
+file 'D:/قانوني 7/scripts/cinematic-dialogue-engine/output/realistic_shots/rendered_shot_1.mp4'
+file 'D:/قانوني 7/scripts/cinematic-dialogue-engine/output/realistic_shots/rendered_shot_2.mp4'
+file 'D:/قانوني 7/scripts/cinematic-dialogue-engine/output/realistic_shots/rendered_shot_3.mp4'
+file 'D:/قانوني 7/scripts/cinematic-dialogue-engine/output/realistic_shots/rendered_shot_4.mp4'
+file 'D:/قانوني 7/scripts/cinematic-dialogue-engine/output/realistic_shots/rendered_shot_5.mp4'
+file 'D:/قانوني 7/scripts/cinematic-dialogue-engine/output/realistic_shots/rendered_shot_6.mp4'
+file 'D:/قانوني 7/scripts/cinematic-dialogue-engine/output/realistic_shots/rendered_shot_7.mp4'
+file 'D:/قانوني 7/scripts/cinematic-dialogue-engine/output/realistic_shots/rendered_shot_8.mp4'

@@ -1,0 +1,19 @@
+[Script Info]
+Title: Cinematic Legal Dialogue
+ScriptType: v4.00+
+WrapStyle: 0
+ScaledBorderAndShadow: yes
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: CharacterTag,Cairo,46,&H00FFFFFF,&H000000FF,&H00000000,&H90000000,-1,0,0,0,100,100,0,0,3,4,4,8,40,40,240,1
+Style: BannerTitle,Cairo,58,&H0020E0FF,&H000000FF,&H00000000,&HA0000000,-1,0,0,0,100,100,0,0,3,4,4,8,40,40,320,1
+Style: DialogueBox,Cairo,52,&H00FFFFFF,&H000000FF,&H00000000,&HB0000000,-1,0,0,0,100,100,0,0,3,5,6,2,60,60,260,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:16.06,CharacterTag,,0,0,0,,{\c&H00E0B020}⚖️ المستشار القانوني
+Dialogue: 0,0:00:00.00,0:00:16.06,BannerTitle,,0,0,0,,محكمة النقض: ينتفي ركن التسليم
+Dialogue: 0,0:00:00.00,0:00:16.06,DialogueBox,,0,0,0,,أولاً اهدى خالص واطمن. قضاء محكمة النقض المصرية مستقر تماماً: توقيع إيصال الأمانة على بياض بيسقط ركن التسليم، وبكده بتنتفي جريمة خيانة الأمانة وتتحول لنزاع مدني.

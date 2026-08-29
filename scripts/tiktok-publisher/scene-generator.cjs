@@ -29,11 +29,9 @@ if (!GEMINI_API_KEY) {
 const ai = GEMINI_API_KEY ? new GoogleGenAI({ apiKey: GEMINI_API_KEY }) : null;
 
 const TEXT_MODELS = [
-  process.env.TEXT_MODEL || 'gemini-2.5-pro',
+  'gemini-1.5-flash',
+  'gemini-2.0-flash',
   'gemini-1.5-pro',
-  'gemini-2.5-flash',
-  'gemini-3.5-flash',
-  'gemini-3-flash-preview',
   'gemini-flash-lite-latest',
 ];
 let textModelIdx = 0;

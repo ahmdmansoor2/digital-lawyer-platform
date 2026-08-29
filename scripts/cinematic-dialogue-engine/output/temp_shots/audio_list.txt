@@ -1,0 +1,5 @@
+file 'D:/قانوني 7/scripts/cinematic-dialogue-engine/output/temp_shots/shot_1_audio.mp3'
+file 'D:/قانوني 7/scripts/cinematic-dialogue-engine/output/temp_shots/shot_2_audio.mp3'
+file 'D:/قانوني 7/scripts/cinematic-dialogue-engine/output/temp_shots/shot_3_audio.mp3'
+file 'D:/قانوني 7/scripts/cinematic-dialogue-engine/output/temp_shots/shot_4_audio.mp3'
+file 'D:/قانوني 7/scripts/cinematic-dialogue-engine/output/temp_shots/shot_5_audio.mp3'
