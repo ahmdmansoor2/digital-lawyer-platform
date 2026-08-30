@@ -23,71 +23,131 @@
         {
           "source": "**",
           "headers": [
-            { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-            { "key": "X-Content-Type-Options", "value": "nosniff" },
-            { "key": "Access-Control-Allow-Origin", "value": "*" },
-            { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-            { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googleservices.com https://*.googlesyndication.com https://*.doubleclick.net https://www.google.com https://www.gstatic.com https://apis.google.com https://*.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https: https://*.googleusercontent.com https://*.gstatic.com; connect-src 'self' https://open.er-api.com https://api.gold-api.com https://*.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com wss://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://*.doubleclick.net https://pagead2.googlesyndication.com https://*.google.com; frame-src 'self' blob: data: https://*.googlesyndication.com https://*.doubleclick.net https://www.google.com https://*.firebaseapp.com https://accounts.google.com https://*.google.com; object-src 'self' blob: data:; base-uri 'self'; form-action 'self' https://accounts.google.com; frame-ancestors 'self'; upgrade-insecure-requests" },
-            { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-            { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()" }
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Access-Control-Allow-Origin",
+              "value": "*"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=63072000; includeSubDomains; preload"
+            },
+            {
+              "key": "Content-Security-Policy",
+              "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googleservices.com https://*.googlesyndication.com https://*.doubleclick.net https://www.google.com https://www.gstatic.com https://apis.google.com https://*.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https: https://*.googleusercontent.com https://*.gstatic.com; connect-src 'self' https://open.er-api.com https://api.gold-api.com https://*.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com wss://*.firebaseio.com https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://*.doubleclick.net https://pagead2.googlesyndication.com https://*.google.com; frame-src 'self' blob: data: https://*.googlesyndication.com https://*.doubleclick.net https://www.google.com https://*.firebaseapp.com https://accounts.google.com https://*.google.com; object-src 'self' blob: data:; base-uri 'self'; form-action 'self' https://accounts.google.com; frame-ancestors 'self'; upgrade-insecure-requests"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "strict-origin-when-cross-origin"
+            },
+            {
+              "key": "Permissions-Policy",
+              "value": "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+            }
           ]
         },
         {
           "source": "/assets/**",
           "headers": [
-            { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=31536000, immutable"
+            }
           ]
         },
         {
           "source": "/index.html",
           "headers": [
-            { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=300, stale-while-revalidate=86400"
+            }
           ]
         },
         {
           "source": "/",
           "headers": [
-            { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=300, stale-while-revalidate=86400"
+            }
           ]
         },
         {
           "source": "**.html",
           "headers": [
-            { "key": "Cache-Control", "value": "no-cache, must-revalidate" }
-          ]
-        },
-        {
-          "source": "/sidebar.js",
-          "headers": [
-            { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=1800, stale-while-revalidate=86400"
+            }
           ]
         },
         {
           "source": "/header.css",
           "headers": [
-            { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=86400, stale-while-revalidate=604800"
+            }
+          ]
+        },
+        {
+          "source": "/sidebar.js",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=86400, stale-while-revalidate=604800"
+            }
           ]
         },
         {
           "source": "/data/**",
           "headers": [
-            { "key": "Cache-Control", "value": "no-cache, must-revalidate" }
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=3600, stale-while-revalidate=86400"
+            }
           ]
         },
         {
           "source": "/ads.txt",
           "headers": [
-            { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
-            { "key": "Cache-Control", "value": "public, max-age=3600" }
+            {
+              "key": "Content-Type",
+              "value": "text/plain; charset=utf-8"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=86400"
+            }
           ]
         },
         {
           "source": "/library-pdfs/**.pdf",
           "headers": [
-            { "key": "Content-Type", "value": "application/pdf" },
-            { "key": "Content-Disposition", "value": "inline" },
-            { "key": "X-Frame-Options", "value": "ALLOWALL" },
-            { "key": "Cache-Control", "value": "public, max-age=86400" }
+            {
+              "key": "Content-Type",
+              "value": "application/pdf"
+            },
+            {
+              "key": "Content-Disposition",
+              "value": "inline"
+            },
+            {
+              "key": "X-Frame-Options",
+              "value": "ALLOWALL"
+            },
+            {
+              "key": "Cache-Control",
+              "value": "public, max-age=604800"
+            }
           ]
         }
       ]
@@ -96,17 +156,37 @@
       "target": "legacy",
       "public": "dist-legacy",
       "redirects": [
-        { "source": "/", "destination": "https://mohamidigital.online/", "type": 301 },
-        { "source": "/:path*", "destination": "https://mohamidigital.online/:path", "type": 301 }
+        {
+          "source": "/",
+          "destination": "https://mohamidigital.online/",
+          "type": 301
+        },
+        {
+          "source": "/:path*",
+          "destination": "https://mohamidigital.online/:path",
+          "type": 301
+        }
       ],
       "headers": [
         {
           "source": "**",
           "headers": [
-            { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-            { "key": "X-Content-Type-Options", "value": "nosniff" },
-            { "key": "Strict-Transport-Security", "value": "max-age=63072000; includeSubDomains; preload" },
-            { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+            {
+              "key": "X-Frame-Options",
+              "value": "SAMEORIGIN"
+            },
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Strict-Transport-Security",
+              "value": "max-age=63072000; includeSubDomains; preload"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "strict-origin-when-cross-origin"
+            }
           ]
         }
       ]

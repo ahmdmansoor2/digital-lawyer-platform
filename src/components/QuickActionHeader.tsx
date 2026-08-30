@@ -533,10 +533,10 @@ const QuickActionHeader = React.memo(function QuickActionHeader({
   };
 
   return (
-    <div className="w-full" id="quick-action-header-root">
+    <div className="w-full relative z-40" id="quick-action-header-root">
       
       {/* HEADER BAR */}
-      <header className="bg-white border border-slate-200 rounded-lg p-3 px-4 shadow-xs flex justify-between items-center z-40 relative">
+      <header className="bg-white border border-slate-200 rounded-lg p-3 px-4 shadow-xs flex justify-between items-center z-50 relative">
         
         {/* Title contextual area */}
         <div className="flex items-center gap-2">
@@ -590,12 +590,12 @@ const QuickActionHeader = React.memo(function QuickActionHeader({
               <>
                 {/* Click outside backdrop */}
                 <div 
-                  className="fixed inset-0 z-20 cursor-default" 
+                  className="fixed inset-0 z-40 cursor-default" 
                   onClick={() => setDropdownOpen(false)}
                 ></div>
 
                 <div
-                  className="absolute start-0 mt-2 w-72 bg-white border border-slate-200 rounded-lg shadow-lg py-2.5 z-30 font-sans text-end animate-fade-in-down"
+                  className="absolute start-0 mt-2 w-72 bg-white border border-slate-200 rounded-lg shadow-2xl py-2.5 z-50 font-sans text-end animate-fade-in-down"
                   id="quick-actions-menu-panel"
                 >
                   <div className="px-3 pb-1 border-b border-slate-100 mb-1.5 flex justify-between items-center">

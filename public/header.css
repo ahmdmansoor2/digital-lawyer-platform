@@ -51,7 +51,7 @@ body {
 .uh-bar {
   position: sticky;
   top: 0;
-  z-index: 99999;
+  z-index: 999999;
   width: 100%;
   height: 60px;
   font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -615,4 +615,21 @@ h1, h2, h3, h4,
   color: #cbd5e1 !important;
   font-weight: 500;
   line-height: 1.8;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════════════
+   GLOBAL DROPDOWN & SEARCH BAR STACKING CONTEXT FIX
+   ════════════════════════════════════════════════════════════════════════════ */
+.controls-box, .search-container, .filter-container, .search-box, .search-form {
+  position: relative !important;
+  z-index: 50 !important;
+}
+.select-filter, select, .search-input {
+  position: relative !important;
+  z-index: 55 !important;
+}
+.grid-container, .results-container, #courtsGrid, #precedentsGrid, #lawyersGrid, #results, .sponsor-frame, .ad-banner, .digital-box {
+  position: relative !important;
+  z-index: 1 !important;
 }

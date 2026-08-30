@@ -1,6 +1,13 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
   <head>
+    <!-- Performance & DNS Pre-fetching -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+    <link rel="dns-prefetch" href="https://identitytoolkit.googleapis.com" />
+    <link rel="dns-prefetch" href="https://firestore.googleapis.com" />
+  
     <meta charset="UTF-8" />
     <script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script><!-- www-mohami-guard -->
     <link rel="manifest" href="/manifest.webmanifest" /><!-- mohami-manifest -->
@@ -17,35 +24,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <!-- Cache Buster: يتحقق من إصدار البناء ويُعيد التحميل تلقائياً عند التحديث -->
-    <script>
-      (function() {
-        var BUILD_VERSION = '20260823-v2';
-        try {
-          localStorage.removeItem('mohamidigital_theme');
-          document.documentElement.classList.remove('public-theme-light');
-          document.documentElement.classList.remove('public-theme-dark');
-          delete document.documentElement.dataset.publicTheme;
-        } catch(e) {}
-        var stored = localStorage.getItem('app_build_version');
-        if (stored && stored !== BUILD_VERSION) {
-          localStorage.setItem('app_build_version', BUILD_VERSION);
-          // مسح أي cache قديم
-          if ('caches' in window) {
-            caches.keys().then(function(names) {
-              names.forEach(function(name) { caches.delete(name); });
-            });
-          }
-          // إعادة تحميل بدون cache
-          window.location.reload(true);
-        } else {
-          localStorage.setItem('app_build_version', BUILD_VERSION);
-        }
-      })();
-    </script>
     <title>منصة المحامي الرقمية | استشارات قانونية مجانية وإدارة مكاتب المحاماة في مصر</title>
     <link rel="stylesheet" href="/header.css?v=20260823-v7" />
     <meta name="description" content="منصة المحامي الرقمية: استشارات قانونية فورية ومجانية للمواطنين · دليل أفضل المحامين المشتغلين بمصر حسب المحافظة والتخصص · برنامج إدارة مكاتب المحاماة مجاناً 100% · صيغ عقود ودعاوى جاهزة · حاسبة رسوم المحاكم · مكتبة قانونية +8,500 مرجع." />
