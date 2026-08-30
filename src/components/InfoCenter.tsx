@@ -142,7 +142,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
       />
 
       {/* ─── 1. HERO SECTION ────────────────────────────────────────────── */}
-      <section className="relative pt-6 pb-8 sm:pt-14 sm:pb-16 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto z-10 text-center">
+      <section className="relative pt-6 pb-8 sm:pt-14 sm:pb-16 px-3 sm:px-6 lg:px-8 max-w-7xl mx-auto z-30 text-center">
         
         <div className="bg-slate-950/55 sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none p-4 sm:p-0 rounded-3xl border border-white/10 sm:border-none shadow-2xl sm:shadow-none mb-6">
           {/* Top Badges */}
@@ -209,12 +209,12 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
         </div>
 
         {/* Global Live Search Bar */}
-        <div className="max-w-3xl mx-auto mb-4 sm:mb-6">
+        <div className="max-w-3xl mx-auto mb-4 sm:mb-6 relative z-50">
           <HeroSearchBar onOpenFullSearch={() => setIsSearchModalOpen(true)} />
         </div>
 
         {/* Quick Filter Navigation Tabs (Mobile swipe track / Desktop 2-tier balanced dock) */}
-        <div className="max-w-5xl mx-auto mt-2">
+        <div className="max-w-5xl mx-auto mt-2 relative z-10">
           {/* Mobile view: Swipeable track */}
           <div className="flex sm:hidden items-center gap-2 overflow-x-auto no-scrollbar py-2 px-1">
             <button
@@ -416,7 +416,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
       {/* ════════════════════════════════════════════════════════════════════ */}
       {/* ─── 2. MASTER HUB CARDS SHOWCASE (الكروت المجمعة الذكية) ───────── */}
       {/* ════════════════════════════════════════════════════════════════════ */}
-      <div className="space-y-12 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
+      <div className="space-y-12 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-0">
 
         {/* ── MASTER HUB 2: LEGAL LIBRARY, PRECEDENTS & FORMS (كارت المكتبة والموسوعات والصيغ والنقض) ── */}
         {(activeTab === 'all' || activeTab === 'library') && (

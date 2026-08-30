@@ -12,8 +12,7 @@
  */
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
-import { Search, FileText, BookOpen, Layers, Radio, ScrollText, Globe, Clock, ArrowLeft, Landmark } from 'lucide-react';
+import { Search, FileText, BookOpen, Layers, Radio, ScrollText, Clock, ArrowLeft, Landmark } from 'lucide-react';
 import {
   loadSearchIndex,
   search,
@@ -167,127 +166,8 @@ export default function HeroSearchBar({ onOpenFullSearch }: Props) {
     (query.trim().length < 2 && (recent.length > 0 || true))
   );
 
-  const panel = createPortal(
-    <div
-      ref={listRef}
-      dir="rtl"
-      className="absolute top-full mt-2 start-0 end-0 z-[9998] rounded-2xl overflow-hidden shadow-2xl"
-      style={{
-        background: 'rgba(15,23,42,0.97)',
-        border: '1px solid rgba(99,102,241,0.3)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-      }}
-    >
-      {/* خطأ تحميل الفهرس */}
-      {loadError && (
-        <div className="px-5 py-6 text-center text-sm text-rose-300 font-bold">
-          تعذر تحميل فهرس البحث — تأكد من الاتصال وأعد المحاولة
-        </div>
-      )}
-
-      {/* نتائج مباشرة */}
-      {!loadError && query.trim().length >= 2 && results.length > 0 && (
-        <>
-          <div className="max-h-[55vh] overflow-y-auto p-2">
-            {results.map((r, i) => {
-              const meta = TYPE_META[r.item.type] || TYPE_META.default;
-              const Icon = meta.icon;
-              return (
-                <a
-                  key={r.item.id}
-                  href={r.item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => { pushRecent(query.trim()); setOpen(false); }}
-                  onMouseEnter={() => setActiveIdx(i)}
-                  className={
-                    'flex items-start gap-3 p-3 rounded-xl transition group ' +
-                    (i === activeIdx ? 'bg-indigo-500/20 outline outline-1 outline-indigo-400/40' : 'hover:bg-slate-700/30')
-                  }
-                >
-                  <div className={'shrink-0 w-9 h-9 rounded-lg flex items-center justify-center ' + meta.bg}>
-                    <Icon className={'w-4 h-4 ' + meta.color} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div
-                      className="text-sm font-extrabold text-slate-100 truncate mb-0.5"
-                      dangerouslySetInnerHTML={{ __html: highlight(r.item.title, debounced) }}
-                    />
-                    <div
-                      className="text-xs text-slate-400 line-clamp-1"
-                      dangerouslySetInnerHTML={{ __html: highlight(r.item.description || r.item.snippet, debounced) }}
-                    />
-                  </div>
-                  <span className={'shrink-0 self-center px-2 py-0.5 rounded-full text-[10px] font-extrabold ' + meta.bg + ' ' + meta.color}>
-                    {meta.label}
-                  </span>
-                </a>
-              );
-            })}
-          </div>
-          <button
-            onClick={(e) => { e.preventDefault(); openFull(); }}
-            className="w-full flex items-center justify-center gap-2 py-3 border-t border-slate-700/40 text-xs font-extrabold text-indigo-300 hover:bg-indigo-500/10 transition"
-          >
-            عرض جميع النتائج في «{query.trim()}» <ArrowLeft className="w-3.5 h-3.5" />
-          </button>
-        </>
-      )}
-
-      {/* لا نتائج */}
-      {!loadError && query.trim().length >= 2 && results.length === 0 && indexData && (
-        <div className="px-5 py-8 text-center">
-          <div className="text-3xl mb-2 opacity-60">🤷</div>
-          <div className="text-sm font-bold text-slate-300 mb-1">لا توجد نتائج لـ «{query}»</div>
-          <button onClick={openFull} className="text-xs font-bold text-indigo-300 hover:underline">
-            افتح البحث الكامل للتحقق
-          </button>
-        </div>
-      )}
-
-      {/* حالة الفراغ: عمليات سابقة + اختصارات */}
-      {query.trim().length < 2 && !loadError && (
-        <div className="p-4">
-          {recent.length > 0 && (
-            <div className="mb-4">
-              <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-slate-500 mb-2">
-                <Clock className="w-3.5 h-3.5" /> آخر عمليات البحث
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {recent.map(q => (
-                  <button
-                    key={q}
-                    onClick={() => { setQuery(q); inputRef.current?.focus(); }}
-                    className="px-3 py-1.5 rounded-full text-xs font-bold bg-slate-700/40 text-slate-200 hover:bg-indigo-500/20 hover:text-indigo-200 border border-slate-600/30 transition"
-                  >
-                    {q}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-          <div className="text-[11px] font-extrabold text-slate-500 mb-2">اختصارات سريعة</div>
-          <div className="flex flex-wrap gap-2">
-            {QUICK_LINKS.map(l => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="px-3 py-1.5 rounded-full text-xs font-bold bg-slate-800/60 text-slate-300 hover:bg-indigo-500/15 hover:text-indigo-200 border border-slate-700/40 transition"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>,
-    wrapRef.current || document.body
-  );
-
   return (
-    <div ref={wrapRef} className="relative z-30 w-full max-w-2xl mx-auto" data-hero-search>
+    <div ref={wrapRef} className="relative z-50 w-full max-w-2xl mx-auto" data-hero-search>
       <div
         className="flex items-center gap-3 px-5 py-1.5 rounded-2xl shadow-2xl transition-all duration-300 focus-within:border-indigo-400/60 focus-within:shadow-indigo-500/10"
         style={{
@@ -332,7 +212,125 @@ export default function HeroSearchBar({ onOpenFullSearch }: Props) {
         </div>
       )}
 
-      {showDropdown && panel}
+      {/* القائمة المنسدلة — تطفو فوق كافة الأقسام والكروت التالية بـ z-index فائق */}
+      {showDropdown && (
+        <div
+          ref={listRef}
+          dir="rtl"
+          className="absolute top-full mt-2 start-0 end-0 z-[99999] rounded-2xl overflow-hidden shadow-2xl"
+          style={{
+            background: 'rgba(15,23,42,0.98)',
+            border: '1px solid rgba(99,102,241,0.45)',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(99, 102, 241, 0.25)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+          }}
+        >
+          {/* خطأ تحميل الفهرس */}
+          {loadError && (
+            <div className="px-5 py-6 text-center text-sm text-rose-300 font-bold">
+              تعذر تحميل فهرس البحث — تأكد من الاتصال وأعد المحاولة
+            </div>
+          )}
+
+          {/* نتائج مباشرة */}
+          {!loadError && query.trim().length >= 2 && results.length > 0 && (
+            <>
+              <div className="max-h-[55vh] overflow-y-auto p-2">
+                {results.map((r, i) => {
+                  const meta = TYPE_META[r.item.type] || TYPE_META.default;
+                  const Icon = meta.icon;
+                  return (
+                    <a
+                      key={r.item.id}
+                      href={r.item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => { pushRecent(query.trim()); setOpen(false); }}
+                      onMouseEnter={() => setActiveIdx(i)}
+                      className={
+                        'flex items-start gap-3 p-3 rounded-xl transition group ' +
+                        (i === activeIdx ? 'bg-indigo-500/20 outline outline-1 outline-indigo-400/40' : 'hover:bg-slate-700/30')
+                      }
+                    >
+                      <div className={'shrink-0 w-9 h-9 rounded-lg flex items-center justify-center ' + meta.bg}>
+                        <Icon className={'w-4 h-4 ' + meta.color} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div
+                          className="text-sm font-extrabold text-slate-100 truncate mb-0.5"
+                          dangerouslySetInnerHTML={{ __html: highlight(r.item.title, debounced) }}
+                        />
+                        <div
+                          className="text-xs text-slate-400 line-clamp-1"
+                          dangerouslySetInnerHTML={{ __html: highlight(r.item.description || r.item.snippet, debounced) }}
+                        />
+                      </div>
+                      <span className={'shrink-0 self-center px-2 py-0.5 rounded-full text-[10px] font-extrabold ' + meta.bg + ' ' + meta.color}>
+                        {meta.label}
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+              <button
+                onClick={(e) => { e.preventDefault(); openFull(); }}
+                className="w-full flex items-center justify-center gap-2 py-3 border-t border-slate-700/40 text-xs font-extrabold text-indigo-300 hover:bg-indigo-500/10 transition"
+              >
+                عرض جميع النتائج في «{query.trim()}» <ArrowLeft className="w-3.5 h-3.5" />
+              </button>
+            </>
+          )}
+
+          {/* لا نتائج */}
+          {!loadError && query.trim().length >= 2 && results.length === 0 && indexData && (
+            <div className="px-5 py-8 text-center">
+              <div className="text-3xl mb-2 opacity-60">🤷</div>
+              <div className="text-sm font-bold text-slate-300 mb-1">لا توجد نتائج لـ «{query}»</div>
+              <button onClick={openFull} className="text-xs font-bold text-indigo-300 hover:underline">
+                افتح البحث الكامل للتحقق
+              </button>
+            </div>
+          )}
+
+          {/* حالة الفراغ: عمليات سابقة + اختصارات */}
+          {query.trim().length < 2 && !loadError && (
+            <div className="p-4">
+              {recent.length > 0 && (
+                <div className="mb-4">
+                  <div className="flex items-center gap-1.5 text-[11px] font-extrabold text-slate-500 mb-2">
+                    <Clock className="w-3.5 h-3.5" /> آخر عمليات البحث
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {recent.map(q => (
+                      <button
+                        key={q}
+                        onClick={() => { setQuery(q); inputRef.current?.focus(); }}
+                        className="px-3 py-1.5 rounded-full text-xs font-bold bg-slate-700/40 text-slate-200 hover:bg-indigo-500/20 hover:text-indigo-200 border border-slate-600/30 transition"
+                      >
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <div className="text-[11px] font-extrabold text-slate-500 mb-2">اختصارات سريعة</div>
+              <div className="flex flex-wrap gap-2">
+                {QUICK_LINKS.map(l => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="px-3 py-1.5 rounded-full text-xs font-bold bg-slate-800/60 text-slate-300 hover:bg-indigo-500/15 hover:text-indigo-200 border border-slate-700/40 transition"
+                  >
+                    {l.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
