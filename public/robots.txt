@@ -1,11 +1,50 @@
 User-agent: *
 Allow: /
 
-User-agent: Mediapartners-Google
+# Microsoft Bing & Edge
+User-agent: Bingbot
 Allow: /
 
+User-agent: msnbot
+Allow: /
+
+User-agent: BingPreview
+Allow: /
+
+# Google
 User-agent: Googlebot
 Allow: /
 
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: Google-InspectionTool
+Allow: /
+
+# Yandex
+User-agent: Yandex
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+# DuckDuckGo & others
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: SeznamBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Sitemaps
 Sitemap: https://mohamidigital.online/sitemap.xml
 Sitemap: https://mohamidigital.online/news-sitemap.xml

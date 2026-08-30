@@ -43,8 +43,8 @@ function extractUrlsFromSitemap() {
   return urls;
 }
 
-function submitToIndexNow(urls) {
-  return new Promise((resolve, reject) => {
+function submitToEndpoint(hostname, path, urls) {
+  return new Promise((resolve) => {
     const payload = JSON.stringify({
       host: HOST,
       key: INDEXNOW_KEY,
@@ -53,8 +53,8 @@ function submitToIndexNow(urls) {
     });
 
     const options = {
-      hostname: 'api.indexnow.org',
-      path: '/indexnow',
+      hostname: hostname,
+      path: path,
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8',
@@ -66,15 +66,31 @@ function submitToIndexNow(urls) {
       let data = '';
       res.on('data', c => data += c);
       res.on('end', () => {
-        resolve({ status: res.statusCode, body: data });
+        resolve({ host: hostname, status: res.statusCode, body: data });
       });
     });
 
-    req.on('error', reject);
-    req.setTimeout(30000, () => { req.destroy(); reject(new Error('Timeout')); });
+    req.on('error', (err) => {
+      resolve({ host: hostname, status: 'ERROR', body: err.message });
+    });
+    req.setTimeout(25000, () => {
+      req.destroy();
+      resolve({ host: hostname, status: 'TIMEOUT', body: 'Timeout 25s' });
+    });
     req.write(payload);
     req.end();
   });
+}
+
+async function submitToIndexNow(urls) {
+  const endpoints = [
+    { host: 'www.bing.com', path: '/indexnow' },
+    { host: 'api.indexnow.org', path: '/indexnow' },
+    { host: 'yandex.com', path: '/indexnow' }
+  ];
+
+  const results = await Promise.all(endpoints.map(ep => submitToEndpoint(ep.host, ep.path, urls)));
+  return results;
 }
 
 async function main() {
@@ -107,20 +123,22 @@ async function main() {
     console.log(`\n📦 الدفعة ${batchNum}/${totalBatches} (${batch.length} URL)...`);
 
     try {
-      const result = await submitToIndexNow(batch);
-      if (result.status === 200) {
-        console.log(`  ✅ تم الإرسال بنجاح (${result.status})`);
-      } else if (result.status === 202) {
-        console.log(`  ✅ تم القبول (${result.status}) — ستُعالج URLs قريباً`);
-      } else {
-        console.log(`  ⚠️ استجابة: ${result.status} — ${result.body.substring(0, 200)}`);
+      const results = await submitToIndexNow(batch);
+      for (const res of results) {
+        if (res.status === 200) {
+          console.log(`  ✅ [${res.host}] تم الإرسال بنجاح (${res.status})`);
+        } else if (res.status === 202) {
+          console.log(`  ✅ [${res.host}] تم القبول (${res.status}) — ستُعالج URLs قريباً`);
+        } else {
+          console.log(`  ⚠️ [${res.host}] استجابة: ${res.status} — ${String(res.body).substring(0, 150)}`);
+        }
       }
     } catch (err) {
       console.error(`  ❌ خطأ: ${err.message}`);
     }
   }
 
-  console.log(`\n🏁 انتهى. تأكد من فتح Bing Webmaster Tools → IndexNow للتحقق.`);
+  console.log(`\n🏁 انتهى الإرسال لمحركات Bing (Edge) و IndexNow و Yandex.`);
 }
 
 main().catch(console.error);
