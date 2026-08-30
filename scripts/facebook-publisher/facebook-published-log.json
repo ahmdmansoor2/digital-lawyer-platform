@@ -2294,6 +2294,27 @@
       "duration": "59ث",
       "size": 30936683,
       "publishedAt": "2026-08-30T16:40:02.204Z"
+    },
+    {
+      "topicId": "blog-small-claims-court",
+      "title": "المحكمة الاقتصادية: للدعاوى الصغيرة والمتوسطة في مصر ودورها في سرعة التقاضي - منصة المحامي الرقمية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#تعتبر",
+        "#المحاكم",
+        "#الاقتصادية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-small-claims-court.mp4",
+      "videoId": "1811955949971175",
+      "permalink": "https://www.facebook.com/reel/1811955949971175",
+      "source": "blog",
+      "duration": "43ث",
+      "size": 12165966,
+      "publishedAt": "2026-08-30T21:00:36.824Z"
     }
   ]
 }
