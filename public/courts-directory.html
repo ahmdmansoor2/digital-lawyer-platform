@@ -1193,27 +1193,33 @@ function printFormText() {
   const body = document.getElementById('previewFormBody').innerText;
   
   const printWin = window.open('', '_blank');
-  printWin.document.write(`
-    <!DOCTYPE html>
-    <html lang="ar" dir="rtl">
-    <head>
-      <title>${title}</title>
-      <style>
-        body { font-family: 'Cairo', Tahoma, sans-serif; padding: 40px; line-height: 1.9; color: #000; direction: rtl; }
-        h1 { font-size: 20px; text-align: center; border-bottom: 2px solid #000; padding-bottom: 12px; margin-bottom: 30px; }
-        pre { white-space: pre-wrap; font-family: inherit; font-size: 15px; }
-        .footer { margin-top: 50px; text-align: center; font-size: 12px; color: #666; border-top: 1px solid #ccc; padding-top: 10px; }
-      </style>
-    </head>
-    <body>
-      <h1>${title}</h1>
-      <pre>${body}</pre>
-      <div class="footer">منصة المحامي الرقمية — إشراف المستشار أحمد منصور — https://mohamidigital.online</div>
-      <script>window.print();</script>
-    </body>
-    </html>
-  `);
+  if (!printWin) {
+    alert('يرجى السماح بالنوافذ المنبثقة لطباعة النموذج.');
+    return;
+  }
+  printWin.document.write(`<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>\${title}</title>
+  <style>
+    body { font-family: 'Cairo', Tahoma, sans-serif; padding: 40px; line-height: 1.9; color: #000; direction: rtl; }
+    h1 { font-size: 20px; text-align: center; border-bottom: 2px solid #000; padding-bottom: 12px; margin-bottom: 30px; }
+    pre { white-space: pre-wrap; font-family: inherit; font-size: 15px; }
+    .footer { margin-top: 50px; text-align: center; font-size: 12px; color: #666; border-top: 1px solid #ccc; padding-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>\${title}</h1>
+  <pre>\${body}</pre>
+  <div class="footer">منصة المحامي الرقمية — إشراف المستشار أحمد منصور — https://mohamidigital.online</div>
+</body>
+</html>`);
   printWin.document.close();
+  printWin.focus();
+  setTimeout(() => {
+    printWin.print();
+  }, 300);
 }
 
 // ─── NOTARY REQUIREMENTS & FEES DATA ─────────────────────────────────────────
