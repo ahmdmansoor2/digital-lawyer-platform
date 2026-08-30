@@ -18,6 +18,7 @@ const PRIMARY = [
   { href: '/legal-library.html', label: '📚 المكتبة القانونية', key: 'library' },
   { href: '/court-precedents.html', label: '⚖️ موسوعة النقض', key: 'precedents' },
   { href: '/pillars/', label: '🏛️ المراجع والأكواد', key: 'pillars' },
+  { href: '/contract-generator.html', label: '⚡ صانع العقود الذكي', key: 'generator' },
   { href: '/legal-forms.html', label: '📝 صيغ العقود', key: 'forms' },
   { href: '/legal-calculators.html', label: '🧮 الحاسبات', key: 'calculators' },
   { href: '/blog/', label: '📰 المدونة', key: 'blog' },

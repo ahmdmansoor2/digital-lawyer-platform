@@ -604,7 +604,177 @@
       document.getElementById('btnDownloadWord').onclick = function() {
         var text = modalBody.innerText;
         var title = modalTitle.innerText;
-        var htmlContent = '<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>' + title + '</title><style>body{font-family:Arial,sans-serif;direction:rtl;padding:30px;line-height:1.8;}h2{color:#1e3a8a;border-bottom:2px solid #3b82f6;padding-bottom:10px;}pre{white-space:pre-wrap;font-family:Arial,sans-serif;font-size:14pt;}</style></head><body><h2>' + title + '</h2><hr/><pre>' + text + '</pre></body></html>';
+        var htmlContent = '<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>' + title + '</title><style>body{font-family:Arial,sans-serif;direction:rtl;padding:30px;line-height:1.8;}h2{color:#1e3a8a;border-bottom:2px solid #3b82f6;padding-bottom:10px;}pre{white-space:pre-wrap;font-family:Arial,sans-serif;font-size:14pt;}</style></head><body><h2>' + title + '</h2><hr/><pre>' + text + '</pre>
+  <script>
+  const GEN_DATA = {
+    poa_litigation: {
+      title: "توكيل رسمي عام في القضايا",
+      sub: "شامل كافة درجات التقاضي والنيابات ومجلس الدولة",
+      fields: [
+        { key: "c_name", label: "اسم الموكل", val: "أحمد محمد إبراهيم" },
+        { key: "c_nid", label: "الرقم القومي للموكل", val: "28501011234567" },
+        { key: "c_addr", label: "محل إقامة الموكل", val: "القاهرة - مدينة نصر" },
+        { key: "l_name", label: "اسم الأستاذ المحامي", val: "الأستاذ / أحمد منصور المحامي" },
+        { key: "l_bar", label: "درجة القيد", val: "محامٍ بالنقض والإدارية العليا" }
+      ],
+      tpl: (v) => "إنه في يوم الموافق .................... / .................... / 2026م\n\n" +
+        "أمامنا نحن موثق الشهر العقاري والتوثيق، حضر السيد/ " + v.c_name + "، المقيم في: " + v.c_addr + "، بطاقة رقم قومي: (" + v.c_nid + ").\n\n" +
+        "وقرر أنه وكّل وأناب عنه:\n" +
+        "السيد الأستاذ / " + v.l_name + " - " + v.l_bar + "، في:\n\n" +
+        "الحضور عنه والمرافعة والدفاع أمام جميع المحاكم على اختلاف أنواعها ودرجاتها (النقض، الإدارية العليا، الاستئناف، الابتدائي والجزئي، ومجلس الدولة والنيابة العامة). وله تقديم صحف الدعاوى والمذكرات واستلام الأحكام والطعن عليها بالمعارضة والاستئناف والنقض والتصالح وإبراء الذمة."
+    },
+    car_sale_poa: {
+      title: "توكيل خاص ببيع وإدارة سيارة",
+      sub: "موثق للشهر العقاري وإدارات المرور ونقل الملكية",
+      fields: [
+        { key: "s_name", label: "اسم البائع (المالك)", val: "محمود حسن علي" },
+        { key: "s_nid", label: "الرقم القومي للبائع", val: "28804021200000" },
+        { key: "b_name", label: "اسم المشتري (الوكيل)", val: "خالد سعيد عبد الرحمن" },
+        { key: "b_nid", label: "الرقم القومي للمشتري", val: "29208151400000" },
+        { key: "car_b", label: "ماركة السيارة", val: "تويوتا كورولا 2023" },
+        { key: "car_p", label: "رقم اللوحات", val: "ق ط ر 4589" }
+      ],
+      tpl: (v) => "توكيل خاص ببيع وإدارة سيارة\n\n" +
+        "أقر أنا/ " + v.s_name + "، بطاقة رقم قومي: (" + v.s_nid + ")، بصفتي المالك للمركبة:\n" +
+        "- نوع السيارة: " + v.car_b + " - رقم اللوحات: " + v.car_p + "\n\n" +
+        "بأنني قد وكلت السيد/ " + v.b_name + "، بطاقة رقم قومي: (" + v.b_nid + ")، في:\n" +
+        "قيادة وإدارة واستعمال السيارة، وفي بيعها لنفسه أو للغير والتوقيع على عقود البيع أمام الشهر العقاري ونقل الملكية وتجديد التراخيص أمام كافة وحدات المرور بالجمهورية."
+    },
+    property_sale: {
+      title: "عقد بيع ابتدائي لشقة سكنية",
+      sub: "عقد بيع نهائي خالص الثمن مع نقل الحيازة والملكية",
+      fields: [
+        { key: "s_name", label: "اسم البائع", val: "محمد عبد الله إبراهيم" },
+        { key: "s_nid", label: "الرقم القومي للبائع", val: "27503021400000" },
+        { key: "b_name", label: "اسم المشتري", val: "طارق زياد عبد العزيز" },
+        { key: "b_nid", label: "الرقم القومي للمشتري", val: "28911041600000" },
+        { key: "p_addr", label: "موقع الشقة بالتفصيل", val: "الشقة 5 الدور 3 عقار 12 شارع النصر المعادي" },
+        { key: "price", label: "الثمن الإجمالي (جنيه)", val: "1,850,000" }
+      ],
+      tpl: (v) => "عقد بيع ابتدائي لوحدة سكنية\n\n" +
+        "باع الطرف الأول: السيد/ " + v.s_name + " (بطاقة " + v.s_nid + ")\n" +
+        "إلى الطرف الثاني: السيد/ " + v.b_name + " (بطاقة " + v.b_nid + ")\n\n" +
+        "(البند الأول): الوحدة السكنية الكائنة في: " + v.p_addr + " مع حصة شائعة بالأرض.\n" +
+        "(البند الثاني): تم البيع بمبلغ إجمالي قدره: (" + v.price + " جنيه مصري) سددت بالكامل عداً ونقداً بمجلس العقد ويعتبر هذا العقد مخالصة تامة ونهائية بالثمن."
+    },
+    rent_contract: {
+      title: "عقد إيجار خاضع للقانون 4 لسنة 1996",
+      sub: "محدد المدة مع بند الإخلاء الفوري",
+      fields: [
+        { key: "l_name", label: "اسم المؤجر", val: "سليمان عبد الحميد منصور" },
+        { key: "l_nid", label: "الرقم القومي للمؤجر", val: "27005011400000" },
+        { key: "t_name", label: "اسم المستأجر", val: "ياسر كمال فهمي" },
+        { key: "t_nid", label: "الرقم القومي للمستأجر", val: "29402181500000" },
+        { key: "f_addr", label: "عنوان الشقة", val: "الشقة 4 الدور الثاني عمارة 8 شارع مصطفى النحاس" },
+        { key: "rent", label: "الأجرة الشهرية (جنيه)", val: "5,500" },
+        { key: "dur", label: "المدة", val: "3 سنوات" }
+      ],
+      tpl: (v) => "عقد إيجار شقة سكنية (قانون 4/1996)\n\n" +
+        "أجر المؤجر: السيد/ " + v.l_name + " (بطاقة " + v.l_nid + ")\n" +
+        "إلى المستأجر: السيد/ " + v.t_name + " (بطاقة " + v.t_nid + ")\n\n" +
+        "(العين المؤجرة): " + v.f_addr + " بغرض السكن الخاص فقط.\n" +
+        "(المدة): " + v.dur + " تنتهي حتماً دون حاجة لتنبيه أو إنذار.\n" +
+        "(الأجرة): مبلغ (" + v.rent + " جنيه مصري) تدفع شهرياً مقدماً."
+    },
+    bailiff_notice: {
+      title: "إنذار رسمي على يد محضر بسداد إيجار",
+      sub: "تكليف رسمي بالوفاء قبل رفع دعوى الإخلاء",
+      fields: [
+        { key: "m_name", label: "اسم المنذر (المؤجر)", val: "إبراهيم حسن مصطفى" },
+        { key: "t_name", label: "اسم المنذر إليه (المستأجر)", val: "حسام الدين فاروق" },
+        { key: "f_addr", label: "عنوان العين", val: "العقار رقم 15 شارع الهرم الجيزة" },
+        { key: "months", label: "أشهر التأخير", val: "يناير وفبراير ومارس 2026" },
+        { key: "total", label: "إجمالي المتأخر (جنيه)", val: "16,500" }
+      ],
+      tpl: (v) => "إنذار رسمي على يد محضر بسداد قيمة إيجارية\n\n" +
+        "بناءً على طلب السيد/ " + v.m_name + " ومحله المختار مكتب الأستاذ / أحمد منصور المحامي بالنقض.\n" +
+        "أنذرت السيد/ " + v.t_name + " المقيم في: " + v.f_addr + "، بالآتي:\n\n" +
+        "حيث امتنع المنذر إليه عن سداد القيمة الإيجارية المستحقة عن: (" + v.months + ") بإجمالي: (" + v.total + " جنيه).\n" +
+        "لذلك: ينبه الطالب بضرورة سداد المبلغ خلال 15 يوماً وإلا ستقام دعوى الإخلاء والطرد للتكرار."
+    }
+  };
+
+  let activeGenKey = 'poa_litigation';
+
+  function onGenTemplateChange() {
+    activeGenKey = document.getElementById('genTemplateSelect').value;
+    renderGenFields();
+    updateGenDoc();
+  }
+
+  function renderGenFields() {
+    const data = GEN_DATA[activeGenKey];
+    const box = document.getElementById('genFieldsBox');
+    if (!box) return;
+    box.innerHTML = data.fields.map(f => `
+      <div>
+        <label style="font-size:12px; color:#cbd5e1; font-weight:700; display:block; margin-bottom:4px;">${f.label}:</label>
+        <input type="text" id="gf_${f.key}" value="${f.val}" oninput="updateGenDoc()" style="width:100%; background:#0b1120; border:1px solid rgba(148,163,184,0.2); border-radius:8px; padding:8px 12px; color:#fff; font-family:'Cairo'; font-size:13px; outline:none;" />
+      </div>
+    `).join('');
+  }
+
+  function getGenValues() {
+    const data = GEN_DATA[activeGenKey];
+    const vals = {};
+    data.fields.forEach(f => {
+      const el = document.getElementById('gf_' + f.key);
+      vals[f.key] = el ? el.value.trim() : f.val;
+    });
+    return vals;
+  }
+
+  function updateGenDoc() {
+    const data = GEN_DATA[activeGenKey];
+    const vals = getGenValues();
+    document.getElementById('genDocTitle').innerText = data.title;
+    document.getElementById('genDocSub').innerText = data.sub;
+    document.getElementById('genDocBody').innerText = data.tpl(vals);
+  }
+
+  function printGenDoc() {
+    const title = document.getElementById('genDocTitle').innerText;
+    const sub = document.getElementById('genDocSub').innerText;
+    const body = document.getElementById('genDocBody').innerText;
+    const w = window.open('', '_blank', 'width=800,height=700');
+    w.document.write(`<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>${title}</title><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet"><style>body{font-family:'Cairo',sans-serif;padding:40px;color:#000;line-height:2;}h2{text-align:center;border-bottom:2px solid #000;padding-bottom:10px;}pre{white-space:pre-wrap;font-family:'Cairo';font-size:14pt;}.ft{margin-top:40px;border-top:1px solid #ccc;padding-top:10px;text-align:center;font-size:10pt;color:#555;}</style></head><body><h2>${title}</h2><p style="text-align:center;color:#555;">${sub}</p><pre>${body}</pre><div class="ft">صادر من منصة المحامي الرقمية (mohamidigital.online) · تحت إشراف المستشار أحمد منصور</div></body></html>`);
+    w.document.close();
+    w.focus();
+    setTimeout(() => { w.print(); }, 500);
+  }
+
+  function downloadGenWord() {
+    const title = document.getElementById('genDocTitle').innerText;
+    const sub = document.getElementById('genDocSub').innerText;
+    const body = document.getElementById('genDocBody').innerText;
+    const html = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>${title}</title><style>body{font-family:'Arial',sans-serif;direction:rtl;text-align:right;line-height:2;}h2{text-align:center;border-bottom:2px solid #000;padding-bottom:10px;}pre{white-space:pre-wrap;font-family:'Arial';font-size:14pt;}</style></head><body><h2>${title}</h2><p style='text-align:center;color:#555;'>${sub}</p><pre>${body}</pre><hr/><p style='text-align:center;font-size:10pt;'>صادر من منصة المحامي الرقمية (mohamidigital.online)</p></body></html>`;
+    const blob = new Blob(['\ufeff' + html], { type: 'application/msword' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${title}.doc`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function copyGenDoc() {
+    const title = document.getElementById('genDocTitle').innerText;
+    const body = document.getElementById('genDocBody').innerText;
+    navigator.clipboard.writeText(title + '\n\n' + body).then(() => {
+      alert('✓ تم نسخ نص الوثيقة القانونية بالكامل إلى الحافظة!');
+    });
+  }
+
+  // Init
+  if (document.getElementById('genFieldsBox')) {
+    renderGenFields();
+    updateGenDoc();
+  }
+  </script>
+  
+</body></html>';
         var blob = new Blob(['\ufeff' + htmlContent], { type: 'application/msword;charset=utf-8' });
         var url = URL.createObjectURL(blob);
         var a = document.createElement('a');
