@@ -15,7 +15,7 @@
       "redirects": [],
       "rewrites": [
         {
-          "source": "!/+(blog|pillars|library-pdfs)/**",
+          "source": "!/+(blog|pillars|courts|radar-topics|legal-forms-docs|library-pdfs|newsletter)/**",
           "destination": "/index.html"
         }
       ],
