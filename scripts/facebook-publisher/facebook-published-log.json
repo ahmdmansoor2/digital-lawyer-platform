@@ -2252,6 +2252,27 @@
       "duration": "1د 4ث",
       "size": 24090231,
       "publishedAt": "2026-08-29T18:25:08.708Z"
+    },
+    {
+      "topicId": "blog-workplace-harassment-law",
+      "title": "التحرش الوظيفي في مكان العمل: الحماية القانونية للموظف وحقوق المرأة في مصر - منصة المحامي الرقمية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#التحرش",
+        "#العمل",
+        "#الانتهاكات"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-workplace-harassment-law.mp4",
+      "videoId": "1409701997754988",
+      "permalink": "https://www.facebook.com/reel/1409701997754988",
+      "source": "blog",
+      "duration": "60ث",
+      "size": 15339339,
+      "publishedAt": "2026-08-30T11:51:57.309Z"
     }
   ]
 }
