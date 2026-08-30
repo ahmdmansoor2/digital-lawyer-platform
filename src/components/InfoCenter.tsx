@@ -180,7 +180,14 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               <ArrowLeft className="w-4 h-4 shrink-0" />
             </button>
 
-            <div className="grid grid-cols-3 gap-2 w-full sm:w-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full sm:w-auto">
+              <a
+                href="/contract-generator.html"
+                className="px-2.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-purple-950/80 text-purple-200 hover:text-white font-bold text-[11px] sm:text-sm border border-purple-500/40 hover:border-purple-400 hover:bg-purple-900/60 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg text-center"
+              >
+                <FileSignature className="w-4 h-4 text-purple-400 shrink-0" />
+                <span>صانع العقود ⚡</span>
+              </a>
               <a
                 href="/law-students-hub.html"
                 className="px-2.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-slate-900/90 text-slate-100 hover:text-white font-bold text-[11px] sm:text-sm border border-blue-500/40 hover:border-blue-400 hover:bg-slate-800/90 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg text-center"
@@ -473,6 +480,26 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-purple-400 flex items-center justify-between">
                   <span>فتح المكتبة القانونية</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+                            {/* Featured: Smart Contract & Document Generator */}
+              <a href="/contract-generator.html" className="group p-5 rounded-2xl bg-gradient-to-br from-indigo-950/70 to-purple-950/80 hover:from-indigo-900/80 hover:to-purple-900/90 border-2 border-indigo-500/40 hover:border-indigo-400 transition-all flex flex-col justify-between shadow-xl shadow-indigo-950/40">
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-2xl">⚡</span>
+                    <span className="text-[10px] font-extrabold text-indigo-200 bg-indigo-500/30 px-2 py-0.5 rounded-full border border-indigo-400/40">ملء آلي وطباعة A4</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-indigo-300 transition-colors mb-1.5">
+                    المولّد الذكي للعقود والتوكيلات بالملء الآلي
+                  </h3>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    أنشئ وثيقتك القانونية خلال ثوانٍ: توكيلات قضايا وسيارات، عقود بيع وإيجار، وإنذارات محضرين جاهزة للطباعة A4 والتصدير Word فوراً.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-indigo-800/40 text-xs font-bold text-indigo-300 flex items-center justify-between">
+                  <span>فتح صانع العقود الذكي</span>
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>
