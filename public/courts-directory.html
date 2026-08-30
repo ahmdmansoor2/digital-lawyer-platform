@@ -547,7 +547,7 @@
 </div>
 
 <!-- 6. NOTARY COSTS & SERVICES OFFICIAL REFERENCE TABLE 2026 -->
-<section style="max-width: 1240px; margin: 40px auto; padding: 0 20px;">
+<section id="notary-fees-table" style="max-width: 1240px; margin: 40px auto; padding: 0 20px;">
   <div style="background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px; backdrop-filter: blur(12px);">
     <div style="display:flex; align-items:center; gap:10px; margin-bottom:16px;">
       <span style="font-size:24px;">📊</span>
@@ -648,7 +648,7 @@
 </section>
 
 <!-- 8. FAQ ACCORDION SECTION -->
-<section class="faq-section">
+<section id="courts-faq-section" class="faq-section">
   <h2 class="faq-title">❓ الأسئلة الشائعة حول خدمات محاكم وشهر عقاري مصر الرقمية</h2>
   
   <div class="faq-item" onclick="toggleFaq(this)">
@@ -767,26 +767,40 @@
 function goToService(serviceKey) {
   if (serviceKey === 'no_booking') {
     document.getElementById('typeSelect').value = 'no_booking';
-    setFilterSpecial('no_booking', document.querySelector('.filter-pills .pill:nth-child(2)'));
-    document.getElementById('courtsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('searchInput').value = '';
+    setFilterSpecial('no_booking', null);
+    const gridEl = document.getElementById('courtsGrid');
+    if (gridEl) gridEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } else if (serviceKey === 'night') {
     document.getElementById('typeSelect').value = 'night';
-    setFilterSpecial('night', document.querySelector('.filter-pills .pill:nth-child(3)'));
-    document.getElementById('courtsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('searchInput').value = '';
+    setFilterSpecial('night', null);
+    const gridEl = document.getElementById('courtsGrid');
+    if (gridEl) gridEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } else if (serviceKey === 'vans') {
-    window.location.href = 'tel:15999';
+    document.getElementById('typeSelect').value = 'mobile_van';
+    document.getElementById('searchInput').value = '';
+    setFilterSpecial('mobile_van', null);
+    const gridEl = document.getElementById('courtsGrid');
+    if (gridEl) gridEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } else if (serviceKey === 'checker') {
-    document.getElementById('notary-checker').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const el = document.getElementById('notary-checker');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } else if (serviceKey === 'fees_table') {
-    const tableEl = document.querySelector('table');
-    if (tableEl) tableEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const el = document.getElementById('notary-fees-table');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } else if (serviceKey === 'courts') {
-    document.getElementById('typeSelect').value = 'all';
-    document.getElementById('searchInput').value = 'محكمة';
-    filterCourts();
-    document.getElementById('courtsGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.getElementById('typeSelect').value = 'primary';
+    document.getElementById('govSelect').value = 'all';
+    document.getElementById('searchInput').value = '';
+    currentRegion = 'all';
+    specialFilter = 'all';
+    applyFilters();
+    const gridEl = document.getElementById('courtsGrid');
+    if (gridEl) gridEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } else if (serviceKey === 'faq') {
-    document.querySelector('.faq-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const el = document.getElementById('courts-faq-section');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
