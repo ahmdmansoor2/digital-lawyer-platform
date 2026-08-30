@@ -3676,8 +3676,44 @@ function applyFilters() {
   renderCourts(filtered);
 }
 
+function scrollToResults() {
+  const target = document.getElementById('countBanner') || document.getElementById('courtsGrid');
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 function onSearchChange() {
   applyFilters();
+}
+
+function onGovSelectChange() {
+  applyFilters();
+  scrollToResults();
+}
+
+function onTypeSelectChange() {
+  applyFilters();
+  scrollToResults();
+}
+
+function setRegion(regionKey, btnEl) {
+  currentRegion = regionKey;
+  specialFilter = 'all';
+  document.querySelectorAll('.filter-pills .pill').forEach(b => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+  document.getElementById('govSelect').value = 'all';
+  applyFilters();
+  scrollToResults();
+}
+
+function setFilterSpecial(filterKey, btnEl) {
+  specialFilter = filterKey;
+  currentRegion = 'all';
+  document.querySelectorAll('.filter-pills .pill').forEach(b => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+  applyFilters();
+  scrollToResults();
 }
 
 function onGovSelectChange() {
