@@ -137,6 +137,9 @@
     .badge-shahr { background: rgba(6,182,212,0.15); color: #67e8f9; border: 1px solid rgba(6,182,212,0.3); }
     .badge-mall { background: rgba(244,63,94,0.15); color: #fda4af; border: 1px solid rgba(244,63,94,0.3); }
     .badge-club { background: rgba(245,158,11,0.15); color: #fde68a; border: 1px solid rgba(245,158,11,0.3); }
+    
+    .badge-walkin { background: rgba(16,185,129,0.2) !important; color: #6ee7b7 !important; border: 1px solid rgba(16,185,129,0.4) !important; font-weight: 800; }
+
     .badge-night { background: rgba(168,85,247,0.18); color: #e9d5ff; border: 1px solid rgba(168,85,247,0.35); font-weight: 800; }
     .badge-council { background: rgba(245,158,11,0.15); color: #fde68a; border: 1px solid rgba(245,158,11,0.3); }
     .badge-economic { background: rgba(139,92,246,0.15); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.3); }
@@ -250,7 +253,7 @@
   <p>الموسوعة الجغرافية القضائية لكافة المحاكم ومأموريات الاستئناف، مكاتب التوثيق المميكنة بالمولات والنوادي، ومكاتب الفترة المسائية (5-9م) وسيارات التوثيق المتنقلة</p>
   <div class="hero-stats">
     <div class="stat-pill">📍 <span>27</span> محافظة مصرية</div>
-    <div class="stat-pill">🏢 <span>88</span> مقراً قضائياً وتوثيقياً</div>
+    <div class="stat-pill">🏢 <span>108+</span> مقراً قضائياً وتوثيقياً</div>
     <div class="stat-pill">🏛️ <span>8</span> محاكم استئناف ومجلس الدولة</div>
     <div class="stat-pill">🚗 سيارات التوثيق المتنقلة <span>15999</span></div>
   </div>
@@ -320,6 +323,7 @@
 
       <select id="typeSelect" class="select-filter" onchange="onTypeSelectChange()">
         <option value="all">⚖️ جميع الفئات القضائية والتوثيق</option>
+        <option value="no_booking">⚡ فروع ومكاتب بدون حجز مسبق (أسبقية الحضور)</option>
         <option value="night">🌙 فروع الشهر العقاري المسائية (5 - 9 م)</option>
         <option value="mall_club">🛍️ فروع المولات والأندية الرياضية</option>
         <option value="shahr">🏢 مكاتب ومأموريات التوثيق المميكنة</option>
@@ -333,6 +337,7 @@
     <!-- REGION QUICK PILLS -->
     <div class="filter-pills">
       <button class="pill active" onclick="setRegion('all', this)">🇪🇬 كافة الجمهورية</button>
+      <button class="pill" onclick="setFilterSpecial('no_booking', this)" style="border-color:rgba(16,185,129,0.4); color:#6ee7b7; font-weight:800;">⚡ فروع بدون حجز (أسبقية الحضور)</button>
       <button class="pill" onclick="setFilterSpecial('night', this)">🌙 الفترة المسائية (5-9م)</button>
       <button class="pill" onclick="setFilterSpecial('mall_club', this)">🛍️ فروع المولات والأندية</button>
       <button class="pill" onclick="setRegion('cairo_giza', this)">القاهرة الكبرى</button>
@@ -387,6 +392,314 @@
 
 <script>
 const COURTS_DATA = [
+  // ══════════════════════════════════════════════════════════════════════════
+  // فروع التوثيق والشهر العقاري التي تعمل بدون حجز مسبق (أسبقية الحضور)
+  // ══════════════════════════════════════════════════════════════════════════
+  {
+    name: "مكتب توثيق جهاز مدينة القاهرة الجديدة (أسبقية حضور)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "cairo",
+    region: "cairo_giza",
+    govName: "محافظة القاهرة (التجمع الخامس)",
+    address: "مقر جهاز القاهرة الجديدة - بجوار كوبري الرحاب - شارع التسعين الشمالي",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع (من السبت إلى الخميس)",
+    scope: "توكيلات، إثبات تاريخ، تصديق توقيعات - استقبال مباشر بأسبقية الحضور وسحب أرقام",
+    mapQuery: "جهاز مدينة القاهرة الجديدة شارع التسعين"
+  },
+  {
+    name: "مكتب توثيق مجمع محاكم مجلس الدولة بالتجمع الأول",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "cairo",
+    region: "cairo_giza",
+    govName: "محافظة القاهرة (التجمع الأول)",
+    address: "حي القرنفل - مجمع محاكم مجلس الدولة - بجوار مكتب النائب العام",
+    hours: "الفترة الصباحية: 9:00 ص - 3:30 ع (السبت إلى الخميس)",
+    scope: "كافة معاملات التوثيق والتوكيلات الرسمية بدون اشتراط حجز مسبق",
+    mapQuery: "مجلس الدولة التجمع الاول حي القرنفل"
+  },
+  {
+    name: "مكتب توثيق نادي بنك مصر (شارع التسعين)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "cairo",
+    region: "cairo_giza",
+    govName: "محافظة القاهرة (القاهرة الجديدة)",
+    address: "شارع التسعين الجنوبي - داخل مقر نادي بنك مصر - التجمع الخامس",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع",
+    scope: "خدمات التوثيق الفوري والتوكيلات وعقود السيارات بأسبقية الحضور",
+    mapQuery: "نادي بنك مصر التجمع الخامس"
+  },
+  {
+    name: "مكتب توثيق سوق العبور النموذجي",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "qalyubia",
+    region: "cairo_giza",
+    govName: "محافظة القليوبية (سوق العبور)",
+    address: "سوق العبور للجملة - داخل مبنى الخدمات المركزي - مدينة العبور",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع",
+    scope: "توكيلات تجارية وشخصية، إثبات تاريخ، تصديق عقود - دخول مباشر بدون حجز",
+    mapQuery: "مبنى خدمات سوق العبور"
+  },
+  {
+    name: "مأمورية الشهر العقاري والتوثيق بالعبور (الحي الأول)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "qalyubia",
+    region: "cairo_giza",
+    govName: "محافظة القليوبية (العبور)",
+    address: "الحي الأول - محطة حليم - مدينة العبور",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع",
+    scope: "توثيق وتوكيلات وتسجيل عقاري بنظام الطابور والأسبقية اليومية",
+    mapQuery: "شهر عقاري العبور الحي الاول محطة حليم"
+  },
+  {
+    name: "مكتب توثيق مجمع محاكم زنانيري (شبرا)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "cairo",
+    region: "cairo_giza",
+    govName: "محافظة القاهرة (شبرا)",
+    address: "شبرا - شارع خلوصي - داخل مجمع محاكم زنانيري",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع",
+    scope: "توكيلات قضايا، توكيلات عامة، إثبات تاريخ بدون حجز مسبق",
+    mapQuery: "مجمع محاكم زنانيري شبرا"
+  },
+  {
+    name: "مكتب توثيق محكمة جنوب القاهرة (زينهم - السيدة زينب)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "cairo",
+    region: "cairo_giza",
+    govName: "محافظة القاهرة (السيدة زينب)",
+    address: "ميدان زينهم - مجمع محاكم جنوب القاهرة - السيدة زينب",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع",
+    scope: "كافة المعاملات التوثيقية بأسبقية الحضور وسحب أرقام الانتظار",
+    mapQuery: "مجمع محاكم جنوب القاهرة زينهم"
+  },
+  {
+    name: "مكتب توثيق محكمة الجيزة الابتدائية (شارع السودان)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "giza",
+    region: "cairo_giza",
+    govName: "محافظة الجيزة (الدقي)",
+    address: "شارع السودان - مبنى محكمة الجيزة الابتدائية - الدقي",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع",
+    scope: "توكيلات وتوثيق رسمي فوري بأسبقية الحضور اليومي للمواطنين والمحامين",
+    mapQuery: "محكمة الجيزة الابتدائية شارع السودان"
+  },
+  {
+    name: "مكتب توثيق محكمة 6 أكتوبر (الحي السادس)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "giza",
+    region: "cairo_giza",
+    govName: "محافظة الجيزة (6 أكتوبر)",
+    address: "الحي السادس - مجمع محاكم 6 أكتوبر - مدينة السادس من أكتوبر",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع",
+    scope: "توكيلات قضايا، توكيلات عامة، تصديق عقود - استقبال مباشر يومياً",
+    mapQuery: "مجمع محاكم 6 اكتوبر الحي السادس"
+  },
+  {
+    name: "مكتب توثيق نادي حدائق الأهرام (البوابة الأولى)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "giza",
+    region: "cairo_giza",
+    govName: "محافظة الجيزة (حدائق الأهرام)",
+    address: "هضبة الأهرام - داخل نادي حدائق الأهرام - البوابة الأولى (خوفو)",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع",
+    scope: "توكيلات وإثبات تاريخ وتصديق توقيعات بدون اشتراط حجز إلكتروني",
+    mapQuery: "نادي حدائق الاهرام البوابة الاولى"
+  },
+  {
+    name: "مكتب توثيق مجمع محاكم المنشية (الإسكندرية)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "alex",
+    region: "alex_matrouh",
+    govName: "محافظة الإسكندرية (المنشية)",
+    address: "ميدان التحرير (المنشية) - مبنى محكمة الإسكندرية الابتدائية",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع",
+    scope: "أقدم وأكبر مكاتب التوثيق بالإسكندرية بنظام الحضور المباشر وسحب الأرقام",
+    mapQuery: "محكمة المنشية الاسكندرية"
+  },
+  {
+    name: "مكتب توثيق نادي سموحة (الإسكندرية)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "alex",
+    region: "alex_matrouh",
+    govName: "محافظة الإسكندرية (سموحة)",
+    address: "سموحة - داخل مقر نادي سموحة الرياضي - بوابة 3",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع | مسائية: 5 م - 9 م",
+    scope: "توكيلات وتوثيق فوري مع إتاحة الدخول المباشر بأسبقية الحضور",
+    mapQuery: "نادي سموحة بوابة 3 الاسكندرية"
+  },
+  {
+    name: "مكتب توثيق محكمة طنطا الكلية (الغربية)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "gharbia",
+    region: "delta",
+    govName: "محافظة الغربية (طنطا)",
+    address: "شارع الجيش - مجمع محاكم طنطا الكلية - مدينة طنطا",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع",
+    scope: "كافة المعاملات التوثيقية والتوكيلات بأسبقية الحضور اليومي",
+    mapQuery: "مجمع محاكم طنطا الكلية"
+  },
+  {
+    name: "مكتب توثيق محكمة المنصورة الابتدائية (الدقهلية)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "dakahlia",
+    region: "delta",
+    govName: "محافظة الدقهلية (المنصورة)",
+    address: "شارع بورسعيد - مجمع محاكم المنصورة الابتدائية",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع",
+    scope: "توثيق وتوكيلات رسمية بنظام الأسبقية المباشرة وسحب التذاكر",
+    mapQuery: "مجمع محاكم المنصورة شارع بورسعيد"
+  },
+  {
+    name: "مكتب توثيق مجمع محاكم أسيوط الابتدائية",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "assiut",
+    region: "upper_egypt",
+    govName: "محافظة أسيوط",
+    address: "شارع الجمهورية - مجمع محاكم أسيوط الابتدائية - مدينة أسيوط",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع",
+    scope: "خدمات التوثيق والتوكيلات للمواطنين والمحامين بأسبقية الحضور",
+    mapQuery: "مجمع محاكم اسيوط شارع الجمهورية"
+  },
+  {
+    name: "مكتب توثيق محكمة سوهاج الكلية",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    badgeText: "بدون حجز مسبق ⚡ أسبقية حضور",
+    badgeClass: "badge-walkin",
+    gov: "sohag",
+    region: "upper_egypt",
+    govName: "محافظة سوهاج",
+    address: "شارع أسيوط سوهاج - مجمع محاكم سوهاج الكلية",
+    hours: "الفترة الصباحية: 9:00 ص - 4:00 ع",
+    scope: "استقبال مباشر بدون حجز لتوثيق التوكيلات والعقود وإثبات التاريخ",
+    mapQuery: "مجمع محاكم سوهاج الكلية"
+  },
+  {
+    name: "سيارة التوثيق المتنقلة 1 — التجمع الخامس (مكسيم مول)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    isNight: true,
+    badgeText: "سيارة متنقلة 🚗 بدون حجز",
+    badgeClass: "badge-walkin",
+    gov: "cairo",
+    region: "cairo_giza",
+    govName: "محافظة القاهرة (التجمع الخامس)",
+    address: "التجمع الخامس - أمام مكسيم مول - شارع التسعين الشمالي",
+    hours: "صباحية: 9 ص - 4 ع | مسائية: 5 م - 9 م",
+    scope: "سيارة مجهزة بالكامل لعمل التوكيلات الفورية بدون حجز مسبق بنظام الشباك الواحد",
+    mapQuery: "مكسيم مول التجمع الخامس"
+  },
+  {
+    name: "سيارة التوثيق المتنقلة 2 — 6 أكتوبر (أمام مول العرب)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    isNight: true,
+    badgeText: "سيارة متنقلة 🚗 بدون حجز",
+    badgeClass: "badge-walkin",
+    gov: "giza",
+    region: "cairo_giza",
+    govName: "محافظة الجيزة (6 أكتوبر)",
+    address: "السادس من أكتوبر - بجوار بوابة 1 لمول العرب - محور 26 يوليو",
+    hours: "صباحية: 9 ص - 4 ع | مسائية: 5 م - 9 م",
+    scope: "توثيق سريع فوري بأسبقية الحضور للسيارات والتوكيلات - الخط الساخن 15999",
+    mapQuery: "مول العرب بوابة 1 محور 26 يوليو"
+  },
+  {
+    name: "سيارة التوثيق المتنقلة 3 — الشيخ زايد (أمام هايبر وان)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    isNight: true,
+    badgeText: "سيارة متنقلة 🚗 بدون حجز",
+    badgeClass: "badge-walkin",
+    gov: "giza",
+    region: "cairo_giza",
+    govName: "محافظة الجيزة (الشيخ زايد)",
+    address: "مدينة الشيخ زايد - مدخل 1 - بجوار هايبر وان",
+    hours: "صباحية: 9 ص - 4 ع | مسائية: 5 م - 9 م",
+    scope: "استقبال مباشر بدون حجز لكافة التوكيلات وتصديق التوقيعات",
+    mapQuery: "هايبر وان الشيخ زايد مدخل 1"
+  },
+  {
+    name: "سيارة التوثيق المتنقلة 4 — الإسكندرية (سيدي جابر)",
+    type: "shahr",
+    subType: "no_booking",
+    isNoBooking: true,
+    isNight: true,
+    badgeText: "سيارة متنقلة 🚗 بدون حجز",
+    badgeClass: "badge-walkin",
+    gov: "alex",
+    region: "alex_matrouh",
+    govName: "محافظة الإسكندرية (سيدي جابر)",
+    address: "سيدي جابر - ميدان محطة سيدي جابر - كورنيش الإسكندرية",
+    hours: "صباحية: 9 ص - 4 ع | مسائية: 5 م - 9 م",
+    scope: "معاملات توثيق فورية بأسبقية الحضور للمواطنين والمصطافين",
+    mapQuery: "محطة سيدي جابر الاسكندرية"
+  },
+
   // ══════════════════════════════════════════════════════════════════════════
   // فروع التوثيق المميكنة بالمولات والنوادي والفترة المسائية (مصر الرقمية)
   // ══════════════════════════════════════════════════════════════════════════
