@@ -274,42 +274,89 @@
 </header>
 
 <!-- 1. HERO SECTION -->
-<header class="hero">
-  <div class="hero-badge">🇪🇬 الدليل الموحد للعدالة ومصر الرقمية 2026</div>
-  <h1>دليل <span>محاكم وشهر عقاري مصر الرقمية</span></h1>
-  <p>الموسوعة الجغرافية القضائية لكافة المحاكم ومأموريات الاستئناف، مكاتب التوثيق المميكنة بالمولات والنوادي، مكاتب الفترة المسائية (5-9م)، وفروع أسبقية الحضور بدون حجز</p>
-  <div class="hero-stats">
-    <div class="stat-pill">📍 <span>27</span> محافظة مصرية</div>
-    <div class="stat-pill">🏢 <span>185+</span> مقراً قضائياً وتوثيقياً</div>
-    <div class="stat-pill">📮 <span>35+</span> فرع بريد ومول بالإسكندرية والجمهورية</div>
-    <div class="stat-pill">🚗 سيارات التوثيق المتنقلة <span>15999</span></div>
+
+
+<!-- 1. HERO SECTION -->
+
+
+<!-- 2. MAIN SEARCH & DIRECTORY FILTERS (TOP OF PAGE FOR FAST ACCESS) -->
+<main style="padding-top: 10px;">
+<div class="controls-box">
+    <div class="search-row">
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث بالمحكمة، المركز، الحي، المول، أو النادي (مثال: مول مصر، سيتي ستارز، نادي الأهلي، سموحة، طنطا، أسيوط)..." oninput="onSearchChange()">
+      
+      <select id="govSelect" class="select-filter" onchange="onGovSelectChange()">
+        <option value="all">📍 جميع المحافظات (27 محافظة)</option>
+        <optgroup label="العاصمة والمدن الكبرى (الأكثر كثافة)">
+          <option value="cairo">القاهرة (العاصمة والمدن الجديدة)</option>
+          <option value="giza">الجيزة (أكتوبر والشيخ زايد والدقي)</option>
+          <option value="alex">الإسكندرية (عروس المتوسط والساحل)</option>
+        </optgroup>
+        <optgroup label="محافظات الدلتا والوجه البحري">
+          <option value="dakahlia">الدقهلية (المنصورة)</option>
+          <option value="gharbia">الغربية (طنطا والمحلة)</option>
+          <option value="sharqia">الشرقية (الزقازيق والعاشر)</option>
+          <option value="monufia">المنوفية (شبين الكوم)</option>
+          <option value="beheira">البحيرة (دمنهور وكفر الدوار)</option>
+          <option value="qalyubia">القليوبية (بنها وشبرا الخيمة)</option>
+        </optgroup>
+        <optgroup label="محافظات مدن القناة وسيناء">
+          <option value="port_said">بورسعيد (المنطقة الحرة)</option>
+          <option value="ismailia">الإسماعيلية</option>
+          <option value="suez">السويس</option>
+          <option value="south_sinai">جنوب سيناء (شرم الشيخ)</option>
+        </optgroup>
+        <optgroup label="محافظات صعيد مصر والوجه القبلي">
+          <option value="assiut">أسيوط (عاصمة الصعيد)</option>
+          <option value="sohag">سوهاج</option>
+          <option value="qena">قنا</option>
+          <option value="luxor">الأقصر</option>
+          <option value="aswan">أسوان</option>
+        </optgroup>
+        <optgroup label="المحافظات الساحلية والحدودية">
+          <option value="red_sea">البحر الأحمر (الغردقة)</option>
+          <option value="matrouh">مطروح والساحل الشمالي</option>
+        </optgroup>
+      </select>
+
+      <select id="typeSelect" class="select-filter" onchange="onTypeSelectChange()">
+        <option value="all">⚖️ جميع الفئات القضائية والتوثيق</option>
+        <option value="no_booking">⚡ فروع ومكاتب بدون حجز مسبق (أسبقية الحضور)</option>
+        <option value="post_office">📮 فروع الشهر العقاري بمكاتب البريد المصري</option>
+        <option value="mall_club">🛍️ فروع المولات والأندية الرياضية</option>
+        <option value="night">🌙 فروع الفترة المسائية (5 - 9 م)</option>
+        <option value="mobile_van">🚗 سيارات ومراكز التوثيق المتنقلة (15999)</option>
+        <option value="shahr">🏢 مكاتب ومأموريات التوثيق المميكنة</option>
+        <option value="appeal">🏛️ محاكم الاستئناف والنقض العالية</option>
+        <option value="primary">⚖️ المحاكم الابتدائية والجزئية ومجمعات المحاكم</option>
+        <option value="council">📜 مجلس الدولة والقضاء الإداري</option>
+        <option value="economic">💼 المحاكم الاقتصادية</option>
+      </select>
+    </div>
+
+    <!-- REGION & CATEGORY QUICK PILLS -->
+    <div class="filter-pills">
+      <button class="pill active" onclick="setRegion('all', this)">🇪🇬 كافة الجمهورية</button>
+      <button class="pill" onclick="setFilterSpecial('alex', this)" style="border-color:rgba(99,102,241,0.4); color:#c7d2fe; font-weight:800;">🌊 فروع الإسكندرية (30+ فرع)</button>
+      <button class="pill" onclick="setFilterSpecial('no_booking', this)" style="border-color:rgba(16,185,129,0.4); color:#6ee7b7; font-weight:800;">⚡ فروع بدون حجز (أسبقية حضور)</button>
+      <button class="pill" onclick="setFilterSpecial('post_office', this)" style="border-color:rgba(245,158,11,0.4); color:#fde68a; font-weight:800;">📮 فروع البريد المصري</button>
+      <button class="pill" onclick="setFilterSpecial('mall_club', this)">🛍️ فروع المولات والأندية</button>
+      <button class="pill" onclick="setFilterSpecial('night', this)">🌙 الفترة المسائية (5-9م)</button>
+      <button class="pill" onclick="setFilterSpecial('mobile_van', this)">🚗 سيارات التوثيق 15999</button>
+      <button class="pill" onclick="setRegion('cairo_giza', this)">القاهرة الكبرى</button>
+      <button class="pill" onclick="setRegion('delta', this)">محافظات الدلتا</button>
+      <button class="pill" onclick="setRegion('canal', this)">مدن القناة وسيناء</button>
+      <button class="pill" onclick="setRegion('upper_egypt', this)">صعيد مصر والوجه القبلي</button>
+    </div>
   </div>
-</header>
+
+  <div class="count-banner" id="countBanner"></div>
+  <div class="grid-container" id="courtsGrid"></div>
+</main>
 
 <div style="padding: 0 20px;">
-  <!-- 2. HOTLINES & MOBILE VANS BAR -->
-  <div style="max-width: 1240px; margin: 0 auto 24px; padding: 18px 24px; background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(6,182,212,0.12)); border: 1px solid rgba(16,185,129,0.35); border-radius: 18px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);">
-    <div style="display:flex; align-items:center; gap:12px;">
-      <span style="font-size:28px;">📞</span>
-      <div>
-        <div style="font-size:16px; font-weight:800; color:#fff;">الخط الساخن لسيارات التوثيق المتنقلة وحجز المواعيد الفورية</div>
-        <div style="font-size:13px; color:#cbd5e1;">اطلب سيارة توثيق مجهزة أمام منزلك أو مقر عملك أو استعلم عن أقرب فرع شاغر</div>
-      </div>
-    </div>
-    <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
-      <a href="tel:15999" style="background:#10b981; color:#0f172a; padding:10px 20px; border-radius:12px; font-weight:900; font-size:14px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 15px rgba(16,185,129,0.4);">
-        <span>🚗 اتصل بالخط الساخن: 15999</span>
-      </a>
-      <a href="tel:01555559875" style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.25); color:#fff; padding:10px 18px; border-radius:12px; font-weight:700; font-size:13px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-        <span>📱 01555559875</span>
-      </a>
-      <a href="https://digital.gov.eg" target="_blank" rel="noopener noreferrer" style="background:rgba(99,102,241,0.25); border:1px solid rgba(99,102,241,0.4); color:#c7d2fe; padding:10px 18px; border-radius:12px; font-weight:700; font-size:13px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-        <span>🌐 بوابة مصر الرقمية</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- ════════════════════════════════════════════════════════════════════════════
+  <!-- 3. MASTER SMART NOTARY & COURTS SERVICES HUB CARD 2026 -->
+<!-- ════════════════════════════════════════════════════════════════════════════
        MASTER SMART NOTARY & COURTS SERVICES HUB CARD 2026
        ════════════════════════════════════════════════════════════════════════════ -->
   <section id="master-services-hub" style="max-width: 1240px; margin: 0 auto 28px; padding: 28px; background: linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.92), rgba(15,23,42,0.95)); border: 2px solid rgba(99,102,241,0.4); border-radius: 24px; box-shadow: 0 20px 50px -10px rgba(0,0,0,0.6), 0 0 30px rgba(99,102,241,0.15); backdrop-filter: blur(16px); position: relative; z-index: 40;">
@@ -414,6 +461,7 @@
   </section>
 
   <!-- 4. INTERACTIVE NOTARY REQUIREMENTS & FEES CHECKER -->
+<!-- 4. INTERACTIVE NOTARY REQUIREMENTS & FEES CHECKER -->
   <div id="notary-checker" style="max-width: 1240px; margin: 0 auto 32px; padding: 28px; background: linear-gradient(135deg, rgba(30,41,59,0.85), rgba(15,23,42,0.92)); border: 1px solid rgba(99,102,241,0.35); border-radius: 20px; box-shadow: 0 15px 35px -10px rgba(0,0,0,0.5); backdrop-filter: blur(14px);">
     <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:18px;">
       <div style="display:flex; align-items:center; gap:10px;">
@@ -423,118 +471,19 @@
           <div style="font-size:13px; color:#94a3b8; margin-top:2px;">اختر المعاملة لمعرفة المستندات والرسوم الرسمية والمدة الزمنية فورياً</div>
         </div>
       </div>
-      <span style="font-size:11px; font-weight:800; color:#10b981; background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); padding:4px 12px; border-radius:99px;">
-        محدث وفق لائحة 2026
-      </span>
-    </div>
 
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin-bottom:20px;">
+  <!-- 5. HOTLINES & MOBILE VANS BAR -->
+<!-- 2. HOTLINES & MOBILE VANS BAR -->
+  <div style="max-width: 1240px; margin: 0 auto 24px; padding: 18px 24px; background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(6,182,212,0.12)); border: 1px solid rgba(16,185,129,0.35); border-radius: 18px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);">
+    <div style="display:flex; align-items:center; gap:12px;">
+      <span style="font-size:28px;">📞</span>
       <div>
-        <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">نوع المعاملة المراد إنجازها:</label>
-        <select id="notaryTxSelect" onchange="updateNotaryInfo()" style="width:100%; padding:12px 14px; background:#1e293b; border:1px solid rgba(148,163,184,0.3); border-radius:12px; color:#fff; font-size:14px; font-weight:700; font-family:'Cairo'; outline:none;">
-          <option value="poa_lawyer">توكيل عام قضايا رسمي للمحامي</option>
-          <option value="poa_car_sale">توكيل بيع وإدارة سيارة / دراجة</option>
-          <option value="poa_property_sale">توكيل خاص بيع وإدارة عقار / أرض</option>
-          <option value="car_contract">عقد بيع سيارة نهائي معتمد</option>
-          <option value="rent_auth">إثبات تاريخ / تصديق على عقد إيجار</option>
-          <option value="signature_auth">تصديق توقيعات على اتفاق أو عقد شركة</option>
-          <option value="official_statement">إقرار رسمي / إقرار تنازل وتصالح</option>
-          <option value="negative_cert">شهادة تصرفات عقارية سلبية (بحث ملكية)</option>
-          <option value="real_estate_reg">تسجيل ونقل ملكية شقة/عقار (قانون 9/2022)</option>
-        </select>
+        <div style="font-size:16px; font-weight:800; color:#fff;">الخط الساخن لسيارات التوثيق المتنقلة وحجز المواعيد الفورية</div>
+        <div style="font-size:13px; color:#cbd5e1;">اطلب سيارة توثيق مجهزة أمام منزلك أو مقر عملك أو استعلم عن أقرب فرع شاغر</div>
       </div>
-
-      <div>
-        <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">وقت التنفيذ المفضل:</label>
-        <select id="notaryTimeSelect" onchange="updateNotaryInfo()" style="width:100%; padding:12px 14px; background:#1e293b; border:1px solid rgba(148,163,184,0.3); border-radius:12px; color:#fff; font-size:14px; font-weight:700; font-family:'Cairo'; outline:none;">
-          <option value="morning">فترة صباحية عادية (9:00 ص - 4:00 م) - الرسوم العادية</option>
-          <option value="night">فترة مسائية مميزة (5:00 م - 9:00 م) - يضاف رسم مسائي 100 ج.م</option>
-          <option value="van">سيارة توثيق متنقلة خاصة (تصل لموقعك) - يضاف رسم انتقال</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Result Card -->
-    <div id="notaryResultDisplay" style="background:rgba(15,23,42,0.8); border:1px solid rgba(99,102,241,0.3); border-radius:14px; padding:20px;">
-      <!-- dynamic content populated by JS -->
-    </div>
-  </div>
 </div>
 
-<!-- 5. MAIN DIRECTORY FILTERS & GRID -->
-<main>
-  <div class="controls-box">
-    <div class="search-row">
-      <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث بالمحكمة، المركز، الحي، المول، أو النادي (مثال: مول مصر، سيتي ستارز، نادي الأهلي، سموحة، طنطا، أسيوط)..." oninput="filterCourts()">
-      
-      <select id="govSelect" class="select-filter" onchange="onGovSelectChange()">
-        <option value="all">📍 جميع المحافظات (27 محافظة)</option>
-        <optgroup label="العاصمة والمدن الكبرى (الأكثر كثافة)">
-          <option value="cairo">القاهرة (العاصمة والمدن الجديدة)</option>
-          <option value="giza">الجيزة (أكتوبر والشيخ زايد والدقي)</option>
-          <option value="alex">الإسكندرية (عروس المتوسط والساحل)</option>
-        </optgroup>
-        <optgroup label="محافظات الدلتا والوجه البحري">
-          <option value="dakahlia">الدقهلية (المنصورة)</option>
-          <option value="gharbia">الغربية (طنطا والمحلة)</option>
-          <option value="sharqia">الشرقية (الزقازيق والعاشر)</option>
-          <option value="monufia">المنوفية (شبين الكوم)</option>
-          <option value="beheira">البحيرة (دمنهور وكفر الدوار)</option>
-          <option value="qalyubia">القليوبية (بنها وشبرا الخيمة)</option>
-        </optgroup>
-        <optgroup label="محافظات مدن القناة وسيناء">
-          <option value="port_said">بورسعيد (المنطقة الحرة)</option>
-          <option value="ismailia">الإسماعيلية</option>
-          <option value="suez">السويس</option>
-          <option value="south_sinai">جنوب سيناء (شرم الشيخ)</option>
-        </optgroup>
-        <optgroup label="محافظات صعيد مصر والوجه القبلي">
-          <option value="assiut">أسيوط (عاصمة الصعيد)</option>
-          <option value="sohag">سوهاج</option>
-          <option value="qena">قنا</option>
-          <option value="luxor">الأقصر</option>
-          <option value="aswan">أسوان</option>
-        </optgroup>
-        <optgroup label="المحافظات الساحلية والحدودية">
-          <option value="red_sea">البحر الأحمر (الغردقة)</option>
-          <option value="matrouh">مطروح والساحل الشمالي</option>
-        </optgroup>
-      </select>
 
-      <select id="typeSelect" class="select-filter" onchange="onTypeSelectChange()">
-        <option value="all">⚖️ جميع الفئات القضائية والتوثيق</option>
-        <option value="no_booking">⚡ فروع ومكاتب بدون حجز مسبق (أسبقية الحضور)</option>
-        <option value="post_office">📮 فروع الشهر العقاري بمكاتب البريد المصري</option>
-        <option value="mall_club">🛍️ فروع المولات والأندية الرياضية</option>
-        <option value="night">🌙 فروع الفترة المسائية (5 - 9 م)</option>
-        <option value="mobile_van">🚗 سيارات ومراكز التوثيق المتنقلة (15999)</option>
-        <option value="shahr">🏢 مكاتب ومأموريات التوثيق المميكنة</option>
-        <option value="appeal">🏛️ محاكم الاستئناف والنقض العالية</option>
-        <option value="primary">⚖️ المحاكم الابتدائية والجزئية ومجمعات المحاكم</option>
-        <option value="council">📜 مجلس الدولة والقضاء الإداري</option>
-        <option value="economic">💼 المحاكم الاقتصادية</option>
-      </select>
-    </div>
-
-    <!-- REGION & CATEGORY QUICK PILLS -->
-    <div class="filter-pills">
-      <button class="pill active" onclick="setRegion('all', this)">🇪🇬 كافة الجمهورية</button>
-      <button class="pill" onclick="setFilterSpecial('alex', this)" style="border-color:rgba(99,102,241,0.4); color:#c7d2fe; font-weight:800;">🌊 فروع الإسكندرية (30+ فرع)</button>
-      <button class="pill" onclick="setFilterSpecial('no_booking', this)" style="border-color:rgba(16,185,129,0.4); color:#6ee7b7; font-weight:800;">⚡ فروع بدون حجز (أسبقية حضور)</button>
-      <button class="pill" onclick="setFilterSpecial('post_office', this)" style="border-color:rgba(245,158,11,0.4); color:#fde68a; font-weight:800;">📮 فروع البريد المصري</button>
-      <button class="pill" onclick="setFilterSpecial('mall_club', this)">🛍️ فروع المولات والأندية</button>
-      <button class="pill" onclick="setFilterSpecial('night', this)">🌙 الفترة المسائية (5-9م)</button>
-      <button class="pill" onclick="setFilterSpecial('mobile_van', this)">🚗 سيارات التوثيق 15999</button>
-      <button class="pill" onclick="setRegion('cairo_giza', this)">القاهرة الكبرى</button>
-      <button class="pill" onclick="setRegion('delta', this)">محافظات الدلتا</button>
-      <button class="pill" onclick="setRegion('canal', this)">مدن القناة وسيناء</button>
-      <button class="pill" onclick="setRegion('upper_egypt', this)">صعيد مصر والوجه القبلي</button>
-    </div>
-  </div>
-
-  <div class="count-banner" id="countBanner"></div>
-  <div class="grid-container" id="courtsGrid"></div>
-</main>
 
 <div class="ad-slot">
   <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7725405859334364" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
