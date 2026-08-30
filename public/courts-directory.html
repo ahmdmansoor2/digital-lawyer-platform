@@ -1194,32 +1194,47 @@ function printFormText() {
   
   const printWin = window.open('', '_blank');
   if (!printWin) {
-    alert('يرجى السماح بالنوافذ المنبثقة لطباعة النموذج.');
+    alert('يرجى السماح بالنوافذ المنبثقة في المتصفح لطباعة النموذج.');
     return;
   }
-  printWin.document.write(`<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <title>\${title}</title>
-  <style>
-    body { font-family: 'Cairo', Tahoma, sans-serif; padding: 40px; line-height: 1.9; color: #000; direction: rtl; }
-    h1 { font-size: 20px; text-align: center; border-bottom: 2px solid #000; padding-bottom: 12px; margin-bottom: 30px; }
-    pre { white-space: pre-wrap; font-family: inherit; font-size: 15px; }
-    .footer { margin-top: 50px; text-align: center; font-size: 12px; color: #666; border-top: 1px solid #ccc; padding-top: 10px; }
-  </style>
-</head>
-<body>
-  <h1>\${title}</h1>
-  <pre>\${body}</pre>
-  <div class="footer">منصة المحامي الرقمية — إشراف المستشار أحمد منصور — https://mohamidigital.online</div>
-</body>
-</html>`);
+  
+  printWin.document.write('<!DOCTYPE html>' +
+'<html lang="ar" dir="rtl">' +
+'<head>' +
+'  <meta charset="UTF-8">' +
+'  <title>' + title + '</title>' +
+'  <link rel="preconnect" href="https://fonts.googleapis.com">' +
+'  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">' +
+'  <style>' +
+'    @page { size: A4 portrait; margin: 18mm 15mm; }' +
+'    *, *::before, *::after { box-sizing: border-box; }' +
+'    body { font-family: "Cairo", Tahoma, sans-serif; padding: 25px; line-height: 1.9; color: #0f172a; direction: rtl; margin: 0; background: #fff; }' +
+'    .print-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0f172a; padding-bottom: 12px; margin-bottom: 24px; }' +
+'    .print-title { font-size: 18px; font-weight: 900; text-align: center; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px 16px; margin: 0 auto 24px; max-width: 600px; }' +
+'    .print-content { white-space: pre-wrap; font-family: "Cairo", Tahoma, sans-serif; font-size: 14.5px; line-height: 2.1; color: #1e293b; background: #fafafa; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px; min-height: 400px; }' +
+'    .print-footer { margin-top: 30px; display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed #94a3b8; padding-top: 12px; font-size: 11.5px; color: #64748b; }' +
+'  </style>' +
+'</head>' +
+'<body>' +
+'  <div class="print-header">' +
+'    <div style="font-size:12px; font-weight:700;">جمهورية مصر العربية<br>منظومة العدالة ومصر الرقمية</div>' +
+'    <div style="font-size:14px; font-weight:900; color:#4338ca;">⚖️ منصة المحامي الرقمية</div>' +
+'    <div style="font-size:12px; text-align:left;">إشراف المستشار أحمد منصور<br>محامٍ بالنقض والدستورية</div>' +
+'  </div>' +
+'  <div class="print-title">' + title + '</div>' +
+'  <div class="print-content">' + body + '</div>' +
+'  <div class="print-footer">' +
+'    <span>مُستخرج من: دليل محاكم وشهر عقاري مصر الرقمية (mohamidigital.online)</span>' +
+'    <span>تاريخ الطباعة: ' + new Date().toLocaleDateString('ar-EG') + '</span>' +
+'  </div>' +
+'</body>' +
+'</html>');
+
   printWin.document.close();
   printWin.focus();
-  setTimeout(() => {
+  setTimeout(function() {
     printWin.print();
-  }, 300);
+  }, 400);
 }
 
 // ─── NOTARY REQUIREMENTS & FEES DATA ─────────────────────────────────────────
