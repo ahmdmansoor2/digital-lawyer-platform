@@ -212,6 +212,99 @@
     <h1>قانون العمل المصري 2026: الدليل القانوني والعملي الشامل للمؤسسات والأفراد</h1>
     <p style="color:#94a3b8; font-size:0.9rem;">آخر تحديث: ٤‏/٨‏/٢٠٢٦ · قانون عمالي</p>
 
+    <!-- ════════════════════════════════════════════════════════════════════════════
+         INTERACTIVE END OF SERVICE CALCULATOR WIDGET
+         ════════════════════════════════════════════════════════════════════════════ -->
+    <div id="labor-calc-widget" style="background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95)); border: 2px solid rgba(99,102,241,0.4); border-radius: 20px; padding: 36px 28px; margin: 48px 0; box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+        <span style="font-size:32px;">🧮</span>
+        <div>
+          <h2 style="font-size:22px; font-weight:800; color:#fff; margin:0; border:none; padding:0;">الحاسبة التفاعلية لمكافأة نهاية الخدمة والتعويض العمالي 2026</h2>
+          <div style="font-size:13px; color:#94a3b8; margin-top:4px;">مُطابقة لنصوص المادة 126 من قانون العمل وأحدث أحكام محكمة النقض</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px; margin-bottom:20px;">
+        <div>
+          <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">الراتب الأساسي الشهري (بالجنيه):</label>
+          <input type="number" id="calcBasicSalary" value="6000" style="width:100%; background:rgba(15,23,42,0.8); border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-size:15px; font-weight:700; font-family:'Cairo'; outline:none;">
+        </div>
+
+        <div>
+          <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">الراتب الإجمالي الشامل (بالجنيه):</label>
+          <input type="number" id="calcTotalSalary" value="8500" style="width:100%; background:rgba(15,23,42,0.8); border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-size:15px; font-weight:700; font-family:'Cairo'; outline:none;">
+        </div>
+
+        <div>
+          <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">سنوات الخدمة الفعلية:</label>
+          <input type="number" id="calcYears" value="5" min="0" max="50" style="width:100%; background:rgba(15,23,42,0.8); border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-size:15px; font-weight:700; font-family:'Cairo'; outline:none;">
+        </div>
+
+        <div>
+          <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">سبب إنهاء علاقة العمل:</label>
+          <select id="calcReason" style="width:100%; background:rgba(15,23,42,0.8); border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-size:14px; font-weight:700; font-family:'Cairo'; outline:none;">
+            <option value="normal">بلوغ سن التقاعد / انتهاء العقد</option>
+            <option value="unfair">فصل تعسفي من صاحب العمل (يستوجب التعويض)</option>
+            <option value="resignation">استقالة العامل بعد 5 سنوات</option>
+          </select>
+        </div>
+      </div>
+
+      <button onclick="calculateLaborLaw()" style="background:linear-gradient(135deg,#10b981,#059669); color:#fff; border:none; padding:12px 32px; border-radius:10px; font-weight:800; font-size:15px; font-family:'Cairo'; cursor:pointer; width:100%; margin-bottom:20px;">
+        ⚡ احسب المستحقات القانونية الآن
+      </button>
+
+      <div id="calcResultBox" style="background:rgba(15,23,42,0.7); border:1px solid rgba(16,185,129,0.3); border-radius:14px; padding:20px; display:none;">
+        <div style="font-size:14px; color:#94a3b8; margin-bottom:8px;">📊 تفصيل المستحقات التقديرية:</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:12px; margin-bottom:12px;">
+          <div style="background:rgba(30,41,59,0.6); padding:12px; border-radius:8px;">
+            <div style="font-size:12px; color:#cbd5e1;">مكافأة نهاية الخدمة:</div>
+            <div id="resGratuity" style="font-size:18px; font-weight:800; color:#6ee7b7;">0 ج.م</div>
+          </div>
+          <div style="background:rgba(30,41,59,0.6); padding:12px; border-radius:8px;">
+            <div style="font-size:12px; color:#cbd5e1;">تعويض الفصل التعسفي:</div>
+            <div id="resCompensation" style="font-size:18px; font-weight:800; color:#fbbf24;">0 ج.م</div>
+          </div>
+          <div style="background:rgba(30,41,59,0.6); padding:12px; border-radius:8px;">
+            <div style="font-size:12px; color:#cbd5e1;">إجمالي المستحقات:</div>
+            <div id="resTotal" style="font-size:20px; font-weight:900; color:#fff;">0 ج.م</div>
+          </div>
+        </div>
+        <div style="font-size:12px; color:#94a3b8;">* تطبق الشروط والأحكام وفقاً لعقد العمل الفردي وقرارات المحكمة العمالية المختصة.</div>
+      </div>
+    </div>
+
+    <script>
+    function calculateLaborLaw() {
+      var basic = parseFloat(document.getElementById('calcBasicSalary').value) || 0;
+      var total = parseFloat(document.getElementById('calcTotalSalary').value) || 0;
+      var years = parseFloat(document.getElementById('calcYears').value) || 0;
+      var reason = document.getElementById('calcReason').value;
+
+      var gratuity = 0;
+      if (years <= 5) {
+        gratuity = years * (basic / 2);
+      } else {
+        gratuity = (5 * (basic / 2)) + ((years - 5) * basic);
+      }
+
+      var comp = 0;
+      if (reason === 'unfair') {
+        comp = Math.max(total * 2 * years, total * 2);
+      } else if (reason === 'resignation') {
+        if (years < 5) gratuity = 0;
+        else if (years < 10) gratuity = gratuity * (2/3);
+      }
+
+      var grandTotal = gratuity + comp;
+
+      document.getElementById('resGratuity').innerText = Math.round(gratuity).toLocaleString('ar-EG') + ' جنيه';
+      document.getElementById('resCompensation').innerText = Math.round(comp).toLocaleString('ar-EG') + ' جنيه';
+      document.getElementById('resTotal').innerText = Math.round(grandTotal).toLocaleString('ar-EG') + ' جنيه';
+      document.getElementById('calcResultBox').style.display = 'block';
+    }
+    </script>
+
     <aside class="toc">
       <h2>📑 محتويات الدليل</h2>
       <ol><li><a href="#section-1">مقدمة عامة: التطور التاريخي والتشريعي لقانون العمل المصري وآفاق عام 2026</a></li>
@@ -418,98 +511,7 @@
       <a href="/" class="cta-button">جرب المنصة مجاناً</a>
     </aside>
   
-    <!-- ════════════════════════════════════════════════════════════════════════════
-         INTERACTIVE END OF SERVICE CALCULATOR WIDGET
-         ════════════════════════════════════════════════════════════════════════════ -->
-    <div id="labor-calc-widget" style="background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95)); border: 2px solid rgba(99,102,241,0.4); border-radius: 20px; padding: 36px 28px; margin: 48px 0; box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);">
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
-        <span style="font-size:32px;">🧮</span>
-        <div>
-          <h2 style="font-size:22px; font-weight:800; color:#fff; margin:0; border:none; padding:0;">الحاسبة التفاعلية لمكافأة نهاية الخدمة والتعويض العمالي 2026</h2>
-          <div style="font-size:13px; color:#94a3b8; margin-top:4px;">مُطابقة لنصوص المادة 126 من قانون العمل وأحدث أحكام محكمة النقض</div>
-        </div>
-      </div>
-
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px; margin-bottom:20px;">
-        <div>
-          <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">الراتب الأساسي الشهري (بالجنيه):</label>
-          <input type="number" id="calcBasicSalary" value="6000" style="width:100%; background:rgba(15,23,42,0.8); border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-size:15px; font-weight:700; font-family:'Cairo'; outline:none;">
-        </div>
-
-        <div>
-          <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">الراتب الإجمالي الشامل (بالجنيه):</label>
-          <input type="number" id="calcTotalSalary" value="8500" style="width:100%; background:rgba(15,23,42,0.8); border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-size:15px; font-weight:700; font-family:'Cairo'; outline:none;">
-        </div>
-
-        <div>
-          <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">سنوات الخدمة الفعلية:</label>
-          <input type="number" id="calcYears" value="5" min="0" max="50" style="width:100%; background:rgba(15,23,42,0.8); border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-size:15px; font-weight:700; font-family:'Cairo'; outline:none;">
-        </div>
-
-        <div>
-          <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">سبب إنهاء علاقة العمل:</label>
-          <select id="calcReason" style="width:100%; background:rgba(15,23,42,0.8); border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-size:14px; font-weight:700; font-family:'Cairo'; outline:none;">
-            <option value="normal">بلوغ سن التقاعد / انتهاء العقد</option>
-            <option value="unfair">فصل تعسفي من صاحب العمل (يستوجب التعويض)</option>
-            <option value="resignation">استقالة العامل بعد 5 سنوات</option>
-          </select>
-        </div>
-      </div>
-
-      <button onclick="calculateLaborLaw()" style="background:linear-gradient(135deg,#10b981,#059669); color:#fff; border:none; padding:12px 32px; border-radius:10px; font-weight:800; font-size:15px; font-family:'Cairo'; cursor:pointer; width:100%; margin-bottom:20px;">
-        ⚡ احسب المستحقات القانونية الآن
-      </button>
-
-      <div id="calcResultBox" style="background:rgba(15,23,42,0.7); border:1px solid rgba(16,185,129,0.3); border-radius:14px; padding:20px; display:none;">
-        <div style="font-size:14px; color:#94a3b8; margin-bottom:8px;">📊 تفصيل المستحقات التقديرية:</div>
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:12px; margin-bottom:12px;">
-          <div style="background:rgba(30,41,59,0.6); padding:12px; border-radius:8px;">
-            <div style="font-size:12px; color:#cbd5e1;">مكافأة نهاية الخدمة:</div>
-            <div id="resGratuity" style="font-size:18px; font-weight:800; color:#6ee7b7;">0 ج.م</div>
-          </div>
-          <div style="background:rgba(30,41,59,0.6); padding:12px; border-radius:8px;">
-            <div style="font-size:12px; color:#cbd5e1;">تعويض الفصل التعسفي:</div>
-            <div id="resCompensation" style="font-size:18px; font-weight:800; color:#fbbf24;">0 ج.م</div>
-          </div>
-          <div style="background:rgba(30,41,59,0.6); padding:12px; border-radius:8px;">
-            <div style="font-size:12px; color:#cbd5e1;">إجمالي المستحقات:</div>
-            <div id="resTotal" style="font-size:20px; font-weight:900; color:#fff;">0 ج.م</div>
-          </div>
-        </div>
-        <div style="font-size:12px; color:#94a3b8;">* تطبق الشروط والأحكام وفقاً لعقد العمل الفردي وقرارات المحكمة العمالية المختصة.</div>
-      </div>
-    </div>
-
-    <script>
-    function calculateLaborLaw() {
-      var basic = parseFloat(document.getElementById('calcBasicSalary').value) || 0;
-      var total = parseFloat(document.getElementById('calcTotalSalary').value) || 0;
-      var years = parseFloat(document.getElementById('calcYears').value) || 0;
-      var reason = document.getElementById('calcReason').value;
-
-      var gratuity = 0;
-      if (years <= 5) {
-        gratuity = years * (basic / 2);
-      } else {
-        gratuity = (5 * (basic / 2)) + ((years - 5) * basic);
-      }
-
-      var comp = 0;
-      if (reason === 'unfair') {
-        comp = Math.max(total * 2 * years, total * 2);
-      } else if (reason === 'resignation') {
-        if (years < 5) gratuity = 0;
-        else if (years < 10) gratuity = gratuity * (2/3);
-      }
-
-      var grandTotal = gratuity + comp;
-
-      document.getElementById('resGratuity').innerText = Math.round(gratuity).toLocaleString('ar-EG') + ' جنيه';
-      document.getElementById('resCompensation').innerText = Math.round(comp).toLocaleString('ar-EG') + ' جنيه';
-      document.getElementById('resTotal').innerText = Math.round(grandTotal).toLocaleString('ar-EG') + ' جنيه';
-      document.getElementById('calcResultBox').style.display = 'block';
-    }
-    </script>
+    
 
     <!-- ════════════════════════════════════════════════════════════════════════════
          E-E-A-T AUTHOR CREDENTIALS CARD
