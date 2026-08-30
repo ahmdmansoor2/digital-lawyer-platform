@@ -3077,47 +3077,159 @@ const COURTS_DATA = [
   }
 ];
 
-let currentRegion = "all";
+let currentRegion = 'all';
 let specialFilter = 'all';
+
+function getBookingPolicyArabic(c) {
+  if (c.bookingPolicy && c.bookingPolicy !== 'undefined') return c.bookingPolicy;
+  if (c.isNoBooking || c.subType === 'no_booking') {
+    return "⚡ استقبال مباشر بأسبقية الحضور وسحب الأرقام الصباحية (بدون حجز مسبق)";
+  }
+  if (c.subType === 'mobile_van' || c.type === 'mobile_van') {
+    return "🚗 خدمة فورية بموقع التمركز أو طلب خاص للمنزل عبر الخط الساخن 15999";
+  }
+  if (c.isNight) {
+    return "🌙 متاح بالحجز المسبق عبر تطبيق «أرغب في عمل توكيل» أو بوابة مصر الرقمية";
+  }
+  if (c.subType === 'post_office' || c.type === 'post_office') {
+    return "📮 شباك البريد المصري المطور للتوثيق (استقبال مباشر وحجز مسبق عبر مصر الرقمية)";
+  }
+  return "🏛️ استقبال رسمي للمتقاضين والمواطنين وحجز إلكتروني عبر بوابة مصر الرقمية";
+}
+
+function getBestTimeArabic(c) {
+  if (c.bestTime && c.bestTime !== 'undefined') return c.bestTime;
+  if (c.isNight) return "الفترة الصباحية (11:00 ص - 1:00 م) أو الفترة المسائية المبكرة (5:00 م - 6:30 م)";
+  if (c.isNoBooking) return "في الصباح الباكر (8:30 ص - 10:00 ص) لضمان سحب رقم متقدم في الطابور";
+  return "بين الساعة 10:00 ص و 12:30 م مع تفضيل أيام وسط الأسبوع";
+}
+
+function applyFilters() {
+  const query = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+  const gov = document.getElementById('govSelect').value;
+  const type = document.getElementById('typeSelect').value;
+
+  const filtered = COURTS_DATA.filter(c => {
+    // 1. Text Search Query
+    if (query) {
+      const matchText = (c.name + ' ' + c.address + ' ' + c.govName + ' ' + c.scope + ' ' + (c.badgeText || '')).toLowerCase();
+      if (!matchText.includes(query)) return false;
+    }
+
+    // 2. Governorate Filter
+    if (gov !== 'all' && c.gov !== gov) return false;
+
+    // 3. Region Filter
+    if (currentRegion !== 'all' && c.region !== currentRegion) return false;
+
+    // 4. Special Filter (Pills)
+    if (specialFilter === 'alex') {
+      if (c.gov !== 'alex') return false;
+    } else if (specialFilter === 'no_booking') {
+      if (!c.isNoBooking && c.subType !== 'no_booking') return false;
+    } else if (specialFilter === 'post_office') {
+      if (c.type !== 'post_office' && c.subType !== 'post_office') return false;
+    } else if (specialFilter === 'mall_club') {
+      if (c.subType !== 'mall_club') return false;
+    } else if (specialFilter === 'night') {
+      if (!c.isNight) return false;
+    } else if (specialFilter === 'mobile_van') {
+      if (c.type !== 'mobile_van' && c.subType !== 'mobile_van') return false;
+    }
+
+    // 5. Category Type Select Filter
+    if (type !== 'all') {
+      if (type === 'no_booking' && (!c.isNoBooking && c.subType !== 'no_booking')) return false;
+      if (type === 'night' && !c.isNight) return false;
+      if (type === 'post_office' && (c.type !== 'post_office' && c.subType !== 'post_office')) return false;
+      if (type === 'mall_club' && c.subType !== 'mall_club') return false;
+      if (type === 'mobile_van' && (c.type !== 'mobile_van' && c.subType !== 'mobile_van')) return false;
+      if (type === 'shahr' && c.type !== 'shahr') return false;
+      if (type === 'appeal' && c.type !== 'appeal') return false;
+      if (type === 'primary' && c.type !== 'primary') return false;
+      if (type === 'council' && c.type !== 'council') return false;
+      if (type === 'economic' && c.type !== 'economic') return false;
+    }
+
+    return true;
+  });
+
+  renderCourts(filtered);
+}
+
+function onSearchChange() {
+  applyFilters();
+}
+
+function onGovSelectChange() {
+  applyFilters();
+}
+
+function onTypeSelectChange() {
+  applyFilters();
+}
+
+function setRegion(regionKey, btnEl) {
+  currentRegion = regionKey;
+  specialFilter = 'all';
+  document.querySelectorAll('.filter-pills .pill').forEach(b => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+  document.getElementById('govSelect').value = 'all';
+  applyFilters();
+}
+
+function setFilterSpecial(filterKey, btnEl) {
+  specialFilter = filterKey;
+  currentRegion = 'all';
+  document.querySelectorAll('.filter-pills .pill').forEach(b => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+  applyFilters();
+}
 
 function renderCourts(items) {
   const container = document.getElementById('courtsGrid');
   const countEl = document.getElementById('countBanner');
 
-  countEl.innerHTML = `تم العثور على <strong>${items.length}</strong> مجمع محاكم وفرع توثيق مميكن بمصر الرقمية`;
+  countEl.innerHTML = 'تم العثور على <strong>' + items.length + '</strong> مجمع محاكم وفرع توثيق مميكن بمصر الرقمية';
 
   if (items.length === 0) {
     container.innerHTML = '<div class="no-results">🔍 لم يتم العثور على نتائج تطابق بحثك. جرب كتابة اسم مول أو نادٍ أو مركز آخر.</div>';
     return;
   }
 
-  container.innerHTML = items.map(c => `
-    <div class="dir-card" style="display:flex; flex-direction:column; justify-content:space-between;">
-      <div class="card-top">
-        <div class="card-badge-row">
-          <span class="card-badge ${c.badgeClass}">${c.badgeText}</span>
-          ${c.isNight ? '<span class="card-badge badge-night">🌙 5 - 9 مساءً</span>' : ''}
-          ${c.isNoBooking ? '<span class="card-badge badge-walkin">⚡ بدون حجز</span>' : ''}
+  container.innerHTML = items.map(c => {
+    const bookingPolicyArabic = getBookingPolicyArabic(c);
+    const bestTimeArabic = getBestTimeArabic(c);
+    const slug = c.slug || ('branch-' + c.gov + '-' + Buffer.from(c.name).toString('hex').substring(0, 10));
+
+    return `
+      <div class="dir-card" style="display:flex; flex-direction:column; justify-content:space-between;">
+        <div class="card-top">
+          <div class="card-badge-row">
+            <span class="card-badge ${c.badgeClass}">${c.badgeText}</span>
+            ${c.isNight ? '<span class="card-badge badge-night">🌙 5 - 9 مساءً</span>' : ''}
+            ${c.isNoBooking ? '<span class="card-badge badge-walkin">⚡ بدون حجز</span>' : ''}
+          </div>
+          <div class="card-title" style="font-size:1.15rem; font-weight:900; color:#fff; margin-bottom:4px;">${c.name}</div>
+          <div class="card-gov" style="font-size:0.85rem; color:#38bdf8; font-weight:700; margin-bottom:10px;">📍 ${c.govName}</div>
+          
+          <div class="card-detail" style="font-size:0.84rem; margin-bottom:6px;"><strong>📍 العنوان:</strong> <span>${c.address}</span></div>
+          <div class="card-detail" style="font-size:0.84rem; margin-bottom:6px;"><strong>⏱️ المواعيد:</strong> <span style="color:#6ee7b7; font-weight:700;">${c.hours}</span></div>
+          <div class="card-detail" style="font-size:0.84rem; margin-bottom:6px;"><strong>⚡ نظام الحجز:</strong> <span style="color:#fde68a;">${bookingPolicyArabic}</span></div>
+          <div class="card-detail" style="font-size:0.84rem; margin-bottom:6px;"><strong>💼 الخدمات:</strong> <span>${c.scope}</span></div>
+          <div class="card-detail" style="font-size:0.82rem; margin-bottom:6px; background:rgba(99,102,241,0.08); padding:6px 10px; border-radius:8px;"><strong>💡 أفضل وقت للزيارة:</strong> <span>${bestTimeArabic}</span></div>
         </div>
-        <div class="card-title" style="font-size:1.15rem; font-weight:900; color:#fff; margin-bottom:4px;">${c.name}</div>
-        <div class="card-gov" style="font-size:0.85rem; color:#38bdf8; font-weight:700; margin-bottom:10px;">📍 ${c.govName}</div>
         
-        <div class="card-detail" style="font-size:0.84rem; margin-bottom:6px;"><strong>📍 العنوان:</strong> <span>${c.address}</span></div>
-        <div class="card-detail" style="font-size:0.84rem; margin-bottom:6px;"><strong>⏱️ المواعيد:</strong> <span style="color:#6ee7b7; font-weight:700;">${c.hours}</span></div>
-        <div class="card-detail" style="font-size:0.84rem; margin-bottom:6px;"><strong>⚡ نظام الحجز:</strong> <span style="color:#fde68a;">${c.bookingPolicy}</span></div>
-        <div class="card-detail" style="font-size:0.84rem; margin-bottom:6px;"><strong>💼 الخدمات:</strong> <span>${c.scope}</span></div>
-        <div class="card-detail" style="font-size:0.82rem; margin-bottom:6px; background:rgba(99,102,241,0.08); padding:6px 10px; border-radius:8px;"><strong>💡 أفضل وقت للزيارة:</strong> <span>${c.bestTime}</span></div>
-      </div>
-      
-      <div class="card-actions" style="display:flex; flex-direction:column; gap:8px; margin-top:14px; padding-top:12px; border-top:1px solid var(--border);">
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px;">
-          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.mapQuery)}" target="_blank" rel="noopener" style="justify-content:center; padding:8px 10px;">🗺️ الخريطة</a>
-          <a class="map-btn" href="/courts/${c.slug}.html" style="background:#6366f1; color:#fff; justify-content:center; padding:8px 10px; font-weight:800;">📄 تفاصيل الفرع</a>
+        <div class="card-actions" style="display:flex; flex-direction:column; gap:8px; margin-top:14px; padding-top:12px; border-top:1px solid var(--border);">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px;">
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.mapQuery)}" target="_blank" rel="noopener" style="justify-content:center; padding:8px 10px;">🗺️ الخريطة</a>
+            <a class="map-btn" href="/courts/${slug}.html" style="background:#6366f1; color:#fff; justify-content:center; padding:8px 10px; font-weight:800;">📄 تفاصيل الفرع</a>
+          </div>
+          <button style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); color:var(--muted); font-size:0.75rem; padding:6px; border-radius:6px; cursor:pointer; font-family:'Cairo',sans-serif; width:100%; text-align:center;" onclick="navigator.clipboard.writeText('${c.name} - ${c.address}'); alert('تم نسخ العنوان بنجاح!');">📋 نسخ العنوان التفصيلي</button>
         </div>
-        <button style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); color:var(--muted); font-size:0.75rem; padding:6px; border-radius:6px; cursor:pointer; font-family:'Cairo',sans-serif; width:100%; text-align:center;" onclick="navigator.clipboard.writeText('${c.name} - ${c.address}'); alert('تم نسخ العنوان بنجاح!');">📋 نسخ العنوان التفصيلي</button>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 // Initial render
