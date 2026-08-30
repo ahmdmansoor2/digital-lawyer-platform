@@ -6,7 +6,7 @@
   <title>الدليل الشامل لقانون العمل المصري 2026: دليل أصحاب الأعمال والموظفين في ضوء التعديلات الجديدة | منصة المحامي الرقمية</title>
   <meta name="description" content="دليل قانوني متكامل ومفصل حول قانون العمل المصري لعام 2026. تعرف على أنواع العقود، حقوق الإجازات، الأجور، مكافأة نهاية الخدمة، والتعويض عن الفصل التعسفي بالتفصيل." />
   <meta name="keywords" content="قانون العمل المصري 2026، قانون عمالي، قانون مصري، محامي، قانون العمل المصري، عقد العمل، حقوق العامل" />
-  <meta name="author" content="الأستاذ أحمد منصور - مستشار قانوني" />
+  <meta name="author" content="المستشار القانوني الأستاذ أحمد منصور — محامٍ بالنقض والإدارية والدستورية العليا" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://mohamidigital.online/pillars/egyptian-labor-law-2026-comprehensive-guide.html" />
   <meta property="og:type" content="article" />
@@ -30,8 +30,9 @@
   "description": "دليل قانوني متكامل ومفصل حول قانون العمل المصري لعام 2026. تعرف على أنواع العقود، حقوق الإجازات، الأجور، مكافأة نهاية الخدمة، والتعويض عن الفصل التعسفي بالتفصيل.",
   "author": {
     "@type": "Person",
-    "name": "الأستاذ أحمد منصور",
-    "jobTitle": "مستشار قانوني"
+    "name": "المستشار القانوني أحمد منصور",
+    "jobTitle": "محامٍ بالنقض والإدارية العليا والدستورية العليا ومستشار قانوني",
+    "url": "https://mohamidigital.online/about.html"
   },
   "publisher": {
     "@type": "Organization",
@@ -416,7 +417,142 @@
       <p>منصة المحامي الرقمية — نظام مجاني 100% لإدارة القضايا والموكلين والجلسات.</p>
       <a href="/" class="cta-button">جرب المنصة مجاناً</a>
     </aside>
-  </article>
+  
+    <!-- ════════════════════════════════════════════════════════════════════════════
+         INTERACTIVE END OF SERVICE CALCULATOR WIDGET
+         ════════════════════════════════════════════════════════════════════════════ -->
+    <div id="labor-calc-widget" style="background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.95)); border: 2px solid rgba(99,102,241,0.4); border-radius: 20px; padding: 36px 28px; margin: 48px 0; box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+        <span style="font-size:32px;">🧮</span>
+        <div>
+          <h2 style="font-size:22px; font-weight:800; color:#fff; margin:0; border:none; padding:0;">الحاسبة التفاعلية لمكافأة نهاية الخدمة والتعويض العمالي 2026</h2>
+          <div style="font-size:13px; color:#94a3b8; margin-top:4px;">مُطابقة لنصوص المادة 126 من قانون العمل وأحدث أحكام محكمة النقض</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px; margin-bottom:20px;">
+        <div>
+          <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">الراتب الأساسي الشهري (بالجنيه):</label>
+          <input type="number" id="calcBasicSalary" value="6000" style="width:100%; background:rgba(15,23,42,0.8); border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-size:15px; font-weight:700; font-family:'Cairo'; outline:none;">
+        </div>
+
+        <div>
+          <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">الراتب الإجمالي الشامل (بالجنيه):</label>
+          <input type="number" id="calcTotalSalary" value="8500" style="width:100%; background:rgba(15,23,42,0.8); border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-size:15px; font-weight:700; font-family:'Cairo'; outline:none;">
+        </div>
+
+        <div>
+          <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">سنوات الخدمة الفعلية:</label>
+          <input type="number" id="calcYears" value="5" min="0" max="50" style="width:100%; background:rgba(15,23,42,0.8); border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-size:15px; font-weight:700; font-family:'Cairo'; outline:none;">
+        </div>
+
+        <div>
+          <label style="display:block; font-size:13px; font-weight:700; color:#cbd5e1; margin-bottom:6px;">سبب إنهاء علاقة العمل:</label>
+          <select id="calcReason" style="width:100%; background:rgba(15,23,42,0.8); border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-size:14px; font-weight:700; font-family:'Cairo'; outline:none;">
+            <option value="normal">بلوغ سن التقاعد / انتهاء العقد</option>
+            <option value="unfair">فصل تعسفي من صاحب العمل (يستوجب التعويض)</option>
+            <option value="resignation">استقالة العامل بعد 5 سنوات</option>
+          </select>
+        </div>
+      </div>
+
+      <button onclick="calculateLaborLaw()" style="background:linear-gradient(135deg,#10b981,#059669); color:#fff; border:none; padding:12px 32px; border-radius:10px; font-weight:800; font-size:15px; font-family:'Cairo'; cursor:pointer; width:100%; margin-bottom:20px;">
+        ⚡ احسب المستحقات القانونية الآن
+      </button>
+
+      <div id="calcResultBox" style="background:rgba(15,23,42,0.7); border:1px solid rgba(16,185,129,0.3); border-radius:14px; padding:20px; display:none;">
+        <div style="font-size:14px; color:#94a3b8; margin-bottom:8px;">📊 تفصيل المستحقات التقديرية:</div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:12px; margin-bottom:12px;">
+          <div style="background:rgba(30,41,59,0.6); padding:12px; border-radius:8px;">
+            <div style="font-size:12px; color:#cbd5e1;">مكافأة نهاية الخدمة:</div>
+            <div id="resGratuity" style="font-size:18px; font-weight:800; color:#6ee7b7;">0 ج.م</div>
+          </div>
+          <div style="background:rgba(30,41,59,0.6); padding:12px; border-radius:8px;">
+            <div style="font-size:12px; color:#cbd5e1;">تعويض الفصل التعسفي:</div>
+            <div id="resCompensation" style="font-size:18px; font-weight:800; color:#fbbf24;">0 ج.م</div>
+          </div>
+          <div style="background:rgba(30,41,59,0.6); padding:12px; border-radius:8px;">
+            <div style="font-size:12px; color:#cbd5e1;">إجمالي المستحقات:</div>
+            <div id="resTotal" style="font-size:20px; font-weight:900; color:#fff;">0 ج.م</div>
+          </div>
+        </div>
+        <div style="font-size:12px; color:#94a3b8;">* تطبق الشروط والأحكام وفقاً لعقد العمل الفردي وقرارات المحكمة العمالية المختصة.</div>
+      </div>
+    </div>
+
+    <script>
+    function calculateLaborLaw() {
+      var basic = parseFloat(document.getElementById('calcBasicSalary').value) || 0;
+      var total = parseFloat(document.getElementById('calcTotalSalary').value) || 0;
+      var years = parseFloat(document.getElementById('calcYears').value) || 0;
+      var reason = document.getElementById('calcReason').value;
+
+      var gratuity = 0;
+      if (years <= 5) {
+        gratuity = years * (basic / 2);
+      } else {
+        gratuity = (5 * (basic / 2)) + ((years - 5) * basic);
+      }
+
+      var comp = 0;
+      if (reason === 'unfair') {
+        comp = Math.max(total * 2 * years, total * 2);
+      } else if (reason === 'resignation') {
+        if (years < 5) gratuity = 0;
+        else if (years < 10) gratuity = gratuity * (2/3);
+      }
+
+      var grandTotal = gratuity + comp;
+
+      document.getElementById('resGratuity').innerText = Math.round(gratuity).toLocaleString('ar-EG') + ' جنيه';
+      document.getElementById('resCompensation').innerText = Math.round(comp).toLocaleString('ar-EG') + ' جنيه';
+      document.getElementById('resTotal').innerText = Math.round(grandTotal).toLocaleString('ar-EG') + ' جنيه';
+      document.getElementById('calcResultBox').style.display = 'block';
+    }
+    </script>
+
+    <!-- ════════════════════════════════════════════════════════════════════════════
+         E-E-A-T AUTHOR CREDENTIALS CARD
+         ════════════════════════════════════════════════════════════════════════════ -->
+    <div style="background:linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9)); border:1px solid rgba(245,158,11,0.3); border-radius:18px; padding:28px; margin:40px 0; display:flex; gap:20px; align-items:flex-start; flex-wrap:wrap;">
+      <div style="font-size:40px; background:rgba(245,158,11,0.1); width:64px; height:64px; display:flex; align-items:center; justify-content:center; border-radius:14px; flex-shrink:0;">⚖️</div>
+      <div style="flex:1; min-width:260px;">
+        <div style="display:inline-block; font-size:11px; font-weight:800; color:#fbbf24; background:rgba(245,158,11,0.15); padding:2px 10px; border-radius:6px; margin-bottom:8px;">إشراف وتدقيق تشريعي معتمد (E-E-A-T)</div>
+        <h3 style="font-size:20px; font-weight:800; color:#fff; margin:0 0 6px;">المستشار القانوني الأستاذ / أحمد منصور</h3>
+        <div style="font-size:13px; color:#818cf8; font-weight:700; margin-bottom:10px;">محامٍ مقيد بالنقض والمحكمة الإدارية العليا والمحكمة الدستورية العليا — مستشار وخبير قانوني</div>
+        <p style="font-size:14px; color:#cbd5e1; line-height:1.7; margin:0;">
+          خبير في المنازعات العمالية الكبرى وصياغة لوائح تنظيم العمل والجزاءات التأديبية للمؤسسات والشركات، وإيداع صحف الطعن بالنقض العمالي أمام الدوائر العمالية بمحكمة النقض.
+        </p>
+        <div style="margin-top:12px;">
+          <a href="/about.html" style="color:#6ee7b7; font-size:13px; font-weight:700; text-decoration:none;">← تعرّف على السيرة المهنية الكاملة وفريق العمل</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════════════════════
+         RELATED TOPIC CLUSTER (INTERNAL LINKING)
+         ════════════════════════════════════════════════════════════════════════════ -->
+    <div style="background:rgba(30,41,59,0.5); border:1px solid rgba(148,163,184,0.15); border-radius:18px; padding:28px; margin:40px 0;">
+      <h3 style="font-size:18px; font-weight:800; color:#fff; margin:0 0 16px; display:flex; align-items:center; gap:8px;">
+        <span>📚</span> مقالات ودراسات عمالية تفصيلية ذات صلة:
+      </h3>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:14px;">
+        <a href="/blog/new-labor-law-egypt-2026-gratuity-calculation.html" style="background:rgba(15,23,42,0.6); padding:14px 18px; border-radius:10px; border:1px solid rgba(148,163,184,0.1); color:#a5b4fc; text-decoration:none; font-size:14px; font-weight:700; display:block;">
+          💼 دليل حساب مكافأة نهاية الخدمة والتعويض العمالي 2026
+        </a>
+        <a href="/blog/new-labor-law-egypt-2026-contracts-and-termination.html" style="background:rgba(15,23,42,0.6); padding:14px 18px; border-radius:10px; border:1px solid rgba(148,163,184,0.1); color:#a5b4fc; text-decoration:none; font-size:14px; font-weight:700; display:block;">
+          📜 ضوابط صياغة عقود العمل وفترة الاختبار والمادة 69
+        </a>
+        <a href="/blog/mall-of-egypt-real-estate-registry-hours-booking.html" style="background:rgba(15,23,42,0.6); padding:14px 18px; border-radius:10px; border:1px solid rgba(148,163,184,0.1); color:#a5b4fc; text-decoration:none; font-size:14px; font-weight:700; display:block;">
+          🏛️ مواعيد عمل وتوثيق شهر عقاري مول مصر 2026
+        </a>
+        <a href="/legal-forms.html" style="background:rgba(15,23,42,0.6); padding:14px 18px; border-radius:10px; border:1px solid rgba(148,163,184,0.1); color:#a5b4fc; text-decoration:none; font-size:14px; font-weight:700; display:block;">
+          📝 تحميل صيغة عقد عمل فردي وصحيفة دعوى عمالية جاهزة
+        </a>
+      </div>
+    </div>
+
+</article>
   <script src="/search.js" defer></script>
 <script src="/sidebar.js?v=20260823v10"></script><script src="/sw-register.js?v=20260826v1" defer></script><!-- mohami-sw --></body>
 </html>
