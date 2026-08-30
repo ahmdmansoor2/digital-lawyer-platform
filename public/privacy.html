@@ -1,323 +1,257 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head><script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script><!-- www-mohami-guard -->
+<head>
   <meta charset="UTF-8" />
+  <script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>سياسة الخصوصية وملفات تعريف الارتباط - منصة المحامي الرقمية</title>
-  <meta name="description" content="سياسة الخصوصية وملفات تعريف الارتباط لمنصة المحامي الرقمية، متوافقة مع معايير حماية البيانات وسياسات شبكة إعلانات Google AdSense." />
-  <meta name="keywords" content="سياسة الخصوصية, ملفات تعريف الارتباط, منصة المحامي الرقمية, حماية البيانات" />
+  <title>سياسة الخصوصية وملفات تعريف الارتباط | منصة المحامي الرقمية</title>
+  <meta name="description" content="سياسة الخصوصية وحماية البيانات وملفات تعريف الارتباط (Cookies) الخاصة بمنصة المحامي الرقمية وإعلانات Google AdSense." />
   <link rel="canonical" href="https://mohamidigital.online/privacy.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="سياسة الخصوصية وملفات تعريف الارتباط - منصة المحامي الرقمية" />
-  <meta property="og:description" content="سياسة الخصوصية وحماية البيانات لمنصة المحامي الرقمية." />
-  <meta property="og:url" content="https://mohamidigital.online/privacy.html" />
-  <meta property="og:site_name" content="منصة المحامي الرقمية" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
-  
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0f172a; --border: rgba(148,163,184,0.12);
-      --indigo: #6366f1; --purple: #7c3aed; --emerald: #10b981;
-      --text: #f1f5f9; --muted: #94a3b8; --card-bg: rgba(15,23,42,0.7);
+      --bg-dark: #0f172a;
+      --bg-card: rgba(30, 41, 59, 0.7);
+      --border-color: rgba(148, 163, 184, 0.15);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #6366f1;
+      --primary-light: #818cf8;
+      --accent: #10b981;
+      --gold: #f59e0b;
     }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Cairo', sans-serif; background: transparent; color: var(--text); min-height: 100vh; line-height: 1.6; }
-
-    /* HERO */
-    .hero { max-width: 760px; margin: 0 auto; padding: 64px 24px 40px; text-align: center; }
-    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: 999px; background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.3); color: #c4b5fd; font-size: 11px; font-weight: 800; margin-bottom: 20px; }
-    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #c4b5fd; }
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 900;
-      line-height: 1.3;
-      margin-bottom: 16px;
-      color: #ffffff !important;
-      -webkit-text-fill-color: #ffffff !important;
-      background: none !important;
-      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.75), 0 0 25px rgba(99, 102, 241, 0.25) !important;
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.8;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
+      min-height: 100vh;
     }
-    .last-updated { font-size: 12px; color: rgba(148,163,184,0.6); margin-top: 8px; }
-
-    /* CONTENT */
-    .content { max-width: 820px; margin: 0 auto; padding: 0 24px 80px; }
-    .policy-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 22px; padding: 40px;
-      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      margin-bottom: 20px;
-      transition: border-color 0.2s;
+    .header-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid var(--border-color);
+      padding: 14px 24px;
     }
-    .policy-card:hover { border-color: rgba(99,102,241,0.25); }
-    .policy-card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
-    .policy-num {
-      width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
-      background: linear-gradient(135deg, var(--indigo), var(--purple));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px; font-weight: 900; color: #fff;
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
     }
-    .policy-card h2 { font-size: 17px; font-weight: 900; color: #ffffff !important; }
-    .policy-card p { font-size: 14px; color: var(--muted); line-height: 1.9; margin-bottom: 12px; }
-    .policy-card p:last-child { margin-bottom: 0; }
-    .policy-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
-    .policy-card ul li { font-size: 13px; color: var(--muted); display: flex; align-items: flex-start; gap: 8px; line-height: 1.7; }
-    .policy-card ul li::before { content: '•'; color: var(--indigo); font-size: 16px; flex-shrink: 0; margin-top: -1px; }
-    .policy-card a { color: var(--indigo); text-decoration: none; font-weight: 700; }
-    .policy-card a:hover { text-decoration: underline; }
-    .highlight { color: #6ee7b7; font-weight: 800; }
-
-    /* FOOTER */
-    footer { border-top: 1px solid var(--border); background: rgba(15,23,42,0.95); padding: 56px 24px 32px; }
-    .footer-inner { max-width: 1200px; margin: 0 auto; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
-    .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-    .footer-logo-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 16px; }
-    .footer-logo-name { font-size: 15px; font-weight: 900; color: #fff; }
-    .footer-desc { font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 280px; }
-    .footer-email-link { font-size: 12px; color: var(--indigo); margin-top: 10px; font-weight: 700; }
-    .footer-email-link a { color: var(--indigo); text-decoration: none; }
-    .footer-col h4 { font-size: 13px; font-weight: 800; color: #e2e8f0; margin-bottom: 14px; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .footer-col ul a { font-size: 12px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .footer-col ul a:hover { color: var(--indigo); }
-    .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
-
-    .breadcrumbs {
-      max-width: 1200px; margin: 0 auto;
-      padding: 14px 24px 0;
-      font-size: 12px; color: var(--muted);
-      display: flex; align-items: center; gap: 8px;
+    .brand {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-badge {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      color: #fff;
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      list-style: none;
       flex-wrap: wrap;
     }
-    .breadcrumbs a { color: var(--muted); text-decoration: none; transition: color 0.2s; font-weight: 700; }
-    .breadcrumbs a:hover { color: var(--indigo); }
-    .breadcrumbs .current { color: var(--text); font-weight: 800; }
-    .breadcrumbs .sep { color: var(--muted); opacity: 0.4; font-size: 10px; }
-
-    .ad-slot { margin: 28px auto; max-width: 100%; text-align: center; min-height: 90px; }
-    .ad-slot--top { margin-top: 8px; margin-bottom: 36px; }
-
-    @media (max-width: 640px) {
-      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-      .policy-card { padding: 28px 22px; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.2s;
     }
-  </style>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "سياسة الخصوصية - منصة المحامي الرقمية",
-    "url": "https://mohamidigital.online/privacy.html",
-    "isPartOf": {"@type": "WebSite", "name": "منصة المحامي الرقمية", "url": "https://mohamidigital.online"},
-    "inLanguage": "ar-EG"
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type": "ListItem", "position": 1, "name": "الرئيسية", "item": "https://mohamidigital.online"},
-      {"@type": "ListItem", "position": 2, "name": "سياسة الخصوصية", "item": "https://mohamidigital.online/privacy.html"}
-    ]
-  }
-  </script>
-  <link rel="stylesheet" href="/header.css?v=20260823v10">
-<link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest --><meta name="theme-color" content="#0f172a"><!-- mohami-theme --><link rel="apple-touch-icon" href="/icon.svg"><!-- mohami-apple --><link rel="alternate" type="application/rss+xml" title="RSS - منصة المحامي الرقمية" href="/rss.xml"/><!-- mohami-rss --></head>
+    .nav-links a:hover, .nav-links a.active {
+      color: #fff;
+    }
+    .cta-btn {
+      background: linear-gradient(135deg, var(--accent), #059669);
+      color: #fff !important;
+      padding: 6px 16px;
+      border-radius: 8px;
+      font-weight: 700 !important;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+    .page-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 44px 36px;
+      margin-bottom: 32px;
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.5);
+    }
+    .page-title {
+      font-size: 28px;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .page-subtitle {
+      font-size: 15px;
+      color: var(--primary-light);
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .content-section {
+      margin-bottom: 32px;
+    }
+    .content-section h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .content-section p, .content-section li {
+      font-size: 15px;
+      color: #cbd5e1;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .content-section ul, .content-section ol {
+      padding-right: 24px;
+      margin-bottom: 16px;
+    }
+    .highlight-box {
+      background: rgba(99, 102, 241, 0.1);
+      border-right: 4px solid var(--primary);
+      padding: 16px 20px;
+      border-radius: 8px 0 0 8px;
+      margin: 20px 0;
+    }
+    .footer {
+      background: rgba(10, 15, 29, 0.95);
+      border-top: 1px solid var(--border-color);
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .footer-links a {
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover {
+      color: var(--primary-light);
+    }
+    .ad-container {
+      margin: 32px 0;
+      text-align: center;
+    }
+</style>
+</head>
 <body>
-
-  <header class="uh-bar" id="siteHeader">
-    <div class="uh-inner">
-      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
-        <span class="uh-badge">⚖️</span>
-        <span class="uh-brand">
-          <span class="uh-title">المحامي الرقمي</span>
-          <span class="uh-sub">مساعدك القانوني الذكي · مجاناً</span>
-        </span>
+  
+  <header class="header-nav">
+    <div class="nav-container">
+      <a href="/" class="brand">
+        ⚖️ منصة المحامي الرقمية
+        <span class="brand-badge">2026</span>
       </a>
-
-      <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
-        <a href="/" class="uh-link">🏠 الرئيسية</a>
-        <a href="/blog/" class="uh-link">📰 المدونة القانونية</a>
-        <a href="/pillars/" class="uh-link">🏛️ المراجع الشاملة</a>
-        <a href="/legal-forms.html" class="uh-link">📝 صيغ العقود والدعاوي</a>
-        <a href="/legal-radar.html" class="uh-link">🔍 رصد المحامي</a>
-        <a href="/legal-calculators.html" class="uh-link">🧮 الحاسبات القانونية</a>
-        <div class="uh-more" id="uhMore">
-          <button class="uh-more-btn" type="button" aria-expanded="false" aria-haspopup="true">
-            <span>المزيد</span><span class="uh-caret">▾</span>
-          </button>
-          <div class="uh-menu">
-            <a href="/about.html" class="uh-menu-item">⚖️ عن المنصة</a>
-            <a href="/features.html" class="uh-menu-item">⚡ المميزات الكاملة</a>
-            <a href="/pricing.html" class="uh-menu-item">🎁 الأسعار — مجاني 100%</a>
-            <a href="/why-trust-us.html" class="uh-menu-item">🛡️ لماذا تثق بنا</a>
-            <a href="/privacy.html" class="uh-menu-item active">🔐 سياسة الخصوصية</a>
-            <a href="/terms.html" class="uh-menu-item">📜 الشروط والأحكام</a>
-            <a href="/disclaimer.html" class="uh-menu-item">⚠️ إخلاء المسؤولية</a>
-            <a href="/contact.html" class="uh-menu-item">📬 تواصل معنا</a>
-          </div>
-        </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/">الرئيسية</a></li>
+          <li><a href="/blog/">المدونة القانونية</a></li>
+          <li><a href="/pillars/">المراجع الشاملة</a></li>
+          <li><a href="/legal-calculators.html">الحاسبات الذكية</a></li>
+          <li><a href="/court-precedents.html">مبادئ النقض</a></li>
+          <li><a href="/legal-forms.html">صيغ العقود</a></li>
+          <li><a href="/about.html" class="">عن المنصة والمؤسس</a></li>
+          <li><a href="/contact.html" class="">تواصل معنا</a></li>
+          <li><a href="/" class="cta-btn">دخول المنصة</a></li>
+        </ul>
       </nav>
-
-      <div class="uh-actions">
-        <a href="/" class="uh-cta"><span>🚀 دخول التطبيق</span></a>
-        <button class="uh-burger" id="uhBurger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="headerNav">☰</button>
-      </div>
     </div>
   </header>
+  <main class="container">
+    <div class="page-card">
+      <h1 class="page-title">🔒 سياسة الخصوصية وملفات تعريف الارتباط (Privacy Policy)</h1>
+      <div class="page-subtitle">تاريخ آخر تحديث: أغسطس 2026 | منصة المحامي الرقمية (mohamidigital.online)</div>
 
-  <nav class="breadcrumbs" aria-label="مسار التنقل">
-    <a href="/">الرئيسية</a><span class="sep">›</span><span class="current">سياسة الخصوصية</span>
-  </nav>
-
-  <div class="hero">
-    <div class="badge">
-      <span class="badge-dot"></span>
-      نحترم خصوصيتك ونحمي بياناتك
-    </div>
-    <h1>🔐 سياسة الخصوصية وملفات تعريف الارتباط</h1>
-    <p class="last-updated">آخر تحديث: أغسطس 2026</p>
-  </div>
-
-  <!-- TOP AD -->
-  <div class="ad-slot ad-slot--top" role="complementary" aria-label="إعلان">
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-7725405859334364"
-         data-ad-slot="2168039898"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
-
-  <div class="content">
-
-    <div class="policy-card">
-      <div class="policy-card-header">
-        <div class="policy-num">1</div>
-        <h2>مقدمة وتعهد بالشفافية</h2>
+      <div class="content-section">
+        <h2>1. مقدمة والتزامنا بالخصوصية</h2>
+        <p>نحن في «منصة المحامي الرقمية» نضع خصوصية وأمان زوارنا ومستخدمينا على رأس أولوياتنا. توضح هذه الوثيقة أنواع البيانات والمعلومات التي نقوم بجمعها وكيفية استخدامها وحمايتها بما يتوافق مع القوانين الدولية وسياسات خصوصية شبكة Google الإعلانية.</p>
       </div>
-      <p>تُعدّ هذه السياسة التزاماً واضحاً من منصة المحامي الرقمية بحماية خصوصية وأمان بيانات زوارنا ومستخدمينا. بتصفحك للموقع أو استخدامك لأدواتنا القانونية والحاسبات والصيغ، فإنك توافق على ممارسات جمع ومعالجة البيانات المبيّنة في هذه السياسة.</p>
-    </div>
 
-    <div class="policy-card">
-      <div class="policy-card-header">
-        <div class="policy-num">2</div>
-        <h2>البيانات التي نجمعها</h2>
+      <div class="content-section">
+        <h2>2. ملفات تعريف الارتباط وإعلانات Google AdSense</h2>
+        <p>تستخدم منصة المحامي الرقمية برنامج <strong>Google AdSense</strong> لعرض الإعلانات عند زيارة موقعنا الإلكتروني. يُرجى ملاحظة ما يلي:</p>
+        <ul>
+          <li>تستخدم Google، بصفتها مورداً خارجياً (Third-party Vendor)، ملفات تعريف الارتباط (Cookies) مثل ملف تعريف الارتباط <strong>DoubleClick DART Cookie</strong> لعرض الإعلانات للمستخدمين استناداً إلى زياراتهم السابقة لهذا الموقع أو لمواقع أخرى على شبكة الإنترنت.</li>
+          <li>يمكن للمستخدمين إلغاء الاشتراك في استخدام ملف تعريف الارتباط DART لخدمة الإعلانات القائمة على الاهتمامات من خلال زيارة <a href="https://adssettings.google.com/" target="_blank" rel="noopener" style="color:var(--primary-light);">إعدادات إعلانات Google</a>.</li>
+          <li>يمكنك أيضاً زيارة موقع <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener" style="color:var(--primary-light);">aboutads.info</a> لإلغاء الاشتراك في استخدام ملفات تعريف الارتباط المخصصة للإعلانات القائمة على الاهتمامات من جانب مورّدي الإعلانات التابعين لجهات خارجية.</li>
+        </ul>
       </div>
-      <p>نجمع فقط البيانات الضرورية لتشغيل وتطوير المنصة:</p>
-      <ul>
-        <li><strong>بيانات التصفح والاستخدام:</strong> مثل عنوان IP غير المعرّف للشخصية، نوع المتصفح، الصفحات التي تمت زيارتها، ومدة الزيارة لأغراض تحسين الأداء وتجربة المستخدم.</li>
-        <li><strong>بيانات الحساب (اختياري):</strong> عند استخدام تطبيق إدارة المكتب وتسجيل الدخول عبر Google، نصل فقط إلى الاسم وعنوان البريد الإلكتروني والصورة للتحقق من الهوية.</li>
-        <li><strong>بيانات القضايا والموكلين:</strong> تُخزن مشفرة محلياً أو سحابياً وفق رغبة المستخدم ولا نطلع عليها أو نستخدمها في أي غرض إعلاني أو تسويقي.</li>
-      </ul>
-    </div>
 
-    <div class="policy-card">
-      <div class="policy-card-header">
-        <div class="policy-num">3</div>
-        <h2>ملفات تعريف الارتباط (Cookies) وشبكة إعلانات Google</h2>
+      <div class="content-section">
+        <h2>3. ملفات السجل (Log Files)</h2>
+        <p>مثل معظم خوادم المواقع الإلكترونية، نستخدم ملفات السجل لجمع معلومات قياسية غير شخصية تتضمن: عناوين بروتوكول الإنترنت (IP)، نوع المتصفح، مزود خدمة الإنترنت (ISP)، صفحات الإحالة والخروج، والتاريخ والوقت. هذه البيانات تُستخدم حصراً لتحليل الاتجاهات وإدارة الموقع وتحسين سرعة التصفح وتأمين الخوادم.</p>
       </div>
-      <p>نستخدم ملفات تعريف الارتباط وتقنيات التتبع المماثلة للأغراض التالية:</p>
-      <ul>
-        <li><strong>إعلانات Google AdSense:</strong> تستعين منصتنا بشركة Google بصفتها مورداً لطرف ثالث لعرض الإعلانات على صفحات الموقع. تستخدم Google ملفات تعريف الارتباط (بما في ذلك ملف تعريف الارتباط DART) لعرض الإعلانات للمستخدمين استناداً إلى زياراتهم لمنصتنا ومواقع أخرى على شبكة الإنترنت.</li>
-        <li><strong>تعطيل الإعلانات المخصصة:</strong> يمكن للمستخدمين إلغاء الاشتراك في استخدام ملف تعريف الارتباط DART أو تخصيص الإعلانات عن طريق زيارة <a href="https://adssettings.google.com" target="_blank" rel="noopener">إعدادات إعلانات Google</a> أو زيارة صفحة <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">AboutAds.info</a>.</li>
-        <li><strong>تحليلات Google Analytics:</strong> لفهم سلوك الزوار وتحسين المحتوى دون تخزين أي معلومات شخصية تحدد الهوية.</li>
-      </ul>
-    </div>
 
-    <div class="policy-card">
-      <div class="policy-card-header">
-        <div class="policy-num">4</div>
-        <h2>مورّدو الطرف الثالث وشبكات الإعلانات</h2>
+      <div class="content-section">
+        <h2>4. أمان بيانات المستخدمين والمحامين</h2>
+        <p>بيانات القضايا والموكلين التي يدخلها المحامون داخل نظام إدارة المكاتب تُخزن محلياً على أجهزتهم وتُشفر بأعلى معايير الأمان (End-to-End Encryption)، ولا نقوم بالاطلاع عليها أو بيعها أو مشاركتها مع أي جهة أو طرف ثالث على الإطلاق.</p>
       </div>
-      <p>قد يستخدم موردو الطرف الثالث وشبكات الإعلانات (مثل Google) ملفات تعريف الارتباط لجمع معلومات عن تفاعلك مع الإعلانات المعروضة. ليس لمنصة المحامي الرقمية سيطرة مباشرة على ملفات تعريف الارتباط التي يستخدمها هؤلاء المعلنون الخارجيون، وتخضع تلك الممارسات لسياسات الخصوصية الخاصة بكل طرف معلن.</p>
-    </div>
 
-    <div class="policy-card">
-      <div class="policy-card-header">
-        <div class="policy-num">5</div>
-        <h2>حماية وأمن البيانات</h2>
-      </div>
-      <p>نلتزم بأعلى معايير الحماية التقنية:</p>
-      <ul>
-        <li>تشفير حركة البيانات بالكامل عبر بروتوكول الاتصال الآمن <strong>HTTPS/TLS</strong>.</li>
-        <li>عزل تام لقواعد البيانات وسجلات المستخدمين داخل بنية Firebase السحابية الآمنة.</li>
-        <li><span class="highlight">لا نقوم ببيع أو تأجير أو مشاركة بياناتك الشخصية مع أي طرف ثالث لأغراض تجارية إطلاقاً.</span></li>
-      </ul>
-    </div>
-
-    <div class="policy-card">
-      <div class="policy-card-header">
-        <div class="policy-num">6</div>
-        <h2>حقوق المستخدمين والتحكم في البيانات</h2>
-      </div>
-      <p>وفقاً لأفضل الممارسات وقوانين حماية البيانات، يحق لك:</p>
-      <ul>
-        <li>طلب تصدير أو حذف جميع بياناتك المخزنة لدينا في أي وقت.</li>
-        <li>تعطيل ملفات تعريف الارتباط من خلال إعدادات متصفح الإنترنت الخاص بك.</li>
-        <li>التواصل معنا لطلب أي استفسار أو مساعدة تتعلق ببياناتك.</li>
-      </ul>
-    </div>
-
-    <div class="policy-card">
-      <div class="policy-card-header">
-        <div class="policy-num">7</div>
-        <h2>التواصل مع مسؤول الخصوصية</h2>
-      </div>
-      <p>لأي استفسارات بخصوص سياسة الخصوصية أو إدارة بياناتك، يُرجى مراسلتنا مباشرة على:</p>
-      <p>البريد الإلكتروني المعتمد: <a href="mailto:ahmdmansoor2@gmail.com">ahmdmansoor2@gmail.com</a></p>
-    </div>
-
-  </div>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-logo">
-            <div class="footer-logo-icon">⚖️</div>
-            <div class="footer-logo-name">منصة المحامي الرقمية</div>
-          </div>
-          <p class="footer-desc">نظام متكامل ومجاني لإدارة مكاتب المحاماة، الحاسبات القانونية، الصيغ والمراجع القضائية في مصر.</p>
-          <div class="footer-email-link"><a href="mailto:ahmdmansoor2@gmail.com">ahmdmansoor2@gmail.com</a></div>
-        </div>
-        <div class="footer-col">
-          <h4>الأدوات والخدمات</h4>
-          <ul>
-            <li><a href="/legal-calculators.html">🧮 الحاسبات القانونية</a></li>
-            <li><a href="/legal-forms.html">📝 صيغ العقود والدعاوى</a></li>
-            <li><a href="/legal-radar.html">🔍 رصد المحامي</a></li>
-            <li><a href="/blog/">📰 المدونة القانونية</a></li>
-            <li><a href="/pillars/">🏛️ المراجع الشاملة</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>عن المنصة والقوانين</h4>
-          <ul>
-            <li><a href="/about.html">⚖️ عن المنصة</a></li>
-            <li><a href="/why-trust-us.html">🛡️ لماذا تثق بنا</a></li>
-            <li><a href="/privacy.html">🔐 سياسة الخصوصية</a></li>
-            <li><a href="/terms.html">📜 الشروط والأحكام</a></li>
-            <li><a href="/disclaimer.html">⚠️ إخلاء المسؤولية</a></li>
-            <li><a href="/contact.html">📬 تواصل معنا</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div>© 2026 منصة المحامي الرقمية · جميع الحقوق محفوظة</div>
-        <div>إشراف: الأستاذ أحمد منصور · محامٍ ومستشار قانوني</div>
+      <div class="content-section">
+        <h2>5. التواصل والاستفسار</h2>
+        <p>إذا كان لديك أي استفسار حول سياسة الخصوصية الخاصة بنا، يمكنك التواصل معنا مباشرة عبر البريد الإلكتروني: <a href="mailto:ahmdmansoor222@gmail.com" style="color:var(--primary-light);">ahmdmansoor222@gmail.com</a> أو من خلال <a href="/contact.html" style="color:var(--primary-light);">صفحة اتصل بنا</a>.</p>
       </div>
     </div>
+  </main>
+  
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/">الرئيسية</a>
+      <a href="/blog/">المدونة القانونية</a>
+      <a href="/pillars/">المراجع الشاملة</a>
+      <a href="/legal-calculators.html">الحاسبات القانونية</a>
+      <a href="/court-precedents.html">مبادئ النقض</a>
+      <a href="/about.html">عن المنصة والمؤسس</a>
+      <a href="/editorial-policy.html">سياسة التحرير</a>
+      <a href="/privacy.html">سياسة الخصوصية</a>
+      <a href="/terms.html">شروط الاستخدام</a>
+      <a href="/disclaimer.html">إخلاء المسؤولية</a>
+      <a href="/contact.html">تواصل معنا</a>
+    </div>
+    <div>جميع الحقوق محفوظة © 2026 منصة المحامي الرقمية — إشراف المستشار القانوني أحمد منصور (محامٍ بالنقض والإدارية والدستورية العليا)</div>
   </footer>
-
-<script src="/sidebar.js?v=20260823v10"></script><script src="/sw-register.js?v=20260826v1" defer></script><!-- mohami-sw --></body>
+</body>
 </html>
