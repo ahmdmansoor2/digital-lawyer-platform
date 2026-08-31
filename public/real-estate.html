@@ -512,27 +512,45 @@
   </div>
 
   <!-- Header -->
-  <header class="site-header">
-    <div class="header-container">
-      <div class="logo-wrapper">
-        <a href="/" class="site-logo">
-          <div class="logo-icon">⚖️</div>
-          <div class="logo-text">
-            <span class="brand-name">منصة المحامي الرقمية</span>
-            <span class="brand-tagline">بوابة التسويق العقاري الموثق</span>
+  <header class="uh-bar" id="siteHeader">
+    <div class="uh-inner">
+      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+        <span class="uh-badge">⚖️</span>
+        <span class="uh-brand">
+          <span class="uh-title">المحامي الرقمي</span>
+          <span class="uh-sub">بوابة التسويق والاستثمار العقاري الموثق</span>
+        </span>
+      </a>
+
+      <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
+        <a href="/" class="uh-link">🏠 الرئيسية</a>
+        <a href="/legal-consultations.html" class="uh-link">🤖 المستشار الذكي</a>
+        <a href="/real-estate.html" class="uh-link active">🏢 التسويق العقاري</a>
+        <a href="/legal-library.html" class="uh-link">📚 المكتبة الكبرى</a>
+        <a href="/contract-generator.html" class="uh-link">⚡ صانع العقود</a>
+        <a href="/legal-calculators.html" class="uh-link">🧮 الحاسبات</a>
+        <a href="/blog/" class="uh-link">📰 المدونة</a>
+        <div class="uh-more" id="uhMore">
+          <button class="uh-more-btn" type="button" aria-expanded="false" onclick="this.parentElement.classList.toggle('open')">
+            <span>المزيد</span>
+            <span class="uh-caret">▾</span>
+          </button>
+          <div class="uh-menu">
+            <a href="/court-precedents.html" class="uh-menu-item">⚖️ موسوعة النقض</a>
+            <a href="/pillars/" class="uh-menu-item">🏛️ المراجع والأكواد</a>
+            <a href="/legal-forms.html" class="uh-menu-item">📝 صيغ العقود</a>
+            <a href="/courts-directory.html" class="uh-menu-item">🏛️ دليل المحاكم والشهر العقاري</a>
+            <a href="/about.html" class="uh-menu-item">⚖️ عن المنصة</a>
+            <a href="/privacy.html" class="uh-menu-item">🔐 سياسة الخصوصية</a>
+            <a href="/contact.html" class="uh-menu-item">📬 تواصل معنا</a>
           </div>
-        </a>
-      </div>
-      <nav class="main-nav">
-        <a href="/" class="nav-link">🏠 الرئيسية</a>
-        <a href="/real-estate.html" class="nav-link active" style="color:#34d399; font-weight:800;">🏢 التسويق العقاري</a>
-        <a href="/contract-generator.html" class="nav-link">⚡ صانع العقود</a>
-        <a href="/legal-calculators.html" class="nav-link">🧮 الحاسبات</a>
-        <a href="/courts-directory.html" class="nav-link">🏛️ دليل المحاكم</a>
-        <a href="/blog/" class="nav-link">📰 المدونة</a>
+        </div>
       </nav>
-      <div class="header-actions">
-        <a href="/" class="btn-primary-header">دخول المنصة مجاناً</a>
+
+      <div class="uh-actions">
+        <a href="/" class="uh-cta">
+          <span>🚀 دخول التطبيق</span>
+        </a>
       </div>
     </div>
   </header>
