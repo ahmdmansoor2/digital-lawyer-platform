@@ -1968,6 +1968,42 @@
       ],
       "words": 2070,
       "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "قانون التأمينات الاجتماعية 148 لسنة 2019: شروط المعاش المبكر ودليل المؤمن عليهم",
+      "date": "2026-08-31",
+      "slug": "social-insurance-pension-law-egypt",
+      "url": "https://mohamidigital.online/blog/social-insurance-pension-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/social-insurance-pension-law-egypt.jpg",
+      "tags": [
+        "التأمينات الاجتماعية"
+      ],
+      "words": 2044,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "جرائم التموين والاحتكار في القانون المصري: العقوبات وحقوق المستهلك",
+      "date": "2026-08-31",
+      "slug": "supply-crimes-monopoly-laws-egypt",
+      "url": "https://mohamidigital.online/blog/supply-crimes-monopoly-laws-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/supply-crimes-monopoly-laws-egypt.jpg",
+      "tags": [
+        "قانون التموين"
+      ],
+      "words": 2333,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "الملكية الفكرية والبث الرياضي: الموقف القانوني لعرض المباريات في المقاهي والتطبيقات",
+      "date": "2026-08-31",
+      "slug": "digital-broadcasting-copyright-sports-egypt",
+      "url": "https://mohamidigital.online/blog/digital-broadcasting-copyright-sports-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/digital-broadcasting-copyright-sports-egypt.jpg",
+      "tags": [
+        "الملكية الفكرية"
+      ],
+      "words": 1529,
+      "model": "gemini-3.6-flash"
     }
   ]
 }
