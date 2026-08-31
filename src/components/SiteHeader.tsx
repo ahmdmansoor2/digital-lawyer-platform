@@ -15,18 +15,18 @@ interface SiteHeaderProps {
 
 const PRIMARY = [
   { href: '/', label: '🏠 الرئيسية', key: 'home' },
+  { href: '/legal-consultations.html', label: '🤖 المستشار الذكي', key: 'consultations' },
   { href: '/real-estate.html', label: '🏢 التسويق العقاري', key: 'real-estate' },
-  { href: '/legal-library.html', label: '📚 المكتبة القانونية', key: 'library' },
-  { href: '/court-precedents.html', label: '⚖️ موسوعة النقض', key: 'precedents' },
-  { href: '/pillars/', label: '🏛️ المراجع والأكواد', key: 'pillars' },
-  { href: '/contract-generator.html', label: '⚡ صانع العقود الذكي', key: 'generator' },
-  { href: '/legal-forms.html', label: '📝 صيغ العقود', key: 'forms' },
+  { href: '/legal-library.html', label: '📚 المكتبة الكبرى', key: 'library' },
+  { href: '/contract-generator.html', label: '⚡ صانع العقود', key: 'generator' },
   { href: '/legal-calculators.html', label: '🧮 الحاسبات', key: 'calculators' },
   { href: '/blog/', label: '📰 المدونة', key: 'blog' },
 ];
 
 const MORE = [
-  { href: '/legal-consultations.html', label: '💬 استشارات فورية', key: 'consultations' },
+  { href: '/court-precedents.html', label: '⚖️ موسوعة النقض', key: 'precedents' },
+  { href: '/pillars/', label: '🏛️ المراجع والأكواد التشريعية', key: 'pillars' },
+  { href: '/legal-forms.html', label: '📝 صيغ العقود والدعاوي', key: 'forms' },
   { href: '/citizen-complaints.html', label: '📢 شكاوى وبلاغات المواطنين', key: 'complaints' },
   { href: '/lawyers-directory.html', label: '👨‍⚖️ دليل المحامين المعتمدين', key: 'lawyers' },
   { href: '/company-incorporation.html', label: '🏢 تأسيس الشركات والتراخيص', key: 'companies' },
