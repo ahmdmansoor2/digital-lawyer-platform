@@ -36,6 +36,7 @@ export const TYPE_META: Record<IndexType | 'default', { label: string; icon: Rea
 };
 
 const QUICK_LINKS = [
+  { label: '🏢 التسويق العقاري الموثق', href: '/real-estate.html' },
   { label: '📰 المدونة القانونية', href: '/blog/' },
   { label: '⚡ صانع العقود الذكي', href: '/contract-generator.html' },
   { label: '📝 صيغ العقود والدعاوي', href: '/legal-forms.html' },
