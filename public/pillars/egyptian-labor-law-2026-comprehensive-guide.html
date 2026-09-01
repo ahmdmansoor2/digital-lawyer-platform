@@ -1265,7 +1265,7 @@
       <div class="pdf-modal-head">
         <h3 style="font-size:16px; font-weight:900; color:#fff;">📖 كود ونصوص قانون العمل المصري 2026</h3>
         <div style="display:flex; gap:10px;">
-          <a href="https://drive.google.com/file/d/1X5XW0WqK79q2Z3e4r5t6y7u8i9o0p1aB/view" target="_blank" class="btn-pdf btn-pdf-dl" style="padding:6px 14px; font-size:12px;">تحميل PDF</a>
+          <a href="/data/egyptian-labor-law-full-official-2026.pdf" target="_blank" class="btn-pdf btn-pdf-dl" style="padding:6px 14px; font-size:12px;">تحميل PDF</a>
           <button onclick="closePdfModal()" style="background:rgba(255,255,255,0.1); border:none; color:#fff; width:30px; height:30px; border-radius:50%; cursor:pointer; font-weight:bold;">✕</button>
         </div>
       </div>
@@ -1295,7 +1295,7 @@
     function openPdfModal() {
       const modal = document.getElementById('pdfModal');
       const iframe = document.getElementById('pdfIframe');
-      iframe.src = 'https://drive.google.com/file/d/1X5XW0WqK79q2Z3e4r5t6y7u8i9o0p1aB/preview';
+      iframe.src = '/data/egyptian-labor-law-full-official-2026.pdf';
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
