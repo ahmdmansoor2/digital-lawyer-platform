@@ -48,13 +48,16 @@ function urlForPath(filePath) {
 }
 
 function getPriority(url) {
-  const path = url.replace(BASE_URL, '');
-  if (HIGH_PRIORITY.some(p => path === p || path === p + 'index.html' || path === p.replace(/\/$/, ''))) return '1.0';
-  if (MEDIUM_PRIORITY.some(p => path.startsWith(p))) return '0.8';
-  if (path.startsWith('/blog/')) return '0.7';
-  if (path.startsWith('/legal-library-topics/')) return '0.7';
-  if (path.startsWith('/legal-categories/')) return '0.6';
-  if (path.includes('pillar')) return '0.7';
+  const cleanPath = url.replace(BASE_URL, '').replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  if (HIGH_PRIORITY.some(p => {
+    const cleanP = p.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+    return cleanPath === cleanP;
+  })) return '1.0';
+  if (MEDIUM_PRIORITY.some(p => cleanPath.startsWith(p.replace(/\.html$/, '')))) return '0.8';
+  if (cleanPath.startsWith('/blog')) return '0.7';
+  if (cleanPath.startsWith('/legal-library-topics')) return '0.7';
+  if (cleanPath.startsWith('/legal-categories')) return '0.6';
+  if (cleanPath.includes('pillar')) return '0.7';
   return '0.5';
 }
 

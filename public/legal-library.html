@@ -6,6 +6,9 @@
   <title>المكتبة القانونية الجامعة الشاملة (+9,600 مرجع وموسوعة فقهية) | منصة المحامي الرقمية</title>
   <meta name="description" content="تصفح وحمّل مباشرة أكثر من 9,600 كتاب وموسوعة قانونية وشروح السنهوري وكبار الفقهاء مع عارض مدمج داخل المنصة وروابط تحميل سحابية آمنة ومباشرة.">
   <meta name="keywords" content="مكتبة قانونية شاملة, كتب قانونية pdf, تحميل كتب السنهوري, القانون المدني, القانون الجنائي, مجلس الدولة, أحكام النقض, صيغ مذكرات, محامي ديجيتال">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://mohamidigital.online/legal-library.html">
   
   <!-- Open Graph -->
@@ -22,7 +25,7 @@
   <link rel="stylesheet" href="/header.css?v=20260823v10">
 
   <!-- PDF.js Mozilla In-Page Engine -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script>
     if (window.pdfjsLib) {
       pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -1345,8 +1348,13 @@
     }
 
     // Direct initialization
+    // Fast initial render with pre-rendered books
     filterData();
-    initCatalog();
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(() => initCatalog(), { timeout: 3000 });
+    } else {
+      setTimeout(() => initCatalog(), 1500);
+    }
 
   </script>
 </body>
