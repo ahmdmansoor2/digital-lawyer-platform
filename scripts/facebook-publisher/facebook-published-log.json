@@ -2378,6 +2378,27 @@
       "duration": "54ث",
       "size": 17204997,
       "publishedAt": "2026-09-01T16:34:06.436Z"
+    },
+    {
+      "topicId": "trend-bounced-cheques-bank-loans-egypt",
+      "title": "عقوبة الشيك بدون رصيد في القانون المصري وكيفية التصالح مع البنك",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#بنوك وقضايا مالية",
+        "#الشيك بدون رصيد",
+        "#بنك القاهرة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-bounced-cheques-bank-loans-egypt.mp4",
+      "videoId": "2141770840549706",
+      "permalink": "https://www.facebook.com/reel/2141770840549706",
+      "source": "trending-topics.json",
+      "duration": "1د 6ث",
+      "size": 18668891,
+      "publishedAt": "2026-09-01T21:00:57.430Z"
     }
   ]
 }
