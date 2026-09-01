@@ -300,8 +300,9 @@
 
     <div class="modal-footer">
       <span style="font-size:0.78rem; color:var(--muted);">🏛️ النص الرسمي المعتمد بالجريدة الرسمية · منصة المحامي الرقمية 2026</span>
-      <div style="display:flex; gap:8px;">
-        <button style="background:linear-gradient(135deg, var(--emerald), #059669); border:none; color:#fff; font-family:'Cairo',sans-serif; font-size:0.82rem; font-weight:800; padding:8px 18px; border-radius:8px; cursor:pointer; display:flex; align-items:center; gap:6px;" onclick="downloadCodePdf()">📥 تنزيل الكود كملف PDF</button>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button style="background:linear-gradient(135deg, var(--emerald), #059669); border:none; color:#fff; font-family:'Cairo',sans-serif; font-size:0.82rem; font-weight:800; padding:8px 18px; border-radius:8px; cursor:pointer; display:flex; align-items:center; gap:6px;" onclick="downloadCodePdf()">📥 تنزيل الكتاب PDF المعتمد</button>
+        <button style="background:linear-gradient(135deg, var(--indigo), var(--purple)); border:none; color:#fff; font-family:'Cairo',sans-serif; font-size:0.82rem; font-weight:800; padding:8px 18px; border-radius:8px; cursor:pointer; display:flex; align-items:center; gap:6px;" onclick="openPdfDirect()">📖 قراءة في نافذة مستقلة (Zero-Freeze)</button>
         <button style="background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.3); color:var(--indigo-light); font-family:'Cairo',sans-serif; font-size:0.82rem; font-weight:800; padding:8px 16px; border-radius:8px; cursor:pointer;" onclick="copyAllCodeArticles()">📋 نسخ نصوص المواد</button>
         <button style="background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.3); color:var(--indigo-light); font-family:'Cairo',sans-serif; font-size:0.82rem; font-weight:800; padding:8px 16px; border-radius:8px; cursor:pointer;" onclick="window.print()">🖨️ طباعة المستند</button>
         <button class="btn-pdf" onclick="closeModalDirect()">إغلاق</button>
@@ -1928,7 +1929,13 @@ function renderCodes(items) {
     return;
   }
 
-  grid.innerHTML = items.map(c => `
+  grid.innerHTML = items.map(c => {
+    const isLabor = c.id === 'labor_law';
+    const pdfDirectUrl = isLabor ? '/data/egyptian-new-labor-law-2026-official.pdf' : `/data/official-codes-pdf/${c.id}.pdf`;
+    const guidePageUrl = isLabor ? '/pillars/egyptian-labor-law-2026-comprehensive-guide.html' : pdfDirectUrl;
+    const guideBtnText = isLabor ? '📖 قراءة الدليل والموسوعة الشاملة' : '📖 قراءة الكتاب PDF المعتمد';
+
+    return `
     <div class="code-card">
       <div>
         <div class="code-cover-header">
@@ -1951,11 +1958,12 @@ function renderCodes(items) {
       </div>
 
       <div class="card-actions">
-        <a href="${c.guideUrl}" class="btn-guide">📖 قراءة الشرح الشامل</a>
-        <button class="btn-pdf" onclick="openCodeModal('${c.id}')">📄 استعراض الكود الكامل (PDF)</button>
+        <a href="${guidePageUrl}" ${!isLabor ? 'target="_blank" rel="noopener"' : ''} class="btn-guide">${guideBtnText}</a>
+        <button class="btn-pdf" onclick="openCodeModal('${c.id}')">📄 استعراض وبحث في المواد</button>
       </div>
     </div>
-  `).join('');
+  `;
+  }).join('');
 }
 
 function filterCodes() {
@@ -2141,24 +2149,23 @@ async function openCodeModal(codeId) {
   document.getElementById('codeModal').classList.add('show');
 }
 
+function openPdfDirect() {
+  if (!currentActiveCode) return;
+  const isLabor = currentActiveCode.id === 'labor_law';
+  const pdfUrl = isLabor ? '/data/egyptian-new-labor-law-2026-official.pdf' : `/data/official-codes-pdf/${currentActiveCode.id}.pdf`;
+  window.open(pdfUrl, '_blank');
+}
+
 function downloadCodePdf() {
   if (!currentActiveCode) return;
-  // Make sure all articles are visible before generating PDF
-  currentArticleLimit = 99999;
-  renderModalArticles();
-
-  const element = document.getElementById('pdfDocumentContent');
-  const filename = `${currentActiveCode.title.replace(/[\/\s]+/g, '_')}_2026.pdf`;
-
-  const opt = {
-    margin: [10, 10, 10, 10],
-    filename: filename,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  };
-
-  html2pdf().set(opt).from(element).save();
+  const isLabor = currentActiveCode.id === 'labor_law';
+  const pdfUrl = isLabor ? '/data/egyptian-new-labor-law-2026-official.pdf' : `/data/official-codes-pdf/${currentActiveCode.id}.pdf`;
+  const a = document.createElement('a');
+  a.href = pdfUrl;
+  a.download = `${currentActiveCode.title.replace(/[\/\s]+/g, '_')}_2026_الرسمي.pdf`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 function closeModalDirect() {
