@@ -2004,6 +2004,42 @@
       ],
       "words": 1529,
       "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "عقوبات بيع وتأجير شقق الإسكان الاجتماعي: التصالح والإجراءات القانونية",
+      "date": "2026-09-01",
+      "slug": "social-housing-sale-rental-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/social-housing-sale-rental-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/social-housing-sale-rental-penalties-egypt.jpg",
+      "tags": [
+        "عقارات"
+      ],
+      "words": 2231,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "خطوات التظلم القانوني على نتيجة الثانوية العامة وإجراءات القضاء الإداري",
+      "date": "2026-09-01",
+      "slug": "thanaweya-amma-appeals-legal-guide",
+      "url": "https://mohamidigital.online/blog/thanaweya-amma-appeals-legal-guide.html",
+      "image": "https://mohamidigital.online/blog/images/thanaweya-amma-appeals-legal-guide.jpg",
+      "tags": [
+        "قضاء إداري"
+      ],
+      "words": 2164,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "عقوبة الشيك بدون رصيد في القانون المصري وكيفية التصالح مع البنك",
+      "date": "2026-09-01",
+      "slug": "bounced-cheques-bank-loans-egypt",
+      "url": "https://mohamidigital.online/blog/bounced-cheques-bank-loans-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/bounced-cheques-bank-loans-egypt.jpg",
+      "tags": [
+        "بنوك وقضايا مالية"
+      ],
+      "words": 2137,
+      "model": "gemini-3.6-flash"
     }
   ]
 }
