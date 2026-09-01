@@ -608,372 +608,2132 @@
           <input type="text" id="lawArticleSearch" onkeyup="filterArticles()" class="form-input" placeholder="🔍 ابحث برقم المادة أو الكلمات (مثال: المادة 69، الأجور، الإجازات، مهلة الإخطار...)" />
         </div>
 
+        
         <div class="tabs-wrapper">
-          <button class="tab-chip active" onclick="filterChapter('all', this)">كل المواد</button>
-          <button class="tab-chip" onclick="filterChapter('general', this)">مواد الإصدار والكتاب الأول</button>
-          <button class="tab-chip" onclick="filterChapter('contract', this)">عقد العمل والأجور</button>
-          <button class="tab-chip" onclick="filterChapter('leaves', this)">الإجازات وساعات العمل</button>
-          <button class="tab-chip" onclick="filterChapter('discipline', this)">التحقيق والتأديب (م 69)</button>
-          <button class="tab-chip" onclick="filterChapter('termination', this)">انتهاء الخدمة والتعويض</button>
+          <button class="tab-chip active" onclick="filterChapter('all', this)">كل المواد (264 مادة)</button>
+          <button class="tab-chip" onclick="filterChapter('issuance', this)">مواد الإصدار (1-7)</button>
+          <button class="tab-chip" onclick="filterChapter('book1', this)">الكتاب 1: التعاريف العامة (1-10)</button>
+          <button class="tab-chip" onclick="filterChapter('book2', this)">الكتاب 2: التشغيل والتدريب (11-30)</button>
+          <button class="tab-chip" onclick="filterChapter('book3', this)">الكتاب 3: علاقات العمل والأجور (31-145)</button>
+          <button class="tab-chip" onclick="filterChapter('book4', this)">الكتاب 4: العلاقات الجماعية (146-207)</button>
+          <button class="tab-chip" onclick="filterChapter('book5', this)">الكتاب 5: السلامة المهنية (208-231)</button>
+          <button class="tab-chip" onclick="filterChapter('book6', this)">الكتاب 6: التفتيش والعقوبات (232-257)</button>
         </div>
+
 
         <div id="articlesList" class="articles-scroll-box">
 
-          <!-- ═══════════════════════════════════════════════════════════ -->
-          <!-- مواد الإصدار (الأحكام العامة والانتقالية كاملة مادة بمادة) -->
-          <!-- ═══════════════════════════════════════════════════════════ -->
-          <div class="article-item" data-chap="general" style="border-right: 4px solid #6366f1;">
-            <div class="article-title-row">
-              <span class="article-name">المادة الأولى من مواد الإصدار — نطاق السريان والاستثناءات</span>
-              <span class="card-tag" style="background:rgba(99,102,241,0.2); color:#a5b4fc;">مواد الإصدار</span>
-            </div>
-            <p class="article-content">«يُعمل بأحكام هذا القانون والقانون المرافق في شأن العمل، وتسري أحكامهما فيما لم يرد بشأنه نص خاص في عقود العمل الفردية أو اتفاقيات العمل الجماعية على العاملين الخاضعين لأحكام القانون بالقطاع الخاص والاستثماري والعمالة غير المنتظمة.
-            <br>وفيما عدا ما ورد بشأنه نص خاص، لا تسري أحكام هذا القانون والقانون المرافق على الفئات الآتية:
-            <br>1- العاملين بأجهزة الدولة بما في ذلك وحدات الإدارة المحلية والهيئات العامة.
-            <br>2- عمال الخدمة المنزلية ومن في حكمهم.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general" style="border-right: 4px solid #6366f1;">
-            <div class="article-title-row">
-              <span class="article-name">المادة الثانية من مواد الإصدار — إلغاء القانون رقم 12 لسنة 2003</span>
-              <span class="card-tag" style="background:rgba(99,102,241,0.2); color:#a5b4fc;">مواد الإصدار</span>
-            </div>
-            <p class="article-content">«يُلغى قانون العمل الصادر بالقانون رقم 12 لسنة 2003، كما يُلغى كل حكم يخالف أحكام هذا القانون والقانون المرافق له. وتظل القرارات واللوائح التنفيذية الصادرة تنفيذاً للقانون رقم 12 لسنة 2003 سارية المفعول فيما لا يتعارض مع أحكام هذا القانون والقانون المرافق له، وذلك حتى تصدر القرارات واللوائح المنفذة له خلال تسعين يوماً من تاريخ العمل به.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general" style="border-right: 4px solid #6366f1;">
-            <div class="article-title-row">
-              <span class="article-name">المادة الثالثة من مواد الإصدار — إنشاء المحاكم العمالية المتخصصة</span>
-              <span class="card-tag" style="background:rgba(99,102,241,0.2); color:#a5b4fc;">مواد الإصدار</span>
-            </div>
-            <p class="article-content">«تنشأ بدائرة اختصاص كل محكمة ابتدائية محكمة تسمى "المحكمة العمالية"، وتنشأ بدوائر محاكم الاستئناف دوائر استئنافية متخصصة لنظر الطعون العمالية، وتختص دون غيرها بنظر كافة المنازعات الناشئة عن تطبيق أحكام هذا القانون والقوانين واللوائح المنظمة لعلاقات العمل الفردية والجماعية، وحقوق العمال التأمينية، والنزاعات النقابية.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general" style="border-right: 4px solid #6366f1;">
-            <div class="article-title-row">
-              <span class="article-name">المادة الرابعة من مواد الإصدار — إحالة الدعاوى القائمة بحالتها</span>
-              <span class="card-tag" style="background:rgba(99,102,241,0.2); color:#a5b4fc;">مواد الإصدار</span>
-            </div>
-            <p class="article-content">«تُحال جميع الدعاوى والمنازعات المنظورة أمام الدوائر العمالية بالمحاكم الابتدائية ومحاكم الاستئناف والتي لم يصدر فيها حكم نهائي وبات إلى المحاكم العمالية المتخصصة المنشأة وفق أحكام هذا القانون بالحالة التي هي عليها وبدون رسوم، ويمتنع على المحاكم غير المختصة نظر هذه الدعاوى من تاريخ العمل بهذا القانون.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general" style="border-right: 4px solid #6366f1;">
-            <div class="article-title-row">
-              <span class="article-name">المادة الخامسة من مواد الإصدار — استمرار الصناديق والمجالس المختصة</span>
-              <span class="card-tag" style="background:rgba(99,102,241,0.2); color:#a5b4fc;">مواد الإصدار</span>
-            </div>
-            <p class="article-content">«تستمر الصناديق المنشأة لرعاية العمال وتشغيلهم وتدريبهم، وصندوق تمويل التدريب والتأهيل، وصندوق الخدمات الاجتماعية والصحية والثقافية، والمجلس القومي للأجور في مباشرة اختصاصاتها وتؤول إليها كافة الحقوق والالتزامات المقررة لها في هذا القانون والقانون المرافق.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general" style="border-right: 4px solid #6366f1;">
-            <div class="article-title-row">
-              <span class="article-name">المادة السادسة من مواد الإصدار — الإعفاء الشامل من الرسوم القضائية</span>
-              <span class="card-tag" style="background:rgba(99,102,241,0.2); color:#a5b4fc;">مواد الإصدار</span>
-            </div>
-            <p class="article-content">«تُعفى من الرسوم القضائية في جميع مراحل التقاضي (الابتدائية، والاستئناف، والطعن بالنقض) الدعاوى الناشئة عن المنازعات المتعلقة بأحكام هذا القانون والقانون المرافق له التي يرفعها العمال والمتدرجون وعمال التلمذة الصناعية أو المستحقون عنهم، ويشمل الحكم الصادر في هذه الدعاوى بالنفاذ المعجل وبلا كفالة بقوة القانون.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general" style="border-right: 4px solid #6366f1;">
-            <div class="article-title-row">
-              <span class="article-name">المادة السابعة من مواد الإصدار — النشر وتوفيق الأوضاع</span>
-              <span class="card-tag" style="background:rgba(99,102,241,0.2); color:#a5b4fc;">مواد الإصدار</span>
-            </div>
-            <p class="article-content">«يُنشر هذا القانون في الجريدة الرسمية، ويُعمل به من أول الشهر التالي لانقضاء تسعين يوماً من تاريخ نشره، وتلتزم المنشآت بتوفيق أوضاعها وتعديل لوائحها الداخلية وفق أحكام هذا القانون خلال ستة أشهر من تاريخ سريانه. يُبصم هذا القانون بخاتم الدولة ويُنفذ كقانون من قوانينها.»</p>
-          </div>
-
-          <!-- ═══════════════════════════════════════════════════════════ -->
-          <!-- الكتاب الأول: التعاريف والأحكام العامة (المواد 1 إلى 10) -->
-          <!-- ═══════════════════════════════════════════════════════════ -->
-          <div class="article-item" data-chap="general">
-            <div class="article-title-row">
-              <span class="article-name">المادة 1 — التعاريف والمفاهيم الأساسية والتنمر</span>
-              <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">الكتاب الأول</span>
-            </div>
-            <p class="article-content">«يقصد في تطبيق أحكام هذا القانون بالكلمات والعبارات التالية المعاني المبينة قرين كل منها:
-            <br>• <strong>العامل:</strong> كل شخص طبيعي يعمل لقاء أجر لدى صاحب عمل وتحت إدارته أو إشرافه.
-            <br>• <strong>صاحب العمل:</strong> كل شخص طبيعي أو اعتباري يستخدم عاملاً أو أكثر لقاء أجر.
-            <br>• <strong>الأجر:</strong> كل ما يحصل عليه العامل لقاء عمله ثابتاً كان أو متغيراً نقداً أو عيناً.
-            <br>• <strong>الأجر الأساسي:</strong> الأجر المنصوص عليه في عقد العمل وما يطرأ عليه من علاوات دورية.
-            <br>• <strong>الأجر المتغير الشامل:</strong> باقي ما يحصل عليه العامل من بدلات، حوافز، عمولات، منح، أرباح ومزايا عينية دورية ومستقرة.
-            <br>• <strong>التنمر في العمل:</strong> كل سلوك مسيء متكرر أو قول أو فعل يصدر من صاحب العمل أو الرؤساء أو الزملاء يحط من كرامة العامل أو يمس سلامته البدنية أو النفسية.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general">
-            <div class="article-title-row">
-              <span class="article-name">المادة 2 — حساب المدد والمواعيد القانونية</span>
-              <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">الكتاب الأول</span>
-            </div>
-            <p class="article-content">«تُحسب المدد والمواعيد المنصوص عليها في هذا القانون بالتقويم الميلادي، وتعتبر السنة 365 يوماً والشهر ثلاثين يوماً ما لم ينص على خلاف ذلك.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general">
-            <div class="article-title-row">
-              <span class="article-name">المادة 4 — حماية الحقوق المكتسبة والمزايا الأفضل</span>
-              <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">الكتاب الأول</span>
-            </div>
-            <p class="article-content">«تظل سارية المفعول كافة الشروط والمزايا الأفضل المقررة أو التي تقرر في عقود العمل الفردية أو الجماعية أو لوائح المنشأة أو النظم الخاصة بها أو التي جرى العرف على منحها للعمال بما يزيد على الحد الأدنى المقرر في هذا القانون.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general">
-            <div class="article-title-row">
-              <span class="article-name">المادة 5 — بطلان الشروط المخالفة والانتقاص من الحقوق</span>
-              <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">الكتاب الأول</span>
-            </div>
-            <p class="article-content">«يقع باطلاً كل شرط أو اتفاق يخالف أحكام هذا القانون، ولو كان سابقاً على العمل به، إذا كان يتضمن انتقاصاً من حقوق العامل المقررة فيه، أو إبراءً أو مصالحة عن الحقوق الناشئة عن عقد العمل أثناء سريانه أو خلال ثلاثة أشهر من تاريخ انتهائه إذا كانت تخالف أحكام هذا القانون.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general">
-            <div class="article-title-row">
-              <span class="article-name">المادة 7 — التقادم السنوي وسقوط الدعاوى العمالية</span>
-              <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">الكتاب الأول</span>
-            </div>
-            <p class="article-content">«تسقط بالتقادم الدعاوى الناشئة عن عقد العمل بانقضاء سنة من تاريخ انتهاء عقد العمل، ولا يسري هذا التقادم على الدعاوى المتعلقة بانتهاك الحقوق الدستورية أو جرائم الاعتداء الجنائي على العامل.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general">
-            <div class="article-title-row">
-              <span class="article-name">المادة 8 — امتياز ديون الأجور والمستحقات العمالية</span>
-              <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">الكتاب الأول</span>
-            </div>
-            <p class="article-content">«تكون للمبالغ المستحقة للعامل أو للمستحقين عنه بمقتضى أحكام هذا القانون امتياز على جميع أموال المدين من منقول وعقار، وتستوفى هذه المبالغ مباشرة بعد المصروفات القضائية والمبالغ المستحقة للخزانة العامة.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general">
-            <div class="article-title-row">
-              <span class="article-name">المادة 9 — حظر التمييز والمساواة التامة في الأجور</span>
-              <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">الكتاب الأول</span>
-            </div>
-            <p class="article-content">«يحظر كل تمييز في شروط وظروف العمل أو الأجور بسبب الدين أو العقيدة أو الجنس أو الأصل أو العرق أو اللون أو اللغة أو الإعاقة أو الانتماء الحزبي أو النقابي أو الجغرافي، وتتساوى المرأة مع الرجل في كافة الحقوق العمالية متى تماثلت واجبات عملهما.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general">
-            <div class="article-title-row">
-              <span class="article-name">المادة 10 — حظر العمل الجبري والسخرة</span>
-              <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">الكتاب الأول</span>
-            </div>
-            <p class="article-content">«يحظر تشغيل أي عامل جبراً أو قسراً أو تحت التهديد بتوقيع عقوبة أو الحرمان من الأجر أو الامتيازات المقررة قانوناً.»</p>
-          </div>
-
-          <!-- ═══════════════════════════════════════════════════════════ -->
-          <!-- الكتاب الثاني: التشغيل والتدريب وتراخيص الأجانب -->
-          <!-- ═══════════════════════════════════════════════════════════ -->
-          <div class="article-item" data-chap="contract">
-            <div class="article-title-row">
-              <span class="article-name">المادة 12 — العلاوة الدورية السنوية الإلزامية (لا تقل عن 7%)</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">التشغيل والأجور</span>
-            </div>
-            <p class="article-content">«يستحق العاملون الذين تسري في شأنهم أحكام هذا القانون علاوة سنوية دورية في تاريخ استحقاقها لا تقل عن (7%) من الأجر الأساسي التأميني الذي تُحسب على أساسه اشتراكات التأمين الاجتماعي، حتى يصدر المجلس القومي للأجور القرارات المنظمة للحد الأدنى للعلاوة بما لا يقل عن نسبة التضخم السنوية.»</p>
-          </div>
-
-          <div class="article-item" data-chap="contract">
-            <div class="article-title-row">
-              <span class="article-name">المادة 15 — حظر تقاضي أتعاب من راغبي العمل</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">التشغيل والتدريب</span>
-            </div>
-            <p class="article-content">«يحظر على الشركات أو الوكالات المرخص لها بالتشغيل وإلحاق العمالة بالداخل أو الخارج تقاضي أي مبالغ مالية أو أتعاب أو عمولات من العامل نظير إلحاقه بالعمل بالمخالفة للنسب المحددة بقرارات الوزير المختص.»</p>
-          </div>
-
-          <div class="article-item" data-chap="contract">
-            <div class="article-title-row">
-              <span class="article-name">المادة 20 — شروط وضوابط عمل الأجانب في مصر</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">عمل الأجانب</span>
-            </div>
-            <p class="article-content">«لا يجوز للأجانب ممارسة أي عمل داخل جمهورية مصر العربية إلا بعد الحصول على ترخيص عمل سارٍ من الوزارة المختصة ومراعاة شرط المعاملة بالمثل، وألا تتجاوز نسبة العمالة الأجنبية بالمنشأة (10%) من إجمالي العمالة.»</p>
-          </div>
-
-          <div class="article-item" data-chap="contract">
-            <div class="article-title-row">
-              <span class="article-name">المادة 28 — نسبة تشغيل الـ 5% الإلزامية لذوي الهمم</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">التشغيل والتدريب</span>
-            </div>
-            <p class="article-content">«يلتزم كل صاحب عمل يستخدم عشرين عاملاً فأكثر بتشغيل نسبة (5%) على الأقل من ذوي الإعاقة والاحتياجات الخاصة المقيدين بسجلات مكاتب التأهيل والعمل، وتلتزم المنشأة بتهيئة بيئة العمل ومواقع العمل بما يتناسب مع طبيعة إعاقتهم.»</p>
-          </div>
-
-          <!-- ═══════════════════════════════════════════════════════════ -->
-          <!-- الكتاب الثالث: علاقات العمل الفردية والأجور والإجازات -->
-          <!-- ═══════════════════════════════════════════════════════════ -->
-          <div class="article-item" data-chap="contract">
-            <div class="article-title-row">
-              <span class="article-name">المادة 31 — إلزامية تحرير العقد كتابة باللغة العربية وإثبات العامل</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">عقد العمل</span>
-            </div>
-            <p class="article-content">«يلتزم صاحب العمل بتحرير عقد العمل كتابة باللغة العربية ومن ثلاث نسخ، يحتفظ صاحب العمل بواحدة ويسلم العامل نسخة وتودع الثالثة بمكتب التأمينات الاجتماعية المختص. ويجب أن يتضمن العقد اسم صاحب العمل ومحل العمل، واسم العامل ومؤهله ومهنته ومحل إقامته، وطبيعة العمل المتفق عليه، والأجر المتفق عليه وطريقة ومواعيد أدائه. وإذا لم يوجد عقد مكتوب جاز للعامل وحده إثبات حقوقه بكافة طرق الإثبات القانونية وقرائن العمل.»</p>
-          </div>
-
-          <div class="article-item" data-chap="contract">
-            <div class="article-title-row">
-              <span class="article-name">المادة 32 — فترة الاختبار (3 أشهر كحد أقصى)</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">عقد العمل</span>
-            </div>
-            <p class="article-content">«تحدد فترة الاختبار في عقد العمل بما لا يجاوز ثلاثة أشهر، ولا يجوز تعيين العامل تحت الاختبار أكثر من مرة واحدة لدى صاحب عمل واحد. وتعتبر مدة الاختبار جزءاً من الخدمة الفعلية للعامل.»</p>
-          </div>
-
-          <div class="article-item" data-chap="contract">
-            <div class="article-title-row">
-              <span class="article-name">المادة 33 — تحول العقد محدد المدة لعقد دائم غير محدد</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">عقد العمل</span>
-            </div>
-            <p class="article-content">«يبرم عقد العمل لمدة محددة أو غير محددة. فإذا استمر طرفا العقد محدد المدة في تنفيذه بعد انقضاء مدته دون اتفاق صريح، أو تجدد لمدد متتالية جاوزت في مجموعها أربع سنوات، اعتُبر العقد متجدداً لمدد غير محددة بقوة القانون.»</p>
-          </div>
-
-          <div class="article-item" data-chap="contract">
-            <div class="article-title-row">
-              <span class="article-name">المادة 34 إلى 40 — حماية الأجور والحد الأقصى للخصم والاستقطاع</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">الأجور</span>
-            </div>
-            <p class="article-content">«يؤدى الأجر للعمال بالعملة المتداولة وبالتحويل البنكي، ولا يجوز استقطاع أكثر من 10% وفاء لقروض صاحب العمل، ولا يجوز الحجز على الأجر إلا في حدود الربع (25%) لدين النفقة ثم ديون صاحب العمل، ويحظر إلزام العامل بشراء منتجات صاحب العمل.»</p>
-          </div>
-
-          <!-- الإجازات وساعات العمل -->
-          <div class="article-item" data-chap="leaves">
-            <div class="article-title-row">
-              <span class="article-name">المادة 47 — الإجازات السنوية والمقابل النقدي للرصيد دون سقف</span>
-              <span class="card-tag" style="background:rgba(245,158,11,0.12); color:#fbbf24;">الإجازات</span>
-            </div>
-            <p class="article-content">«تكون مدة الإجازة السنوية 15 يوماً في السنة الأولى، و21 يوماً بعد إتمام سنة كاملة، و30 يوماً لمن أمضى عشر سنوات خدمة أو تجاوز سن الخمسين، و45 يوماً لذوي الإعاقة. ويستحق العامل المقابل النقدي لكافة أيام رصيد إجازاته السنوية التي لم يستنفدها عند انتهاء خدمته دون التقيد بحد أقصى أو سقف زمني.»</p>
-          </div>
-
-          <div class="article-item" data-chap="leaves">
-            <div class="article-title-row">
-              <span class="article-name">المادة 49 — الإجازة العارضة (6 أيام سنوياً)</span>
-              <span class="card-tag" style="background:rgba(245,158,11,0.12); color:#fbbf24;">الإجازات</span>
-            </div>
-            <p class="article-content">«للعامل الحق في أن ينقطع عن العمل لسبب عارض لمدة لا تتجاوز ستة أيام خلال السنة، وبحد أقصى يومان في المرة الواحدة، وتُحسب الإجازة العارضة من الإجازة السنوية المقررة للعامل.»</p>
-          </div>
-
-          <div class="article-item" data-chap="leaves">
-            <div class="article-title-row">
-              <span class="article-name">المادة 50 — إجازة الوضع للأم العاملة 4 أشهر وحظر الفصل</span>
-              <span class="card-tag" style="background:rgba(245,158,11,0.12); color:#fbbf24;">الإجازات</span>
-            </div>
-            <p class="article-content">«تستحق العاملة إجازة وضع مدتها أربعة أشهر (120 يوماً) مدفوعة الأجر بالكامل تشمل المدة التي تسبق الوضع والتي تليه، حتى ثلاث مرات طوال مدة خدمتها، مع تخفيض ساعات العمل اليومية بساعة رضاعة وحظر إنهاء الخدمة أثناء الحمل والوضع.»</p>
-          </div>
-
-          <div class="article-item" data-chap="leaves">
-            <div class="article-title-row">
-              <span class="article-name">المادة 52 — إجازات الأعياد والمناسبات الرسمية ومثلي الأجر (200%)</span>
-              <span class="card-tag" style="background:rgba(245,158,11,0.12); color:#fbbf24;">الإجازات</span>
-            </div>
-            <p class="article-content">«للعامل الحق في إجازة بأجر كامل في الأعياد الرسمية، وإذا اقتضت ظروف العمل تشغيله في هذه الأيام استحق بالإضافة إلى أجره الأساسي مثلي هذا الأجر (200%).»</p>
-          </div>
-
-          <div class="article-item" data-chap="leaves">
-            <div class="article-title-row">
-              <span class="article-name">المادة 53 — إجازة الحج وزيارة بيت المقدس (شهر كامل بأجر)</span>
-              <span class="card-tag" style="background:rgba(245,158,11,0.12); color:#fbbf24;">الإجازات</span>
-            </div>
-            <p class="article-content">«للعامل الذي أمضى في خدمة صاحب العمل خمس سنوات متصلة الحق في إجازة بأجر كامل لمدة شهر لأداء فريضة الحج أو لزيارة بيت المقدس، وتكون هذه الإجازة لمرة واحدة طوال مدة خدمته.»</p>
-          </div>
-
-          <div class="article-item" data-chap="leaves">
-            <div class="article-title-row">
-              <span class="article-name">المادة 54 — الإجازات المرضية وتعويض الأجر التأميني</span>
-              <span class="card-tag" style="background:rgba(245,158,11,0.12); color:#fbbf24;">الإجازات</span>
-            </div>
-            <p class="article-content">«للعامل الذي يثبت مرضه الحق في إجازة مرضية تحددها الهيئة العامة للتأمين الصحي المختصة، ويستحق العامل خلالها تعويضاً عن الأجر وفقاً لما يحدده قانون التأمينات الاجتماعية، وللعامل أن يستفيد من متجمد إجازاته السنوية إلى جانب إجازته المرضية.»</p>
-          </div>
-
-          <div class="article-item" data-chap="leaves">
-            <div class="article-title-row">
-              <span class="article-name">المادة 80 إلى 85 — ساعات العمل والعمل الإضافي (35% نهاراً و 70% ليلاً)</span>
-              <span class="card-tag" style="background:rgba(245,158,11,0.12); color:#fbbf24;">ساعات العمل</span>
-            </div>
-            <p class="article-content">«ساعات العمل الفعلية 8 ساعات يومياً أو 48 ساعة أسبوعياً تتخللها فترات راحة لا تقل عن ساعة، ويستحق العامل عن الساعات الإضافية 35% نهاراً و 70% ليلاً ومثلي الأجر في العطلات الرسمية.»</p>
-          </div>
-
-          <!-- التحقيق والتأديب والفصل (م 69) -->
-          <div class="article-item" data-chap="discipline" style="border:1px solid rgba(239,68,68,0.3); border-right:4px solid #ef4444;">
-            <div class="article-title-row">
-              <span class="article-name" style="color:#f87171;">المادة 69 — حالات الفصل الجسيم الـ 9 الحصرية</span>
-              <span class="card-tag" style="background:rgba(239,68,68,0.2); color:#f87171;">حالات الفصل الحصرية</span>
-            </div>
-            <p class="article-content">«لا يجوز فصل العامل إلا إذا ارتكب خطأ جسيماً من الحالات الـ 9 الآتية حصراً:
-            <br>1- انتحال شخصية غير صحيحة أو تقديم شهادات أو مستندات مزورة.
-            <br>2- ارتكاب خطأ نشأت عنه خسارة مادية جسيمة لصاحب العمل بشرط إبلاغ الجهات المختصة بالحادث خلال 24 ساعة من علمه به.
-            <br>3- عدم مراعاة التعليمات المكتوبة والمعلنة اللازم اتباعها لسلامة العمال والمنشأة.
-            <br>4- الغياب بدون عذر مشروع أكثر من عشرين يوماً متقطعة خلال السنة الواحدة أو أكثر من عشرة أيام متصلة، بشرط إنذار العامل بخطاب موصى عليه بعد 10 أيام في الأولى و5 أيام في الثانية.
-            <br>5- إفشاء أسرار المنشأة التي يعمل بها مسبباً أضراراً جسيمة بها.
-            <br>6- قيام العامل بمنافسة صاحب العمل في ذات نشاطه.
-            <br>7- وجود العامل أثناء ساعات العمل في حالة سكر بيّن أو متأثراً بما تعاطاه من مادة مخدرة.
-            <br>8- وقوع اعتداء من العامل على صاحب العمل أو المدير العام، أو اعتداء جسيم على أحد رؤسائه أثناء العمل أو بسببه.
-            <br>9- عدم مراعاة الضوابط المنصوص عليها في تنظيم ممارسة حق الإضراب السلمي.»</p>
-          </div>
-
-          <!-- انتهاء عقد العمل والتعويضات ومكافأة نهاية الخدمة -->
-          <div class="article-item" data-chap="termination">
-            <div class="article-title-row">
-              <span class="article-name">المادة 108 — إلغاء استمارة 6 وتوثيق الاستقالة بمكتب العمل</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">إنهاء الخدمة</span>
-            </div>
-            <p class="article-content">«لا يعتد باستقالة العامل إلا إذا كانت مكتوبة وموقعة منه ومعتمدة رسمياً وموثقة من مكتب العمل المختص، ويحق للعامل العدول عن استقالته كتابة خلال أسبوع من تاريخ اعتمادها فتعتبر كأن لم تكن وتعود علاقة العمل لسابق عهدها.»</p>
-          </div>
-
-          <div class="article-item" data-chap="termination">
-            <div class="article-title-row">
-              <span class="article-name">المادة 111 — مهلة الإخطار الرسمية قبل إنهاء العقد</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">إنهاء الخدمة</span>
-            </div>
-            <p class="article-content">«يجب أن يخطر الطرف الذي يرغب في إنهاء العقد غير محدد المدة الطرف الآخر كتابة قبل الإنهاء بشهرين إذا كانت مدة الخدمة لا تجاوز عشر سنوات، وبثلاثة أشهر إذا زادت على ذلك. وإذا أنهى صاحب العمل العقد دون إخطار التزم بأداء مقابل مهلة الإخطار كاملاً.»</p>
-          </div>
-
-          <div class="article-item" data-chap="termination">
-            <div class="article-title-row">
-              <span class="article-name">المادة 115 — قصر سلطة توقيع الفصل على المحكمة العمالية</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">إنهاء الخدمة</span>
-            </div>
-            <p class="article-content">«يحظر على صاحب العمل فصل العامل بإرادته المنفردة، ويكون الاختصاص بتوقيع جزاء الفصل من اختصاص المحكمة العمالية وحدها بناءً على طلب يقدمه صاحب العمل إذا ارتكب العامل خطأً جسيماً من الأخطاء المنصوص عليها بالمادة 69.»</p>
-          </div>
-
-          <div class="article-item" data-chap="termination">
-            <div class="article-title-row">
-              <span class="article-name">المادة 122 — تعويض الفصل التعسفي (شهران عن كل سنة كحد أدنى)</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">التعويض القضائي</span>
-            </div>
-            <p class="article-content">«إذا أنهى صاحب العمل العقد تعسفياً دون مبرر مشروع، قضت المحكمة العمالية بتعويض العامل بما لا يقل عن أجر شهرين من الأجر الشامل عن كل سنة من سنوات الخدمة، بالإضافة إلى مهلة الإخطار ومكافأة نهاية الخدمة ورصيد الإجازات السنوية.»</p>
-          </div>
-
-          <div class="article-item" data-chap="termination">
-            <div class="article-title-row">
-              <span class="article-name">المادة 125 & 126 — مكافأة نهاية الخدمة وسن الستين</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">مكافأة نهاية الخدمة</span>
-            </div>
-            <p class="article-content">«لا يجوز تحديد سن للتقاعد تقل عن ستين سنة. ويستحق العامل عند بلوغه سن الستين مكافأة عن مدة عمله بعد سن الثامنة عشرة بواقع أجر نصف شهر عن كل سنة من السنوات الخمس الأولى، وأجر شهر كامل عن كل سنة من السنوات التالية لها محسوبة على أساس الأجر الشامل الأخير.»</p>
-          </div>
-
-          <div class="article-item" data-chap="termination">
-            <div class="article-title-row">
-              <span class="article-name">المادة 130 — شهادة نهاية الخدمة وإخلاء الطرف الإلزامي</span>
-              <span class="card-tag" style="background:rgba(16,185,129,0.12); color:#34d399;">شهادة الخبرة</span>
-            </div>
-            <p class="article-content">«يلتزم صاحب العمل بأن يعطي العامل مجاناً وبناءً على طلبه شهادة يبين فيها تاريخ التحاقه بالخدمة وتاريخ انتهائها ونوع العمل الذي كان يؤديه والمزايا التي كان يحصل عليها، كما يلتزم بأن يرد للعامل ما يكون قد أودعه لديه من أوراق أو شهادات فور انتهاء العقد دون تأخير.»</p>
-          </div>
-
-          <!-- ═══════════════════════════════════════════════════════════ -->
-          <!-- الكتاب الرابع والخامس والسادس -->
-          <!-- ═══════════════════════════════════════════════════════════ -->
-          <div class="article-item" data-chap="general">
-            <div class="article-title-row">
-              <span class="article-name">المواد 146 إلى 207 — علاقات العمل الجماعية والمفاوضة والإضراب السلمي</span>
-              <span class="card-tag" style="background:rgba(99,102,241,0.12); color:#a5b4fc;">العلاقات الجماعية</span>
-            </div>
-            <p class="article-content">«تنظيم آليات المفاوضة الجماعية بين النقابات العمالية وأصحاب الأعمال، وضوابط الاتفاقيات الجماعية وإيداعها، وتنظيم ممارسة حق الإضراب السلمي للدفاع عن المصالح المهنية والاقتصادية مع حظره في المنشآت الحيوية والاستراتيجية.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general">
-            <div class="article-title-row">
-              <span class="article-name">المواد 208 إلى 231 — السلامة والصحة المهنية وتأمين بيئة العمل</span>
-              <span class="card-tag" style="background:rgba(99,102,241,0.12); color:#a5b4fc;">السلامة المهنية</span>
-            </div>
-            <p class="article-content">«إلزام المنشآت بتوفير وسائل الوقاية من المخاطر الفيزيائية والكيميائية والبيولوجية ومخاطر الحريق، وإجراء الفحص الطبي الدوري الشامل وتدريب العمال على خطط الطوارئ والإخلاء.»</p>
-          </div>
-
-          <div class="article-item" data-chap="general">
-            <div class="article-title-row">
-              <span class="article-name">المواد 232 إلى 257 — المحاكم العمالية وتفتيش العمل والضبطية القضائية والعقوبات</span>
-              <span class="card-tag" style="background:rgba(99,102,241,0.12); color:#a5b4fc;">المحاكم والعقوبات</span>
-            </div>
-            <p class="article-content">«اختصاص المحاكم العمالية المتخصصة بالفصل في كافة المنازعات خلال 3 أشهر، وإنشاء مكاتب مساعدة قضائية مجانية، وتحديد عقوبات الغرامة والحبس لأصحاب العمل المخالفين لقواعد تشغيل الأطفال أو التهرب التأميني أو تشغيل الأجانب بدون ترخيص.»</p>
-          </div>
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
+\n
+  <div class="article-item" data-chap="${a.chap}">
+    <div class="article-title-row">
+      <span class="article-name">${a.num} — ${a.title}</span>
+      <span class="card-tag" style="background:rgba(56,189,248,0.12); color:#38bdf8;">نص تشريعي</span>
+    </div>
+    <p class="article-content">${a.text}</p>
+  </div>
 
         </div>
       </section>
