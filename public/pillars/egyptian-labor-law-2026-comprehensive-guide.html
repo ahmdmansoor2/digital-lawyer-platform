@@ -557,15 +557,146 @@
       </div>
     </header>
 
-    <!-- PDF Download & Viewer Box -->
-    <div class="pdf-download-box">
-      <div class="pdf-info">
-        <div class="pdf-icon-big">📕</div>
-        <div>
-          <h2 style="font-size:19px; font-weight:900; color:#fff; margin-bottom:4px;">كود ونصوص قانون العمل المصري الجديد 2026 (PDF)</h2>
-          <p style="font-size:13px; color:#cbd5e1;">النسخة الرسمية المعتمدة الكاملة (المواد، الأبواب، والتعديلات التشريعية الحديثة)</p>
+    
+    <!-- Interactive In-Page Labor Law Code Explorer & PDF Section -->
+    <div class="pdf-download-box" id="lawReaderSection" style="flex-direction:column; align-items:stretch; gap:20px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+        <div class="pdf-info">
+          <div class="pdf-icon-big">📕</div>
+          <div>
+            <h2 style="font-size:20px; font-weight:900; color:#fff; margin-bottom:4px;">الموسوعة التشريعية الكاملة لقانون العمل المصري (كود المواد الرسمي)</h2>
+            <p style="font-size:13.5px; color:#cbd5e1;">تصفح واقرأ نصوص مواد وأبواب القانون الرسمية كاملة مع شريط بحث فوري أو حمل نسخة PDF المعتمدة</p>
+          </div>
+        </div>
+        <div class="pdf-btn-group">
+          <button class="btn-pdf btn-pdf-read" onclick="document.getElementById('inPageLawViewer').scrollIntoView({behavior:'smooth'})">
+            <span>📖 تصفح نصوص المواد أونلاين</span>
+          </button>
+          <a href="https://mohamidigital.online/legal-library.html" target="_blank" class="btn-pdf btn-pdf-dl">
+            <span>📥 تحميل نسخة PDF المعتمدة</span>
+          </a>
         </div>
       </div>
+
+      <!-- Live Search & Chapter Filter for Articles -->
+      <div id="inPageLawViewer" style="background:#0f172a; border:1px solid rgba(148,163,184,0.25); border-radius:16px; padding:20px; margin-top:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+          <div style="font-size:15px; font-weight:800; color:#38bdf8; display:flex; align-items:center; gap:8px;">
+            <span>🔍 البحث في نصوص المواد:</span>
+          </div>
+          <input type="text" id="lawArticleSearch" placeholder="ابحث برقم المادة أو الكلمة (مثال: 69، الفصل، الإجازات، الأجور، الاختبار)..." 
+                 oninput="filterArticles()" 
+                 style="flex-grow:1; max-width:480px; background:#1e293b; border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-family:'Cairo',sans-serif; font-size:13.5px; outline:none;" />
+        </div>
+
+        <!-- Chapter Pills -->
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px;">
+          <button class="tab-btn active" onclick="filterChapter('all', this)" style="background:var(--indigo); color:#fff; border:none; padding:6px 14px; border-radius:8px; font-size:12.5px; font-weight:700; cursor:pointer;">جميع الأبواب</button>
+          <button class="tab-btn" onclick="filterChapter('general', this)" style="background:rgba(255,255,255,0.06); color:#cbd5e1; border:1px solid rgba(255,255,255,0.1); padding:6px 14px; border-radius:8px; font-size:12.5px; font-weight:700; cursor:pointer;">الباب التمهيدي والتعاريف</button>
+          <button class="tab-btn" onclick="filterChapter('contract', this)" style="background:rgba(255,255,255,0.06); color:#cbd5e1; border:1px solid rgba(255,255,255,0.1); padding:6px 14px; border-radius:8px; font-size:12.5px; font-weight:700; cursor:pointer;">عقد العمل والأجور</button>
+          <button class="tab-btn" onclick="filterChapter('leaves', this)" style="background:rgba(255,255,255,0.06); color:#cbd5e1; border:1px solid rgba(255,255,255,0.1); padding:6px 14px; border-radius:8px; font-size:12.5px; font-weight:700; cursor:pointer;">الإجازات وساعات العمل</button>
+          <button class="tab-btn" onclick="filterChapter('discipline', this)" style="background:rgba(255,255,255,0.06); color:#cbd5e1; border:1px solid rgba(255,255,255,0.1); padding:6px 14px; border-radius:8px; font-size:12.5px; font-weight:700; cursor:pointer;">التحقيق والفصل (المادة 69)</button>
+          <button class="tab-btn" onclick="filterChapter('termination', this)" style="background:rgba(255,255,255,0.06); color:#cbd5e1; border:1px solid rgba(255,255,255,0.1); padding:6px 14px; border-radius:8px; font-size:12.5px; font-weight:700; cursor:pointer;">انتهاء الخدمة والتعويض</button>
+        </div>
+
+        <!-- Articles Stream Container -->
+        <div id="articlesList" style="max-height:480px; overflow-y:auto; display:flex; flex-direction:column; gap:12px; padding-left:6px;">
+          
+          <div class="article-box" data-chap="general" style="background:#1e293b; border:1px solid rgba(148,163,184,0.15); border-radius:12px; padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="color:#38bdf8; font-weight:800; font-size:14px;">المادة 1 (التعاريف الأساسية والأجر)</span>
+              <span style="background:rgba(56,189,248,0.12); color:#38bdf8; font-size:11px; padding:2px 8px; border-radius:6px;">الباب التمهيدي</span>
+            </div>
+            <p style="font-size:13.5px; color:#e2e8f0; line-height:1.7;">«العامل: كل شخص طبيعي يعمل لقاء أجر لدى صاحب عمل وتحت إدارته أو إشرافه. الأجر: كل ما يحصل عليه العامل لقاء عمله ثابتاً كان أو متغيراً نقداً أو عيناً، ويشمل الأجر الأساسي والبدلات والعمولات والمنح والمكافآت الدورية والأرباح والبدلات العينية.»</p>
+          </div>
+
+          <div class="article-box" data-chap="general" style="background:#1e293b; border:1px solid rgba(148,163,184,0.15); border-radius:12px; padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="color:#38bdf8; font-weight:800; font-size:14px;">المادة 5 (بطلان الشروط المخالفة وحماية الحقوق المكتسبة)</span>
+              <span style="background:rgba(56,189,248,0.12); color:#38bdf8; font-size:11px; padding:2px 8px; border-radius:6px;">الباب التمهيدي</span>
+            </div>
+            <p style="font-size:13.5px; color:#e2e8f0; line-height:1.7;">«يقع باطلاً كل شرط أو اتفاق يخالف أحكام هذا القانون ولو كان سابقاً على العمل به، إذا كان يتضمن انتقاصاً من حقوق العامل المقررة فيه. وتظل سارية المفعول كافة الشروط والمزايا الأفضل المقررة في عقود العمل الفردية أو الجماعية أو لوائح المنشأة.»</p>
+          </div>
+
+          <div class="article-box" data-chap="contract" style="background:#1e293b; border:1px solid rgba(148,163,184,0.15); border-radius:12px; padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="color:#38bdf8; font-weight:800; font-size:14px;">المادة 31 (تحرير عقد العمل ونسخه الثلاث)</span>
+              <span style="background:rgba(16,185,129,0.12); color:#34d399; font-size:11px; padding:2px 8px; border-radius:6px;">عقد العمل</span>
+            </div>
+            <p style="font-size:13.5px; color:#e2e8f0; line-height:1.7;">«يلتزم صاحب العمل بتحرير عقد العمل كتابة باللغة العربية ومن ثلاث نسخ، يحتفظ صاحب العمل بواحدة ويسلم العامل نسخة وتودع الثالثة بمكتب التأمينات الاجتماعية المختص. وإذا لم يوجد عقد مكتوب جاز للعامل وحده إثبات حقوقه بكافة طرق الإثبات.»</p>
+          </div>
+
+          <div class="article-box" data-chap="contract" style="background:#1e293b; border:1px solid rgba(148,163,184,0.15); border-radius:12px; padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="color:#38bdf8; font-weight:800; font-size:14px;">المادة 32 (فترة الاختبار - 3 أشهر فقط)</span>
+              <span style="background:rgba(16,185,129,0.12); color:#34d399; font-size:11px; padding:2px 8px; border-radius:6px;">عقد العمل</span>
+            </div>
+            <p style="font-size:13.5px; color:#e2e8f0; line-height:1.7;">«تحدد فترة الاختبار في عقد العمل بما لا يجاوز ثلاثة أشهر. ولا يجوز تعيين العامل تحت الاختبار أكثر من مرة واحدة لدى صاحب عمل واحد وفي نفس الوظيفة.»</p>
+          </div>
+
+          <div class="article-box" data-chap="leaves" style="background:#1e293b; border:1px solid rgba(148,163,184,0.15); border-radius:12px; padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="color:#38bdf8; font-weight:800; font-size:14px;">المادة 47 (الإجازات السنوية والمقابل النقدي)</span>
+              <span style="background:rgba(245,158,11,0.12); color:#fbbf24; font-size:11px; padding:2px 8px; border-radius:6px;">الإجازات</span>
+            </div>
+            <p style="font-size:13.5px; color:#e2e8f0; line-height:1.7;">«تكون مدة الإجازة السنوية 21 يوماً بأجر كامل لمن أمضى في الخدمة سنة كاملة، وتزاد إلى ثلاثين يوماً متى أمضى العامل عشر سنوات أو تجاوز سن الخمسين. ويستحق العامل المقابل النقدي لرصيد إجازاته المتبقية عند انتهاء خدمته دون حد أقصى.»</p>
+          </div>
+
+          <div class="article-box" data-chap="leaves" style="background:#1e293b; border:1px solid rgba(148,163,184,0.15); border-radius:12px; padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="color:#38bdf8; font-weight:800; font-size:14px;">المادة 80 (ساعات العمل القصوى والإضافي)</span>
+              <span style="background:rgba(245,158,11,0.12); color:#fbbf24; font-size:11px; padding:2px 8px; border-radius:6px;">ساعات العمل</span>
+            </div>
+            <p style="font-size:13.5px; color:#e2e8f0; line-height:1.7;">«لا يجوز تشغيل العامل تشغيلاً فعلياً أكثر من ثماني ساعات في اليوم أو ثمان وأربعين ساعة في الأسبوع، ولا تدخل فيها الفترات المخصصة لتناول الطعام والراحة. ويستحق العامل عن الساعات الإضافية 35% للأجر النهاري و70% للأجر الليلي و200% في العطلات الرسمية.»</p>
+          </div>
+
+          <div class="article-box" data-chap="discipline" style="background:#1e293b; border:1px solid rgba(148,163,184,0.15); border-radius:12px; padding:16px; border-right:4px solid #ef4444;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="color:#f87171; font-weight:900; font-size:14.5px;">المادة 69 (حالات الفصل الجسيم الـ 9 الحصرية)</span>
+              <span style="background:rgba(239,68,68,0.15); color:#f87171; font-size:11px; padding:2px 8px; border-radius:6px;">التحقيق والفصل</span>
+            </div>
+            <p style="font-size:13.5px; color:#e2e8f0; line-height:1.7;">
+              «لا يجوز فصل العامل إلا إذا ارتكب خطأ جسيماً، ويعد من قبيل الخطأ الجسيم الحالات الآتية حصراً:
+              <br>1- انتحال شخصية غير صحيحة أو تقديم شهادات مزورة.
+              <br>2- ارتكاب خطأ نتجت عنه خسارة مادية جسيمة لصاحب العمل بشرط إبلاغ الجهات المختصة خلال 24 ساعة.
+              <br>3- عدم مراعاة التعليمات اللازم اتباعها لسلامة العمال والمنشأة بشرط أن تكون مكتوبة ومعلنة.
+              <br>4- الغياب بدون عذر أكثر من 20 يوماً متقطعة خلال السنة أو أكثر من 10 أيام متصلة، بشرط أن يسبق الفصل إنذار كتابي على يد محضر بعد 10 أيام في الأولى و5 أيام في الثانية.
+              <br>5- إفشاء أسرار المنشأة بما يترتب عليه ضرر جسيم.
+              <br>6- منافسة صاحب العمل في ذات النشاط.
+              <br>7- وجود العامل أثناء ساعات العمل في حالة سكر بيّن أو متأثراً بما تعاطاه من مادة مخدرة.
+              <br>8- الاعتداء على صاحب العمل أو المدير العام أو اعتداء جسيم على أحد الرؤساء أثناء العمل أو بسببه.
+              <br>9- عدم مراعاة الضوابط المقررة في الإضراب السلمي عن العمل.»
+            </p>
+          </div>
+
+          <div class="article-box" data-chap="discipline" style="background:#1e293b; border:1px solid rgba(148,163,184,0.15); border-radius:12px; padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="color:#38bdf8; font-weight:800; font-size:14px;">المادة 58 & 64 (ضمانات التحقيق التأديبي)</span>
+              <span style="background:rgba(239,68,68,0.12); color:#f87171; font-size:11px; padding:2px 8px; border-radius:6px;">التحقيق التأديبي</span>
+            </div>
+            <p style="font-size:13.5px; color:#e2e8f0; line-height:1.7;">«لا يجوز توقيع جزاء على العامل إلا بعد إبلاغه كتابة بما نُسب إليه وسماع أقواله وتحقيق دفاعه وإثبات ذلك في محضر يودع في ملفه الخاص. ولا يجوز توقيع أكثر من جزاء عن المخالفة الواحدة.»</p>
+          </div>
+
+          <div class="article-box" data-chap="termination" style="background:#1e293b; border:1px solid rgba(148,163,184,0.15); border-radius:12px; padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="color:#38bdf8; font-weight:800; font-size:14px;">المادة 122 (تعويض الفصل التعسفي - شهران عن كل سنة)</span>
+              <span style="background:rgba(16,185,129,0.12); color:#34d399; font-size:11px; padding:2px 8px; border-radius:6px;">التعويض والإنهاء</span>
+            </div>
+            <p style="font-size:13.5px; color:#e2e8f0; line-height:1.7;">«إذا أنهى أحد الطرفين العقد دون مبرر مشروع كافٍ، التزم بأن يعوض الطرف الآخر عن الضرر الذي يصيبه من جراء هذا الإنهاء. فإذا كان الإنهاء من جانب صاحب العمل، استحق العامل تعويضاً لا يقل عن أجر شهرين من الأجر الشامل عن كل سنة من سنوات الخدمة، بالإضافة إلى كافة مستحقاته الأخرى.»</p>
+          </div>
+
+          <div class="article-box" data-chap="termination" style="background:#1e293b; border:1px solid rgba(148,163,184,0.15); border-radius:12px; padding:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="color:#38bdf8; font-weight:800; font-size:14px;">المادة 125 & 126 (مكافأة نهاية الخدمة وسن الستين)</span>
+              <span style="background:rgba(16,185,129,0.12); color:#34d399; font-size:11px; padding:2px 8px; border-radius:6px;">نهاية الخدمة</span>
+            </div>
+            <p style="font-size:13.5px; color:#e2e8f0; line-height:1.7;">«يستحق العامل عند بلوغه سن الستين مكافأة عن مدة عمله بعد سن الثامنة عشرة بواقع أجر نصف شهر عن كل سنة من السنوات الخمس الأولى، وأجر شهر عن كل سنة من السنوات التالية لها، متى لم تكن له حقوق عن هذه المدة وفقاً لأحكام تأمين الشيخوخة والعجز والوفاة.»</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
       <div class="pdf-btn-group">
         <button class="btn-pdf btn-pdf-read" onclick="openPdfModal()">
           <span>📖 قراءة نص القانون داخل الصفحة</span>
@@ -701,6 +832,71 @@
         <div class="precedent-text">«حظر تخفيض الراتب أو المساس بالمزايا العينية المكتسبة للعامل بحجة الظروف الاقتصادية للمنشأة، ويعد ذلك اعتداءً على حق الملكية العمالية يوجب التعويض الكامل.»</div>
       </div>
     </section>
+
+    
+    <!-- Interactive End of Service & Labor Compensation Calculator -->
+    <section class="content-card" id="laborCalculatorSection" style="border:2px solid rgba(16,185,129,0.35); background:radial-gradient(circle at 50% 0%, rgba(16,185,129,0.12) 0%, rgba(15,23,42,0.95) 75%);">
+      <h2 style="color:#34d399; border-right-color:#10b981;">🧮 حاسبة مستحقات نهاية الخدمة والتعويض عن الفصل التعسفي 2026</h2>
+      <p style="font-size:14px; color:#cbd5e1; margin-bottom:20px;">احسب مستحقاتك العمالية بدقة فورية وفق قانون العمل المصري (مكافأة نهاية الخدمة، رصيد الإجازات، وتعويض الفصل التعسفي):</p>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-bottom:20px;">
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label style="font-size:13px; font-weight:700; color:#cbd5e1;">الراتب الأساسي الشهري (بالجنيه):</label>
+          <input type="number" id="lb-basic" min="0" placeholder="مثال: 5000" style="background:#0f172a; border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-family:'Cairo',sans-serif; font-size:13.5px; outline:none;" />
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label style="font-size:13px; font-weight:700; color:#cbd5e1;">الراتب الإجمالي الشامل (بالجنيه):</label>
+          <input type="number" id="lb-total" min="0" placeholder="مثال: 8000" style="background:#0f172a; border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-family:'Cairo',sans-serif; font-size:13.5px; outline:none;" />
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label style="font-size:13px; font-weight:700; color:#cbd5e1;">سنوات الخدمة الفعلية:</label>
+          <input type="number" id="lb-years" min="0" max="50" placeholder="مثال: 5" style="background:#0f172a; border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-family:'Cairo',sans-serif; font-size:13.5px; outline:none;" />
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label style="font-size:13px; font-weight:700; color:#cbd5e1;">أشهر الخدمة الإضافية (0-11):</label>
+          <input type="number" id="lb-months" min="0" max="11" value="0" style="background:#0f172a; border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-family:'Cairo',sans-serif; font-size:13.5px; outline:none;" />
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label style="font-size:13px; font-weight:700; color:#cbd5e1;">رصيد الإجازات السنوية المتبقي (أيام):</label>
+          <input type="number" id="lb-leave" min="0" placeholder="مثال: 21" style="background:#0f172a; border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-family:'Cairo',sans-serif; font-size:13.5px; outline:none;" />
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label style="font-size:13px; font-weight:700; color:#cbd5e1;">سبب انتهاء علاقة العمل:</label>
+          <select id="lb-reason" style="background:#0f172a; border:1px solid rgba(148,163,184,0.3); border-radius:10px; padding:10px 14px; color:#fff; font-family:'Cairo',sans-serif; font-size:13.5px; outline:none;">
+            <option value="unfair">فصل تعسفي من صاحب العمل (يستحق تعويض)</option>
+            <option value="resign">استقالة أو ترك اختياري</option>
+            <option value="mutual">إنهاء بالتراضي المتبادل</option>
+            <option value="term">انتهاء عقد محدد المدة</option>
+            <option value="death">وفاة العامل</option>
+          </select>
+        </div>
+      </div>
+
+      <button onclick="calcLaborInPage()" style="background:linear-gradient(135deg, #10b981, #059669); color:#0f172a; font-weight:900; font-size:15px; border:none; padding:14px 28px; border-radius:12px; cursor:pointer; width:100%; font-family:'Cairo',sans-serif; transition:all 0.2s;">
+        💰 احسب إجمالي المستحقات والتعويضات الآن
+      </button>
+
+      <!-- Calculator Result Box -->
+      <div id="lbResultBox" style="display:none; background:#0f172a; border:1px solid rgba(16,185,129,0.3); border-radius:14px; padding:20px; margin-top:20px;">
+        <div style="font-size:16px; font-weight:800; color:#34d399; margin-bottom:14px; display:flex; align-items:center; gap:8px;">
+          <span>📊 تفاصيل المستحقات المالية القانونية المحسوبة:</span>
+        </div>
+        <div id="lbRows" style="display:flex; flex-direction:column; gap:8px; margin-bottom:14px;"></div>
+        <div id="lbTotalBox" style="background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.4); border-radius:10px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; font-size:16px; font-weight:900; color:#fff;"></div>
+        <div id="lbNote" style="font-size:12.5px; color:#94a3b8; margin-top:10px; line-height:1.6;"></div>
+        <div style="margin-top:14px; text-align:left;">
+          <button onclick="window.print()" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:8px 16px; border-radius:8px; font-size:12.5px; font-weight:700; cursor:pointer;">
+            🖨️ طباعة تقرير المستحقات
+          </button>
+        </div>
+      </div>
+    </section>
+
 
     <!-- Section 3: Mega FAQ 20 Questions -->
     <section class="content-card">
@@ -1033,5 +1229,111 @@
       if (e.key === 'Escape') closePdfModal();
     });
   </script>
+
+  <script>
+    function filterChapter(chap, btn) {
+      document.querySelectorAll('#inPageLawViewer .tab-btn').forEach(b => {
+        b.style.background = 'rgba(255,255,255,0.06)';
+        b.style.color = '#cbd5e1';
+        b.classList.remove('active');
+      });
+      if (btn) {
+        btn.style.background = 'var(--indigo)';
+        btn.style.color = '#fff';
+        btn.classList.add('active');
+      }
+      const boxes = document.querySelectorAll('.article-box');
+      boxes.forEach(b => {
+        if (chap === 'all' || b.getAttribute('data-chap') === chap) {
+          b.style.display = 'block';
+        } else {
+          b.style.display = 'none';
+        }
+      });
+    }
+
+    function filterArticles() {
+      const q = document.getElementById('lawArticleSearch').value.toLowerCase().trim();
+      const boxes = document.querySelectorAll('.article-box');
+      boxes.forEach(b => {
+        const text = b.innerText.toLowerCase();
+        if (!q || text.includes(q)) {
+          b.style.display = 'block';
+        } else {
+          b.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+
+  <script>
+    function fmtEGP(n) {
+      return (Number(n) || 0).toLocaleString('ar-EG', { maximumFractionDigits: 2 }) + ' جنيه';
+    }
+
+    function calcLaborInPage() {
+      const basic = parseFloat(document.getElementById('lb-basic').value) || 0;
+      const total = parseFloat(document.getElementById('lb-total').value) || 0;
+      const years = parseFloat(document.getElementById('lb-years').value) || 0;
+      const months = parseFloat(document.getElementById('lb-months').value) || 0;
+      const leave = parseFloat(document.getElementById('lb-leave').value) || 0;
+      const reason = document.getElementById('lb-reason').value;
+
+      if (basic <= 0 || total <= 0) {
+        alert('يرجى إدخال الراتب الأساسي والراتب الإجمالي الشامل بشكل صحيح');
+        return;
+      }
+
+      const totalYears = years + (months / 12);
+      const dailySalary = total / 30;
+
+      // مكافأة نهاية الخدمة
+      let gratuity = 0;
+      if (totalYears <= 5) {
+        gratuity = (basic / 2) * totalYears;
+      } else if (totalYears <= 10) {
+        gratuity = (basic / 2) * 5 + basic * (totalYears - 5);
+      } else {
+        gratuity = (basic / 2) * 5 + basic * 5 + (basic * 1.5) * (totalYears - 10);
+      }
+
+      // رصيد الإجازات
+      const leaveComp = dailySalary * leave;
+
+      // بدل مهلة الإخطار (شهران)
+      const noticePeriod = reason === 'unfair' ? total * 2 : 0;
+
+      // تعويض الفصل التعسفي (شهران عن كل سنة كحد أدنى)
+      let unfairComp = 0;
+      if (reason === 'unfair') {
+        unfairComp = Math.max(total * 2 * totalYears, total * 2);
+      }
+
+      const grandTotal = gratuity + leaveComp + noticePeriod + unfairComp;
+
+      const rows = [
+        ['مكافأة نهاية الخدمة القانونية', fmtEGP(gratuity)],
+        ['المقابل النقدي لرصيد الإجازات السنوية', fmtEGP(leaveComp)],
+        ...(noticePeriod > 0 ? [['مهلة الإخطار (بدل الإنذار شهران)', fmtEGP(noticePeriod)]] : []),
+        ...(unfairComp > 0 ? [['الحد الأدنى لتعويض الفصل التعسفي (شهران/سنة)', fmtEGP(unfairComp)]] : []),
+      ];
+
+      document.getElementById('lbRows').innerHTML = rows.map(([l, v]) =>
+        `<div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(148,163,184,0.1); padding-bottom:6px;"><span style="color:#cbd5e1; font-size:13.5px;">${l}</span><span style="color:#38bdf8; font-weight:800; font-size:13.5px;">${v}</span></div>`
+      ).join('');
+
+      document.getElementById('lbTotalBox').innerHTML = `
+        <span>💰 إجمالي المستحقات والتعويضات المقدرة:</span>
+        <span style="color:#34d399; font-size:18px;">${fmtEGP(grandTotal)}</span>`;
+
+      document.getElementById('lbNote').innerHTML = `📌 تم الاحتساب استناداً لنصوص المواد 122 و 125 و 126 من قانون العمل المصري رقم 12 لسنة 2003 ومبادئ محكمة النقض المستقرة.`;
+
+      const box = document.getElementById('lbResultBox');
+      box.style.display = 'block';
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  </script>
+
 </body>
 </html>
