@@ -2357,6 +2357,27 @@
       "duration": "1د 9ث",
       "size": 32306604,
       "publishedAt": "2026-09-01T11:36:46.853Z"
+    },
+    {
+      "topicId": "trend-thanaweya-amma-appeals-legal-guide",
+      "title": "خطوات التظلم القانوني على نتيجة الثانوية العامة وإجراءات القضاء الإداري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قضاء إداري",
+        "#تظلمات الثانوية العامة",
+        "#نتيجة الثانوية العامة 2026"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-thanaweya-amma-appeals-legal-guide.mp4",
+      "videoId": "1357382992784633",
+      "permalink": "https://www.facebook.com/reel/1357382992784633",
+      "source": "trending-topics.json",
+      "duration": "54ث",
+      "size": 17204997,
+      "publishedAt": "2026-09-01T16:34:06.436Z"
     }
   ]
 }
