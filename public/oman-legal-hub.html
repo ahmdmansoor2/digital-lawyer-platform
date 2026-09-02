@@ -553,7 +553,68 @@
           <div class="form-group">
             <label class="form-label">تاريخ بداية العقد (يحدد تلقائياً النظام المطبق على كل فترة):</label>
             <input type="month" id="omStart" class="form-control" required min="1973-01" max="2026-12" />
+          </div><!-- خيار حساب المدة عبر التقويم الذكي -->
+
+
+          <div style="background:rgba(15,23,42,0.6); border:1px solid rgba(234,179,8,0.3); border-radius:14px; padding:16px; margin-bottom:16px;">
+
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+
+
+              <span style="font-size:0.88rem; font-weight:800; color:#34d399;">📅 تحديد مدة الخدمة بالتقويم (Date Picker):</span>
+
+
+              <span style="font-size:0.75rem; color:#94a3b8;">حساب يومي دقيق لمنع الأخطاء اليدوية</span>
+
+
+            </div>
+
+
+            <div class="form-row">
+
+
+              <div class="form-group">
+
+
+                <label class="form-label">تاريخ بداية العمل في سلطنة عُمان:</label>
+
+
+                <input type="date" id="omStartDate" class="form-control" onchange="autoCalcOmDates()" min="1970-01-01" max="2050-12-31" />
+
+
+              </div>
+
+
+              <div class="form-group">
+
+
+                <label class="form-label">تاريخ نهاية العمل / الاستقالة:</label>
+
+
+                <div class="date-input-group">
+
+
+                  <input type="date" id="omEndDate" class="form-control" onchange="autoCalcOmDates()" min="1970-01-01" max="2050-12-31" />
+
+
+                  <button type="button" class="btn-today" onclick="setOmToday()">📅 اليوم</button>
+
+
+                </div>
+
+
+              </div>
+
+
+            </div>
+
+
+            <div id="omStartDateBadge" class="service-calculated-badge"></div>
+
+
           </div>
+
 
           <div class="form-row">
             <div class="form-group">
@@ -864,6 +925,29 @@
   <script>
     // تاريخ بدء تطبيق النظام الجديد وفق مثال وزارة العمل في التعميم التوضيحي
     var NEW_LAW_START = new Date('2023-08-01');
+
+    function setOmToday() {
+      var today = new Date().toISOString().split('T')[0];
+      var endEl = document.getElementById('omEndDate');
+      if (endEl) { endEl.value = today; autoCalcOmDates(); }
+    }
+
+    function autoCalcOmDates() {
+      var s = document.getElementById('omStartDate').value;
+      var e = document.getElementById('omEndDate').value;
+      if (!s || !e) return;
+      var dS = new Date(s); var dE = new Date(e);
+      if (dE <= dS) { alert('تاريخ النهاية يجب أن يكون بعد البداية'); return; }
+      var y = dE.getFullYear() - dS.getFullYear();
+      var m = dE.getMonth() - dS.getMonth();
+      var d = dE.getDate() - dS.getDate();
+      if (d < 0) { m--; var prev = new Date(dE.getFullYear(), dE.getMonth(), 0); d += prev.getDate(); }
+      if (m < 0) { y--; m += 12; }
+      document.getElementById('omYears').value = y;
+      document.getElementById('omMonths').value = m;
+      var b = document.getElementById('omStartDateBadge');
+      if (b) { b.style.display = 'block'; b.innerHTML = '✓ مدة الخدمة: <strong>' + y + ' سنة</strong> و <strong>' + m + ' شهر</strong> و <strong>' + d + ' يوم</strong>'; }
+    }
 
     function monthsBetween(from, to) {
       return (to.getFullYear() - from.getFullYear()) * 12 + (to.getMonth() - from.getMonth());

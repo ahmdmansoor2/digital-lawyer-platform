@@ -499,7 +499,68 @@
           <div class="form-group">
             <label class="form-label">الراتب الإجمالي الشامل (لحساب بدل الإجازات السنوية) بالدرهم:</label>
             <input type="number" id="uaeTotalSalary" class="form-control" placeholder="مثال: 9000" required min="1000" />
+          </div><!-- خيار حساب المدة عبر التقويم الذكي -->
+
+
+          <div style="background:rgba(15,23,42,0.6); border:1px solid rgba(59,130,246,0.3); border-radius:14px; padding:16px; margin-bottom:16px;">
+
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+
+
+              <span style="font-size:0.88rem; font-weight:800; color:#34d399;">📅 تحديد مدة الخدمة بالتقويم (Date Picker):</span>
+
+
+              <span style="font-size:0.75rem; color:#94a3b8;">حساب يومي دقيق لمنع الأخطاء اليدوية</span>
+
+
+            </div>
+
+
+            <div class="form-row">
+
+
+              <div class="form-group">
+
+
+                <label class="form-label">تاريخ بداية العمل في دولة الإمارات:</label>
+
+
+                <input type="date" id="uaeStartDate" class="form-control" onchange="autoCalculateUaeDates()" min="1970-01-01" max="2050-12-31" />
+
+
+              </div>
+
+
+              <div class="form-group">
+
+
+                <label class="form-label">تاريخ نهاية العمل / الاستقالة:</label>
+
+
+                <div class="date-input-group">
+
+
+                  <input type="date" id="uaeEndDate" class="form-control" onchange="autoCalculateUaeDates()" min="1970-01-01" max="2050-12-31" />
+
+
+                  <button type="button" class="btn-today" onclick="setUaeToday()">📅 اليوم</button>
+
+
+                </div>
+
+
+              </div>
+
+
+            </div>
+
+
+            <div id="uaeStartDateBadge" class="service-calculated-badge"></div>
+
+
           </div>
+
 
           <div class="form-row">
             <div class="form-group">

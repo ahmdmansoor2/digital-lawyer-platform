@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head><script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script><!-- www-mohami-guard -->
   <meta charset="UTF-8" />
@@ -497,13 +497,35 @@
             <input type="number" id="saudiSalary" class="form-control" placeholder="مثال: 8000" required min="1000" />
           </div>
 
+          <!-- خيار حساب المدة عبر التقويم الذكي -->
+          <div style="background:rgba(15,23,42,0.6); border:1px solid rgba(16,185,129,0.3); border-radius:14px; padding:16px; margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <span style="font-size:0.88rem; font-weight:800; color:#34d399;">📅 تحديد مدة الخدمة بالتقويم (Date Picker):</span>
+              <span style="font-size:0.75rem; color:#94a3b8;">حساب يومي دقيق لمنع الأخطاء اليدوية</span>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">تاريخ بداية العمل في السعودية:</label>
+                <input type="date" id="saudiStartDate" class="form-control" onchange="autoCalculateDates()" min="1970-01-01" max="2050-12-31" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">تاريخ نهاية العمل / الاستقالة:</label>
+                <div class="date-input-group">
+                  <input type="date" id="saudiEndDate" class="form-control" onchange="autoCalculateDates()" min="1970-01-01" max="2050-12-31" />
+                  <button type="button" class="btn-today" onclick="setSaudiToday()" title="تعيين تاريخ اليوم">📅 اليوم</button>
+                </div>
+              </div>
+            </div>
+            <div id="saudiCalculatedBadge" class="service-calculated-badge"></div>
+          </div>
+
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">سنوات الخدمة:</label>
+              <label class="form-label">سنوات الخدمة (محسوبة تلقائياً أو يدوياً):</label>
               <input type="number" id="saudiYears" class="form-control" placeholder="مثال: 6" required min="0" max="60" />
             </div>
             <div class="form-group">
-              <label class="form-label">الأشهر الإضافية (إن وجدت):</label>
+              <label class="form-label">الأشهر الإضافية:</label>
               <input type="number" id="saudiMonths" class="form-control" placeholder="0 - 11" min="0" max="11" value="0" />
             </div>
           </div>
