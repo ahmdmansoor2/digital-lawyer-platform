@@ -633,3 +633,216 @@ h1, h2, h3, h4,
   position: relative !important;
   z-index: 1 !important;
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   UNIVERSAL THEME SWITCHER BUTTON (.uh-theme-toggle)
+   ════════════════════════════════════════════════════════════════════════════ */
+.uh-theme-toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 12px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: #f59e0b !important;
+  font-size: 1.15rem !important;
+  line-height: 1 !important;
+  cursor: pointer !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  user-select: none !important;
+  flex-shrink: 0 !important;
+}
+.uh-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.18) !important;
+  transform: scale(1.08) !important;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.35) !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   GLOBAL LIGHT MODE ARCHITECTURE (html.theme-light) — تطبيقه على كل الموقع
+   ════════════════════════════════════════════════════════════════════════════ */
+html.theme-light body {
+  background-color: #f8fafc !important;
+  background-image: 
+    radial-gradient(ellipse at 60% 0%, rgba(99, 102, 241, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse at 10% 50%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%) !important;
+  color: #1e293b !important;
+}
+
+/* Headings Contrast Fix in Light Mode */
+html.theme-light h1,
+html.theme-light h2,
+html.theme-light h3,
+html.theme-light h4,
+html.theme-light .hero h1,
+html.theme-light .hero h2,
+html.theme-light .section-title,
+html.theme-light .article-card h1,
+html.theme-light .article-card h2,
+html.theme-light .article-card h3,
+html.theme-light .topic-page-head h1,
+html.theme-light .topic-page-body h2,
+html.theme-light .topic-page-body h3 {
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+html.theme-light .hero p,
+html.theme-light .sub-title,
+html.theme-light .section-desc,
+html.theme-light .article-meta,
+html.theme-light .breadcrumbs {
+  color: #64748b !important;
+}
+
+/* Header in Light Mode */
+html.theme-light .uh-bar {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(203, 213, 225, 0.8) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+}
+html.theme-light .uh-title { color: #0f172a !important; }
+html.theme-light .uh-sub { color: #64748b !important; }
+html.theme-light .uh-link { color: #334155 !important; }
+html.theme-light .uh-link:hover,
+html.theme-light .uh-link.active {
+  color: #4338ca !important;
+  background: rgba(99, 102, 241, 0.08) !important;
+}
+html.theme-light .uh-more-btn { color: #334155 !important; }
+html.theme-light .uh-menu {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12) !important;
+}
+html.theme-light .uh-menu-item { color: #334155 !important; }
+html.theme-light .uh-menu-item:hover {
+  background: #f1f5f9 !important;
+  color: #4338ca !important;
+}
+html.theme-light .uh-burger {
+  color: #0f172a !important;
+  background: #e2e8f0 !important;
+}
+html.theme-light .uh-theme-toggle {
+  background: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+  color: #4338ca !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+}
+html.theme-light .uh-theme-toggle:hover {
+  background: #cbd5e1 !important;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.25) !important;
+}
+
+/* Cards & Containers across all public pages in Light Mode */
+html.theme-light .article-card,
+html.theme-light .calc-card,
+html.theme-light .hub-card,
+html.theme-light .law-card,
+html.theme-light .pillar-card,
+html.theme-light .feature-card,
+html.theme-light .tab-panel,
+html.theme-light .result-box,
+html.theme-light .controls-box,
+html.theme-light .search-container,
+html.theme-light .filter-container,
+html.theme-light .hero-box,
+html.theme-light .platform-item,
+html.theme-light .faq-item,
+html.theme-light .hotline-chip {
+  background-color: #ffffff !important;
+  border-color: rgba(203, 213, 225, 0.8) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  color: #1e293b !important;
+}
+
+html.theme-light .calc-title,
+html.theme-light .hub-card-title,
+html.theme-light .card-title,
+html.theme-light .hero-title,
+html.theme-light .platform-name,
+html.theme-light .faq-q {
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+}
+
+html.theme-light .calc-subtitle,
+html.theme-light .card-text,
+html.theme-light .hero-sub,
+html.theme-light .platform-desc,
+html.theme-light .faq-a {
+  color: #475569 !important;
+}
+
+html.theme-light .calc-group label,
+html.theme-light .form-group label {
+  color: #334155 !important;
+}
+
+html.theme-light input:not([type="submit"]):not([type="button"]),
+html.theme-light select,
+html.theme-light textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.theme-light input:focus,
+html.theme-light select:focus,
+html.theme-light textarea:focus {
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+}
+
+html.theme-light .tab-btn {
+  background: #e2e8f0 !important;
+  color: #475569 !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.theme-light .tab-btn.active {
+  background: linear-gradient(135deg, #4f46e5, #6366f1) !important;
+  color: #ffffff !important;
+}
+
+html.theme-light .result-row {
+  border-color: #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+html.theme-light .result-row strong {
+  color: #0f172a !important;
+}
+
+html.theme-light .footer {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #64748b !important;
+}
+
+html.theme-light .footer a {
+  color: #475569 !important;
+}
+
+html.theme-light .footer a:hover {
+  color: #4338ca !important;
+}
+
+/* Strict Contrast Guard: Always preserve bright white text on all colored buttons */
+html.theme-light .uh-cta,
+html.theme-light .btn-app,
+html.theme-light .calc-btn,
+html.theme-light .btn-primary,
+html.theme-light a[style*="background:#10b981"],
+html.theme-light a[style*="background:#4338ca"],
+html.theme-light a[style*="background: linear-gradient"],
+html.theme-light button[style*="background: linear-gradient"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
