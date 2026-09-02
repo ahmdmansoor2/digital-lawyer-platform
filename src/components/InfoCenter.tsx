@@ -48,6 +48,7 @@ import SiteSearchModal from './SiteSearchModal';
 import AIAdvisor from './AIAdvisor';
 import NotificationCenter from './NotificationCenter';
 import NewsletterBox from './NewsletterBox';
+import MobileDock from './MobileDock';
 
 interface InfoCenterProps {
   userName?: string;
@@ -230,8 +231,60 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
         </div>
 
         {/* Global Live Search Bar */}
-        <div className="max-w-3xl mx-auto mb-4 sm:mb-6 relative z-50">
+        <div className="max-w-3xl mx-auto mb-3 sm:mb-4 relative z-50">
           <HeroSearchBar onOpenFullSearch={() => setIsSearchModalOpen(true)} />
+        </div>
+
+        {/* ── Audience Persona Pills (تخصيص العرض الفوري للزائر) ── */}
+        <div className="max-w-4xl mx-auto mb-5 sm:mb-7 flex items-center justify-center gap-2 sm:gap-3 flex-wrap px-2">
+          <span className="text-[11px] font-bold text-slate-400 hidden sm:inline-flex items-center gap-1">
+            <Tag className="w-3.5 h-3.5 text-indigo-400" />
+            <span>تخصيص التصفح:</span>
+          </span>
+          <button
+            type="button"
+            onClick={() => {
+              setActiveTab('admin');
+              setTimeout(() => document.getElementById('lawyer-admin-hub')?.scrollIntoView({ behavior: 'smooth' }), 50);
+            }}
+            className="px-3.5 py-1.5 rounded-full text-xs font-black bg-indigo-500/15 text-indigo-200 border border-indigo-500/35 hover:bg-indigo-500/30 hover:border-indigo-400 transition-all flex items-center gap-1.5 cursor-pointer shadow-sm hover:scale-105 active:scale-95"
+          >
+            <span>👨‍⚖️ أنا محامٍ</span>
+            <span className="text-[10px] text-indigo-300 font-normal hidden sm:inline">(إدارة ورول وقضايا)</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setActiveTab('calculators');
+              setTimeout(() => document.getElementById('calc-hub')?.scrollIntoView({ behavior: 'smooth' }), 50);
+            }}
+            className="px-3.5 py-1.5 rounded-full text-xs font-black bg-emerald-500/15 text-emerald-200 border border-emerald-500/35 hover:bg-emerald-500/30 hover:border-emerald-400 transition-all flex items-center gap-1.5 cursor-pointer shadow-sm hover:scale-105 active:scale-95"
+          >
+            <span>👨‍👩‍👧 أنا مواطن</span>
+            <span className="text-[10px] text-emerald-300 font-normal hidden sm:inline">(مواريث ونفقات وشهر)</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setActiveTab('gulf');
+              setTimeout(() => document.getElementById('gulf-hub')?.scrollIntoView({ behavior: 'smooth' }), 50);
+            }}
+            className="px-3.5 py-1.5 rounded-full text-xs font-black bg-amber-500/15 text-amber-200 border border-amber-500/35 hover:bg-amber-500/30 hover:border-amber-400 transition-all flex items-center gap-1.5 cursor-pointer shadow-sm hover:scale-105 active:scale-95"
+          >
+            <span>🏢 أنا مستثمر</span>
+            <span className="text-[10px] text-amber-300 font-normal hidden sm:inline">(شركات والخليج)</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setActiveTab('library');
+              setTimeout(() => document.getElementById('library-hub')?.scrollIntoView({ behavior: 'smooth' }), 50);
+            }}
+            className="px-3.5 py-1.5 rounded-full text-xs font-black bg-purple-500/15 text-purple-200 border border-purple-500/35 hover:bg-purple-500/30 hover:border-purple-400 transition-all flex items-center gap-1.5 cursor-pointer shadow-sm hover:scale-105 active:scale-95"
+          >
+            <span>🎓 باحث قانوني</span>
+            <span className="text-[10px] text-purple-300 font-normal hidden sm:inline">(نقض ومراجع)</span>
+          </button>
         </div>
 
         {/* Quick Filter Navigation Tabs (Mobile swipe track / Desktop 2-tier balanced dock) */}
@@ -441,7 +494,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
         {/* ── MASTER HUB 2: LEGAL LIBRARY, PRECEDENTS & FORMS (كارت المكتبة والموسوعات والصيغ والنقض) ── */}
         {(activeTab === 'all' || activeTab === 'library') && (
-          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-purple-950/60 via-slate-900/90 to-slate-950 border border-purple-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-purple-400/50">
+          <section id="library-hub" className="spotlight-card p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-purple-950/60 via-slate-900/90 to-slate-950 border border-purple-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-purple-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-purple-900/50">
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
@@ -608,8 +661,8 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
         )}
 
         {/* ── MASTER HUB 3: LAWYERS PROFESSIONAL HUB (كارت المحامين وإدارة المكاتب) ── */}
-        {(activeTab === 'all' || activeTab === 'lawyers') && (
-          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-indigo-950/60 via-slate-900/90 to-slate-950 border border-indigo-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-indigo-400/50">
+        {(activeTab === 'all' || activeTab === 'lawyers' || activeTab === 'admin') && (
+          <section id="lawyer-admin-hub" className="spotlight-card p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-indigo-950/60 via-slate-900/90 to-slate-950 border border-indigo-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-indigo-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-indigo-900/50">
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
@@ -708,7 +761,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
         {/* ── MASTER HUB 4: LEGAL CALCULATORS (كارت الحاسبات القانونية والشرعية) ── */}
         {(activeTab === 'all' || activeTab === 'calculators') && (
-          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-emerald-950/60 via-slate-900/90 to-slate-950 border border-emerald-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-emerald-400/50">
+          <section id="calc-hub" className="spotlight-card p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-emerald-950/60 via-slate-900/90 to-slate-950 border border-emerald-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-emerald-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-emerald-900/50">
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
@@ -949,7 +1002,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
         {/* ── MASTER HUB 5: CITIZENS & E-JUSTICE HUB (كارت المواطنين والعدالة والشكاوى) ── */}
         {(activeTab === 'all' || activeTab === 'citizens') && (
-          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-teal-950/60 via-slate-900/90 to-slate-950 border border-teal-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-teal-400/50">
+          <section id="citizens-hub" className="spotlight-card p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-teal-950/60 via-slate-900/90 to-slate-950 border border-teal-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-teal-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-teal-900/50">
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
@@ -1064,7 +1117,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
         {/* ── MASTER HUB 6: GULF REGIONAL HUB (كارت دول الخليج العربي الستة) ── */}
         {(activeTab === 'all' || activeTab === 'gulf') && (
-          <section id="gulf-hub" className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-green-950/60 via-slate-900/90 to-slate-950 border border-green-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-green-400/50">
+          <section id="gulf-hub" className="spotlight-card p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-green-950/60 via-slate-900/90 to-slate-950 border border-green-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-green-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-green-900/50">
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
@@ -1254,7 +1307,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
         {/* ── MASTER HUB 1: STUDENTS & ACADEMICS (كارت الأكاديمية والطلاب) ── */}
         {(activeTab === 'all' || activeTab === 'students') && (
-          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-blue-950/60 via-slate-900/90 to-slate-950 border border-blue-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-blue-400/50">
+          <section id="students-hub" className="spotlight-card p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-blue-950/60 via-slate-900/90 to-slate-950 border border-blue-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-blue-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-blue-900/50">
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
@@ -1353,7 +1406,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
         {/* ── MASTER HUB 7: CORPORATE & BUSINESS (كارت تأسيس الشركات والاستثمار) ── */}
         {(activeTab === 'all' || activeTab === 'corporate') && (
-          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-amber-950/60 via-slate-900/90 to-slate-950 border border-amber-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-amber-400/50">
+          <section id="corporate-hub" className="spotlight-card p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-amber-950/60 via-slate-900/90 to-slate-950 border border-amber-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-amber-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-amber-900/50">
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
@@ -1452,7 +1505,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
         {/* ── MASTER HUB 8: ECONOMIC & MARKET INDICATORS (كارت الاقتصاد والأسواق والذهب) ── */}
         {(activeTab === 'all' || activeTab === 'economic') && (
-          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-amber-950/60 via-slate-900/90 to-slate-950 border border-amber-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-amber-400/50">
+          <section id="economic-hub" className="spotlight-card p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-amber-950/60 via-slate-900/90 to-slate-950 border border-amber-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-amber-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-amber-900/50">
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
@@ -1681,6 +1734,12 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </p>
         </div>
       </footer>
+
+      {/* ── Mobile Field Action Dock (شريط الأدوات الميداني العائم للمحامي) ── */}
+      <MobileDock 
+        onOpenAIAdvisor={() => setIsAIAdvisorOpen(true)} 
+        onEnterApp={onEnterApp} 
+      />
 
     </div>
   );

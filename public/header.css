@@ -633,3 +633,201 @@ h1, h2, h3, h4,
   position: relative !important;
   z-index: 1 !important;
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   1. LEGAL TICKER MARQUEE (.uh-ticker-wrap) — شريط الرصد القضائي والتشريعي
+   ════════════════════════════════════════════════════════════════════════════ */
+.uh-ticker-wrap {
+  width: 100%;
+  height: 34px;
+  background: linear-gradient(90deg, rgba(15, 23, 42, 0.98) 0%, rgba(30, 27, 75, 0.95) 50%, rgba(10, 15, 35, 0.98) 100%);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.25);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: sticky;
+  top: 60px;
+  z-index: 99998;
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.8rem;
+}
+
+.uh-ticker-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: linear-gradient(135deg, #3730a3, #4f46e5);
+  color: #ffffff;
+  font-weight: 800;
+  padding: 0 14px;
+  height: 100%;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 3px 0 12px rgba(0, 0, 0, 0.35);
+  z-index: 2;
+  font-size: 0.76rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.uh-ticker-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: pulseTickerDot 1.4s infinite ease-in-out;
+}
+
+@keyframes pulseTickerDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.75); }
+}
+
+.uh-ticker-track {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.uh-ticker-content {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: tickerScroll 45s linear infinite;
+  color: #cbd5e1;
+}
+
+.uh-ticker-wrap:hover .uh-ticker-content {
+  animation-play-state: paused;
+}
+
+.uh-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 16px;
+}
+
+.uh-ticker-item strong {
+  color: #f8fafc;
+  font-weight: 700;
+}
+
+.uh-ticker-sep {
+  color: #f59e0b;
+  opacity: 0.7;
+  font-size: 0.65rem;
+}
+
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   2. SPOTLIGHT HOVER EFFECT (.spotlight-card) — التوهج التفاعلي للكروت
+   ════════════════════════════════════════════════════════════════════════════ */
+.spotlight-card {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s ease;
+}
+
+.spotlight-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -10px rgba(99, 102, 241, 0.35),
+              0 0 20px rgba(99, 102, 241, 0.15) !important;
+  border-color: rgba(129, 140, 248, 0.5) !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════════
+   3. COURT-READY PRINT SYSTEM (@media print) — ورقة الطباعة القضائية A4
+   ════════════════════════════════════════════════════════════════════════════ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 15mm 15mm 15mm 15mm;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: 'Amiri', 'Cairo', serif !important;
+    font-size: 12pt !important;
+    line-height: 1.8 !important;
+  }
+
+  /* Hide navigation, headers, footers, and decorative UI */
+  .uh-bar,
+  .uh-ticker-wrap,
+  .uh-actions,
+  .mobile-dock,
+  .hero-search-bar,
+  .nav,
+  nav,
+  footer,
+  .footer,
+  .site-footer,
+  .ad-banner,
+  .adsbygoogle,
+  .no-print,
+  button:not(.print-keep),
+  .hero-badge,
+  .hero-stats {
+    display: none !important;
+  }
+
+  /* Printable Cards & Calculations */
+  .calc-card,
+  .result-box,
+  .article-card,
+  .law-card {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #1e293b !important;
+    box-shadow: none !important;
+    padding: 15px !important;
+    border-radius: 6px !important;
+    page-break-inside: avoid;
+  }
+
+  .calc-card h1, .calc-card h2, .calc-card h3,
+  .article-card h1, .article-card h2, .article-card h3 {
+    color: #000000 !important;
+    -webkit-text-fill-color: #000000 !important;
+    text-shadow: none !important;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+
+  .result-row {
+    border-bottom: 1px dashed #94a3b8 !important;
+    color: #000000 !important;
+    padding: 6px 0 !important;
+  }
+
+  /* Official Court Letterhead for Print */
+  .court-print-header {
+    display: block !important;
+    text-align: center;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+
+  .court-print-footer {
+    display: flex !important;
+    justify-content: space-between;
+    margin-top: 35px;
+    border-top: 1px dashed #000000;
+    padding-top: 15px;
+    font-size: 11pt;
+  }
+}
+

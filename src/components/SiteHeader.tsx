@@ -79,72 +79,99 @@ export default function SiteHeader({ activeKey = 'home', onEnterApp, userName, o
   };
 
   return (
-    <header className={`uh-bar${scrolled ? ' scrolled' : ''}`} id="siteHeader">
-      <div className="uh-inner">
-        <a href="/" className="uh-logo" aria-label="منصة المحامي الرقمية">
-          <span className="uh-badge">⚖️</span>
-          <span className="uh-brand">
-            <span className="uh-title">المحامي الرقمي</span>
-            <span className="uh-sub">مساعدك القانوني الذكي · مجاناً</span>
-          </span>
-        </a>
+    <>
+      <header className={`uh-bar${scrolled ? ' scrolled' : ''}`} id="siteHeader">
+        <div className="uh-inner">
+          <a href="/" className="uh-logo" aria-label="منصة المحامي الرقمية">
+            <span className="uh-badge">⚖️</span>
+            <span className="uh-brand">
+              <span className="uh-title">المحامي الرقمي</span>
+              <span className="uh-sub">مساعدك القانوني الذكي · مجاناً</span>
+            </span>
+          </a>
 
-        <nav className={`uh-nav${mobileOpen ? ' active' : ''}`} id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
-          {PRIMARY.map((l) => (
-            <a key={l.href} href={l.href} className={`uh-link${activeKey === l.key ? ' active' : ''}`}>
-              {l.label}
-            </a>
-          ))}
-          <div className={`uh-more${moreOpen ? ' open' : ''}`} id="uhMore">
+          <nav className={`uh-nav${mobileOpen ? ' active' : ''}`} id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
+            {PRIMARY.map((l) => (
+              <a key={l.href} href={l.href} className={`uh-link${activeKey === l.key ? ' active' : ''}`}>
+                {l.label}
+              </a>
+            ))}
+            <div className={`uh-more${moreOpen ? ' open' : ''}`} id="uhMore">
+              <button
+                className="uh-more-btn"
+                type="button"
+                aria-expanded={moreOpen}
+                aria-haspopup="true"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setMoreOpen((v) => !v);
+                }}
+              >
+                <span>المزيد</span>
+                <span className="uh-caret">▾</span>
+              </button>
+              <div className="uh-menu">
+                {MORE.map((l) => (
+                  <a key={l.href} href={l.href} className={`uh-menu-item${activeKey === l.key ? ' active' : ''}`}>
+                    {l.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </nav>
+
+          <div className="uh-actions">
+            {isAuth ? (
+              <button type="button" className="uh-cta uh-cta--ghost" onClick={onLogout}>
+                <span>خروج · {userName}</span>
+              </button>
+            ) : (
+              <a href="/" className="uh-cta" onClick={handleCtaClick}>
+                <span>🚀 دخول التطبيق</span>
+              </a>
+            )}
             <button
-              className="uh-more-btn"
+              className="uh-burger"
+              id="uhBurger"
               type="button"
-              aria-expanded={moreOpen}
-              aria-haspopup="true"
-              onClick={(e) => {
-                e.stopPropagation();
-                setMoreOpen((v) => !v);
+              aria-label={mobileOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
+              aria-expanded={mobileOpen}
+              aria-controls="headerNav"
+              onClick={() => {
+                setMobileOpen((v) => !v);
+                if (mobileOpen) setMoreOpen(false);
               }}
             >
-              <span>المزيد</span>
-              <span className="uh-caret">▾</span>
+              {mobileOpen ? '✕' : '☰'}
             </button>
-            <div className="uh-menu">
-              {MORE.map((l) => (
-                <a key={l.href} href={l.href} className={`uh-menu-item${activeKey === l.key ? ' active' : ''}`}>
-                  {l.label}
-                </a>
-              ))}
-            </div>
           </div>
-        </nav>
-
-        <div className="uh-actions">
-          {isAuth ? (
-            <button type="button" className="uh-cta uh-cta--ghost" onClick={onLogout}>
-              <span>خروج · {userName}</span>
-            </button>
-          ) : (
-            <a href="/" className="uh-cta" onClick={handleCtaClick}>
-              <span>🚀 دخول التطبيق</span>
-            </a>
-          )}
-          <button
-            className="uh-burger"
-            id="uhBurger"
-            type="button"
-            aria-label={mobileOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
-            aria-expanded={mobileOpen}
-            aria-controls="headerNav"
-            onClick={() => {
-              setMobileOpen((v) => !v);
-              if (mobileOpen) setMoreOpen(false);
-            }}
-          >
-            {mobileOpen ? '✕' : '☰'}
-          </button>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* ── الشريط الإخباري القضائي العاجل (Live Legal Ticker) ── */}
+      <aside className="uh-ticker-wrap" aria-label="شريط الرصد القضائي والتشريعي العاجل">
+        <div className="uh-ticker-badge">
+          <span className="uh-ticker-dot" />
+          <span>⚖️ رصد المحامي 2026</span>
+        </div>
+        <div className="uh-ticker-track">
+          <div className="uh-ticker-content">
+            <span className="uh-ticker-item">📜 <strong>الجريدة الرسمية:</strong> سريان القرارات المنظمة لتأسيس الشركات الرقمية وخدمات التقاضي الإلكتروني الموحد 2026</span>
+            <span className="uh-ticker-sep">◆</span>
+            <span className="uh-ticker-item">⚖️ <strong>أحدث مبادئ النقض:</strong> ضوابط صحة إعلان أوراق المحضرين وانقضاء الدعوى في جرائم الشيكات والضمان</span>
+            <span className="uh-ticker-sep">◆</span>
+            <span className="uh-ticker-item">🕌 <strong>محاكم الأسرة:</strong> استقرار دوائر الاستئناف على آليات التحري البنكي في تقدير نفقات الصغار والأقارب</span>
+            <span className="uh-ticker-sep">◆</span>
+            <span className="uh-ticker-item">🏠 <strong>الشهر العقاري:</strong> اعتماد الرفع المساحي الرقمي وخفض مدة التسجيل العقاري طبقاً للقانون 9 لسنة 2022</span>
+            <span className="uh-ticker-sep">◆</span>
+            <span className="uh-ticker-item">💼 <strong>قانون العمل الجديد:</strong> حظر الفصل التعسفي واحتساب مكافأة نهاية الخدمة بواقع أجر نصف شهر عن كل سنة</span>
+            <span className="uh-ticker-sep">◆</span>
+            <span className="uh-ticker-item">📜 <strong>الجريدة الرسمية:</strong> سريان القرارات المنظمة لتأسيس الشركات الرقمية وخدمات التقاضي الإلكتروني الموحد 2026</span>
+            <span className="uh-ticker-sep">◆</span>
+            <span className="uh-ticker-item">⚖️ <strong>أحدث مبادئ النقض:</strong> ضوابط صحة إعلان أوراق المحضرين وانقضاء الدعوى في جرائم الشيكات والضمان</span>
+          </div>
+        </div>
+      </aside>
+    </>
   );
 }
