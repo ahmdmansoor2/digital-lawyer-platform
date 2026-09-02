@@ -1,11 +1,11 @@
 {
   "date": "2026-09-02",
-  "generatedAt": "2026-09-02T10:09:13.613Z",
-  "status": "warn",
+  "generatedAt": "2026-09-02T16:05:33.684Z",
+  "status": "ok",
   "blogArticles": 168,
-  "fbPosts": 0,
-  "reels": 0,
-  "ghRuns": 17,
+  "fbPosts": 5,
+  "reels": 1,
+  "ghRuns": 16,
   "checks": [
     {
       "name": "site_root",
@@ -28,14 +28,14 @@
     {
       "name": "sitemap",
       "label": "الاستضافة: خريطة الموقع sitemap.xml",
-      "status": "warn",
-      "findings": 1
+      "status": "ok",
+      "findings": 0
     },
     {
       "name": "facebook",
       "label": "فيسبوك: منشورات اليوم والصور والريلز",
-      "status": "warn",
-      "findings": 2
+      "status": "ok",
+      "findings": 0
     },
     {
       "name": "github_runs",
