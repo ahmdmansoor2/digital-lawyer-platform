@@ -160,6 +160,46 @@
       padding: 10px 14px; border-radius: 10px; outline: none; transition: border-color 0.2s; width: 100%;
     }
     .form-group input:focus, .form-group select:focus { border-color: var(--indigo); }
+    .form-group input[type="date"] {
+      color-scheme: dark;
+      cursor: pointer;
+      position: relative;
+    }
+    .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      filter: invert(0.85) brightness(1.2);
+      padding: 4px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .form-group input[type="date"]::-webkit-calendar-picker-indicator:hover {
+      background: rgba(99, 102, 241, 0.3);
+    }
+    .date-input-container {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .date-input-container input[type="date"] {
+      flex: 1;
+    }
+    .btn-today-pill {
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #c7d2fe;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .btn-today-pill:hover {
+      background: #4338ca;
+      color: #ffffff;
+    }
     .form-group select option { background: #1e293b; }
     .calc-btn { background: linear-gradient(135deg, var(--indigo), var(--purple)); color: #fff; border: none; font-family: 'Cairo',sans-serif; font-size: 0.95rem; font-weight: 800; padding: 13px 32px; border-radius: 12px; cursor: pointer; transition: opacity 0.2s; width: 100%; }
     .calc-btn:hover { opacity: 0.9; }
@@ -620,7 +660,10 @@
         </div>
         <div class="form-group">
           <label>تاريخ صدور الحكم أو الإعلان</label>
-          <input type="date" id="dl-date">
+          <div class="date-input-container">
+            <input type="date" id="dl-date" min="1970-01-01" max="2050-12-31">
+            <button type="button" class="btn-today-pill" onclick="setTodayDate('dl-date')" title="تعيين تاريخ اليوم الحالي">📅 اليوم</button>
+          </div>
         </div>
       </div>
       <button class="calc-btn" onclick="calcDeadline()">📅 احسب آخر موعد للطعن</button>
@@ -777,7 +820,10 @@
         </div>
         <div class="form-group">
           <label>تاريخ نشوء الحق / وقوع الواقعة / صدور الحكم</label>
-          <input type="date" id="lim-date">
+          <div class="date-input-container">
+            <input type="date" id="lim-date" min="1950-01-01" max="2050-12-31">
+            <button type="button" class="btn-today-pill" onclick="setTodayDate('lim-date')" title="تعيين تاريخ اليوم الحالي">📅 اليوم</button>
+          </div>
         </div>
       </div>
       <button class="calc-btn" onclick="calcLimitations()">⏳ احسب تاريخ السقوط والتقادم</button>
@@ -816,11 +862,17 @@
         </div>
         <div class="form-group">
           <label>تاريخ بدء سريان الفائدة (تاريخ المطالبة القضائية)</label>
-          <input type="date" id="int-start-date">
+          <div class="date-input-container">
+            <input type="date" id="int-start-date" min="1970-01-01" max="2050-12-31">
+            <button type="button" class="btn-today-pill" onclick="setTodayDate('int-start-date')" title="تعيين تاريخ اليوم">📅 اليوم</button>
+          </div>
         </div>
         <div class="form-group">
           <label>تاريخ حساب الفائدة (تاريخ الحكم أو السداد)</label>
-          <input type="date" id="int-end-date">
+          <div class="date-input-container">
+            <input type="date" id="int-end-date" min="1970-01-01" max="2050-12-31">
+            <button type="button" class="btn-today-pill" onclick="setTodayDate('int-end-date')" title="تعيين تاريخ اليوم">📅 اليوم</button>
+          </div>
         </div>
       </div>
       <button class="calc-btn" onclick="calcLegalInterest()">📈 احسب الفوائد القانونية المستحقة</button>
@@ -855,11 +907,17 @@
         </div>
         <div class="form-group">
           <label>تاريخ التسليم المتفق عليه بالعقد</label>
-          <input type="date" id="dev-due-date">
+          <div class="date-input-container">
+            <input type="date" id="dev-due-date" min="1990-01-01" max="2050-12-31">
+            <button type="button" class="btn-today-pill" onclick="setTodayDate('dev-due-date')" title="تعيين تاريخ اليوم">📅 اليوم</button>
+          </div>
         </div>
         <div class="form-group">
           <label>تاريخ التسليم الفعلي (أو اتركه فارغاً ليوم اليوم)</label>
-          <input type="date" id="dev-actual-date">
+          <div class="date-input-container">
+            <input type="date" id="dev-actual-date" min="1990-01-01" max="2050-12-31">
+            <button type="button" class="btn-today-pill" onclick="setTodayDate('dev-actual-date')" title="تعيين تاريخ اليوم">📅 اليوم</button>
+          </div>
         </div>
         <div class="form-group">
           <label>نسبة الغرامة السنوية التعاقدية (إن وُجدت)</label>

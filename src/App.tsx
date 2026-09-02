@@ -272,8 +272,6 @@ clients: true,
             });
           }
         });
-      } else if (Notification.permission === 'default') {
-        Notification.requestPermission();
       }
     };
 
