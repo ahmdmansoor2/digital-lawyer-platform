@@ -2040,6 +2040,42 @@
       ],
       "words": 2137,
       "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "دليل الفاتورة الإلكترونية في مصر: الغرامات والتصالح القانوني",
+      "date": "2026-09-02",
+      "slug": "egypt-electronic-invoice-penalties",
+      "url": "https://mohamidigital.online/blog/egypt-electronic-invoice-penalties.html",
+      "image": "https://mohamidigital.online/blog/images/egypt-electronic-invoice-penalties.jpg",
+      "tags": [
+        "قانون الضرائب"
+      ],
+      "words": 2257,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "كيفية حساب الضريبة العقارية في مصر وحالات الإعفاء القانوني منها",
+      "date": "2026-09-02",
+      "slug": "egypt-real-estate-tax-calculation",
+      "url": "https://mohamidigital.online/blog/egypt-real-estate-tax-calculation.html",
+      "image": "https://mohamidigital.online/blog/images/egypt-real-estate-tax-calculation.jpg",
+      "tags": [
+        "قوانين العقارات"
+      ],
+      "words": 733,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "أحكام الشيك بدون رصيد في القانون المصري وطرق التصالح القانوني",
+      "date": "2026-09-02",
+      "slug": "bounced-checks-provisions-egypt",
+      "url": "https://mohamidigital.online/blog/bounced-checks-provisions-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/bounced-checks-provisions-egypt.jpg",
+      "tags": [
+        "القانون التجاري"
+      ],
+      "words": 1706,
+      "model": "gemini-3.6-flash"
     }
   ]
 }
