@@ -528,8 +528,13 @@ const DocumentManager = React.memo(function DocumentManager({
               📂 خزينة الملفات وعرائض الدعاوى الآمنة
             </h1>
             <p className="text-xs text-slate-300 max-w-2xl leading-relaxed">
-              حف١ فهرسɡ وتصنيف جميع مذكرات الدفاڡ والأحكام القضائية مع ميزة البحث والربط الفوري بالقضايا والبحث الذكي بالمحتوى.
+              حفظ، فهرسة، وتصنيف جميع مذكرات الدفاع والأحكام القضائية مع ميزة البحث والربط الفوري بالقضايا والبحث الذكي بالمحتوى.
             </p>
+            <div className="flex items-center gap-2 pt-1 text-[11px] text-emerald-400 font-bold">
+              <span className="inline-flex items-center gap-1 bg-emerald-950/60 border border-emerald-500/30 px-2.5 py-0.5 rounded-full">
+                🔒 تشفير تام: وثائقك وعرائضك محفوظة محلياً ولا يمكن لأي طرف ثالث الاطلاع عليها
+              </span>
+            </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-2 self-start md:self-auto z-10">

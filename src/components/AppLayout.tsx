@@ -64,6 +64,7 @@ import SearchModal from './SearchModal';
 import PrivacyPolicyModal from './PrivacyPolicyModal';
 import ProfilePage from './ProfilePage';
 import GlobalSidebar from './GlobalSidebar';
+import NetworkStatusIndicator from './NetworkStatusIndicator';
 
 // v2.9.11: Extended lazy loading to more heavy components for better initial load performance
 const ReportsPanel = lazy(() => import('./ReportsPanel'));
@@ -341,6 +342,9 @@ export default function AppLayout(props: AppLayoutProps) {
 
       {/* Global Sidebar — شريط التنقل الزجاجي الفاخر */}
       <GlobalSidebar onEnterApp={onShowInfoCenter} />
+
+      {/* مؤشر حالة الاتصال المباشر والعمل بدون إنترنت للمحامين بالمحاكم */}
+      <NetworkStatusIndicator />
 
       {/* Dynamic typography scale overrides */}
       <style>{`

@@ -309,11 +309,14 @@ export default function LoginScreen({ onLoginSuccess }: { onLoginSuccess?: (role
             )}
           </form>
 
-          {/* فوتر */}
-          <div className="mt-6 pt-4 border-t border-slate-800 text-center">
-            <p className="text-[10px] text-slate-500 flex items-center justify-center gap-1">
-              <Shield className="w-3 h-3 text-emerald-500" />
-              جلسة مشفرة — جميع البيانات محمية بـ PBKDF2 + IndexedDB
+          {/* معايير الخصوصية والأمان المشفر */}
+          <div className="mt-6 pt-4 border-t border-slate-800 text-center space-y-1.5">
+            <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-[11px] font-bold">
+              <Shield className="w-3.5 h-3.5 text-emerald-400" />
+              <span>خصوصية تامة وتشفير بنكي Zero-Knowledge</span>
+            </div>
+            <p className="text-[10px] text-slate-400 leading-relaxed max-w-sm mx-auto">
+              بيانات موكليك وقضاياك ومستنداتك مشفرة ومحفوظة على جهازك عبر IndexedDB مع مزامنة مشفرة؛ لا يمكن لأي طرف ثالث الاطلاع على أسرار مكتبك.
             </p>
           </div>
         </div>

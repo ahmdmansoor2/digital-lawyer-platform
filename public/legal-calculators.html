@@ -21,12 +21,12 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": ["SoftwareApplication", "WebApplication"],
     "name": "بوابة الحاسبات القانونية والشرعية الذكية 2026",
-    "description": "11 حاسبة قانونية وتفاعلية متكاملة للمحامين والمواطنين: المواريث، النفقات، الشهر العقاري، التصالح، الإيجار القديم، مواعيد الطعون، نهاية الخدمة، الضرائب، المحاكم، التقادم، والفائدة القانونية.",
+    "description": "15 حاسبة قانونية وشرعية تفاعلية متكاملة للمحامين والمواطنين: المواريث، النفقات، الشهر العقاري، التصالح، الإيجار القديم، مواعيد الطعون، نهاية الخدمة، الضرائب، المحاكم، التقادم، والفائدة القانونية.",
     "url": "https://mohamidigital.online/legal-calculators.html",
-    "applicationCategory": "LegalService",
-    "operatingSystem": "Any",
+    "applicationCategory": "LegalServiceApplication",
+    "operatingSystem": "All",
     "inLanguage": "ar-EG",
     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EGP", "description": "مجاني 100%"},
     "provider": {"@type": "Organization", "name": "منصة المحامي الرقمية", "url": "https://mohamidigital.online/"}
@@ -388,28 +388,28 @@
         </div>
         <div class="form-group">
           <label>إجمالي التركة (بالجنيه)</label>
-          <input type="number" id="inh-estate" min="1" placeholder="مثال: 600000">
+          <input type="number" inputmode="numeric" id="inh-estate" min="1" placeholder="مثال: 600000">
         </div>
         <div class="form-group">
           <label>الديون والوصايا المخصومة (بالجنيه)</label>
-          <input type="number" id="inh-debts" min="0" placeholder="مثال: 20000" value="0">
+          <input type="number" inputmode="numeric" id="inh-debts" min="0" placeholder="مثال: 20000" value="0">
         </div>
         <div class="form-group" id="inh-spouse-group">
           <label id="inh-spouse-label">عدد الزوجات (0 - 4)</label>
-          <input type="number" id="inh-wives" min="0" max="4" value="1">
+          <input type="number" inputmode="numeric" id="inh-wives" min="0" max="4" value="1">
           <select id="inh-has-husband" style="display:none;">
             <option value="1">نعم — الزوج على قيد الحياة</option>
             <option value="0">لا — الزوج متوفى قبلها</option>
           </select>
         </div>
-        <div class="form-group"><label>عدد الأبناء الذكور</label><input type="number" id="inh-sons" min="0" max="20" value="0"></div>
-        <div class="form-group"><label>عدد البنات الإناث</label><input type="number" id="inh-daughters" min="0" max="20" value="0"></div>
+        <div class="form-group"><label>عدد الأبناء الذكور</label><input type="number" inputmode="numeric" id="inh-sons" min="0" max="20" value="0"></div>
+        <div class="form-group"><label>عدد البنات الإناث</label><input type="number" inputmode="numeric" id="inh-daughters" min="0" max="20" value="0"></div>
         <div class="form-group"><label>الأب</label><select id="inh-father"><option value="1">موجود (على قيد الحياة)</option><option value="0">متوفى</option></select></div>
         <div class="form-group"><label>الأم</label><select id="inh-mother"><option value="1">موجودة (على قيد الحياة)</option><option value="0">متوفية</option></select></div>
         <div class="form-group"><label>الجد لأب</label><select id="inh-grandfather"><option value="0">غير موجود أو متوفى</option><option value="1">موجود</option></select></div>
         <div class="form-group"><label>الجدة</label><select id="inh-grandmother"><option value="0">غير موجودة أو متوفية</option><option value="1">موجودة</option></select></div>
-        <div class="form-group"><label>عدد الإخوة الأشقاء</label><input type="number" id="inh-brothers" min="0" max="20" value="0"></div>
-        <div class="form-group"><label>عدد الأخوات الشقيقات</label><input type="number" id="inh-sisters" min="0" max="20" value="0"></div>
+        <div class="form-group"><label>عدد الإخوة الأشقاء</label><input type="number" inputmode="numeric" id="inh-brothers" min="0" max="20" value="0"></div>
+        <div class="form-group"><label>عدد الأخوات الشقيقات</label><input type="number" inputmode="numeric" id="inh-sisters" min="0" max="20" value="0"></div>
       </div>
       <button class="calc-btn" onclick="calcInheritance()">⚖️ احسب توزيع التركة الشرعية</button>
       <div class="result-box" id="inh-result">
@@ -435,11 +435,11 @@
       <div class="form-grid">
         <div class="form-group">
           <label>صافي الدخل الشهري للزوج / الأب (بالجنيه)</label>
-          <input type="number" id="fam-income" min="1000" placeholder="مثال: 12000">
+          <input type="number" inputmode="numeric" id="fam-income" min="1000" placeholder="مثال: 12000">
         </div>
         <div class="form-group">
           <label>عدد الأطفال في سن الحضانة</label>
-          <input type="number" id="fam-kids" min="0" max="10" value="2">
+          <input type="number" inputmode="numeric" id="fam-kids" min="0" max="10" value="2">
         </div>
         <div class="form-group">
           <label>هل تشمل المطالبة نفقة زوجية / عدة؟</label>
@@ -450,7 +450,7 @@
         </div>
         <div class="form-group">
           <label>مدة الزواج بالسنوات (لحساب نفقة المتعة)</label>
-          <input type="number" id="fam-years" min="1" max="50" value="5">
+          <input type="number" inputmode="numeric" id="fam-years" min="1" max="50" value="5">
         </div>
         <div class="form-group">
           <label>هل الحاضنة توفر مسكناً (أجر مسكن)؟</label>
@@ -461,7 +461,7 @@
         </div>
         <div class="form-group">
           <label>مصاريف التعليم السنوية المقدرة للأولاد</label>
-          <input type="number" id="fam-edu" min="0" value="15000" placeholder="مثال: 15000">
+          <input type="number" inputmode="numeric" id="fam-edu" min="0" value="15000" placeholder="مثال: 15000">
         </div>
       </div>
       <button class="calc-btn" onclick="calcFamilySupport()">💰 احسب النفقات والمستحقات التقديرية</button>
@@ -498,11 +498,11 @@
         </div>
         <div class="form-group">
           <label>المساحة (بالمتر المربع)</label>
-          <input type="number" id="re-area" min="1" max="99999" placeholder="مثال: 120">
+          <input type="number" inputmode="numeric" id="re-area" min="1" max="99999" placeholder="مثال: 120">
         </div>
         <div class="form-group">
           <label>القيمة الإجمالية للعقار (بالجنيه)</label>
-          <input type="number" id="re-price" min="0" placeholder="مثال: 1500000">
+          <input type="number" inputmode="numeric" id="re-price" min="0" placeholder="مثال: 1500000">
         </div>
         <div class="form-group">
           <label>سبب التسجيل</label>
@@ -538,11 +538,11 @@
       <div class="form-grid">
         <div class="form-group">
           <label>إجمالي مساحة المخالفة (بالمتر المربع)</label>
-          <input type="number" id="rec-area" min="1" placeholder="مثال: 150">
+          <input type="number" inputmode="numeric" id="rec-area" min="1" placeholder="مثال: 150">
         </div>
         <div class="form-group">
           <label>سعر المتر المسطح بالمنطقة (من 50 إلى 2500 جنيه)</label>
-          <input type="number" id="rec-meter-price" min="50" max="2500" value="500">
+          <input type="number" inputmode="numeric" id="rec-meter-price" min="50" max="2500" value="500">
         </div>
         <div class="form-group">
           <label>نوع ونسبة المخالفة</label>
@@ -587,7 +587,7 @@
       <div class="form-grid">
         <div class="form-group">
           <label>القيمة الإيجارية السابقة / الأساسية (بالجنيه)</label>
-          <input type="number" id="rent-base" min="1" placeholder="مثال: 500">
+          <input type="number" inputmode="numeric" id="rent-base" min="1" placeholder="مثال: 500">
         </div>
         <div class="form-group">
           <label>نوع المستأجر والغرض</label>
@@ -689,11 +689,11 @@
         </div>
       </div>
       <div class="form-grid">
-        <div class="form-group"><label>الراتب الأساسي الشهري (بالجنيه)</label><input type="number" id="lb-basic" min="0" placeholder="مثال: 5000"></div>
-        <div class="form-group"><label>الراتب الإجمالي الشامل (بالجنيه)</label><input type="number" id="lb-total" min="0" placeholder="مثال: 8000"></div>
-        <div class="form-group"><label>سنوات الخدمة</label><input type="number" id="lb-years" min="0" max="50" placeholder="مثال: 7"></div>
-        <div class="form-group"><label>أشهر الخدمة الإضافية (0-11)</label><input type="number" id="lb-months" min="0" max="11" placeholder="مثال: 6"></div>
-        <div class="form-group"><label>رصيد الإجازات السنوية المستحق (أيام)</label><input type="number" id="lb-leave" min="0" placeholder="مثال: 30"></div>
+        <div class="form-group"><label>الراتب الأساسي الشهري (بالجنيه)</label><input type="number" inputmode="numeric" id="lb-basic" min="0" placeholder="مثال: 5000"></div>
+        <div class="form-group"><label>الراتب الإجمالي الشامل (بالجنيه)</label><input type="number" inputmode="numeric" id="lb-total" min="0" placeholder="مثال: 8000"></div>
+        <div class="form-group"><label>سنوات الخدمة</label><input type="number" inputmode="numeric" id="lb-years" min="0" max="50" placeholder="مثال: 7"></div>
+        <div class="form-group"><label>أشهر الخدمة الإضافية (0-11)</label><input type="number" inputmode="numeric" id="lb-months" min="0" max="11" placeholder="مثال: 6"></div>
+        <div class="form-group"><label>رصيد الإجازات السنوية المستحق (أيام)</label><input type="number" inputmode="numeric" id="lb-leave" min="0" placeholder="مثال: 30"></div>
         <div class="form-group">
           <label>سبب إنهاء الخدمة</label>
           <select id="lb-reason">
@@ -729,11 +729,11 @@
       <div class="form-grid">
         <div class="form-group">
           <label>إجمالي الراتب الشهري الشامل (بالجنيه)</label>
-          <input type="number" id="tax-gross" min="1000" placeholder="مثال: 15000">
+          <input type="number" inputmode="numeric" id="tax-gross" min="1000" placeholder="مثال: 15000">
         </div>
         <div class="form-group">
           <label>الأجر التأميني المسجل (الحد الأقصى 12,600 ج)</label>
-          <input type="number" id="tax-insurable" min="1000" max="12600" value="10000">
+          <input type="number" inputmode="numeric" id="tax-insurable" min="1000" max="12600" value="10000">
         </div>
       </div>
       <button class="calc-btn" onclick="calcSalaryTax()">💵 احسب الاستقطاعات وصافي الراتب</button>
@@ -770,8 +770,8 @@
             <option value="urgent">أمر على عريضة / مستعجل</option>
           </select>
         </div>
-        <div class="form-group"><label>قيمة المبلغ المطالب به (بالجنيه)</label><input type="number" id="ct-amount" min="0" placeholder="مثال: 200000"></div>
-        <div class="form-group"><label>عدد المدعى عليهم (للإعلان)</label><input type="number" id="ct-defendants" min="1" max="50" value="1"></div>
+        <div class="form-group"><label>قيمة المبلغ المطالب به (بالجنيه)</label><input type="number" inputmode="numeric" id="ct-amount" min="0" placeholder="مثال: 200000"></div>
+        <div class="form-group"><label>عدد المدعى عليهم (للإعلان)</label><input type="number" inputmode="numeric" id="ct-defendants" min="1" max="50" value="1"></div>
         <div class="form-group"><label>هل تحتاج لتقرير خبير؟</label><select id="ct-expert"><option value="no">لا</option><option value="yes">نعم (تقدير)</option></select></div>
       </div>
       <button class="calc-btn" onclick="calcCourt()">⚖️ احسب الرسوم القضائية</button>
@@ -851,7 +851,7 @@
       <div class="form-grid">
         <div class="form-group">
           <label>أصل المبلغ المطالب به (بالجنيه)</label>
-          <input type="number" id="int-amount" min="1" placeholder="مثال: 100000">
+          <input type="number" inputmode="numeric" id="int-amount" min="1" placeholder="مثال: 100000">
         </div>
         <div class="form-group">
           <label>نوع المعاملة والنسبة القانونية</label>
@@ -899,11 +899,11 @@
       <div class="form-grid">
         <div class="form-group">
           <label>القيمة الإجمالية للوحدة (بالجنيه)</label>
-          <input type="number" id="dev-total" min="1" placeholder="مثال: 2000000">
+          <input type="number" inputmode="numeric" id="dev-total" min="1" placeholder="مثال: 2000000">
         </div>
         <div class="form-group">
           <label>المبلغ المدفوع فعلياً للمطوّر (بالجنيه)</label>
-          <input type="number" id="dev-paid" min="0" placeholder="مثال: 800000">
+          <input type="number" inputmode="numeric" id="dev-paid" min="0" placeholder="مثال: 800000">
         </div>
         <div class="form-group">
           <label>تاريخ التسليم المتفق عليه بالعقد</label>
@@ -929,7 +929,7 @@
         </div>
         <div class="form-group" id="dev-custom-rate-group" style="display:none;">
           <label>النسبة التعاقدية السنوية (%)</label>
-          <input type="number" id="dev-custom-rate" min="5" max="20" value="8" step="0.5">
+          <input type="number" inputmode="numeric" id="dev-custom-rate" min="5" max="20" value="8" step="0.5">
         </div>
       </div>
       <button class="calc-btn" onclick="calcDevDelay()">🏢 احسب الغرامة والتعويض المستحق</button>
@@ -954,13 +954,13 @@
         </div>
       </div>
       <div class="form-grid">
-        <div class="form-group"><label>الأجر الشهري الأساسي (بالجنيه)</label><input type="number" id="ot-basic" min="1" placeholder="مثال: 6000"></div>
+        <div class="form-group"><label>الأجر الشهري الأساسي (بالجنيه)</label><input type="number" inputmode="numeric" id="ot-basic" min="1" placeholder="مثال: 6000"></div>
         <div class="form-group"><label>عدد أيام العمل الشهرية</label><select id="ot-days"><option value="26">26 يوماً (6 أيام عمل أسبوعياً)</option><option value="22">22 يوماً (5 أيام عمل أسبوعياً)</option></select></div>
         <div class="form-group"><label>ساعات العمل اليومية النظامية</label><select id="ot-daily"><option value="8">8 ساعات</option><option value="7">7 ساعات</option><option value="6">6 ساعات</option></select></div>
-        <div class="form-group"><label>ساعات إضافية نهارية (خلال أيام العمل)</label><input type="number" id="ot-day-hours" min="0" max="200" value="10"></div>
-        <div class="form-group"><label>ساعات إضافية ليلية (من 7 مساءً إلى 6 صباحاً)</label><input type="number" id="ot-night-hours" min="0" max="200" value="0"></div>
-        <div class="form-group"><label>ساعات عمل في يوم الراحة الأسبوعية</label><input type="number" id="ot-rest-hours" min="0" max="100" value="0"></div>
-        <div class="form-group"><label>ساعات عمل في العطلات الرسمية</label><input type="number" id="ot-holiday-hours" min="0" max="100" value="0"></div>
+        <div class="form-group"><label>ساعات إضافية نهارية (خلال أيام العمل)</label><input type="number" inputmode="numeric" id="ot-day-hours" min="0" max="200" value="10"></div>
+        <div class="form-group"><label>ساعات إضافية ليلية (من 7 مساءً إلى 6 صباحاً)</label><input type="number" inputmode="numeric" id="ot-night-hours" min="0" max="200" value="0"></div>
+        <div class="form-group"><label>ساعات عمل في يوم الراحة الأسبوعية</label><input type="number" inputmode="numeric" id="ot-rest-hours" min="0" max="100" value="0"></div>
+        <div class="form-group"><label>ساعات عمل في العطلات الرسمية</label><input type="number" inputmode="numeric" id="ot-holiday-hours" min="0" max="100" value="0"></div>
       </div>
       <button class="calc-btn" onclick="calcOvertime()">⏰ احسب أجر الساعات الإضافية</button>
       <div class="result-box" id="ot-result">
@@ -995,19 +995,19 @@
         </div>
         <div class="form-group" id="dw-base-group">
           <label>الحد المعياري للتعويض المحدث (بالجنيه) — يُحدَّث بقرار وزاري سنوي</label>
-          <input type="number" id="dw-base" min="1" value="240000" placeholder="مثال: 240000">
+          <input type="number" inputmode="numeric" id="dw-base" min="1" value="240000" placeholder="مثال: 240000">
         </div>
         <div class="form-group" id="dw-percentage-group" style="display:none;">
           <label>نسبة العجز الجزئي (%) كما قررها الطبيب الشرعي</label>
-          <input type="number" id="dw-percentage" min="1" max="99" value="25">
+          <input type="number" inputmode="numeric" id="dw-percentage" min="1" max="99" value="25">
         </div>
         <div class="form-group" id="dw-days-group" style="display:none;">
           <label>عدد أيام الانقطاع عن العمل بسبب الإصابة</label>
-          <input type="number" id="dw-days" min="1" max="365" value="30">
+          <input type="number" inputmode="numeric" id="dw-days" min="1" max="365" value="30">
         </div>
         <div class="form-group" id="dw-wage-group" style="display:none;">
           <label>متوسط الأجر اليومي للمتضرر (بالجنيه)</label>
-          <input type="number" id="dw-wage" min="50" value="300">
+          <input type="number" inputmode="numeric" id="dw-wage" min="50" value="300">
         </div>
       </div>
       <button class="calc-btn" onclick="calcDiwan()">🚗 احسب التعويض التقديري من الديوان</button>
@@ -1032,9 +1032,9 @@
         </div>
       </div>
       <div class="form-grid">
-        <div class="form-group"><label>الأجر الشامل الشهري الفعلي (بالجنيه)</label><input type="number" id="si-gross" min="1000" placeholder="مثال: 12000"></div>
-        <div class="form-group"><label>الحد الأدنى للأجر المؤمَّن عليه (يُحدَّث سنوياً بقرار)</label><input type="number" id="si-min" min="1" value="2300"></div>
-        <div class="form-group"><label>الحد الأقصى للأجر المؤمَّن عليه (يُحدَّث سنوياً بقرار)</label><input type="number" id="si-max" min="1000" value="14500"></div>
+        <div class="form-group"><label>الأجر الشامل الشهري الفعلي (بالجنيه)</label><input type="number" inputmode="numeric" id="si-gross" min="1000" placeholder="مثال: 12000"></div>
+        <div class="form-group"><label>الحد الأدنى للأجر المؤمَّن عليه (يُحدَّث سنوياً بقرار)</label><input type="number" inputmode="numeric" id="si-min" min="1" value="2300"></div>
+        <div class="form-group"><label>الحد الأقصى للأجر المؤمَّن عليه (يُحدَّث سنوياً بقرار)</label><input type="number" inputmode="numeric" id="si-max" min="1000" value="14500"></div>
         <div class="form-group">
           <label>قطاع العمل</label>
           <select id="si-sector">
@@ -1086,6 +1086,16 @@
     <div class="faq-a">تنقضي الدعوى الجنائية بمضي 10 سنوات في الجنايات، و3 سنوات في الجنح، وسنة واحدة في المخالفات من يوم وقوع الجريمة، ما لم يتخلل المدة إجراء قاطع للتقادم.</div>
   </div>
 </section>
+
+
+<!-- LEGAL DISCLAIMER BANNER -->
+<div style="max-width: 1200px; margin: 30px auto; padding: 20px 24px; background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 16px; display: flex; align-items: flex-start; gap: 14px; color: #cbd5e1; font-size: 0.88rem; line-height: 1.7;">
+  <span style="font-size: 1.5rem; line-height: 1;">⚖️</span>
+  <div>
+    <strong style="color: #fff; display: block; margin-bottom: 4px; font-size: 0.95rem;">تنويه قانوني وإخلاء مسؤولية استرشادي:</strong>
+    كافة النتائج، والمدد، والحسابات المالية والقضائية المستخرجة من هذه البوابة مبنية على نصوص التشريعات المصرية ولائحتها التنفيذية ومعدلات المحاكم السائدة حتى عام 2026. وتُعد هذه النتائج أداة رقمية مساعدة واسترشادية للسادة المحامين والمواطنين، ولا تُغني بأي حال عن استشارة محامٍ متخصص مقيد بالنقض لبحث الوقائع الدقيقة والمستندات الخاصة بكل نزاع على حدة.
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="footer">
