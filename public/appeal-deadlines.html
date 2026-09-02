@@ -1,97 +1,220 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>حاسبة مواعيد وسقوط الطعون القضائية 2026 - احسب آخر ميعاد للاستئناف والنقض</title>
-  <meta name="description" content="حاسبة مواعيد الطعون القضائية باليوم والتاريخ وفق قانون المرافعات المصري وقانون الإجراءات الجنائية: ميعاد استئناف الأحكام المدنية (40 يوماً)، الجنح (10 أيام)، وميعاد النقض (60 يوماً)." />
-  <meta name="keywords" content="حاسبة مواعيد الطعون, ميعاد الاستئناف المدني 40 يوم, ميعاد النقض 60 يوم, ميعاد استئناف الجنح, سقوط الحق في الاستئناف, قانون المرافعات المصري" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حاسبة مواعيد وسقوط الطعون والمدد القانونية 2026 | منصة المحامي الرقمية</title>
+  <meta name="description" content="حاسبة مواعيد الطعون القضائية أونلاين: استئناف مدني 40 يوماً، استئناف جنح 10 أيام، نقض 60 يوماً مع استبعاد الجمعة والسبت والعطلات الرسمية تلقائياً وفق المادة 15 مرافعات." />
   <link rel="canonical" href="https://mohamidigital.online/appeal-deadlines.html" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="حاسبة مواعيد وسقوط الطعون القضائية 2026" />
-  <meta property="og:description" content="احسب فوراً تاريخ آخر يوم للطعن بالاستئناف أو النقض مع استبعاد العطلات الرسمية وميعاد المسافة." />
-  <meta property="og:url" content="https://mohamidigital.online/appeal-deadlines.html" />
-  <meta property="og:image" content="https://mohamidigital.online/images/legal-bg.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/header.css?v=20260902v1" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
-
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --primary: #a78bfa; --bg: #0f172a;
-      --card-bg: rgba(15, 23, 42, 0.85); --card-border: rgba(167, 139, 250, 0.3);
-      --text: #f8fafc; --text-muted: #94a3b8;
+      --bg: #0f172a; --bg2: #1e293b; --bg3: rgba(30,41,59,0.7);
+      --border: rgba(148,163,184,0.12); --border-hover: rgba(99,102,241,0.4);
+      --indigo: #6366f1; --indigo-light: #818cf8; --purple: #7c3aed;
+      --emerald: #10b981; --red: #ef4444; --amber: #f59e0b;
+      --text: #f1f5f9; --muted: #94a3b8; --card: rgba(15,23,42,0.75);
     }
-    body { font-family: 'Cairo', sans-serif; background: #0b0f19; color: var(--text); min-height: 100vh; line-height: 1.7; }
-    .page-container { max-width: 1100px; margin: 0 auto; padding: 20px 16px; }
-    .hero-box { text-align: center; padding: 40px 0 30px; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      min-height: 100vh;
+      direction: rtl;
+      text-align: right;
+    }
+
+    /* ─── BREADCRUMBS ─── */
+    .breadcrumbs-wrap { max-width: 900px; margin: 0 auto; padding: 100px 20px 0; }
+    .breadcrumbs {
+      display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 700;
+      color: var(--muted);
+    }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumbs a:hover { color: var(--indigo-light); }
+    .breadcrumbs .current { color: var(--indigo-light); }
+
+    /* ─── HERO ─── */
+    .hero { padding: 24px 20px 36px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.15) 0%, transparent 70%); }
     .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 999px;
-      background: rgba(167, 139, 250, 0.15); border: 1px solid rgba(167, 139, 250, 0.4);
-      color: #ddd6fe; font-size: 0.85rem; font-weight: 800; margin-bottom: 14px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(99, 102, 241, 0.2) !important;
+      border: 1px solid rgba(99, 102, 241, 0.45) !important;
+      color: #c7d2fe !important;
+      font-size: 0.85rem !important;
+      font-weight: 800 !important;
+      padding: 6px 18px !important;
+      border-radius: 99px !important;
+      margin-bottom: 16px !important;
+      backdrop-filter: blur(12px) !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
     }
-    .hero-title { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 900; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; margin-bottom: 14px; line-height: 1.3; }
-    .hero-desc { color: var(--text-muted); font-size: 1rem; max-width: 800px; margin: 0 auto 20px; }
+    .hero h1 {
+      font-size: clamp(1.8rem, 4.5vw, 2.7rem);
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 14px;
+      color: #ffffff !important;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.75), 0 0 25px rgba(99, 102, 241, 0.25) !important;
+    }
+    .hero p {
+      font-size: 15px;
+      color: #cbd5e1 !important;
+      max-width: 760px;
+      margin: 0 auto 20px;
+      font-weight: 600;
+      line-height: 1.8;
+    }
+    .hero-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 10px; }
+    .hero-stat {
+      background: rgba(15, 23, 42, 0.75) !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 12px !important;
+      padding: 6px 16px !important;
+      font-size: 0.82rem !important;
+      font-weight: 700 !important;
+      color: #f1f5f9 !important;
+      display: flex; align-items: center; gap: 8px !important;
+      backdrop-filter: blur(12px) !important;
+    }
+    .hero-stat .num { font-size: 1.1rem; color: var(--indigo-light); }
 
-    .calc-card {
-      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 24px;
-      padding: 30px 24px; backdrop-filter: blur(16px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4); margin-bottom: 40px;
-    }
-    .form-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-bottom: 24px; }
-    @media (min-width: 768px) { .form-grid { grid-template-columns: repeat(2, 1fr); } }
-    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; color: #cbd5e1; margin-bottom: 8px; }
-    .form-control {
-      width: 100%; padding: 12px 16px; border-radius: 12px;
-      background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #ffffff; font-family: 'Cairo', sans-serif; font-size: 0.95rem; font-weight: 600;
-    }
-    .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.25); }
+    /* ─── MAIN CONTENT WRAPPER ─── */
+    .calc-wrapper { max-width: 900px; margin: 0 auto; padding: 0 20px; }
 
-    .btn-calc {
-      width: 100%; padding: 15px; border-radius: 14px;
-      background: linear-gradient(135deg, #7c3aed, #a78bfa);
-      color: #ffffff; font-size: 1.1rem; font-weight: 900; border: none; cursor: pointer;
-      box-shadow: 0 8px 25px rgba(167, 139, 250, 0.35); transition: all 0.2s;
-    }
-    .btn-calc:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(167, 139, 250, 0.5); }
+    /* ─── CALCULATOR CARD ─── */
+    .calc-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; backdrop-filter: blur(12px); margin-bottom: 24px; }
+    .calc-card:hover { border-color: rgba(99,102,241,0.3); }
+    .calc-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .calc-icon { font-size: 2rem; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(99,102,241,0.12); border-radius: 14px; flex-shrink: 0; }
+    .calc-title { font-size: 1.15rem; font-weight: 800; }
+    .calc-subtitle { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
 
-    .result-panel {
-      display: none; margin-top: 25px; padding: 22px; border-radius: 18px;
-      background: rgba(91, 33, 182, 0.25); border: 1px solid rgba(167, 139, 250, 0.4);
+    /* ─── FORM ─── */
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.8rem; font-weight: 700; color: var(--muted); }
+    .form-group input, .form-group select {
+      background: rgba(30,41,59,0.8); border: 1px solid var(--border);
+      color: var(--text); font-family: 'Cairo',sans-serif; font-size: 0.9rem;
+      padding: 10px 14px; border-radius: 10px; outline: none; transition: border-color 0.2s; width: 100%;
     }
-    .result-panel.show { display: block; }
-    .result-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 10px 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.1); font-size: 0.95rem; color: #e2e8f0;
+    .form-group input:focus, .form-group select:focus { border-color: var(--indigo); }
+    .form-group select option { background: #1e293b; }
+
+    .date-input-container { display: flex; gap: 8px; align-items: center; }
+    .date-input-container input[type="date"] { flex: 1; color-scheme: dark; }
+    .btn-today-pill {
+      background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #c7d2fe; font-family: 'Cairo', sans-serif; font-size: 0.78rem; font-weight: 700;
+      padding: 8px 12px; border-radius: 8px; cursor: pointer; white-space: nowrap; transition: all 0.2s ease;
     }
+    .btn-today-pill:hover { background: #4338ca; color: #ffffff; }
+
+    .calc-btn {
+      background: linear-gradient(135deg, var(--indigo), var(--purple)); color: #fff; border: none;
+      font-family: 'Cairo',sans-serif; font-size: 0.95rem; font-weight: 800; padding: 13px 32px;
+      border-radius: 12px; cursor: pointer; transition: opacity 0.2s; width: 100%;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.35);
+    }
+    .calc-btn:hover { opacity: 0.92; }
+
+    /* ─── RESULT BOX ─── */
+    .result-box { display: none; margin-top: 24px; background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.2); border-radius: 16px; padding: 24px; }
+    .result-box.show { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .result-title { font-size: 0.88rem; font-weight: 700; color: var(--indigo-light); margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+    .result-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; }
+    .result-row:nth-child(odd) { background: rgba(30,41,59,0.5); }
+    .result-row-label { color: var(--muted); font-weight: 600; }
+    .result-row-value { font-weight: 700; color: var(--text); }
     .result-total {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 14px 0 8px; font-size: 1.3rem; font-weight: 900; color: #c4b5fd;
+      background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(124,58,237,0.2));
+      border: 1px solid rgba(99,102,241,0.3); border-radius: 12px; padding: 14px 18px;
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
     }
-    .actions-bar { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
-    .btn-action {
-      flex: 1; padding: 12px 18px; border-radius: 12px; font-weight: 800; font-size: 0.9rem;
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; cursor: pointer; border: none;
-    }
-    .btn-whatsapp { background: #25d366; color: #ffffff; }
-    .btn-print { background: rgba(255, 255, 255, 0.1); color: #ffffff; border: 1px solid rgba(255,255,255,0.2); }
+    .result-total-label { font-weight: 800; font-size: 0.95rem; }
+    .result-total-value { font-weight: 900; font-size: 1.3rem; color: var(--indigo-light); }
+    .result-note { font-size: 0.78rem; color: var(--muted); line-height: 1.6; padding: 10px; background: rgba(30,41,59,0.4); border-radius: 8px; }
 
-    .legal-box {
-      background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px; padding: 28px; margin-bottom: 40px;
+    /* ─── ACTION BUTTONS ─── */
+    .result-actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .print-btn {
+      background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3); color: var(--indigo-light);
+      font-family: 'Cairo',sans-serif; font-size: 0.82rem; font-weight: 700; padding: 8px 18px; border-radius: 10px;
+      cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
     }
-    .legal-box h2 { font-size: 1.4rem; font-weight: 900; color: #ffffff; margin-bottom: 14px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
-    .article-item { background: rgba(30, 41, 59, 0.4); padding: 16px; border-radius: 12px; border-right: 4px solid var(--primary); margin-bottom: 16px; }
-    .article-title { font-weight: 800; color: #c4b5fd; margin-bottom: 6px; }
-    .article-text { font-family: 'Amiri', serif; font-size: 1.1rem; line-height: 1.8; color: #cbd5e1; }
-  </style>
+    .print-btn:hover { background: rgba(99,102,241,0.22); color: #fff; }
+    .whatsapp-btn {
+      background: #25d366; border: 1px solid #20ba5a; color: #fff; font-family: 'Cairo',sans-serif;
+      font-size: 0.82rem; font-weight: 700; padding: 8px 18px; border-radius: 10px; cursor: pointer;
+      transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .whatsapp-btn:hover { background: #1eb954; }
+
+    /* ─── DEADLINE STATUS BADGES ─── */
+    .status-ok { color: var(--emerald); background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 10px; padding: 10px 16px; display: flex; align-items: center; gap: 8px; font-weight: 700; }
+    .status-warn { color: var(--amber); background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); border-radius: 10px; padding: 10px 16px; display: flex; align-items: center; gap: 8px; font-weight: 700; }
+    .status-danger { color: var(--red); background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 10px; padding: 10px 16px; display: flex; align-items: center; gap: 8px; font-weight: 700; }
+    .status-expired { color: #6b7280; background: rgba(107,114,128,0.1); border: 1px solid rgba(107,114,128,0.3); border-radius: 10px; padding: 10px 16px; display: flex; align-items: center; gap: 8px; font-weight: 700; }
+
+    /* ─── VERBATIM LEGAL BOX ─── */
+    .article-box {
+      background: rgba(30,41,59,0.5); padding: 16px 18px; border-radius: 14px;
+      border-right: 4px solid var(--indigo); margin-bottom: 14px;
+    }
+    .article-title { font-weight: 800; color: var(--indigo-light); font-size: 0.95rem; margin-bottom: 6px; }
+    .article-text { font-family: 'Amiri', serif; font-size: 1.15rem; line-height: 1.85; color: #e2e8f0; }
+
+    /* ─── FAQ ─── */
+    .faq-section { max-width: 900px; margin: 36px auto; padding: 0 20px; }
+    .faq-title { font-size: 1.3rem; font-weight: 800; text-align: center; margin-bottom: 20px; color: #fff; }
+    .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 10px; overflow: hidden; }
+    .faq-q { padding: 16px 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .faq-q:hover { background: rgba(99,102,241,0.06); }
+    .faq-a { display: none; padding: 0 20px 16px; font-size: 0.85rem; color: var(--muted); line-height: 1.7; border-top: 1px solid var(--border); padding-top: 12px; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform 0.2s; font-size: 0.7rem; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    /* ─── RELATED CALCULATORS ─── */
+    .related-section { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+    .related-title { font-size: 1rem; font-weight: 800; margin-bottom: 12px; color: var(--indigo-light); display: flex; justify-content: space-between; align-items: center; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+    .related-link {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px;
+      text-decoration: none; color: #cbd5e1; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 8px;
+      transition: all 0.2s;
+    }
+    .related-link:hover { border-color: var(--indigo); color: #fff; background: rgba(30,41,59,0.8); }
+
+    /* ─── FOOTER ─── */
+    .footer { background: rgba(15,23,42,0.9); border-top: 1px solid var(--border); text-align: center; padding: 32px 20px; margin-top: 50px; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px; margin-bottom: 14px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--indigo-light); }
+    .footer-copy { font-size: 0.75rem; color: #64748b; }
+
+    @media print {
+      .uh-bar, .breadcrumbs-wrap, .calc-btn, .print-btn, .whatsapp-btn, .faq-section, .related-section, .footer, .hero-stats, .hero-badge { display: none !important; }
+      body { background: #fff; color: #000; font-size: 11pt; }
+      .hero { padding: 10px; }
+      .hero h1 { color: #000 !important; text-shadow: none !important; }
+      .calc-card { border: 1px solid #ccc; background: #fff !important; color: #000 !important; }
+      .result-box { display: block !important; border: 1px solid #999; background: #fff !important; }
+      .result-row { background: #fff !important; color: #000 !important; }
+      .result-total { background: #eee !important; color: #000 !important; border: 1px solid #000 !important; }
+      .result-total-value { color: #000 !important; }
+    }
+</style>
 </head>
 <body>
-
   
   <!-- Site Header -->
   <header class="uh-bar" id="siteHeader">
@@ -106,12 +229,12 @@
 
       <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
         <a href="/" class="uh-link">الرئيسية</a>
-        <a href="/legal-calculators.html" class="uh-link active">🧮 كافة الحاسبات (15)</a>
+        <a href="/legal-calculators.html" class="uh-link active">🧮 الحاسبات القانونية</a>
         <a href="/court-precedents.html" class="uh-link">موسوعة النقض</a>
         <a href="/contract-generator.html" class="uh-link">صانع العقود</a>
         <a href="/courts-directory.html" class="uh-link">دليل المحاكم</a>
         <a href="/pillars/" class="uh-link">المراجع والأكواد</a>
-        <a href="/blog/" class="uh-link">المدونة القانونية</a>
+        <a href="/blog/" class="uh-link">المدونة</a>
       </nav>
 
       <div class="uh-actions">
@@ -123,202 +246,261 @@
   </header>
   
 
-  <main class="page-container">
-    <div class="hero-box">
-      <span class="hero-badge">⚖️ قانون المرافعات المدنية والتجارية والإجراءات الجنائية</span>
-      <h1 class="hero-title">حاسبة مواعيد وسقوط الطعون القضائية 2026</h1>
-      <p class="hero-desc">
-        احسب باليوم والساعة آخر موعد قانوني لتقرير الطعن بالاستئناف أو النقض أو الإشكال القضائي مع استبعاد العطلات وامتداد المواعيد.
-      </p>
+  <div class="breadcrumbs-wrap">
+    <div class="breadcrumbs">
+      <a href="/">الرئيسية</a>
+      <span>/</span>
+      <a href="/legal-calculators.html">الحاسبات القانونية</a>
+      <span>/</span>
+      <span class="current">مواعيد وسقوط الطعون</span>
     </div>
+  </div>
 
-    <section class="calc-card">
+  <section class="hero">
+    <div class="hero-badge">⚖️ قانون المرافعات المدنية والتجارية والإجراءات الجنائية</div>
+    <h1>حاسبة مواعيد وسقوط الطعون والمدد القانونية</h1>
+    <p>حساب دقيق لتاريخ آخر يوم لتقرير الطعن بالاستئناف أو النقض مع استبعاد العطلات الرسمية وأيام الجمعة والسبت وامتداد المواعيد.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">المادة 15</span> مرافعات</div>
+      <div class="hero-stat"><span class="num">استبعاد العطلات</span> تلقائياً</div>
+      <div class="hero-stat"><span class="num">مُحدَّث</span> 2026</div>
+    </div>
+  </section>
+
+  <div class="calc-wrapper">
+    <div class="calc-card">
+      <div class="calc-header">
+        <div class="calc-icon">⚖️</div>
+        <div>
+          <div class="calc-title">حاسبة مواعيد وسقوط الطعون والمدد القانونية</div>
+          <div class="calc-subtitle">مع استبعاد العطلات الرسمية والجمعة والسبت تلقائياً — وفق المادة 15 مرافعات</div>
+        </div>
+      </div>
       <div class="form-grid">
         <div class="form-group">
-          <label for="judgmentDate">تاريخ صدور الحكم أو الإعلان به (اليوم/الشهر/السنة)</label>
-          <input type="date" id="judgmentDate" class="form-control" required />
-        </div>
-        <div class="form-group">
-          <label for="appealType">نوع الطعن والمحكمة المختصة</label>
-          <select id="appealType" class="form-control">
-            <option value="civil_appeal">استئناف مدني أو تجاري أو أسرة موضوعي (40 يوماً)</option>
-            <option value="urgent_appeal">استئناف قضاء مستعجل أو أمور وقتية (15 يوماً)</option>
-            <option value="misdemeanor_appeal">استئناف جنح ومخالفات جنائية (10 أيام)</option>
-            <option value="cassation">طعن أمام محكمة النقض (60 يوماً)</option>
-            <option value="admin_appeal">طعن أمام المحكمة الإدارية العليا (60 يوماً)</option>
-            <option value="grievance">تظلم من أمر على عريضة أو أمر أداء (10 أيام)</option>
+          <label>نوع الطعن أو الإجراء</label>
+          <select id="dl-type">
+            <optgroup label="القضاء الجنائي">
+              <option value="10">معارضة في حكم جنحة غيابي (10 أيام)</option>
+              <option value="10">استئناف حكم جنحة (10 أيام)</option>
+              <option value="60">طعن بالنقض جنائي (60 يوماً)</option>
+            </optgroup>
+            <optgroup label="القضاء المدني والتجاري">
+              <option value="40">استئناف مدني أو تجاري (40 يوماً)</option>
+              <option value="15">استئناف مسائل مستعجلة (15 يوماً)</option>
+              <option value="60">طعن بالنقض مدني (60 يوماً)</option>
+              <option value="40">التماس إعادة النظر (40 يوماً)</option>
+            </optgroup>
+            <optgroup label="محاكم الأسرة">
+              <option value="40">استئناف دعوى أسرة (40 يوماً)</option>
+              <option value="40">استئناف دعوى نفقة أو حضانة (40 يوماً)</option>
+            </optgroup>
+            <optgroup label="مجلس الدولة والإداري">
+              <option value="60">طعن أمام المحكمة الإدارية العليا (60 يوماً)</option>
+              <option value="60">تظلم من قرار إداري (60 يوماً)</option>
+            </optgroup>
+            <optgroup label="الأوامر والتنفيذ">
+              <option value="8">تظلم من أمر على عريضة (8 أيام)</option>
+              <option value="15">اعتراض على حجز تحفظي (15 يوماً)</option>
+            </optgroup>
           </select>
         </div>
         <div class="form-group">
-          <label for="judgmentNature">طبيعة صدور الحكم بحق الطاعن</label>
-          <select id="judgmentNature" class="form-control">
-            <option value="presence">حضوري (يبدأ الميعاد من اليوم التالي لصدور الحكم)</option>
-            <option value="absence">غيابي / معتبر حضورياً (يبدأ الميعاد من اليوم التالي للإعلان الرسمي)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="distanceDays">ميعاد المسافة الإضافي (إن وجد موطن خارج الدائرة)</label>
-          <input type="number" id="distanceDays" class="form-control" value="0" min="0" max="30" placeholder="0 أيام" />
+          <label>تاريخ صدور الحكم أو الإعلان</label>
+          <div class="date-input-container">
+            <input type="date" id="dl-date" min="1970-01-01" max="2050-12-31">
+            <button type="button" class="btn-today-pill" onclick="setTodayDate('dl-date')" title="تعيين تاريخ اليوم الحالي">📅 اليوم</button>
+          </div>
         </div>
       </div>
+      <button class="calc-btn" onclick="calcDeadline()">📅 احسب آخر موعد للطعن</button>
 
-      <button type="button" class="btn-calc" onclick="calculateAppealDeadline()">
-        ⏱️ احسب تاريخ سقوط الطعن والميعاد الأخير فوراً
-      </button>
-
-      <div id="resultsPanel" class="result-panel">
-        <div style="font-size: 1.15rem; font-weight: 800; color: #a78bfa; margin-bottom: 12px; border-bottom: 1px solid rgba(167,139,250,0.3); padding-bottom: 8px;">
-          📊 حساب المواعيد القانونية وسقوط الحق في الطعن:
+      <div class="result-box" id="dl-result">
+        <div class="result-title">📅 نتيجة حساب الميعاد القانوني</div>
+        <div id="dl-output"></div>
+        <div class="result-note" style="margin-top:12px;">
+          ⚠️ تنبيه قانوني مهم: تستبعد الحاسبة الجمعة والسبت والعطلات الرسمية الثابتة تلقائياً وفق المادة 15 مرافعات. إذا صادف اليوم الأخير عطلة رسمية امتد الميعاد لأول يوم عمل تالٍ.
         </div>
-        <div id="deadlineRows"></div>
-        <div class="result-total">
-          <span>🚨 آخر يوم لتقرير الطعن بقلم الكتاب:</span>
-          <span id="finalDeadlineDate">--</span>
-        </div>
-
-        <div class="actions-bar">
-          <button type="button" class="btn-action btn-whatsapp" onclick="shareDeadlineWhatsApp()">
-            <span>🟢 مشاركة تاريخ الطعن عبر واتساب للمحامين</span>
-          </button>
-          <button type="button" class="btn-action btn-print" onclick="window.print()">
-            <span>🖨️ طباعة إفادة الميعاد الرسمي A4</span>
-          </button>
+        <div class="result-actions">
+          <button class="print-btn" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+          <button class="whatsapp-btn" onclick="shareDeadlineWhatsApp()">🟢 مشاركة عبر واتساب</button>
         </div>
       </div>
-    </section>
+    </div>
 
     <!-- Verbatim Legal Texts -->
-    <section class="legal-box">
-      <h2>📜 نصوص مواد حساب المواعيد في قانون المرافعات المصري</h2>
-      <div class="article-item">
+    <div class="calc-card">
+      <div class="calc-header">
+        <div class="calc-icon">📜</div>
+        <div>
+          <div class="calc-title">النصوص التشريعية لحساب المواعيد القضائية</div>
+          <div class="calc-subtitle">قانون المرافعات المدنية والتجارية رقم 13 لسنة 1968</div>
+        </div>
+      </div>
+      <div class="article-box">
         <div class="article-title">المادة (227) — ميعاد الاستئناف المدني:</div>
         <div class="article-text">
           «ميعاد الاستئناف أربعون يوماً ما لم ينص القانون على غير ذلك، ويكون الميعاد خمسة عشر يوماً في المسائل المستعجلة أياً كانت المحكمة التي أصدرت الحكم.»
         </div>
       </div>
-      <div class="article-item">
-        <div class="article-title">المادة (15) — قاعدة احتساب المواعيد وامتداد العطلات:</div>
+      <div class="article-box">
+        <div class="article-title">المادة (15) — احتساب المواعيد وامتداد العطلات:</div>
         <div class="article-text">
           «إذا عين القانون للحضور أو لحصول الإجراء ميعاداً مقدراً بالأيام أو بالشهور أو بالسنين فلا يحسب منه يوم الإعلان أو حدوث الأمر المعتبر في نظر القانون مجرياً للميعاد. وينقضي الميعاد بانقضاء اليوم الأخير منه إذا كان يجب أن يحصل فيه الإجراء، وإذا كان الميعاد مقدراً بالساعات كان حساب انقضائه على هذا الوجه. وإذا صادف آخر الميعاد عطلة رسمية امتد إلى أول يوم عمل بعدها.»
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <h2 class="faq-title">❓ الأسئلة الشائعة حول مواعيد الطعون</h2>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">ما ميعاد الاستئناف في الأحكام المدنية والتجارية؟ <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">ميعاد الاستئناف أربعون يوماً وفق المادة 227 مرافعات، ويبدأ من اليوم التالي لصدور الحكم الحضوري أو من اليوم التالي لإعلان الحكم الغيابي لشخص المحكوم عليه أو في موطنه.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">ماذا لو صادف آخر يوم في ميعاد الطعن يوم جمعة أو سبت؟ <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">وفقاً لصريح نص المادة 15 من قانون المرافعات: إذا صادف آخر الميعاد عطلة رسمية (كالجمعة أو السبت أو الأعياد الرسمية) امتد الميعاد بقوة القانون إلى أول يوم عمل رسمي بعدها.</div>
+    </div>
+  </section>
 
   
-  <!-- Site Footer -->
-  <footer style="background: rgba(10, 15, 30, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 40px 16px 24px; margin-top: 60px; font-family: 'Cairo', sans-serif;">
-    <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
-      <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 16px;">
-        <span style="font-size: 1.8rem;">⚖️</span>
-        <span style="font-size: 1.3rem; font-weight: 900; color: #fff;">منصة المحامي الرقمية 2026</span>
-      </div>
-      <p style="color: #94a3b8; font-size: 0.9rem; max-width: 700px; margin: 0 auto 20px; line-height: 1.8;">
-        الموسوعة القانونية والقضائية الرقمية الأولى والأشمل في مصر والوطن العربي. نصوص تشريعية معتمدة، حاسبات قضائية متطورة، وبنك متكامل لأحكام محكمة النقض.
-      </p>
-      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; font-size: 0.85rem; color: #cbd5e1; margin-bottom: 24px;">
-        <a href="/legal-calculators.html" style="color: #cbd5e1; text-decoration: none;">كافة الحاسبات الـ 15</a>
-        <span>·</span>
-        <a href="/calculate-end-of-service.html" style="color: #34d399; text-decoration: none;">مكافأة نهاية الخدمة</a>
-        <span>·</span>
-        <a href="/calculate-inheritance.html" style="color: #38bdf8; text-decoration: none;">حاسبة المواريث</a>
-        <span>·</span>
-        <a href="/calculate-alimony.html" style="color: #f472b6; text-decoration: none;">حاسبة النفقات</a>
-        <span>·</span>
-        <a href="/real-estate-registration-fees.html" style="color: #fbbf24; text-decoration: none;">رسوم الشهر العقاري</a>
-        <span>·</span>
-        <a href="/appeal-deadlines.html" style="color: #a78bfa; text-decoration: none;">مواعيد الطعون</a>
-        <span>·</span>
-        <a href="/privacy.html" style="color: #cbd5e1; text-decoration: none;">سياسة الخصوصية</a>
-        <span>·</span>
-        <a href="/terms.html" style="color: #cbd5e1; text-decoration: none;">شروط الاستخدام</a>
-      </div>
-      <p style="color: #64748b; font-size: 0.8rem;">
-        © 2026 منصة المحامي الرقمية. جميع الحقوق محفوظة طبقاً لقوانين حماية الملكية الفكرية المصرية والدولية.
-      </p>
+  <section class="related-section">
+    <div class="related-title">
+      <span>🧮 حاسبات قانونية وقضائية أخرى قد تحتاجها:</span>
+      <a href="/legal-calculators.html" style="color:var(--indigo-light); text-decoration:none; font-size:0.8rem;">عرض الكل ←</a>
     </div>
+    <div class="related-grid">
+      
+        <a href="/calculate-end-of-service.html" class="related-link">
+          <span>💼 مكافأة نهاية الخدمة</span>
+        </a>
+      
+        <a href="/calculate-inheritance.html" class="related-link">
+          <span>🕌 المواريث والتركات</span>
+        </a>
+      
+        <a href="/calculate-alimony.html" class="related-link">
+          <span>👨‍👩‍👧 النفقات ومستحقات الأسرة</span>
+        </a>
+      
+        <a href="/real-estate-registration-fees.html" class="related-link">
+          <span>🏠 رسوم الشهر العقاري</span>
+        </a>
+      
+        <a href="/legal-calculators.html" class="related-link">
+          <span>🧮 كافة الـ 15 حاسبة</span>
+        </a>
+      
+    </div>
+  </section>
+  
+  
+  <!-- FAQ Accordion Script -->
+  <script>
+    function toggleFaq(el) {
+      el.classList.toggle('open');
+    }
+  </script>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/">الرئيسية</a>
+      <a href="/legal-calculators.html">كافة الحاسبات الـ 15</a>
+      <a href="/calculate-end-of-service.html">نهاية الخدمة</a>
+      <a href="/calculate-inheritance.html">المواريث والتركات</a>
+      <a href="/calculate-alimony.html">حاسبة النفقات</a>
+      <a href="/real-estate-registration-fees.html">الشهر العقاري</a>
+      <a href="/appeal-deadlines.html">مواعيد الطعون</a>
+      <a href="/privacy.html">سياسة الخصوصية</a>
+      <a href="/disclaimer.html">إخلاء المسؤولية</a>
+    </div>
+    <div class="footer-copy">© 2026 منصة المحامي الرقمية · جميع الحقوق محفوظة · مستشارك القانوني الأول بمصر والوطن العربي</div>
   </footer>
   
 
   <script>
-    let lastDeadline = null;
+    function setTodayDate(id) {
+      const d = new Date();
+      document.getElementById(id).value = d.toISOString().split('T')[0];
+    }
 
-    function calculateAppealDeadline() {
-      const dateStr = document.getElementById('judgmentDate').value;
-      const type = document.getElementById('appealType').value;
-      const distance = parseInt(document.getElementById('distanceDays').value) || 0;
+    // Set today on load
+    window.addEventListener('DOMContentLoaded', () => {
+      setTodayDate('dl-date');
+    });
 
-      if (!dateStr) {
-        alert('يرجى تحديد تاريخ صدور الحكم أو الإعلان به.');
-        return;
+    const HOLIDAYS_2026 = [
+      '2026-01-07','2026-01-25','2026-03-20','2026-03-21','2026-03-22','2026-03-23',
+      '2026-04-20','2026-04-21','2026-04-22','2026-04-23','2026-04-24','2026-04-25',
+      '2026-05-01','2026-06-16','2026-06-17','2026-06-18','2026-06-25',
+      '2026-06-30','2026-07-23','2026-09-13','2026-09-14','2026-09-15',
+      '2026-10-06','2026-12-20','2026-12-21','2026-12-22'
+    ];
+
+    function addWorkDays(startDate, days) {
+      let current = new Date(startDate);
+      let added = 0;
+      while (added < days) {
+        current.setDate(current.getDate() + 1);
+        const dow = current.getDay();
+        const ds = current.toISOString().split('T')[0];
+        if (dow !== 5 && dow !== 6 && !HOLIDAYS_2026.includes(ds)) added++;
       }
+      return current;
+    }
 
-      let days = 40;
-      let label = 'استئناف مدني (40 يوماً)';
-      if (type === 'urgent_appeal') { days = 15; label = 'استئناف مستعجل (15 يوماً)'; }
-      else if (type === 'misdemeanor_appeal') { days = 10; label = 'استئناف جنح (10 أيام)'; }
-      else if (type === 'cassation') { days = 60; label = 'طعن بالنقض (60 يوماً)'; }
-      else if (type === 'admin_appeal') { days = 60; label = 'إدارية عليا (60 يوماً)'; }
-      else if (type === 'grievance') { days = 10; label = 'تظلم (10 أيام)'; }
+    let lastDeadlineData = null;
 
-      const totalDays = days + distance;
-      const startDate = new Date(dateStr);
-      const calcDate = new Date(startDate);
-      calcDate.setDate(calcDate.getDate() + totalDays);
+    function calcDeadline() {
+      const days = parseInt(document.getElementById('dl-type').value);
+      const dateVal = document.getElementById('dl-date').value;
+      if (!dateVal) { alert('يرجى تحديد تاريخ صدور الحكم أو الإعلان'); return; }
 
-      let extendedReason = '';
-      if (calcDate.getDay() === 5) {
-        calcDate.setDate(calcDate.getDate() + 2);
-        extendedReason = ' (امتداد ميعاد لتصادف الجمعة عطلة رسمية للأحد)';
-      } else if (calcDate.getDay() === 6) {
-        calcDate.setDate(calcDate.getDate() + 1);
-        extendedReason = ' (امتداد ميعاد لتصادف السبت عطلة رسمية للأحد)';
-      }
-
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      const formattedDate = calcDate.toLocaleDateString('ar-EG', options);
-
+      const startDate = new Date(dateVal);
+      const deadline = addWorkDays(startDate, days);
       const today = new Date();
-      today.setHours(0,0,0,0);
-      const diffTime = calcDate - today;
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      today.setHours(0, 0, 0, 0);
 
-      let remainingText = '';
-      if (diffDays < 0) {
-        remainingText = '❌ سقط الميعاد قانوناً منذ ' + Math.abs(diffDays) + ' يوماً';
-      } else if (diffDays === 0) {
-        remainingText = '⚠️ اليوم هو آخر ميعاد لتقرير الطعن!';
+      const diffMs = deadline - today;
+      const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+      const deadlineStr = deadline.toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+      let statusHTML = '';
+      if (diffDays > 7) {
+        statusHTML = '<div class="status-ok">✅ الطعن ساري — تبقى <strong>' + diffDays + '</strong> يوماً حتى ' + deadlineStr + '</div>';
+      } else if (diffDays >= 3) {
+        statusHTML = '<div class="status-warn">⚠️ تحذير: تبقى <strong>' + diffDays + '</strong> أيام فقط! آخر موعد: ' + deadlineStr + '</div>';
+      } else if (diffDays >= 1) {
+        statusHTML = '<div class="status-danger">🔴 خطر: تبقى <strong>' + (diffDays === 1 ? 'يوم واحد فقط!' : diffDays + ' أيام!') + '</strong> تصرف فوراً! آخر موعد: ' + deadlineStr + '</div>';
       } else {
-        remainingText = '⏳ متبقي ' + diffDays + ' يوماً لتقرير الطعن';
+        statusHTML = '<div class="status-expired">⛔ انتهت مدة الطعن منذ <strong>' + Math.abs(diffDays) + '</strong> يوماً — سقط الحق في الطعن.</div>';
       }
 
-      lastDeadline = { label, formattedDate, totalDays, diffDays, remainingText, extendedReason };
+      statusHTML +=
+        '<div class="result-rows" style="margin-top:14px;">' +
+          '<div class="result-row"><span class="result-row-label">تاريخ الحكم / الإعلان</span><span class="result-row-value">' + startDate.toLocaleDateString('ar-EG', {year:'numeric',month:'long',day:'numeric'}) + '</span></div>' +
+          '<div class="result-row"><span class="result-row-label">مدة الطعن</span><span class="result-row-value">' + days + ' يوم عمل (باستبعاد العطلات)</span></div>' +
+          '<div class="result-row"><span class="result-row-label">آخر يوم للطعن</span><span class="result-row-value" style="color:var(--indigo-light); font-size:1rem;">' + deadlineStr + '</span></div>' +
+        '</div>';
 
-      const rows = [
-        ['نوع الطعن والميعاد القانوني المقبول:', label],
-        ['مدة الطعن الرسمية + المسافة:', totalDays + ' يوماً'],
-        ['حالة الميعاد اليوم:', remainingText]
-      ];
+      lastDeadlineData = { deadlineStr, days, diffDays };
 
-      document.getElementById('deadlineRows').innerHTML = rows.map(([l, v]) =>
-        '<div class="result-row"><span>' + l + '</span><strong>' + v + '</strong></div>'
-      ).join('');
-
-      document.getElementById('finalDeadlineDate').textContent = formattedDate + extendedReason;
-
-      const panel = document.getElementById('resultsPanel');
-      panel.classList.add('show');
-      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      document.getElementById('dl-output').innerHTML = statusHTML;
+      const box = document.getElementById('dl-result');
+      box.classList.add('show');
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     function shareDeadlineWhatsApp() {
-      if (!lastDeadline) return;
-      const text = '⚖️ *حساب ميعاد الطعن القضائي طبقاً لقانون المرافعات*\n' +
-        '• الإجراء: ' + lastDeadline.label + '\n' +
-        '• المدة الإجمالية: ' + lastDeadline.totalDays + ' يوماً\n' +
-        '🚨 *آخر يوم لتقرير الطعن:* ' + lastDeadline.formattedDate + '\n' +
-        '• الحالة: ' + lastDeadline.remainingText + '\n\n' +
-        '🔗 احسب مواعيد طعونك بدقة عبر منصة المحامي الرقمية:\nhttps://mohamidigital.online/appeal-deadlines.html';
+      if (!lastDeadlineData) return;
+      const text = '⚖️ *حساب ميعاد وسقوط الطعن وفق قانون المرافعات المصري*\n' +
+        '• مدة الطعن القانونية: ' + lastDeadlineData.days + ' يوماً\n' +
+        '🚨 *آخر يوم لتقرير الطعن:* ' + lastDeadlineData.deadlineStr + '\n' +
+        '• الحالة: ' + (lastDeadlineData.diffDays > 0 ? 'متبقي ' + lastDeadlineData.diffDays + ' يوماً' : 'انتهى الميعاد') + '\n\n' +
+        '🔗 احسب مواعيد الطعون بدقة عبر منصة المحامي الرقمية:\nhttps://mohamidigital.online/appeal-deadlines.html';
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
     }
   </script>
