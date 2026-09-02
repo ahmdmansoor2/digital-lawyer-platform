@@ -2420,6 +2420,27 @@
       "duration": "1د 4ث",
       "size": 22925432,
       "publishedAt": "2026-09-02T11:12:27.793Z"
+    },
+    {
+      "topicId": "trend-egypt-electronic-invoice-penalties",
+      "title": "دليل الفاتورة الإلكترونية في مصر: الغرامات والتصالح القانوني",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون الضرائب",
+        "#الفاتورة الإلكترونية",
+        "#مصلحة الضرائب المصرية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-egypt-electronic-invoice-penalties.mp4",
+      "videoId": "1413684360631055",
+      "permalink": "https://www.facebook.com/reel/1413684360631055",
+      "source": "trending-topics.json",
+      "duration": "1د 0ث",
+      "size": 26618851,
+      "publishedAt": "2026-09-02T16:33:12.716Z"
     }
   ]
 }
