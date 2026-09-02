@@ -348,7 +348,111 @@
     }
     .faq-q { font-size: 0.92rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
     .faq-a { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
-  </style>
+  
+    /* Unified Date Picker & Regional Switcher UX */
+    .form-control[type="date"] {
+      color-scheme: dark;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .form-control[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      filter: invert(0.85) brightness(1.2);
+      padding: 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .form-control[type="date"]::-webkit-calendar-picker-indicator:hover {
+      background: rgba(16, 185, 129, 0.25);
+    }
+    .date-input-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn-today {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+    .btn-today:hover {
+      background: #059669;
+      color: #fff;
+    }
+    .service-calculated-badge {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px dashed rgba(16, 185, 129, 0.4);
+      color: #a7f3d0;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-top: 6px;
+      display: none;
+    }
+    .regional-hubs-bar {
+      margin: 16px auto 28px;
+      padding: 12px 18px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      backdrop-filter: blur(12px);
+    }
+    .regional-bar-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #f59e0b;
+      white-space: nowrap;
+    }
+    .regional-nav-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: thin;
+      flex-wrap: wrap;
+    }
+    .country-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #cbd5e1;
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .country-nav-btn:hover {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #fff;
+    }
+    .country-nav-btn.active {
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: #fff;
+      font-weight: 900;
+      border-color: #34d399;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+    }
+
+</style>
 <link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest --><meta name="theme-color" content="#0f172a"><!-- mohami-theme --><link rel="apple-touch-icon" href="/icon.svg"><!-- mohami-apple --><link rel="alternate" type="application/rss+xml" title="RSS - منصة المحامي الرقمية" href="/rss.xml"/><!-- mohami-rss -->
 <style>/* mohami-lang-css */
 .mohami-lang{position:absolute;top:50%;transform:translateY(-50%);inset-inline-end:14px;z-index:200}
@@ -394,6 +498,38 @@
         مرجعك الشامل لمنظومة العدالة بالسلطنة: حاسبة ذكية لمكافأة نهاية الخدمة تفصل تلقائياً بين النظامين القديم (35/2003) والجديد (53/2023) وفق تعميم وزارة العمل، دليل بوابات المحاكم والنيابة العامة، خطوات تأسيس الشركات عبر منصة Invest Oman والمناطق الحرة، ونصوص أبرز المراسيم السلطانية المعتمدة.
       </p>
     </section>
+
+    <!-- Regional Arab Countries Navigation Bar -->
+    <div class="regional-hubs-bar">
+      <div class="regional-bar-title">🌍 بوابات الدول العربية والخليجية:</div>
+      <div class="regional-nav-scroll">
+        <a href="/saudi-legal-hub.html" class="country-nav-btn ">
+      <span>🇸🇦</span>
+      <span>المملكة العربية السعودية</span>
+    </a>
+      <a href="/uae-legal-hub.html" class="country-nav-btn ">
+      <span>🇦🇪</span>
+      <span>دولة الإمارات العربية المتحدة</span>
+    </a>
+      <a href="/kuwait-legal-hub.html" class="country-nav-btn ">
+      <span>🇰🇼</span>
+      <span>دولة الكويت</span>
+    </a>
+      <a href="/qatar-legal-hub.html" class="country-nav-btn ">
+      <span>🇶🇦</span>
+      <span>دولة قطر</span>
+    </a>
+      <a href="/oman-legal-hub.html" class="country-nav-btn active">
+      <span>🇴🇲</span>
+      <span>سلطنة عُمان</span>
+    </a>
+      <a href="/bahrain-legal-hub.html" class="country-nav-btn ">
+      <span>🇧🇭</span>
+      <span>مملكة البحرين</span>
+    </a>
+      </div>
+    </div>
+  
 
     <!-- Main Grid -->
     <div class="sections-grid">
