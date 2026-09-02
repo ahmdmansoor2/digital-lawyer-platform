@@ -4,7 +4,6 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { usePublicTheme } from '../hooks/usePublicTheme';
 
 interface SiteHeaderProps {
   activeKey?: string;
@@ -70,8 +69,6 @@ export default function SiteHeader({ activeKey = 'home', onEnterApp, userName, o
     return () => document.removeEventListener('click', onClick);
   }, [mobileOpen, moreOpen]);
 
-  const { theme, toggleTheme } = usePublicTheme();
-
   const isAuth = Boolean(userName && onLogout);
 
   const handleCtaClick = (e: React.MouseEvent) => {
@@ -123,17 +120,6 @@ export default function SiteHeader({ activeKey = 'home', onEnterApp, userName, o
         </nav>
 
         <div className="uh-actions">
-          {/* زر التبديل بين الوضع الفاتح والداكن على كامل الموقع */}
-          <button
-            type="button"
-            className="uh-theme-toggle"
-            onClick={toggleTheme}
-            aria-label={theme === 'light' ? 'التبديل إلى الوضع الداكن' : 'التبديل إلى الوضع الفاتح'}
-            title={theme === 'light' ? 'التبديل إلى الوضع الداكن' : 'التبديل إلى الوضع الفاتح'}
-          >
-            {theme === 'light' ? '🌙' : '☀️'}
-          </button>
-
           {isAuth ? (
             <button type="button" className="uh-cta uh-cta--ghost" onClick={onLogout}>
               <span>خروج · {userName}</span>
