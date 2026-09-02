@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حاسبة رسوم تسجيل الشقق بالشهر العقاري 2026 - احسب التكلفة الرسمية بالجنيه</title>
+  <meta name="description" content="احسب فوراً رسوم تسجيل شقة أو عقار في الشهر العقاري وفق القانون رقم 9 لسنة 2022 ولائحته التنفيذية: الحد الأقصى للرسوم، تكلفة الرفع المساحي الرقمي، وضريبة التصرفات العقارية 2.5%." />
+  <meta name="keywords" content="رسوم تسجيل شقة في الشهر العقاري 2026, مصاريف تسجيل شقة, قانون الشهر العقاري رقم 9 لسنة 2022, رسوم الرفع المساحي الرقمي, ضريبة التصرفات العقارية 2.5" />
+  <link rel="canonical" href="https://mohamidigital.online/real-estate-registration-fees.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="حاسبة رسوم تسجيل العقارات بالشهر العقاري 2026" />
+  <meta property="og:description" content="احسب التكلفة الإجمالية لتسجيل شقتك بالشهر العقاري وفق أحدث تعديلات القانون 9 لسنة 2022." />
+  <meta property="og:url" content="https://mohamidigital.online/real-estate-registration-fees.html" />
+  <meta property="og:image" content="https://mohamidigital.online/images/legal-bg.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/header.css?v=20260902v1" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --primary: #fbbf24; --bg: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.85); --card-border: rgba(251, 191, 36, 0.3);
+      --text: #f8fafc; --text-muted: #94a3b8;
+    }
+    body { font-family: 'Cairo', sans-serif; background: #0b0f19; color: var(--text); min-height: 100vh; line-height: 1.7; }
+    .page-container { max-width: 1100px; margin: 0 auto; padding: 20px 16px; }
+    .hero-box { text-align: center; padding: 40px 0 30px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 999px;
+      background: rgba(251, 191, 36, 0.15); border: 1px solid rgba(251, 191, 36, 0.4);
+      color: #fde68a; font-size: 0.85rem; font-weight: 800; margin-bottom: 14px;
+    }
+    .hero-title { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 900; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; margin-bottom: 14px; line-height: 1.3; }
+    .hero-desc { color: var(--text-muted); font-size: 1rem; max-width: 800px; margin: 0 auto 20px; }
+
+    .calc-card {
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 24px;
+      padding: 30px 24px; backdrop-filter: blur(16px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4); margin-bottom: 40px;
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-bottom: 24px; }
+    @media (min-width: 768px) { .form-grid { grid-template-columns: repeat(2, 1fr); } }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; color: #cbd5e1; margin-bottom: 8px; }
+    .form-control {
+      width: 100%; padding: 12px 16px; border-radius: 12px;
+      background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff; font-family: 'Cairo', sans-serif; font-size: 0.95rem; font-weight: 600;
+    }
+    .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.25); }
+
+    .btn-calc {
+      width: 100%; padding: 15px; border-radius: 14px;
+      background: linear-gradient(135deg, #d97706, #fbbf24);
+      color: #0f172a; font-size: 1.1rem; font-weight: 900; border: none; cursor: pointer;
+      box-shadow: 0 8px 25px rgba(251, 191, 36, 0.35); transition: all 0.2s;
+    }
+    .btn-calc:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(251, 191, 36, 0.5); }
+
+    .result-panel {
+      display: none; margin-top: 25px; padding: 22px; border-radius: 18px;
+      background: rgba(120, 53, 15, 0.25); border: 1px solid rgba(251, 191, 36, 0.4);
+    }
+    .result-panel.show { display: block; }
+    .result-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.1); font-size: 0.95rem; color: #e2e8f0;
+    }
+    .result-total {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0 8px; font-size: 1.3rem; font-weight: 900; color: #fde68a;
+    }
+    .actions-bar { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+    .btn-action {
+      flex: 1; padding: 12px 18px; border-radius: 12px; font-weight: 800; font-size: 0.9rem;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; cursor: pointer; border: none;
+    }
+    .btn-whatsapp { background: #25d366; color: #ffffff; }
+    .btn-print { background: rgba(255, 255, 255, 0.1); color: #ffffff; border: 1px solid rgba(255,255,255,0.2); }
+
+    .legal-box {
+      background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px; padding: 28px; margin-bottom: 40px;
+    }
+    .legal-box h2 { font-size: 1.4rem; font-weight: 900; color: #ffffff; margin-bottom: 14px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+    .article-item { background: rgba(30, 41, 59, 0.4); padding: 16px; border-radius: 12px; border-right: 4px solid var(--primary); margin-bottom: 16px; }
+    .article-title { font-weight: 800; color: #fde68a; margin-bottom: 6px; }
+    .article-text { font-family: 'Amiri', serif; font-size: 1.1rem; line-height: 1.8; color: #cbd5e1; }
+  </style>
+</head>
+<body>
+
+  
+  <!-- Site Header -->
+  <header class="uh-bar" id="siteHeader">
+    <div class="uh-inner">
+      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+        <span class="uh-badge">⚖️</span>
+        <span class="uh-brand">
+          <span class="uh-title">المحامي الرقمي</span>
+          <span class="uh-sub">مساعدك القانوني الذكي · مجاناً</span>
+        </span>
+      </a>
+
+      <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
+        <a href="/" class="uh-link">الرئيسية</a>
+        <a href="/legal-calculators.html" class="uh-link active">🧮 كافة الحاسبات (15)</a>
+        <a href="/court-precedents.html" class="uh-link">موسوعة النقض</a>
+        <a href="/contract-generator.html" class="uh-link">صانع العقود</a>
+        <a href="/courts-directory.html" class="uh-link">دليل المحاكم</a>
+        <a href="/pillars/" class="uh-link">المراجع والأكواد</a>
+        <a href="/blog/" class="uh-link">المدونة القانونية</a>
+      </nav>
+
+      <div class="uh-actions">
+        <a href="/" class="uh-cta">
+          <span>🚀 دخول التطبيق</span>
+        </a>
+      </div>
+    </div>
+  </header>
+  
+
+  <main class="page-container">
+    <div class="hero-box">
+      <span class="hero-badge">🏠 قانون الشهر العقاري المصري رقم 9 لسنة 2022</span>
+      <h1 class="hero-title">حاسبة رسوم تسجيل العقارات والشقق 2026</h1>
+      <p class="hero-desc">
+        احسب الرسوم الرسمية للتسجيل المميكن بالشهر العقاري، تكاليف الرفع المساحي الرقمي، وضريبة التصرفات العقارية المقررة قانوناً.
+      </p>
+    </div>
+
+    <section class="calc-card">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="areaM2">مساحة العقار أو الشقة (بالمتر المربع)</label>
+          <input type="number" id="areaM2" class="form-control" placeholder="مثال: 120" min="1" required />
+        </div>
+        <div class="form-group">
+          <label for="propertyPrice">ثمن الشراء المدون بالعقد (لحساب ضريبة التصرفات 2.5%)</label>
+          <input type="number" id="propertyPrice" class="form-control" placeholder="مثال: 850000" min="0" />
+        </div>
+        <div class="form-group">
+          <label for="locationType">الموقع الجغرافي للعقار</label>
+          <select id="locationType" class="form-control">
+            <option value="city">مدن وعواصم المحافظات والمجتمعات العمرانية</option>
+            <option value="village">قرى ونجوع وريف</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="surveyDone">هل تم إجراء الرفع المساحي الرقمي سابقاً؟</label>
+          <select id="surveyDone" class="form-control">
+            <option value="no">لا، أحتاج حساب تكلفة الرفع المساحي المعتمد</option>
+            <option value="yes">نعم، لدي بيان رفع مساحي رقمي ساري</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="button" class="btn-calc" onclick="calculateRegistryFees()">
+        💰 احسب إجمالي تكلفة التسجيل والرسوم فوراً
+      </button>
+
+      <div id="resultsPanel" class="result-panel">
+        <div style="font-size: 1.15rem; font-weight: 800; color: #fbbf24; margin-bottom: 12px; border-bottom: 1px solid rgba(251,191,36,0.3); padding-bottom: 8px;">
+          📊 تفاصيل الرسوم الرسمية والتكاليف المقررة:
+        </div>
+        <div id="feesRows"></div>
+        <div class="result-total">
+          <span>💰 الإجمالي المطلوب للتسجيل:</span>
+          <span id="feesTotalVal">0 ج.م</span>
+        </div>
+
+        <div class="actions-bar">
+          <button type="button" class="btn-action btn-whatsapp" onclick="shareFeesWhatsApp()">
+            <span>🟢 مشاركة تكلفة التسجيل عبر واتساب</span>
+          </button>
+          <button type="button" class="btn-action btn-print" onclick="window.print()">
+            <span>🖨️ طباعة إيصال التكاليف الرسمية A4</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verbatim Legal Texts -->
+    <section class="legal-box">
+      <h2>📜 السند التشريعي الكامل من القانون رقم 9 لسنة 2022</h2>
+      <div class="article-item">
+        <div class="article-title">المادة (21 مكرراً) — الحد الأقصى لرسوم التوثيق والشهر:</div>
+        <div class="article-text">
+          «لا يجوز أن تجاوز الرسوم المقررة لشهر المحررات أو قيدها في الشهر العقاري مبلغ ثلاثة آلاف وتسعمائة جنيه مهما بلغت مساحة العقار أو قيمته، وتحدد اللائحة التنفيذية فئات الرسوم وفق شرائح المساحة.»
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+  <!-- Site Footer -->
+  <footer style="background: rgba(10, 15, 30, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 40px 16px 24px; margin-top: 60px; font-family: 'Cairo', sans-serif;">
+    <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 16px;">
+        <span style="font-size: 1.8rem;">⚖️</span>
+        <span style="font-size: 1.3rem; font-weight: 900; color: #fff;">منصة المحامي الرقمية 2026</span>
+      </div>
+      <p style="color: #94a3b8; font-size: 0.9rem; max-width: 700px; margin: 0 auto 20px; line-height: 1.8;">
+        الموسوعة القانونية والقضائية الرقمية الأولى والأشمل في مصر والوطن العربي. نصوص تشريعية معتمدة، حاسبات قضائية متطورة، وبنك متكامل لأحكام محكمة النقض.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; font-size: 0.85rem; color: #cbd5e1; margin-bottom: 24px;">
+        <a href="/legal-calculators.html" style="color: #cbd5e1; text-decoration: none;">كافة الحاسبات الـ 15</a>
+        <span>·</span>
+        <a href="/calculate-end-of-service.html" style="color: #34d399; text-decoration: none;">مكافأة نهاية الخدمة</a>
+        <span>·</span>
+        <a href="/calculate-inheritance.html" style="color: #38bdf8; text-decoration: none;">حاسبة المواريث</a>
+        <span>·</span>
+        <a href="/calculate-alimony.html" style="color: #f472b6; text-decoration: none;">حاسبة النفقات</a>
+        <span>·</span>
+        <a href="/real-estate-registration-fees.html" style="color: #fbbf24; text-decoration: none;">رسوم الشهر العقاري</a>
+        <span>·</span>
+        <a href="/appeal-deadlines.html" style="color: #a78bfa; text-decoration: none;">مواعيد الطعون</a>
+        <span>·</span>
+        <a href="/privacy.html" style="color: #cbd5e1; text-decoration: none;">سياسة الخصوصية</a>
+        <span>·</span>
+        <a href="/terms.html" style="color: #cbd5e1; text-decoration: none;">شروط الاستخدام</a>
+      </div>
+      <p style="color: #64748b; font-size: 0.8rem;">
+        © 2026 منصة المحامي الرقمية. جميع الحقوق محفوظة طبقاً لقوانين حماية الملكية الفكرية المصرية والدولية.
+      </p>
+    </div>
+  </footer>
+  
+
+  <script>
+    let lastFees = null;
+
+    function calculateRegistryFees() {
+      const area = parseFloat(document.getElementById('areaM2').value) || 0;
+      const price = parseFloat(document.getElementById('propertyPrice').value) || 0;
+      const surveyDone = document.getElementById('surveyDone').value === 'yes';
+
+      if (area <= 0) {
+        alert('يرجى إدخال مساحة الشقة أو العقار بالمتر المربع.');
+        return;
+      }
+
+      let regFee = 3900;
+      let surveyFee = 0;
+      if (!surveyDone) {
+        if (area <= 100) surveyFee = 675;
+        else if (area <= 200) surveyFee = 1000;
+        else if (area <= 300) surveyFee = 1500;
+        else surveyFee = 2000;
+      }
+
+      const disposalTax = price * 0.025;
+      const formFee = 100;
+      const grandTotal = regFee + surveyFee + formFee;
+      lastFees = { area, price, regFee, surveyFee, disposalTax, formFee, grandTotal };
+
+      const fmt = (n) => Math.round(n).toLocaleString('ar-EG') + ' ج.م';
+      const rows = [
+        ['رسوم الشهر العقاري (الحد الأقصى القانوني):', fmt(regFee)],
+        ...(surveyFee > 0 ? [['تكلفة الرفع المساحي الرقمي المعتمد:', fmt(surveyFee)]] : []),
+        ['رسوم النماذج والاستمارة المميكنة:', fmt(formFee)],
+        ...(disposalTax > 0 ? [['ضريبة التصرفات العقارية (2.5% على البائع):', fmt(disposalTax)]] : []),
+      ];
+
+      document.getElementById('feesRows').innerHTML = rows.map(([l, v]) =>
+        '<div class="result-row"><span>' + l + '</span><strong>' + v + '</strong></div>'
+      ).join('');
+
+      document.getElementById('feesTotalVal').textContent = fmt(grandTotal) + (disposalTax > 0 ? ' (+ ضريبة التصرفات)' : '');
+
+      const panel = document.getElementById('resultsPanel');
+      panel.classList.add('show');
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function shareFeesWhatsApp() {
+      if (!lastFees) return;
+      const fmt = (n) => Math.round(n).toLocaleString('ar-EG') + ' ج.م';
+      const text = '⚖️ *تكلفة تسجيل عقار بالشهر العقاري طبقاً للقانون 9 لسنة 2022*\n' +
+        '• مساحة العقار: ' + lastFees.area + ' م²\n' +
+        '• رسوم الشهر العقاري: ' + fmt(lastFees.regFee) + '\n' +
+        (lastFees.surveyFee > 0 ? '• تكلفة الرفع المساحي: ' + fmt(lastFees.surveyFee) + '\n' : '') +
+        (lastFees.disposalTax > 0 ? '• ضريبة التصرفات العقارية: ' + fmt(lastFees.disposalTax) + '\n' : '') +
+        '💰 *إجمالي رسوم التسجيل الحكومية:* ' + fmt(lastFees.grandTotal) + '\n\n' +
+        '🔗 احسب تكلفة تسجيل شقتك فوراً عبر منصة المحامي الرقمية:\nhttps://mohamidigital.online/real-estate-registration-fees.html';
+      window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
+    }
+  </script>
+</body>
+</html>

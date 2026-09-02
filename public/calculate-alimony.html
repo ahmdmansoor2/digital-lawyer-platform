@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حاسبة نفقة الزوجة والصغار والمطلقة 2026 - احسب النفقة بالجنيه | منصة المحامي الرقمية</title>
+  <meta name="description" content="احسب فوراً نفقة الزوجة والأولاد وأجر المسكن والحضانة ومصاريف التعليم والعلاج بالجنيه المصري وفق قوانين الأحوال الشخصية 25 لسنة 1920 و25 لسنة 1929 وتعديلاتهما وأحكام محكمة النقض." />
+  <meta name="keywords" content="حاسبة النفقات, حساب نفقة الزوجة, نفقة الصغار بالجنيه, كم تبلغ نفقة الأولاد من راتب الزوج, نفقة العدة والمتعة, أجر المسكن والحضانة, محكمة الأسرة" />
+  <link rel="canonical" href="https://mohamidigital.online/calculate-alimony.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="حاسبة نفقة الزوجة والصغار والمطلقة 2026" />
+  <meta property="og:description" content="أداة متطورة لتقدير النفقات الزوجية ونفقات الصغار طبقاً لدخل الزوج ومعايير محاكم الأسرة المصرية." />
+  <meta property="og:url" content="https://mohamidigital.online/calculate-alimony.html" />
+  <meta property="og:image" content="https://mohamidigital.online/images/legal-bg.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/header.css?v=20260902v1" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --primary: #f472b6; --bg: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.85); --card-border: rgba(244, 114, 182, 0.3);
+      --text: #f8fafc; --text-muted: #94a3b8;
+    }
+    body { font-family: 'Cairo', sans-serif; background: #0b0f19; color: var(--text); min-height: 100vh; line-height: 1.7; }
+    .page-container { max-width: 1100px; margin: 0 auto; padding: 20px 16px; }
+    .hero-box { text-align: center; padding: 40px 0 30px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 999px;
+      background: rgba(244, 114, 182, 0.15); border: 1px solid rgba(244, 114, 182, 0.4);
+      color: #fbcfe8; font-size: 0.85rem; font-weight: 800; margin-bottom: 14px;
+    }
+    .hero-title { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 900; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; margin-bottom: 14px; line-height: 1.3; }
+    .hero-desc { color: var(--text-muted); font-size: 1rem; max-width: 800px; margin: 0 auto 20px; }
+
+    .calc-card {
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 24px;
+      padding: 30px 24px; backdrop-filter: blur(16px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4); margin-bottom: 40px;
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-bottom: 24px; }
+    @media (min-width: 768px) { .form-grid { grid-template-columns: repeat(2, 1fr); } }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; color: #cbd5e1; margin-bottom: 8px; }
+    .form-control {
+      width: 100%; padding: 12px 16px; border-radius: 12px;
+      background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff; font-family: 'Cairo', sans-serif; font-size: 0.95rem; font-weight: 600;
+    }
+    .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(244, 114, 182, 0.25); }
+
+    .btn-calc {
+      width: 100%; padding: 15px; border-radius: 14px;
+      background: linear-gradient(135deg, #db2777, #f472b6);
+      color: #ffffff; font-size: 1.1rem; font-weight: 900; border: none; cursor: pointer;
+      box-shadow: 0 8px 25px rgba(244, 114, 182, 0.35); transition: all 0.2s;
+    }
+    .btn-calc:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(244, 114, 182, 0.5); }
+
+    .result-panel {
+      display: none; margin-top: 25px; padding: 22px; border-radius: 18px;
+      background: rgba(131, 24, 67, 0.25); border: 1px solid rgba(244, 114, 182, 0.4);
+    }
+    .result-panel.show { display: block; }
+    .result-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.1); font-size: 0.95rem; color: #e2e8f0;
+    }
+    .result-total {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0 8px; font-size: 1.3rem; font-weight: 900; color: #f472b6;
+    }
+    .actions-bar { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+    .btn-action {
+      flex: 1; padding: 12px 18px; border-radius: 12px; font-weight: 800; font-size: 0.9rem;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; cursor: pointer; border: none;
+    }
+    .btn-whatsapp { background: #25d366; color: #ffffff; }
+    .btn-print { background: rgba(255, 255, 255, 0.1); color: #ffffff; border: 1px solid rgba(255,255,255,0.2); }
+
+    .legal-box {
+      background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px; padding: 28px; margin-bottom: 40px;
+    }
+    .legal-box h2 { font-size: 1.4rem; font-weight: 900; color: #ffffff; margin-bottom: 14px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+    .article-item { background: rgba(30, 41, 59, 0.4); padding: 16px; border-radius: 12px; border-right: 4px solid var(--primary); margin-bottom: 16px; }
+    .article-title { font-weight: 800; color: #f472b6; margin-bottom: 6px; }
+    .article-text { font-family: 'Amiri', serif; font-size: 1.1rem; line-height: 1.8; color: #cbd5e1; }
+  </style>
+</head>
+<body>
+
+  
+  <!-- Site Header -->
+  <header class="uh-bar" id="siteHeader">
+    <div class="uh-inner">
+      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+        <span class="uh-badge">⚖️</span>
+        <span class="uh-brand">
+          <span class="uh-title">المحامي الرقمي</span>
+          <span class="uh-sub">مساعدك القانوني الذكي · مجاناً</span>
+        </span>
+      </a>
+
+      <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
+        <a href="/" class="uh-link">الرئيسية</a>
+        <a href="/legal-calculators.html" class="uh-link active">🧮 كافة الحاسبات (15)</a>
+        <a href="/court-precedents.html" class="uh-link">موسوعة النقض</a>
+        <a href="/contract-generator.html" class="uh-link">صانع العقود</a>
+        <a href="/courts-directory.html" class="uh-link">دليل المحاكم</a>
+        <a href="/pillars/" class="uh-link">المراجع والأكواد</a>
+        <a href="/blog/" class="uh-link">المدونة القانونية</a>
+      </nav>
+
+      <div class="uh-actions">
+        <a href="/" class="uh-cta">
+          <span>🚀 دخول التطبيق</span>
+        </a>
+      </div>
+    </div>
+  </header>
+  
+
+  <main class="page-container">
+    <div class="hero-box">
+      <span class="hero-badge">🕌 قوانين الأحوال الشخصية ومحاكم الأسرة المصرية</span>
+      <h1 class="hero-title">حاسبة نفقة الزوجة والصغار والمطلقة 2026</h1>
+      <p class="hero-desc">
+        تقدير قضائي دقيق لنفقة المأكل والملبس والمسكن ومصاريف المدارس والعلاج طبقاً لدخل الزوج وأحكام محكمة النقض.
+      </p>
+    </div>
+
+    <!-- Calculator Card -->
+    <section class="calc-card" aria-label="حاسبة النفقات">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="husbandNetIncome">صافي الدخل الشهري للزوج / الأب (بالجنيه)</label>
+          <input type="number" id="husbandNetIncome" class="form-control" placeholder="مثال: 12000" min="0" required />
+        </div>
+        <div class="form-group">
+          <label for="caseStatus">نوع الدعوى / الحالة الزوجية</label>
+          <select id="caseStatus" class="form-control">
+            <option value="married">زوجية قائمة (نفقة زوجية ونفقة صغار)</option>
+            <option value="divorced_kids">مطلقة وحاضنة لأطفال (نفقات صغار وأجر مسكن وحضانة)</option>
+            <option value="divorced_no_kids">مطلقة بدون صغار (نفقة عدة ومتعة ومؤخر)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="kidsCount">عدد الصغار في سن الحضانة</label>
+          <input type="number" id="kidsCount" class="form-control" value="2" min="0" max="10" />
+        </div>
+        <div class="form-group">
+          <label for="hasIndependentHome">هل وفر الأب مسكن حضانة ملائم ومستقل؟</label>
+          <select id="hasIndependentHome" class="form-control">
+            <option value="no">لا، يُطالب بأجر مسكن نقدي</option>
+            <option value="yes">نعم، الحاضنة تقيم بمسكن الزوجية/الحضانة</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="button" class="btn-calc" onclick="calculateAlimony()">
+        ⚖️ احسب النفقات والأجور التقديرية فوراً
+      </button>
+
+      <div id="resultsPanel" class="result-panel">
+        <div style="font-size: 1.15rem; font-weight: 800; color: #f472b6; margin-bottom: 12px; border-bottom: 1px solid rgba(244,114,182,0.3); padding-bottom: 8px;">
+          📊 تقدير النفقات وفق المعايير القضائية المستقرة:
+        </div>
+        <div id="alimonyRows"></div>
+        <div class="result-total">
+          <span>💰 إجمالي النفقة الشهرية المقدرة:</span>
+          <span id="alimonyTotalVal">0 ج.م</span>
+        </div>
+
+        <div class="actions-bar">
+          <button type="button" class="btn-action btn-whatsapp" onclick="shareAlimonyWhatsApp()">
+            <span>🟢 مشاركة تقدير النفقة عبر واتساب للمحامين</span>
+          </button>
+          <button type="button" class="btn-action btn-print" onclick="window.print()">
+            <span>🖨️ طباعة مذكرة النفقة A4</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verbatim Legal Texts -->
+    <section class="legal-box" aria-label="نصوص قوانين النفقة">
+      <h2>📜 السند التشريعي الكامل في قوانين الأحوال الشخصية</h2>
+      <div class="article-item">
+        <div class="article-title">المادة (1) من القانون رقم 25 لسنة 1920 المعدل بالقانون 100 لسنة 1985:</div>
+        <div class="article-text">
+          «تجب النفقة للزوجة على زوجها من تاريخ العقد الصحيح إذا سلمت نفسها إليه ولو حكماً حتى لو كانت موسرة أو مختلفة معه في الدين. وتشتمل النفقة على الغذاء والكسوة والمسكن ومصاريف العلاج وغير ذلك مما يقضي به الشرع، وتقدر النفقة بحسب حال الزوج يسراً أو عسراً على ألا تقل النفقة في حالة العسر عن القدر الذي يفي بحاجتها الضرورية.»
+        </div>
+      </div>
+      <div class="article-item">
+        <div class="article-title">المادة (18 مكرراً ثانياً) — نفقة الصغار وأجر الحضانة والمسكن:</div>
+        <div class="article-text">
+          «إذا لم يكن للصغير مال فنفقته على أبيه، وتستمر نفقة الأولاد على أبيهم إلى أن تتزوج البنت أو تكسب ما يكفي نفقتها، وإلى أن يتم الابن الخامسة عشرة من عمره قادراً على الكسب المناسب. كما يلتزم الأب بتوفير المسكن المناسب للحاضنة وصغارها، فإذا لم يفعل كان لها المطالبة بأجر مسكن وأجر حضانة مناسب.»
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+  <!-- Site Footer -->
+  <footer style="background: rgba(10, 15, 30, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 40px 16px 24px; margin-top: 60px; font-family: 'Cairo', sans-serif;">
+    <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 16px;">
+        <span style="font-size: 1.8rem;">⚖️</span>
+        <span style="font-size: 1.3rem; font-weight: 900; color: #fff;">منصة المحامي الرقمية 2026</span>
+      </div>
+      <p style="color: #94a3b8; font-size: 0.9rem; max-width: 700px; margin: 0 auto 20px; line-height: 1.8;">
+        الموسوعة القانونية والقضائية الرقمية الأولى والأشمل في مصر والوطن العربي. نصوص تشريعية معتمدة، حاسبات قضائية متطورة، وبنك متكامل لأحكام محكمة النقض.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; font-size: 0.85rem; color: #cbd5e1; margin-bottom: 24px;">
+        <a href="/legal-calculators.html" style="color: #cbd5e1; text-decoration: none;">كافة الحاسبات الـ 15</a>
+        <span>·</span>
+        <a href="/calculate-end-of-service.html" style="color: #34d399; text-decoration: none;">مكافأة نهاية الخدمة</a>
+        <span>·</span>
+        <a href="/calculate-inheritance.html" style="color: #38bdf8; text-decoration: none;">حاسبة المواريث</a>
+        <span>·</span>
+        <a href="/calculate-alimony.html" style="color: #f472b6; text-decoration: none;">حاسبة النفقات</a>
+        <span>·</span>
+        <a href="/real-estate-registration-fees.html" style="color: #fbbf24; text-decoration: none;">رسوم الشهر العقاري</a>
+        <span>·</span>
+        <a href="/appeal-deadlines.html" style="color: #a78bfa; text-decoration: none;">مواعيد الطعون</a>
+        <span>·</span>
+        <a href="/privacy.html" style="color: #cbd5e1; text-decoration: none;">سياسة الخصوصية</a>
+        <span>·</span>
+        <a href="/terms.html" style="color: #cbd5e1; text-decoration: none;">شروط الاستخدام</a>
+      </div>
+      <p style="color: #64748b; font-size: 0.8rem;">
+        © 2026 منصة المحامي الرقمية. جميع الحقوق محفوظة طبقاً لقوانين حماية الملكية الفكرية المصرية والدولية.
+      </p>
+    </div>
+  </footer>
+  
+
+  <script>
+    let lastAlimony = null;
+
+    function calculateAlimony() {
+      const income = parseFloat(document.getElementById('husbandNetIncome').value) || 0;
+      const status = document.getElementById('caseStatus').value;
+      const kids = parseInt(document.getElementById('kidsCount').value) || 0;
+      const hasHome = document.getElementById('hasIndependentHome').value === 'yes';
+
+      if (income <= 0) {
+        alert('يرجى إدخال صافي دخل الزوج.');
+        return;
+      }
+
+      let wifeAlimony = 0;
+      let kidsAlimony = 0;
+      let housingAllowance = 0;
+      let custodyWage = 0;
+
+      if (status === 'married') {
+        wifeAlimony = income * 0.20;
+        kidsAlimony = kids > 0 ? (income * Math.min(0.30, kids * 0.12)) : 0;
+      } else if (status === 'divorced_kids') {
+        kidsAlimony = kids > 0 ? (income * Math.min(0.35, kids * 0.14)) : 0;
+        custodyWage = kids > 0 ? (income * 0.08) : 0;
+        if (!hasHome) {
+          housingAllowance = income * 0.15;
+        }
+      } else {
+        wifeAlimony = income * 0.25;
+      }
+
+      const totalMonthly = wifeAlimony + kidsAlimony + housingAllowance + custodyWage;
+      lastAlimony = { income, wifeAlimony, kidsAlimony, housingAllowance, custodyWage, totalMonthly, kids };
+
+      const fmt = (n) => Math.round(n).toLocaleString('ar-EG') + ' ج.م';
+      const rows = [
+        ...(wifeAlimony > 0 ? [['نفقة الزوجية / العدة الشهرية:', fmt(wifeAlimony)]] : []),
+        ...(kidsAlimony > 0 ? [['نفقة الصغار (مأكل وملبس):', fmt(kidsAlimony)]] : []),
+        ...(housingAllowance > 0 ? [['أجر مسكن الحضانة النقدي:', fmt(housingAllowance)]] : []),
+        ...(custodyWage > 0 ? [['أجر حضانة شهري:', fmt(custodyWage)]] : []),
+      ];
+
+      document.getElementById('alimonyRows').innerHTML = rows.map(([l, v]) =>
+        '<div class="result-row"><span>' + l + '</span><strong>' + v + '</strong></div>'
+      ).join('');
+
+      document.getElementById('alimonyTotalVal').textContent = fmt(totalMonthly);
+
+      const panel = document.getElementById('resultsPanel');
+      panel.classList.add('show');
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function shareAlimonyWhatsApp() {
+      if (!lastAlimony) return;
+      const fmt = (n) => Math.round(n).toLocaleString('ar-EG') + ' ج.م';
+      const text = '⚖️ *تقدير النفقات الشرعية وفق معايير محاكم الأسرة المصرية*\n' +
+        '• دخل الأب الشهري: ' + fmt(lastAlimony.income) + '\n' +
+        (lastAlimony.wifeAlimony > 0 ? '• نفقة الزوجة: ' + fmt(lastAlimony.wifeAlimony) + '\n' : '') +
+        (lastAlimony.kidsAlimony > 0 ? '• نفقة الصغار (' + lastAlimony.kids + '): ' + fmt(lastAlimony.kidsAlimony) + '\n' : '') +
+        (lastAlimony.housingAllowance > 0 ? '• أجر المسكن: ' + fmt(lastAlimony.housingAllowance) + '\n' : '') +
+        '💰 *إجمالي النفقة الشهرية:* ' + fmt(lastAlimony.totalMonthly) + '\n\n' +
+        '🔗 احسب النفقات بدقة عبر منصة المحامي الرقمية:\nhttps://mohamidigital.online/calculate-alimony.html';
+      window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
+    }
+  </script>
+</body>
+</html>

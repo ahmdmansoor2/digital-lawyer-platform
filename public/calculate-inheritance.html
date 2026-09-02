@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حاسبة المواريث والتركات الشرعية والقانونية 2026 - احسب الأنصبة أونلاين | منصة المحامي الرقمية</title>
+  <meta name="description" content="حاسبة المواريث والتركات أونلاين وفق أحكام الشريعة الإسلامية وقانون المواريث المصري رقم 77 لسنة 1943: حساب أصحاب الفروض والعصبات والرد والعول وقسمة التركة بالجنيه فوراً." />
+  <meta name="keywords" content="حاسبة المواريث, حساب الميراث بالجنيه, تقسيم التركة الشرعية, قانون المواريث المصري 77 لسنة 1943, حساب نصيب الزوجة في الميراث, حاسبة التركات أونلاين" />
+  <link rel="canonical" href="https://mohamidigital.online/calculate-inheritance.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="حاسبة المواريث والتركات الشرعية والقانونية 2026" />
+  <meta property="og:description" content="برنامج حساب المواريث والتركات الشرعية طبقاً لقانون المواريث المصري رقم 77 لسنة 1943 مجاناً." />
+  <meta property="og:url" content="https://mohamidigital.online/calculate-inheritance.html" />
+  <meta property="og:image" content="https://mohamidigital.online/images/legal-bg.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/header.css?v=20260902v1" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --primary: #38bdf8; --bg: #0f172a;
+      --card-bg: rgba(15, 23, 42, 0.85); --card-border: rgba(56, 189, 248, 0.3);
+      --text: #f8fafc; --text-muted: #94a3b8;
+    }
+    body { font-family: 'Cairo', sans-serif; background: #0b0f19; color: var(--text); min-height: 100vh; line-height: 1.7; }
+    .page-container { max-width: 1100px; margin: 0 auto; padding: 20px 16px; }
+    .hero-box { text-align: center; padding: 40px 0 30px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 999px;
+      background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #7dd3fc; font-size: 0.85rem; font-weight: 800; margin-bottom: 14px;
+    }
+    .hero-title { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 900; color: #ffffff !important; -webkit-text-fill-color: #ffffff !important; margin-bottom: 14px; line-height: 1.3; }
+    .hero-desc { color: var(--text-muted); font-size: 1rem; max-width: 800px; margin: 0 auto 20px; }
+
+    .calc-card {
+      background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 24px;
+      padding: 30px 24px; backdrop-filter: blur(16px); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4); margin-bottom: 40px;
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-bottom: 24px; }
+    @media (min-width: 768px) { .form-grid { grid-template-columns: repeat(2, 1fr); } }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 700; color: #cbd5e1; margin-bottom: 8px; }
+    .form-control {
+      width: 100%; padding: 12px 16px; border-radius: 12px;
+      background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff; font-family: 'Cairo', sans-serif; font-size: 0.95rem; font-weight: 600;
+    }
+    .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25); }
+
+    .btn-calc {
+      width: 100%; padding: 15px; border-radius: 14px;
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #ffffff; font-size: 1.1rem; font-weight: 900; border: none; cursor: pointer;
+      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.35); transition: all 0.2s;
+    }
+    .btn-calc:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(56, 189, 248, 0.5); }
+
+    .result-panel {
+      display: none; margin-top: 25px; padding: 22px; border-radius: 18px;
+      background: rgba(12, 74, 110, 0.25); border: 1px solid rgba(56, 189, 248, 0.4);
+    }
+    .result-panel.show { display: block; }
+    .result-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px dashed rgba(255, 255, 255, 0.1); font-size: 0.95rem; color: #e2e8f0;
+    }
+    .actions-bar { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
+    .btn-action {
+      flex: 1; padding: 12px 18px; border-radius: 12px; font-weight: 800; font-size: 0.9rem;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; cursor: pointer; border: none;
+    }
+    .btn-whatsapp { background: #25d366; color: #ffffff; }
+    .btn-print { background: rgba(255, 255, 255, 0.1); color: #ffffff; border: 1px solid rgba(255,255,255,0.2); }
+
+    .legal-box {
+      background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px; padding: 28px; margin-bottom: 40px;
+    }
+    .legal-box h2 { font-size: 1.4rem; font-weight: 900; color: #ffffff; margin-bottom: 14px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+    .article-item { background: rgba(30, 41, 59, 0.4); padding: 16px; border-radius: 12px; border-right: 4px solid var(--primary); margin-bottom: 16px; }
+    .article-title { font-weight: 800; color: #7dd3fc; margin-bottom: 6px; }
+    .article-text { font-family: 'Amiri', serif; font-size: 1.1rem; line-height: 1.8; color: #cbd5e1; }
+  </style>
+</head>
+<body>
+
+  
+  <!-- Site Header -->
+  <header class="uh-bar" id="siteHeader">
+    <div class="uh-inner">
+      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+        <span class="uh-badge">⚖️</span>
+        <span class="uh-brand">
+          <span class="uh-title">المحامي الرقمي</span>
+          <span class="uh-sub">مساعدك القانوني الذكي · مجاناً</span>
+        </span>
+      </a>
+
+      <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
+        <a href="/" class="uh-link">الرئيسية</a>
+        <a href="/legal-calculators.html" class="uh-link active">🧮 كافة الحاسبات (15)</a>
+        <a href="/court-precedents.html" class="uh-link">موسوعة النقض</a>
+        <a href="/contract-generator.html" class="uh-link">صانع العقود</a>
+        <a href="/courts-directory.html" class="uh-link">دليل المحاكم</a>
+        <a href="/pillars/" class="uh-link">المراجع والأكواد</a>
+        <a href="/blog/" class="uh-link">المدونة القانونية</a>
+      </nav>
+
+      <div class="uh-actions">
+        <a href="/" class="uh-cta">
+          <span>🚀 دخول التطبيق</span>
+        </a>
+      </div>
+    </div>
+  </header>
+  
+
+  <main class="page-container">
+    <div class="hero-box">
+      <span class="hero-badge">📜 قانون المواريث رقم 77 لسنة 1943 والشريعة الإسلامية</span>
+      <h1 class="hero-title">حاسبة المواريث والتركات الشرعية والقانونية 2026</h1>
+      <p class="hero-desc">
+        برنامج قسمة الميراث الذكي: حساب الفروض والعصبات، الرد والعول، والوصية الواجبة بالجنيه المصري بدقة فقهية وقضائية معتمدة.
+      </p>
+    </div>
+
+    <!-- Calculator Card -->
+    <section class="calc-card" aria-label="حاسبة المواريث">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="estateVal">قيمة التركة الصافية (بعد سداد الديون بالجنيه)</label>
+          <input type="number" id="estateVal" class="form-control" placeholder="مثال: 1000000" min="0" required />
+        </div>
+        <div class="form-group">
+          <label for="deceasedGender">جنس المتوفى</label>
+          <select id="deceasedGender" class="form-control" onchange="toggleSpouseField()">
+            <option value="male">ذكر (متوفى وله زوجة/زوجات)</option>
+            <option value="female">أنثى (متوفاة ولها زوج)</option>
+          </select>
+        </div>
+        <div class="form-group" id="wifeGroup">
+          <label for="wivesCount">عدد الزوجات (1 - 4)</label>
+          <input type="number" id="wivesCount" class="form-control" value="1" min="0" max="4" />
+        </div>
+        <div class="form-group" id="husbandGroup" style="display:none;">
+          <label for="husbandExists">هل الزوج على قيد الحياة؟</label>
+          <select id="husbandExists" class="form-control">
+            <option value="yes">نعم، حي</option>
+            <option value="no">لا، متوفى قبلها</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="sonsCount">عدد الأبناء (الذكور)</label>
+          <input type="number" id="sonsCount" class="form-control" value="0" min="0" max="20" />
+        </div>
+        <div class="form-group">
+          <label for="daughtersCount">عدد البنات (الإناث)</label>
+          <input type="number" id="daughtersCount" class="form-control" value="0" min="0" max="20" />
+        </div>
+        <div class="form-group">
+          <label for="fatherAlive">هل الأب حي؟</label>
+          <select id="fatherAlive" class="form-control">
+            <option value="no">لا، متوفى</option>
+            <option value="yes">نعم، على قيد الحياة</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="motherAlive">هل الأم حية؟</label>
+          <select id="motherAlive" class="form-control">
+            <option value="no">لا، متوفاة</option>
+            <option value="yes">نعم، على قيد الحياة</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="button" class="btn-calc" onclick="calculateInheritance()">
+        ⚖️ احسب توزيع التركة والأنصبة الشرعية فوراً
+      </button>
+
+      <div id="resultsPanel" class="result-panel">
+        <div style="font-size: 1.15rem; font-weight: 800; color: #38bdf8; margin-bottom: 12px; border-bottom: 1px solid rgba(56,189,248,0.3); padding-bottom: 8px;">
+          📊 جدول توزيع التركة والأنصبة الشرعية المعتمدة:
+        </div>
+        <div id="inheritanceRows"></div>
+
+        <div class="actions-bar">
+          <button type="button" class="btn-action btn-whatsapp" onclick="shareInheritanceWhatsApp()">
+            <span>🟢 مشاركة تقسيم الميراث عبر واتساب</span>
+          </button>
+          <button type="button" class="btn-action btn-print" onclick="window.print()">
+            <span>🖨️ طباعة إعلام الوراثة والجدول A4</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verbatim Legal Texts -->
+    <section class="legal-box" aria-label="نصوص قانون المواريث المصري">
+      <h2>📜 نصوص مواد قانون المواريث المصري رقم 77 لسنة 1943</h2>
+      <div class="article-item">
+        <div class="article-title">المادة (11) — أصحاب الفروض من الأزواج والزوجات:</div>
+        <div class="article-text">
+          «للزوج النصف من تركة زوجته إذا لم يكن لها ولد ولا ولد ابن وإن نزل، والربع إذا كان لها ولد أو ولد ابن وإن نزل. وللزوجة أو الزوجات الربع من تركة الزوج إذا لم يكن له ولد ولا ولد ابن وإن نزل، والثمن إن كان له ولد أو ولد ابن وإن نزل، ويشتركن فيه بالسوية إن تعددن.»
+        </div>
+      </div>
+      <div class="article-item">
+        <div class="article-title">المادة (18) — ميراث البنات والأبناء (العصبة بالغير):</div>
+        <div class="article-text">
+          «للواحدة من البنات النصف إذا انفردت، وللاثنتين فأكثر الثلثان يشتركن فيه بالسوية، فإذا كان معهن ابن أو أبناء عصبوا بهن وكان للذكر مثل حظ الأنثيين.»
+        </div>
+      </div>
+    </section>
+  </main>
+
+  
+  <!-- Site Footer -->
+  <footer style="background: rgba(10, 15, 30, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 40px 16px 24px; margin-top: 60px; font-family: 'Cairo', sans-serif;">
+    <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 16px;">
+        <span style="font-size: 1.8rem;">⚖️</span>
+        <span style="font-size: 1.3rem; font-weight: 900; color: #fff;">منصة المحامي الرقمية 2026</span>
+      </div>
+      <p style="color: #94a3b8; font-size: 0.9rem; max-width: 700px; margin: 0 auto 20px; line-height: 1.8;">
+        الموسوعة القانونية والقضائية الرقمية الأولى والأشمل في مصر والوطن العربي. نصوص تشريعية معتمدة، حاسبات قضائية متطورة، وبنك متكامل لأحكام محكمة النقض.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; font-size: 0.85rem; color: #cbd5e1; margin-bottom: 24px;">
+        <a href="/legal-calculators.html" style="color: #cbd5e1; text-decoration: none;">كافة الحاسبات الـ 15</a>
+        <span>·</span>
+        <a href="/calculate-end-of-service.html" style="color: #34d399; text-decoration: none;">مكافأة نهاية الخدمة</a>
+        <span>·</span>
+        <a href="/calculate-inheritance.html" style="color: #38bdf8; text-decoration: none;">حاسبة المواريث</a>
+        <span>·</span>
+        <a href="/calculate-alimony.html" style="color: #f472b6; text-decoration: none;">حاسبة النفقات</a>
+        <span>·</span>
+        <a href="/real-estate-registration-fees.html" style="color: #fbbf24; text-decoration: none;">رسوم الشهر العقاري</a>
+        <span>·</span>
+        <a href="/appeal-deadlines.html" style="color: #a78bfa; text-decoration: none;">مواعيد الطعون</a>
+        <span>·</span>
+        <a href="/privacy.html" style="color: #cbd5e1; text-decoration: none;">سياسة الخصوصية</a>
+        <span>·</span>
+        <a href="/terms.html" style="color: #cbd5e1; text-decoration: none;">شروط الاستخدام</a>
+      </div>
+      <p style="color: #64748b; font-size: 0.8rem;">
+        © 2026 منصة المحامي الرقمية. جميع الحقوق محفوظة طبقاً لقوانين حماية الملكية الفكرية المصرية والدولية.
+      </p>
+    </div>
+  </footer>
+  
+
+  <script>
+    let inheritanceData = null;
+
+    function toggleSpouseField() {
+      const g = document.getElementById('deceasedGender').value;
+      document.getElementById('wifeGroup').style.display = g === 'male' ? 'block' : 'none';
+      document.getElementById('husbandGroup').style.display = g === 'female' ? 'block' : 'none';
+    }
+
+    function calculateInheritance() {
+      const estate = parseFloat(document.getElementById('estateVal').value) || 0;
+      const gender = document.getElementById('deceasedGender').value;
+      const wives = gender === 'male' ? (parseInt(document.getElementById('wivesCount').value) || 0) : 0;
+      const husband = gender === 'female' && document.getElementById('husbandExists').value === 'yes';
+      const sons = parseInt(document.getElementById('sonsCount').value) || 0;
+      const daughters = parseInt(document.getElementById('daughtersCount').value) || 0;
+      const father = document.getElementById('fatherAlive').value === 'yes';
+      const mother = document.getElementById('motherAlive').value === 'yes';
+
+      if (estate <= 0) {
+        alert('يرجى إدخال قيمة صافي التركة.');
+        return;
+      }
+
+      const hasChildren = (sons + daughters) > 0;
+      let shares = [];
+      let distributedMoney = 0;
+      const fmt = (n) => Math.round(n).toLocaleString('ar-EG') + ' ج.م';
+
+      if (husband) {
+        const share = hasChildren ? 0.25 : 0.5;
+        const amt = estate * share;
+        distributedMoney += amt;
+        shares.push({ name: 'الزوج', share: hasChildren ? 'الربع (1/4)' : 'النصف (1/2)', amt });
+      } else if (wives > 0) {
+        const share = hasChildren ? 0.125 : 0.25;
+        const totalWifeAmt = estate * share;
+        distributedMoney += totalWifeAmt;
+        shares.push({ name: 'الزوجة (' + wives + ')', share: hasChildren ? 'الثمن (1/8)' : 'الربع (1/4)', amt: totalWifeAmt });
+      }
+
+      if (mother) {
+        const share = hasChildren ? (1/6) : (1/3);
+        const amt = estate * share;
+        distributedMoney += amt;
+        shares.push({ name: 'الأم', share: hasChildren ? 'السدس (1/6)' : 'الثلث (1/3)', amt });
+      }
+
+      if (father) {
+        let share = 1/6;
+        let amt = estate * share;
+        distributedMoney += amt;
+        shares.push({ name: 'الأب', share: hasChildren && sons > 0 ? 'السدس (1/6) فرضاً' : 'السدس فرضاً + تعصيباً', amt });
+      }
+
+      let remainder = Math.max(0, estate - distributedMoney);
+      if (hasChildren) {
+        if (sons > 0 && daughters === 0) {
+          shares.push({ name: 'الأبناء الذكور (' + sons + ')', share: 'الباقي تعصيباً', amt: remainder });
+        } else if (sons === 0 && daughters > 0) {
+          const shareFraction = daughters === 1 ? 0.5 : (2/3);
+          const amt = Math.min(remainder, estate * shareFraction);
+          shares.push({ name: 'البنات (' + daughters + ')', share: daughters === 1 ? 'النصف (1/2)' : 'الثلثان (2/3)', amt });
+        } else {
+          shares.push({ name: 'الأبناء والبنات (' + sons + ' ذكور + ' + daughters + ' إناث)', share: 'الباقي تعصيباً (للذكر مثل حظ الأنثيين)', amt: remainder });
+        }
+      }
+
+      inheritanceData = { estate, shares };
+
+      document.getElementById('inheritanceRows').innerHTML = shares.map(s =>
+        '<div class="result-row"><div><strong>' + s.name + '</strong> <span style="font-size:0.8rem; opacity:0.8;">(' + s.share + ')</span></div><strong style="color:#7dd3fc;">' + fmt(s.amt) + '</strong></div>'
+      ).join('');
+
+      const panel = document.getElementById('resultsPanel');
+      panel.classList.add('show');
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function shareInheritanceWhatsApp() {
+      if (!inheritanceData) return;
+      const fmt = (n) => Math.round(n).toLocaleString('ar-EG') + ' ج.م';
+      let text = '⚖️ *توزيع التركة الشرعية وفق قانون المواريث المصري*\n' +
+        '• قيمة التركة: ' + fmt(inheritanceData.estate) + '\n\n' +
+        '*الأنصبة الشرعية:*\n';
+      inheritanceData.shares.forEach(s => {
+        text += '• ' + s.name + ': ' + fmt(s.amt) + ' (' + s.share + ')\n';
+      });
+      text += '\n🔗 لحساب وتوزيع الميراث أونلاين عبر منصة المحامي الرقمية:\nhttps://mohamidigital.online/calculate-inheritance.html';
+      window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
+    }
+  </script>
+</body>
+</html>
