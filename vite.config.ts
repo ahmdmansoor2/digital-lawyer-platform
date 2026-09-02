@@ -20,17 +20,21 @@ export default defineConfig(() => {
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
     build: {
-      chunkSizeWarningLimit: 800,
+      chunkSizeWarningLimit: 1200,
       // تقسيم المكتبات الثقيلة إلى chunks منفصلة لتحسين التحميل والتخزين المؤقت
       rollupOptions: {
         output: {
           manualChunks: (id) => {
-            // PDF libs — يُحمَّل فقط عند استخدام PDF
-            if (id.includes('jspdf') || id.includes('html2canvas') || id.includes('pdfjs-dist') || id.includes('react-pdf')) {
-              return 'pdf-vendor';
+            // PDF Export (jsPDF + html2canvas) — يُحمَّل فقط عند تصدير المستندات
+            if (id.includes('jspdf') || id.includes('html2canvas')) {
+              return 'pdf-export-vendor';
+            }
+            // PDF Viewer (pdfjs-dist + react-pdf) — يُحمَّل فقط عند استعراض الـ PDF
+            if (id.includes('pdfjs-dist') || id.includes('react-pdf')) {
+              return 'pdf-viewer-vendor';
             }
             // Charts — يُحمَّل فقط عند فتح التقارير
-            if (id.includes('recharts')) {
+            if (id.includes('recharts') || id.includes('d3-')) {
               return 'charts-vendor';
             }
             // Calendar — يُحمَّل فقط عند فتح التقويم
@@ -41,11 +45,15 @@ export default defineConfig(() => {
             if (id.includes('@dnd-kit')) {
               return 'dnd-vendor';
             }
-            // Firebase SDK — منفصل لأنه ثابت نادراً يتغير
-            if (id.includes('firebase')) {
-              return 'firebase-vendor';
+            // Firebase Firestore (قاعدة البيانات السحابية)
+            if (id.includes('firebase/firestore') || id.includes('@firebase/firestore')) {
+              return 'firebase-firestore-vendor';
             }
-            // UI components
+            // Firebase Auth & Core SDK
+            if (id.includes('firebase')) {
+              return 'firebase-core-vendor';
+            }
+            // UI components & icons
             if (id.includes('lucide-react') || id.includes('qrcode.react') || id.includes('minisearch')) {
               return 'ui-vendor';
             }

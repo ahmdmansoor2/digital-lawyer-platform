@@ -8,7 +8,7 @@
  */
 'use strict';
 
-const VERSION = 'mohami-v1';
+const VERSION = 'mohami-v2';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 
@@ -17,6 +17,11 @@ const PRECACHE = [
   '/header.css',
   '/manifest.webmanifest',
   '/icon.svg',
+  '/pillars/',
+  '/pillars/index.html',
+  '/courts-directory.html',
+  '/legal-calculators.html',
+  '/court-precedents.html'
 ];
 
 self.addEventListener('install', (e) => {
@@ -68,6 +73,10 @@ async function cacheFirst(request) {
   return fresh;
 }
 
+function isCodeData(url) {
+  return url.pathname.startsWith('/data/codes/') || url.pathname.startsWith('/data/official-codes-pdf/');
+}
+
 self.addEventListener('fetch', (e) => {
   const req = e.request;
   if (req.method !== 'GET') return;
@@ -78,6 +87,12 @@ self.addEventListener('fetch', (e) => {
   // صفحات التنقل
   if (req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html')) {
     e.respondWith(networkFirst(req, '/'));
+    return;
+  }
+
+  // الأكواد التشريعية وكتب PDF الرسمية — حفظ دائم للعمل دون إنترنت في المحاكم
+  if (isCodeData(url)) {
+    e.respondWith(cacheFirst(req).catch(() => Response.error()));
     return;
   }
 

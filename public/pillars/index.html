@@ -182,6 +182,26 @@
     .pdf-law-sub { font-size: 0.9rem; font-weight: 700; color: #4338ca; }
     
     .pdf-article { margin-bottom: 24px; padding-bottom: 18px; border-bottom: 1px solid #e2e8f0; }
+    .btn-copy-citation {
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      color: #4338ca;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .btn-copy-citation:hover {
+      background: #4338ca;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(67, 56, 202, 0.3);
+    }
     .pdf-art-num { font-size: 1.18rem; font-weight: 900; color: #1e3a8a; margin-bottom: 10px; line-height: 1.45; border-right: 4px solid #3b82f6; padding-right: 10px; }
     .pdf-art-text { font-size: 1.08rem; line-height: 2.1; color: #0f172a; font-weight: 500; text-align: justify; letter-spacing: 0.015em; }
 
@@ -2057,6 +2077,28 @@ function copyAllCodeArticles() {
   });
   navigator.clipboard.writeText(fullText).then(() => {
     alert('✅ تم نسخ كافة مواد ' + currentActiveCode.title + ' (' + (currentActiveCode.articles ? currentActiveCode.articles.length : 0) + ' مادة) إلى الحافظة بنجاح!');
+  }).catch(() => {
+    alert('حدث خطأ أثناء النسخ.');
+  });
+}
+
+function copyArticleCitation(artNum, btn) {
+  if (!currentActiveCode) return;
+  const art = (currentActiveCode.articles || []).find(a => a.num === artNum || a.num.startsWith(artNum));
+  if (!art) return;
+
+  const citationText = `«${art.text.trim()}»\n\n— [${art.num}${art.title ? ' — ' + art.title : ''}] من ${currentActiveCode.title} (${currentActiveCode.lawNum}) — الجريدة الرسمية والوقائع المصرية.\n[مرجع تشريعي موثق: منصة المحامي الرقمية https://mohamidigital.online/pillars/]`;
+
+  navigator.clipboard.writeText(citationText).then(() => {
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '✓ تم النسخ للمذكرة';
+    btn.style.background = '#059669';
+    btn.style.color = '#fff';
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 2500);
   }).catch(() => {
     alert('حدث خطأ أثناء النسخ.');
   });
