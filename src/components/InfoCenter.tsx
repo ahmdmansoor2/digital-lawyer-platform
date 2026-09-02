@@ -1105,10 +1105,16 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                     <div>✓ منصة ناجز وديوان المظالم</div>
                   </div>
                 </div>
-                <a href="/saudi-legal-hub.html" className="block pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-emerald-400 group-hover:text-emerald-300 flex items-center justify-between">
-                  <span>دخول بوابة السعودية</span>
-                  <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
-                </a>
+                <div className="pt-2 border-t border-slate-800/80 space-y-1.5 mt-3">
+                  <a href="/saudi-legal-hub.html" className="text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center justify-between">
+                    <span>دخول بوابة السعودية</span>
+                    <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
+                  </a>
+                  <a href="/saudi-investors-egypt.html" className="text-[11px] font-bold text-amber-300 hover:text-white flex items-center justify-between bg-amber-500/10 px-2 py-1 rounded-lg border border-amber-500/20">
+                    <span>🏢 دليل المستثمر السعودي في مصر</span>
+                    <span>↗</span>
+                  </a>
+                </div>
               </div>
 
               {/* 2. UAE */}
@@ -1129,10 +1135,16 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                     <div>✓ محاكم دبي والقضاء الاتحادي</div>
                   </div>
                 </div>
-                <a href="/uae-legal-hub.html" className="block pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-blue-400 group-hover:text-blue-300 flex items-center justify-between">
-                  <span>دخول بوابة الإمارات</span>
-                  <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
-                </a>
+                <div className="pt-2 border-t border-slate-800/80 space-y-1.5 mt-3">
+                  <a href="/uae-legal-hub.html" className="text-xs font-bold text-blue-400 hover:text-blue-300 flex items-center justify-between">
+                    <span>دخول بوابة الإمارات</span>
+                    <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
+                  </a>
+                  <a href="/uae-investors-egypt.html" className="text-[11px] font-bold text-amber-300 hover:text-white flex items-center justify-between bg-amber-500/10 px-2 py-1 rounded-lg border border-amber-500/20">
+                    <span>🏢 دليل المستثمر الإماراتي في مصر</span>
+                    <span>↗</span>
+                  </a>
+                </div>
               </div>
 
               {/* 3. Kuwait (New) */}
@@ -1153,10 +1165,16 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                     <div>✓ وزارة العدل ومنصة سهل</div>
                   </div>
                 </div>
-                <a href="/kuwait-legal-hub.html" className="block pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-sky-400 group-hover:text-sky-300 flex items-center justify-between">
-                  <span>دخول بوابة الكويت</span>
-                  <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
-                </a>
+                <div className="pt-2 border-t border-slate-800/80 space-y-1.5 mt-3">
+                  <a href="/kuwait-legal-hub.html" className="text-xs font-bold text-sky-400 hover:text-sky-300 flex items-center justify-between">
+                    <span>دخول بوابة الكويت</span>
+                    <ArrowLeft className="w-3.5 h-3.5 transform group-hover:-translate-x-1 transition-transform" />
+                  </a>
+                  <a href="/kuwait-investors-egypt.html" className="text-[11px] font-bold text-amber-300 hover:text-white flex items-center justify-between bg-amber-500/10 px-2 py-1 rounded-lg border border-amber-500/20">
+                    <span>🏢 دليل المستثمر والمواطن الكويتي بمصر</span>
+                    <span>↗</span>
+                  </a>
+                </div>
               </div>
 
               {/* 4. Qatar */}
