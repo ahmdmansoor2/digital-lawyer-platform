@@ -180,17 +180,17 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               <ArrowLeft className="w-4 h-4 shrink-0" />
             </button>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 w-full sm:w-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 w-full sm:w-auto">
               <a
                 href="/contract-generator.html"
-                className="px-2.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-purple-950/80 text-purple-200 hover:text-white font-bold text-[11px] sm:text-sm border border-purple-500/40 hover:border-purple-400 hover:bg-purple-900/60 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg text-center"
+                className="px-2.5 py-2.5 sm:px-3 sm:py-3 rounded-xl sm:rounded-2xl bg-purple-950/80 text-purple-200 hover:text-white font-bold text-[11px] sm:text-xs lg:text-sm border border-purple-500/40 hover:border-purple-400 hover:bg-purple-900/60 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg text-center"
               >
                 <FileSignature className="w-4 h-4 text-purple-400 shrink-0" />
                 <span>صانع العقود ⚡</span>
               </a>
               <a
                 href="/law-students-hub.html"
-                className="px-2.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-slate-900/90 text-slate-100 hover:text-white font-bold text-[11px] sm:text-sm border border-blue-500/40 hover:border-blue-400 hover:bg-slate-800/90 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg text-center"
+                className="px-2.5 py-2.5 sm:px-3 sm:py-3 rounded-xl sm:rounded-2xl bg-slate-900/90 text-slate-100 hover:text-white font-bold text-[11px] sm:text-xs lg:text-sm border border-blue-500/40 hover:border-blue-400 hover:bg-slate-800/90 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg text-center"
               >
                 <GraduationCap className="w-4 h-4 text-blue-400 shrink-0" />
                 <span>طلاب الحقوق</span>
@@ -198,17 +198,31 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
               <a
                 href="/legal-library.html"
-                className="px-2.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-slate-900/90 text-slate-100 hover:text-white font-bold text-[11px] sm:text-sm border border-indigo-500/40 hover:border-indigo-400 hover:bg-slate-800/90 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg text-center"
+                className="px-2.5 py-2.5 sm:px-3 sm:py-3 rounded-xl sm:rounded-2xl bg-slate-900/90 text-slate-100 hover:text-white font-bold text-[11px] sm:text-xs lg:text-sm border border-indigo-500/40 hover:border-indigo-400 hover:bg-slate-800/90 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg text-center"
               >
                 <Library className="w-4 h-4 text-indigo-400 shrink-0" />
                 <span>المكتبة الكبرى</span>
               </a>
 
+              <a
+                href="#gulf-hub"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveTab('gulf');
+                  const el = document.getElementById('gulf-hub');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-2.5 py-2.5 sm:px-3 sm:py-3 rounded-xl sm:rounded-2xl bg-emerald-950/80 text-emerald-200 hover:text-white font-bold text-[11px] sm:text-xs lg:text-sm border border-emerald-500/40 hover:border-emerald-400 hover:bg-emerald-900/60 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg text-center cursor-pointer"
+              >
+                <Globe className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>دول الخليج 🌍</span>
+              </a>
+
               <button
                 onClick={() => setIsAIAdvisorOpen(true)}
-                className="px-2.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl bg-emerald-950/70 text-emerald-300 hover:text-emerald-100 font-bold text-[11px] sm:text-sm border border-emerald-500/40 hover:border-emerald-400 hover:bg-emerald-900/50 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg cursor-pointer text-center"
+                className="px-2.5 py-2.5 sm:px-3 sm:py-3 rounded-xl sm:rounded-2xl bg-slate-900/90 text-amber-300 hover:text-amber-100 font-bold text-[11px] sm:text-xs lg:text-sm border border-amber-500/40 hover:border-amber-400 hover:bg-slate-800/90 transition-all duration-200 flex flex-col sm:flex-row items-center justify-center gap-1 shadow-lg cursor-pointer text-center col-span-2 sm:col-span-1"
               >
-                <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
+                <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>مستشار AI</span>
               </button>
             </div>
@@ -1050,7 +1064,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
         {/* ── MASTER HUB 6: GULF REGIONAL HUB (كارت دول الخليج العربي الستة) ── */}
         {(activeTab === 'all' || activeTab === 'gulf') && (
-          <section className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-green-950/60 via-slate-900/90 to-slate-950 border border-green-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-green-400/50">
+          <section id="gulf-hub" className="p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-green-950/60 via-slate-900/90 to-slate-950 border border-green-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-green-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-green-900/50">
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
