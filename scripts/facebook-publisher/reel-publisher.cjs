@@ -145,8 +145,14 @@ async function processTopic(topic, opts) {
   // 5. النشر على فيسبوك
   if (!opts.dryRun) {
     console.log('\n📤 جاري النشر على فيسبوك...');
-    const hashtags = buildHashtags(topic);
-    const description = `${plan.hook}\n\n${hashtags.join(' ')}`;
+    const description = [
+      plan.hook,
+      '',
+      '🌐 احسب مستحقاتك والتعويضات واستشر محاميك مجاناً:',
+      '👉 https://mohamidigital.online/legal-calculators.html',
+      '',
+      hashtags.join(' ')
+    ].join('\n');
 
     const result = await publishReel({
       videoPath,

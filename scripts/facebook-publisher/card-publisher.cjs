@@ -449,8 +449,9 @@ function buildCaption(card) {
     ``,
     hashtags,
     ``,
-    `⚖️ منصة المحامي الرقمية — ${card.cta}`,
-    `🌐 تصفح المنصة واستشر محاميك مجاناً: https://mohamidigital.online`,
+    `⚖️ منصة المحامي الرقمية 2026 — ${card.cta}`,
+    `🧮 احسب مستحقاتك والتعويضات فوراً: https://mohamidigital.online/legal-calculators.html`,
+    `🌐 المنصة الرسمية لكافة الاستشارات وصيغ الدعاوى: https://mohamidigital.online/`,
   ].join('\n');
 }
 

@@ -93,8 +93,13 @@ function buildDescription(text, hashtags) {
   return [
     body,
     '',
-    '⚖️ منصة المحامي الرقمية — محتوى قانوني مبسّط للمواطن المصري',
-    'للمزيد من المقالات القانونية: ' + CHANNEL_URL,
+    '⚖️ منصة المحامي الرقمية 2026 — مستشارك القانوني الذكي وموسوعة العدالة',
+    '🌐 ادخل المنصة واحسب مستحقاتك القانونية مجاناً:',
+    '👉 الموقع الرسمي: https://mohamidigital.online/',
+    '🧮 حاسبات نهاية الخدمة والمواريث والنفقات:',
+    '👉 https://mohamidigital.online/legal-calculators.html',
+    '',
+    'قناة المنصة: ' + CHANNEL_URL,
     '',
     tags,
   ].join('\n').trim();

@@ -281,6 +281,52 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </button>
         </div>
 
+        {/* ── Featured Fast Tools: Top 5 High-Demand Calculators 2026 ── */}
+        <div className="max-w-4xl mx-auto mb-4 px-2 relative z-10">
+          <div className="p-2.5 sm:p-3 rounded-2xl bg-gradient-to-r from-emerald-950/50 via-slate-900/80 to-indigo-950/50 border border-emerald-500/25 backdrop-blur-xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-2.5">
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span className="text-xs font-black text-emerald-300">أشهر الحاسبات القضائية 2026:</span>
+            </div>
+            
+            <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 scrollbar-none justify-start sm:justify-end">
+              <a
+                href="/calculate-end-of-service.html"
+                className="px-2.5 py-1.5 rounded-xl bg-emerald-900/40 hover:bg-emerald-800/70 border border-emerald-500/30 text-emerald-200 hover:text-white text-[11px] font-bold transition-all whitespace-nowrap flex items-center gap-1 shrink-0"
+              >
+                <span>💼 نهاية الخدمة</span>
+              </a>
+              <a
+                href="/calculate-inheritance.html"
+                className="px-2.5 py-1.5 rounded-xl bg-sky-900/40 hover:bg-sky-800/70 border border-sky-500/30 text-sky-200 hover:text-white text-[11px] font-bold transition-all whitespace-nowrap flex items-center gap-1 shrink-0"
+              >
+                <span>⚖️ حاسبة المواريث</span>
+              </a>
+              <a
+                href="/calculate-alimony.html"
+                className="px-2.5 py-1.5 rounded-xl bg-pink-900/40 hover:bg-pink-800/70 border border-pink-500/30 text-pink-200 hover:text-white text-[11px] font-bold transition-all whitespace-nowrap flex items-center gap-1 shrink-0"
+              >
+                <span>👨‍👩‍👧 نفقة الزوجة والصغار</span>
+              </a>
+              <a
+                href="/real-estate-registration-fees.html"
+                className="px-2.5 py-1.5 rounded-xl bg-amber-900/40 hover:bg-amber-800/70 border border-amber-500/30 text-amber-200 hover:text-white text-[11px] font-bold transition-all whitespace-nowrap flex items-center gap-1 shrink-0"
+              >
+                <span>🏠 الشهر العقاري</span>
+              </a>
+              <a
+                href="/appeal-deadlines.html"
+                className="px-2.5 py-1.5 rounded-xl bg-purple-900/40 hover:bg-purple-800/70 border border-purple-500/30 text-purple-200 hover:text-white text-[11px] font-bold transition-all whitespace-nowrap flex items-center gap-1 shrink-0"
+              >
+                <span>⏱️ مواعيد الطعون</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
         {/* Quick Filter Navigation Tabs (Mobile swipe track / Desktop 2-tier balanced dock) */}
         <div className="max-w-5xl mx-auto mt-2 relative z-10">
           {/* Mobile view: Swipeable track */}
@@ -787,7 +833,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               
               {/* 1. Real Estate Registration */}
-              <a href="/legal-calculators.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+              <a href="/real-estate-registration-fees.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">🏠</div>
                   <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
@@ -804,7 +850,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               </a>
 
               {/* 2. Legal Deadlines & Appeals */}
-              <a href="/legal-calculators.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+              <a href="/appeal-deadlines.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">⚖️</div>
                   <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
@@ -821,7 +867,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               </a>
 
               {/* 3. Egypt Labor End of Service */}
-              <a href="/legal-calculators.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
+              <a href="/calculate-end-of-service.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">💼</div>
                   <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
@@ -855,7 +901,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               </a>
 
               {/* 5. Islamic Inheritance */}
-              <div onClick={onEnterApp} className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between cursor-pointer">
+              <a href="/calculate-inheritance.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">🧮</div>
                   <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
@@ -869,7 +915,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                   <span>حساب التركة الشرعية</span>
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
-              </div>
+              </a>
 
               {/* 6. Company Incorporation Fees */}
               <a href="/company-incorporation.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-emerald-500/20 hover:border-emerald-400 transition-all flex flex-col justify-between">
