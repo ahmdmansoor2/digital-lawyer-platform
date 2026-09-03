@@ -2076,6 +2076,42 @@
       ],
       "words": 1706,
       "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "المسؤولية القانونية لشركات النقل الذكي: حقوق الركاب والسائقين في قانون أوبر وكريم بمصر",
+      "date": "2026-09-03",
+      "slug": "uber-ride-hailing-law-egypt",
+      "url": "https://mohamidigital.online/blog/uber-ride-hailing-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/uber-ride-hailing-law-egypt.jpg",
+      "tags": [
+        "قانون النقل"
+      ],
+      "words": 2312,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "دعاوى إثبات الخطأ الطبي والتعويض عنها في القانون المصري: دليل المرضى والأطباء",
+      "date": "2026-09-03",
+      "slug": "medical-malpractice-lawsuits-egypt",
+      "url": "https://mohamidigital.online/blog/medical-malpractice-lawsuits-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/medical-malpractice-lawsuits-egypt.jpg",
+      "tags": [
+        "المسؤولية الطبية"
+      ],
+      "words": 0,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "التعويض عن حوادث القطارات ووسائل النقل العام في القانون المصري: الإجراءات والشروط",
+      "date": "2026-09-03",
+      "slug": "train-accident-compensation-egypt",
+      "url": "https://mohamidigital.online/blog/train-accident-compensation-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/train-accident-compensation-egypt.jpg",
+      "tags": [
+        "التعويضات"
+      ],
+      "words": 1741,
+      "model": "gemini-3.6-flash"
     }
   ]
 }
