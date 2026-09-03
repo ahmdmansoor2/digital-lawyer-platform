@@ -1,11 +1,11 @@
 {
-  "date": "2026-09-02",
-  "generatedAt": "2026-09-02T20:12:48.183Z",
-  "status": "ok",
+  "date": "2026-09-03",
+  "generatedAt": "2026-09-03T10:20:36.356Z",
+  "status": "error",
   "blogArticles": 171,
-  "fbPosts": 7,
-  "reels": 2,
-  "ghRuns": 17,
+  "fbPosts": 0,
+  "reels": 0,
+  "ghRuns": 16,
   "checks": [
     {
       "name": "site_root",
@@ -34,14 +34,14 @@
     {
       "name": "facebook",
       "label": "فيسبوك: منشورات اليوم والصور والريلز",
-      "status": "ok",
-      "findings": 0
+      "status": "warn",
+      "findings": 2
     },
     {
       "name": "github_runs",
       "label": "GitHub: نتائج تشغيل الـ workflows (آخر 24 ساعة)",
-      "status": "ok",
-      "findings": 0
+      "status": "error",
+      "findings": 1
     },
     {
       "name": "log_vs_live",
