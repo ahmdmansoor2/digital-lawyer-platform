@@ -195,10 +195,12 @@ export default function App({ userUid, onRequestLogin }: { userUid?: string; onR
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [appTheme, setAppTheme] = useState<'slate' | 'golden' | 'dark' | 'palace' | 'modern' | 'natural' | 'night' | 'cobalt' | 'wine' | 'carbon' | 'ivory' | 'sapphire' | 'rose'>(() => {
     const saved = localStorage.getItem(getLSKey('app_theme'));
-    if (saved && saved !== 'slate') return saved as any;
-
-    // The signature authentic look is the dark executive theme
-    return 'dark';
+    // v2.9.12 migration: سابقاً تم فرض 'dark' كقيمة افتراضية بالخطأ → إعادة ضبطها لـ 'slate'
+    if (saved === 'dark' && !localStorage.getItem(getLSKey('theme_dark_intentional'))) {
+      localStorage.removeItem(getLSKey('app_theme'));
+      return 'slate';
+    }
+    return (saved as any) || 'slate';
   });
   const [isInIframe, setIsInIframe] = useState(false);
 
@@ -311,17 +313,7 @@ clients: true,
     localStorage.setItem(getLSKey('app_theme'), appTheme);
   }, [appTheme, getLSKey]);
 
-  // Keep the authenticated workspace aligned with the default executive dark theme.
-  useEffect(() => {
-    const savedAppTheme = localStorage.getItem(getLSKey('app_theme'));
-    if (!savedAppTheme || savedAppTheme === 'slate') {
-      setAppTheme('dark');
-      localStorage.setItem(getLSKey('app_theme'), 'dark');
-    }
-    if (typeof document !== 'undefined') {
-      document.documentElement.classList.add('dark');
-    }
-  }, [getLSKey]);
+  // v2.9.12: Removed forced dark-mode override — theme is driven by user preference only.
 
   // Dynamic background mapping
   const getThemeBgClass = () => {
