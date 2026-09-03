@@ -12,7 +12,7 @@ export const getInitialPublicTheme = (): PublicTheme => {
   const saved = window.localStorage.getItem(PUBLIC_THEME_STORAGE_KEY);
   if (isPublicTheme(saved)) return saved;
 
-  return window.matchMedia?.('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  return 'dark'; // Always default to the platform's signature executive dark theme
 };
 
 export const applyPublicTheme = (theme: PublicTheme): void => {
@@ -22,6 +22,7 @@ export const applyPublicTheme = (theme: PublicTheme): void => {
   root.dataset.publicTheme = theme;
   root.classList.toggle('public-theme-light', theme === 'light');
   root.classList.toggle('public-theme-dark', theme === 'dark');
+  root.classList.toggle('dark', theme === 'dark');
   root.style.colorScheme = theme;
 };
 

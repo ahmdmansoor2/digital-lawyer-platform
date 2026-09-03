@@ -195,10 +195,10 @@ export default function App({ userUid, onRequestLogin }: { userUid?: string; onR
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [appTheme, setAppTheme] = useState<'slate' | 'golden' | 'dark' | 'palace' | 'modern' | 'natural' | 'night' | 'cobalt' | 'wine' | 'carbon' | 'ivory' | 'sapphire' | 'rose'>(() => {
     const saved = localStorage.getItem(getLSKey('app_theme'));
-    if (saved) return saved as any;
+    if (saved && saved !== 'slate') return saved as any;
 
-    // Carry the public light/dark preference into the authenticated workspace.
-    return getInitialPublicTheme() === 'dark' ? 'dark' : 'slate';
+    // The signature authentic look is the dark executive theme
+    return 'dark';
   });
   const [isInIframe, setIsInIframe] = useState(false);
 
@@ -311,14 +311,15 @@ clients: true,
     localStorage.setItem(getLSKey('app_theme'), appTheme);
   }, [appTheme, getLSKey]);
 
-  // Keep the authenticated workspace aligned with the public light/dark choice.
-  // Custom workspace themes remain untouched once the user explicitly selects one.
+  // Keep the authenticated workspace aligned with the default executive dark theme.
   useEffect(() => {
-    const publicTheme = getInitialPublicTheme();
     const savedAppTheme = localStorage.getItem(getLSKey('app_theme'));
-    if (!savedAppTheme || savedAppTheme === 'slate' || savedAppTheme === 'dark') {
-      const nextAppTheme = publicTheme === 'dark' ? 'dark' : 'slate';
-      setAppTheme((currentTheme) => currentTheme === nextAppTheme ? currentTheme : nextAppTheme);
+    if (!savedAppTheme || savedAppTheme === 'slate') {
+      setAppTheme('dark');
+      localStorage.setItem(getLSKey('app_theme'), 'dark');
+    }
+    if (typeof document !== 'undefined') {
+      document.documentElement.classList.add('dark');
     }
   }, [getLSKey]);
 
@@ -349,8 +350,10 @@ clients: true,
         return 'bg-[#0a1628] text-[#e0eeff]';
       case 'rose':
         return 'bg-[#fff5f7] text-[#2d0a14]';
+      case 'slate':
+        return 'bg-[#050b18] text-[#f8fafc]';
       default:
-        return 'bg-[#f0f2f5] text-slate-800';
+        return 'bg-[#030712] text-[#f8fafc]';
     }
   };
 

@@ -182,7 +182,8 @@ body {
 /* ==========================================================================
    CONSCIOUS DARK PRESET (التصميم الداكن المريح)
    ========================================================================== */
-.theme-dark {
+.theme-dark,
+.theme-slate {
   --dark-card: #0f172a;
   --dark-card-alt: #1a2332;
   --dark-border: #1e293b;
@@ -192,7 +193,8 @@ body {
   --dark-bg-sub: #0b0f19;
 }
 
-.theme-dark .bg-white {
+.theme-dark .bg-white,
+.theme-slate .bg-white {
   background-color: var(--dark-card) !important;
   color: var(--dark-text) !important;
   border-color: var(--dark-border) !important;
@@ -200,14 +202,20 @@ body {
 
 .theme-dark select, 
 .theme-dark input, 
-.theme-dark textarea {
+.theme-dark textarea,
+.theme-slate select, 
+.theme-slate input, 
+.theme-slate textarea {
   background-color: var(--dark-bg-sub) !important;
   color: var(--dark-text) !important;
   border-color: var(--dark-border) !important;
 }
 .theme-dark select:focus,
 .theme-dark input:focus,
-.theme-dark textarea:focus {
+.theme-dark textarea:focus,
+.theme-slate select:focus,
+.theme-slate input:focus,
+.theme-slate textarea:focus {
   border-color: #6366f1 !important;
   box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15) !important;
 }
@@ -217,13 +225,21 @@ body {
 .theme-dark [class*="bg-slate-50/"],
 .theme-dark [class*="bg-slate-100/"],
 .theme-dark [class*="hover:bg-slate-50"],
-.theme-dark [class*="hover:bg-slate-100"] {
+.theme-dark [class*="hover:bg-slate-100"],
+.theme-slate .bg-slate-50,
+.theme-slate .bg-slate-100,
+.theme-slate [class*="bg-slate-50/"],
+.theme-slate [class*="bg-slate-100/"],
+.theme-slate [class*="hover:bg-slate-50"],
+.theme-slate [class*="hover:bg-slate-100"] {
   background-color: var(--dark-card-alt) !important;
   color: var(--dark-text) !important;
 }
 
 .theme-dark .bg-slate-150,
-.theme-dark .bg-slate-250 {
+.theme-dark .bg-slate-250,
+.theme-slate .bg-slate-150,
+.theme-slate .bg-slate-250 {
   background-color: #1a2332 !important;
 }
 
@@ -235,33 +251,52 @@ body {
 .theme-dark .text-slate-700,
 .theme-dark .text-gray-950,
 .theme-dark .text-gray-900,
-.theme-dark .text-black {
+.theme-dark .text-black,
+.theme-slate .text-slate-950,
+.theme-slate .text-slate-900,
+.theme-slate .text-slate-850,
+.theme-slate .text-slate-800,
+.theme-slate .text-slate-700,
+.theme-slate .text-gray-950,
+.theme-slate .text-gray-900,
+.theme-slate .text-black {
   color: var(--dark-text) !important;
 }
 
 .theme-dark .text-slate-600,
-.theme-dark .text-slate-550 {
+.theme-dark .text-slate-550,
+.theme-slate .text-slate-600,
+.theme-slate .text-slate-550 {
   color: var(--dark-text-secondary) !important;
 }
 
 .theme-dark .text-slate-500,
 .theme-dark .text-slate-450,
-.theme-dark .text-slate-400 {
+.theme-dark .text-slate-400,
+.theme-slate .text-slate-500,
+.theme-slate .text-slate-450,
+.theme-slate .text-slate-400 {
   color: var(--dark-muted) !important;
 }
 
 .theme-dark .border-slate-200,
 .theme-dark .border-slate-100,
-.theme-dark .border-slate-150 {
+.theme-dark .border-slate-150,
+.theme-slate .border-slate-200,
+.theme-slate .border-slate-100,
+.theme-slate .border-slate-150 {
   border-color: var(--dark-border) !important;
 }
 
 .theme-dark .row-hover:hover, 
-.theme-dark tbody tr:hover {
+.theme-dark tbody tr:hover,
+.theme-slate .row-hover:hover, 
+.theme-slate tbody tr:hover {
   background-color: #1a2332 !important;
 }
 
-.theme-dark .theme-main-bg {
+.theme-dark .theme-main-bg,
+.theme-slate .theme-main-bg {
   background-color: #050b18 !important;
 }
 

@@ -476,15 +476,15 @@ const Dashboard = React.memo(function Dashboard({
       <div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         
         {/* Today & Tomorrow Sessions Table (الأجندة القريبة) */}
-        <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-sm lg:col-span-2 space-y-3">
-          <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div className="bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 shadow-sm lg:col-span-2 space-y-3">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800/80">
             <div className="space-y-1">
-              <h3 className="text-base font-bold text-slate-900">أجندة الجلسات القادمة الفورية</h3>
-              <p className="text-xs text-slate-500">أعمال المحاكم اليوم والغد</p>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white">أجندة الجلسات القادمة الفورية</h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400">أعمال المحاكم اليوم والغد</p>
             </div>
             <button 
               onClick={() => onNavigate('calendar')} 
-              className="text-xs font-semibold text-slate-600 hover:text-indigo-700 flex items-center gap-1 transition"
+              className="text-xs font-semibold text-slate-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 flex items-center gap-1 transition"
               id="view-all-sessions-btn"
             >
               إدارة كافة الجلسات
@@ -494,7 +494,7 @@ const Dashboard = React.memo(function Dashboard({
 
           <div className="space-y-3">
             {sessions.filter(s => s.status === 'قادمة').length === 0 ? (
-              <div className="py-8 text-center text-slate-400 text-sm">
+              <div className="py-8 text-center text-slate-400 dark:text-slate-500 text-sm">
                 لا توجد جلسات مجدولة قريباً.
               </div>
             ) : (
@@ -512,28 +512,28 @@ const Dashboard = React.memo(function Dashboard({
                   return (
                     <div 
                       key={session.id} 
-                      className="p-4 border border-slate-100 rounded-xl hover:bg-slate-50/50 transition flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+                      className="p-4 border border-slate-100 dark:border-slate-800/80 rounded-xl hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
                       id={`session-row-${session.id}`}
                     >
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                          <span className="p-1 px-2 text-[10px] font-bold rounded bg-indigo-50 text-indigo-700">رقم: {session.caseNumber}</span>
-                          <span className="text-xs text-slate-500">{session.court}</span>
+                          <span className="p-1 px-2 text-[10px] font-bold rounded bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300">رقم: {session.caseNumber}</span>
+                          <span className="text-xs text-slate-500 dark:text-slate-400">{session.court}</span>
                         </div>
-                        <h4 className="font-bold text-slate-900 text-sm">{session.clientName}</h4>
-                        <p className="text-xs text-slate-600 line-clamp-1"><strong className="text-indigo-700">مطلوب: </strong>{session.objective}</p>
+                        <h4 className="font-bold text-slate-900 dark:text-white text-sm">{session.clientName}</h4>
+                        <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-1"><strong className="text-indigo-700 dark:text-indigo-400">مطلوب: </strong>{session.objective}</p>
                       </div>
 
-                      <div className="flex md:flex-col items-end justify-between md:justify-center w-full md:w-auto border-t md:border-0 pt-2 md:pt-0 border-slate-100 text-end">
+                      <div className="flex md:flex-col items-end justify-between md:justify-center w-full md:w-auto border-t md:border-0 pt-2 md:pt-0 border-slate-100 dark:border-slate-800/80 text-end">
                         <div className="flex items-center gap-2">
                           <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${
-                            daysDiff === 0 ? 'bg-red-50 text-red-600 border border-red-100' : 'bg-slate-50 text-slate-700'
+                            daysDiff === 0 ? 'bg-red-50 dark:bg-red-950/50 text-red-600 dark:text-red-400 border border-red-100 dark:border-red-900/50' : 'bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
                           }`}>
                             {dayLabel}
                           </span>
                           {onDeleteSession && (
                             <button
-                              onClick={async e => { e.stopPropagation(); if (await confirm('حذف هذه الجلسɿ')) onDeleteSession(session.id); }}
+                              onClick={async e => { e.stopPropagation(); if (await confirm('حذف هذه الجلسة')) onDeleteSession(session.id); }}
                               className="text-slate-300 hover:text-red-500 transition p-0.5"
                               title="حذف الجلسة"
                             >
@@ -551,26 +551,26 @@ const Dashboard = React.memo(function Dashboard({
         </div>
 
         {/* Column Right: Action Shortcut Board */}
-        <div className="bg-white border border-slate-200 rounded-lg p-4 shadow-sm space-y-4">
-          <div className="pb-2 border-b border-slate-100">
-            <h3 className="text-sm font-bold text-slate-800">إجراء سريع وإداري</h3>
-            <p className="text-[11px] text-slate-500">الوصول السريع لنماذج الأدوات القانونية</p>
+        <div className="bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 shadow-sm space-y-4">
+          <div className="pb-2 border-b border-slate-100 dark:border-slate-800/80">
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white">إجراء سريع وإداري</h3>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400">الوصول السريع لنماذج الأدوات القانونية</p>
           </div>
 
           <div className="space-y-2">
             
             <button 
               onClick={() => onNavigate('cases')}
-              className="w-full text-end p-3 rounded-lg border border-slate-100 hover:border-indigo-600/30 hover:bg-slate-50 flex items-center justify-between transition group"
+              className="w-full text-end p-3 rounded-lg border border-slate-100 dark:border-slate-800/80 hover:border-indigo-600/30 hover:bg-slate-50 dark:hover:bg-slate-800/60 flex items-center justify-between transition group"
               id="shortcut-add-case"
             >
               <div className="flex items-center gap-2.5">
-                <div className="p-2 bg-indigo-50 text-indigo-600 rounded group-hover:bg-indigo-100 transition">
+                <div className="p-2 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/50 transition">
                   <Scale className="h-4.5 w-4.5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-850 text-xs">تسجيل قضية جديدة</h4>
-                  <p className="text-[10px] text-slate-400">رقم، محكمɡ أتعاب ودرجة تقاضي</p>
+                  <h4 className="font-bold text-slate-850 dark:text-white text-xs">تسجيل قضية جديدة</h4>
+                  <p className="text-[10px] text-slate-400 dark:text-slate-400">رقم، محكمة، أتعاب ودرجة تقاضي</p>
                 </div>
               </div>
               <ChevronLeft className="h-3.5 w-3.5 text-slate-400 group-hover:translate-x-[-2px] transition-transform" />
@@ -578,16 +578,16 @@ const Dashboard = React.memo(function Dashboard({
 
             <button 
               onClick={() => onNavigate('clients')}
-              className="w-full text-end p-3 rounded-lg border border-slate-100 hover:border-indigo-600/30 hover:bg-slate-50 flex items-center justify-between transition group"
+              className="w-full text-end p-3 rounded-lg border border-slate-100 dark:border-slate-800/80 hover:border-indigo-600/30 hover:bg-slate-50 dark:hover:bg-slate-800/60 flex items-center justify-between transition group"
               id="shortcut-add-client"
             >
               <div className="flex items-center gap-2.5">
-                <div className="p-2 bg-sky-50 text-sky-600 rounded group-hover:bg-sky-100 transition">
+                <div className="p-2 bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-400 rounded group-hover:bg-sky-100 dark:group-hover:bg-sky-900/50 transition">
                   <Users className="h-4.5 w-4.5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-850 text-xs">إضافة موكل وتوكيل رسمي</h4>
-                  <p className="text-[10px] text-slate-400">إثبات هوية وتسجيل أرقام توثيقات</p>
+                  <h4 className="font-bold text-slate-850 dark:text-white text-xs">إضافة موكل وتوكيل رسمي</h4>
+                  <p className="text-[10px] text-slate-400 dark:text-slate-400">إثبات هوية وتسجيل أرقام توثيقات</p>
                 </div>
               </div>
               <ChevronLeft className="h-3.5 w-3.5 text-slate-400 group-hover:translate-x-[-2px] transition-transform" />
@@ -595,16 +595,16 @@ const Dashboard = React.memo(function Dashboard({
 
             <button 
               onClick={() => onNavigate('templates')}
-              className="w-full text-end p-3 rounded-lg border border-slate-100 hover:border-indigo-600/30 hover:bg-slate-50 flex items-center justify-between transition group"
+              className="w-full text-end p-3 rounded-lg border border-slate-100 dark:border-slate-800/80 hover:border-indigo-600/30 hover:bg-slate-50 dark:hover:bg-slate-800/60 flex items-center justify-between transition group"
               id="shortcut-view-templates"
             >
               <div className="flex items-center gap-2.5">
-                <div className="p-2 bg-indigo-50 text-indigo-600 rounded group-hover:bg-indigo-100 transition">
+                <div className="p-2 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/50 transition">
                   <FileText className="h-4.5 w-4.5" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-850 text-xs">إنشاء العقود وصحف الدعاوى</h4>
-                  <p className="text-[10px] text-slate-400">صحف ونماذج العقود والإنذارات التفاعلية</p>
+                  <h4 className="font-bold text-slate-850 dark:text-white text-xs">إنشاء العقود وصحف الدعاوى</h4>
+                  <p className="text-[10px] text-slate-400 dark:text-slate-400">صحف ونماذج العقود والإنذارات التفاعلية</p>
                 </div>
               </div>
               <ChevronLeft className="h-3.5 w-3.5 text-slate-400 group-hover:translate-x-[-2px] transition-transform" />
@@ -612,16 +612,16 @@ const Dashboard = React.memo(function Dashboard({
 
             <button 
               onClick={() => onNavigate('legal-library')}
-              className="w-full text-end p-3 rounded-lg border border-slate-100 hover:border-indigo-600/30 hover:bg-slate-50 flex items-center justify-between transition group"
+              className="w-full text-end p-3 rounded-lg border border-slate-100 dark:border-slate-800/80 hover:border-indigo-600/30 hover:bg-slate-50 dark:hover:bg-slate-800/60 flex items-center justify-between transition group"
               id="shortcut-view-library"
             >
               <div className="flex items-center gap-2.5">
-                <div className="p-2 bg-indigo-50 text-indigo-650 rounded group-hover:bg-indigo-100 transition text-indigo-605">
-                  <BookOpen className="h-4.5 w-4.5 text-indigo-600" />
+                <div className="p-2 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 rounded group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900/50 transition">
+                  <BookOpen className="h-4.5 w-4.5 text-indigo-600 dark:text-indigo-400" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-850 text-xs">البحث في المكتبة القانونية</h4>
-                  <p className="text-[10px] text-slate-400">الأكواد الأساسية ومبادئ محكمة النقض المصرية</p>
+                  <h4 className="font-bold text-slate-850 dark:text-white text-xs">البحث في المكتبة القانونية</h4>
+                  <p className="text-[10px] text-slate-400 dark:text-slate-400">الأكواد الأساسية ومبادئ محكمة النقض المصرية</p>
                 </div>
               </div>
               <ChevronLeft className="h-3.5 w-3.5 text-slate-400 group-hover:translate-x-[-2px] transition-transform" />
@@ -629,12 +629,12 @@ const Dashboard = React.memo(function Dashboard({
 
           </div>
 
-          <div className="bg-slate-50 p-3 rounded border border-slate-100">
-            <h4 className="text-[11px] font-bold text-slate-750 mb-1 flex items-center gap-1.5">
-              <Clock className="h-3.5 w-3.5 text-indigo-600" />
+          <div className="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+            <h4 className="text-[11px] font-bold text-slate-750 dark:text-slate-200 mb-1 flex items-center gap-1.5">
+              <Clock className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" />
               تذكير بالمواعيد المدنية والجنائية بمصر
             </h4>
-            <ul className="text-[10px] text-slate-500 space-y-0.5 list-disc list-inside">
+            <ul className="text-[10px] text-slate-500 dark:text-slate-400 space-y-0.5 list-disc list-inside">
               <li>استئناف الأحكام المدنية والتجارية: ٤٠ يوماً</li>
               <li>الطعن بالمعارضة والاستئناف الجنائي: ١٠ أيام</li>
               <li>الطعن أمام محكمة النقض الجنائي/المدني: ٦٠ يوماً</li>
@@ -647,11 +647,11 @@ const Dashboard = React.memo(function Dashboard({
 
       {/* Case Type Distribution Chart */}
       {casesByType.length > 0 && (
-        <div variants={itemVariants} className="bg-white border border-slate-200 rounded-lg p-4 shadow-sm space-y-3">
-          <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+        <div variants={itemVariants} className="bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 shadow-sm space-y-3">
+          <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800/80">
             <div className="space-y-0.5">
-              <h3 className="text-sm font-bold text-slate-800">توزيع القضايا حسب النوع</h3>
-              <p className="text-[11px] text-slate-500">نسبة التخصصات القانونية بالمكتب</p>
+              <h3 className="text-sm font-bold text-slate-800 dark:text-white">توزيع القضايا حسب النوع</h3>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">نسبة التخصصات القانونية بالمكتب</p>
             </div>
           </div>
           <div className="flex items-center gap-6 flex-wrap">
@@ -670,8 +670,8 @@ const Dashboard = React.memo(function Dashboard({
               {casesByType.map((item, i) => (
                 <div key={item.name} className="flex items-center gap-2 text-xs">
                   <span className="w-3 h-3 rounded-sm" style={{ backgroundColor: CHART_COLORS[i % CHART_COLORS.length] }} />
-                  <span className="font-bold text-slate-700">{item.name}</span>
-                  <span className="text-slate-400">({item.value})</span>
+                  <span className="font-bold text-slate-700 dark:text-slate-200">{item.name}</span>
+                  <span className="text-slate-400 dark:text-slate-400">({item.value})</span>
                 </div>
               ))}
             </div>
@@ -680,15 +680,15 @@ const Dashboard = React.memo(function Dashboard({
       )}
 
       {/* Financial Overview (الدائن والمدين مؤخراً) */}
-      <div variants={itemVariants} className="bg-white border border-slate-200 rounded-lg p-4 shadow-sm space-y-3">
-        <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+      <div variants={itemVariants} className="bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 rounded-2xl p-4 shadow-sm space-y-3">
+        <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800/80">
           <div className="space-y-0.5">
-            <h3 className="text-sm font-bold text-slate-800">آخر التحركات والواردات بالخزينة</h3>
-            <p className="text-[11px] text-slate-500">إيصالات الدفع وأتعاب الموكلين</p>
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white">آخر التحركات والواردات بالخزينة</h3>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400">إيصالات الدفع وأتعاب الموكلين</p>
           </div>
           <button 
             onClick={() => onNavigate('financials')} 
-            className="text-xs font-semibold text-slate-600 hover:text-indigo-700 flex items-center gap-1 transition"
+            className="text-xs font-semibold text-slate-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 flex items-center gap-1 transition"
             id="view-financials-btn"
           >
             دفتر المالية بالكامل
@@ -700,14 +700,14 @@ const Dashboard = React.memo(function Dashboard({
           {transactions.slice(0, 3).map((transaction) => (
             <div 
               key={transaction.id} 
-              className="p-2.5 border border-slate-100 rounded bg-slate-50/20 flex items-center justify-between gap-3"
+              className="p-2.5 border border-slate-100 dark:border-slate-800/80 rounded-xl bg-slate-50/20 dark:bg-slate-800/40 flex items-center justify-between gap-3"
               id={`transaction-mini-${transaction.id}`}
             >
               <div className="flex items-center gap-2.5">
                 <div className={`p-1.5 rounded ${
                   transaction.ioType.includes('وارد') 
-                    ? 'bg-emerald-50 text-emerald-600' 
-                    : 'bg-rose-50 text-rose-600'
+                    ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400' 
+                    : 'bg-rose-50 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400'
                 }`}>
                   {transaction.ioType.includes('وارد') ? (
                     <ArrowUpRight className="h-3.5 w-3.5" />
@@ -716,17 +716,17 @@ const Dashboard = React.memo(function Dashboard({
                   )}
                 </div>
                 <div className="min-w-0">
-                  <h4 className="font-bold text-xs text-slate-900 leading-tight truncate">{transaction.clientName}</h4>
-                  <p className="text-[10px] text-slate-400 mt-0.5">{transaction.type} - {transaction.paymentMethod}</p>
+                  <h4 className="font-bold text-xs text-slate-900 dark:text-white leading-tight truncate">{transaction.clientName}</h4>
+                  <p className="text-[10px] text-slate-400 dark:text-slate-400 mt-0.5">{transaction.type} - {transaction.paymentMethod}</p>
                 </div>
               </div>
               <div className="text-start font-mono text-nowrap shrink-0">
                 <span className={`text-xs font-bold ${
-                  transaction.ioType.includes('وارد') ? 'text-emerald-600' : 'text-rose-600'
+                  transaction.ioType.includes('وارد') ? 'text-emerald-600 dark:text-emerald-400' : 'text-rose-600 dark:text-rose-400'
                 }`}>
                   {transaction.ioType.includes('وارد') ? '+' : '-'}{transaction.amount.toLocaleString('ar-EG')} ج.م
                 </span>
-                <p className="text-[9px] text-slate-400 leading-none">{transaction.date}</p>
+                <p className="text-[9px] text-slate-400 dark:text-slate-500 leading-none">{transaction.date}</p>
               </div>
             </div>
           ))}

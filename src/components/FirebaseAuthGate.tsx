@@ -237,9 +237,9 @@ export default function FirebaseAuthGate() {
         <button
           onClick={() => setGateState('admin')}
           title="لوحة تحكم المدير"
-          className="fixed bottom-5 left-5 z-[9999] flex items-center gap-2 px-4 py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-2xl shadow-xl shadow-emerald-900/40 border border-emerald-600 transition-all hover:scale-105 text-sm font-medium"
+          className="fixed bottom-4 left-4 z-40 flex items-center gap-1.5 px-3 py-1.5 bg-emerald-900/90 hover:bg-emerald-800 text-emerald-100 rounded-xl shadow-lg border border-emerald-500/40 backdrop-blur-md transition-all hover:scale-105 text-xs font-bold cursor-pointer"
         >
-          <Shield className="w-4 h-4" />
+          <Shield className="w-3.5 h-3.5 text-emerald-400" />
           لوحة التحكم
         </button>
       )}

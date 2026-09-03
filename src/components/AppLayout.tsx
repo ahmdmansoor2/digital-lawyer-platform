@@ -63,7 +63,6 @@ import PrintPreviewModal from './PrintPreviewModal';
 import SearchModal from './SearchModal';
 import PrivacyPolicyModal from './PrivacyPolicyModal';
 import ProfilePage from './ProfilePage';
-import GlobalSidebar from './GlobalSidebar';
 import NetworkStatusIndicator from './NetworkStatusIndicator';
 
 // v2.9.11: Extended lazy loading to more heavy components for better initial load performance
@@ -288,9 +287,12 @@ const getThemeBgClass = (appTheme: string): string => {
     case 'ivory': return 'bg-[#fdfcf7] text-[#292524]';
     case 'sapphire': return 'bg-[#0a1628] text-[#e0eeff]';
     case 'rose': return 'bg-[#fff5f7] text-[#2d0a14]';
-    default: return 'bg-[#f0f2f5] text-slate-800';
+    case 'slate': return 'bg-[#050b18] text-[#f8fafc]';
+    default: return 'bg-[#030712] text-[#f8fafc]';
   }
 };
+
+const LIGHT_WORKSPACE_THEMES = new Set(['golden', 'palace', 'modern', 'natural', 'ivory', 'rose', 'cobalt', 'wine']);
 
 export default function AppLayout(props: AppLayoutProps) {
   const {
@@ -320,7 +322,7 @@ export default function AppLayout(props: AppLayoutProps) {
     onShowInfoCenter
   } = props;
 
-  const isLightWorkspace = appTheme === 'slate';
+  const isLightWorkspace = LIGHT_WORKSPACE_THEMES.has(appTheme);
 
   // ─── Global search modal (Ctrl+K) ─────────────────────────────────────
   const [searchOpen, setSearchOpen] = useState(false);
@@ -339,9 +341,6 @@ export default function AppLayout(props: AppLayoutProps) {
 
   return (
     <div className={`theme-${appTheme} min-h-screen flex flex-col md:flex-row text-end font-sans transition-colors duration-200 ${getThemeBgClass(appTheme)}`} dir="rtl" id="lawfirm-app-root">
-
-      {/* Global Sidebar — شريط التنقل الزجاجي الفاخر */}
-      <GlobalSidebar onEnterApp={onShowInfoCenter} />
 
       {/* مؤشر حالة الاتصال المباشر والعمل بدون إنترنت للمحامين بالمحاكم */}
       <NetworkStatusIndicator />
