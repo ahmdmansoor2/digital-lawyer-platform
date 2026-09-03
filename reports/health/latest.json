@@ -1,9 +1,16 @@
 {
   "date": "2026-09-03",
+<<<<<<< Updated upstream
   "generatedAt": "2026-09-03T10:20:36.356Z",
   "status": "error",
   "blogArticles": 171,
   "fbPosts": 0,
+=======
+  "generatedAt": "2026-09-03T16:15:49.798Z",
+  "status": "error",
+  "blogArticles": 174,
+  "fbPosts": 4,
+>>>>>>> Stashed changes
   "reels": 0,
   "ghRuns": 16,
   "checks": [
@@ -35,7 +42,11 @@
       "name": "facebook",
       "label": "فيسبوك: منشورات اليوم والصور والريلز",
       "status": "warn",
+<<<<<<< Updated upstream
       "findings": 2
+=======
+      "findings": 1
+>>>>>>> Stashed changes
     },
     {
       "name": "github_runs",
