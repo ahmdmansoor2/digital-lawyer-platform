@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>حاسبة النفقات الشرعية ومستحقات المطلقة والصغار 2026 | منصة المحامي الرقمية</title>
+  <title>حاسبة النفقات الشرعية ومستحقات المطلقة والصغار 2026 | | المحامي الرقمي</title>
   <meta name="description" content="احسب فوراً نفقة الزوجية ونفقة الصغار وأجر المسكن والحضانة والمتعة والعدة بالجنيه المصري وفق قوانين الأحوال الشخصية ومحاكم الأسرة." />
   <link rel="canonical" href="https://mohamidigital.online/calculate-alimony.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -231,7 +231,7 @@
   },
   "author": {
     "@type": "Organization",
-    "name": "منصة المحامي الرقمية",
+    "name": "المحامي الرقمي",
     "url": "https://mohamidigital.online",
     "logo": {
       "@type": "ImageObject",
@@ -240,7 +240,7 @@
   },
   "publisher": {
     "@type": "Organization",
-    "name": "منصة المحامي الرقمية",
+    "name": "المحامي الرقمي",
     "url": "https://mohamidigital.online"
   },
   "keywords": "حاسبة النفقة, نفقة الزوجة, نفقة الأولاد, الحضانة, قانون الأسرة المصري"
@@ -318,7 +318,7 @@
   <!-- Site Header -->
   <header class="uh-bar" id="siteHeader">
     <div class="uh-inner">
-      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+      <a href="/" class="uh-logo" aria-label="المحامي الرقمي">
         <span class="uh-badge">⚖️</span>
         <span class="uh-brand">
           <span class="uh-title">المحامي الرقمي</span>
@@ -509,7 +509,7 @@
       <a href="/privacy.html">سياسة الخصوصية</a>
       <a href="/disclaimer.html">إخلاء المسؤولية</a>
     </div>
-    <div class="footer-copy">© 2026 منصة المحامي الرقمية · جميع الحقوق محفوظة · مستشارك القانوني الأول بمصر والوطن العربي</div>
+    <div class="footer-copy">© 2026 | المحامي الرقمي · جميع الحقوق محفوظة · مستشارك القانوني الأول بمصر والوطن العربي</div>
   </footer>
   
 
@@ -521,12 +521,12 @@
     let lastFamilyData = null;
 
     function calcFamilySupport() {
-      const income = parseFloat(document.getElementById('fam-income').value) || 0;
-      const kids = parseInt(document.getElementById('fam-kids').value) || 0;
+      const income = parseFloat(document.getElementById('fam-income').value) | 0;
+      const kids = parseInt(document.getElementById('fam-kids').value) | 0;
       const hasWife = document.getElementById('fam-has-wife').value === 'yes';
-      const years = parseInt(document.getElementById('fam-years').value) || 1;
+      const years = parseInt(document.getElementById('fam-years').value) | 1;
       const needsHousing = document.getElementById('fam-housing').value === 'yes';
-      const eduAnnual = parseFloat(document.getElementById('fam-edu').value) || 0;
+      const eduAnnual = parseFloat(document.getElementById('fam-edu').value) | 0;
 
       if (income <= 0) { alert('يرجى إدخال صافي دخل الزوج الشهري'); return; }
 
@@ -540,7 +540,7 @@
 
       const iddaSupport = hasWife ? wifeSupport * 3 : 0;
       const mutahMonths = Math.min(60, Math.max(24, years * 3));
-      const mutahSupport = hasWife ? (wifeSupport || (income * 0.20)) * mutahMonths : 0;
+      const mutahSupport = hasWife ? (wifeSupport | (income * 0.20)) * mutahMonths : 0;
 
       lastFamilyData = { income, totalMonthlySupport, wifeSupport, kidsSupportTotal, housingAllowance };
 
@@ -579,7 +579,7 @@
         (lastFamilyData.kidsSupportTotal > 0 ? '• نفقة الصغار: ' + fmt(lastFamilyData.kidsSupportTotal) + '\n' : '') +
         (lastFamilyData.housingAllowance > 0 ? '• أجر المسكن: ' + fmt(lastFamilyData.housingAllowance) + '\n' : '') +
         '💰 *إجمالي النفقة الشهرية التقديرية:* ' + fmt(lastFamilyData.totalMonthlySupport) + '\n\n' +
-        '🔗 احسب النفقات بدقة عبر منصة المحامي الرقمية:\nhttps://mohamidigital.online/calculate-alimony.html';
+        '🔗 احسب النفقات بدقة عبر | المحامي الرقمي:\nhttps://mohamidigital.online/calculate-alimony.html';
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
     }
   </script>

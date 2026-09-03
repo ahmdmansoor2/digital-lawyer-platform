@@ -10,7 +10,7 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="بوابة التشريعات والخدمات القانونية الكويتية 2026 - منصة المحامي الرقمية" />
+  <meta property="og:title" content="بوابة التشريعات والخدمات القانونية الكويتية 2026 | المحامي الرقمي" />
   <meta property="og:description" content="حاسبة مكافأة نهاية الخدمة بالقطاع الأهلي الكويتي، خدمات وزارة العدل، ومنصات التقاضي وتأسيس الشركات بالكويت." />
   <meta property="og:url" content="https://mohamidigital.online/kuwait-legal-hub.html" />
   <meta property="og:image" content="https://mohamidigital.online/images/legal-bg.jpg" />
@@ -620,18 +620,18 @@
   </main>
 
   <footer class="container" style="text-align: center; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.85rem; color: var(--text-muted);">
-    <p>© 2026 منصة المحامي الرقمية — بوابة التشريعات والخدمات القانونية لدولة الكويت. جميع الحقوق محفوظة.</p>
+    <p>© 2026 | المحامي الرقمي — بوابة التشريعات والخدمات القانونية لدولة الكويت. جميع الحقوق محفوظة.</p>
   </footer>
 
   <script src="/js/header-loader.js"></script>
   <script>
     function calculateKwGratuity(e) {
       e.preventDefault();
-      const salary = parseFloat(document.getElementById('kwSalary').value) || 0;
-      const years = parseInt(document.getElementById('kwYears').value) || 0;
-      const months = parseInt(document.getElementById('kwMonths').value) || 0;
+      const salary = parseFloat(document.getElementById('kwSalary').value) | 0;
+      const years = parseInt(document.getElementById('kwYears').value) | 0;
+      const months = parseInt(document.getElementById('kwMonths').value) | 0;
       const reason = document.getElementById('kwReason').value;
-      const leaveDays = parseFloat(document.getElementById('kwLeaveDays').value) || 0;
+      const leaveDays = parseFloat(document.getElementById('kwLeaveDays').value) | 0;
 
       const totalYears = years + (months / 12);
       const dailyRate = salary / 26; // قانون العمل الكويتي يعتمد 26 يوم عمل للراتب الشهري

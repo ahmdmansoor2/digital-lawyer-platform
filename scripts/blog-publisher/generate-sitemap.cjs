@@ -57,7 +57,7 @@ const FALLBACK_TITLE = 'قضايا قانونية أخرى';
 function extractTitle(html) {
   const m = html.match(/<title>([\s\S]*?)<\/title>/);
   if (!m) return null;
-  return m[1].replace(/ - منصة المحامي الرقمية\s*$/, '').replace(/ — منصة المحامي الرقمية\s*$/, '').trim();
+  return m[1].replace(/[\s\-\—\|]+(منصة المحامي الرقمية|المحامي الرقمي)\s*$/, '').trim();
 }
 
 function buildSitemap() {
@@ -244,8 +244,8 @@ function buildSitemapHtml() {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>خريطة الموقع - منصة المحامي الرقمية</title>
-  <meta name="description" content="كل صفحات موقع منصة المحامي الرقمية في مكان واحد. دليل شامل للخدمات، المدونة، المراجع القانونية، ومكتبة قانونية." />
+  <title>خريطة الموقع | المحامي الرقمي</title>
+  <meta name="description" content="كل صفحات موقع المحامي الرقمي في مكان واحد. دليل شامل للخدمات، المدونة، المراجع القانونية، ونماذج الصيغ." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="${BASE_URL}/sitemap.html" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
@@ -281,7 +281,7 @@ function buildSitemapHtml() {
 
   <header class="uh-bar" id="siteHeader">
     <div class="uh-inner">
-      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+      <a href="/" class="uh-logo" aria-label="المحامي الرقمي">
         <span class="uh-badge">⚖️</span>
         <span class="uh-brand">
           <span class="uh-title">المحامي الرقمي</span>
@@ -358,7 +358,7 @@ function buildSitemapHtml() {
   <div class="container">
     <a href="/" class="back-home">← العودة للرئيسية</a>
     <h1>🗺️ خريطة الموقع</h1>
-    <p class="lead">كل صفحات منصة المحامي الرقمية في مكان واحد — للزوار ومحركات البحث. محدّثة بانتظام مع كل محتوى جديد.</p>
+    <p class="lead">كل صفحات موقع المحامي الرقمي في مكان واحد — للزوار ومحركات البحث. محدّثة بانتظام مع كل محتوى جديد.</p>
 
     <div class="section">
       <h2>🏠 الصفحات الرئيسية</h2>
@@ -440,7 +440,7 @@ ${blogSections}
     </div>
 
     <p class="meta" style="text-align:center; margin-top:40px;">
-      © 2026 منصة المحامي الرقمية · آخر تحديث: <span id="date"></span>
+      © 2026 المحامي الرقمي · آخر تحديث: <span id="date"></span>
     </p>
   </div>
   <script>document.getElementById('date').textContent = new Date().toLocaleDateString('ar-EG');</script>

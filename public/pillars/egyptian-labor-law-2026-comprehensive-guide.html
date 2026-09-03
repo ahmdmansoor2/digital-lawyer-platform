@@ -387,7 +387,7 @@
     <div class="uh-inner">
       <a href="/" class="uh-logo">
         <span class="uh-icon">⚖️</span>
-        <span class="uh-title">منصة المحامي الرقمية</span>
+        <span class="uh-title">المحامي الرقمي</span>
       </a>
 
       <nav class="uh-nav">
@@ -1226,7 +1226,7 @@
   <!-- Unified Site Footer -->
   <footer style="background:#090d16; border-top:1px solid rgba(148,163,184,0.15); padding:32px 0; margin-top:auto;">
     <div class="container" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13px; color:var(--text-muted);">
-      <div>© 2026 <strong>منصة المحامي الرقمية</strong> · جميع الحقوق القانونية محفوظة</div>
+      <div>© 2026 <strong>منصة | المحامي الرقمية</strong> · جميع الحقوق القانونية محفوظة</div>
       <div style="display:flex; gap:16px;">
         <a href="/pillars/" style="color:#cbd5e1; text-decoration:none;">المراجع الشاملة</a>
         <a href="/legal-calculators.html" style="color:#cbd5e1; text-decoration:none;">الحاسبات الذكية</a>
@@ -1249,7 +1249,7 @@
       if (btn) btn.classList.add('active');
       const items = document.querySelectorAll('.article-item');
       items.forEach(item => {
-        if (chap === 'all' || item.getAttribute('data-chap') === chap) {
+        if (chap === 'all' | item.getAttribute('data-chap') === chap) {
           item.style.display = 'block';
         } else {
           item.style.display = 'none';
@@ -1262,7 +1262,7 @@
       const items = document.querySelectorAll('.article-item');
       items.forEach(item => {
         const text = item.innerText.toLowerCase();
-        if (!q || text.includes(q)) {
+        if (!q | text.includes(q)) {
           item.style.display = 'block';
         } else {
           item.style.display = 'none';
@@ -1272,18 +1272,18 @@
 
     // Labor Calculator
     function fmtEGP(n) {
-      return (Number(n) || 0).toLocaleString('ar-EG', { maximumFractionDigits: 2 }) + ' جنيه';
+      return (Number(n) | 0).toLocaleString('ar-EG', { maximumFractionDigits: 2 }) + ' جنيه';
     }
 
     function calcLaborInPage() {
-      const basic = parseFloat(document.getElementById('lb-basic').value) || 0;
-      const total = parseFloat(document.getElementById('lb-total').value) || 0;
-      const years = parseFloat(document.getElementById('lb-years').value) || 0;
-      const months = parseFloat(document.getElementById('lb-months').value) || 0;
-      const leave = parseFloat(document.getElementById('lb-leave').value) || 0;
+      const basic = parseFloat(document.getElementById('lb-basic').value) | 0;
+      const total = parseFloat(document.getElementById('lb-total').value) | 0;
+      const years = parseFloat(document.getElementById('lb-years').value) | 0;
+      const months = parseFloat(document.getElementById('lb-months').value) | 0;
+      const leave = parseFloat(document.getElementById('lb-leave').value) | 0;
       const reason = document.getElementById('lb-reason').value;
 
-      if (basic <= 0 || total <= 0) {
+      if (basic <= 0 | total <= 0) {
         alert('يرجى إدخال الراتب الأساسي والراتب الإجمالي الشامل بشكل صحيح');
         return;
       }

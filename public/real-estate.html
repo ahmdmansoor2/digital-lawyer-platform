@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>بوابة التسويق والاستثمار العقاري الموثق قانونياً | منصة المحامي الرقمية</title>
+  <title>بوابة التسويق والاستثمار العقاري الموثق قانونياً | | المحامي الرقمي</title>
   <meta name="description" content="بوابة التسويق والاستثمار العقاري الموثق قانونياً في مصر: بيع وشراء وتأجير شقق، فيلات، أراضي ومحلات تجارية مع فحص سندات الملكية والتراخيص بإشراف المستشار القانوني الأستاذ أحمد منصور." />
   <meta name="keywords" content="تسويق عقاري مصر, عقارات موثقة قانونيا, فحص شقة قبل الشراء, شقق للبيع مسجلة شهر عقاري, محامي عقارات مصر, تسجيل عقار شهر عقاري 2026, بيع وشراء عقارات القاهرة والاسكندرية, شقق التجمع الخامس, شقق الشيخ زايد, عقود بيع عقارات" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -12,7 +12,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mohamidigital.online/real-estate.html" />
-  <meta property="og:title" content="بوابة التسويق والاستثمار العقاري الموثق قانونياً | منصة المحامي الرقمية" />
+  <meta property="og:title" content="بوابة التسويق والاستثمار العقاري الموثق قانونياً | المحامي الرقمي" />
   <meta property="og:description" content="عقارات مفحوصة وموثقة قانونياً 100%. بيع وشراء آمن للشقق والأراضي والفيلات مع فحص التراخيص وتسجيل الشهر العقاري." />
   <meta property="og:image" content="https://mohamidigital.online/og-image.jpg" />
 
@@ -31,7 +31,7 @@
   {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
-    "name": "بوابة التسويق العقاري الموثق قانونياً - منصة المحامي الرقمية",
+    "name": "بوابة التسويق العقاري الموثق قانونياً | المحامي الرقمي",
     "description": "تسويق وفحص وتوثيق العقارات والأراضي السكنية والتجارية في مصر تحت إشراف قانوني متخصص.",
     "url": "https://mohamidigital.online/real-estate.html",
     "telephone": "+201000000000",
@@ -514,7 +514,7 @@
   <!-- Header -->
   <header class="uh-bar" id="siteHeader">
     <div class="uh-inner">
-      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+      <a href="/" class="uh-logo" aria-label="المحامي الرقمي">
         <span class="uh-badge">⚖️</span>
         <span class="uh-brand">
           <span class="uh-title">المحامي الرقمي</span>
@@ -830,7 +830,7 @@
   <footer style="background:#0b1120; border-top:1px solid var(--border); padding:36px 20px; margin-top:auto; text-align:center; font-size:13px; color:#64748b;">
     <div style="max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
       <div>
-        © 2026 منصة المحامي الرقمية - قطاع الاستثمار والتسويق العقاري القانوني · إشراف المستشار أحمد منصور
+        © 2026 | المحامي الرقمي - قطاع الاستثمار والتسويق العقاري القانوني · إشراف المستشار أحمد منصور
       </div>
       <div style="display:flex; gap:16px;">
         <a href="/contract-generator.html" style="color:#94a3b8;">صانع العقود</a>
@@ -936,7 +936,7 @@
       const container = document.getElementById('propertiesContainer');
       container.innerHTML = '';
 
-      if (!list || list.length === 0) {
+      if (!list | list.length === 0) {
         container.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:40px; color:#64748b; font-size:14px;">لا توجد عقارات مطابقة لشروط البحث الحالية.</div>';
         return;
       }
@@ -979,7 +979,7 @@
     }
 
     function onPropSearch() {
-      const q = (document.getElementById('propSearchInput').value || '').trim().toLowerCase();
+      const q = (document.getElementById('propSearchInput').value | '').trim().toLowerCase();
       const gov = document.getElementById('govSelect').value;
       const priceRange = document.getElementById('priceSelect').value;
 
@@ -1002,7 +1002,7 @@
       }
 
       if (q) {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes(q) || p.location.toLowerCase().includes(q) || p.specs.toLowerCase().includes(q));
+        filtered = filtered.filter(p => p.title.toLowerCase().includes(q) | p.location.toLowerCase().includes(q) | p.specs.toLowerCase().includes(q));
       }
 
       renderProperties(filtered);
@@ -1010,8 +1010,8 @@
 
     // Real Estate Legal Calculator Logic
     function runRealEstateCalc() {
-      const price = parseFloat(document.getElementById('calcPrice').value) || 0;
-      const area = parseFloat(document.getElementById('calcArea').value) || 0;
+      const price = parseFloat(document.getElementById('calcPrice').value) | 0;
+      const area = parseFloat(document.getElementById('calcArea').value) | 0;
       const type = document.getElementById('calcType').value;
 
       let tax = 0;

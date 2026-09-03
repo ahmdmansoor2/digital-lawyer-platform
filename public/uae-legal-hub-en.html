@@ -250,12 +250,12 @@
 
 <script>
 function calcEOSUAE(){
-  var basic=parseFloat(document.getElementById('ae-salary').value)||0;
-  var years=parseInt(document.getElementById('ae-years').value)||0;
-  var months=parseInt(document.getElementById('ae-months').value)||0;
-  var leaveDays=parseInt(document.getElementById('ae-leave').value)||0;
+  var basic=parseFloat(document.getElementById('ae-salary').value) | 0;
+  var years=parseInt(document.getElementById('ae-years').value) | 0;
+  var months=parseInt(document.getElementById('ae-months').value) | 0;
+  var leaveDays=parseInt(document.getElementById('ae-leave').value) | 0;
   var totalY=years+months/12;
-  if(totalY<=0||basic<=0)return;
+  if(totalY<=0 | basic<=0)return;
 
   var dailyWage=basic*12/365;
   var firstFiveYears=Math.min(totalY,5);

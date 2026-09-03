@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>حاسبة رسوم الشهر العقاري وتكاليف تسجيل العقارات 2026 | منصة المحامي الرقمية</title>
+  <title>حاسبة رسوم الشهر العقاري وتكاليف تسجيل العقارات 2026 | | المحامي الرقمي</title>
   <meta name="description" content="احسب فوراً رسوم تسجيل شقة أو عقار بالشهر العقاري طبقاً للقانون 9 لسنة 2022: الحد الأقصى للرسوم، تكلفة الرفع المساحي الرقمي، وضريبة التصرفات العقارية 2.5%." />
   <link rel="canonical" href="https://mohamidigital.online/real-estate-registration-fees.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -231,7 +231,7 @@
   },
   "author": {
     "@type": "Organization",
-    "name": "منصة المحامي الرقمية",
+    "name": "المحامي الرقمي",
     "url": "https://mohamidigital.online",
     "logo": {
       "@type": "ImageObject",
@@ -240,7 +240,7 @@
   },
   "publisher": {
     "@type": "Organization",
-    "name": "منصة المحامي الرقمية",
+    "name": "المحامي الرقمي",
     "url": "https://mohamidigital.online"
   },
   "keywords": "حاسبة رسوم الشهر العقاري, تسجيل عقار, رسوم التوثيق, الشهر العقاري مصر"
@@ -318,7 +318,7 @@
   <!-- Site Header -->
   <header class="uh-bar" id="siteHeader">
     <div class="uh-inner">
-      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+      <a href="/" class="uh-logo" aria-label="المحامي الرقمي">
         <span class="uh-badge">⚖️</span>
         <span class="uh-brand">
           <span class="uh-title">المحامي الرقمي</span>
@@ -500,7 +500,7 @@
       <a href="/privacy.html">سياسة الخصوصية</a>
       <a href="/disclaimer.html">إخلاء المسؤولية</a>
     </div>
-    <div class="footer-copy">© 2026 منصة المحامي الرقمية · جميع الحقوق محفوظة · مستشارك القانوني الأول بمصر والوطن العربي</div>
+    <div class="footer-copy">© 2026 | المحامي الرقمي · جميع الحقوق محفوظة · مستشارك القانوني الأول بمصر والوطن العربي</div>
   </footer>
   
 
@@ -512,8 +512,8 @@
     let lastReData = null;
 
     function calcRealEstate() {
-      const area = parseFloat(document.getElementById('re-area').value) || 0;
-      const price = parseFloat(document.getElementById('re-price').value) || 0;
+      const area = parseFloat(document.getElementById('re-area').value) | 0;
+      const price = parseFloat(document.getElementById('re-price').value) | 0;
       const reason = document.getElementById('re-reason').value;
       if (area <= 0) { alert('يرجى إدخال المساحة بالمتر المربع'); return; }
 
@@ -524,7 +524,7 @@
       const surveyFee = 300;
       const techFee = 150;
       let propTax = 0;
-      const taxExempt = reason === 'gift' || reason === 'inheritance';
+      const taxExempt = reason === 'gift' | reason === 'inheritance';
       if (!taxExempt && price > 0) propTax = price * 0.025;
 
       const total = registrationFee + servicesFee + stampDuty + lawyersDuty + surveyFee + techFee + propTax;
@@ -561,7 +561,7 @@
         '• رسم الشهر العقاري: ' + fmt(lastReData.registrationFee) + '\n' +
         (lastReData.propTax > 0 ? '• ضريبة التصرفات 2.5%: ' + fmt(lastReData.propTax) + '\n' : '') +
         '💰 *إجمالي تكاليف التسجيل:* ' + fmt(lastReData.total) + '\n\n' +
-        '🔗 احسب تكلفة تسجيل شقتك فوراً عبر منصة المحامي الرقمية:\nhttps://mohamidigital.online/real-estate-registration-fees.html';
+        '🔗 احسب تكلفة تسجيل شقتك فوراً عبر | المحامي الرقمي:\nhttps://mohamidigital.online/real-estate-registration-fees.html';
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
     }
   </script>

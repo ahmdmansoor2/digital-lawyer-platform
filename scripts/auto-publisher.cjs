@@ -888,7 +888,7 @@ function generateArticleHTML(topic) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${topic.title} - منصة المحامي الرقمية</title>
+  <title>${topic.title} | المحامي الرقمي</title>
   <meta name="description" content="${topic.metaDesc}" />
   <meta name="keywords" content="${topic.keywords}" />
   <link rel="canonical" href="https://mohamidigital.online/blog/${topic.slug}.html" />
@@ -899,7 +899,7 @@ function generateArticleHTML(topic) {
   <meta property="og:image" content="https://mohamidigital.online${getImageForTopic(topic)}" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="منصة المحامي الرقمية" />
+  <meta property="og:site_name" content="المحامي الرقمي" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -1004,7 +1004,7 @@ function generateArticleHTML(topic) {
       <a href="/" class="nav-logo">
         <div class="logo-icon">${topic.coverIcon}</div>
         <div class="logo-text">
-          <span class="logo-name">منصة المحامي الرقمية</span>
+          <span class="logo-name">المحامي الرقمي</span>
           <span class="logo-sub">مجاني 100% • نظام إدارة مكاتب المحاماة</span>
         </div>
       </a>
@@ -1033,7 +1033,7 @@ function generateArticleHTML(topic) {
     <h1>${topic.title}</h1>
     <div class="article-meta">
       <span>📅 ${dateAr}</span>
-      <span>✍️ فريق منصة المحامي الرقمية</span>
+      <span>✍️ فريق المحامي الرقمي</span>
       <span>⏱️ ${topic.readTime} دقائق قراءة</span>
     </div>
     <div class="ad-slot ad-slot--top" role="complementary" aria-label="إعلان">
@@ -1068,7 +1068,7 @@ function generateArticleHTML(topic) {
         <div>
           <div class="footer-logo">
             <div class="footer-logo-icon">⚖️</div>
-            <span class="footer-logo-name">منصة المحامي الرقمية</span>
+            <span class="footer-logo-name">المحامي الرقمي</span>
           </div>
           <p class="footer-desc">النظام البرمجي المتكامل والمجاني لإدارة مكاتب المحاماة في جمهورية مصر العربية.</p>
           <p class="footer-email">التواصل: <a href="mailto:ahmdmansoor222@gmail.com">ahmdmansoor222@gmail.com</a></p>
@@ -1093,7 +1093,7 @@ function generateArticleHTML(topic) {
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 منصة المحامي الرقمية — جميع الحقوق محفوظة</span>
+        <span>© 2026 المحامي الرقمي — جميع الحقوق محفوظة</span>
         <span>خدمة مجانية للمحامين والقانونيين في مصر</span>
       </div>
     </div>

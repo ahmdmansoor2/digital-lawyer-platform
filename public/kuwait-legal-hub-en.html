@@ -459,11 +459,11 @@
   <script>
     function calculateKwGratuityEn(e) {
       e.preventDefault();
-      const salary = parseFloat(document.getElementById('kwSalaryEn').value) || 0;
-      const years = parseInt(document.getElementById('kwYearsEn').value) || 0;
-      const months = parseInt(document.getElementById('kwMonthsEn').value) || 0;
+      const salary = parseFloat(document.getElementById('kwSalaryEn').value) | 0;
+      const years = parseInt(document.getElementById('kwYearsEn').value) | 0;
+      const months = parseInt(document.getElementById('kwMonthsEn').value) | 0;
       const reason = document.getElementById('kwReasonEn').value;
-      const leaveDays = parseFloat(document.getElementById('kwLeaveDaysEn').value) || 0;
+      const leaveDays = parseFloat(document.getElementById('kwLeaveDaysEn').value) | 0;
 
       const totalYears = years + (months / 12);
       const dailyRate = salary / 26; // Kuwait labor law standard monthly base is 26 working days

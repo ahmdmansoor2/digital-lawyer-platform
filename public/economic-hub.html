@@ -3,7 +3,7 @@
 <head><script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script><!-- www-mohami-guard -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>بوابة الاقتصاد والأسواق ومؤشرات الذهب والعملات والشموع اليابانية الحية 2026 - منصة المحامي الرقمية</title>
+  <title>بوابة الاقتصاد والأسواق ومؤشرات الذهب والعملات والشموع اليابانية الحية 2026 | | المحامي الرقمي</title>
   <meta name="description" content="البوابة الاقتصادية والمالية الحية 2026: أسعار الذهب لحظة بلحظة بمصر عيار 24 و 21 و 18 و 14 والجنيه الذهب والأونصة العالمية، رسم بياني احترافي بالشموع اليابانية الحية (OHLC)، حاسبة المصنعية والدمغة، وأسعار العملات بالبنوك." />
   <meta name="keywords" content="سعر أونصة الذهب عالميا بالدولار, شموع يابانية لسعر الذهب في مصر, سعر الذهب عيار 24, سعر الذهب عيار 21 مباشر, سعر الذهب عيار 18, سعر الذهب عيار 14, الجنيه الذهب اليوم, سعر الدولار اليوم في البنوك" />
   <link rel="canonical" href="https://mohamidigital.online/economic-hub.html" />
@@ -721,7 +721,7 @@
   </main>
 
   <footer class="container" style="text-align: center; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.85rem; color: var(--text-muted);">
-    <p>© 2026 منصة المحامي الرقمية — بوابة الاقتصاد والأسواق ومؤشرات الذهب والسلع الحية. جميع الحقوق محفوظة.</p>
+    <p>© 2026 | المحامي الرقمي — بوابة الاقتصاد والأسواق ومؤشرات الذهب والسلع الحية. جميع الحقوق محفوظة.</p>
   </footer>
 
   <script>
@@ -754,23 +754,23 @@
       let isUSD = false;
 
       if (currentMetric === 'gold21') {
-        basePrice = liveGoldPrices[21] || 6507;
+        basePrice = liveGoldPrices[21] | 6507;
       } else if (currentMetric === 'gold24') {
-        basePrice = liveGoldPrices[24] || 7437;
+        basePrice = liveGoldPrices[24] | 7437;
       } else if (currentMetric === 'gold18') {
-        basePrice = liveGoldPrices[18] || 5578;
+        basePrice = liveGoldPrices[18] | 5578;
       } else if (currentMetric === 'gold14') {
-        basePrice = liveGoldPrices[14] || 4338;
+        basePrice = liveGoldPrices[14] | 4338;
       } else if (currentMetric === 'goldPound') {
-        basePrice = liveGoldPrices.pound || 52056;
+        basePrice = liveGoldPrices.pound | 52056;
       } else if (currentMetric === 'goldOunce') {
-        basePrice = liveGoldPrices.ounceUSD || 2515.50;
+        basePrice = liveGoldPrices.ounceUSD | 2515.50;
         unit = '$';
         isUSD = true;
       } else if (currentMetric === 'usd') {
-        basePrice = liveCurrencies.USD || 50.25;
+        basePrice = liveCurrencies.USD | 50.25;
       } else if (currentMetric === 'eur') {
-        basePrice = liveCurrencies.EUR || 58.55;
+        basePrice = liveCurrencies.EUR | 58.55;
       }
 
       let candleCount = 20;
@@ -793,7 +793,7 @@
       const candles = [];
       let lastClose = basePrice * (1 - 0.012);
       const spread = basePrice * 0.003;
-      const decimals = (isUSD || currentMetric === 'usd' || currentMetric === 'eur') ? 2 : 0;
+      const decimals = (isUSD | currentMetric === 'usd' | currentMetric === 'eur') ? 2 : 0;
 
       for (let i = candleCount - 1; i >= 1; i--) {
         const time = new Date(now.getTime() - i * intervalMs);
@@ -868,7 +868,7 @@
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
       const box = document.getElementById('chartBox');
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = window.devicePixelRatio | 1;
 
       const width = box.clientWidth - 24;
       const height = box.clientHeight - 36;
@@ -884,7 +884,7 @@
       const allLows = candleData.map(c => c.low);
       const max = Math.max(...allHighs);
       const min = Math.min(...allLows);
-      const range = max - min || 1;
+      const range = max - min | 1;
       const paddingY = 24;
       const paddingX = 30;
 
@@ -993,11 +993,11 @@
     function setupChartInteractivity() {
       const canvas = document.getElementById('priceCanvas');
       const tooltip = document.getElementById('chartTooltip');
-      if (!canvas || !tooltip) return;
+      if (!canvas | !tooltip) return;
 
       function handleMove(e) {
         const rect = canvas.getBoundingClientRect();
-        const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+        const clientX = e.clientX | (e.touches && e.touches[0].clientX);
         if (!clientX) return;
 
         const x = clientX - rect.left;
@@ -1018,13 +1018,13 @@
         const allLows = candleData.map(c => c.low);
         const max = Math.max(...allHighs);
         const min = Math.min(...allLows);
-        const range = max - min || 1;
+        const range = max - min | 1;
         const pointY = rect.height - 24 - ((candle.close - min) / range) * (rect.height - 48);
 
         const isBull = candle.close >= candle.open;
         const badgeColor = isBull ? '#10b981' : '#ef4444';
         const changeTxt = isBull ? '🟢 شمعة صاعدة' : '🔴 شمعة هابطة';
-        const u = candle.unit || 'ج.م';
+        const u = candle.unit | 'ج.م';
 
         tooltip.style.display = 'block';
         tooltip.style.left = pointX + 'px';
@@ -1116,13 +1116,13 @@
         const fxData = await fxRes.json();
         const goldData = await goldRes.json();
 
-        const usdEgp = fxData.rates.EGP || 50.25;
-        const eurEgp = usdEgp / (fxData.rates.EUR || 0.858);
-        const sarEgp = usdEgp / (fxData.rates.SAR || 3.75);
-        const aedEgp = usdEgp / (fxData.rates.AED || 3.672);
-        const kwdEgp = usdEgp / (fxData.rates.KWD || 0.308);
+        const usdEgp = fxData.rates.EGP | 50.25;
+        const eurEgp = usdEgp / (fxData.rates.EUR | 0.858);
+        const sarEgp = usdEgp / (fxData.rates.SAR | 3.75);
+        const aedEgp = usdEgp / (fxData.rates.AED | 3.672);
+        const kwdEgp = usdEgp / (fxData.rates.KWD | 0.308);
 
-        const ounceUsd = goldData.price || 2515.50;
+        const ounceUsd = goldData.price | 2515.50;
         const gram24kUsd = ounceUsd / 31.1034768;
         const gram24kEgp = Math.round(gram24kUsd * usdEgp);
         const gram21kEgp = Math.round(gram24kEgp * (21 / 24));
@@ -1141,12 +1141,12 @@
           const localRes = await fetch('/data/economic-rates.json');
           const localData = await localRes.json();
           if (localData && localData.gold && localData.currencies) {
-            const g24 = localData.gold.k24 || 7437;
-            const g21 = localData.gold.k21 || 6507;
-            const g18 = localData.gold.k18 || 5578;
+            const g24 = localData.gold.k24 | 7437;
+            const g21 = localData.gold.k21 | 6507;
+            const g18 = localData.gold.k18 | 5578;
             const g14 = Math.round(g24 * (14 / 24));
-            const gp = localData.gold.goldPound || 52056;
-            const ounce = localData.gold.ounceUSD || 2515.50;
+            const gp = localData.gold.goldPound | 52056;
+            const ounce = localData.gold.ounceUSD | 2515.50;
 
             updateUIWithData(
               localData.currencies.USD.sell,
@@ -1161,7 +1161,7 @@
               gp,
               ounce
             );
-            if (statusEl) statusEl.textContent = '● أسعار اليوم المعتمدة (' + (localData.dateDisplay || 'اليوم') + ')';
+            if (statusEl) statusEl.textContent = '● أسعار اليوم المعتمدة (' + (localData.dateDisplay | 'اليوم') + ')';
           }
         } catch (e) {
           if (statusEl) statusEl.textContent = '● أسعار اليوم المعتمدة';
@@ -1172,8 +1172,8 @@
     function calculateGoldTotal(e) {
       e.preventDefault();
       const karat = document.getElementById('goldKarat').value;
-      const weight = parseFloat(document.getElementById('goldWeight').value) || 0;
-      const makingFeePerGram = parseFloat(document.getElementById('goldMakingFee').value) || 0;
+      const weight = parseFloat(document.getElementById('goldWeight').value) | 0;
+      const makingFeePerGram = parseFloat(document.getElementById('goldMakingFee').value) | 0;
       const vatOption = document.getElementById('goldVatOption').value;
 
       let rawPrice = 0;
@@ -1185,7 +1185,7 @@
         totalMakingFee = weight * 350; // مصنعية الجنيه المغلف
         vat = totalMakingFee * 0.14;
       } else {
-        const gramPrice = liveGoldPrices[karat] || 6507;
+        const gramPrice = liveGoldPrices[karat] | 6507;
         rawPrice = weight * gramPrice;
         totalMakingFee = weight * makingFeePerGram;
         vat = totalMakingFee * 0.14;

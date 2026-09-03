@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex,nofollow" />
-  <title>إعادة تعيين كلمة المرور | منصة المحامي الرقمية</title>
-  <meta name="keywords" content="إعادة تعيين كلمة المرور, قانون مصري 2026, استشارات قانونية, منصة المحامي الرقمية, المستشار أحمد منصور" />
+  <title>إعادة تعيين كلمة المرور | | المحامي الرقمي</title>
+  <meta name="keywords" content="إعادة تعيين كلمة المرور, قانون مصري 2026, استشارات قانونية, | المحامي الرقمي, المستشار أحمد منصور" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -115,7 +115,7 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
   </style>
-<link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest --><meta name="theme-color" content="#0f172a"><!-- mohami-theme --><link rel="apple-touch-icon" href="/icon.svg"><!-- mohami-apple --><link rel="alternate" type="application/rss+xml" title="RSS - منصة المحامي الرقمية" href="/rss.xml"/><!-- mohami-rss --></head>
+<link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest --><meta name="theme-color" content="#0f172a"><!-- mohami-theme --><link rel="apple-touch-icon" href="/icon.svg"><!-- mohami-apple --><link rel="alternate" type="application/rss+xml" title="RSS | المحامي الرقمي" href="/rss.xml"/><!-- mohami-rss --></head>
 <body>
   <div class="card">
     <div class="icon">🔐</div>
@@ -130,7 +130,7 @@
     </form>
     <div id="msg" class="msg"></div>
     <a href="/?from=reset" class="back-link">← العودة إلى المنصة</a>
-    <div class="footer">© 2026 منصة المحامي الرقمية</div>
+    <div class="footer">© 2026 | المحامي الرقمي</div>
   </div>
 
   <script type="module">
@@ -165,7 +165,7 @@
     const oobCode = params.get('oobCode');
     const mode = params.get('mode');
 
-    if (!oobCode || mode !== 'resetPassword') {
+    if (!oobCode | mode !== 'resetPassword') {
       sub.textContent = 'رابط غير صالح أو منتهي الصلاحية';
       showMsg('الرابط غير صالح. اطلب رابطاً جديداً من شاشة تسجيل الدخول.', 'error');
       throw new Error('Invalid oobCode');
@@ -184,7 +184,7 @@
       } else if (err.code === 'auth/expired-action-code') {
         showMsg('انتهت صلاحية الرابط. اطلب رابطاً جديداً من شاشة "نسيت كلمة المرور".', 'error');
       } else {
-        showMsg('حدث خطأ: ' + (err.message || err.code), 'error');
+        showMsg('حدث خطأ: ' + (err.message | err.code), 'error');
       }
     }
 

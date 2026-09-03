@@ -257,13 +257,13 @@
 
 <script>
 function calcEOS(){
-  var salary=parseFloat(document.getElementById('sa-salary').value)||0;
-  var years=parseInt(document.getElementById('sa-years').value)||0;
-  var months=parseInt(document.getElementById('sa-months').value)||0;
+  var salary=parseFloat(document.getElementById('sa-salary').value) | 0;
+  var years=parseInt(document.getElementById('sa-years').value) | 0;
+  var months=parseInt(document.getElementById('sa-months').value) | 0;
   var reason=document.getElementById('sa-reason').value;
-  var leaveDays=parseInt(document.getElementById('sa-leave').value)||0;
+  var leaveDays=parseInt(document.getElementById('sa-leave').value) | 0;
   var totalY=years+months/12;
-  if(totalY<=0||salary<=0)return;
+  if(totalY<=0 | salary<=0)return;
 
   var firstFive=0,rest=0;
   if(totalY<=5){firstFive=(salary/2)*totalY;}

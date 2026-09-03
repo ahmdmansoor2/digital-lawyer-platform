@@ -10,7 +10,7 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="بوابة التشريعات والخدمات القانونية القطرية 2026 - منصة المحامي الرقمية" />
+  <meta property="og:title" content="بوابة التشريعات والخدمات القانونية القطرية 2026 | المحامي الرقمي" />
   <meta property="og:description" content="حاسبة مكافأة نهاية الخدمة، المجلس الأعلى للقضاء، لجان المنازعات العمالية، وتأسيس الشركات بقطر." />
   <meta property="og:url" content="https://mohamidigital.online/qatar-legal-hub.html" />
   <meta property="og:image" content="https://mohamidigital.online/images/legal-bg.jpg" />
@@ -398,7 +398,7 @@
     }
 
 </style>
-<link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest --><meta name="theme-color" content="#0f172a"><!-- mohami-theme --><link rel="apple-touch-icon" href="/icon.svg"><!-- mohami-apple --><link rel="alternate" type="application/rss+xml" title="RSS - منصة المحامي الرقمية" href="/rss.xml"/><!-- mohami-rss -->
+<link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest --><meta name="theme-color" content="#0f172a"><!-- mohami-theme --><link rel="apple-touch-icon" href="/icon.svg"><!-- mohami-apple --><link rel="alternate" type="application/rss+xml" title="RSS | المحامي الرقمي" href="/rss.xml"/><!-- mohami-rss -->
 <style>/* mohami-lang-css */
 .mohami-lang{position:absolute;top:50%;transform:translateY(-50%);inset-inline-end:14px;z-index:200}
 .mohami-lang a{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:99px;font-family:'Cairo','Inter',sans-serif;font-size:.78rem;font-weight:700;text-decoration:none;transition:all .2s;background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.35);color:#a5b4fc}
@@ -412,7 +412,7 @@
   <!-- Site Header -->
   <header class="uh-bar" id="siteHeader">
     <div class="uh-inner">
-      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+      <a href="/" class="uh-logo" aria-label="المحامي الرقمي">
         <span class="uh-badge">⚖️</span>
         <span class="uh-brand">
           <span class="uh-title">المحامي الرقمي</span>
@@ -755,7 +755,7 @@
         <a href="/legal-consultations.html" style="color: #38bdf8; text-decoration: none;">طلب استشارة</a>
         <a href="/privacy.html" style="color: #94a3b8; text-decoration: none;">الخصوصية</a>
       </div>
-      <p>© 2026 منصة المحامي الرقمية · بوابة التشريعات والخدمات القانونية القطرية · إشراف المستشار القانوني أحمد منصور</p>
+      <p>© 2026 | المحامي الرقمي · بوابة التشريعات والخدمات القانونية القطرية · إشراف المستشار القانوني أحمد منصور</p>
     </div>
   </footer>
 
@@ -770,7 +770,7 @@
     function autoCalcQaDates() {
       const s = document.getElementById('qatarStartDate').value;
       const e = document.getElementById('qatarEndDate').value;
-      if (!s || !e) return;
+      if (!s | !e) return;
       const dS = new Date(s); const dE = new Date(e);
       if (dE <= dS) { alert('تاريخ النهاية يجب أن يكون بعد البداية'); return; }
       let y = dE.getFullYear() - dS.getFullYear();
@@ -785,15 +785,15 @@
     }
   
     function calculateQatarGratuity() {
-      const basicSalary = parseFloat(document.getElementById('qatarBasicSalary').value) || 0;
-      const totalSalary = parseFloat(document.getElementById('qatarTotalSalary').value) || 0;
-      const years = parseInt(document.getElementById('qatarYears').value) || 0;
-      const months = parseInt(document.getElementById('qatarMonths').value) || 0;
-      const weeksPerYear = parseInt(document.getElementById('qatarWeeksPerYear').value) || 3;
-      const leaveDays = parseInt(document.getElementById('qatarLeaveDays').value) || 0;
+      const basicSalary = parseFloat(document.getElementById('qatarBasicSalary').value) | 0;
+      const totalSalary = parseFloat(document.getElementById('qatarTotalSalary').value) | 0;
+      const years = parseInt(document.getElementById('qatarYears').value) | 0;
+      const months = parseInt(document.getElementById('qatarMonths').value) | 0;
+      const weeksPerYear = parseInt(document.getElementById('qatarWeeksPerYear').value) | 3;
+      const leaveDays = parseInt(document.getElementById('qatarLeaveDays').value) | 0;
 
       const totalServiceYears = years + (months / 12);
-      if (totalServiceYears < 1 || basicSalary <= 0) {
+      if (totalServiceYears < 1 | basicSalary <= 0) {
         alert('وفق المادة 54 من قانون العمل القطري: يشترط لاستحقاق مكافأة نهاية الخدمة إكمال سنة كاملة في خدمة صاحب العمل.');
         return;
       }

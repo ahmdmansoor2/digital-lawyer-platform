@@ -300,7 +300,7 @@ function buildCardSvg(card) {
 
 <!-- === رأس البطاقة === -->
 <!-- اسم المنصة (يمين) -->
-<text x="${rX}" y="62" font-family="${FONT}" font-size="26" font-weight="700" fill="#F59E0B" direction="rtl" text-anchor="start" letter-spacing="0.5">⚖ منصة المحامي الرقمية</text>
+<text x="${rX}" y="62" font-family="${FONT}" font-size="26" font-weight="700" fill="#F59E0B" direction="rtl" text-anchor="start" letter-spacing="0.5">⚖ المحامي الرقمي</text>
 
 <!-- تصنيف الموضوع (يسار) — حبة ملونة -->
 <rect x="${lX}" y="34" width="168" height="38" rx="19" fill="#1E3A5F" stroke="#3B82F6" stroke-width="1.5"/>
@@ -449,7 +449,7 @@ function buildCaption(card) {
     ``,
     hashtags,
     ``,
-    `⚖️ منصة المحامي الرقمية 2026 — ${card.cta}`,
+    `⚖️ المحامي الرقمي 2026 — ${card.cta}`,
     `🧮 احسب مستحقاتك والتعويضات فوراً: https://mohamidigital.online/legal-calculators.html`,
     `🌐 المنصة الرسمية لكافة الاستشارات وصيغ الدعاوى: https://mohamidigital.online/`,
   ].join('\n');

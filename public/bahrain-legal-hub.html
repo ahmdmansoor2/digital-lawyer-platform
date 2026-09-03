@@ -10,7 +10,7 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="بوابة التشريعات والخدمات القانونية البحرينية 2026 - منصة المحامي الرقمية" />
+  <meta property="og:title" content="بوابة التشريعات والخدمات القانونية البحرينية 2026 | المحامي الرقمي" />
   <meta property="og:description" content="حاسبة مكافأة نهاية الخدمة بالبحرين، خدمات المحاكم والتقاضي الإلكتروني، ونظام سجلات وتأسيس الشركات." />
   <meta property="og:url" content="https://mohamidigital.online/bahrain-legal-hub.html" />
   <meta property="og:image" content="https://mohamidigital.online/images/legal-bg.jpg" />
@@ -602,18 +602,18 @@
   </main>
 
   <footer class="container" style="text-align: center; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.85rem; color: var(--text-muted);">
-    <p>© 2026 منصة المحامي الرقمية — بوابة التشريعات والخدمات القانونية لمملكة البحرين. جميع الحقوق محفوظة.</p>
+    <p>© 2026 | المحامي الرقمي — بوابة التشريعات والخدمات القانونية لمملكة البحرين. جميع الحقوق محفوظة.</p>
   </footer>
 
   <script src="/js/header-loader.js"></script>
   <script>
     function calculateBhGratuity(e) {
       e.preventDefault();
-      const salary = parseFloat(document.getElementById('bhSalary').value) || 0;
-      const years = parseInt(document.getElementById('bhYears').value) || 0;
-      const months = parseInt(document.getElementById('bhMonths').value) || 0;
+      const salary = parseFloat(document.getElementById('bhSalary').value) | 0;
+      const years = parseInt(document.getElementById('bhYears').value) | 0;
+      const months = parseInt(document.getElementById('bhMonths').value) | 0;
       const reason = document.getElementById('bhReason').value;
-      const leaveDays = parseFloat(document.getElementById('bhLeaveDays').value) || 0;
+      const leaveDays = parseFloat(document.getElementById('bhLeaveDays').value) | 0;
 
       const totalYears = years + (months / 12);
       const dailyRate = salary / 30; // الأجر اليومي وفق قانون العمل البحريني

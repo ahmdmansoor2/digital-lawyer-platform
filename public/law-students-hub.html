@@ -9,7 +9,7 @@
   <meta name="description" content="المكتبة الأكاديمية الشاملة لكافة كليات الحقوق والشريعة بالجامعات المصرية (+22 كلية). كتب ومقررات الفرق الأربعة كاملة فصلاً فصلاً حسب أستاذ المادة والكلية، بنك أسئلة بابل شيت، وحاسبة التقدير التراكمي مجاناً 100%.">
   <meta name="keywords" content="كتب كلية الحقوق, كتب حقوق القاهرة, كتب حقوق عين شمس, كتب حقوق الإسكندرية, مقررات كلية الحقوق, دكتور المادة, ملخصات حقوق, امتحانات بابل شيت حقوق, القيد بنقابة المحامين 2026">
   
-  <meta property="og:title" content="بوابة الكتب والمقررات الجامعية لكليات الحقوق والشريعة والقانون بمصر | منصة المحامي الرقمية">
+  <meta property="og:title" content="بوابة الكتب والمقررات الجامعية لكليات الحقوق والشريعة والقانون بمصر | المحامي الرقمي">
   <meta property="og:description" content="كتب ومقررات الفرق الأربعة كاملة فصلاً فصلاً حسب أستاذ المادة والكلية، مذكرات تأصيلية، وبنك أسئلة بابل شيت تفاعلي لطلاب كليات الحقوق في مصر مجاناً 100%.">
   <meta property="og:image" content="https://mohamidigital.online/images/legal-bg.jpg">
   <meta property="og:url" content="https://mohamidigital.online/law-students-hub.html">
@@ -29,7 +29,7 @@
     "url": "https://mohamidigital.online/law-students-hub.html",
     "provider": {
       "@type": "Organization",
-      "name": "منصة المحامي الرقمية",
+      "name": "المحامي الرقمي",
       "url": "https://mohamidigital.online"
     }
   }
@@ -827,7 +827,7 @@
   <!-- Unified Global Header 2026 -->
   <header class="uh-bar" id="siteHeader">
     <div class="uh-inner">
-      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+      <a href="/" class="uh-logo" aria-label="المحامي الرقمي">
         <span class="uh-badge">⚖️</span>
         <span class="uh-brand">
           <span class="uh-title">المحامي الرقمي</span>
@@ -855,7 +855,7 @@
             <a href="/company-incorporation.html" class="uh-menu-item">🏢 تأسيس الشركات والتراخيص</a>
             <a href="/courts-directory.html" class="uh-menu-item">🏛️ دليل المحاكم والشهر العقاري</a>
             <a href="/legal-radar.html" class="uh-menu-item">🔍 رصد المحامي والجريدة الرسمية</a>
-            <a href="/about.html" class="uh-menu-item">⚖️ عن منصة المحامي الرقمية</a>
+            <a href="/about.html" class="uh-menu-item">⚖️ عن | المحامي الرقمي</a>
             <a href="/privacy.html" class="uh-menu-item">🔐 سياسة الخصوصية والأمان</a>
             <a href="/contact.html" class="uh-menu-item">📬 تواصل معنا</a>
           </div>
@@ -964,7 +964,7 @@
 
   <footer style="border-top: 1px solid rgba(255,255,255,0.08); padding: 32px 16px; text-align: center; font-size: 13px; color: #64748b; background: #030712;">
     <div style="max-width: 1240px; margin: 0 auto;">
-      <p style="margin-bottom: 8px; color: #94a3b8; font-weight: 700;">منصة المحامي الرقمية © 2026 — رسالة علمية وأكاديمية خالصة لخدمة العدالة وطلاب القانون في مصر والعالم العربي</p>
+      <p style="margin-bottom: 8px; color: #94a3b8; font-weight: 700;">منصة | المحامي الرقمية © 2026 — رسالة علمية وأكاديمية خالصة لخدمة العدالة وطلاب القانون في مصر والعالم العربي</p>
       <p>جميع المقررات والمؤلفات الفقهية منتقاة ومحققة وفق أحدث التعديلات التشريعية وأحكام محكمة النقض المصرية</p>
     </div>
   </footer>
@@ -1514,7 +1514,7 @@ function renderActiveUniversityBanner() {
       '<div class="uni-big-badge">' + u.icon + '</div>' +
       '<div>' +
         '<h2 class="uni-title-h2">' + u.name + '</h2>' +
-        '<div class="uni-subtitle-desc">' + u.sub + ' · ' + (u.schoolName || u.highlights) + '</div>' +
+        '<div class="uni-subtitle-desc">' + u.sub + ' · ' + (u.schoolName | u.highlights) + '</div>' +
         '<div style="font-size: 13px; color: #cbd5e1; margin-top: 6px; max-width: 700px;">' + u.desc + '</div>' +
       '</div>' +
     '</div>' +
@@ -1541,7 +1541,7 @@ function selectUniversity(id) {
 function renderSubjects(year) {
   const grid = document.getElementById('subjectsGrid');
   if (!grid) return;
-  const subjects = LAW_CURRICULUM_DATA[year] || [];
+  const subjects = LAW_CURRICULUM_DATA[year] | [];
   let currentUni = null;
   for (let i = 0; i < EGYPT_UNIVERSITIES.length; i++) {
     if (EGYPT_UNIVERSITIES[i].id === currentUniId) {
@@ -1559,14 +1559,14 @@ function renderSubjects(year) {
     
     html += '<div class="subject-card">';
     html += '  <div class="subject-header">';
-    html += '    <div class="subject-icon">' + (s.icon || '⚖️') + '</div>';
+    html += '    <div class="subject-icon">' + (s.icon | '⚖️') + '</div>';
     html += '    <div style="flex:1;">';
     html += '      <h3 class="subject-title">' + s.title + '</h3>';
-    html += '      <div class="subject-meta">' + (s.courseCode || 'LAW') + ' · حجم الكتاب: ' + s.size + ' · معتمد بـ: ' + currentUni.name + '</div>';
+    html += '      <div class="subject-meta">' + (s.courseCode | 'LAW') + ' · حجم الكتاب: ' + s.size + ' · معتمد بـ: ' + currentUni.name + '</div>';
     html += '    </div>';
     html += '  </div>';
     html += '  <div class="faculty-doctor-pill">';
-    html += '    <span>👨‍🏫 <strong>مؤلف وشرح المقرر:</strong> ' + (s.author || currentUni.schoolName) + '</span>';
+    html += '    <span>👨‍🏫 <strong>مؤلف وشرح المقرر:</strong> ' + (s.author | currentUni.schoolName) + '</span>';
     html += '  </div>';
     html += '  <p class="subject-desc">' + s.desc + '</p>';
     html += '  <div class="topic-pills">';
@@ -1577,7 +1577,7 @@ function renderSubjects(year) {
     }
     html += '  </div>';
     html += '  <div class="card-actions">';
-    html += '    <button class="btn-action btn-book" data-drive-id="' + s.driveId + '" data-book-title="' + s.title + '" data-book-author="' + (s.author || currentUni.name) + '">';
+    html += '    <button class="btn-action btn-book" data-drive-id="' + s.driveId + '" data-book-title="' + s.title + '" data-book-author="' + (s.author | currentUni.name) + '">';
     html += '      📖 تصفح وقراءة الكتاب كاملاً (PDF)';
     html += '    </button>';
     html += '    <a class="btn-action btn-download" href="' + downloadUrl + '" target="_blank" rel="noopener noreferrer">';
@@ -1682,7 +1682,7 @@ function openPdfDriveReader(driveId, title, author) {
 // ════════════════════════════════════════════════════════════════════════════
 function openQuiz(id) {
   const s = getSubjectById(id);
-  if (!s || !s.quiz || s.quiz.length === 0) return;
+  if (!s | !s.quiz | s.quiz.length === 0) return;
   
   let html = 
     '<div class="general-modal-box">' +
@@ -1844,12 +1844,12 @@ function openBarModal() {
 }
 
 function calcCumulativeGPA() {
-  const g1 = parseFloat(document.getElementById('gpa1').value) || 0;
-  const g2 = parseFloat(document.getElementById('gpa2').value) || 0;
-  const g3 = parseFloat(document.getElementById('gpa3').value) || 0;
-  const g4 = parseFloat(document.getElementById('gpa4').value) || 0;
+  const g1 = parseFloat(document.getElementById('gpa1').value) | 0;
+  const g2 = parseFloat(document.getElementById('gpa2').value) | 0;
+  const g3 = parseFloat(document.getElementById('gpa3').value) | 0;
+  const g4 = parseFloat(document.getElementById('gpa4').value) | 0;
 
-  if (!g1 || !g2 || !g3 || !g4) {
+  if (!g1 | !g2 | !g3 | !g4) {
     alert('يرجى إدخال درجات أو نسب الفرق الأربعة لحساب التقدير التراكمي بدقة.');
     return;
   }

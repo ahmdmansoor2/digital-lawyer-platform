@@ -10,7 +10,7 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="بوابة الأنظمة والخدمات القانونية السعودية 2026 - منصة المحامي الرقمية" />
+  <meta property="og:title" content="بوابة الأنظمة والخدمات القانونية السعودية 2026 | المحامي الرقمي" />
   <meta property="og:description" content="حاسبة مكافأة نهاية الخدمة، دليل منصة ناجز، وتأسيس الشركات ونصوص الأنظمة السعودية الحديثة." />
   <meta property="og:url" content="https://mohamidigital.online/saudi-legal-hub.html" />
   <meta property="og:image" content="https://mohamidigital.online/images/legal-bg.jpg" />
@@ -399,7 +399,7 @@
     }
 
 </style>
-<link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest --><meta name="theme-color" content="#0f172a"><!-- mohami-theme --><link rel="apple-touch-icon" href="/icon.svg"><!-- mohami-apple --><link rel="alternate" type="application/rss+xml" title="RSS - منصة المحامي الرقمية" href="/rss.xml"/><!-- mohami-rss --><link rel="alternate" hreflang="en" href="https://mohamidigital.online/saudi-legal-hub-en.html"/><!-- mohami-hreflang -->
+<link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest --><meta name="theme-color" content="#0f172a"><!-- mohami-theme --><link rel="apple-touch-icon" href="/icon.svg"><!-- mohami-apple --><link rel="alternate" type="application/rss+xml" title="RSS | المحامي الرقمي" href="/rss.xml"/><!-- mohami-rss --><link rel="alternate" hreflang="en" href="https://mohamidigital.online/saudi-legal-hub-en.html"/><!-- mohami-hreflang -->
 
   <style>/* mohami-lang-switch */
   .mohami-lang{position:absolute;top:50%;transform:translateY(-50%);inset-inline-end:14px;z-index:200}
@@ -413,7 +413,7 @@
   <!-- Site Header -->
   <header class="uh-bar" id="siteHeader">
     <div class="uh-inner">
-      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+      <a href="/" class="uh-logo" aria-label="المحامي الرقمي">
         <span class="uh-badge">⚖️</span>
         <span class="uh-brand">
           <span class="uh-title">المحامي الرقمي</span>
@@ -817,7 +817,7 @@
         <a href="/legal-consultations.html" style="color: #38bdf8; text-decoration: none;">طلب استشارة</a>
         <a href="/privacy.html" style="color: #94a3b8; text-decoration: none;">الخصوصية</a>
       </div>
-      <p>© 2026 منصة المحامي الرقمية · بوابة الأنظمة والخدمات القانونية السعودية · إشراف المستشار القانوني أحمد منصور</p>
+      <p>© 2026 | المحامي الرقمي · بوابة الأنظمة والخدمات القانونية السعودية · إشراف المستشار القانوني أحمد منصور</p>
     </div>
   </footer>
 
@@ -836,7 +836,7 @@
     function autoCalculateDates() {
       const startVal = document.getElementById('saudiStartDate').value;
       const endVal = document.getElementById('saudiEndDate').value;
-      if (!startVal || !endVal) return;
+      if (!startVal | !endVal) return;
 
       const dStart = new Date(startVal);
       const dEnd = new Date(endVal);
@@ -870,14 +870,14 @@
     }
   
     function calculateSaudiGratuity() {
-      const salary = parseFloat(document.getElementById('saudiSalary').value) || 0;
-      const years = parseInt(document.getElementById('saudiYears').value) || 0;
-      const months = parseInt(document.getElementById('saudiMonths').value) || 0;
+      const salary = parseFloat(document.getElementById('saudiSalary').value) | 0;
+      const years = parseInt(document.getElementById('saudiYears').value) | 0;
+      const months = parseInt(document.getElementById('saudiMonths').value) | 0;
       const reason = document.getElementById('saudiReason').value;
-      const leaveDays = parseInt(document.getElementById('saudiLeaveDays').value) || 0;
+      const leaveDays = parseInt(document.getElementById('saudiLeaveDays').value) | 0;
 
       const totalServiceYears = years + (months / 12);
-      if (totalServiceYears <= 0 || salary <= 0) return;
+      if (totalServiceYears <= 0 | salary <= 0) return;
 
       // 1. Base Gratuity (Article 84)
       let firstFivePart = 0;

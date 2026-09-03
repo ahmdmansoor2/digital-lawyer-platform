@@ -319,7 +319,7 @@ function generateSvgImage(topic) {
   <rect x="400" y="140" width="400" height="430" rx="48" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
   ${scaleVector}
   <rect x="300" y="600" width="600" height="4" rx="2" fill="${pal[0]}" opacity="0.6"/>
-  <text x="600" y="34" font-size="26" font-weight="700" fill="${pal[0]}" text-anchor="middle" font-family="Cairo, sans-serif" letter-spacing="2">منصة المحامي الرقمية</text>
+  <text x="600" y="34" font-size="26" font-weight="700" fill="${pal[0]}" text-anchor="middle" font-family="Cairo, sans-serif" letter-spacing="2">المحامي الرقمي</text>
   <text x="600" y="648" font-size="32" font-weight="700" fill="#e2e8f0" text-anchor="middle" font-family="Cairo, sans-serif">${topic.title}</text>
 </svg>`;
   return { svg, ext: 'svg', mime: 'image/svg+xml' };
@@ -387,7 +387,7 @@ function articlePrompt(topic, usedTitles, existingSections, usedHeadings) {
    - sections: من 12 إلى 16 قسماً، كل قسم بعنوان (heading) وفقرات (paragraphs: array of strings — كل فقرة من 3-5 جمل) واختيارياً list (array of strings — من 4-8 عناصر)
    - tip: نصيحة عملية قابلة للتنفيذ (سطران إلى ثلاثة أسطر)
    - conclusion: خاتمة عملية بنصيحة قابلة للتنفيذ
-7. في النهاية أضف دعوة لاستخدام منصة المحامي الرقمية بشكل طبيعي داخل النص (مرة واحدة فقط).
+7. في النهاية أضف دعوة لاستخدام موقع «المحامي الرقمي» بشكل طبيعي داخل النص (مرة واحدة فقط).
 8. مقالك يجب ألا يكرر هذه المواضيع المنشورة سابقاً: ${usedTopics}.
 9. أجب بحصة JSON كاملة واحدة.
 ${initialSectionsHint}${headingsHint}${structureHint}
@@ -664,7 +664,7 @@ ${list}${midImage}`;
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${data.title} - منصة المحامي الرقمية</title>
+  <title>${data.title} | المحامي الرقمي</title>
   <meta name="description" content="${data.metaDescription}" />
   <meta name="keywords" content="${topic.keywords.join(', ')}" />
   <link rel="canonical" href="${canonical}" />
@@ -672,7 +672,7 @@ ${list}${midImage}`;
   <meta property="og:title" content="${data.title}" />
   <meta property="og:description" content="${data.metaDescription}" />
   <meta property="og:url" content="${canonical}" />
-  <meta property="og:site_name" content="منصة المحامي الرقمية" />
+  <meta property="og:site_name" content="المحامي الرقمي" />
   ${heroImagePath ? `<meta property="og:image" content="${BASE_URL}${heroImagePath}" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="${BASE_URL}${heroImagePath}" />` : ''}
@@ -683,7 +683,7 @@ ${list}${midImage}`;
   ${HEADER_CSS}
   <link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest -->
   <meta name="theme-color" content="#0f172a"><!-- mohami-theme -->
-  <link rel="alternate" type="application/rss+xml" title="RSS - منصة المحامي الرقمية" href="/rss.xml"><!-- mohami-rss -->
+  <link rel="alternate" type="application/rss+xml" title="RSS - المحامي الرقمي" href="/rss.xml"><!-- mohami-rss -->
   <script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script><!-- www-mohami-guard -->
   <style>${articleCardCss}</style>
 </head>
@@ -692,7 +692,7 @@ ${list}${midImage}`;
 
   <header class="uh-bar" id="siteHeader">
     <div class="uh-inner">
-      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+      <a href="/" class="uh-logo" aria-label="المحامي الرقمي">
         <span class="uh-badge">⚖️</span>
         <span class="uh-brand">
           <span class="uh-title">المحامي الرقمي</span>
@@ -780,7 +780,7 @@ ${list}${midImage}`;
     <h1>${data.title}</h1>
     <div class="article-meta">
       <span>📅 ${dateLabel}</span>
-      <span>✍️ فريق منصة المحامي الرقمية</span>
+      <span>✍️ فريق المحامي الرقمي</span>
       <span>⏱️ ${Math.max(4, Math.round(data.intro.length / 350 + data.sections.length * 0.6))} دقائق قراءة</span>
     </div>
   </div>
@@ -844,7 +844,7 @@ ${sectionsHtml}
         <div>
           <div class="footer-logo">
             <div class="footer-logo-icon">⚖️</div>
-            <span class="footer-logo-name">منصة المحامي الرقمية</span>
+            <span class="footer-logo-name">المحامي الرقمي</span>
           </div>
           <p class="footer-desc">النظام البرمجي المتكامل والمجاني لإدارة مكاتب المحاماة في جمهورية مصر العربية.</p>
           <p class="footer-email">التواصل: <a href="mailto:ahmdmansoor222@gmail.com">ahmdmansoor222@gmail.com</a></p>
@@ -869,7 +869,7 @@ ${sectionsHtml}
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 منصة المحامي الرقمية — جميع الحقوق محفوظة</span>
+        <span>© 2026 المحامي الرقمي — جميع الحقوق محفوظة</span>
         <span>خدمة مجانية للمحامين والقانونيين في مصر</span>
       </div>
     </div>

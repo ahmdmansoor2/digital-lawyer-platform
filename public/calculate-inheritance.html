@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>حاسبة المواريث والتركات الشرعية والقانونية 2026 | منصة المحامي الرقمية</title>
+  <title>حاسبة المواريث والتركات الشرعية والقانونية 2026 | | المحامي الرقمي</title>
   <meta name="description" content="حاسبة المواريث والتركات أونلاين وفق أحكام الشريعة الإسلامية وقانون المواريث المصري رقم 77 لسنة 1943: حساب أصحاب الفروض والعصبات وقسمة التركة بالجنيه." />
   <link rel="canonical" href="https://mohamidigital.online/calculate-inheritance.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -231,7 +231,7 @@
   },
   "author": {
     "@type": "Organization",
-    "name": "منصة المحامي الرقمية",
+    "name": "المحامي الرقمي",
     "url": "https://mohamidigital.online",
     "logo": {
       "@type": "ImageObject",
@@ -240,7 +240,7 @@
   },
   "publisher": {
     "@type": "Organization",
-    "name": "منصة المحامي الرقمية",
+    "name": "المحامي الرقمي",
     "url": "https://mohamidigital.online"
   },
   "keywords": "حاسبة المواريث, حساب التركة, قانون الوراثة المصري, الميراث الشرعي"
@@ -318,7 +318,7 @@
   <!-- Site Header -->
   <header class="uh-bar" id="siteHeader">
     <div class="uh-inner">
-      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+      <a href="/" class="uh-logo" aria-label="المحامي الرقمي">
         <span class="uh-badge">⚖️</span>
         <span class="uh-brand">
           <span class="uh-title">المحامي الرقمي</span>
@@ -510,7 +510,7 @@
       <a href="/privacy.html">سياسة الخصوصية</a>
       <a href="/disclaimer.html">إخلاء المسؤولية</a>
     </div>
-    <div class="footer-copy">© 2026 منصة المحامي الرقمية · جميع الحقوق محفوظة · مستشارك القانوني الأول بمصر والوطن العربي</div>
+    <div class="footer-copy">© 2026 | المحامي الرقمي · جميع الحقوق محفوظة · مستشارك القانوني الأول بمصر والوطن العربي</div>
   </footer>
   
 
@@ -540,17 +540,17 @@
 
     function calcInheritance() {
       const gender = document.getElementById('inh-gender').value;
-      const rawEstate = parseFloat(document.getElementById('inh-estate').value) || 0;
-      const debts = parseFloat(document.getElementById('inh-debts').value) || 0;
+      const rawEstate = parseFloat(document.getElementById('inh-estate').value) | 0;
+      const debts = parseFloat(document.getElementById('inh-debts').value) | 0;
 
       if (rawEstate <= 0) { alert('يرجى إدخال قيمة التركة بالجنيه'); return; }
       const netEstate = Math.max(0, rawEstate - debts);
 
       const hasHusband = gender === 'female' && document.getElementById('inh-has-husband').value === '1';
-      const wivesCount = gender === 'male' ? parseInt(document.getElementById('inh-wives').value) || 0 : 0;
+      const wivesCount = gender === 'male' ? parseInt(document.getElementById('inh-wives').value) | 0 : 0;
 
-      const sons = parseInt(document.getElementById('inh-sons').value) || 0;
-      const daughters = parseInt(document.getElementById('inh-daughters').value) || 0;
+      const sons = parseInt(document.getElementById('inh-sons').value) | 0;
+      const daughters = parseInt(document.getElementById('inh-daughters').value) | 0;
       const hasDescendants = (sons + daughters) > 0;
       const hasMaleDescendant = sons > 0;
 
@@ -559,8 +559,8 @@
       const hasGrandfather = document.getElementById('inh-grandfather').value === '1' && !hasFather;
       const hasGrandmother = document.getElementById('inh-grandmother').value === '1' && !hasMother;
 
-      const brothers = parseInt(document.getElementById('inh-brothers').value) || 0;
-      const sisters = parseInt(document.getElementById('inh-sisters').value) || 0;
+      const brothers = parseInt(document.getElementById('inh-brothers').value) | 0;
+      const sisters = parseInt(document.getElementById('inh-sisters').value) | 0;
       const siblingsCount = brothers + sisters;
 
       let shares = [];
@@ -577,7 +577,7 @@
       }
 
       if (hasMother) {
-        let frac = (hasDescendants || siblingsCount >= 2) ? 1/6 : 1/3;
+        let frac = (hasDescendants | siblingsCount >= 2) ? 1/6 : 1/3;
         shares.push({ name: 'الأم', shareStr: frac === 1/6 ? 'السدس (١/٦)' : 'الثلث (١/٣)', frac, reason: frac === 1/6 ? 'لوجود فرع وارث أو جمع من الإخوة' : 'لعدم وجود فرع وارث أو جمع من الإخوة' });
         totalAssigned += frac;
       } else if (hasGrandmother) {
@@ -651,7 +651,7 @@
       lastInhData.shares.forEach(s => {
         text += '• ' + s.name + ': ' + fmt(lastInhData.netEstate * s.frac) + ' (' + s.shareStr + ')\n';
       });
-      text += '\n🔗 احسب توزيع الميراث أونلاين عبر منصة المحامي الرقمية:\nhttps://mohamidigital.online/calculate-inheritance.html';
+      text += '\n🔗 احسب توزيع الميراث أونلاين عبر | المحامي الرقمي:\nhttps://mohamidigital.online/calculate-inheritance.html';
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
     }
   </script>

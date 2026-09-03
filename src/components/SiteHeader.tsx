@@ -38,7 +38,7 @@ const MORE = [
   { href: '/company-incorporation.html', label: '🏢 تأسيس الشركات والتراخيص', key: 'companies' },
   { href: '/courts-directory.html', label: '🏛️ دليل المحاكم والشهر العقاري', key: 'courts' },
   { href: '/legal-radar.html', label: '🔍 رصد المحامي والجريدة الرسمية', key: 'radar' },
-  { href: '/about.html', label: '⚖️ عن منصة المحامي الرقمية', key: 'about' },
+  { href: '/about.html', label: '⚖️ عن المحامي الرقمي', key: 'about' },
   { href: '/privacy.html', label: '🔐 سياسة الخصوصية والأمان', key: 'privacy' },
   { href: '/contact.html', label: '📬 تواصل معنا', key: 'contact' },
 ];
@@ -81,7 +81,7 @@ export default function SiteHeader({ activeKey = 'home', onEnterApp, userName, o
   return (
     <header className={`uh-bar${scrolled ? ' scrolled' : ''}`} id="siteHeader">
       <div className="uh-inner">
-        <a href="/" className="uh-logo" aria-label="منصة المحامي الرقمية">
+        <a href="/" className="uh-logo" aria-label="المحامي الرقمي">
           <span className="uh-badge">⚖️</span>
           <span className="uh-brand">
             <span className="uh-title">المحامي الرقمي</span>

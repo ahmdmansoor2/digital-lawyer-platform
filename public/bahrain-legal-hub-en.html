@@ -458,11 +458,11 @@
   <script>
     function calculateBhGratuityEn(e) {
       e.preventDefault();
-      const salary = parseFloat(document.getElementById('bhSalaryEn').value) || 0;
-      const years = parseInt(document.getElementById('bhYearsEn').value) || 0;
-      const months = parseInt(document.getElementById('bhMonthsEn').value) || 0;
+      const salary = parseFloat(document.getElementById('bhSalaryEn').value) | 0;
+      const years = parseInt(document.getElementById('bhYearsEn').value) | 0;
+      const months = parseInt(document.getElementById('bhMonthsEn').value) | 0;
       const reason = document.getElementById('bhReasonEn').value;
-      const leaveDays = parseFloat(document.getElementById('bhLeaveDaysEn').value) || 0;
+      const leaveDays = parseFloat(document.getElementById('bhLeaveDaysEn').value) | 0;
 
       const totalYears = years + (months / 12);
       const dailyRate = salary / 30;
