@@ -737,3 +737,230 @@ h1, h2, h3, h4,
   }
 }
 
+
+
+/* ════════════════════════════════════════════════════════════════════════════
+   UNIVERSAL MOBILE RESPONSIVENESS & BOTTOM DOCK (منصة المحامي الرقمية 2026)
+   ════════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 84px !important;
+  }
+
+  /* الشريط السفلي الذكي للموبايل (Mobile Bottom Dock) */
+  .site-mobile-dock {
+    position: fixed !important;
+    bottom: 12px !important;
+    left: 12px !important;
+    right: 12px !important;
+    z-index: 999999 !important;
+    background: rgba(10, 15, 30, 0.94) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(1.8) !important;
+    backdrop-filter: blur(20px) saturate(1.8) !important;
+    border: 1px solid rgba(99, 102, 241, 0.4) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(99, 102, 241, 0.2) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    padding: 6px 4px !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
+    direction: rtl !important;
+  }
+
+  .site-mobile-dock .dock-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #94a3b8 !important;
+    text-decoration: none !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    padding: 6px 4px !important;
+    border-radius: 12px !important;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    flex: 1 !important;
+    text-align: center !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  .site-mobile-dock .dock-item:active {
+    transform: scale(0.92) !important;
+  }
+
+  .site-mobile-dock .dock-item.active,
+  .site-mobile-dock .dock-item:hover {
+    color: #ffffff !important;
+    background: rgba(99, 102, 241, 0.25) !important;
+    border: 1px solid rgba(99, 102, 241, 0.3) !important;
+  }
+
+  .site-mobile-dock .dock-item .dock-icon {
+    font-size: 19px !important;
+    line-height: 1.2 !important;
+    margin-bottom: 2px !important;
+  }
+
+  .site-mobile-dock .dock-item.active .dock-icon {
+    transform: translateY(-1px) !important;
+    filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.6)) !important;
+  }
+
+  .site-mobile-dock .dock-item .dock-label {
+    font-size: 10.5px !important;
+    letter-spacing: -0.2px !important;
+  }
+
+  /* تحسينات عامة للبطاقات والنماذج على شاشات الموبايل */
+  .calc-wrapper {
+    padding: 0 12px !important;
+  }
+
+  .calc-card {
+    padding: 20px 14px !important;
+    border-radius: 18px !important;
+  }
+
+  .calc-header {
+    gap: 12px !important;
+    margin-bottom: 18px !important;
+    padding-bottom: 14px !important;
+  }
+
+  .calc-icon {
+    width: 46px !important;
+    height: 46px !important;
+    font-size: 1.5rem !important;
+    border-radius: 12px !important;
+  }
+
+  .calc-title {
+    font-size: 1.05rem !important;
+  }
+
+  .calc-subtitle {
+    font-size: 0.74rem !important;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* منع زووم الآيفون التلقائي بإجبار الخط على 16px */
+  .form-group input,
+  .form-group select,
+  input[type="text"],
+  input[type="number"],
+  input[type="date"],
+  select {
+    font-size: 16px !important;
+    min-height: 48px !important;
+    padding: 10px 14px !important;
+    border-radius: 10px !important;
+  }
+
+  .date-input-container {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+
+  .btn-today-pill {
+    padding: 10px 14px !important;
+    text-align: center !important;
+    border-radius: 10px !important;
+    min-height: 42px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .calc-btn {
+    min-height: 50px !important;
+    padding: 14px 20px !important;
+    font-size: 1rem !important;
+    border-radius: 14px !important;
+  }
+
+  .result-box {
+    padding: 18px 14px !important;
+    border-radius: 16px !important;
+  }
+
+  .result-row {
+    padding: 10px 10px !important;
+    font-size: 0.84rem !important;
+  }
+
+  .result-total {
+    flex-direction: column !important;
+    gap: 8px !important;
+    text-align: center !important;
+    padding: 14px 12px !important;
+  }
+
+  .result-actions,
+  .calc-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .print-btn,
+  .whatsapp-btn {
+    width: 100% !important;
+    min-height: 48px !important;
+    justify-content: center !important;
+    font-size: 0.9rem !important;
+    border-radius: 12px !important;
+  }
+
+  .hero {
+    padding: 24px 14px 32px !important;
+  }
+
+  .hero h1 {
+    font-size: 1.65rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .hero p {
+    font-size: 0.88rem !important;
+    line-height: 1.7 !important;
+  }
+
+  .hero-stats {
+    gap: 6px !important;
+  }
+
+  .hero-stat {
+    padding: 6px 10px !important;
+    font-size: 0.74rem !important;
+  }
+
+  .breadcrumbs-wrap {
+    padding: 75px 14px 0 !important;
+  }
+
+  .article-box {
+    padding: 16px 14px !important;
+  }
+
+  .article-title {
+    font-size: 0.95rem !important;
+  }
+
+  .article-text {
+    font-size: 0.86rem !important;
+    line-height: 1.8 !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .site-mobile-dock {
+    display: none !important;
+  }
+}

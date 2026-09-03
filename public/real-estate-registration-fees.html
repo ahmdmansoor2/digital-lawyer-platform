@@ -327,19 +327,18 @@
       </a>
 
       <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
-        <a href="/" class="uh-link">الرئيسية</a>
+        <a href="/" class="uh-link">🏠 الرئيسية</a>
         <a href="/legal-calculators.html" class="uh-link active">🧮 الحاسبات القانونية</a>
-        <a href="/court-precedents.html" class="uh-link">موسوعة النقض</a>
-        <a href="/contract-generator.html" class="uh-link">صانع العقود</a>
-        <a href="/courts-directory.html" class="uh-link">دليل المحاكم</a>
-        <a href="/pillars/" class="uh-link">المراجع والأكواد</a>
-        <a href="/blog/" class="uh-link">المدونة</a>
+        <a href="/court-precedents.html" class="uh-link">⚖️ موسوعة النقض</a>
+        <a href="/contract-generator.html" class="uh-link">📝 صانع العقود</a>
+        <a href="/courts-directory.html" class="uh-link">🏛️ دليل المحاكم</a>
+        <a href="/pillars/" class="uh-link">📚 المراجع والأكواد</a>
+        <a href="/blog/" class="uh-link">📰 المدونة</a>
       </nav>
 
       <div class="uh-actions">
-        <a href="/" class="uh-cta">
-          <span>🚀 دخول التطبيق</span>
-        </a>
+        <a href="/" class="uh-cta"><span>🚀 دخول التطبيق</span></a>
+        <button class="uh-burger" id="uhBurger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="headerNav">☰</button>
       </div>
     </div>
   </header>
@@ -565,6 +564,32 @@
         '🔗 احسب تكلفة تسجيل شقتك فوراً عبر منصة المحامي الرقمية:\nhttps://mohamidigital.online/real-estate-registration-fees.html';
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
     }
+  </script>
+
+  <script src="/mobile-dock.js" defer></script>
+  <script>
+    (function(){
+      var hdr=document.getElementById('siteHeader');
+      var nav=document.getElementById('headerNav');
+      var burger=document.getElementById('uhBurger');
+      if(hdr)window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+      if(burger&&nav){
+        burger.addEventListener('click',function(e){
+          e.stopPropagation();
+          var open=nav.classList.toggle('active');
+          burger.setAttribute('aria-expanded',open);
+          burger.innerHTML=open?'✕':'☰';
+          burger.setAttribute('aria-label',open?'إغلاق القائمة':'فتح القائمة');
+        });
+        document.addEventListener('click',function(e){
+          if(!hdr.contains(e.target)){
+            nav.classList.remove('active');
+            burger.setAttribute('aria-expanded','false');
+            burger.innerHTML='☰';
+          }
+        });
+      }
+    })();
   </script>
 </body>
 </html>

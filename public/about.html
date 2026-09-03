@@ -283,6 +283,48 @@
       text-align: center;
     }
   </style>
+
+<style id="info-mobile-responsive">
+@media (max-width: 768px) {
+  .header-nav .nav-links {
+    display: none !important;
+  }
+  .container {
+    padding: 20px 14px 70px !important;
+  }
+  .hero-profile, .hero-section {
+    padding: 24px 16px !important;
+    border-radius: 18px !important;
+    margin-bottom: 24px !important;
+  }
+  .hero-title, h1 {
+    font-size: 1.6rem !important;
+    line-height: 1.35 !important;
+  }
+  .hero-subtitle {
+    font-size: 0.88rem !important;
+    line-height: 1.6 !important;
+  }
+  .hero-desc {
+    font-size: 0.88rem !important;
+    line-height: 1.7 !important;
+  }
+  .cred-list, .values-list, .features-grid, .pricing-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .section-box {
+    padding: 20px 16px !important;
+    border-radius: 16px !important;
+  }
+  .footer-links {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+}
+</style>
+
+<link rel="stylesheet" href="/header.css?v=20260902v1" />
 </head>
 <body>
 
@@ -423,5 +465,6 @@
     <div>جميع الحقوق محفوظة © 2026 منصة المحامي الرقمية — إشراف المستشار القانوني أحمد منصور (محامٍ بالنقض والدستورية العليا)</div>
   </footer>
 
+<script src="/mobile-dock.js" defer></script>
 </body>
 </html>
