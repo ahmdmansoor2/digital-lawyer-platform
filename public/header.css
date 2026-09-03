@@ -1,21 +1,18 @@
 /* ============================================================================
- * خلفية الموقع العام السينمائية الموحدة — مريحة للعين 2026
+ * خلفية الموقع العام الفاخرة الموحدة — تباين فائق وأناقة معمارية 2026
+ * إزالة أي صور خارجية باهتة واستبدالها بشبكة تدرجات نقية ومريحة للعين
  * ============================================================================ */
 html, body {
-  background-color: #0a0f1e !important;
+  background-color: #060913 !important;
   background-image: 
-    radial-gradient(ellipse at 60% 0%,  rgba(79, 70, 229, 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse at 10% 50%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
-    linear-gradient(180deg,
-      rgba(10, 15, 35, 0.55) 0%,
-      rgba(8, 12, 28, 0.45) 35%,
-      rgba(6,  9, 20, 0.72) 100%),
-    url('/images/legal-bg.jpg') !important;
-  background-attachment: fixed !important;
-  background-size: cover !important;
-  background-position: center top !important;
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(99, 102, 241, 0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 45% at 90% 25%, rgba(124, 58, 237, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 10% 65%, rgba(16, 185, 129, 0.10) 0%, transparent 55%),
+    linear-gradient(180deg, #060913 0%, #0a0f1d 35%, #050812 100%) !important;
+  background-attachment: scroll !important;
+  background-size: 100% 100% !important;
   background-repeat: no-repeat !important;
-  color: #e2e8f0;
+  color: #f1f5f9;
   font-family: 'Cairo', 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -30,22 +27,15 @@ html, body {
  * RTL أولاً عبر الخصائص المنطقية (inset-inline / ms- / me-).
  * ============================================================================ */
 
-/* خلفية الموقع العام السينمائية الموحدة — نسخة المريحة للعين */
+/* خلفية الموقع العام السينمائية الموحدة — نسخة التباين الفائق */
 body {
-  background-color: #0a0f1e !important;
+  background-color: #060913 !important;
   background-image: 
-    radial-gradient(ellipse at 60% 0%,  rgba(79, 70, 229, 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse at 10% 50%, rgba(6, 182, 212, 0.12) 0%, transparent 50%),
-    linear-gradient(180deg,
-      rgba(10, 15, 35, 0.55) 0%,
-      rgba(8, 12, 28, 0.45) 35%,
-      rgba(6,  9, 20, 0.72) 100%),
-    url('/images/legal-bg.jpg') !important;
-  background-attachment: fixed !important;
-  background-size: cover !important;
-  background-position: center top !important;
-  background-repeat: no-repeat !important;
-  color: #e2e8f0;
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(99, 102, 241, 0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 45% at 90% 25%, rgba(124, 58, 237, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 10% 65%, rgba(16, 185, 129, 0.10) 0%, transparent 55%),
+    linear-gradient(180deg, #060913 0%, #0a0f1d 35%, #050812 100%) !important;
+  color: #f1f5f9;
 }
 
 .uh-bar {
@@ -926,27 +916,134 @@ h1, h2, h3, h4,
     border-radius: 12px !important;
   }
 
-  .hero {
-    padding: 24px 14px 32px !important;
+  /* إخفاء زر الفهرس الزائد في الهيدر العلوي على الموبايل لمنع تجاوز الأزرار حافة الشاشة */
+  .gs-nav-trigger {
+    display: none !important;
   }
 
-  .hero h1 {
-    font-size: 1.65rem !important;
-    line-height: 1.35 !important;
-  }
-
-  .hero p {
-    font-size: 0.88rem !important;
-    line-height: 1.7 !important;
-  }
-
-  .hero-stats {
+  .uh-inner {
+    padding: 0 12px !important;
     gap: 6px !important;
   }
 
-  .hero-stat {
+  .uh-actions {
+    gap: 6px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .uh-cta {
     padding: 6px 10px !important;
-    font-size: 0.74rem !important;
+    font-size: 11.5px !important;
+    border-radius: 10px !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  .hero {
+    padding: 24px 14px 20px !important;
+    text-align: center !important;
+  }
+
+  .hero .badge,
+  .hero-badge {
+    font-size: 10.5px !important;
+    padding: 4px 12px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.45rem, 5.5vw, 1.85rem) !important;
+    line-height: 1.35 !important;
+    margin-bottom: 10px !important;
+    word-break: break-word !important;
+  }
+
+  .hero p {
+    font-size: 0.85rem !important;
+    line-height: 1.65 !important;
+    margin-bottom: 16px !important;
+    padding: 0 4px !important;
+  }
+
+  /* توحيد مظهر الإحصائيات كشبكة 3 أعمدة أنيقة ومتراصة بدلاً من تكديسها رأسياً */
+  .hero-stats {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    margin-top: 14px !important;
+    margin-bottom: 20px !important;
+    width: 100% !important;
+    max-width: 500px !important;
+    margin-inline: auto !important;
+  }
+
+  .stat-pill,
+  .hero-stat {
+    padding: 8px 4px !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 3px !important;
+    border-radius: 12px !important;
+    background: rgba(15, 23, 42, 0.75) !important;
+    border: 1px solid rgba(148, 163, 184, 0.16) !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35) !important;
+    min-width: 0 !important;
+  }
+
+  .stat-pill .num,
+  .hero-stat .num {
+    font-size: 16px !important;
+    line-height: 1.1 !important;
+    color: #67e8f9 !important;
+    font-weight: 900 !important;
+  }
+
+  /* شريط البحث الموحد للموبايل */
+  .search-wrapper {
+    padding: 0 12px !important;
+    margin: 10px auto 18px !important;
+  }
+
+  .search-bar {
+    padding: 5px 8px 5px 12px !important;
+    gap: 8px !important;
+    border-radius: 14px !important;
+    background: rgba(15, 23, 42, 0.85) !important;
+    border: 1px solid rgba(99, 102, 241, 0.35) !important;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45) !important;
+  }
+
+  .search-bar input {
+    font-size: 13.5px !important;
+    padding: 8px 2px !important;
+    min-height: auto !important;
+  }
+
+  .search-btn {
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+    border-radius: 10px !important;
+    flex-shrink: 0 !important;
+    min-height: 38px !important;
+  }
+
+  /* فئات التصفية الدائرية السلسة */
+  .category-pills {
+    padding: 0 12px 10px !important;
+    gap: 6px !important;
+    margin-bottom: 20px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .cat-btn {
+    padding: 6px 12px !important;
+    font-size: 11.5px !important;
+    border-radius: 10px !important;
   }
 
   .breadcrumbs-wrap {
@@ -964,6 +1061,21 @@ h1, h2, h3, h4,
   .article-text {
     font-size: 0.86rem !important;
     line-height: 1.8 !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .uh-title {
+    font-size: 12px !important;
+  }
+  .uh-badge {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 15px !important;
+  }
+  .uh-cta {
+    padding: 5px 7px !important;
+    font-size: 10.5px !important;
   }
 }
 
