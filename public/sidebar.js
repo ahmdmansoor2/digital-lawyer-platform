@@ -489,15 +489,16 @@
       box-shadow: 0 8px 25px rgba(15, 23, 42, 0.6) !important;
       border-color: rgba(99, 102, 241, 0.5) !important;
     }
-    @media (max-width: 480px) {
-      #global-nav-floating-wrap { bottom: 16px !important; left: 16px !important; gap: 6px !important; }
+    @media (max-width: 768px) {
+      #global-sidebar-trigger { bottom: 84px !important; right: 14px !important; }
+      #global-nav-floating-wrap { bottom: 84px !important; left: 14px !important; gap: 6px !important; }
       .global-nav-pill-btn { padding: 8px 10px !important; font-size: 11.5px !important; }
     }
 
     @media (max-width: 480px) {
       #gs-drawer { width: 300px !important; }
       #global-sidebar-trigger span { display: none !important; }
-      #global-sidebar-trigger { padding: 12px !important; border-radius: 50% !important; }
+      #global-sidebar-trigger { padding: 12px !important; border-radius: 50% !important; bottom: 84px !important; right: 14px !important; }
     }
   `;
   document.head.appendChild(style);

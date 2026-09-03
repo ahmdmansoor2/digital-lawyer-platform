@@ -747,6 +747,14 @@ h1, h2, h3, h4,
     padding-bottom: 84px !important;
   }
 
+  /* رفع زر الفهرس وزر المستشار العائم ليكونان أعلى الشريط السفلي دائماً بدون أي تداخل */
+  #global-sidebar-trigger,
+  [data-ai-advisor],
+  .floating-action-bar,
+  #global-nav-floating-wrap {
+    bottom: 84px !important;
+  }
+
   /* الشريط السفلي الذكي للموبايل (Mobile Bottom Dock) */
   .site-mobile-dock {
     position: fixed !important;
