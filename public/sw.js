@@ -8,7 +8,7 @@
  */
 'use strict';
 
-const VERSION = 'mohami-v2';
+const VERSION = 'mohami-v3';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 

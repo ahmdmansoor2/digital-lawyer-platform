@@ -737,6 +737,11 @@ h1, h2, h3, h4,
     padding-bottom: 84px !important;
   }
 
+  /* إخفاء زر الفهرس في شريط الهيدر على الموبايل لمنع الازدحام */
+  .gs-nav-trigger {
+    display: none !important;
+  }
+
   /* رفع زر الفهرس وزر المستشار العائم ليكونان أعلى الشريط السفلي دائماً بدون أي تداخل */
   #global-sidebar-trigger,
   [data-ai-advisor],

@@ -640,9 +640,9 @@
       closeDrawer();
     });
 
-    // ── Top Navbar Trigger Injection ──
+    // ── Top Navbar Trigger Injection (Desktop/Tablet only) ──
     var uhActions = document.querySelector('.uh-actions');
-    if (uhActions && !uhActions.querySelector('.gs-nav-trigger') && !uhActions.querySelector('[title*="فهرس"]')) {
+    if (window.innerWidth > 768 && uhActions && !uhActions.querySelector('.gs-nav-trigger') && !uhActions.querySelector('[title*="فهرس"]')) {
       var navBtn = document.createElement('button');
       navBtn.type = 'button';
       navBtn.className = 'uh-cta uh-cta--ghost gs-nav-trigger';

@@ -4,7 +4,7 @@
   <script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script><!-- www-mohami-guard -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>دليل محاكم وشهر عقاري مصر الرقمية 2026 - شامل الفروع بدون حجز والمسائية والمولات والسيارات المتنقلة | | المحامي الرقمي</title>
+  <title>دليل محاكم وشهر عقاري مصر 2026 | المحامي الرقمي</title>
   <meta name="description" content="الدليل الأكبر والأشمل لمنظومة العدالة ومصر الرقمية 2026: مقار المحاكم، مكاتب الشهر العقاري المميكنة بدون حجز (أسبقية الحضور)، فروع المولات والنوادي، الفترة المسائية (5-9م)، وسيارات التوثيق المتنقلة 15999." />
   <meta name="keywords" content="مكاتب الشهر العقاري بدون حجز, شهر عقاري مول مصر, الشهر العقاري الفترة المسائية, سيارات التوثيق المتنقلة 15999, دليل محاكم مصر 2026, حجز توكيل مصر الرقمية, رسوم تسجيل العقارات 2026" />
   <link rel="canonical" href="https://mohamidigital.online/courts-directory.html" />
@@ -97,7 +97,19 @@
       --text: #f1f5f9; --muted: #94a3b8; --card: rgba(15,23,42,0.85);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Cairo', sans-serif; background: transparent; color: var(--text); min-height: 100vh; line-height: 1.6; }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #060913 !important;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 85% 30%, rgba(124, 58, 237, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 15% 70%, rgba(16, 185, 129, 0.08) 0%, transparent 50%) !important;
+      background-attachment: fixed !important;
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      padding-bottom: 85px !important;
+    }
 
     /* HERO */
     .hero { padding: 90px 20px 24px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.22) 0%, transparent 70%); }
@@ -147,6 +159,31 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3) !important;
     }
     .stat-pill span { color: var(--indigo-light); font-weight: 900; }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 72px 14px 16px !important;
+      }
+      .hero-stats {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        padding: 0 4px !important;
+        margin-bottom: 18px !important;
+      }
+      .hero-stats .stat-pill:last-child {
+        grid-column: span 2 !important;
+      }
+      .stat-pill {
+        justify-content: center !important;
+        font-size: 0.78rem !important;
+        padding: 7px 8px !important;
+        border-radius: 12px !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+        overflow: hidden !important;
+      }
+    }
 
     /* DIGITAL BOX */
     .digital-box { max-width: 1240px; margin: 0 auto 24px; padding: 18px 24px; background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(16,185,129,0.08)); border: 1px solid rgba(99,102,241,0.25); border-radius: 18px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; }
@@ -429,7 +466,7 @@
 }
 
 </style>
-  <link rel="stylesheet" href="/header.css?v=20260823v10" />
+  <link rel="stylesheet" href="/header.css?v=20260903v2" />
   <link rel="manifest" href="/manifest.webmanifest">
   <meta name="theme-color" content="#0f172a">
   <link rel="apple-touch-icon" href="/icon.svg">
@@ -4228,8 +4265,8 @@ if (document.getElementById('formsSelectList')) {
 if (document.getElementById("notaryResultDisplay")) updateNotaryInfo();
 renderCourts(COURTS_DATA);
 </script>
-<script src="/sidebar.js?v=20260823v10"></script>
-<script src="/sw-register.js?v=20260826v1" defer></script><!-- mohami-sw -->
-<script src="/mobile-dock.js" defer></script>
+<script src="/sidebar.js?v=20260903v2"></script>
+<script src="/sw-register.js?v=20260903v2" defer></script><!-- mohami-sw -->
+<script src="/mobile-dock.js?v=20260903v2" defer></script>
 </body>
 </html>
