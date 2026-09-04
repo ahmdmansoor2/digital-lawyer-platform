@@ -1,29 +1,29 @@
 {
   "date": "2026-09-04",
-  "generatedAt": "2026-09-04T08:11:06.159Z",
+  "generatedAt": "2026-09-04T10:08:43.330Z",
   "status": "error",
-  "blogArticles": null,
+  "blogArticles": 174,
   "fbPosts": 0,
   "reels": 0,
-  "ghRuns": 16,
+  "ghRuns": 17,
   "checks": [
     {
       "name": "site_root",
       "label": "الموقع: الصفحة الرئيسية وأصول التطبيق",
-      "status": "error",
-      "findings": 1
+      "status": "ok",
+      "findings": 0
     },
     {
       "name": "blog_index",
       "label": "المدونة: الفهرس والروابط",
-      "status": "error",
-      "findings": 1
+      "status": "ok",
+      "findings": 0
     },
     {
       "name": "articles",
       "label": "المدونة: سلامة المقالات والصور (og:image)",
-      "status": "warn",
-      "findings": 1
+      "status": "ok",
+      "findings": 0
     },
     {
       "name": "sitemap",
