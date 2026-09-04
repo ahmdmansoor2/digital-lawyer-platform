@@ -1227,3 +1227,61 @@ h1, h2, h3, h4,
   }
 }
 
+/* ════════════════════════════════════════════════════════════════════════════
+   UNIVERSAL MOBILE RESPONSIVENESS SUITE 2026 (تحسين شامل لكل صفحات الموقع)
+   ════════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .container, .main-container, .wrapper, .page-wrap, main, article, section, .hero-section {
+    max-width: 100% !important;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+    box-sizing: border-box !important;
+  }
+  img, video, iframe, canvas {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  table {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  input, select, textarea {
+    font-size: 16px !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .grid, .cards-grid, .features-grid, .posts-grid, .pillars-grid, .calculators-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  .modal-box, .dialog-box, .popup-card {
+    max-width: 95vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title, h1 {
+    font-size: clamp(1.45rem, 5.5vw, 1.95rem) !important;
+    line-height: 1.35 !important;
+  }
+  .hero-desc, .sub-title {
+    font-size: 0.9rem !important;
+    line-height: 1.75 !important;
+  }
+  .card, .calc-card, .article-card, .law-card {
+    padding: 16px 12px !important;
+    border-radius: 14px !important;
+  }
+}
+
+
