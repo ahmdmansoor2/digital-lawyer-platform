@@ -5,12 +5,11 @@
 html, body {
   background-color: #060913 !important;
   background-image: 
-    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(99, 102, 241, 0.22) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 45% at 90% 25%, rgba(124, 58, 237, 0.14) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 40% at 10% 65%, rgba(16, 185, 129, 0.10) 0%, transparent 55%),
-    linear-gradient(180deg, #060913 0%, #0a0f1d 35%, #050812 100%) !important;
-  background-attachment: scroll !important;
-  background-size: 100% 100% !important;
+    linear-gradient(180deg, rgba(6, 9, 19, 0.72) 0%, rgba(10, 15, 29, 0.82) 40%, rgba(6, 9, 19, 0.94) 100%),
+    url('/legal-bg.jpg') !important;
+  background-attachment: fixed !important;
+  background-position: center top !important;
+  background-size: cover !important;
   background-repeat: no-repeat !important;
   color: #f1f5f9;
   font-family: 'Cairo', 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
@@ -27,14 +26,15 @@ html, body {
  * RTL أولاً عبر الخصائص المنطقية (inset-inline / ms- / me-).
  * ============================================================================ */
 
-/* خلفية الموقع العام السينمائية الموحدة — نسخة التباين الفائق */
 body {
   background-color: #060913 !important;
   background-image: 
-    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(99, 102, 241, 0.22) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 45% at 90% 25%, rgba(124, 58, 237, 0.14) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 40% at 10% 65%, rgba(16, 185, 129, 0.10) 0%, transparent 55%),
-    linear-gradient(180deg, #060913 0%, #0a0f1d 35%, #050812 100%) !important;
+    linear-gradient(180deg, rgba(6, 9, 19, 0.72) 0%, rgba(10, 15, 29, 0.82) 40%, rgba(6, 9, 19, 0.94) 100%),
+    url('/legal-bg.jpg') !important;
+  background-attachment: fixed !important;
+  background-position: center top !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
   color: #f1f5f9;
 }
 
