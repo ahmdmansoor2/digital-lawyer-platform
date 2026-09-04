@@ -57,7 +57,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0f172a; --bg2: #1e293b; --border: rgba(148,163,184,0.14);
+      --bg: #080f28; --bg2: #1e293b; --border: rgba(148,163,184,0.14);
       --indigo: #6366f1; --indigo-light: #818cf8; --purple: #7c3aed;
       --emerald: #10b981; --emerald-light: #34d399; --amber: #f59e0b;
       --rose: #f43f5e; --cyan: #06b6d4; --text: #f1f5f9; --muted: #94a3b8;
@@ -587,7 +587,7 @@
     }
     .download-modal-overlay.active { display: flex; }
     .dl-modal-card {
-      background: #0f172a;
+      background: #080f28;
       border: 1px solid rgba(99,102,241,0.4);
       border-radius: 24px;
       width: 100%;
@@ -1121,6 +1121,15 @@
       </div>
       <div class="dl-status-text" id="modalStatus">جاري فحص وتأمين الملف والاتصال بالسيرفر...</div>
 
+      <div id="modalActionLinks" style="display:none; flex-direction:column; gap:10px; margin-bottom:20px;">
+        <a href="https://github.com/ahmdmansoor2/digital-lawyer-platform/releases/download/v2.10.0/%D9%85%D9%86%D8%B5%D8%A9_%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A_%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A%D8%A9_Setup_2.9.10.exe" class="btn-download-primary btn-win-grad" style="padding:12px; font-size:0.95rem; text-decoration:none; justify-content:center;" target="_blank">
+          <span>⬇️ إذا لم يبدأ التنزيل تلقائياً، اضغط هنا للتحميل المباشر</span>
+        </a>
+        <a href="https://wa.me/201000787780?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A3%D8%B3%D8%AA%D8%A7%D8%B0%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%AD%D8%B5%D9%88%D9%84%20%D8%B9%D9%84%D9%89%20%D9%86%D8%B3%D8%AE%D8%A9%20%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC%20%D9%85%D9%86%D8%B5%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A%20%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A%D8%A9" class="btn-secondary" style="padding:10px; font-size:0.88rem; text-decoration:none; justify-content:center; border-color:#22c55e; color:#4ade80;" target="_blank">
+          <span>💬 طلب النسخة أو الدعم الفوري عبر واتساب (01000787780)</span>
+        </a>
+      </div>
+
       <button class="dl-close-btn" onclick="closeDownloadModal()">إغلاق وتخطي النافذة</button>
     </div>
   </div>
@@ -1160,18 +1169,24 @@
       const status = document.getElementById('modalStatus');
       const progress = document.getElementById('progressBar');
       const icon = document.getElementById('modalIcon');
+      const actionLinks = document.getElementById('modalActionLinks');
 
       modal.classList.add('active');
       progress.style.width = '0%';
+      if (actionLinks) actionLinks.style.display = 'none';
       
+      let directDownloadUrl = '';
+
       if (platform.includes('windows')) {
         icon.textContent = '💻';
-        title.textContent = 'جاري تنزيل إصدار الكمبيوتر (Windows)';
+        title.textContent = 'جاري تحضير نسخة الكمبيوتر (Windows)';
         desc.textContent = 'ملف التثبيت الرسمي لمنصة المحامي الرقمية 2026 (Windows 64-bit). التجربة المجانية 30 يوماً تبدأ فور التثبيت.';
+        directDownloadUrl = 'https://github.com/ahmdmansoor2/digital-lawyer-platform/releases/download/v2.10.0/%D9%85%D9%86%D8%B5%D8%A9_%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A_%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A%D8%A9_Setup_2.9.10.exe';
       } else if (platform === 'android') {
         icon.textContent = '📱';
-        title.textContent = 'جاري تنزيل إصدار الأندرويد (APK)';
-        desc.textContent = 'تطبيق أندرويد للهواتف والتابلت. بعد اكتمال التنزيل، افتح الملف واضغط على تثبيت.';
+        title.textContent = 'جاري تحضير إصدار الأندرويد (APK)';
+        desc.textContent = 'تطبيق أندرويد للهواتف والتابلت. يمكنك أيضاً استخدام المنصة مباشرة كـ WebApp فوري وسريع.';
+        directDownloadUrl = '/';
       }
 
       status.textContent = 'جاري الاتصال بالسيرفر والتحقق من أمان الملف...';
@@ -1183,13 +1198,20 @@
 
       setTimeout(() => {
         progress.style.width = '100%';
-        status.textContent = '✓ بدأ التنزيل المباشر بنجاح! احفظ الملف على جهازك.';
-        
-        // Trigger simulated/fallback download or actual local route
-        const dummyLink = document.createElement('a');
-        dummyLink.href = '/download.html?file=' + encodeURIComponent(filename);
-        dummyLink.setAttribute('download', filename);
-      }, 1400);
+        status.textContent = '✓ اكتمل الفحص وتجهيز الرابط بنجاح!';
+        if (actionLinks) actionLinks.style.display = 'flex';
+
+        // Direct download / open
+        if (directDownloadUrl && directDownloadUrl !== '/') {
+          const dlLink = document.createElement('a');
+          dlLink.href = directDownloadUrl;
+          dlLink.setAttribute('download', filename || 'mohami_setup.exe');
+          dlLink.target = '_blank';
+          document.body.appendChild(dlLink);
+          dlLink.click();
+          setTimeout(() => document.body.removeChild(dlLink), 200);
+        }
+      }, 1200);
     }
 
     function closeDownloadModal() {
@@ -1197,7 +1219,7 @@
     }
 
     function openIosGuide(e) {
-      e.preventDefault();
+      if (e) e.preventDefault();
       alert('لتثبيت التطبيق على الآيفون والآيباد (iOS):\n\n1. افتح الموقع في متصفح Safari على جهازك.\n2. اضغط على زر المشاركة (Share Icon 📤) في الأسفل أو الأعلى.\n3. اختر "إضافة إلى الصفحة الرئيسية" (Add to Home Screen ➕).\n\nسيظهر تطبيق المحامي الرقمي مباشرة على شاشتك الرئيسية ويعمل فوراً!');
     }
   </script>
