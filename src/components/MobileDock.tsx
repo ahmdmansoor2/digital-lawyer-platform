@@ -13,7 +13,7 @@ interface MobileDockProps {
 
 export default function MobileDock({ onOpenAIAdvisor, onEnterApp }: MobileDockProps) {
   return (
-    <div className="fixed bottom-3 inset-x-3 z-[9999] lg:hidden no-print animate-in fade-in slide-in-from-bottom-5 duration-300">
+    <div className="fixed bottom-4 inset-x-3 z-[9999] lg:hidden no-print animate-in fade-in slide-in-from-bottom-5 duration-300">
       <nav 
         role="navigation"
         aria-label="شريط الوصول السريع الميداني"

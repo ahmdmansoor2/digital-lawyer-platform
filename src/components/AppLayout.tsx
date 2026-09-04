@@ -584,7 +584,7 @@ export default function AppLayout(props: AppLayoutProps) {
       )}
 
       {/* MAIN VIEW CONTROLLER (منطقة العمل الرئيسية) */}
-      <main className="flex-1 p-4 md:p-6 overflow-y-auto max-w-full flex flex-col gap-6 theme-main-bg">
+      <main className="flex-1 p-4 md:p-6 pb-28 md:pb-6 overflow-y-auto max-w-full flex flex-col gap-6 theme-main-bg">
 
         <QuickActionHeader
           clients={clients}
