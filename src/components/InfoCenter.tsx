@@ -244,7 +244,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             className="px-3.5 py-1.5 rounded-full text-xs font-black bg-indigo-500/15 text-indigo-200 border border-indigo-500/35 hover:bg-indigo-500/30 hover:border-indigo-400 transition-all flex items-center gap-1.5 cursor-pointer shadow-sm hover:scale-105 active:scale-95"
           >
             <span>👨‍⚖️ أنا محامٍ</span>
-            <span className="text-[10px] text-indigo-300 font-normal hidden sm:inline">(إدارة ورول وقضايا)</span>
+            <span className="text-[10px] text-indigo-300 font-normal hidden sm:inline">(دليل وقيد 27 محافظة)</span>
           </button>
           <button
             type="button"
@@ -350,7 +350,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                   : 'bg-slate-900/80 text-slate-400 border border-white/10 hover:text-white hover:bg-slate-800'
               }`}
             >
-              👨‍⚖️ المحامين والمكاتب
+              👨‍⚖️ دليل المحامين المشتغلين
             </button>
             <button
               onClick={() => setActiveTab('calculators')}
@@ -691,7 +691,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </section>
         )}
 
-        {/* ── MASTER HUB 3: LAWYERS PROFESSIONAL HUB (كارت المحامين وإدارة المكاتب) ── */}
+        {/* ── MASTER HUB 3: LAWYERS DIRECTORY & REGISTRATION (دليل وقيد المحامين المشتغلين) ── */}
         {(activeTab === 'all' || activeTab === 'lawyers' || activeTab === 'admin') && (
           <section id="lawyer-admin-hub" className="spotlight-card scroll-mt-24 p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-indigo-950/60 via-slate-900/90 to-slate-950 border border-indigo-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-indigo-400/50">
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-indigo-900/50">
@@ -699,90 +699,82 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-black px-3.5 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 inline-flex items-center gap-1.5">
                     <Scale className="w-4 h-4 text-indigo-400" />
-                    <span>👨‍⚖️ منظومة المحامين والمستشارين وإدارة المكاتب</span>
+                    <span>👨‍⚖️ الدليل الرسمي للمحامين المشتغلين</span>
                   </span>
                   <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                    نظام إدارة ودليل 27 محافظة
+                    قيد وتواصل 27 محافظة
                   </span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-black text-white">
-                  منظومة المحاماة وإدارة المكاتب القضائية المتكاملة
+                  دليل وبوابة قيد المحامين المشتغلين المعتمدين بجمهورية مصر العربية
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-                  بيئة عمل رقمية مصممة للمحامي المصري: تشمل نظام إدارة القضايا والملفات، دليل المحامين المشتغلين المعتمدين بجميع المحافظات، مميزات المنظومة، وباقة الاشتراك المجانية مدى الحياة.
+                  قاعدة البيانات المتكاملة للبحث عن السادة المحامين وتخصصاتهم ودرجات القيد بجميع المحافظات، وبوابة المحامين المعتمدين لقيد وتسجيل المكاتب والتواصل المباشر مع الموكلين مجاناً 100%.
                 </p>
               </div>
-              <button
-                onClick={onEnterApp}
-                className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-extrabold text-sm shadow-xl shadow-indigo-600/30 hover:scale-105 transition-all flex items-center gap-2 whitespace-nowrap self-stretch lg:self-auto justify-center cursor-pointer"
-              >
-                <span>تشغيل برنامج إدارة المكاتب</span>
-                <ArrowLeft className="w-4 h-4" />
-              </button>
+              <div className="flex flex-wrap items-center gap-3 self-stretch lg:self-auto justify-center">
+                <a
+                  href="/lawyers-directory.html"
+                  className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-extrabold text-sm shadow-xl shadow-indigo-600/30 hover:scale-105 transition-all flex items-center gap-2 whitespace-nowrap justify-center cursor-pointer"
+                >
+                  <span>تصفح دليل المحامين (27 محافظة)</span>
+                  <ArrowLeft className="w-4 h-4" />
+                </a>
+                <a
+                  href="/lawyers-directory.html#register"
+                  className="px-5 py-3.5 rounded-2xl bg-slate-800/90 hover:bg-slate-700/90 text-indigo-300 hover:text-white font-extrabold text-sm border border-indigo-500/40 hover:border-indigo-400 transition-all flex items-center gap-2 whitespace-nowrap justify-center cursor-pointer"
+                >
+                  <span>سجّل مكتبك في الدليل مجاناً</span>
+                </a>
+              </div>
             </div>
 
             {/* Sub-features Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div onClick={onEnterApp} className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-indigo-500/20 hover:border-indigo-400 transition-all flex flex-col justify-between cursor-pointer">
-                <div>
-                  <div className="text-2xl mb-3">💼</div>
-                  <h3 className="text-base font-black text-white group-hover:text-indigo-300 transition-colors mb-1.5">
-                    برنامج إدارة المكاتب (Law Firm OS)
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    إدارة ملفات القضايا، رول الجلسات، أوراق المحضرين، الموكلين، والتقارير المالية والأرشفة السحابية المشفرة.
-                  </p>
-                </div>
-                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-indigo-400 flex items-center justify-between">
-                  <span>فتح البرنامج</span>
-                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-                </div>
-              </div>
-
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <a href="/lawyers-directory.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-indigo-500/20 hover:border-indigo-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">👨‍⚖️</div>
                   <h3 className="text-base font-black text-white group-hover:text-indigo-300 transition-colors mb-1.5">
-                    دليل المحامين المشتغلين بمصر
+                    تصفح وفلترة دليل المحامين حسب المحافظة والتخصص
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    دليل شامل يغطي 27 محافظة مصنفة حسب التخصص ودرجة القيد (نقض، استئناف، ابتدائي) مع التواصل المباشر عبر واتساب.
+                    دليل شامل يغطي 27 محافظة مصرية مصنفة حسب التخصص القضائي ودرجة القيد (نقض، استئناف، ابتدائي) مع إمكانية البحث الفوري.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-indigo-400 flex items-center justify-between">
-                  <span>تصفح الدليل أو سجّل مكتبك</span>
+                  <span>تصفح الدليل الآن</span>
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>
 
-              <a href="/features.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-indigo-500/20 hover:border-indigo-400 transition-all flex flex-col justify-between">
+              <a href="/lawyers-directory.html#register" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-indigo-500/20 hover:border-indigo-400 transition-all flex flex-col justify-between">
                 <div>
-                  <div className="text-2xl mb-3">⚡</div>
+                  <div className="text-2xl mb-3">📝</div>
                   <h3 className="text-base font-black text-white group-hover:text-indigo-300 transition-colors mb-1.5">
-                    المميزات الكاملة لمنظومة المحاماة
+                    بوابة قيد وتسجيل المحامين المشتغلين مجاناً
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    استكشف بالتفصيل إمكانيات المنصة: جدول الجلسات، أوراق التنفيذ، حفظ التوكيلات، وحاسبات الرسوم.
+                    سجّل بيانات مكتبك، وعنوانك، وتخصصك القضائي، ورقم هاتفك والواتساب للظهور الفوري المباشر أمام آلاف الموكلين والشركات.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-indigo-400 flex items-center justify-between">
-                  <span>استكشف المميزات</span>
+                  <span>سجّل مكتبك في الدليل</span>
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>
 
-              <a href="/pricing.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-indigo-500/20 hover:border-indigo-400 transition-all flex flex-col justify-between">
+              <a href="/lawyers-directory.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-indigo-500/20 hover:border-indigo-400 transition-all flex flex-col justify-between">
                 <div>
-                  <div className="text-2xl mb-3">🎁</div>
+                  <div className="text-2xl mb-3">💬</div>
                   <h3 className="text-base font-black text-white group-hover:text-indigo-300 transition-colors mb-1.5">
-                    مجانية بالكامل 100% مدى الحياة
+                    تواصل مباشر واستشارات قانونية فورية
                   </h3>
                   <p className="text-xs text-slate-400 leading-relaxed">
-                    لا توجد أي خطط مدفوعة أو رسوم اشتراك، كافة خصائص المنصة متاحة مجاناً لكافة المحامين والطلاب والمواطنين.
+                    تواصل فوري ومباشر مع المحامي المختص عبر المكالمات الهاتفية أو تطبيق واتساب مباشرة بدون أي وسيط وبشكل مجاني 100%.
                   </p>
                 </div>
                 <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-indigo-400 flex items-center justify-between">
-                  <span>تفاصيل المجانية</span>
+                  <span>استكشف المحامين والتواصل</span>
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>
