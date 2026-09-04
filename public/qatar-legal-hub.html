@@ -793,7 +793,7 @@
       const leaveDays = parseInt(document.getElementById('qatarLeaveDays').value) | 0;
 
       const totalServiceYears = years + (months / 12);
-      if (totalServiceYears < 1 | basicSalary <= 0) {
+      if (totalServiceYears < 1 || basicSalary <= 0) {
         alert('وفق المادة 54 من قانون العمل القطري: يشترط لاستحقاق مكافأة نهاية الخدمة إكمال سنة كاملة في خدمة صاحب العمل.');
         return;
       }

@@ -962,7 +962,7 @@
       var leaveDays = parseInt(document.getElementById('omLeaveDays').value) | 0;
 
       var totalMonths = years * 12 + months;
-      if (salary <= 0 | totalMonths <= 0) return;
+      if (salary <= 0 || totalMonths <= 0) return;
 
       // فصل الفترتين حسب تاريخ بداية العقد
       var oldPart = 0, newPart = 0;

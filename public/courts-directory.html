@@ -1492,7 +1492,7 @@ function selectFormByIndex(idx) {
 function copyFormText() {
   const bodyText = document.getElementById('previewFormBody').innerText;
   const titleText = document.getElementById('previewFormTitle').innerText;
-  if (!bodyText | bodyText.includes('اختر أحد النماذج')) {
+  if (!bodyText || bodyText.includes('اختر أحد النماذج')) {
     alert('يرجى اختيار أحد النماذج أولاً لنسخه!');
     return;
   }
@@ -1506,7 +1506,7 @@ function copyFormText() {
 function printFormText() {
   const bodyText = document.getElementById('previewFormBody').innerText;
   const titleText = document.getElementById('previewFormTitle').innerText;
-  if (!bodyText | bodyText.includes('اختر أحد النماذج')) {
+  if (!bodyText || bodyText.includes('اختر أحد النماذج')) {
     alert('يرجى اختيار أحد النماذج أولاً لطباعته!');
     return;
   }
@@ -3927,7 +3927,7 @@ let specialFilter = 'all';
 
 function getBookingPolicyArabic(c) {
   if (c.bookingPolicy && c.bookingPolicy !== 'undefined') return c.bookingPolicy;
-  if (c.isNoBooking | c.subType === 'no_booking') {
+  if (c.isNoBooking || c.subType === 'no_booking') {
     return "⚡ استقبال مباشر بأسبقية الحضور وسحب الأرقام الصباحية (بدون حجز مسبق)";
   }
   if (c.subType === 'mobile_van' | c.type === 'mobile_van') {

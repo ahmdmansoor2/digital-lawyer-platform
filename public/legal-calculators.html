@@ -1582,7 +1582,7 @@ function calcLabor() {
   const leave = parseFloat(document.getElementById('lb-leave').value) | 0;
   const reason = document.getElementById('lb-reason').value;
 
-  if (basic <= 0 | total <= 0) { alert('يرجى إدخال الراتب الأساسي والإجمالي'); return; }
+  if (basic <= 0 || total <= 0) { alert('يرجى إدخال الراتب الأساسي والإجمالي'); return; }
 
   const totalYears = years + (months / 12);
   const dailySalary = total / 30;

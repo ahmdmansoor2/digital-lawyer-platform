@@ -56,38 +56,6 @@ interface InfoCenterProps {
   onLogout?: () => void;
 }
 
-// ── مميزات نظام إدارة مكاتب المحاماة للمحترفين ─────────────────────────
-const LAW_FIRM_TOOLS = [
-  {
-    icon: Briefcase,
-    title: 'إدارة القضايا والملفات',
-    desc: 'تنظيم إلكتروني كامل لملفات القضايا والدعاوى، أرقام الحصر، أسماء الخصوم، ومحكمة النزاع مع تصنيف ذكي.',
-    color: 'text-indigo-400',
-    border: 'border-indigo-500/30'
-  },
-  {
-    icon: Calendar,
-    title: 'رول الجلسات والأجندة الذكية',
-    desc: 'جدول تفاعلي دقيق بمواعيد الجلسات اليومية والأسبوعية، القرارات الصادرة، والتنبيهات التلقائية قبل الموعد.',
-    color: 'text-emerald-400',
-    border: 'border-emerald-500/30'
-  },
-  {
-    icon: FileText,
-    title: 'متابعة أوراق المحضرين',
-    desc: 'رصد دقيق لتسليم واستلام الإعلانات والإنذارات وأوراق التنفيذ بمحضرين المحاكم دون أي تأخير.',
-    color: 'text-amber-400',
-    border: 'border-amber-500/30'
-  },
-  {
-    icon: Calculator,
-    title: 'حاسبة الرسوم والمواريث والمدد',
-    desc: 'أداة احترافية لحساب رسوم الشهر العقاري 2026، توزيع المواريث والتركات الشرعية، والمدد القانونية ومواعيد الطعن.',
-    color: 'text-purple-400',
-    border: 'border-purple-500/30'
-  }
-];
-
 export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCenterProps) {
   const [activeTab, setActiveTab] = useState<'all' | 'students' | 'library' | 'lawyers' | 'citizens' | 'calculators' | 'gulf' | 'corporate' | 'economic'>('all');
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
@@ -1647,59 +1615,6 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
         )}
 
       </div>
-
-      {/* ─── 3. LAW FIRM MANAGEMENT SYSTEM SECTION ──────────────────────── */}
-      <section className="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-b from-slate-900/90 to-slate-950/95 border border-indigo-500/20 backdrop-blur-2xl shadow-2xl">
-          <div className="max-w-3xl mb-8 text-start">
-            <span className="text-xs font-black px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 inline-block mb-3">
-              💼 للمحامين والمستشارين القانونيين
-            </span>
-            <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
-              برنامج إدارة مكاتب المحاماة المتكامل (Law Firm OS)
-            </h2>
-            <p className="text-sm sm:text-base text-slate-400 mt-2">
-              وداعاً لدفاتر الجلسات المفقودة وتأخر أوراق المحضرين. منظومة سحابية ومحلية متكاملة تمنحك السيطرة الكاملة على أعمال مكتبك القضائي.
-            </p>
-          </div>
-
-          {/* 4 Core Lawyer Features */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            {LAW_FIRM_TOOLS.map((tool, i) => {
-              const ToolIcon = tool.icon;
-              return (
-                <div key={i} className={`p-5 rounded-2xl bg-slate-900/60 border border-white/10 ${tool.border} transition-all`}>
-                  <ToolIcon className={`w-8 h-8 ${tool.color} mb-3`} />
-                  <h4 className="text-sm sm:text-base font-black text-white mb-1.5">{tool.title}</h4>
-                  <p className="text-xs text-slate-400 leading-relaxed font-normal">{tool.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Direct Launch Banner */}
-          <div className="flex flex-wrap items-center justify-between gap-4 p-5 rounded-2xl bg-indigo-950/40 border border-indigo-500/30">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-black">
-                ⚖️
-              </div>
-              <div>
-                <h4 className="text-sm font-black text-white">جاهز لتنظيم مكتبك وتجربة المنظومة؟</h4>
-                <span className="text-xs text-slate-300">المنصة تعمل فوراً من المتصفح والكمبيوتر بدون أي تثبيت معقد.</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <button
-                onClick={onEnterApp}
-                className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs sm:text-sm font-bold shadow-lg shadow-indigo-600/30 transition-all cursor-pointer flex items-center gap-1.5"
-              >
-                <span>دخول التطبيق الآن مجاناً</span>
-                <ArrowLeft className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ─── 4. EXPLAINER VIDEOS & INTERACTIVE TOUR SECTION (في آخر الصفحة بعد الكروت) ── */}
       <section id="explainerVideosSection" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">

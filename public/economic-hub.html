@@ -1117,10 +1117,10 @@
         const goldData = await goldRes.json();
 
         const usdEgp = fxData.rates.EGP | 50.25;
-        const eurEgp = usdEgp / (fxData.rates.EUR | 0.858);
-        const sarEgp = usdEgp / (fxData.rates.SAR | 3.75);
-        const aedEgp = usdEgp / (fxData.rates.AED | 3.672);
-        const kwdEgp = usdEgp / (fxData.rates.KWD | 0.308);
+        const eurEgp = usdEgp / (fxData.rates.EUR || 0.858);
+        const sarEgp = usdEgp / (fxData.rates.SAR || 3.75);
+        const aedEgp = usdEgp / (fxData.rates.AED || 3.672);
+        const kwdEgp = usdEgp / (fxData.rates.KWD || 0.308);
 
         const ounceUsd = goldData.price | 2515.50;
         const gram24kUsd = ounceUsd / 31.1034768;

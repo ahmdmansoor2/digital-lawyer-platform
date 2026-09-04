@@ -1514,7 +1514,7 @@ function renderActiveUniversityBanner() {
       '<div class="uni-big-badge">' + u.icon + '</div>' +
       '<div>' +
         '<h2 class="uni-title-h2">' + u.name + '</h2>' +
-        '<div class="uni-subtitle-desc">' + u.sub + ' · ' + (u.schoolName | u.highlights) + '</div>' +
+        '<div class="uni-subtitle-desc">' + u.sub + ' · ' + (u.schoolName || u.highlights) + '</div>' +
         '<div style="font-size: 13px; color: #cbd5e1; margin-top: 6px; max-width: 700px;">' + u.desc + '</div>' +
       '</div>' +
     '</div>' +
@@ -1566,7 +1566,7 @@ function renderSubjects(year) {
     html += '    </div>';
     html += '  </div>';
     html += '  <div class="faculty-doctor-pill">';
-    html += '    <span>👨‍🏫 <strong>مؤلف وشرح المقرر:</strong> ' + (s.author | currentUni.schoolName) + '</span>';
+    html += '    <span>👨‍🏫 <strong>مؤلف وشرح المقرر:</strong> ' + (s.author || currentUni.schoolName) + '</span>';
     html += '  </div>';
     html += '  <p class="subject-desc">' + s.desc + '</p>';
     html += '  <div class="topic-pills">';
@@ -1577,7 +1577,7 @@ function renderSubjects(year) {
     }
     html += '  </div>';
     html += '  <div class="card-actions">';
-    html += '    <button class="btn-action btn-book" data-drive-id="' + s.driveId + '" data-book-title="' + s.title + '" data-book-author="' + (s.author | currentUni.name) + '">';
+    html += '    <button class="btn-action btn-book" data-drive-id="' + s.driveId + '" data-book-title="' + s.title + '" data-book-author="' + (s.author || currentUni.name) + '">';
     html += '      📖 تصفح وقراءة الكتاب كاملاً (PDF)';
     html += '    </button>';
     html += '    <a class="btn-action btn-download" href="' + downloadUrl + '" target="_blank" rel="noopener noreferrer">';
@@ -1682,7 +1682,7 @@ function openPdfDriveReader(driveId, title, author) {
 // ════════════════════════════════════════════════════════════════════════════
 function openQuiz(id) {
   const s = getSubjectById(id);
-  if (!s | !s.quiz | s.quiz.length === 0) return;
+  if (!s || !s.quiz || s.quiz.length === 0) return;
   
   let html = 
     '<div class="general-modal-box">' +

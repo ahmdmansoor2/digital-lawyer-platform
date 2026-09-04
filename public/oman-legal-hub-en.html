@@ -115,7 +115,7 @@ function calcOM(){
   var sal=parseFloat(document.getElementById('om-salary').value) | 0;
   var yrs=parseInt(document.getElementById('om-years').value) | 0;
   var mos=parseInt(document.getElementById('om-months').value) | 0;
-  if(!sal | yrs<=0)return;
+  if(!sal || yrs<=0)return;
   var totalY=yrs+mos/12;
   var newLawStart=new Date('2023-08-01');
   var now=new Date();

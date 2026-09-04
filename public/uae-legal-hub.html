@@ -888,7 +888,7 @@
       const leaveDays = parseInt(document.getElementById('uaeLeaveDays').value) | 0;
 
       const totalServiceYears = years + (months / 12);
-      if (totalServiceYears < 1 | basicSalary <= 0) {
+      if (totalServiceYears < 1 || basicSalary <= 0) {
         alert('وفق المادة 51: لا يستحق العامل مكافأة نهاية الخدمة إذا كانت مدة خدمته المستمرة أقل من سنة كاملة.');
         return;
       }

@@ -936,7 +936,7 @@
       const container = document.getElementById('propertiesContainer');
       container.innerHTML = '';
 
-      if (!list | list.length === 0) {
+      if (!list || list.length === 0) {
         container.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:40px; color:#64748b; font-size:14px;">لا توجد عقارات مطابقة لشروط البحث الحالية.</div>';
         return;
       }

@@ -877,7 +877,7 @@
       const leaveDays = parseInt(document.getElementById('saudiLeaveDays').value) | 0;
 
       const totalServiceYears = years + (months / 12);
-      if (totalServiceYears <= 0 | salary <= 0) return;
+      if (totalServiceYears <= 0 || salary <= 0) return;
 
       // 1. Base Gratuity (Article 84)
       let firstFivePart = 0;
