@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">منصة المحامي الرقمية</string>
+    <string name="title_activity_main">منصة المحامي الرقمية</string>
+    <string name="package_name">com.lawfirm.digitallawyer</string>
+    <string name="custom_url_scheme">com.lawfirm.digitallawyer</string>
+</resources>

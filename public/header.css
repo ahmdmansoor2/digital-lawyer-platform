@@ -1,37 +1,37 @@
 /* ============================================================================
- * خلفية الموقع العام الفاخرة الموحدة — تباين فائق وأناقة معمارية 2026
- * إزالة أي صور خارجية باهتة واستبدالها بشبكة تدرجات نقية ومريحة للعين
+ * خلفية الموقع العام الفاخرة الموحدة 2026 — تباين فائق وامتداد لانهائي 100%
+ * معالجة مشكلة انقطاع الخلفية عند التمرير أو في شاشات الموبايل
  * ============================================================================ */
-html:root, html:root body, html body, body {
+html {
+  min-height: 100%;
+  height: auto;
   background-color: #060913 !important;
-  background-image: url('/legal-bg.jpg') !important;
-  background-attachment: fixed !important;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(99, 102, 241, 0.22), transparent 70%),
+    radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.12), transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(16, 185, 129, 0.08), transparent 45%),
+    url('/legal-bg.jpg') !important;
+  background-attachment: scroll !important;
   background-position: center top !important;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
+  background-size: 100% auto, 100% auto, 100% auto, cover !important;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat-y !important;
   color: #f1f5f9;
   font-family: 'Cairo', 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
-/* ============================================================================
- * header.css — الشريط العلوي الزجاجي الموحّد 2026 (glassmorphism)
- * كلاساته ببادئة .uh- لتجنّب أي تعارض مع أنماط الصفحات (nav / header ...).
- * يُحمَّل من: الصفحات الثابتة (link في head) + تطبيق React (index.html).
- * الثيم: داكن افتراضياً + overrides لقسم html.public-theme-light.
- * RTL أولاً عبر الخصائص المنطقية (inset-inline / ms- / me-).
- * ============================================================================ */
-
 body {
-  background-color: #060913 !important;
-  background-image: url('/legal-bg.jpg') !important;
-  background-attachment: fixed !important;
-  background-position: center top !important;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: transparent !important;
+  background-image: none !important;
   color: #f1f5f9;
+  font-family: 'Cairo', 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
 .uh-bar {
@@ -1085,3 +1085,163 @@ h1, h2, h3, h4,
     display: none !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   SMART CONVERSION BANNER (منظومة المحامي الرقمية - تجربة 30 يوماً مجاناً)
+   ════════════════════════════════════════════════════════════════════════════ */
+.smart-download-banner {
+  margin: 40px auto;
+  max-width: 1050px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.sdb-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(30, 27, 75, 0.90) 50%, rgba(15, 23, 42, 0.96) 100%) !important;
+  border: 1px solid rgba(99, 102, 241, 0.45) !important;
+  border-radius: 22px !important;
+  padding: 30px 26px !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(99, 102, 241, 0.2) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+.sdb-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #a855f7, #10b981);
+}
+
+.sdb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.sdb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.18) !important;
+  border: 1px solid rgba(16, 185, 129, 0.45) !important;
+  color: #34d399 !important;
+  font-size: 0.84rem !important;
+  font-weight: 800 !important;
+  padding: 4px 14px !important;
+  border-radius: 99px !important;
+}
+
+.sdb-title {
+  font-size: clamp(1.25rem, 2.5vw, 1.65rem) !important;
+  font-weight: 900 !important;
+  color: #ffffff !important;
+  margin-bottom: 12px !important;
+  line-height: 1.35 !important;
+  letter-spacing: -0.2px;
+}
+
+.sdb-desc {
+  font-size: 0.96rem !important;
+  color: #cbd5e1 !important;
+  line-height: 1.8 !important;
+  margin-bottom: 22px !important;
+  max-width: 900px !important;
+}
+
+.sdb-platforms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.sdb-platform-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(15, 23, 42, 0.75) !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #e2e8f0 !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  padding: 6px 14px !important;
+  border-radius: 10px !important;
+}
+
+.sdb-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.sdb-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+  color: #ffffff !important;
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+  padding: 13px 26px !important;
+  border-radius: 12px !important;
+  text-decoration: none !important;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.45) !important;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s !important;
+}
+
+.sdb-btn-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 28px rgba(99, 102, 241, 0.6) !important;
+  color: #ffffff !important;
+}
+
+.sdb-btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.15) !important;
+  border: 1px solid rgba(16, 185, 129, 0.45) !important;
+  color: #34d399 !important;
+  font-size: 0.95rem !important;
+  font-weight: 800 !important;
+  padding: 12px 22px !important;
+  border-radius: 12px !important;
+  text-decoration: none !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.sdb-btn-whatsapp:hover {
+  background: rgba(16, 185, 129, 0.25) !important;
+  border-color: #34d399 !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+}
+
+@media (max-width: 640px) {
+  .sdb-card {
+    padding: 22px 18px !important;
+    border-radius: 18px !important;
+  }
+  .sdb-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .sdb-btn-primary, .sdb-btn-whatsapp {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}
+

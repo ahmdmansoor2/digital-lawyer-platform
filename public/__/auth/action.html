@@ -115,9 +115,51 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
   </style>
-<link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest --><meta name="theme-color" content="#0f172a"><!-- mohami-theme --><link rel="apple-touch-icon" href="/icon.svg"><!-- mohami-apple --><link rel="alternate" type="application/rss+xml" title="RSS | المحامي الرقمي" href="/rss.xml"/><!-- mohami-rss -->  <link rel="stylesheet" href="/header.css?v=20260904-bg2" />
+<link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest --><meta name="theme-color" content="#0f172a"><!-- mohami-theme --><link rel="apple-touch-icon" href="/icon.svg"><!-- mohami-apple --><link rel="alternate" type="application/rss+xml" title="RSS | المحامي الرقمي" href="/rss.xml"/><!-- mohami-rss -->  <link rel="stylesheet" href="/header.css?v=20260904-fast1" />
 </head>
 <body>
+<header class="uh-bar" id="siteHeader">
+    <div class="uh-inner">
+      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+        <span class="uh-badge">⚖️</span>
+        <span class="uh-brand">
+          <span class="uh-title">المحامي الرقمي</span>
+          <span class="uh-sub">مساعدك القانوني الذكي · مجاناً</span>
+        </span>
+      </a>
+
+      <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
+        <a href="/" class="uh-link active">🏠 الرئيسية</a>
+        <a href="/download.html" class="uh-link">💻 تحميل البرنامج</a>
+        <a href="/legal-calculators.html" class="uh-link">🧮 الحاسبات القانونية</a>
+        <a href="/legal-forms.html" class="uh-link">📝 صيغ العقود والدعاوي</a>
+        <a href="/pillars/" class="uh-link">🏛️ المراجع الشاملة</a>
+        <a href="/blog/" class="uh-link">📰 المدونة</a>
+        <a href="/legal-radar.html" class="uh-link">🔍 رصد المحامي</a>
+        <div class="uh-more" id="uhMore">
+          <button class="uh-more-btn" type="button" aria-expanded="false" aria-haspopup="true">
+            <span>المزيد</span><span class="uh-caret">▾</span>
+          </button>
+          <div class="uh-menu">
+            <a href="/courts-directory.html" class="uh-menu-item">🏢 دليل المحاكم والشهر العقاري</a>
+            <a href="/court-precedents.html" class="uh-menu-item">⚖️ موسوعة النقض</a>
+            <a href="/legal-consultations.html" class="uh-menu-item">🤖 المستشار القانوني</a>
+            <a href="/why-trust-us.html" class="uh-menu-item">🛡️ لماذا تثق بنا</a>
+            <a href="/privacy.html" class="uh-menu-item">🔐 سياسة الخصوصية</a>
+            <a href="/terms.html" class="uh-menu-item">📜 الشروط والأحكام</a>
+            <a href="/contact.html" class="uh-menu-item">📬 تواصل معنا</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="uh-actions">
+        <a href="/download.html" class="uh-cta"><span>🚀 تحميل البرنامج</span></a>
+        <button class="uh-burger" id="uhBurger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="headerNav">☰</button>
+      </div>
+    </div>
+  </header>
+
+
   <div class="card">
     <div class="icon">🔐</div>
     <h1>إعادة تعيين كلمة المرور</h1>
@@ -131,7 +173,36 @@
     </form>
     <div id="msg" class="msg"></div>
     <a href="/?from=reset" class="back-link">← العودة إلى المنصة</a>
-    <div class="footer">© 2026 | المحامي الرقمي</div>
+    
+<!-- ════════════════════════════════════════════════════════════════════════════
+     SMART DOWNLOAD CONVERSION BANNER (منظومة المحامي الرقمية 2026)
+     ════════════════════════════════════════════════════════════════════════════ -->
+<div class="smart-download-banner" id="smartDownloadBanner">
+  <div class="sdb-card">
+    <div class="sdb-header">
+      <span class="sdb-badge">🚀 تجربة مجانية كاملة 30 يوماً</span>
+      <div class="sdb-platforms">
+        <span class="sdb-platform-tag">💻 ويندوز للكمبيوتر (Setup & Portable)</span>
+        <span class="sdb-platform-tag">📱 أندرويد APK</span>
+        <span class="sdb-platform-tag">🍏 آيفون PWA</span>
+      </div>
+    </div>
+    <div class="sdb-title">⚖️ منظومة المحامي الرقمية لإدارة مكاتب المحاماة (إصدار 2026)</div>
+    <div class="sdb-desc">
+      وداعاً لفقدان مواعيد الجلسات أو تشتت بيانات الموكلين. نظّم قضاياك، جدول جلساتك، أوراق المحضرين، والعقود والصيغ في نظام رقمي متكامل ومشفّر محلياً بنسبة 100% يعمل دون الحاجة للإنترنت.
+    </div>
+    <div class="sdb-actions">
+      <a href="/download.html" class="sdb-btn-primary">
+        <span>📥 تحميل البرنامج وتجربته مجاناً (30 يوماً)</span>
+      </a>
+      <a href="https://wa.me/201000787780?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%A7%D8%B0%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%D8%B5%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A%20%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A%D8%A9" class="sdb-btn-whatsapp" target="_blank" rel="noopener">
+        <span>💬 واتساب للتفعيل الفوري: 01000787780</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="footer">© 2026 | المحامي الرقمي</div>
   </div>
 
   <script type="module">

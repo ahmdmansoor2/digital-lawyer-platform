@@ -1,0 +1,27 @@
+{
+  "summary": {
+    "htmlScriptErrorsCount": 1,
+    "brokenLinksCount": 1,
+    "encodingIssuesCount": 0,
+    "scriptSyntaxErrorsCount": 0,
+    "suspiciousGlitchesCount": 0
+  },
+  "htmlScriptErrors": [
+    {
+      "file": "public/__/auth/action.html",
+      "scriptIndex": 2,
+      "type": "JavaScript syntax error",
+      "message": "Cannot use import statement outside a module",
+      "snippet": "import { initializeApp } from \"https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js\";\r\n    import {\r\n      getAuth,\r\n      verifyPasswordResetCod"
+    }
+  ],
+  "brokenLinks": [
+    {
+      "sourceFile": "public/courts-directory.html",
+      "targetUrl": "/courts/${c.slug}.html"
+    }
+  ],
+  "encodingIssues": [],
+  "scriptSyntaxErrors": [],
+  "suspiciousGlitches": []
+}

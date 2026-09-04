@@ -34,20 +34,6 @@
     }
     html{scroll-behavior:smooth}
     body{font-family:'Cairo',-apple-system,BlinkMacSystemFont,sans-serif;background-color:var(--bg);color:var(--text);min-height:100vh;line-height:1.9;background-image:radial-gradient(ellipse at 50% 0%,rgba(168,85,247,0.15) 0%,transparent 60%),linear-gradient(rgba(255,255,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.018) 1px,transparent 1px);background-size:100% 100%,40px 40px,40px 40px}
-    nav.main-nav{position:sticky;top:0;z-index:100;background:rgba(15,23,42,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 24px}
-    .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
-    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--indigo),var(--purple));display:flex;align-items:center;justify-content:center;font-size:18px}
-    .logo-name{font-size:15px;font-weight:900;color:#fff}
-    .logo-sub{font-size:10px;color:var(--muted);display:block}
-    .nav-links{display:flex;gap:20px}
-    .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;font-weight:700;transition:color .2s}
-    .nav-links a:hover,.nav-links a.active{color:var(--accent-light)}
-    .nav-cta{padding:8px 20px;border-radius:10px;background:linear-gradient(135deg,var(--indigo),var(--purple));color:#fff;font-size:13px;font-weight:900;text-decoration:none;transition:opacity .2s}
-    .nav-cta:hover{opacity:.85}
-    nav.breadcrumbs{max-width:1200px;margin:16px auto;padding:0 24px;display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
-    nav.breadcrumbs a{color:var(--muted);text-decoration:none}
-    nav.breadcrumbs a:hover{color:var(--accent-light)}
     .sep{opacity:.4}
     .article-hero{max-width:900px;margin:0 auto;padding:40px 24px 20px;text-align:center}
     .article-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;border-radius:999px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);color:var(--accent-light);font-size:13px;font-weight:800;margin-bottom:20px}
@@ -140,9 +126,51 @@
   }
 }
 </script>
-  <link rel="stylesheet" href="/header.css?v=20260904-bg2" />
+  <link rel="stylesheet" href="/header.css?v=20260904-fast1" />
 </head>
 <body>
+<header class="uh-bar" id="siteHeader">
+    <div class="uh-inner">
+      <a href="/" class="uh-logo" aria-label="منصة المحامي الرقمية">
+        <span class="uh-badge">⚖️</span>
+        <span class="uh-brand">
+          <span class="uh-title">المحامي الرقمي</span>
+          <span class="uh-sub">مساعدك القانوني الذكي · مجاناً</span>
+        </span>
+      </a>
+
+      <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
+        <a href="/" class="uh-link">🏠 الرئيسية</a>
+        <a href="/download.html" class="uh-link">💻 تحميل البرنامج</a>
+        <a href="/legal-calculators.html" class="uh-link">🧮 الحاسبات القانونية</a>
+        <a href="/legal-forms.html" class="uh-link">📝 صيغ العقود والدعاوي</a>
+        <a href="/pillars/" class="uh-link">🏛️ المراجع الشاملة</a>
+        <a href="/blog/" class="uh-link active">📰 المدونة</a>
+        <a href="/legal-radar.html" class="uh-link">🔍 رصد المحامي</a>
+        <div class="uh-more" id="uhMore">
+          <button class="uh-more-btn" type="button" aria-expanded="false" aria-haspopup="true">
+            <span>المزيد</span><span class="uh-caret">▾</span>
+          </button>
+          <div class="uh-menu">
+            <a href="/courts-directory.html" class="uh-menu-item">🏢 دليل المحاكم والشهر العقاري</a>
+            <a href="/court-precedents.html" class="uh-menu-item">⚖️ موسوعة النقض</a>
+            <a href="/legal-consultations.html" class="uh-menu-item">🤖 المستشار القانوني</a>
+            <a href="/why-trust-us.html" class="uh-menu-item">🛡️ لماذا تثق بنا</a>
+            <a href="/privacy.html" class="uh-menu-item">🔐 سياسة الخصوصية</a>
+            <a href="/terms.html" class="uh-menu-item">📜 الشروط والأحكام</a>
+            <a href="/contact.html" class="uh-menu-item">📬 تواصل معنا</a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="uh-actions">
+        <a href="/download.html" class="uh-cta"><span>🚀 تحميل البرنامج</span></a>
+        <button class="uh-burger" id="uhBurger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="headerNav">☰</button>
+      </div>
+    </div>
+  </header>
+
+
   <nav class="main-nav">
     <div class="nav-inner">
       <a href="/" class="nav-logo">
@@ -328,7 +356,36 @@
     <a href="/" class="cta-btn">🚀 جرّب | المحامي الرقمي مجاناً</a>
   </div>
 
-  <footer>
+  
+<!-- ════════════════════════════════════════════════════════════════════════════
+     SMART DOWNLOAD CONVERSION BANNER (منظومة المحامي الرقمية 2026)
+     ════════════════════════════════════════════════════════════════════════════ -->
+<div class="smart-download-banner" id="smartDownloadBanner">
+  <div class="sdb-card">
+    <div class="sdb-header">
+      <span class="sdb-badge">🚀 تجربة مجانية كاملة 30 يوماً</span>
+      <div class="sdb-platforms">
+        <span class="sdb-platform-tag">💻 ويندوز للكمبيوتر (Setup & Portable)</span>
+        <span class="sdb-platform-tag">📱 أندرويد APK</span>
+        <span class="sdb-platform-tag">🍏 آيفون PWA</span>
+      </div>
+    </div>
+    <div class="sdb-title">⚖️ منظومة المحامي الرقمية لإدارة مكاتب المحاماة (إصدار 2026)</div>
+    <div class="sdb-desc">
+      وداعاً لفقدان مواعيد الجلسات أو تشتت بيانات الموكلين. نظّم قضاياك، جدول جلساتك، أوراق المحضرين، والعقود والصيغ في نظام رقمي متكامل ومشفّر محلياً بنسبة 100% يعمل دون الحاجة للإنترنت.
+    </div>
+    <div class="sdb-actions">
+      <a href="/download.html" class="sdb-btn-primary">
+        <span>📥 تحميل البرنامج وتجربته مجاناً (30 يوماً)</span>
+      </a>
+      <a href="https://wa.me/201000787780?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%A7%D8%B0%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%D8%B5%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A%20%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A%D8%A9" class="sdb-btn-whatsapp" target="_blank" rel="noopener">
+        <span>💬 واتساب للتفعيل الفوري: 01000787780</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
     <div class="footer-inner">
       <div class="footer-brand">
         <div class="footer-name">⚖️ | المحامي الرقمي</div>
