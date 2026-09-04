@@ -4,7 +4,7 @@
  * التصميم في public/header.css (كلاسات .uh-*).
  */
 const ACTIVE = ' active';
-const VERSION = '20260904-fast1';
+const VERSION = '20260904-exact-home';
 const HEADER_CSS = `<link rel="stylesheet" href="/header.css?v=${VERSION}">`;
 
 function navItem(href, label, isActive) {
