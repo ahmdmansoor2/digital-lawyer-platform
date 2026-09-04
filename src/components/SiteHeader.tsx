@@ -39,7 +39,6 @@ const MORE = [
   { href: '/company-incorporation.html', label: '🏢 تأسيس الشركات والتراخيص', key: 'companies' },
   { href: '/courts-directory.html', label: '🏛️ دليل المحاكم والشهر العقاري', key: 'courts' },
   { href: '/legal-radar.html', label: '🔍 رصد المحامي والجريدة الرسمية', key: 'radar' },
-  { href: '/about.html', label: '⚖️ عن المحامي الرقمي', key: 'about' },
   { href: '/privacy.html', label: '🔐 سياسة الخصوصية والأمان', key: 'privacy' },
   { href: '/contact.html', label: '📬 تواصل معنا', key: 'contact' },
 ];

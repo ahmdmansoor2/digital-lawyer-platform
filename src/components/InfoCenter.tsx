@@ -40,7 +40,6 @@ import {
   Tag
 } from 'lucide-react';
 import SiteHeader from './SiteHeader';
-import InteractiveTourShowcase from './InteractiveTourShowcase';
 import PromoVideoPlayer from './PromoVideoPlayer';
 import GlobalSidebar from './GlobalSidebar';
 import HeroSearchBar from './HeroSearchBar';
@@ -1616,27 +1615,24 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
       </div>
 
-      {/* ─── 4. EXPLAINER VIDEOS & INTERACTIVE TOUR SECTION (في آخر الصفحة بعد الكروت) ── */}
+      {/* ─── 3. EXPLAINER VIDEOS SECTION (في آخر الصفحة بعد الكروت) ── */}
       <section id="explainerVideosSection" className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-8">
           <span className="text-xs font-black px-4 py-1.5 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 inline-flex items-center gap-2 mb-3">
             <Film className="w-4 h-4 text-indigo-400" />
-            <span>🎬 العرض التعريفي والجولة الحية</span>
+            <span>🎬 الفيديو التعريفي الشامل</span>
           </span>
           <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
-            استكشف منصة المحامي الرقمية بالصوت والصورة
+            استكشف منصة المحامي الرقمية بالفيديو
           </h2>
           <p className="text-sm sm:text-base text-slate-300 mt-2">
-            شاهد الفيديو التعريفي الشامل واستمتع بالجولة التفاعلية الحية لاكتشاف كافة مزايا وأقسام المنظومة قبل البدء في استخدامها.
+            شاهد الفيديو التعريفي الشامل لاكتشاف كافة مزايا وأقسام المنظومة قبل البدء في استخدامها.
           </p>
         </div>
 
-        <div className="space-y-10">
+        <div>
           {/* 1. Promo Video Player */}
           <PromoVideoPlayer onEnterApp={onEnterApp} />
-
-          {/* 2. Interactive Tour Showcase */}
-          <InteractiveTourShowcase onEnterApp={onEnterApp} />
         </div>
       </section>
 
