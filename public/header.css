@@ -1,35 +1,19 @@
 /* ============================================================================
- * خلفية الموقع العام الفاخرة الموحدة 2026 — تسريع عتادي فائق وسلاسة 120 FPS
+ * خلفية الموقع العام الفاخرة الموحدة 2026 — الكحلي الملكي الفاخر (Royal Midnight Navy)
  * ============================================================================ */
 html:root, html:root body, html body, body {
-  background-color: #060913 !important;
+  background-color: #0a1128 !important;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 60%, rgba(16, 185, 129, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 15% 40%, rgba(124, 58, 237, 0.14) 0%, transparent 55%),
+    linear-gradient(180deg, #0a1128 0%, #0d1633 40%, #080d20 100%) !important;
   color: #f1f5f9;
   font-family: 'Cairo', 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   min-height: 100vh;
-}
-
-/* 🚀 Hardware-Accelerated 120 FPS GPU Background Layer (Zero CPU Repaint) */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: url('/legal-bg.jpg');
-  background-position: center top;
-  background-size: cover;
-  background-repeat: no-repeat;
-  z-index: -9999;
-  pointer-events: none;
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  will-change: transform;
 }
 
 .uh-bar {

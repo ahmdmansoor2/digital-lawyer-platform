@@ -1,8 +1,8 @@
 {
   "date": "2026-09-04",
-  "generatedAt": "2026-09-04T08:08:27.199Z",
+  "generatedAt": "2026-09-04T08:11:06.159Z",
   "status": "error",
-  "blogArticles": 174,
+  "blogArticles": null,
   "fbPosts": 0,
   "reels": 0,
   "ghRuns": 16,
@@ -16,14 +16,14 @@
     {
       "name": "blog_index",
       "label": "المدونة: الفهرس والروابط",
-      "status": "ok",
-      "findings": 0
+      "status": "error",
+      "findings": 1
     },
     {
       "name": "articles",
       "label": "المدونة: سلامة المقالات والصور (og:image)",
-      "status": "ok",
-      "findings": 0
+      "status": "warn",
+      "findings": 1
     },
     {
       "name": "sitemap",

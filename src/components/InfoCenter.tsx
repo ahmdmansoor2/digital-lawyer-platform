@@ -616,22 +616,6 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 </div>
               </a>
 
-              {/* 5. Legal Blog */}
-              <a href="/blog/" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between">
-                <div>
-                  <div className="text-2xl mb-3">📰</div>
-                  <h3 className="text-base font-black text-white group-hover:text-purple-300 transition-colors mb-1.5">
-                    المدونة القانونية والرأي والتحليلات القضائية
-                  </h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    مئات المقالات القانونية التخصصية التي تشرح القوانين وحقوق المواطنين وإجراءات التقاضي والعمل بلغة موثقة ورصينة.
-                  </p>
-                </div>
-                <div className="pt-3 mt-3 border-t border-slate-800 text-xs font-bold text-purple-400 flex items-center justify-between">
-                  <span>تصفح المدونة (+140 مقال)</span>
-                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
-                </div>
-              </a>
 
               {/* 6. Legal Radar */}
               <a href="/legal-radar.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between">
@@ -935,6 +919,180 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
                 </div>
                 <div className="pt-3 border-t border-slate-800/80 text-xs font-bold text-rose-400 flex items-center justify-between group-hover:text-rose-300">
                   <span>قراءة المقال كاملاً</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+            </div>
+          </section>
+        )}
+
+        {/* ── MASTER HUB: LEGAL RADAR & TRENDS (رصد المحامي والتحليلات التشريعية للترندات والجريدة الرسمية) ── */}
+        {(activeTab === 'all' || activeTab === 'library' || activeTab === 'citizen') && (
+          <section id="legal-radar-hub" className="spotlight-card scroll-mt-24 p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-cyan-950/50 via-slate-900/90 to-slate-950 border border-cyan-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-cyan-400/50">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-cyan-900/50">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-xs font-black px-3.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 inline-flex items-center gap-1.5">
+                    <Radio className="w-4 h-4 text-cyan-400 animate-pulse" />
+                    <span>📡 رصد المحامي وترندات الشارع المصري</span>
+                  </span>
+                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                    تحليلات يومية حية 2026
+                  </span>
+                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    الجريدة الرسمية والوقائع
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-white">
+                  رصد المحامي: التحليلات القانونية للترندات والقرارات الرسمية
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+                  نشرة يومية استقصائية تواكب أحدث القضايا الرائجة والقرارات الحكومية وتطبيقات النقل الذكي والتشريعات العاجلة برؤية قانونية دقيقة للمواطن والمحامي.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href="/legal-radar.html"
+                  className="px-6 py-3 rounded-2xl bg-gradient-to-r from-cyan-600 via-indigo-600 to-purple-600 text-white font-extrabold text-xs sm:text-sm shadow-xl shadow-cyan-600/30 hover:scale-105 transition-all flex items-center gap-2 whitespace-nowrap"
+                >
+                  <Radio className="w-4 h-4" />
+                  <span>دخول مرصد المحامي والترندات الحية (+90 موضوعاً)</span>
+                  <ArrowLeft className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Categories Bar */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-thin scrollbar-thumb-cyan-500/20">
+              <span className="text-xs font-bold text-slate-400 whitespace-nowrap">الرصد الرائج:</span>
+              <a href="/radar-topics/2026-09-03-uber-egypt-safety.html" className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-cyan-600/20 text-slate-200 border border-slate-700/50 hover:border-cyan-500/50 whitespace-nowrap transition-all">🚗 تطبيقات النقل الذكي والأمان</a>
+              <a href="/radar-topics/2026-08-24-madbouly-cabinet-decisions.html" className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-cyan-600/20 text-slate-200 border border-slate-700/50 hover:border-cyan-500/50 whitespace-nowrap transition-all">⚖️ قرارات مجلس الوزراء</a>
+              <a href="/radar-topics/2026-09-02-tax-authority-updates.html" className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-cyan-600/20 text-slate-200 border border-slate-700/50 hover:border-cyan-500/50 whitespace-nowrap transition-all">🏛️ الضرائب والتأمينات</a>
+              <a href="/radar-topics/2026-09-02-national-bank-egypt.html" className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-cyan-600/20 text-slate-200 border border-slate-700/50 hover:border-cyan-500/50 whitespace-nowrap transition-all">💳 البنوك والشهادات</a>
+              <a href="/radar-topics/2026-08-14-ntra-egypt-regulations.html" className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-cyan-600/20 text-slate-200 border border-slate-700/50 hover:border-cyan-500/50 whitespace-nowrap transition-all">📱 الاتصالات ومباحث الإنترنت</a>
+              <a href="/radar-topics/2026-09-01-social-housing-egypt.html" className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-cyan-600/20 text-slate-200 border border-slate-700/50 hover:border-cyan-500/50 whitespace-nowrap transition-all">🏠 الإسكان الاجتماعي والتصالح</a>
+            </div>
+
+            {/* Featured Radar Grid (6 High-Engagement Cards) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              
+              {/* Card 1 */}
+              <a href="/radar-topics/2026-09-03-uber-egypt-safety.html" className="group p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-850 border border-cyan-500/20 hover:border-cyan-400 transition-all flex flex-col justify-between shadow-lg hover:shadow-cyan-900/20">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-cyan-400 font-bold mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded-md bg-cyan-500/10 border border-cyan-500/20">النقل الذكي</span>
+                    <span className="text-slate-400">⏱️ 4 دقائق قراءة</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-cyan-300 transition-colors mb-2 line-clamp-2">
+                    أزمة تطبيقات النقل الذكي في مصر: مطالبات برلمانية وتشريعية لتشديد الرقابة وتفعيل زر الاستغاثة
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                    تحليل الأبعاد القانونية لمسؤولية الشركات التضامنية عن سلامة الركاب، وضوابط الفحص الدوري للسائقين وفق القانون 82 لسنة 2018.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-800/80 text-xs font-bold text-cyan-400 flex items-center justify-between group-hover:text-cyan-300">
+                  <span>قراءة التقرير والتحليل</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* Card 2 */}
+              <a href="/radar-topics/2026-08-24-madbouly-cabinet-decisions.html" className="group p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-850 border border-cyan-500/20 hover:border-cyan-400 transition-all flex flex-col justify-between shadow-lg hover:shadow-cyan-900/20">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-emerald-400 font-bold mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20">مجلس الوزراء</span>
+                    <span className="text-slate-400">⏱️ 5 دقائق قراءة</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-2 line-clamp-2">
+                    قرارات مجلس الوزراء التشريعية: حوافز الاستثمار الصناعي وتيسيرات تقنين أوضاع المشروعات
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                    أحدث حزمة قرارات رسمية لتشجيع توطين الصناعة، الإعفاءات الضريبية المشروطة، والتسهيلات الممنوحة للمطورين والمستثمرين.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-800/80 text-xs font-bold text-emerald-400 flex items-center justify-between group-hover:text-emerald-300">
+                  <span>قراءة التقرير والتحليل</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* Card 3 */}
+              <a href="/radar-topics/2026-09-02-tax-authority-updates.html" className="group p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-850 border border-cyan-500/20 hover:border-cyan-400 transition-all flex flex-col justify-between shadow-lg hover:shadow-cyan-900/20">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-amber-400 font-bold mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded-md bg-amber-500/10 border border-amber-500/20">الضرائب المصرية</span>
+                    <span className="text-slate-400">⏱️ 4 دقائق قراءة</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-amber-300 transition-colors mb-2 line-clamp-2">
+                    حزمة التسهيلات الضريبية الجديدة: إنهاء النزاعات القديمة ومنظومة الفاتورة الإلكترونية المبسطة
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                    تفاصيل مبادرات وزارة المالية لإنهاء الملفات الضريبية المتراكمة للشركات الصغيرة والمهنيين دون غرامات تأخير.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-800/80 text-xs font-bold text-amber-400 flex items-center justify-between group-hover:text-amber-300">
+                  <span>قراءة التقرير والتحليل</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* Card 4 */}
+              <a href="/radar-topics/2026-08-14-ntra-egypt-regulations.html" className="group p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-850 border border-cyan-500/20 hover:border-cyan-400 transition-all flex flex-col justify-between shadow-lg hover:shadow-cyan-900/20">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-indigo-400 font-bold mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded-md bg-indigo-500/10 border border-indigo-500/20">تنظيم الاتصالات</span>
+                    <span className="text-slate-400">⏱️ 6 دقائق قراءة</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-indigo-300 transition-colors mb-2 line-clamp-2">
+                    ضوابط حماية خصوصية المستخدمين ومكافحة المكالمات والرسائل الإعلانية المزعجة قانوناً
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                    الأطر التنظيمية الصادرة عن الجهاز القومي لتنظيم الاتصالات والعقوبات المقررة على الشركات المخالفة لسرية بيانات العملاء.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-800/80 text-xs font-bold text-indigo-400 flex items-center justify-between group-hover:text-indigo-300">
+                  <span>قراءة التقرير والتحليل</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* Card 5 */}
+              <a href="/radar-topics/2026-09-02-national-bank-egypt.html" className="group p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-850 border border-cyan-500/20 hover:border-cyan-400 transition-all flex flex-col justify-between shadow-lg hover:shadow-cyan-900/20">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-rose-400 font-bold mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded-md bg-rose-500/10 border border-rose-500/20">البنوك والاستثمار</span>
+                    <span className="text-slate-400">⏱️ 4 دقائق قراءة</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-rose-300 transition-colors mb-2 line-clamp-2">
+                    الشهادات الادخارية وأسعار الفائدة البنكية: الحماية القانونية للودائع والتحويلات اللحظية
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                    دراسة قانونية حول ضمانات أموال المودعين بالبنوك الوطنية وقواعد الأمان المالي المفروضة على تطبيقات المدفوعات اللحظية.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-800/80 text-xs font-bold text-rose-400 flex items-center justify-between group-hover:text-rose-300">
+                  <span>قراءة التقرير والتحليل</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* Card 6 */}
+              <a href="/radar-topics/2026-09-01-social-housing-egypt.html" className="group p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-850 border border-cyan-500/20 hover:border-cyan-400 transition-all flex flex-col justify-between shadow-lg hover:shadow-cyan-900/20">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-teal-400 font-bold mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded-md bg-teal-500/10 border border-teal-500/20">الإسكان والتصالح</span>
+                    <span className="text-slate-400">⏱️ 5 دقائق قراءة</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-teal-300 transition-colors mb-2 line-clamp-2">
+                    حجز شقق الإسكان الاجتماعي والتمويل العقاري وضوابط التصالح في مخالفات البناء
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                    الشروط القانونية لعدم سحب الوحدات السكنية، حظر التصرف فيها قبل انقضاء المدة القانونية، وإجراءات استخراج نموذج 8 النهائي.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-800/80 text-xs font-bold text-teal-400 flex items-center justify-between group-hover:text-teal-300">
+                  <span>قراءة التقرير والتحليل</span>
                   <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
                 </div>
               </a>

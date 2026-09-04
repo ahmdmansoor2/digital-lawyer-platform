@@ -29,32 +29,16 @@
 
 html:root, html:root body, body {
   font-family: var(--font-sans);
-  background-color: #060913;
+  background-color: #0a1128;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 60%, rgba(16, 185, 129, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 15% 40%, rgba(124, 58, 237, 0.14) 0%, transparent 55%),
+    linear-gradient(180deg, #0a1128 0%, #0d1633 40%, #080d20 100%);
   color: #f1f5f9;
   font-weight: 500;
   line-height: 1.65;
   min-height: 100vh;
-}
-
-/* 🚀 Hardware-Accelerated 120 FPS GPU Background Layer (Zero CPU Repaint) */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: url('/legal-bg.jpg');
-  background-position: center top;
-  background-size: cover;
-  background-repeat: no-repeat;
-  z-index: -9999;
-  pointer-events: none;
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  will-change: transform;
 }
 
 .theme-main-bg {
