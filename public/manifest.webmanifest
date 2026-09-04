@@ -8,8 +8,8 @@
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#080f28",
+  "theme_color": "#080f28",
   "categories": ["legal", "education", "productivity"],
   "icons": [
     {
