@@ -710,8 +710,14 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
               </div>
               <div className="flex flex-wrap items-center gap-3 self-stretch lg:self-auto justify-center">
                 <a
+                  href="/download.html"
+                  className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-indigo-600 text-white font-extrabold text-sm shadow-xl shadow-emerald-600/30 hover:scale-105 transition-all flex items-center gap-2 whitespace-nowrap justify-center cursor-pointer"
+                >
+                  <span>💻 تحميل البرنامج (3 إصدارات)</span>
+                </a>
+                <a
                   href="/lawyers-directory.html"
-                  className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-extrabold text-sm shadow-xl shadow-indigo-600/30 hover:scale-105 transition-all flex items-center gap-2 whitespace-nowrap justify-center cursor-pointer"
+                  className="px-5 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-extrabold text-sm shadow-xl shadow-indigo-600/30 hover:scale-105 transition-all flex items-center gap-2 whitespace-nowrap justify-center cursor-pointer"
                 >
                   <span>تصفح دليل المحامين (27 محافظة)</span>
                   <ArrowLeft className="w-4 h-4" />
@@ -726,7 +732,26 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
             </div>
 
             {/* Sub-features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <a href="/download.html" className="group p-5 rounded-2xl bg-gradient-to-br from-emerald-950/70 to-indigo-950/80 hover:from-emerald-900/80 hover:to-indigo-900/90 border-2 border-emerald-500/40 hover:border-emerald-400 transition-all flex flex-col justify-between shadow-xl shadow-emerald-950/30">
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-2xl">💻</span>
+                    <span className="text-[10px] font-extrabold text-emerald-200 bg-emerald-500/30 px-2 py-0.5 rounded-full border border-emerald-400/40">تجربة 30 يوماً مجاناً</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-1.5">
+                    تحميل برنامج إدارة مكاتب المحاماة (3 إصدارات)
+                  </h3>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    إصدارات مخصصة للكمبيوتر (Windows)، الأندرويد (APK)، والآيفون (iOS). تنظيم القضايا، الجلسات، والمحضرين بدون إنترنت.
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-emerald-800/40 text-xs font-bold text-emerald-300 flex items-center justify-between">
+                  <span>تحميل البرنامج الآن</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
               <a href="/lawyers-directory.html" className="group p-5 rounded-2xl bg-slate-900/70 hover:bg-slate-800/90 border border-indigo-500/20 hover:border-indigo-400 transition-all flex flex-col justify-between">
                 <div>
                   <div className="text-2xl mb-3">👨‍⚖️</div>

@@ -15,6 +15,7 @@ interface SiteHeaderProps {
 
 const PRIMARY = [
   { href: '/', label: '🏠 الرئيسية', key: 'home' },
+  { href: '/download.html', label: '💻 تحميل البرنامج', key: 'download' },
   { href: '/legal-consultations.html', label: '🤖 المستشار الذكي', key: 'consultations' },
   { href: '/real-estate.html', label: '🏢 التسويق العقاري', key: 'real-estate' },
   { href: '/legal-library.html', label: '📚 المكتبة الكبرى', key: 'library' },
