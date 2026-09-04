@@ -88,7 +88,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
   };
 
   return (
-    <div className="min-h-screen bg-transparent text-slate-100 font-['Cairo',sans-serif] selection:bg-indigo-600 selection:text-white relative overflow-x-hidden" dir="rtl">
+    <div className="min-h-screen pb-28 sm:pb-0 bg-transparent text-slate-100 font-['Cairo',sans-serif] selection:bg-indigo-600 selection:text-white relative overflow-x-hidden" dir="rtl">
       
       {/* Site Header */}
       <SiteHeader 
