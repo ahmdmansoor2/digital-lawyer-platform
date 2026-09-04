@@ -770,6 +770,179 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
           </section>
         )}
 
+        {/* ── MASTER HUB: FEATURED LEGAL BLOG & EDITORIAL (المدونة القانونية وموسوعة المقالات المتصدرة) ── */}
+        {(activeTab === 'all' || activeTab === 'library' || activeTab === 'citizen') && (
+          <section id="legal-blog-hub" className="spotlight-card scroll-mt-24 p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-purple-950/50 via-slate-900/90 to-slate-950 border border-purple-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-purple-400/50">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-purple-900/50">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-xs font-black px-3.5 py-1 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30 inline-flex items-center gap-1.5">
+                    <BookOpen className="w-4 h-4 text-purple-400" />
+                    <span>📰 المدونة القانونية والتحليلات القضائية</span>
+                  </span>
+                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    +140 مقالاً وبحثاً موثقاً
+                  </span>
+                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                    مُحدَّث يومياً 2026
+                  </span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-white">
+                  أحدث المقالات والدراسات القانونية وشروح التشريعات المصرية
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
+                  موسوعة المقالات المتخصصة للمحامين والمواطنين: شروح تفصيلية لقوانين العمل، الأحوال الشخصية، الجرائم الإلكترونية، الشيكات، والشركات مع أحدث أحكام محكمة النقض.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href="/blog/"
+                  className="px-6 py-3 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-emerald-600 text-white font-extrabold text-xs sm:text-sm shadow-xl shadow-purple-600/30 hover:scale-105 transition-all flex items-center gap-2 whitespace-nowrap"
+                >
+                  <BookOpen className="w-4 h-4" />
+                  <span>تصفح أرشيف المدونة الكامل (+140 مقال)</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Quick Categories Bar */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-6 scrollbar-thin scrollbar-thumb-purple-500/20">
+              <span className="text-xs font-bold text-slate-400 whitespace-nowrap">التصنيفات الرائجة:</span>
+              <a href="/blog/administrative-appeals-egypt.html" className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-purple-600/20 text-slate-200 border border-slate-700/50 hover:border-purple-500/50 whitespace-nowrap transition-all">⚖️ القضاء الإداري والطعون</a>
+              <a href="/blog/alimony-calculation-egypt.html" className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-purple-600/20 text-slate-200 border border-slate-700/50 hover:border-purple-500/50 whitespace-nowrap transition-all">👨‍👩‍👦 محاكم الأسرة والنفقات</a>
+              <a href="/blog/bounced-check-laws-egypt.html" className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-purple-600/20 text-slate-200 border border-slate-700/50 hover:border-purple-500/50 whitespace-nowrap transition-all">💳 الشيكات والجرائم المالية</a>
+              <a href="/blog/cybercrime-extortion-banking-fraud-egypt.html" className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-purple-600/20 text-slate-200 border border-slate-700/50 hover:border-purple-500/50 whitespace-nowrap transition-all">💻 الجرائم الإلكترونية والابتزاز</a>
+              <a href="/blog/company-incorporation-egypt.html" className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-purple-600/20 text-slate-200 border border-slate-700/50 hover:border-purple-500/50 whitespace-nowrap transition-all">🏢 الشركات والاستثمار</a>
+              <a href="/blog/civil-compensation-lawsuits.html" className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-purple-600/20 text-slate-200 border border-slate-700/50 hover:border-purple-500/50 whitespace-nowrap transition-all">📜 التعويضات المدنية</a>
+            </div>
+
+            {/* Featured Articles Grid (6 High-Traffic Cards) */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              
+              {/* Card 1 */}
+              <a href="/blog/administrative-appeals-egypt.html" className="group p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-850 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between shadow-lg hover:shadow-purple-900/20">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-purple-400 font-bold mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded-md bg-purple-500/10 border border-purple-500/20">مجلس الدولة</span>
+                    <span className="text-slate-400">⏱️ 5 دقائق قراءة</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-purple-300 transition-colors mb-2 line-clamp-2">
+                    دليل الطعن أمام محاكم القضاء الإداري وإجراءات التظلم والمدد القانونية
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                    الشروط الجوهرية لقبول دعاوى إلغاء القرارات الإدارية، مواعيد الـ 60 يوماً، وحالات وقف التنفيذ العاجل بمجلس الدولة.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-800/80 text-xs font-bold text-purple-400 flex items-center justify-between group-hover:text-purple-300">
+                  <span>قراءة المقال كاملاً</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* Card 2 */}
+              <a href="/blog/alimony-calculation-egypt.html" className="group p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-850 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between shadow-lg hover:shadow-purple-900/20">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-emerald-400 font-bold mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded-md bg-emerald-500/10 border border-emerald-500/20">محاكم الأسرة</span>
+                    <span className="text-slate-400">⏱️ 6 دقائق قراءة</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors mb-2 line-clamp-2">
+                    كيفية حساب النفقة الزوجية ونفقة الصغار وضوابط التحري عن دخل الزوج
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                    طرق إثبات الدخل الحقيقي، نفقات المأكل والملبس والمسكن ومصاريف التعليم، مع أحكام محكمة النقض المنظمة.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-800/80 text-xs font-bold text-emerald-400 flex items-center justify-between group-hover:text-emerald-300">
+                  <span>قراءة المقال كاملاً</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* Card 3 */}
+              <a href="/blog/bounced-check-laws-egypt.html" className="group p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-850 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between shadow-lg hover:shadow-purple-900/20">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-amber-400 font-bold mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded-md bg-amber-500/10 border border-amber-500/20">قضايا الشيكات</span>
+                    <span className="text-slate-400">⏱️ 4 دقائق قراءة</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-amber-300 transition-colors mb-2 line-clamp-2">
+                    أحكام جريمة إصدار شيك بدون رصيد وعقوباته وطرق الصلح القانوني 2026
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                    الفرق بين الشيك البنكي والكمبيالة وإيصال الأمانة، مدد التقادم وسقوط الدعوى الجنائية وإجراءات رد المبالغ.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-800/80 text-xs font-bold text-amber-400 flex items-center justify-between group-hover:text-amber-300">
+                  <span>قراءة المقال كاملاً</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* Card 4 */}
+              <a href="/blog/cybercrime-extortion-banking-fraud-egypt.html" className="group p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-850 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between shadow-lg hover:shadow-purple-900/20">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-indigo-400 font-bold mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded-md bg-indigo-500/10 border border-indigo-500/20">الجرائم الرقمية</span>
+                    <span className="text-slate-400">⏱️ 5 دقائق قراءة</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-indigo-300 transition-colors mb-2 line-clamp-2">
+                    قانون مكافحة جرائم تقنية المعلومات والابتزاز والاحتيال المصرفي الإلكتروني
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                    كيفية تحرير محضر بمباحث الإنترنت، إثبات الأدلة الرقمية والرسائل، والعقوبات المشددة لسرقة الحسابات والبيانات.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-800/80 text-xs font-bold text-indigo-400 flex items-center justify-between group-hover:text-indigo-300">
+                  <span>قراءة المقال كاملاً</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* Card 5 */}
+              <a href="/blog/company-incorporation-egypt.html" className="group p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-850 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between shadow-lg hover:shadow-purple-900/20">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-cyan-400 font-bold mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded-md bg-cyan-500/10 border border-cyan-500/20">تأسيس الشركات</span>
+                    <span className="text-slate-400">⏱️ 7 دقائق قراءة</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-cyan-300 transition-colors mb-2 line-clamp-2">
+                    دليل تأسيس الشركات الفردية والمساهمة وذات المسئولية المحدودة في مصر
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                    إجراءات هيئة الاستثمار (GAFI)، رأس المال المطلوب، استخراج السجل التجاري والبطاقة الضريبية وتراخيص النشاط.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-800/80 text-xs font-bold text-cyan-400 flex items-center justify-between group-hover:text-cyan-300">
+                  <span>قراءة المقال كاملاً</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+              {/* Card 6 */}
+              <a href="/blog/civil-compensation-lawsuits.html" className="group p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-850 border border-purple-500/20 hover:border-purple-400 transition-all flex flex-col justify-between shadow-lg hover:shadow-purple-900/20">
+                <div>
+                  <div className="flex items-center justify-between text-xs text-rose-400 font-bold mb-2.5">
+                    <span className="px-2.5 py-0.5 rounded-md bg-rose-500/10 border border-rose-500/20">القانون المدني</span>
+                    <span className="text-slate-400">⏱️ 6 دقائق قراءة</span>
+                  </div>
+                  <h3 className="text-base font-black text-white group-hover:text-rose-300 transition-colors mb-2 line-clamp-2">
+                    أركان دعوى التعويض عن الضرر المادي والأدبي والمسؤولية التقصيرية والعقدية
+                  </h3>
+                  <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                    عناصر إثبات الخطأ والضرر وعلاقة السببية، معايير تقدير مبالغ التعويض بالمحاكم المدنية، ومواعيد سقوط الحق.
+                  </p>
+                </div>
+                <div className="pt-3 border-t border-slate-800/80 text-xs font-bold text-rose-400 flex items-center justify-between group-hover:text-rose-300">
+                  <span>قراءة المقال كاملاً</span>
+                  <ChevronLeft className="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </a>
+
+            </div>
+          </section>
+        )}
+
         {/* ── MASTER HUB 4: LEGAL CALCULATORS (كارت الحاسبات القانونية والشرعية) ── */}
         {(activeTab === 'all' || activeTab === 'calculators') && (
           <section id="calc-hub" className="spotlight-card scroll-mt-24 p-7 sm:p-10 rounded-3xl bg-gradient-to-b from-emerald-950/60 via-slate-900/90 to-slate-950 border border-emerald-500/30 backdrop-blur-2xl shadow-2xl transition-all duration-300 hover:border-emerald-400/50">
