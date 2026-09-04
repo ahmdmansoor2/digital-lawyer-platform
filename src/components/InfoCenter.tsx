@@ -127,15 +127,11 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
       <SiteHeader 
         userName={userName} 
         onEnterApp={onEnterApp} 
-        onLogout={onLogout} 
-        onOpenSearch={() => setIsSearchModalOpen(true)}
+        onLogout={onLogout}
       />
 
       {/* Global Right-Side Floating Navigation */}
       <GlobalSidebar 
-        onOpenTour={scrollToVideos}
-        onOpenVideo={scrollToVideos}
-        onOpenAI={() => setIsAIAdvisorOpen(true)}
         onEnterApp={onEnterApp}
       />
 
@@ -148,7 +144,7 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
       {/* Global Site Search Modal */}
       <SiteSearchModal 
-        isOpen={isSearchModalOpen} 
+        open={isSearchModalOpen} 
         onClose={() => setIsSearchModalOpen(false)} 
       />
 
