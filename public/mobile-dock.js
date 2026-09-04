@@ -1,3 +1,31 @@
+
+/* ─── Universal Legal Background Enforcer ─── */
+(function() {
+  function applyBg() {
+    if (typeof document === 'undefined') return;
+    var el = document.documentElement;
+    var b = document.body;
+    if (el) {
+      el.style.setProperty('background-image', "url('/legal-bg.jpg')", 'important');
+      el.style.setProperty('background-attachment', 'fixed', 'important');
+      el.style.setProperty('background-size', 'cover', 'important');
+      el.style.setProperty('background-position', 'center top', 'important');
+      el.style.setProperty('background-repeat', 'no-repeat', 'important');
+    }
+    if (b) {
+      b.style.setProperty('background-image', "url('/legal-bg.jpg')", 'important');
+      b.style.setProperty('background-attachment', 'fixed', 'important');
+      b.style.setProperty('background-size', 'cover', 'important');
+      b.style.setProperty('background-position', 'center top', 'important');
+      b.style.setProperty('background-repeat', 'no-repeat', 'important');
+    }
+  }
+  applyBg();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyBg);
+  }
+})();
+
 /**
  * mobile-dock.js — شريط التنقل السفلي الذكي للموبايل (Mobile Bottom Dock)
  * يحول تصفح المنصة على الهواتف إلى تجربة تطبيق أصلي فائق السلاسة

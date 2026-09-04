@@ -99,6 +99,24 @@
           ]
         },
         {
+          "source": "/legal-bg.jpg",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate, max-age=0"
+            }
+          ]
+        },
+        {
+          "source": "/mobile-dock.js",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache, no-store, must-revalidate, max-age=0"
+            }
+          ]
+        },
+        {
           "source": "/sidebar.js",
           "headers": [
             {

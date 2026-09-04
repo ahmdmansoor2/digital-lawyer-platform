@@ -2,11 +2,9 @@
  * خلفية الموقع العام الفاخرة الموحدة — تباين فائق وأناقة معمارية 2026
  * إزالة أي صور خارجية باهتة واستبدالها بشبكة تدرجات نقية ومريحة للعين
  * ============================================================================ */
-html, body {
+html:root, html:root body, html body, body {
   background-color: #060913 !important;
-  background-image: 
-    linear-gradient(180deg, rgba(6, 9, 19, 0.72) 0%, rgba(10, 15, 29, 0.82) 40%, rgba(6, 9, 19, 0.94) 100%),
-    url('/legal-bg.jpg') !important;
+  background-image: url('/legal-bg.jpg') !important;
   background-attachment: fixed !important;
   background-position: center top !important;
   background-size: cover !important;
@@ -28,9 +26,7 @@ html, body {
 
 body {
   background-color: #060913 !important;
-  background-image: 
-    linear-gradient(180deg, rgba(6, 9, 19, 0.72) 0%, rgba(10, 15, 29, 0.82) 40%, rgba(6, 9, 19, 0.94) 100%),
-    url('/legal-bg.jpg') !important;
+  background-image: url('/legal-bg.jpg') !important;
   background-attachment: fixed !important;
   background-position: center top !important;
   background-size: cover !important;
