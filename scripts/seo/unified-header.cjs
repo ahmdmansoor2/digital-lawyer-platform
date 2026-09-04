@@ -4,7 +4,7 @@
  * التصميم في public/header.css (كلاسات .uh-*).
  */
 const ACTIVE = ' active';
-const VERSION = '20260904-exact-home';
+const VERSION = '20260904-gpu-speed';
 const HEADER_CSS = `<link rel="stylesheet" href="/header.css?v=${VERSION}">`;
 
 function navItem(href, label, isActive) {
@@ -104,8 +104,9 @@ function headerMarkup(activeKey, opts = {}) {
         }
       });
 
-      /* محرك التحميل المسبق الفوري فائق السرعة للتنقل بين الصفحات */
+      /* محرك التحميل المسبق الذكي فائق السرعة والموفر للشبكة (Debounced 65ms) */
       var prefetchedUrls = new Set();
+      var hoverTimer = null;
       function instantPrefetch(url) {
         if (!url || prefetchedUrls.has(url) || url.includes('#') || url.startsWith('javascript:')) return;
         try {
@@ -118,12 +119,19 @@ function headerMarkup(activeKey, opts = {}) {
           document.head.appendChild(prefetchLink);
         } catch(e){}
       }
-      function onLinkHover(e) {
+      function onLinkEnter(e) {
         var anchor = e.target.closest('a');
-        if (anchor && anchor.href) instantPrefetch(anchor.href);
+        if (anchor && anchor.href) {
+          clearTimeout(hoverTimer);
+          hoverTimer = setTimeout(function(){ instantPrefetch(anchor.href); }, 65);
+        }
       }
-      document.addEventListener('mouseover', onLinkHover, {passive: true});
-      document.addEventListener('touchstart', onLinkHover, {passive: true});
+      function onLinkLeave() {
+        clearTimeout(hoverTimer);
+      }
+      document.addEventListener('mouseover', onLinkEnter, {passive: true});
+      document.addEventListener('mouseout', onLinkLeave, {passive: true});
+      document.addEventListener('touchstart', onLinkEnter, {passive: true});
     })();
   </script>`;
 }
