@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta name="google-adsense-account" content="ca-pub-7725405859334364">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>رصد المحامي</title>
@@ -22,7 +21,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/header.css?v=20260904-luxury-navy">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online","logo":"https://mohamidigital.online/logo.png"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"أزمة &quot;أوبر&quot; في مصر: مطالبات برلمانية وتشريعية لتشديد الرقابة على تطبيقات النقل الذكي","datePublished":"2026-09-03T22:41:34.902Z","dateModified":"2026-09-03T22:41:34.902Z","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"mainEntityOfPage":"https://mohamidigital.online/legal-radar.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"متابعة الملفات المالية والاقتصادية: د. محمد معيط يتصدر اهتمامات الشارع المصري","datePublished":"2026-09-04T13:02:56.054Z","dateModified":"2026-09-04T13:02:56.054Z","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"mainEntityOfPage":"https://mohamidigital.online/legal-radar.html"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"https://mohamidigital.online"},{"@type":"ListItem","position":2,"name":"رصد المحامي","item":"https://mohamidigital.online/legal-radar.html"}]}</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -176,24 +175,117 @@
       </div>
     </div>
   </header>
+  <script>
+    (function(){
+      var hdr=document.getElementById('siteHeader');
+      var nav=document.getElementById('headerNav');
+      var burger=document.getElementById('uhBurger');
+      var more=document.getElementById('uhMore');
+      var moreBtn=more?more.querySelector('.uh-more-btn'):null;
+      if(hdr)window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+      function closeMobile(){
+        if(nav)nav.classList.remove('active');
+        if(burger){burger.setAttribute('aria-expanded','false');burger.innerHTML='☰';burger.setAttribute('aria-label','فتح القائمة');}
+      }
+      if(burger){burger.addEventListener('click',function(){
+        var open=nav.classList.toggle('active');
+        burger.setAttribute('aria-expanded',open);
+        burger.innerHTML=open?'✕':'☰';
+        burger.setAttribute('aria-label',open?'إغلاق القائمة':'فتح القائمة');
+        if(!open&&more){more.classList.remove('open');}
+      });}
+      if(moreBtn&&more){
+        moreBtn.addEventListener('click',function(e){
+          e.stopPropagation();
+          var open=more.classList.toggle('open');
+          moreBtn.setAttribute('aria-expanded',open);
+        });
+      }
+      document.addEventListener('click',function(e){
+        if(more&&more.classList.contains('open')&&!more.contains(e.target)){
+          more.classList.remove('open');
+          if(moreBtn)moreBtn.setAttribute('aria-expanded','false');
+        }
+        if(nav&&nav.classList.contains('active')&&burger&&!nav.contains(e.target)&&!burger.contains(e.target)){
+          closeMobile();
+        }
+      });
 
-
-
+      /* محرك التحميل المسبق الذكي فائق السرعة والموفر للشبكة (Debounced 65ms) */
+      var prefetchedUrls = new Set();
+      var hoverTimer = null;
+      function instantPrefetch(url) {
+        if (!url || prefetchedUrls.has(url) || url.includes('#') || url.startsWith('javascript:')) return;
+        try {
+          var u = new URL(url, window.location.origin);
+          if (u.origin !== window.location.origin || u.pathname === window.location.pathname) return;
+          prefetchedUrls.add(url);
+          var prefetchLink = document.createElement('link');
+          prefetchLink.rel = 'prefetch';
+          prefetchLink.href = url;
+          document.head.appendChild(prefetchLink);
+        } catch(e){}
+      }
+      function onLinkEnter(e) {
+        var anchor = e.target.closest('a');
+        if (anchor && anchor.href) {
+          clearTimeout(hoverTimer);
+          hoverTimer = setTimeout(function(){ instantPrefetch(anchor.href); }, 65);
+        }
+      }
+      function onLinkLeave() {
+        clearTimeout(hoverTimer);
+      }
+      document.addEventListener('mouseover', onLinkEnter, {passive: true});
+      document.addEventListener('mouseout', onLinkLeave, {passive: true});
+      document.addEventListener('touchstart', onLinkEnter, {passive: true});
+    })();
+  </script>
   <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><span class="current">رصد المحامي</span></nav>
 
   <div class="hero">
     <h1>رصد المحامي</h1>
     <p>نشرة يومية تُصاغ بالذكاء الاصطناعي عن أهم الترندات المصرية والعالمية على Google، بتحليل عملي للمواطن والمحامي.</p>
-    <span class="updated">آخر تحديث: 2026-09-03 22:41:34 بتوقيت القاهرة</span>
+    <span class="updated">آخر تحديث: 2026-09-04 12:56:31 بتوقيت القاهرة</span>
   </div>
 
   <div class="section">
     <div class="section-title"><span class="dot"></span> جميع الموضوعات (24 موضوعاً — 8 يوم)</div>
     <p class="section-sub">موضوعات رصد المحامي اليومية — اضغط على أي بطاقة لفتح الموضوع الكامل.</p>
     <div class="topic-grid">
+    <a class="topic-card" href="/radar-topics/2026-09-04-mohamed-maait-economic-updates.html" title="افتح الصفحة الكاملة: متابعة الملفات المالية والاقتصادية: د. محمد معيط يتصدر اهتمامات الشارع المصري">
+      <div class="topic-head">
+        <div class="card-top-row"><span class="card-date today-badge">🔴 اليوم — 2026-09-04</span></div>
+        <div class="topic-body">
+          <h3>متابعة الملفات المالية والاقتصادية: د. محمد معيط يتصدر اهتمامات الشارع المصري</h3>
+          <p>يتصدر اسم الدكتور محمد معيط، وزير المالية السابق، محركات البحث بالتزامن مع المتابعة المستمرة للملفات الاقتصادية والمالية الكبرى والتطورات المتعلقة بالمؤسسات المالية الدولية. يهم هذا الموضوع الشارع المصري ورجال القانون والمستثمرين، لما له من أثر مباشر على فهم توجهات السياسات المالية العامة، وأجندة الإصلاح الاقتصادي، انعكاساً على التشريعات الضريبية والجمكية والمالية في مصر.</p>
+          <span class="topic-hint">📖 افتح الموضوع الكامل (٢٬٥٨٤ كلمة)</span>
+        </div>
+      </div>
+  </a>
+    <a class="topic-card" href="/radar-topics/2026-09-04-egypt-daylight-saving-time-end.html" title="افتح الصفحة الكاملة: استعدادات تغيير التوقيت في مصر: تفاصيل العودة للتوقيت الشتوي وتأثيره الإجرائي">
+      <div class="topic-head">
+        <div class="card-top-row"><span class="card-date today-badge">🔴 اليوم — 2026-09-04</span></div>
+        <div class="topic-body">
+          <h3>استعدادات تغيير التوقيت في مصر: تفاصيل العودة للتوقيت الشتوي وتأثيره الإجرائي</h3>
+          <p>يبحث الشارع المصري بكثافة عن الموعد الرسمي لانتهاء العمل بالتوقيت الصيفي والعودة للتوقيت الشتوي، طبقاً لأحكام القانون رقم 24 لسنة 2023 المنظم لهذا الشأن. تكمن أهمية هذه المتابعة بالنسبة للمواطنين وكافة المتعاملين مع المنظومة القضائية والإدارية في تحديد مواعيد عمل الجهات الحكومية والمحاكم بدقة، وضمان عدم التأثير على الآجال والمواعيد الإجرائية والقانونية المرتبطة بالجلسات والطعون.</p>
+          <span class="topic-hint">📖 افتح الموضوع الكامل (٣٬٠٤٦ كلمة)</span>
+        </div>
+      </div>
+  </a>
+    <a class="topic-card" href="/radar-topics/2026-09-04-egypt-rice-market-supplies.html" title="افتح الصفحة الكاملة: أسواق الأرز والسلع الأساسية: رقابة تموينية ومتابعة لمستويات الأسعار">
+      <div class="topic-head">
+        <div class="card-top-row"><span class="card-date today-badge">🔴 اليوم — 2026-09-04</span></div>
+        <div class="topic-body">
+          <h3>أسواق الأرز والسلع الأساسية: رقابة تموينية ومتابعة لمستويات الأسعار</h3>
+          <p>يشهد ملف أسعار وتوافر الأرز اهتماماً واسعاً من المواطنين، بالتزامن مع ضوابط التوريد والحملات التموينية المشددة للرقابة على الأسواق وضبط الأسعار. يمثل هذا الملف أهمية كبرى للمواطن لمساسه المباشر بالأمن الغذائي، كما يهم المجتمع القانوني والاقتصادي لما يرتبط به من قرارات تنظيمية لتداول السلع وتطبيق تشريعات حماية المستهلك ومكافحة الاحتكار.</p>
+          <span class="topic-hint">📖 افتح الموضوع الكامل (٢٬٢٩٨ كلمة)</span>
+        </div>
+      </div>
+  </a>
     <a class="topic-card" href="/radar-topics/2026-09-03-uber-egypt-safety.html" title="افتح الصفحة الكاملة: أزمة &quot;أوبر&quot; في مصر: مطالبات برلمانية وتشريعية لتشديد الرقابة على تطبيقات النقل الذكي">
       <div class="topic-head">
-        <div class="card-top-row"><span class="card-date today-badge">🔴 اليوم — 2026-09-03</span></div>
+        <div class="card-top-row"><span class="card-date">2026-09-03</span></div>
         <div class="topic-body">
           <h3>أزمة &quot;أوبر&quot; في مصر: مطالبات برلمانية وتشريعية لتشديد الرقابة على تطبيقات النقل الذكي</h3>
           <p>تصدرت شركة &quot;أوبر&quot; مؤشرات البحث في مصر تزامناً مع تصاعد المطالبات الشعبية والقانونية لإلزام شركات النقل الذكي بمعايير أمان صارمة لحماية الركاب في ظل الحوادث الأخيرة. يتابع المجتمع القانوني والقضائي هذه التطورات باهتمام بالغ، خاصة مع تحرك دعاوى قضائية ومقترحات تشريعية لتعديل القوانين المنظمة لهذه الخدمات بمجلس النواب، مما يمس مباشرة الأمن الشخصي للمواطنين والمسؤولية القانونية والمدنية للشركات المشغلة.</p>
@@ -203,7 +295,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-09-03-poultry-prices-economy.html" title="افتح الصفحة الكاملة: أسعار الدواجن اليوم: تقلبات السوق تثير اهتمام المواطنين وتدعو لتفعيل قوانين حماية المستهلك">
       <div class="topic-head">
-        <div class="card-top-row"><span class="card-date today-badge">🔴 اليوم — 2026-09-03</span></div>
+        <div class="card-top-row"><span class="card-date">2026-09-03</span></div>
         <div class="topic-body">
           <h3>أسعار الدواجن اليوم: تقلبات السوق تثير اهتمام المواطنين وتدعو لتفعيل قوانين حماية المستهلك</h3>
           <p>تشهد أسعار الفراخ البيضاء تذبذباً مستمراً في الأسواق المصرية اليوم، مما جعلها في مقدمة اهتمامات المواطن للوقوف على أعباء المعيشة اليومية. يهم هذا الملف الاقتصادي والاجتماعي الشارع المصري بأكمله، كما يسلط الضوء قانونياً على دور جهاز حماية المستهلك والأجهزة الرقابية للدولة في تفعيل القوانين الصارمة لضبط الأسواق، ومواجهة محاولات الاحتكار والتلاعب بالأسعار لضمان وصول السلع الأساسية للمواطنين بأسعار عادلة.</p>
@@ -213,7 +305,7 @@
   </a>
     <a class="topic-card" href="/radar-topics/2026-09-03-sudan-coalition-egypt.html" title="افتح الصفحة الكاملة: &quot;التحالف التأسيسي السوداني&quot;: حراك سياسي جديد في القاهرة يهم الجالية والمتابعين للشأن الإقليمي">
       <div class="topic-head">
-        <div class="card-top-row"><span class="card-date today-badge">🔴 اليوم — 2026-09-03</span></div>
+        <div class="card-top-row"><span class="card-date">2026-09-03</span></div>
         <div class="topic-body">
           <h3>&quot;التحالف التأسيسي السوداني&quot;: حراك سياسي جديد في القاهرة يهم الجالية والمتابعين للشأن الإقليمي</h3>
           <p>حظي إعلان &quot;التحالف التأسيسي السوداني&quot; باهتمام واسع في مصر، تزامناً مع الحراك السياسي والدبلوماسي المستمر في القاهرة لحل الأزمة السودانية. يتابع القانونيون والمهتمون بالشأن العام هذا الملف نظراً لانعكاساته المباشرة على الأوضاع القانونية والإنسانية للجالية السودانية المقيمة بمصر، وملفات الإقامة واللجوء، فضلاً عن تعزيز الفهم القانوني للاتفاقيات الدولية والإقليمية المنظمة لحقوق النازحين واللاجئين في دول الجوار.</p>
@@ -401,36 +493,6 @@
         </div>
       </div>
   </a>
-    <a class="topic-card" href="/radar-topics/2026-08-26-egyptian-stock-exchange.html" title="افتح الصفحة الكاملة: متابعة البورصة المصرية: تحركات المؤشرات وانعكاسها على بيئة الاستثمار">
-      <div class="topic-head">
-        <div class="card-top-row"><span class="card-date">2026-08-26</span></div>
-        <div class="topic-body">
-          <h3>متابعة البورصة المصرية: تحركات المؤشرات وانعكاسها على بيئة الاستثمار</h3>
-          <p>تصدرت البورصة المصرية اهتمامات المواطنين والمستثمرين للوقوف على أحدث تحركات المؤشرات وحجم التداول. يعكس هذا الاهتمام مدى تأثير الأداء المالي للشركات على الاقتصاد الوطني، وهو ما يهم رجال الأعمال والمحامين المعنيين بقضايا الشركات، والاندماجات، والاستثمار المباشر في السوق المصرية.</p>
-          <span class="topic-hint">📖 افتح الموضوع الكامل (٣٬٢٤١ كلمة)</span>
-        </div>
-      </div>
-  </a>
-    <a class="topic-card" href="/radar-topics/2026-08-26-texas-drag-show-law-ruling.html" title="افتح الصفحة الكاملة: حكم قضائي أمريكي يثبت بطلان قانون تقييد العروض العامة لتعارضه مع الحقوق الدستورية">
-      <div class="topic-head">
-        <div class="card-top-row"><span class="card-date">2026-08-26</span></div>
-        <div class="topic-body">
-          <h3>حكم قضائي أمريكي يثبت بطلان قانون تقييد العروض العامة لتعارضه مع الحقوق الدستورية</h3>
-          <p>أصدرت محكمة فدرالية أمريكية حكماً يقضي بعدم دستورية قانون ولاية تكساس الذي يفرض قيوداً على بعض العروض الفنية العامة، معتبرة أنه يتعدى على حماية التعبير المكفولة دستورياً. يمثل الحكم نموذجاً قانونياً هاماً للمهتمين بالحقوق الدستورية والرقابة القضائية على التشريعات.</p>
-          <span class="topic-hint">📖 افتح الموضوع الكامل (٣٬٠٥٣ كلمة)</span>
-        </div>
-      </div>
-  </a>
-    <a class="topic-card" href="/radar-topics/2026-08-26-germany-immigration-laws.html" title="افتح الصفحة الكاملة: ألمانيا وتسهيلات العمالة الماهرة: اهتمام مصري متزايد بقوانين الإقامة والعمل">
-      <div class="topic-head">
-        <div class="card-top-row"><span class="card-date">2026-08-26</span></div>
-        <div class="topic-body">
-          <h3>ألمانيا وتسهيلات العمالة الماهرة: اهتمام مصري متزايد بقوانين الإقامة والعمل</h3>
-          <p>تزايدت عمليات البحث عن ألمانيا في مصر بالتزامن مع متابعة التحديثات التشريعية الخاصة بقوانين الهجرة وجذب العمالة الماهرة. يهم هذا الموضوع قطاعاً واسعاً من الشباب والمحامين المتخصصين في المعاملات الدولية وتوثيق العقود وتأشيرات السفر والإقامة القانونية.</p>
-          <span class="topic-hint">📖 افتح الموضوع الكامل (٣٬٠٥٥ كلمة)</span>
-        </div>
-      </div>
-  </a>
     </div>
   </div>
 
@@ -445,36 +507,7 @@
     <a href="/" class="cta-btn">جرّب منصة المحامي الرقمية مجاناً 🚀</a>
   </div>
 
-  
-<!-- ════════════════════════════════════════════════════════════════════════════
-     SMART DOWNLOAD CONVERSION BANNER (منظومة المحامي الرقمية 2026)
-     ════════════════════════════════════════════════════════════════════════════ -->
-<div class="smart-download-banner" id="smartDownloadBanner">
-  <div class="sdb-card">
-    <div class="sdb-header">
-      <span class="sdb-badge">🚀 تجربة مجانية كاملة 30 يوماً</span>
-      <div class="sdb-platforms">
-        <span class="sdb-platform-tag">💻 ويندوز للكمبيوتر (Setup & Portable)</span>
-        <span class="sdb-platform-tag">📱 أندرويد APK</span>
-        <span class="sdb-platform-tag">🍏 آيفون PWA</span>
-      </div>
-    </div>
-    <div class="sdb-title">⚖️ منظومة المحامي الرقمية لإدارة مكاتب المحاماة (إصدار 2026)</div>
-    <div class="sdb-desc">
-      وداعاً لفقدان مواعيد الجلسات أو تشتت بيانات الموكلين. نظّم قضاياك، جدول جلساتك، أوراق المحضرين، والعقود والصيغ في نظام رقمي متكامل ومشفّر محلياً بنسبة 100% يعمل دون الحاجة للإنترنت.
-    </div>
-    <div class="sdb-actions">
-      <a href="/download.html" class="sdb-btn-primary">
-        <span>📥 تحميل البرنامج وتجربته مجاناً (30 يوماً)</span>
-      </a>
-      <a href="https://wa.me/201000787780?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%A7%D8%B0%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%D8%B5%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A%20%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A%D8%A9" class="sdb-btn-whatsapp" target="_blank" rel="noopener">
-        <span>💬 واتساب للتفعيل الفوري: 01000787780</span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<footer>
+  <footer>
     <div class="footer-inner">
       <div class="footer-grid">
         <div>
@@ -489,8 +522,8 @@
           <h4>أقسام المنصة</h4>
           <ul>
             <li><a href="/">الرئيسية</a></li>
-            <li></li>
-            <li></li>
+            <li><a href="/about.html">عن المنصة</a></li>
+            <li><a href="/features.html">المميزات</a></li>
             <li><a href="/blog/">المدونة القانونية</a></li>
             <li><a href="/pillars/">المراجع القانونية</a></li>
             <li><a href="/legal-forms.html">صيغ العقود والدعاوي</a></li>

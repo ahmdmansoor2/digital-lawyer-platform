@@ -2112,6 +2112,42 @@
       ],
       "words": 1741,
       "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "عقوبات النصب الإلكتروني واختراق حسابات إنستا باي في القانون المصري",
+      "date": "2026-09-04",
+      "slug": "instapay-fraud-cybercrime-egypt-law",
+      "url": "https://mohamidigital.online/blog/instapay-fraud-cybercrime-egypt-law.html",
+      "image": "https://mohamidigital.online/blog/images/instapay-fraud-cybercrime-egypt-law.jpg",
+      "tags": [
+        "جرائم إلكترونية"
+      ],
+      "words": 2501,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "دليل الفاتورة الإلكترونية والإقرارات الضريبية للشركات والأفراد في مصر",
+      "date": "2026-09-04",
+      "slug": "electronic-tax-invoicing-system-egypt",
+      "url": "https://mohamidigital.online/blog/electronic-tax-invoicing-system-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/electronic-tax-invoicing-system-egypt.jpg",
+      "tags": [
+        "ضرائب"
+      ],
+      "words": 1520,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "عقوبة احتكار السلع التموينية والتلاعب بالأسعار في قانون حماية المستهلك",
+      "date": "2026-09-04",
+      "slug": "commodity-hoarding-price-manipulation-law",
+      "url": "https://mohamidigital.online/blog/commodity-hoarding-price-manipulation-law.html",
+      "image": "https://mohamidigital.online/blog/images/commodity-hoarding-price-manipulation-law.jpg",
+      "tags": [
+        "حماية المستهلك"
+      ],
+      "words": 1824,
+      "model": "gemini-3.6-flash"
     }
   ]
 }

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta name="google-adsense-account" content="ca-pub-7725405859334364">
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>النشرة القانونية الأسبوعية | منصة المحامي الرقمية</title>
@@ -33,7 +32,6 @@ h2.sec{font-size:19px;font-weight:900;color:#fff;margin:0 0 18px}
 .rss-note a{color:#6ee7b7;font-weight:800}
 footer{border-top:1px solid rgba(148,163,184,.12);padding:26px;text-align:center;font-size:11.5px;color:#64748b;background:rgba(15,23,42,.95)}
 </style>
-  <link rel="stylesheet" href="/header.css?v=20260904-luxury-navy" />
 </head>
 <body>
 <header class="uh-bar" id="siteHeader">
@@ -76,9 +74,72 @@ footer{border-top:1px solid rgba(148,163,184,.12);padding:26px;text-align:center
       </div>
     </div>
   </header>
+  <script>
+    (function(){
+      var hdr=document.getElementById('siteHeader');
+      var nav=document.getElementById('headerNav');
+      var burger=document.getElementById('uhBurger');
+      var more=document.getElementById('uhMore');
+      var moreBtn=more?more.querySelector('.uh-more-btn'):null;
+      if(hdr)window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+      function closeMobile(){
+        if(nav)nav.classList.remove('active');
+        if(burger){burger.setAttribute('aria-expanded','false');burger.innerHTML='☰';burger.setAttribute('aria-label','فتح القائمة');}
+      }
+      if(burger){burger.addEventListener('click',function(){
+        var open=nav.classList.toggle('active');
+        burger.setAttribute('aria-expanded',open);
+        burger.innerHTML=open?'✕':'☰';
+        burger.setAttribute('aria-label',open?'إغلاق القائمة':'فتح القائمة');
+        if(!open&&more){more.classList.remove('open');}
+      });}
+      if(moreBtn&&more){
+        moreBtn.addEventListener('click',function(e){
+          e.stopPropagation();
+          var open=more.classList.toggle('open');
+          moreBtn.setAttribute('aria-expanded',open);
+        });
+      }
+      document.addEventListener('click',function(e){
+        if(more&&more.classList.contains('open')&&!more.contains(e.target)){
+          more.classList.remove('open');
+          if(moreBtn)moreBtn.setAttribute('aria-expanded','false');
+        }
+        if(nav&&nav.classList.contains('active')&&burger&&!nav.contains(e.target)&&!burger.contains(e.target)){
+          closeMobile();
+        }
+      });
 
-
-
+      /* محرك التحميل المسبق الذكي فائق السرعة والموفر للشبكة (Debounced 65ms) */
+      var prefetchedUrls = new Set();
+      var hoverTimer = null;
+      function instantPrefetch(url) {
+        if (!url || prefetchedUrls.has(url) || url.includes('#') || url.startsWith('javascript:')) return;
+        try {
+          var u = new URL(url, window.location.origin);
+          if (u.origin !== window.location.origin || u.pathname === window.location.pathname) return;
+          prefetchedUrls.add(url);
+          var prefetchLink = document.createElement('link');
+          prefetchLink.rel = 'prefetch';
+          prefetchLink.href = url;
+          document.head.appendChild(prefetchLink);
+        } catch(e){}
+      }
+      function onLinkEnter(e) {
+        var anchor = e.target.closest('a');
+        if (anchor && anchor.href) {
+          clearTimeout(hoverTimer);
+          hoverTimer = setTimeout(function(){ instantPrefetch(anchor.href); }, 65);
+        }
+      }
+      function onLinkLeave() {
+        clearTimeout(hoverTimer);
+      }
+      document.addEventListener('mouseover', onLinkEnter, {passive: true});
+      document.addEventListener('mouseout', onLinkLeave, {passive: true});
+      document.addEventListener('touchstart', onLinkEnter, {passive: true});
+    })();
+  </script>
 <div class="wrap">
   <div class="badge">📬 النشرة القانونية · تُحدَّث تلقائياً بعد كل نشر</div>
   <h1>أحدث ما نُشر على المنصة</h1>
@@ -86,77 +147,77 @@ footer{border-top:1px solid rgba(148,163,184,.12);padding:26px;text-align:center
 
   <h2 class="sec">📰 أحدث المقالات</h2>
   <div class="nd-grid">
+    <a class="nd-card" href="https://mohamidigital.online/blog/" target="_blank" rel="noopener">
+      <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
+      <h3>المدونة القانونية</h3>
+      <p>مقالات ونصائح قانونية للمحامين المصريين: إدارة القضايا، تنظيم المكتب، التكنولوجيا القانونية، وأفضل الممارسات في المهنة.…</p>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
+    </a>
+    <a class="nd-card" href="https://mohamidigital.online/blog/commodity-hoarding-price-manipulation-law.html" target="_blank" rel="noopener">
+      <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
+      <h3>عقوبة احتكار السلع التموينية والتلاعب بالأسعار في قانون حماية المستهلك</h3>
+      <p>تعرف على العقوبات القانونية لاحتكار السلع الأساسية كالأرز والسكر وتلاعب التجار بالأسعار وفقاً لقانون حماية المستهلك.…</p>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
+    </a>
+    <a class="nd-card" href="https://mohamidigital.online/blog/electronic-tax-invoicing-system-egypt.html" target="_blank" rel="noopener">
+      <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
+      <h3>دليل الفاتورة الإلكترونية والإقرارات الضريبية للشركات والأفراد في مصر</h3>
+      <p>شرح كامل لنظام الفاتورة الإلكترونية والتسجيل بضرائب مصر، وشروط تقديم الإقرار الضريبي وتجنب الغرامات المالية.…</p>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
+    </a>
+    <a class="nd-card" href="https://mohamidigital.online/blog/instapay-fraud-cybercrime-egypt-law.html" target="_blank" rel="noopener">
+      <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
+      <h3>عقوبات النصب الإلكتروني واختراق حسابات إنستا باي في القانون المصري</h3>
+      <p>دليل قانوني حول عقوبة سرقة حسابات إنستا باي والنصب الإلكتروني في مصر، وكيفية تقديم بلاغ لمباحث النت واسترداد الأموال.…</p>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
+    </a>
     <a class="nd-card" href="https://mohamidigital.online/blog/workplace-harassment-law.html" target="_blank" rel="noopener">
       <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
       <h3>التحرش الوظيفي في مكان العمل: الحماية القانونية للموظف وحقوق المرأة في مصر</h3>
       <p>اكتشف حقوقك القانونية ضد التحرش الوظيفي في مصر. دليل شامل يوضح عقوبات قانون العمل وقانون العقوبات وكيفية رفع دعوى تعويض لحماية كرامتك المهنية.…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
     </a>
     <a class="nd-card" href="https://mohamidigital.online/blog/witness-testimony-egypt.html" target="_blank" rel="noopener">
       <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
       <h3>الشهادة أمام المحاكم: شروط قبولها وقيمتها في الإثبات وفقاً للقانون المصري</h3>
       <p>دليلك الشامل لفهم قواعد الشهادة في القانون المصري، شروط قبولها، وموانعها، وقيمتها التقديرية أمام القاضي المدني والجنائي بالتفصيل.…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
     </a>
     <a class="nd-card" href="https://mohamidigital.online/blog/university-tanseeq-appeals-egypt.html" target="_blank" rel="noopener">
       <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
       <h3>إجراءات الطعن على نتائج التنسيق والتحويلات الجامعية أمام مجلس الدولة 2026</h3>
       <p>دليل قانوني شامل للشروط والأوراق المطلوبة لرفع دعوى إعادة توزيع أو طعن على نتيجة التنسيق الجامعي أمام القضاء الإداري في مصر.…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
-    </a>
-    <a class="nd-card" href="https://mohamidigital.online/blog/train-accident-compensation-egypt.html" target="_blank" rel="noopener">
-      <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
-      <h3>التعويض عن حوادث القطارات ووسائل النقل العام في القانون المصري: الإجراءات والشروط</h3>
-      <p>خطوات الحصول على التعويض القانوني والتأميني لضحايا حوادث القطارات وهيئة السكة الحديد في القانون المصري.…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
-    </a>
-    <a class="nd-card" href="https://mohamidigital.online/blog/uber-ride-hailing-law-egypt.html" target="_blank" rel="noopener">
-      <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
-      <h3>المسؤولية القانونية لشركات النقل الذكي: حقوق الركاب والسائقين في قانون أوبر وكريم بمصر</h3>
-      <p>دليل قانوني حول المسؤولية الجنائية والمدنية لشركات النقل الذكي مثل أوبر في مصر، وحقوق التعويض عن الحوادث والانتهاكات.…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
-    </a>
-    <a class="nd-card" href="https://mohamidigital.online/blog/trial-period-rights.html" target="_blank" rel="noopener">
-      <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
-      <h3>فترة التجربة في قانون العمل المصري: دليل شامل لحقوق الموظف وضمانات صاحب العمل</h3>
-      <p>تعرف على حقوق الموظف في فترة التجربة وفق قانون العمل المصري. شرح مفصل للمدة، الأجور، التأمينات، وضوابط إنهاء العقد خلال الشهور الثلاثة الأولى.…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
     </a>
     <a class="nd-card" href="https://mohamidigital.online/blog/university-admission-coordination-appeals-egypt.html" target="_blank" rel="noopener">
       <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
       <h3>كيفية الطعن على نتيجة التنسيق الجامعي أمام محكمة القضاء الإداري</h3>
       <p>تعرف على إجراءات وشروط تقديم دعوى طعن على نتيجة تنسيق الثانوية العامة أمام القضاء الإداري ومواعيد رفع الدعوى القانونية.…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
+    </a>
+    <a class="nd-card" href="https://mohamidigital.online/blog/uber-ride-hailing-law-egypt.html" target="_blank" rel="noopener">
+      <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
+      <h3>المسؤولية القانونية لشركات النقل الذكي: حقوق الركاب والسائقين في قانون أوبر وكريم بمصر</h3>
+      <p>دليل قانوني حول المسؤولية الجنائية والمدنية لشركات النقل الذكي مثل أوبر في مصر، وحقوق التعويض عن الحوادث والانتهاكات.…</p>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
+    </a>
+    <a class="nd-card" href="https://mohamidigital.online/blog/trial-period-rights.html" target="_blank" rel="noopener">
+      <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
+      <h3>فترة التجربة في قانون العمل المصري: دليل شامل لحقوق الموظف وضمانات صاحب العمل</h3>
+      <p>تعرف على حقوق الموظف في فترة التجربة وفق قانون العمل المصري. شرح مفصل للمدة، الأجور، التأمينات، وضوابط إنهاء العقد خلال الشهور الثلاثة الأولى.…</p>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
     </a>
     <a class="nd-card" href="https://mohamidigital.online/blog/travel-ban-reasons.html" target="_blank" rel="noopener">
       <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
       <h3>منع السفر في القانون المصري: الدليل الشامل للإجراءات القانونية وطرق الرفع والتظلم</h3>
       <p>تعرف على أسباب منع السفر في القانون المصري، وكيفية الاستعلام عنه، وطرق التظلم القانوني لرفعه من قوائم الترقب والوصول وحماية حقك الدستوري في التنقل.…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
     </a>
-    <a class="nd-card" href="https://mohamidigital.online/blog/trademark-registration-egypt.html" target="_blank" rel="noopener">
+    <a class="nd-card" href="https://mohamidigital.online/blog/train-accident-compensation-egypt.html" target="_blank" rel="noopener">
       <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
-      <h3>تسجيل علامة تجارية في مصر: الدليل القانوني الشامل لخطوات التسجيل وآليات الحماية القضائية</h3>
-      <p>دليل قانوني شامل حول تسجيل علامة تجارية في مصر وفقاً لقانون حماية الملكية الفكرية رقم 82 لسنة 2002، يغطي الخطوات، شروط القبول، وآليات مواجهة التقليد.…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
-    </a>
-    <a class="nd-card" href="https://mohamidigital.online/blog/traffic-accident-claims.html" target="_blank" rel="noopener">
-      <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
-      <h3>حوادث السيارات والتعويضات: دليل شامل حول الإجراءات وحقوق الضحايا في القانون المصري</h3>
-      <p>دليلك الشامل لمعرفة حقوقك القانونية في التعويض عن حوادث السيارات بمصر، دور النيابة العامة، والتقرير الفني، وإجراءات مكاتب التعويضات.…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
-    </a>
-    <a class="nd-card" href="https://mohamidigital.online/blog/thanaweya-amma-appeals-legal-guide.html" target="_blank" rel="noopener">
-      <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
-      <h3>خطوات التظلم القانوني على نتيجة الثانوية العامة وإجراءات القضاء الإداري</h3>
-      <p>دليل قانوني شامل لإجراءات التظلم على درجات الثانوية العامة في مصر، وكيفية رفع دعوى أمام محكمة القضاء الإداري لتعديل الدرجات.…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
-    </a>
-    <a class="nd-card" href="https://mohamidigital.online/blog/tech-for-lawyers.html" target="_blank" rel="noopener">
-      <span class="nd-chip" style="color:#a5b4fc;background:#a5b4fc22;border-color:#a5b4fc55">📰 مقال</span>
-      <h3>التكنولوجيا القانونية: لماذا المحامي الذكي هو المحامي الناجح؟</h3>
-      <p>كيف أحدثت التكنولوجيا تحولاً في مهنة المحاماة، وما هي الأدوات التي لا غنى عنها لكل محامٍ عصري. دليلك الشامل للتكنولوجيا القانونية.…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
+      <h3>التعويض عن حوادث القطارات ووسائل النقل العام في القانون المصري: الإجراءات والشروط</h3>
+      <p>خطوات الحصول على التعويض القانوني والتأميني لضحايا حوادث القطارات وهيئة السكة الحديد في القانون المصري.…</p>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
     </a></div>
 
   <h2 class="sec">📡 آخر تحليلات الرادار</h2>
@@ -165,60 +226,31 @@ footer{border-top:1px solid rgba(148,163,184,.12);padding:26px;text-align:center
       <span class="nd-chip" style="color:#67e8f9;background:#67e8f922;border-color:#67e8f955">📡 رصد المحامي</span>
       <h3>نزاعات نفقة الأطفال عالمياً: قضايا الأحوال الشخصية للمشاهير تحت المجهر</h3>
       <p>أثارت التطورات القانونية المتعلقة بدعاوى نفقة الأطفال للاعب السلة الأمريكي أنتوني إدواردز اهتماماً واسعاً على المستوى الدولي. وتكشف هذه القضايا عن آليات تنظيم ا…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
     </a>
     <a class="nd-card" href="https://mohamidigital.online/radar-topics/2026-08-22-egypt-official-holiday.html" target="_blank" rel="noopener">
       <span class="nd-chip" style="color:#67e8f9;background:#67e8f922;border-color:#67e8f955">📡 رصد المحامي</span>
       <h3>العطلات الرسمية في مصر: تأثيرها على المواعيد الإجرائية ومدد الطعن القضائي</h3>
       <p>يتزايد بحث الشارع المصري عن مواعيد العطلات الرسمية لتنظيم الإجازات ومواعيد العمل بالمؤسسات. وتكتسب الإجازات الرسمية بعداً قانونياً مهماً لدى المحامين وأصحاب الق…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
     </a>
     <a class="nd-card" href="https://mohamidigital.online/radar-topics/2026-08-22-egypt-national-id.html" target="_blank" rel="noopener">
       <span class="nd-chip" style="color:#67e8f9;background:#67e8f922;border-color:#67e8f955">📡 رصد المحامي</span>
       <h3>تحديثات وضوابط بطاقة الرقم القومي: إجراءات تهم المواطن والمعاملات القانونية</h3>
       <p>تصدرت &amp;quot;بطاقة الرقم القومي المصرية&amp;quot; محركات البحث في مصر بالتزامن مع اهتمام المواطنين بمعرفة ضوابط التجديد وغرامات التأخير وشروط استخراج البطاقة. وتكتسب…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
     </a>
     <a class="nd-card" href="https://mohamidigital.online/radar-topics/2026-08-23-life-imprisonment-rulings.html" target="_blank" rel="noopener">
       <span class="nd-chip" style="color:#67e8f9;background:#67e8f922;border-color:#67e8f955">📡 رصد المحامي</span>
       <h3>أحكام السجن المؤبد تتصدر اهتمامات الشارع القانوني والرأي العام</h3>
       <p>تزايدت عمليات البحث حول أحكام «السجن المؤبد» بالتزامن مع صدور قرارات قضائية محورية في قضايا جنائية متعددة شغلت الرأي العام المصري مؤخراً. يركز هذا الموضوع على ا…</p>
-      <time>الخميس، ٣ سبتمبر ٢٠٢٦</time>
+      <time>الجمعة، ٤ سبتمبر ٢٠٢٦</time>
     </a></div>
 
   <div class="rss-note">
     📡 تابعنا من قارئ RSS المفضل لديك: <a href="/rss.xml">/rss.xml</a> — أو فعّل إشعارات المتصفح من أيقونة الجرس في الرئيسية.
   </div>
 </div>
-
-<!-- ════════════════════════════════════════════════════════════════════════════
-     SMART DOWNLOAD CONVERSION BANNER (منظومة المحامي الرقمية 2026)
-     ════════════════════════════════════════════════════════════════════════════ -->
-<div class="smart-download-banner" id="smartDownloadBanner">
-  <div class="sdb-card">
-    <div class="sdb-header">
-      <span class="sdb-badge">🚀 تجربة مجانية كاملة 30 يوماً</span>
-      <div class="sdb-platforms">
-        <span class="sdb-platform-tag">💻 ويندوز للكمبيوتر (Setup & Portable)</span>
-        <span class="sdb-platform-tag">📱 أندرويد APK</span>
-        <span class="sdb-platform-tag">🍏 آيفون PWA</span>
-      </div>
-    </div>
-    <div class="sdb-title">⚖️ منظومة المحامي الرقمية لإدارة مكاتب المحاماة (إصدار 2026)</div>
-    <div class="sdb-desc">
-      وداعاً لفقدان مواعيد الجلسات أو تشتت بيانات الموكلين. نظّم قضاياك، جدول جلساتك، أوراق المحضرين، والعقود والصيغ في نظام رقمي متكامل ومشفّر محلياً بنسبة 100% يعمل دون الحاجة للإنترنت.
-    </div>
-    <div class="sdb-actions">
-      <a href="/download.html" class="sdb-btn-primary">
-        <span>📥 تحميل البرنامج وتجربته مجاناً (30 يوماً)</span>
-      </a>
-      <a href="https://wa.me/201000787780?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%20%D8%A3%D8%B3%D8%AA%D8%A7%D8%B0%20%D8%A3%D8%AD%D9%85%D8%AF%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AA%D9%81%D8%B9%D9%8A%D9%84%20%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%D8%B5%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D9%85%D9%8A%20%D8%A7%D9%84%D8%B1%D9%82%D9%85%D9%8A%D8%A9" class="sdb-btn-whatsapp" target="_blank" rel="noopener">
-        <span>💬 واتساب للتفعيل الفوري: 01000787780</span>
-      </a>
-    </div>
-  </div>
-</div>
-
 <footer>© 2026 منصة المحامي الرقمية · النشرة تُولَّد آلياً من فهرس المحتوى</footer>
 </body>
 </html>
