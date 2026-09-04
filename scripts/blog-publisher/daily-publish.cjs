@@ -679,6 +679,7 @@ ${list}${midImage}`;
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta name="google-adsense-account" content="ca-pub-7725405859334364">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
   ${HEADER_CSS}
   <link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest -->
