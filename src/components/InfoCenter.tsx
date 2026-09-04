@@ -52,8 +52,8 @@ import MobileDock from './MobileDock';
 
 interface InfoCenterProps {
   userName?: string;
-  onEnterApp: () => void;
-  onLogout: () => void;
+  onEnterApp?: () => void;
+  onLogout?: () => void;
 }
 
 // ── مميزات نظام إدارة مكاتب المحاماة للمحترفين ─────────────────────────
@@ -182,15 +182,6 @@ export default function InfoCenter({ userName, onEnterApp, onLogout }: InfoCente
 
           {/* Hero Action Buttons */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 mb-6 w-full max-w-2xl mx-auto">
-            <button
-              onClick={onEnterApp}
-              className="w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 text-white font-extrabold text-sm sm:text-base shadow-xl shadow-indigo-600/30 hover:shadow-indigo-600/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer flex items-center justify-center gap-2.5"
-            >
-              <Briefcase className="w-5 h-5 shrink-0" />
-              <span>دخول برنامج المحامين مجاناً</span>
-              <ArrowLeft className="w-4 h-4 shrink-0" />
-            </button>
-
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 w-full sm:w-auto">
               <a
                 href="/contract-generator.html"

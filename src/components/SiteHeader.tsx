@@ -120,15 +120,6 @@ export default function SiteHeader({ activeKey = 'home', onEnterApp, userName, o
         </nav>
 
         <div className="uh-actions">
-          {isAuth ? (
-            <button type="button" className="uh-cta uh-cta--ghost" onClick={onLogout}>
-              <span>خروج · {userName}</span>
-            </button>
-          ) : (
-            <a href="/" className="uh-cta" onClick={handleCtaClick}>
-              <span>🚀 دخول التطبيق</span>
-            </a>
-          )}
           <button
             className="uh-burger"
             id="uhBurger"

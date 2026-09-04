@@ -3,7 +3,7 @@ import {createRoot} from 'react-dom/client';
 import { OfficeProfileProvider } from './contexts/OfficeProfileContext';
 import { ConfirmProvider } from './contexts/ConfirmContext';
 import { AuthProvider } from './contexts/AuthContext';
-import FirebaseAuthGate from './components/FirebaseAuthGate';
+import InfoCenter from './components/InfoCenter';
 import App from './App';
 import './index.css';
 
@@ -76,7 +76,7 @@ createRoot(document.getElementById('root')!).render(
       <AuthProvider>
         <OfficeProfileProvider>
           <ConfirmProvider>
-            {isElectron ? <App /> : <FirebaseAuthGate />}
+            {isElectron ? <App /> : <InfoCenter />}
           </ConfirmProvider>
         </OfficeProfileProvider>
       </AuthProvider>
