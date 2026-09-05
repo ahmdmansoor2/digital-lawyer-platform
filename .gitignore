@@ -28,3 +28,6 @@ scripts/test-storage-upload.cjs
 .ia-books/
 scripts/ia-upload-log.json
 scripts/ia-upload-stats.json
+# Google Search Console Indexing Service Account (حماية المفاتيح)
+google-service-account.json
+*service-account*.json
