@@ -42,6 +42,7 @@ function walkDir(dir, base = dir) {
 
 function urlForPath(filePath) {
   const rel = path.relative(PUBLIC_DIR, filePath).replace(/\\/g, '/');
+  if (rel === 'index.html') return BASE_URL + '/';
   let url = BASE_URL + '/' + rel;
   if (url.endsWith('/index.html')) url = url.replace(/index\.html$/, '');
   return url;
@@ -83,6 +84,18 @@ function main() {
     changefreq: '',
     priority: ''
   }));
+
+  // Ensure root homepage is explicitly included as the primary URL
+  const rootIndex = path.join(PROJECT_ROOT, 'index.html');
+  const rootMtime = fs.existsSync(rootIndex) ? fs.statSync(rootIndex).mtime.toISOString() : new Date().toISOString();
+  if (!urls.some(u => u.loc === BASE_URL + '/' || u.loc === BASE_URL)) {
+    urls.unshift({
+      loc: BASE_URL + '/',
+      lastmod: rootMtime,
+      changefreq: 'daily',
+      priority: '1.0'
+    });
+  }
 
   // Calculate priority/changefreq per URL
   for (const u of urls) {
