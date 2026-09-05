@@ -248,8 +248,17 @@ async function publishArticleToFacebook(article, token, pageId) {
     return { slug, status: 'no-file' };
   }
 
-  // نص المنشور = عنوان + نص المقال + رابط
-  const full = `${title}\n\n${text}\n\n📖 للمزيد: ${url}`;
+  // نص المنشور = عنوان + نص المقال + الخاتمة الموحدة لدعم المنصة
+  const siteFooter = [
+    '',
+    '───────────────────────',
+    '⚖️ منصة المحامي الرقمية | مرجعك التشريعي الأول في مصر',
+    '📌 نصوص القوانين المصرية كاملة • بنك أحكام محكمة النقض • موسوعة العقود والصيغ • 15 حاسبة قانونية ذكية مجاناً 100%',
+    `📖 لقراءة الدليل كاملاً على الموقع: ${url}`,
+    '🌐 تفضل بزيارة المنصة وتجربة كافة الخدمات الذكية لدعم نشر الثقافة القانونية:',
+    '👉 https://mohamidigital.online/'
+  ].join('\n');
+  const full = `${title}\n\n${text}\n${siteFooter}`;
   const parts = splitIntoParts(full);
   const partCount = parts.length;
   const postedIds = [];

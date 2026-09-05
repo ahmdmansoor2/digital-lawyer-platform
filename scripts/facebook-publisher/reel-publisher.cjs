@@ -148,8 +148,11 @@ async function processTopic(topic, opts) {
     const description = [
       plan.hook,
       '',
-      '🌐 احسب مستحقاتك والتعويضات واستشر محاميك مجاناً:',
-      '👉 https://mohamidigital.online/legal-calculators.html',
+      '───────────────────────',
+      '⚖️ منصة المحامي الرقمية | مرجعك التشريعي الأول في مصر',
+      '📌 نصوص القوانين المصرية كاملة • أحكام النقض • 15 حاسبة قانونية مجاناً',
+      '🌐 تفضل بزيارة المنصة وتجربة الحاسبات الذكية لدعم نشر الثقافة القانونية:',
+      '👉 https://mohamidigital.online/',
       '',
       hashtags.join(' ')
     ].join('\n');
