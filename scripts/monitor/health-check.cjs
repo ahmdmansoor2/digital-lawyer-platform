@@ -505,6 +505,54 @@ async function openAlertIssue(mdReport, summary) {
   }
 }
 
+async function sendTelegramHealthAlert(summary, checks) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) {
+    console.log('[telegram] تم تخطي الإرسال (بيانات TELEGRAM_BOT_TOKEN أو CHAT_ID غير متوفرة)');
+    return;
+  }
+
+  const isError = summary.status === 'error';
+  const icon = isError ? '🚨' : summary.status === 'warn' ? '🟡' : '✅';
+  const statusLabel = isError ? 'أخطاء تتطلب المتابعة والتدخل' : summary.status === 'warn' ? 'ملاحظات وتنبيهات' : 'سليم 100% ومستقر';
+
+  let msg = `🏛️ <b>تقرير الفحص الدوري — منصة المحامي الرقمية</b>\n`;
+  msg += `📅 <b>التوقيت:</b> ${nowCairoLabel()}\n`;
+  msg += `📊 <b>الحالة الكلية:</b> ${icon} <b>${statusLabel}</b>\n\n`;
+  msg += `• <b>مقالات المدونة:</b> ${summary.blogArticles || 0} مقالاً\n`;
+  msg += `• <b>منشورات فيسبوك اليوم:</b> ${summary.fbPosts !== null ? summary.fbPosts : 0}\n`;
+  msg += `• <b>ريلز اليوم:</b> ${summary.reels !== null ? summary.reels : 0}\n`;
+  msg += `• <b>تشغيلات السحابة (24h):</b> ${summary.ghRuns || 0}\n\n`;
+
+  if (isError) {
+    msg += `⚠️ <b>تفاصيل المشكلات المرصودة:</b>\n`;
+    for (const c of checks.filter(x => x.status === 'error')) {
+      msg += `• <b>${c.label}</b>:\n`;
+      for (const f of c.findings.slice(0, 3)) {
+        msg += `   - ${f.msg}\n`;
+      }
+    }
+    msg += `\n👉 <i>يرجى مراجعة المنصة أو توجيه الفريق للتدخل.</i>`;
+  } else {
+    msg += `✨ <i>كافة الأصول البرمجية والواجهات تعمل باستقرار تام تحت إشرافكم.</i>`;
+  }
+
+  try {
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text: msg, parse_mode: 'HTML' })
+    });
+    const d = await res.json();
+    if (d.ok) console.log('[telegram] تم إرسال التقرير بنجاح لتليجرام المستشار أحمد منصور');
+    else console.log(`[telegram] تعذر الإرسال (${d.description})`);
+  } catch (err) {
+    console.log('[telegram] تعذر إرسال التقرير لتليجرام:', err.message);
+  }
+}
+
 // ══ MAIN ═══════════════════════════════════════════════════════════════════
 (async () => {
   console.log('=== الفحص الصحي اليومي الشامل ===');
@@ -548,6 +596,7 @@ async function openAlertIssue(mdReport, summary) {
   console.log(`\nالتقرير: reports/health/${cairoDate()}.md`);
 
   await openAlertIssue(md, summary);
+  await sendTelegramHealthAlert(summary, checks);
 })().catch(e => {
   console.error('فشل غير متوقع:', e);
   process.exit(1);
