@@ -1284,4 +1284,44 @@ h1, h2, h3, h4,
   }
 }
 
+/* ============================================================================
+ * درع حماية تخطيط المدونة ومنع أي قوائم قديمة ملغاة + تنسيق مسار التنقل
+ * ============================================================================ */
+.main-nav, .header-nav {
+  display: none !important;
+}
+
+.breadcrumbs {
+  max-width: 900px !important;
+  margin: 16px auto 0 !important;
+  padding: 0 24px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 13px !important;
+  color: #94a3b8 !important;
+}
+
+.breadcrumbs a {
+  color: #94a3b8 !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  transition: color 0.2s ease !important;
+}
+
+.breadcrumbs a:hover {
+  color: #6366f1 !important;
+}
+
+.breadcrumbs .sep {
+  color: #94a3b8 !important;
+  opacity: 0.4 !important;
+}
+
+.breadcrumbs .current,
+.breadcrumbs span:last-child {
+  color: #e2e8f0 !important;
+  font-weight: 800 !important;
+}
+
 

@@ -169,6 +169,12 @@
       transition: color 0.2s;
     }
     .footer-links a:hover { color: var(--primary-light); }
+  
+    .breadcrumbs { max-width: 900px; margin: 16px auto 0; padding: 0 24px; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted, #94a3b8); }
+    .breadcrumbs a { color: var(--muted, #94a3b8); text-decoration: none; font-weight: 700; transition: color .2s; }
+    .breadcrumbs a:hover { color: var(--indigo, #6366f1); }
+    .breadcrumbs .sep { color: var(--muted, #94a3b8); opacity: 0.4; }
+    .breadcrumbs span:last-child, .breadcrumbs .current { color: #e2e8f0; font-weight: 800; }
   </style>
 <script async type="application/javascript" src="https://news.google.com/swg/js/v1/swg-basic.js"></script>
 <script>
@@ -264,27 +270,6 @@
 
 
 
-  <header class="header-nav">
-    <div class="nav-container">
-      <a href="/" class="brand">
-        ⚖️ | المحامي الرقمي
-        <span class="brand-badge">2026</span>
-      </a>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="/">الرئيسية</a></li>
-          <li><a href="/blog/">المدونة القانونية</a></li>
-          <li><a href="/pillars/">المراجع الشاملة</a></li>
-          <li><a href="/legal-calculators.html">الحاسبات الذكية</a></li>
-          <li><a href="/court-precedents.html">مبادئ النقض</a></li>
-          <li><a href="/legal-forms.html">صيغ العقود</a></li>
-          <li></li>
-          <li><a href="/contact.html">تواصل معنا</a></li>
-          <li><a href="/" class="cta-btn">دخول المنصة</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
   <main class="container">
 
     <article>

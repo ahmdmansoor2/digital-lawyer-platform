@@ -1,11 +1,11 @@
 {
   "date": "2026-09-05",
-  "generatedAt": "2026-09-05T19:52:02.012Z",
+  "generatedAt": "2026-09-05T20:01:46.141Z",
   "status": "error",
   "blogArticles": 180,
   "fbPosts": 5,
   "reels": 0,
-  "ghRuns": 20,
+  "ghRuns": 19,
   "checks": [
     {
       "name": "site_root",
@@ -22,6 +22,12 @@
     {
       "name": "articles",
       "label": "المدونة: سلامة المقالات والصور (og:image)",
+      "status": "ok",
+      "findings": 0
+    },
+    {
+      "name": "layout_integrity",
+      "label": "المدونة: النزاهة البصرية وتناسق الهيدر ومسار التنقل",
       "status": "ok",
       "findings": 0
     },

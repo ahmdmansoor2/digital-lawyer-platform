@@ -79,6 +79,12 @@
     .footer-links a:hover{color:var(--accent-light)}
     .footer-copy{width:100%;text-align:center;margin-top:24px;padding-top:16px;border-top:1px solid rgba(148,163,184,.08);font-size:11px;color:rgba(148,163,184,.4)}
     @media(max-width:768px){.article-card{padding:24px 18px}.nav-links{display:none}.footer-inner{flex-direction:column}}
+  
+    .breadcrumbs { max-width: 900px; margin: 16px auto 0; padding: 0 24px; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted, #94a3b8); }
+    .breadcrumbs a { color: var(--muted, #94a3b8); text-decoration: none; font-weight: 700; transition: color .2s; }
+    .breadcrumbs a:hover { color: var(--indigo, #6366f1); }
+    .breadcrumbs .sep { color: var(--muted, #94a3b8); opacity: 0.4; }
+    .breadcrumbs span:last-child, .breadcrumbs .current { color: #e2e8f0; font-weight: 800; }
   </style>
   <script type="application/ld+json">
 {
@@ -1039,24 +1045,6 @@
 
 
 
-
-  <nav class="main-nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <div class="logo-icon">🏛️</div>
-        <div class="logo-text">
-          <span class="logo-name">المحامي الرقمي</span>
-          <span class="logo-sub">مجاني 100% • إدارة مكاتب المحاماة</span>
-        </div>
-      </a>
-      <div class="nav-links">
-        <a href="/">الرئيسية</a>
-        <a href="/blog/" class="active">المدونة</a>
-        <a href="/contact.html">تواصل معنا</a>
-      </div>
-      <a href="/" class="nav-cta">دخول المنصة مجاناً 🚀</a>
-    </div>
-  </nav>
 
   <nav class="breadcrumbs" aria-label="مسار التنقل">
     <a href="/">الرئيسية</a><span class="sep">‹</span>

@@ -249,6 +249,39 @@ async function checkArticles(slugs) {
   c.summary = `فحص ${checked}/${slugs.length} مقالاً — صور: ${problems.imageDead.length} مكسورة، ${problems.imageSvg.length} SVG`;
 }
 
+// ══ 3.5) النزاهة البصرية وتناسق الواجهة (Layout & Visual Integrity) ═════════
+async function checkBlogLayoutIntegrity() {
+  const c = addCheck('layout_integrity', 'المدونة: النزاهة البصرية وتناسق الهيدر ومسار التنقل');
+  const blogDir = path.join(ROOT, 'public', 'blog');
+  if (!fs.existsSync(blogDir)) {
+    c.summary = 'مجلد المدونة غير موجود محلياً';
+    return;
+  }
+  const files = fs.readdirSync(blogDir).filter(f => f.endsWith('.html') && f !== 'index.html');
+  const obsoleteNavs = [];
+  const missingBreadcrumbs = [];
+
+  for (const f of files) {
+    const html = fs.readFileSync(path.join(blogDir, f), 'utf8');
+    if (html.includes('class="main-nav"') || html.includes("class='main-nav'") ||
+        html.includes('class="header-nav"') || html.includes("class='header-nav'")) {
+      obsoleteNavs.push(f);
+    }
+    if (!html.includes('.breadcrumbs {') && !html.includes('.breadcrumbs{')) {
+      missingBreadcrumbs.push(f);
+    }
+  }
+
+  if (obsoleteNavs.length) {
+    find(c, 'error', `مقالات تحتوي على قوائم قديمة ملغاة ومشوهة (${obsoleteNavs.length}): ${obsoleteNavs.slice(0, 3).join('، ')}`);
+  }
+  if (missingBreadcrumbs.length) {
+    find(c, 'warn', `مقالات ينقصها تنسيق مسار التنقل breadcrumbs (${missingBreadcrumbs.length}): ${missingBreadcrumbs.slice(0, 3).join('، ')}`);
+  }
+
+  c.summary = `فحص ${files.length} مقالاً — سلامة تامة من أي قوائم مزدوجة أو تشوهات بصرية`;
+}
+
 // ══ 4) خريطة الموقع ═══════════════════════════════════════════════════════
 async function checkSitemap(articleCount) {
   const c = addCheck('sitemap', 'الاستضافة: خريطة الموقع sitemap.xml');
@@ -480,6 +513,7 @@ async function openAlertIssue(mdReport, summary) {
   await checkSiteRoot();
   const slugs = await checkBlogIndex();
   await checkArticles(slugs);
+  await checkBlogLayoutIntegrity();
 
   // مقالات اليوم من السجلّ المحلي (للفحص التقاطعي)
   let todayLog = [];
