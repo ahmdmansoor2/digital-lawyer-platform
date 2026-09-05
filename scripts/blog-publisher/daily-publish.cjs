@@ -155,30 +155,42 @@ function articleWordCount(data) {
   return total;
 }
 
-// ── توليد صورة توضيحية عبر Nano Banana (gemini-2.5-flash-image) ───────────
-// تحاول التوليد عبر النموذج؛ إن مُنعت (quota 429 / billing) تُرجع null
-// ليستخدم المتصل الـ fallback المحلي (SVG).
+// ── توليد صورة توضيحية سينمائية عبر Nano Banana Pro (Google GenAI Pro) ───
+const NANO_BANANA_PRO_MODELS = [
+  'gemini-3-pro-image',
+  'imagen-3.0-generate-002',
+  'gemini-2.5-flash-image'
+];
+
 async function generateImage(ai, topic, data) {
-  const imagePrompt = `ارسم صورة توضيحية احترافية بلون واحد مسطح (flat illustration) بجودة عالية للموضوع القانوني المصري التالي:
-الموضوع: ${topic.title}
-التصنيف: ${topic.category}
-الأسلوب: رسوم توضيحية حديثة (flat design) بخلفية متدرجة داكنة (كحلي/بنفسجي)، أيقونات قانونية واضحة (ميزان، أوراق، أعمدة محكمة)، ألوان نابضة، بدون أي نصوص أو حروف مكتوبة في الصورة.`;
+  const imagePrompt = `Masterpiece, ultra-realistic 3D cinematic scene of Egyptian legal and judicial concept, ${topic.category || 'Egyptian Law'}, ${topic.title}, glowing golden scales of justice, ornate marble courtroom columns, mahogany law library, dramatic volumetric atmospheric moody lighting, deep royal navy blue and warm amber gold tones, photorealistic octane render, 8k resolution, award-winning cinematic photography, no text, no letters, no watermark, clean background.`;
 
-  const resp = await ai.models.generateContent({
-    model: IMAGE_MODEL,
-    contents: [{ text: imagePrompt }],
-    config: {
-      responseModalities: ['IMAGE', 'TEXT'],
-      imageConfig: { aspectRatio: '16:9', imageSize: '1K' },
-    },
-  });
+  for (const model of NANO_BANANA_PRO_MODELS) {
+    try {
+      const resp = await ai.models.generateContent({
+        model,
+        contents: [{ text: imagePrompt }],
+        config: {
+          responseModalities: ['IMAGE', 'TEXT'],
+          imageConfig: { aspectRatio: '16:9', imageSize: '1K' },
+        },
+      });
 
-  const parts = (resp.candidates?.[0]?.content?.parts) || [];
-  const img = parts.find(p => p.inlineData && p.inlineData.data);
-  if (!img) return null;
-  const buf = Buffer.from(img.inlineData.data, 'base64');
-  if (buf.length < 5000) return null; // صورة تالفة/فارغة
-  return buf;
+      const parts = (resp.candidates?.[0]?.content?.parts) || [];
+      const img = parts.find(p => p.inlineData && p.inlineData.data);
+      if (img) {
+        const buf = Buffer.from(img.inlineData.data, 'base64');
+        if (buf.length >= 5000) {
+          console.log(`[publish] ✓ صورة غلاف سينمائية فائقة الواقعية عبر Nano Banana Pro (${model})`);
+          return buf;
+        }
+      }
+    } catch (err) {
+      // تجربة النموذج التالي في القائمة
+    }
+  }
+
+  return null;
 }
 
 // ── صور غلاف حقيقية بديلة (عند فشل Nano Banana بسبب quota 429 أو غيره) ─────

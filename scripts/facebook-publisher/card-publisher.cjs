@@ -380,9 +380,9 @@ ${tipLines[1] ? `<text x="${rX - 24}" y="796" font-family="${FONT}" font-size="2
 async function generateCardIllustration(card) {
   const promptEn = `masterpiece, ultra-realistic 3D cinematic scene of modern Egyptian courtroom and judicial concept, ${card.category || 'Egyptian Law'}, ${card.title}, glowing golden scales of justice, elegant mahogany gavel, grand classical marble columns, dramatic volumetric moody lighting, deep sapphire blue and warm amber gold tones, photorealistic octane render, 8k resolution, elegant depth of field, award-winning atmosphere, no text, no letters, no watermark, clean background`;
 
-  // 1. تجربة Nano Banana عبر Gemini إن كان متاحاً
+  // 1. تجربة Nano Banana Pro عبر حساب Google Pro أولاً
   if (ai) {
-    for (const model of ['gemini-2.5-flash-image', 'gemini-3-pro-image', 'gemini-3.1-flash-image']) {
+    for (const model of ['gemini-3-pro-image', 'imagen-3.0-generate-002', 'gemini-2.5-flash-image']) {
       try {
         const resp = await ai.models.generateContent({
           model,
