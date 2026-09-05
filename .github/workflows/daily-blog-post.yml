@@ -76,3 +76,9 @@ jobs:
       - name: Submit new URLs to IndexNow
         run: node scripts/submit-indexnow.cjs
         if: success()
+
+      - name: Submit new URLs to Google Indexing API
+        run: node scripts/seo/google-indexing.cjs
+        if: success()
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}

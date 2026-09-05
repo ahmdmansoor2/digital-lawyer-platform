@@ -96,6 +96,7 @@
     "jsdom": "^25.0.1",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
+    "tweetsodium": "^0.0.4",
     "typescript": "~5.8.2",
     "vite": "^6.2.3",
     "vitest": "^2.1.9"

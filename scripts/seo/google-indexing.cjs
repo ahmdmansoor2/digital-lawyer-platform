@@ -3,13 +3,28 @@ const path = require('path');
 const { google } = require('googleapis');
 
 const KEY_FILE = path.join(__dirname, '..', '..', 'google-service-account.json');
+let keyData = null;
 
-if (!fs.existsSync(KEY_FILE)) {
-  console.error('❌ File google-service-account.json not found.');
-  process.exit(1);
+if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+  try {
+    keyData = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+  } catch (e) {
+    console.error('❌ Failed to parse GOOGLE_SERVICE_ACCOUNT_JSON environment variable.');
+  }
 }
 
-const keyData = JSON.parse(fs.readFileSync(KEY_FILE, 'utf8'));
+if (!keyData && fs.existsSync(KEY_FILE)) {
+  try {
+    keyData = JSON.parse(fs.readFileSync(KEY_FILE, 'utf8'));
+  } catch (e) {
+    console.error('❌ Failed to parse google-service-account.json file.');
+  }
+}
+
+if (!keyData) {
+  console.error('⚠️ Neither google-service-account.json nor GOOGLE_SERVICE_ACCOUNT_JSON env var found. Skipping indexing.');
+  process.exit(0);
+}
 
 const jwtClient = new google.auth.JWT({
   email: keyData.client_email,
