@@ -224,139 +224,161 @@ async function generateCardContent(topic, retryIdx = 0) {
   }
 }
 
-// ─── بناء SVG البطاقة الاحترافية (مربعة 1080×1080) ─────────────────────────
+// ─── بناء SVG البطاقة الاحترافية الفاخرة (مربعة 1080×1080) ────────────────
 function buildCardSvg(card) {
   const W = CARD_WIDTH;   // 1080
   const H = CARD_HEIGHT;  // 1080
-  const pad = 56;         // هامش أفقي
+  const pad = 52;         // هامش أفقي
   const rX = W - pad;     // نقطة اليمين للنص RTL
   const lX = pad;         // نقطة اليسار
+  const contentW = W - pad * 2;
 
   const FONT = "'Cairo', Tahoma, 'Segoe UI', Arial, sans-serif";
   const hashtags = normalizeHashtags(card.hashtags).slice(0, 4).join(' ');
-  const cat = escapeXml(card.category || 'قانون');
+  const cat = escapeXml(card.category || 'ثقافة تشريعية');
 
-  // نص مختصر — بطاقة احترافية تعرض فكرة واحدة واضحة
-  const hookLine = (wrapText(card.hook, 36)[0] || '').trim();
+  // نصوص مهيأة للموبايل بدقة عالية
+  const hookLine = (wrapText(card.hook, 38)[0] || '').trim();
   const titleLines = wrapText(card.title, 22).slice(0, 2);
   const tipLines = wrapText(card.tip, 52).slice(0, 2);
-  const ctaLine = escapeXml(card.cta || 'استشر محامياً مختصاً الآن');
+  const ctaLine = escapeXml(card.cta || 'احسب موقفك القانوني واستشر المستشار الآن');
 
-  // النقاط — عنوان فقط بدون تفاصيل (أكثر وضوحاً)
+  // النقاط الثلاث داخل حاويات زجاجية
   const pts = (card.points || []).slice(0, 3).map((p, i) => ({
     num: i + 1,
-    label: (wrapText(String(p.label || p.detail || ''), 30)[0] || '').trim(),
-    grad: ['url(#g1)', 'url(#g2)', 'url(#g3)'][i],
+    label: (wrapText(String(p.label || p.detail || ''), 32)[0] || '').trim(),
+    grad: ['url(#gGoldPill)', 'url(#gEmeraldPill)', 'url(#gIndigoPill)'][i],
+    accent: ['#F59E0B', '#10B981', '#6366F1'][i]
   }));
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
 <defs>
   <style>@font-face{font-family:'Cairo';src:url('${CAIRO_FONT_URL}') format('truetype');font-weight:100 900;}</style>
-  <!-- خلفية متدرجة غامقة -->
-  <linearGradient id="bgTop" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#080D1A"/>
-    <stop offset="60%" stop-color="#0C1325"/>
-    <stop offset="100%" stop-color="#111827"/>
+  
+  <!-- خلفية متدرجة ملكية كحلية داكنة -->
+  <linearGradient id="bgBase" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#050811"/>
+    <stop offset="50%" stop-color="#0A0F1E"/>
+    <stop offset="100%" stop-color="#0F172A"/>
   </linearGradient>
-  <!-- توهج ذهبي في الزاوية العلوية اليمنى -->
-  <radialGradient id="gGold" cx="1" cy="0" r="0.7">
-    <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.18"/>
+
+  <!-- توهجات سينمائية متدرجة -->
+  <radialGradient id="glowTopGold" cx="0.9" cy="0.1" r="0.75">
+    <stop offset="0%" stop-color="#F59E0B" stop-opacity="0.22"/>
     <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
   </radialGradient>
-  <!-- توهج أخضر في الزاوية السفلية اليسرى -->
-  <radialGradient id="gGreen" cx="0" cy="1" r="0.6">
-    <stop offset="0%" stop-color="#059669" stop-opacity="0.14"/>
-    <stop offset="100%" stop-color="#059669" stop-opacity="0"/>
+  <radialGradient id="glowBottomCyan" cx="0.1" cy="0.85" r="0.65">
+    <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.16"/>
+    <stop offset="100%" stop-color="#06B6D4" stop-opacity="0"/>
   </radialGradient>
-  <!-- شريط ذهبي أعلى/أسفل -->
-  <linearGradient id="barGrad" x1="0" y1="0" x2="1" y2="0">
+
+  <!-- أشرطة وبطاقات Glassmorphism -->
+  <linearGradient id="barLuxury" x1="0" y1="0" x2="1" y2="0">
     <stop offset="0%" stop-color="#78350F"/>
-    <stop offset="30%" stop-color="#F59E0B"/>
-    <stop offset="70%" stop-color="#D97706"/>
+    <stop offset="25%" stop-color="#F59E0B"/>
+    <stop offset="50%" stop-color="#FDE68A"/>
+    <stop offset="75%" stop-color="#D97706"/>
     <stop offset="100%" stop-color="#78350F"/>
   </linearGradient>
-  <!-- أرقام النقاط -->
-  <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FBBF24"/><stop offset="100%" stop-color="#D97706"/></linearGradient>
-  <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#34D399"/><stop offset="100%" stop-color="#059669"/></linearGradient>
-  <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#818CF8"/><stop offset="100%" stop-color="#4F46E5"/></linearGradient>
-  <!-- تدرج صندوق النصيحة -->
-  <linearGradient id="tipGrad" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0%" stop-color="#064E3B"/>
-    <stop offset="100%" stop-color="#065F46"/>
+
+  <linearGradient id="glassCardGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#1E293B" stop-opacity="0.75"/>
+    <stop offset="100%" stop-color="#0F172A" stop-opacity="0.88"/>
   </linearGradient>
-  <!-- ظل الحدود -->
-  <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
-    <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#000" flood-opacity="0.5"/>
+
+  <!-- تدرج صندوق النصيحة الذهبي / الزمردي -->
+  <linearGradient id="tipBoxGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#064E3B" stop-opacity="0.92"/>
+    <stop offset="100%" stop-color="#022C22" stop-opacity="0.95"/>
+  </linearGradient>
+
+  <!-- تدرجات أرقام النقاط -->
+  <linearGradient id="gGoldPill" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FDE047"/><stop offset="100%" stop-color="#D97706"/></linearGradient>
+  <linearGradient id="gEmeraldPill" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6EE7B7"/><stop offset="100%" stop-color="#059669"/></linearGradient>
+  <linearGradient id="gIndigoPill" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#A5B4FC"/><stop offset="100%" stop-color="#4F46E5"/></linearGradient>
+
+  <!-- فلاتر الظل والبروز -->
+  <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+    <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.55"/>
+  </filter>
+  <filter id="textGlow" x="-20%" y="-20%" width="140%" height="140%">
+    <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.8"/>
   </filter>
 </defs>
 
-<!-- === الخلفية === -->
-<rect width="${W}" height="${H}" fill="url(#bgTop)" fill-opacity="0.82"/>
-<rect width="${W}" height="${H}" fill="url(#gGold)"/>
-<rect width="${W}" height="${H}" fill="url(#gGreen)"/>
+<!-- === الخلفية الأساسية والتوهج === -->
+<rect width="${W}" height="${H}" fill="url(#bgBase)" fill-opacity="0.88"/>
+<rect width="${W}" height="${H}" fill="url(#glowTopGold)"/>
+<rect width="${W}" height="${H}" fill="url(#glowBottomCyan)"/>
 
-<!-- شريط علوي ذهبي -->
-<rect x="0" y="0" width="${W}" height="8" fill="url(#barGrad)"/>
+<!-- شريط علوي ذهبي ملكي -->
+<rect x="0" y="0" width="${W}" height="8" fill="url(#barLuxury)"/>
 
-<!-- === رأس البطاقة === -->
-<!-- اسم المنصة (يمين) -->
-<text x="${rX}" y="62" font-family="${FONT}" font-size="26" font-weight="700" fill="#F59E0B" direction="rtl" text-anchor="start" letter-spacing="0.5">⚖ المحامي الرقمي</text>
+<!-- === رأس البطاقة (Header) === -->
+<!-- اسم المنصة مع شارة التوثيق (يمين) -->
+<g filter="url(#textGlow)">
+  <text x="${rX}" y="56" font-family="${FONT}" font-size="27" font-weight="900" fill="#F59E0B" direction="rtl" text-anchor="start">⚖️ منصة المحامي الرقمية</text>
+  <text x="${rX}" y="78" font-family="${FONT}" font-size="14" font-weight="600" fill="#94A3B8" direction="rtl" text-anchor="start">المرجع التشريعي الأول في مصر • بنك الأحكام والحاسبات</text>
+</g>
 
-<!-- تصنيف الموضوع (يسار) — حبة ملونة -->
-<rect x="${lX}" y="34" width="168" height="38" rx="19" fill="#1E3A5F" stroke="#3B82F6" stroke-width="1.5"/>
-<text x="${lX + 84}" y="59" font-family="${FONT}" font-size="19" font-weight="700" fill="#93C5FD" text-anchor="middle">${cat}</text>
+<!-- كبسولة التصنيف المضيئة (يسار) -->
+<rect x="${lX}" y="36" width="180" height="42" rx="21" fill="#0C2548" stroke="#38BDF8" stroke-width="1.6" filter="url(#softShadow)"/>
+<text x="${lX + 90}" y="63" font-family="${FONT}" font-size="18" font-weight="800" fill="#E0F2FE" text-anchor="middle">${cat}</text>
 
-<!-- خط فاصل رفيع -->
-<line x1="${lX}" y1="94" x2="${rX}" y2="94" stroke="#F59E0B" stroke-opacity="0.35" stroke-width="1"/>
+<!-- خط فاصل زجاجي تحت الهيدر -->
+<line x1="${lX}" y1="96" x2="${rX}" y2="96" stroke="rgba(245, 158, 11, 0.3)" stroke-width="1.2"/>
 
-<!-- === الهوك (السؤال الجاذب) === -->
-<text x="${rX}" y="148" font-family="${FONT}" font-size="30" font-weight="700" fill="#FCD34D" direction="rtl" text-anchor="start">${escapeXml(hookLine)}</text>
+<!-- === شارة الهوك التفاعلية (Hook Badge) === -->
+<rect x="${lX}" y="116" width="${contentW}" height="52" rx="14" fill="#FEF3C7" fill-opacity="0.07" stroke="#F59E0B" stroke-opacity="0.45" stroke-width="1.2"/>
+<text x="${rX - 20}" y="150" font-family="${FONT}" font-size="24" font-weight="800" fill="#FDE047" direction="rtl" text-anchor="start" filter="url(#textGlow)">🔥 ${escapeXml(hookLine)}</text>
 
-<!-- === العنوان الرئيسي === -->
-<text x="${rX}" y="228" font-family="${FONT}" font-size="52" font-weight="900" fill="#FFFFFF" direction="rtl" text-anchor="start">${escapeXml(titleLines[0] || '')}</text>
-${titleLines[1] ? `<text x="${rX}" y="296" font-family="${FONT}" font-size="52" font-weight="900" fill="#FFFFFF" direction="rtl" text-anchor="start">${escapeXml(titleLines[1])}</text>` : ''}
+<!-- === العنوان الرئيسي الكبير === -->
+<g filter="url(#textGlow)">
+  <text x="${rX}" y="222" font-family="${FONT}" font-size="46" font-weight="900" fill="#FFFFFF" direction="rtl" text-anchor="start">${escapeXml(titleLines[0] || '')}</text>
+  ${titleLines[1] ? `<text x="${rX}" y="282" font-family="${FONT}" font-size="46" font-weight="900" fill="#FFFFFF" direction="rtl" text-anchor="start">${escapeXml(titleLines[1])}</text>` : ''}
+</g>
 
-<!-- خط فاصل تحت العنوان -->
-<line x1="${lX}" y1="330" x2="${rX}" y2="330" stroke="#374151" stroke-width="1"/>
+<!-- خط فاصل زجاجي تحت العنوان -->
+<line x1="${lX}" y1="316" x2="${rX}" y2="316" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1"/>
 
+<!-- === بطاقات النقاط الزجاجية المجسمة (Glass Cards) === -->
 ${pts.map((p) => {
-  const pointYMap = [370, 490, 610];
-  const y = pointYMap[p.num - 1];
-  const numCX = rX - 32;
+  const yMap = [340, 452, 564];
+  const y = yMap[p.num - 1];
+  const numCX = rX - 44;
   return `
-<!-- نقطة ${p.num} -->
-<circle cx="${numCX}" cy="${y + 20}" r="28" fill="${p.grad}" filter="url(#shadow)"/>
-<text x="${numCX}" y="${y + 28}" font-family="${FONT}" font-size="28" font-weight="900" fill="#FFFFFF" text-anchor="middle">${p.num}</text>
-<text x="${numCX - 68}" y="${y + 28}" font-family="${FONT}" font-size="30" font-weight="700" fill="#F1F5F9" direction="rtl" text-anchor="start">${escapeXml(p.label)}</text>`;
+<!-- بطاقة النقطة ${p.num} -->
+<rect x="${lX}" y="${y}" width="${contentW}" height="94" rx="18" fill="url(#glassCardGrad)" stroke="rgba(255, 255, 255, 0.14)" stroke-width="1.4" filter="url(#softShadow)"/>
+<rect x="${rX - 6}" y="${y}" width="6" height="94" rx="3" fill="${p.accent}"/>
+<circle cx="${numCX}" cy="${y + 47}" r="26" fill="${p.grad}" filter="url(#softShadow)"/>
+<text x="${numCX}" cy="${y + 47}" y="${y + 56}" font-family="${FONT}" font-size="26" font-weight="900" fill="#0F172A" text-anchor="middle">${p.num}</text>
+<text x="${numCX - 48}" y="${y + 56}" font-family="${FONT}" font-size="28" font-weight="800" fill="#F8FAFC" direction="rtl" text-anchor="start" filter="url(#textGlow)">${escapeXml(p.label)}</text>`;
 }).join('')}
 
-<!-- خط فاصل قبل النصيحة -->
-<line x1="${lX}" y1="692" x2="${rX}" y2="692" stroke="#374151" stroke-width="1"/>
+<!-- === صندوق كبسولة النقض / النصيحة الذهبية === -->
+<rect x="${lX}" y="684" width="${contentW}" height="${tipLines[1] ? 130 : 100}" rx="18" fill="url(#tipBoxGrad)" stroke="#10B981" stroke-width="1.8" filter="url(#softShadow)"/>
+<rect x="${rX - 6}" y="684" width="6" height="${tipLines[1] ? 130 : 100}" rx="3" fill="#34D399"/>
+<text x="${rX - 24}" y="722" font-family="${FONT}" font-size="23" font-weight="900" fill="#6EE7B7" direction="rtl" text-anchor="start">💡 كبسولة النقض والنصيحة القانونية:</text>
+<text x="${rX - 24}" y="760" font-family="${FONT}" font-size="23" font-weight="700" fill="#ECFDF5" direction="rtl" text-anchor="start">${escapeXml(tipLines[0])}</text>
+${tipLines[1] ? `<text x="${rX - 24}" y="796" font-family="${FONT}" font-size="23" font-weight="700" fill="#ECFDF5" direction="rtl" text-anchor="start">${escapeXml(tipLines[1])}</text>` : ''}
 
-<!-- === صندوق النصيحة === -->
-<rect x="${lX}" y="710" width="${W - pad * 2}" height="${tipLines[1] ? 128 : 100}" rx="16" fill="url(#tipGrad)" stroke="#059669" stroke-width="1.5"/>
-<text x="${rX - 22}" y="748" font-family="${FONT}" font-size="22" font-weight="800" fill="#6EE7B7" direction="rtl" text-anchor="start">💡 نصيحة قانونية:</text>
-<text x="${rX - 22}" y="786" font-family="${FONT}" font-size="23" font-weight="600" fill="#D1FAE5" direction="rtl" text-anchor="start">${escapeXml(tipLines[0])}</text>
-${tipLines[1] ? `<text x="${rX - 22}" y="820" font-family="${FONT}" font-size="23" font-weight="600" fill="#D1FAE5" direction="rtl" text-anchor="start">${escapeXml(tipLines[1])}</text>` : ''}
+<!-- === شريط الحث على الإجراء (CTA & Website Bar) === -->
+<rect x="${lX}" y="842" width="${contentW}" height="64" rx="16" fill="#1E293B" fill-opacity="0.82" stroke="rgba(245, 158, 11, 0.45)" stroke-width="1.4" filter="url(#softShadow)"/>
+<text x="${rX - 20}" y="882" font-family="${FONT}" font-size="23" font-weight="800" fill="#FBBF24" direction="rtl" text-anchor="start">${ctaLine} 👈</text>
+<text x="${lX + 24}" y="882" font-family="${FONT}" font-size="20" font-weight="800" fill="#38BDF8" text-anchor="start">mohamidigital.online</text>
 
-<!-- === CTA === -->
-<text x="${rX}" y="878" font-family="${FONT}" font-size="27" font-weight="800" fill="#F59E0B" direction="rtl" text-anchor="start">${ctaLine} ←</text>
+<!-- === الهاشتاجات وتذييل الحقوق === -->
+<text x="${W / 2}" y="946" font-family="${FONT}" font-size="19" font-weight="600" fill="#64748B" text-anchor="middle">${escapeXml(hashtags)}</text>
+<text x="${W / 2}" y="976" font-family="${FONT}" font-size="15" font-weight="500" fill="#475569" text-anchor="middle">جميع الحقوق محفوظة © 2026 منصة المحامي الرقمية • المستشار أحمد منصور</text>
 
-<!-- خط فاصل سفلي -->
-<line x1="${lX}" y1="910" x2="${rX}" y2="910" stroke="#F59E0B" stroke-opacity="0.25" stroke-width="1"/>
-
-<!-- === هاشتاجات + watermark === -->
-<text x="${W / 2}" y="948" font-family="${FONT}" font-size="20" font-weight="500" fill="#4B5563" text-anchor="middle">${escapeXml(hashtags)}</text>
-<text x="${W / 2}" y="978" font-family="${FONT}" font-size="17" font-weight="400" fill="#2D3748" text-anchor="middle">mohamidigital.online</text>
-
-<!-- شريط سفلي ذهبي -->
-<rect x="0" y="${H - 8}" width="${W}" height="8" fill="url(#barGrad)"/>
+<!-- شريط سفلي ذهبي ملكي -->
+<rect x="0" y="${H - 8}" width="${W}" height="8" fill="url(#barLuxury)"/>
 </svg>`;
 }
 
-// ─── توليد صورة توضيحية حية بالذكاء الاصطناعي ──────────────────────────────
+// ─── توليد صورة توضيحية حية بالذكاء الاصطناعي (سينمائية ثلاثية الأبعاد) ──────
 async function generateCardIllustration(card) {
-  const promptEn = `Egyptian legal and judicial concept, ${card.category || 'Law'} theme, ${card.title}, scales of justice, law books, elegant gavel, dramatic cinematic lighting, deep blue and gold atmosphere, ultra realistic 3D digital art, 8k resolution, no text, no letters, no typography`;
+  const promptEn = `masterpiece, ultra-realistic 3D cinematic scene of modern Egyptian courtroom and judicial concept, ${card.category || 'Egyptian Law'}, ${card.title}, glowing golden scales of justice, elegant mahogany gavel, grand classical marble columns, dramatic volumetric moody lighting, deep sapphire blue and warm amber gold tones, photorealistic octane render, 8k resolution, elegant depth of field, award-winning atmosphere, no text, no letters, no watermark, clean background`;
 
   // 1. تجربة Nano Banana عبر Gemini إن كان متاحاً
   if (ai) {
@@ -373,7 +395,7 @@ async function generateCardIllustration(card) {
         const parts = resp.candidates?.[0]?.content?.parts || [];
         const img = parts.find((p) => p.inlineData && p.inlineData.data);
         if (img) {
-          console.log(`  ✓ صورة توضيحية حية مولدة عبر Nano Banana (${model})`);
+          console.log(`  ✓ صورة توضيحية سينمائية مولدة عبر Nano Banana (${model})`);
           return Buffer.from(img.inlineData.data, 'base64');
         }
       } catch (err) {
@@ -389,7 +411,7 @@ async function generateCardIllustration(card) {
     if (res.ok) {
       const buf = Buffer.from(await res.arrayBuffer());
       if (buf.length > 5000) {
-        console.log(`  ✓ صورة توضيحية حية مولدة بالذكاء الاصطناعي (AI Engine)`);
+        console.log(`  ✓ صورة توضيحية سينمائية ثلاثية الأبعاد مولدة بالذكاء الاصطناعي (AI Engine)`);
         return buf;
       }
     }
@@ -399,7 +421,6 @@ async function generateCardIllustration(card) {
 
   return null;
 }
-
 // ─── توليد البطاقة PNG عبر sharp ─────────────────────────────────────────
 async function renderCard(card, slug) {
   const sharp = require('sharp');
