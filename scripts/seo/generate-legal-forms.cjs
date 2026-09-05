@@ -203,7 +203,7 @@ function buildContractPage(contract, idx) {
   const plain = plainTextOf(contract, buildFieldMap(contract));
   const pageUrl = `${BASE_URL}/legal-forms-docs/${esc(contract.id)}.html`;
   const nowISO = new Date(Date.now() + 120 * 60000).toISOString();
-  const title = `${esc(repair(contract.name))} — صيغة قانونية كاملة | منصة المحامي الرقمية`;
+  const title = `${esc(repair(contract.name))} [صيغة Word جاهزة للطباعة 2026] — منصة المحامي الرقمية`;
   const description = esc(repair(contract.description));
   const schemas = [
     `{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}","logo":"${BASE_URL}/logo.png"}`,
@@ -221,7 +221,7 @@ function buildContractPage(contract, idx) {
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="${pageUrl}" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="${esc(repair(contract.name))} - صيغة قانونية كاملة" />
+  <meta property="og:title" content="${esc(repair(contract.name))} [صيغة Word جاهزة للطباعة 2026]" />
   <meta property="og:description" content="${description}" />
   <meta property="og:url" content="${pageUrl}" />
   <meta property="og:site_name" content="منصة المحامي الرقمية" />
@@ -355,7 +355,7 @@ function buildMemoPage(def, templates) {
   const { parts, plain } = buildMemoParts(templates, def.headerId);
   const pageUrl = `${BASE_URL}/legal-forms-docs/${esc(def.headerId)}.html`;
   const nowISO = new Date(Date.now() + 120 * 60000).toISOString();
-  const title = `${esc(def.name)} — قالب جاهز | منصة المحامي الرقمية`;
+  const title = `${esc(def.name)} [نموذج Word جاهز للطباعة 2026] — منصة المحامي الرقمية`;
   const description = esc(def.desc);
   const schemas = [
     `{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}","logo":"${BASE_URL}/logo.png"}`,
@@ -373,7 +373,7 @@ function buildMemoPage(def, templates) {
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="canonical" href="${pageUrl}" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="${esc(def.name)} - قالب مذكرة دفاع" />
+  <meta property="og:title" content="${esc(def.name)} [نموذج Word جاهز للطباعة 2026]" />
   <meta property="og:description" content="${description}" />
   <meta property="og:url" content="${pageUrl}" />
   <meta property="og:site_name" content="منصة المحامي الرقمية" />

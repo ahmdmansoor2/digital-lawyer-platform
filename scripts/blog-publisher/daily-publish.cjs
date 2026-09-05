@@ -383,6 +383,7 @@ function articlePrompt(topic, usedTitles, existingSections, usedHeadings) {
 6. البنية:
    - title: عنوان جذاب يبدأ بكلمة مفتاحية رئيسية
    - metaDescription: وصف SEO بحد أقصى 160 حرفاً
+   - quickAnswer: خلاصة الحكم القانوني المباشر في فقرة حاسمة ومحددة من 30 إلى 45 كلمة تجيب عن التساؤل الجوهري للموضوع مع ذكر السند القانوني لاقتناص مقتطف جوجل المميز (Featured Snippet) في النتيجة رقم صفر.
    - intro: مقدمة تشويقية من 3-4 أسطر
    - sections: من 12 إلى 16 قسماً، كل قسم بعنوان (heading) وفقرات (paragraphs: array of strings — كل فقرة من 3-5 جمل) واختيارياً list (array of strings — من 4-8 عناصر)
    - tip: نصيحة عملية قابلة للتنفيذ (سطران إلى ثلاثة أسطر)
@@ -396,6 +397,7 @@ ${initialSectionsHint}${headingsHint}${structureHint}
 {
   "title": "...",
   "metaDescription": "...",
+  "quickAnswer": "...",
   "intro": "...",
   "sections": [
     { "heading": "...", "paragraphs": ["..."], "list": ["..."] }
@@ -574,6 +576,13 @@ function buildArticleHtml(data, topic, meta, heroImagePath) {
   // أدرج صورة inline بعد القسم الثالث تقريباً لإثراء المقال
   const inlineImage = heroImagePath
     ? `\n\n      <div class="article-inline-img"><img src="${heroImagePath}" alt="${data.title}" loading="lazy" /></div>`
+    : '';
+
+  const quickAnswerHtml = data.quickAnswer
+    ? `      <div class="callout" style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.4);border-radius:16px;padding:20px 24px;margin-bottom:28px;">
+        <span class="callout-icon" style="font-size:24px;">⚖️</span>
+        <p style="margin:0;color:#6ee7b7;font-size:15px;line-height:1.8;"><strong style="color:#fff;display:block;margin-bottom:6px;font-size:16px;">خلاصة الحكم القانوني المباشر (إجابة سريعة):</strong>${data.quickAnswer}</p>
+      </div>\n`
     : '';
 
   const sectionsHtml = data.sections.map((sec, i) => {
@@ -790,7 +799,7 @@ ${list}${midImage}`;
 
   <div class="article-container">
     <article class="article-card">
-      <div class="highlight">
+${quickAnswerHtml}      <div class="highlight">
         <p>${data.intro}</p>
       </div>
 
