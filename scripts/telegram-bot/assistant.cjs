@@ -1,17 +1,18 @@
 #!/usr/bin/env node
 /**
  * scripts/telegram-bot/assistant.cjs
- * المساعد الذكي الخاص بالمستشار أحمد منصور عبر Telegram
+ * Antigravity Executive Assistant via Telegram
  * -----------------------------------------------------------
- * - يستقبل رسائل وتوجيهات سيادته عبر التليجرام
- * - يجيب على أي سؤال قانوني باستناد للمحاكم المصرية وقوانينها عبر Gemini
- * - يفحص حالة المنصة لحظياً ويرد بالتقرير الحي
- * - يرسل إشعارات الورديات والإنذارات الفورية إلى هاتفه
+ * - تحكم تنفيذي كامل للمستشار أحمد منصور عبر الهاتف
+ * - تنفيذ الأوامر البرمجية الحقيقية (بناء، نشر، فحص صحي، ريلز، جيت)
+ * - استشارات قانونية متعمقة بعقل Gemini الذكي
+ * - لوحة تحكم بأزرار ثابتة على شاشة الهاتف
  */
 
 'use strict';
 
 const path = require('path');
+const { exec } = require('child_process');
 const dotenv = require('dotenv');
 const { GoogleGenAI } = require('@google/genai');
 
@@ -23,23 +24,42 @@ const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 if (!BOT_TOKEN) {
-  console.error('[telegram] خطأ: TELEGRAM_BOT_TOKEN غير مضبوط في .env');
+  console.error('[telegram] خطأ: TELEGRAM_BOT_TOKEN غير متوفر في .env');
   process.exit(1);
 }
 
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
-const SYSTEM_PROMPT = `أنت المساعد الذكي القانوني والتقني الخاص بالمستشار القانوني المصري أحمد منصور (المشرف العام على منصة المحامي الرقمية mohamidigital.online).
-- أجب دائماً باحترام رفيع يليق بمكانته القضائية (مثل: "يا سيادة المستشار"، "أهلاً بحضرتك يا أستاذنا").
-- إذا سألك عن مسألة قانونية، أجب بأدق نصوص التشريعات المصرية السارية (2026) مع الإشارة لأحكام محكمة النقض ومجلس الدولة ذات الصلة.
-- إذا سألك عن الموقع، ساعده باقتراحات عملية لصدارة المنصة.
-- نسق الإجابة بنقاط واضحة وبسيطة يسهل قراءتها على شاشة الهاتف.`;
+const KEYBOARD = {
+  keyboard: [
+    [{ text: '🚀 فحص المنظومة الحي' }, { text: '📰 نشر مقال فوراً' }],
+    [{ text: '🎬 توليد ريلز وشورتس' }, { text: '🌐 بناء ورفع للسيرفر' }],
+    [{ text: '📊 حالة الكود والمستودع' }, { text: '🧮 الحاسبات الذكية' }]
+  ],
+  resize_keyboard: true,
+  persistent: true
+};
 
-async function sendTelegramMessage(text, parseMode = 'HTML') {
-  if (!CHAT_ID) {
-    console.warn('[telegram] CHAT_ID غير معروف');
-    return false;
-  }
+const SYSTEM_PROMPT = `أنت Antigravity (المساعد التنفيذي والبرمجي والقانوني الخاص بالمستشار أحمد منصور - المشرف العام على منصة المحامي الرقمية mohamidigital.online).
+- أنت تمتلك كامل قدراتك البرمجية والتحليلية والقانونية.
+- خاطب الأستاذ أحمد منصور دائماً بما يليق بمكانته ("يا سيادة المستشار"، "أستاذنا الجليل").
+- إذا سألك عن مسألة قانونية: أجب بأدق نصوص القوانين المصرية السارية 2026 مع الاستشهاد بأحكام محكمة النقض ومجلس الدولة ذات الصلة.
+- إذا طلب منك استشارة أو تحليلاً تقنياً: أجب بدقة هندسية وخطوات واضحة وموجزة تناسب شاشة الهاتف.`;
+
+function runCmd(command, cwd = ROOT) {
+  return new Promise((resolve) => {
+    exec(command, { cwd, maxBuffer: 1024 * 1024 * 10, timeout: 300000 }, (error, stdout, stderr) => {
+      resolve({
+        success: !error,
+        code: error ? error.code : 0,
+        output: (stdout || '') + (stderr ? '\n' + stderr : '')
+      });
+    });
+  });
+}
+
+async function sendTelegram(text, parseMode = 'HTML') {
+  if (!CHAT_ID) return false;
   try {
     const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
     const res = await fetch(url, {
@@ -48,53 +68,94 @@ async function sendTelegramMessage(text, parseMode = 'HTML') {
       body: JSON.stringify({
         chat_id: CHAT_ID,
         text,
-        parse_mode: parseMode
+        parse_mode: parseMode,
+        reply_markup: KEYBOARD
       })
     });
-    const data = await res.json();
-    return data.ok;
+    const d = await res.json();
+    return d.ok;
   } catch (err) {
-    console.error('[telegram] فشل إرسال الرسالة:', err.message);
+    console.error('[telegram] خطأ إرسال:', err.message);
     return false;
   }
 }
 
-async function handleCommand(cmd, text) {
-  if (cmd === '/start') {
-    return `🏛️ <b>أهلاً وسهلاً بك يا سيادة المستشار أحمد منصور!</b>\n\nأنا مساعدك الذكي لمنصة المحامي الرقمية (mohamidigital.online).\n\n<b>الأوامر المتاحة:</b>\n📊 /status - فحص حالة الموقع الحية الآن\n🧮 /calc - بوابة الحاسبات القانونية\n📰 /latest - آخر تحديثات المنصة\n\nأو <b>اكتب لي أي سؤال قانوني أو توجيه مباشرة</b> وسأجيبك فوراً!`;
-  }
+async function handleAction(text) {
+  const t = text.trim();
 
-  if (cmd === '/status') {
-    try {
-      const res = await fetch('https://mohamidigital.online/', { signal: AbortSignal.timeout(5000) });
-      if (res.ok) {
-        return `✅ <b>حالة الموقع الحي:</b> ممتاز (200 OK)\n🌐 <b>الرابط:</b> https://mohamidigital.online\n⚡ <b>الاستجابة:</b> سريعة والترويسات مانعة للكاش.\n📊 المنظومة تعمل بكامل طاقتها.`;
-      }
-      return `⚠️ <b>تنبيه:</b> الموقع أعاد كود استجابة (${res.status}).`;
-    } catch (e) {
-      return `🔴 <b>إنذار:</b> تعذر الوصول للموقع: ${e.message}`;
+  // 1. فحص المنظومة
+  if (t === '🚀 فحص المنظومة الحي' || t === '/status' || t === '/health' || t.includes('افحص') || t.includes('حالة الموقع')) {
+    await sendTelegram('⏳ <i>جاري تشغيل الفحص الصحي اليومي الشامل للـ 183 مقالاً والسيرفر...</i>');
+    const res = await runCmd('node scripts/monitor/health-check.cjs');
+    if (res.success) {
+      return `✅ <b>اكتمل الفحص بنجاح يا سيادة المستشار:</b>\n\n<pre>${res.output.slice(-800)}</pre>`;
     }
+    return `⚠️ <b>نتائج الفحص مع ملاحظات:</b>\n\n<pre>${res.output.slice(-800)}</pre>`;
   }
 
-  if (cmd === '/calc') {
-    return `🧮 <b>بوابة الحاسبات القانونية الذكية 2026:</b>\n\nتضم 15 حاسبة تفاعلية متطورة:\n• حاسبة الإيجار القديم 2026 بالقانون 164/2025\n• حاسبة رسوم تسجيل العقارات والشهر العقاري\n• حاسبة المواريث والتركات الشرعية\n• حاسبة مواعيد وسقوط الطعون القضائية\n• حاسبة مستحقات نهاية الخدمة والتعويض العمالي\n\n🔗 <b>الرابط المباشر:</b>\nhttps://mohamidigital.online/legal-calculators.html`;
+  // 2. نشر مقال فوري
+  if (t === '📰 نشر مقال فوراً' || t === '/publish' || t.includes('انشر مقال')) {
+    await sendTelegram('⏳ <i>جاري تشغيل ماكينة النشر التلقائي عبر Gemini وتوليد المقال والصورة...</i>');
+    const res = await runCmd('node scripts/blog-publisher/daily-publish.cjs');
+    if (res.success) {
+      return `🎉 <b>تم نشر المقال بنجاح وإدراجه في الفهرس:</b>\n\n<pre>${res.output.slice(-600)}</pre>`;
+    }
+    return `⚠️ <b>تعثر النشر:</b>\n\n<pre>${res.output.slice(-600)}</pre>`;
   }
 
-  // سؤال قانوني أو عام عبر Gemini
+  // 3. توليد ريلز وشورتس
+  if (t === '🎬 توليد ريلز وشورتس' || t === '/reels' || t.includes('ريلز') || t.includes('شورتس')) {
+    await sendTelegram('⏳ <i>جاري توليد سيناريو الريلز وتشغيل الصوت عبر Edge-TTS ورندر الفيديو...</i>');
+    const res = await runCmd('node scripts/facebook-publisher/reel-publisher.cjs');
+    return `🎬 <b>نتيجة خط الريلز:</b>\n\n<pre>${res.output.slice(-600)}</pre>`;
+  }
+
+  // 4. بناء ورفع للسيرفر (Deploy)
+  if (t === '🌐 بناء ورفع للسيرفر' || t === '/deploy' || t.includes('ارفع للسيرفر') || t.includes('deploy')) {
+    await sendTelegram('⏳ <i>جاري بناء المشروع (npm run build) ثم الرفع لـ Firebase Hosting...</i>');
+    const buildRes = await runCmd('npm run build');
+    if (!buildRes.success) {
+      return `❌ <b>فشل بناء المشروع:</b>\n\n<pre>${buildRes.output.slice(-500)}</pre>`;
+    }
+    const deployRes = await runCmd('npx firebase deploy --only hosting:app --project justice-91571');
+    if (deployRes.success) {
+      return `🚀 <b>تم البناء والنشر بنجاح على السيرفر الحي!</b>\n🌐 https://mohamidigital.online\n\n<pre>${deployRes.output.slice(-500)}</pre>`;
+    }
+    return `⚠️ <b>فشل الرفع لـ Firebase:</b>\n\n<pre>${deployRes.output.slice(-500)}</pre>`;
+  }
+
+  // 5. حالة الكود والمستودع Git
+  if (t === '📊 حالة الكود والمستودع' || t === '/git' || t.includes('جيت') || t.includes('مستودع')) {
+    const status = await runCmd('git status -s');
+    const lastCommit = await runCmd('git log -1 --oneline');
+    return `📊 <b>حالة مستودع GitHub:</b>\n\n<b>آخر Commit:</b> <code>${lastCommit.output.trim()}</code>\n\n<b>الملفات المعدلة:</b>\n${status.output.trim() ? `<pre>${status.output.trim()}</pre>` : '✅ المستودع نظيف ومتزامن بالكامل (Clean).'}`;
+  }
+
+  // 6. الحاسبات الذكية
+  if (t === '🧮 الحاسبات الذكية' || t === '/calc' || t.includes('حاسبة')) {
+    return `🧮 <b>بوابة الحاسبات القانونية الذكية 2026:</b>\n\n15 حاسبة تفاعلية متطورة:\n• حاسبة الإيجار القديم 2026 بالقانون 164/2025\n• حاسبة رسوم تسجيل العقارات والشهر العقاري\n• حاسبة المواريث وتوزيع التركات الشرعية\n• حاسبة مواعيد وسقوط الطعون القضائية\n• حاسبة مستحقات نهاية الخدمة والتعويض العمالي\n\n🔗 <b>الرابط:</b> https://mohamidigital.online/legal-calculators.html`;
+  }
+
+  // 7. البداية والترحيب
+  if (t === '/start') {
+    return `🏛️ <b>أهلاً وسهلاً بك يا سيادة المستشار أحمد منصور!</b>\n\nأنا <b>Antigravity</b> بكامل قدراتي الهندسية والتنفيذية بين يديك.\n\nاستخدم <b>لوحة التحكم بالأزرار بالأسفل</b> للتحكم الفوري في المنصة، أو اكتب لي أي استفسار قانوني أو توجيه برمجي وسأنفذه فوراً!`;
+  }
+
+  // 8. سؤال عام / استشارة قانونية / توجيه ذكي عبر Gemini 2.5
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-flash-lite-latest',
-      contents: `${SYSTEM_PROMPT}\n\nسؤال المستشار أحمد منصور:\n${text}`
+      contents: `${SYSTEM_PROMPT}\n\nسؤال أو توجيه المستشار أحمد منصور:\n${text}`
     });
     return response.text;
   } catch (err) {
-    return `عذراً يا سيادة المستشار، حدث خطأ أثناء معالجة السؤال: ${err.message}`;
+    return `عذراً يا سيادة المستشار، حدث خطأ في معالجة الطلب: ${err.message}`;
   }
 }
 
 async function startPolling() {
-  console.log('🚀 بدء تشغيل مساعد تليجرام لمنصة المحامي الرقمية...');
-  console.log(`المشرف: أحمد منصور | المعرّف: ${CHAT_ID}`);
+  console.log('🚀 بدء تشغيل محرك Antigravity الكامل عبر Telegram...');
+  console.log(`المشرف العام: المستشار أحمد منصور | المعرّف: ${CHAT_ID}`);
 
   let offset = 0;
   while (true) {
@@ -111,35 +172,33 @@ async function startPolling() {
             const text = update.message.text.trim();
             const senderName = update.message.from?.first_name || '';
 
-            console.log(`[telegram] رسالة واردة من ${senderName} (${senderId}): "${text}"`);
+            console.log(`[telegram] أمر من ${senderName} (${senderId}): "${text}"`);
 
-            // التأكد أن الرسالة من المستشار أحمد منصور حصرياً لحماية الخصوصية
             if (String(senderId) !== String(CHAT_ID)) {
               await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                   chat_id: senderId,
-                  text: 'عذراً، هذا البوت خاص واستشاري شخصي للمستشار أحمد منصور فقط.'
+                  text: 'عذراً، هذا البوت تنفيذي وخاص بالمستشار أحمد منصور فقط.'
                 })
               });
               continue;
             }
 
-            const cmd = text.startsWith('/') ? text.split(' ')[0] : '';
-            const reply = await handleCommand(cmd, text);
-            await sendTelegramMessage(reply, cmd ? 'HTML' : undefined);
+            const reply = await handleAction(text);
+            await sendTelegram(reply);
           }
         }
       }
     } catch (err) {
-      console.error('[telegram polling error]', err.message);
+      console.error('[telegram error]', err.message);
       await new Promise(r => setTimeout(r, 5000));
     }
   }
 }
 
-module.exports = { sendTelegramMessage };
+module.exports = { sendTelegram, handleAction };
 
 if (require.main === module) {
   startPolling();
