@@ -2148,6 +2148,42 @@
       ],
       "words": 1824,
       "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "عقود الاحتكار الفني وحقوق الملكية الفكرية للمطربين والفنانين في مصر",
+      "date": "2026-09-05",
+      "slug": "intellectual-property-artist-contracts-egypt",
+      "url": "https://mohamidigital.online/blog/intellectual-property-artist-contracts-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/intellectual-property-artist-contracts-egypt.jpg",
+      "tags": [
+        "الملكية الفكرية والعقود"
+      ],
+      "words": 1872,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "عقود اللاعبين المحترفين ومنازعات إنهاء التعاقد في القانون الرياضي المصري",
+      "date": "2026-09-05",
+      "slug": "sports-player-contracts-egypt",
+      "url": "https://mohamidigital.online/blog/sports-player-contracts-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-player-contracts-egypt.jpg",
+      "tags": [
+        "القانون الرياضي"
+      ],
+      "words": 1624,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "قانون حماية المنافسة ومنع الممارسات الاحتكارية في أسعار السلع بمصر",
+      "date": "2026-09-05",
+      "slug": "competition-monopoly-prevention-law-egypt",
+      "url": "https://mohamidigital.online/blog/competition-monopoly-prevention-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/competition-monopoly-prevention-law-egypt.jpg",
+      "tags": [
+        "القانون التجاري"
+      ],
+      "words": 1543,
+      "model": "gemini-3.6-flash"
     }
   ]
 }
