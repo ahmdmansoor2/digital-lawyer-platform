@@ -1,0 +1,20 @@
+{
+  "topic": {
+    "slug": "old-rent-law-164-2025-increase",
+    "title": "الدليل التشريعي الشامل للزيادة السنوية 15% لقانون الإيجار القديم وحالات الإخلاء الفوري 2026",
+    "keywords": [
+      "قانون الإيجار القديم 2026",
+      "زيادة الإيجار القديم 15%",
+      "قانون 164 لسنة 2025",
+      "إخلاء الإيجار القديم لغلق العين",
+      "المدة الانتقالية للإيجار القديم",
+      "أحكام النقض في الإيجار القديم"
+    ],
+    "category": "قانون الإيجارات",
+    "icon": "🏢",
+    "coverClass": "navy"
+  },
+  "data": null,
+  "reason": "{\"error\":{\"code\":404,\"message\":\"This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API.\",\"status\":\"NOT_FOUND\"}}",
+  "failedAt": "2026-09-06T07:22:13.495Z"
+}

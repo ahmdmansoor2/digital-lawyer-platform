@@ -814,6 +814,20 @@
       "words": 3514,
       "image": "pollinations",
       "model": "gemini-3.5-flash"
+    },
+    {
+      "title": "قانون الإيجار القديم 2026: دليل الزيادة السنوية 15% وحالات الإخلاء الفوري",
+      "date": "2026-09-06",
+      "slug": "old-rent-law-164-2025-increase",
+      "url": "https://mohamidigital.online/blog/old-rent-law-164-2025-increase.html",
+      "tags": [
+        "قانون الإيجار القديم 2026",
+        "زيادة الإيجار القديم 15%",
+        "قانون 164 لسنة 2025"
+      ],
+      "words": 3291,
+      "image": "pollinations",
+      "model": "gemini-3.6-flash"
     }
   ],
   "skipped": [
@@ -910,7 +924,19 @@
     {
       "date": "2026-08-15",
       "reason": "no_new_topic"
+    },
+    {
+      "date": "2026-09-06",
+      "slug": "old-rent-law-164-2025-increase",
+      "reason": "{\"error\":{\"code\":404,\"message\":\"This model models/gemini-2.5-pro is no longer available to new users. Please update your code to use models/gemini-3.1-pro-preview for the latest features and improvements. We recommend you to use the Interactions API.\",\"status\":\"NOT_FOUND\"}}",
+      "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\old-rent-law-164-2025-increase-1788679333495.json"
+    },
+    {
+      "date": "2026-09-06",
+      "slug": "old-rent-law-164-2025-increase",
+      "reason": "{\"error\":{\"code\":404,\"message\":\"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.\",\"status\":\"NOT_FOUND\"}}",
+      "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\old-rent-law-164-2025-increase-1788679345923.json"
     }
   ],
-  "last_run": "2026-08-15T09:31:49.385Z"
+  "last_run": "2026-09-06T09:22:40.955Z"
 }
