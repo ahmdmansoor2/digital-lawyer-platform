@@ -25,7 +25,7 @@
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="/header.css?v=20260906-luxury-navy-v3" />
+  <link rel="stylesheet" href="/header.css?v=20260906-luxury-navy-v4" />
 
   <!-- Structured Data Schema -->
   <script type="application/ld+json">
@@ -515,7 +515,6 @@
       <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
         <a href="/" class="uh-link">🏠 الرئيسية</a>
         <a href="/real-estate.html" class="uh-link active">🏢 التسويق العقاري</a>
-        <a href="/download.html" class="uh-link">💻 تحميل البرنامج</a>
         <a href="/legal-calculators.html" class="uh-link">🧮 الحاسبات القانونية</a>
         <a href="/legal-forms.html" class="uh-link">📝 صيغ العقود والدعاوي</a>
         <a href="/pillars/" class="uh-link">🏛️ المراجع الشاملة</a>
@@ -546,6 +545,43 @@
       </div>
     </div>
   </header>
+  <script>
+    (function(){
+      var hdr=document.getElementById('siteHeader');
+      var nav=document.getElementById('headerNav');
+      var burger=document.getElementById('uhBurger');
+      var more=document.getElementById('uhMore');
+      var moreBtn=more?more.querySelector('.uh-more-btn'):null;
+      if(hdr)window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+      function closeMobile(){
+        if(nav)nav.classList.remove('active');
+        if(burger){burger.setAttribute('aria-expanded','false');burger.innerHTML='☰';burger.setAttribute('aria-label','فتح القائمة');}
+      }
+      if(burger){burger.addEventListener('click',function(){
+        var open=nav.classList.toggle('active');
+        burger.setAttribute('aria-expanded',open);
+        burger.innerHTML=open?'✕':'☰';
+        burger.setAttribute('aria-label',open?'إغلاق القائمة':'فتح القائمة');
+        if(!open&&more){more.classList.remove('open');}
+      });}
+      if(moreBtn&&more){
+        moreBtn.addEventListener('click',function(e){
+          e.stopPropagation();
+          var open=more.classList.toggle('open');
+          moreBtn.setAttribute('aria-expanded',open);
+        });
+      }
+      document.addEventListener('click',function(e){
+        if(more&&more.classList.contains('open')&&!more.contains(e.target)){
+          more.classList.remove('open');
+          if(moreBtn)moreBtn.setAttribute('aria-expanded','false');
+        }
+        if(nav&&nav.classList.contains('active')&&burger&&!nav.contains(e.target)&&!burger.contains(e.target)){
+          closeMobile();
+        }
+      });
+    })();
+  </script>
 
   <!-- Breadcrumbs -->
   <nav class="breadcrumbs" aria-label="مسار التنقل">
@@ -1122,8 +1158,8 @@
       runRealEstateCalc();
     });
   </script>
-  <script src="/sidebar.js?v=20260823v10"></script>
-
-<script src="/mobile-dock.js" defer></script>
+  <script src="/sidebar.js?v=20260906-v2"></script>
+  <script src="/sw-register.js?v=20260906-v2" defer></script>
+  <script src="/mobile-dock.js?v=20260906-v2" defer></script>
 </body>
 </html>
