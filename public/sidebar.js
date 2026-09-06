@@ -640,21 +640,7 @@
       closeDrawer();
     });
 
-    // ── Top Navbar Trigger Injection (Desktop/Tablet only) ──
-    var uhActions = document.querySelector('.uh-actions');
-    if (window.innerWidth > 768 && uhActions && !uhActions.querySelector('.gs-nav-trigger') && !uhActions.querySelector('[title*="فهرس"]')) {
-      var navBtn = document.createElement('button');
-      navBtn.type = 'button';
-      navBtn.className = 'uh-cta uh-cta--ghost gs-nav-trigger';
-      navBtn.style.cssText = 'padding: 7px 12px !important; font-size: 0.82rem !important; border-color: rgba(99, 102, 241, 0.4) !important; cursor: pointer !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; font-family: "Cairo", sans-serif !important; font-weight: 700 !important; color: #e2e8f0 !important;';
-      navBtn.title = 'فتح فهرس المنصة الشامل';
-      navBtn.innerHTML = '<span>🧭 الفهرس</span>';
-      navBtn.addEventListener('click', function () {
-        if (isOpen) closeDrawer();
-        else openDrawer();
-      });
-      uhActions.insertBefore(navBtn, uhActions.firstChild);
-    }
+    // ── Top Navbar Trigger Injection removed to preserve pristine navbar layout ──
   }
 
   function openDrawer() {

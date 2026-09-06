@@ -4,7 +4,7 @@
  * التصميم في public/header.css (كلاسات .uh-*).
  */
 const ACTIVE = ' active';
-const VERSION = '20260904-mobile-perfect';
+const VERSION = '20260906-luxury-navy-v3';
 const HEADER_CSS = `<link rel="stylesheet" href="/header.css?v=${VERSION}">`;
 
 function navItem(href, label, isActive) {
@@ -15,18 +15,10 @@ function moreItem(href, label, isActive) {
 }
 
 /**
- * activeKey: home | blog | pillars | forms | radar | calc | download | courts | precedents | trust | privacy | terms | contact
- * opts.ctaHref  : وجهة زر «دخول التطبيق» (افتراضياً '/')
- * opts.hideCta  : إخفاء الزر (لصفحات الدخول مثلاً)
- * opts.ctaLabel : نص الزر (افتراضياً «🚀 دخول التطبيق»)
+ * activeKey: home | download | consultations | real-estate | library | generator | calc | calculators | blog | precedents | pillars | forms | radar | privacy | contact
  */
 function headerMarkup(activeKey, opts = {}) {
   const A = (k) => (k === activeKey);
-  const ctaHref = opts.ctaHref || '/download.html';
-  const ctaLabel = opts.ctaLabel || '🚀 تحميل البرنامج';
-  const cta = opts.hideCta
-    ? ''
-    : `<a href="${ctaHref}" class="uh-cta"><span>${ctaLabel}</span></a>`;
 
   return `<header class="uh-bar" id="siteHeader">
     <div class="uh-inner">
@@ -41,29 +33,38 @@ function headerMarkup(activeKey, opts = {}) {
       <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
         ${navItem('/', '🏠 الرئيسية', A('home'))}
         ${navItem('/download.html', '💻 تحميل البرنامج', A('download'))}
-        ${navItem('/legal-calculators.html', '🧮 الحاسبات القانونية', A('calc'))}
-        ${navItem('/legal-forms.html', '📝 صيغ العقود والدعاوي', A('forms'))}
-        ${navItem('/pillars/', '🏛️ المراجع الشاملة', A('pillars'))}
+        ${navItem('/legal-consultations.html', '🤖 المستشار الذكي', A('consultations'))}
+        ${navItem('/real-estate.html', '🏢 التسويق العقاري', A('real-estate'))}
+        ${navItem('/legal-library.html', '📚 المكتبة الكبرى', A('library'))}
+        ${navItem('/contract-generator.html', '⚡ صانع العقود', A('generator'))}
+        ${navItem('/legal-calculators.html', '🧮 الحاسبات', A('calc') || A('calculators'))}
         ${navItem('/blog/', '📰 المدونة', A('blog'))}
-        ${navItem('/legal-radar.html', '🔍 رصد المحامي', A('radar'))}
         <div class="uh-more" id="uhMore">
           <button class="uh-more-btn" type="button" aria-expanded="false" aria-haspopup="true">
             <span>المزيد</span><span class="uh-caret">▾</span>
           </button>
           <div class="uh-menu">
-            ${moreItem('/courts-directory.html', '🏢 دليل المحاكم والشهر العقاري', A('courts'))}
             ${moreItem('/court-precedents.html', '⚖️ موسوعة النقض', A('precedents'))}
-            ${moreItem('/legal-consultations.html', '🤖 المستشار القانوني', A('consultations'))}
-            ${moreItem('/why-trust-us.html', '🛡️ لماذا تثق بنا', A('trust'))}
-            ${moreItem('/privacy.html', '🔐 سياسة الخصوصية', A('privacy'))}
-            ${moreItem('/terms.html', '📜 الشروط والأحكام', A('terms'))}
+            ${moreItem('/pillars/', '🏛️ المراجع والأكواد التشريعية', A('pillars'))}
+            ${moreItem('/legal-forms.html', '📝 صيغ العقود والدعاوي', A('forms'))}
+            ${moreItem('/saudi-legal-hub.html', '🇸🇦 بوابة السعودية والعمل', A('saudi'))}
+            ${moreItem('/uae-legal-hub.html', '🇦🇪 بوابة الإمارات والتحكيم', A('uae'))}
+            ${moreItem('/kuwait-legal-hub.html', '🇰🇼 بوابة الكويت والتركات', A('kuwait'))}
+            ${moreItem('/qatar-legal-hub.html', '🇶🇦 بوابة قطر للعدالة', A('qatar'))}
+            ${moreItem('/oman-legal-hub.html', '🇴🇲 بوابة سلطنة عُمان', A('oman'))}
+            ${moreItem('/bahrain-legal-hub.html', '🇧🇭 بوابة مملكة البحرين', A('bahrain'))}
+            ${moreItem('/citizen-complaints.html', '📢 شكاوى وبلاغات المواطنين', A('complaints'))}
+            ${moreItem('/lawyers-directory.html', '👨‍⚖️ دليل المحامين المعتمدين', A('lawyers'))}
+            ${moreItem('/company-incorporation.html', '🏢 تأسيس الشركات والتراخيص', A('companies'))}
+            ${moreItem('/courts-directory.html', '🏛️ دليل المحاكم والشهر العقاري', A('courts'))}
+            ${moreItem('/legal-radar.html', '🔍 رصد المحامي والجريدة الرسمية', A('radar'))}
+            ${moreItem('/privacy.html', '🔐 سياسة الخصوصية والأمان', A('privacy'))}
             ${moreItem('/contact.html', '📬 تواصل معنا', A('contact'))}
           </div>
         </div>
       </nav>
 
       <div class="uh-actions">
-        ${cta}
         <button class="uh-burger" id="uhBurger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="headerNav">☰</button>
       </div>
     </div>
