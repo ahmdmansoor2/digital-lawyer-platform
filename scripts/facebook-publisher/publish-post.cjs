@@ -35,7 +35,7 @@ const message = `⚠️ لو ساكن أو مأجر شقة إيجار قديم..
 
 async function publish() {
   console.log('🚀 جاري نشر البوست على صفحة فيسبوك الرسمية...');
-  const res = await fetch(`https://graph.facebook.com/v26.0/${pageId}/feed`, {
+  const res = await fetch(`https://graph.facebook.com/v20.0/${pageId}/feed`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

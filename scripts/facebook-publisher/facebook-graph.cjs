@@ -23,7 +23,7 @@ dotenv.config({ path: path.join(ROOT, '.env') });
 
 const PAGE_ID = process.env.FB_PAGE_ID;
 const PAGE_TOKEN = process.env.FB_PAGE_TOKEN;
-const GRAPH_VERSION = 'v26.0';
+const GRAPH_VERSION = 'v20.0';
 const GRAPH_BASE = `https://graph.facebook.com/${GRAPH_VERSION}`;
 const UPLOAD_HOST = 'https://rupload.facebook.com';
 

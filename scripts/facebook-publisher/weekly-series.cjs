@@ -225,7 +225,7 @@ async function publishSeries(forceDay = null) {
   }
 
   try {
-    const res = await fetch(`https://graph.facebook.com/v26.0/${PAGE_ID}/feed`, {
+    const res = await fetch(`https://graph.facebook.com/v20.0/${PAGE_ID}/feed`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

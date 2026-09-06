@@ -36,6 +36,19 @@ const FONT_CANDIDATES = [
 ];
 
 function loadFfmpeg() {
+  if (process.env.FFMPEG_PATH && fs.existsSync(process.env.FFMPEG_PATH)) {
+    return process.env.FFMPEG_PATH;
+  }
+  // في بيئة لينكس (مثل GitHub Actions) نفضّل ffmpeg النظام لدعمه الكامل لـ libass
+  if (process.platform === 'linux') {
+    try {
+      const { execSync } = require('child_process');
+      const sysFfmpeg = execSync('which ffmpeg 2>/dev/null || command -v ffmpeg 2>/dev/null', { encoding: 'utf8' }).trim();
+      if (sysFfmpeg && fs.existsSync(sysFfmpeg)) {
+        return sysFfmpeg;
+      }
+    } catch {}
+  }
   try {
     // eslint-disable-next-line global-require
     const p = require('ffmpeg-static');
@@ -336,21 +349,25 @@ async function composeVideo(args) {
 
   // 3) فلتر رسم العناوين والكابشنز العربية عبر libass (تشكيل سليم — لا رموز)
   let assFilter = null;
+  const preAssLabel = 'pre_ass';
   if (subtitles.length || validScenes.some(s => s.on_screen_text)) {
     const assPath = buildAssFile(validScenes, subtitles, sceneStartTimes, path.join(ASS_DIR, `caption-${Date.now()}.ass`), { fontName: assFontName });
     // هروب مزدوج للنقطتين: graph parser يفك مستوى، وfilter parser يفك الثاني
     const escAss = assPath.replace(/\\/g, '/').replace(/:/g, '\\\\:');
     const escFonts = assFontsDir.replace(/\\/g, '/').replace(/:/g, '\\\\:');
-    assFilter = `[outv]ass=filename=${escAss}:fontsdir=${escFonts}[outv]`;
+    assFilter = `[${preAssLabel}]ass=filename=${escAss}:fontsdir=${escFonts}[outv]`;
     console.log(`[composer] ✍️ رسم النصوص العربية عبر libass (${validScenes.filter(s => s.on_screen_text).length} عنوان + ${subtitles.length} كلمة)`);
   }
+
+  // المخرج النهائي لسلسلة المشاهد (قبل إضافة فلتر الـ ASS إن وُجد)
+  const finalTransitionLabel = assFilter ? preAssLabel : 'outv';
 
   // 2) بناء الـ concat/transition graph وإلحاق فلتر الـ ASS
   const withAss = (chain) => (assFilter ? [...chain, assFilter] : chain);
   const buildXfadeGraph = () => {
     const f = [...sceneChainFilters];
     if (validScenes.length === 1) {
-      f.push(`[${lastVideoLabel}]copy[outv]`);
+      f.push(`[${lastVideoLabel}]copy[${finalTransitionLabel}]`);
     } else {
       // xfade chain: v0o + v1o → chain1، ... — offset للانتقال k = shift_k
       // نمرر كل مخرج xfade عبر fps ثابت ضماناً لتطبيع معدل الإطارات للسلسلة
@@ -363,7 +380,7 @@ async function composeVideo(args) {
           `xfade=transition=fade:duration=${TRANSITION_DUR}:offset=${shiftSecFor(idx).toFixed(2)}` +
           `[${rawLabel}]`
         );
-        const nextLabel = isLast ? 'outv' : `chain${idx}`;
+        const nextLabel = isLast ? finalTransitionLabel : `chain${idx}`;
         f.push(`[${rawLabel}]fps=${FPS}[${nextLabel}]`);
         chainLabel = nextLabel;
       }
@@ -373,9 +390,9 @@ async function composeVideo(args) {
   const buildConcatGraph = () => {
     const f = [...sceneChainFilters];
     if (validScenes.length === 1) {
-      f.push(`[${lastVideoLabel}]copy[outv]`);
+      f.push(`[${lastVideoLabel}]copy[${finalTransitionLabel}]`);
     } else {
-      f.push(`${sceneOuts.map(l => `[${l}]`).join('')}concat=n=${validScenes.length}:v=1:a=0[outv]`);
+      f.push(`${sceneOuts.map(l => `[${l}]`).join('')}concat=n=${validScenes.length}:v=1:a=0[${finalTransitionLabel}]`);
     }
     return withAss(f).join(';');
   };
