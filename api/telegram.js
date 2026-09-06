@@ -1,4 +1,4 @@
-const { GoogleGenAI } = require('@google/genai');
+import { GoogleGenAI } from '@google/genai';
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
@@ -60,7 +60,7 @@ async function triggerWorkflow(workflowFileName) {
   }
 }
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(200).send('Antigravity Telegram Webhook is Active 24/7 ⚖️');
   }
@@ -75,14 +75,16 @@ module.exports = async (req, res) => {
   const text = message.text.trim();
 
   if (String(senderId) !== String(CHAT_ID)) {
-    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        chat_id: senderId,
-        text: 'عذراً، هذا البوت تنفيذي وخاص بالمستشار أحمد منصور فقط.'
-      })
-    });
+    if (BOT_TOKEN) {
+      await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: senderId,
+          text: 'عذراً، هذا البوت تنفيذي وخاص بالمستشار أحمد منصور فقط.'
+        })
+      });
+    }
     return res.status(200).send('OK');
   }
 
@@ -133,15 +135,20 @@ module.exports = async (req, res) => {
 
   // 6. استشارة قانونية / ذكاء اصطناعي عبر Gemini
   try {
-    const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.5-flash',
-      contents: `${SYSTEM_PROMPT}\n\nسؤال أو توجيه المستشار أحمد منصور:\n${text}`
-    });
-    await sendTelegram(response.text);
+    if (GEMINI_API_KEY) {
+      const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+      const response = await ai.models.generateContent({
+        model: 'gemini-flash-lite-latest',
+        contents: `${SYSTEM_PROMPT}\n\nسؤال أو توجيه المستشار أحمد منصور:\n${text}`
+      });
+      await sendTelegram(response.text);
+    } else {
+      await sendTelegram('عذراً يا سيادة المستشار، مفتاح GEMINI_API_KEY غير معين في السيرفر.');
+    }
   } catch (err) {
     await sendTelegram(`عذراً يا سيادة المستشار، حدث خطأ في معالجة الاستشارة: ${err.message}`);
   }
 
   return res.status(200).send('OK');
-};
+}
+
