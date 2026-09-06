@@ -1,6 +1,6 @@
 {
   "date": "2026-09-06",
-  "generatedAt": "2026-09-06T12:14:37.487Z",
+  "generatedAt": "2026-09-06T15:14:08.428Z",
   "status": "error",
   "blogArticles": 184,
   "fbPosts": 16,
@@ -10,8 +10,8 @@
     {
       "name": "site_root",
       "label": "الموقع: الصفحة الرئيسية وأصول التطبيق",
-      "status": "error",
-      "findings": 1
+      "status": "ok",
+      "findings": 0
     },
     {
       "name": "blog_index",
