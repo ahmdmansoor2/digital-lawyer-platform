@@ -2198,6 +2198,30 @@
       "words": 3291,
       "image": "pollinations",
       "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "عقوبة انتحال صفة محامٍ وممارسة المهنة بدون قيد في القانون المصري",
+      "date": "2026-09-06",
+      "slug": "unlicensed-lawyer-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/unlicensed-lawyer-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/unlicensed-lawyer-penalties-egypt.jpg",
+      "tags": [
+        "قانون المحاماة والجنايات"
+      ],
+      "words": 1834,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "كيفية إثبات أجر العامل غير المكتوب وحقوقه عند النزاع العمالي",
+      "date": "2026-09-06",
+      "slug": "undocumented-worker-wage-proof",
+      "url": "https://mohamidigital.online/blog/undocumented-worker-wage-proof.html",
+      "image": "https://mohamidigital.online/blog/images/undocumented-worker-wage-proof.jpg",
+      "tags": [
+        "قانون العمل ومحكمة النقض"
+      ],
+      "words": 2055,
+      "model": "gemini-3.6-flash"
     }
   ]
 }
