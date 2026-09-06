@@ -107,8 +107,29 @@ function buildSitemap() {
     { loc: '/disclaimer.html', pri: '0.3', freq: 'yearly' },
     { loc: '/editorial-policy.html', pri: '0.6', freq: 'yearly' },
   ];
+  function getFileLastmod(dir, f) {
+    try {
+      const stat = fs.statSync(path.join(dir, f));
+      return stat.mtime.toISOString().slice(0, 10);
+    } catch {
+      return today;
+    }
+  }
+
+  function getMainLastmod(loc) {
+    if (loc === '/' || loc === '/blog/' || loc === '/pillars/' || loc === '/legal-radar.html') return today;
+    try {
+      const file = path.join(ROOT, 'public', loc.replace(/^\//, ''));
+      if (fs.existsSync(file)) {
+        return fs.statSync(file).mtime.toISOString().slice(0, 10);
+      }
+    } catch {}
+    return today;
+  }
+
   for (const m of main) {
-    urls.push(`  <url>\n    <loc>${BASE_URL}${m.loc}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${m.freq}</changefreq>\n    <priority>${m.pri}</priority>\n  </url>`);
+    const lmod = getMainLastmod(m.loc);
+    urls.push(`  <url>\n    <loc>${BASE_URL}${m.loc}</loc>\n    <lastmod>${lmod}</lastmod>\n    <changefreq>${m.freq}</changefreq>\n    <priority>${m.pri}</priority>\n  </url>`);
   }
 
   // صفحة pillars الرئيسية
@@ -116,28 +137,37 @@ function buildSitemap() {
 
   // كل صفحات pillars (المراجع الشاملة)
   for (const f of pillarFiles) {
-    urls.push(`  <url>\n    <loc>${BASE_URL}/pillars/${f}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>`);
+    const lmod = getFileLastmod(PILLARS_DIR, f);
+    urls.push(`  <url>\n    <loc>${BASE_URL}/pillars/${f}</loc>\n    <lastmod>${lmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>`);
   }
 
-  // كل مقالات المدونة
-  for (const f of blogFiles) {
-    const slug = f.replace(/\.html$/, '');
-    urls.push(`  <url>\n    <loc>${BASE_URL}/blog/${f}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>`);
+  // كل مقالات المدونة مرتبة تنازلياً من الأحدث إلى الأقدم
+  const blogFilesSorted = blogFiles.map(f => {
+    let mtime = 0;
+    try { mtime = fs.statSync(path.join(BLOG_DIR, f)).mtimeMs; } catch {}
+    return { f, mtime, lastmod: getFileLastmod(BLOG_DIR, f) };
+  }).sort((a, b) => b.mtime - a.mtime);
+
+  for (const item of blogFilesSorted) {
+    urls.push(`  <url>\n    <loc>${BASE_URL}/blog/${item.f}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>`);
   }
 
   // كل صفحات صيغ العقود المستقلة
   for (const f of formsDocFiles) {
-    urls.push(`  <url>\n    <loc>${BASE_URL}/legal-forms-docs/${f}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`);
+    const lmod = getFileLastmod(FORMS_DOCS_DIR, f);
+    urls.push(`  <url>\n    <loc>${BASE_URL}/legal-forms-docs/${f}</loc>\n    <lastmod>${lmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.6</priority>\n  </url>`);
   }
 
   // كل صفحات موضوعات رصد المحامي المستقلة
   for (const f of radarTopicFiles) {
-    urls.push(`  <url>\n    <loc>${BASE_URL}/radar-topics/${f}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.5</priority>\n  </url>`);
+    const lmod = getFileLastmod(RADAR_TOPICS_DIR, f);
+    urls.push(`  <url>\n    <loc>${BASE_URL}/radar-topics/${f}</loc>\n    <lastmod>${lmod}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.5</priority>\n  </url>`);
   }
 
   // كل أدلة المكتبة القانونية
   for (const f of libraryTopicFiles) {
-    urls.push(`  <url>\n    <loc>${BASE_URL}/legal-library-topics/${f}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`);
+    const lmod = getFileLastmod(LIBRARY_TOPICS_DIR, f);
+    urls.push(`  <url>\n    <loc>${BASE_URL}/legal-library-topics/${f}</loc>\n    <lastmod>${lmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`);
   }
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;

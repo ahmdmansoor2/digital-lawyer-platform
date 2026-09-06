@@ -548,7 +548,8 @@ function updateBlogIndex(topic, imageRelPath) {
   if (!html.includes(ANCHOR)) return;
 
   const dateAr = new Date(topic.pubDate).toLocaleDateString('ar-EG', { year:'numeric', month:'short', day:'numeric' });
-  const cardHTML = `<a href="/blog/${topic.slug}.html" class="post-card">
+  const cardHTML = `${ANCHOR}
+      <a href="/blog/${topic.slug}.html" class="post-card">
         <div class="post-cover">
           <img src="${imageRelPath}" alt="${topic.title}" class="post-cover-img"/>
           <span class="post-cover-tag">${topic.tag}</span>
@@ -562,9 +563,7 @@ function updateBlogIndex(topic, imageRelPath) {
           <p>${topic.metaDesc}</p>
           <div class="post-cta">اقرأ المقال ←</div>
         </div>
-      </a>
-
-      ${ANCHOR}`;
+      </a>`;
 
   html = html.replace(ANCHOR, cardHTML);
   fs.writeFileSync(BLOG_INDEX, html, 'utf8');

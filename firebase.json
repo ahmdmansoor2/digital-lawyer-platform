@@ -12,11 +12,6 @@
         "data/library-docs-chunks/**",
         "books/**"
       ],
-      "redirects": [
-        { "source": "/about.html", "destination": "/", "type": 301 },
-        { "source": "/features.html", "destination": "/download.html", "type": 301 },
-        { "source": "/pricing.html", "destination": "/download.html", "type": 301 }
-      ],
       "rewrites": [
         {
           "source": "!/+(blog|pillars|courts|radar-topics|legal-forms-docs|library-pdfs|newsletter)/**",
