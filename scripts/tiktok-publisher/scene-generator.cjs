@@ -306,11 +306,53 @@ async function renderScenes(plan, opts = {}) {
 }
 
 /**
- * في نظام الريلز المطور: الاعتماد الحصري على الأنماط السبعة ثلاثية الأبعاد (Rule #5)
- * مع حركة الكاميرا السينمائية الفاخرة (Ken Burns) المدمجة داخل video-composer.
+ * عرض المشاهد كمقاطع فيديو حقيقية متحركة (9:16، حركة حقيقية 100%).
  */
 async function renderVideoScenes(plan, opts = {}) {
-  return renderScenes(plan, opts);
+  const outputDir = opts.outputDir || path.join(__dirname, 'output', 'videos', `scene-${Date.now()}`);
+  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
+  const { searchVideos, downloadVideo } = require('./pexels-fetcher.cjs');
+
+  const judicialKeywords = [
+    'justice scales motion',
+    'courtroom courthouse',
+    'lawyer signing legal document',
+    'judge gavel wooden hammer',
+    'law books library',
+    'forensic evidence investigation',
+    'cyber security code',
+    'contract handshake agreement'
+  ];
+
+  const results = [];
+  for (let i = 0; i < plan.scenes.length; i++) {
+    const scene = plan.scenes[i];
+    const idx = String(scene.id).padStart(2, '0');
+    const videoPath = path.join(outputDir, `scene-${idx}.mp4`);
+    let ok = false;
+
+    if (process.env.PEXELS_API_KEY) {
+      try {
+        const query = judicialKeywords[i % judicialKeywords.length];
+        const videos = await searchVideos(query, { perPage: 4, orientation: 'portrait' });
+        const vid = (videos || []).find(v => (v.duration || 0) >= 4) || videos[0];
+        if (vid) {
+          const result = await downloadVideo(vid, videoPath);
+          console.log(`[scenes] ✓ مشهد ${scene.id}/${plan.scenes.length} — فيديو حركة حقيقي: ${result.width}x${result.height} (${result.duration}ث)`);
+          results.push({ ...scene, videoPath, videoStatus: 'real-motion-video' });
+          ok = true;
+        }
+      } catch (e) {
+        console.warn(`[scenes] ⚠️ تعذر جلب فيديو المشهد ${scene.id}: ${e.message?.substring(0, 80)}`);
+      }
+    }
+
+    if (!ok) {
+      console.log(`[scenes] → كادر ثلاثي الأبعاد للمشهد ${scene.id}`);
+      results.push(await generateSceneImage(scene, outputDir));
+    }
+  }
+  return results;
 }
 
 async function planScenes(topic, opts = {}) {
