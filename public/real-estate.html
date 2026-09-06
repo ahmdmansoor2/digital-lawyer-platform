@@ -25,7 +25,7 @@
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="/header.css?v=20260904-luxury-navy" />
+  <link rel="stylesheet" href="/header.css?v=20260906-luxury-navy-v3" />
 
   <!-- Structured Data Schema -->
   <script type="application/ld+json">
@@ -71,25 +71,21 @@
     }
     a { color: inherit; text-decoration: none; }
 
-    /* Top Banner */
-    .top-trust-bar {
-      background: linear-gradient(90deg, #064e3b 0%, #0f766e 50%, #1e1b4b 100%);
-      color: #ecfdf5;
-      padding: 10px 20px;
-      font-size: 13px;
-      font-weight: 700;
-      text-align: center;
+    /* Breadcrumbs */
+    .breadcrumbs {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 20px 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
-      border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+      gap: 8px;
     }
-    .top-trust-bar a {
-      color: #fef08a;
-      text-decoration: underline;
-      margin-right: 6px;
-    }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; font-weight: 700; }
+    .breadcrumbs a:hover { color: var(--indigo-light); }
+    .breadcrumbs .sep { opacity: 0.4; font-size: 0.75rem; }
+    .breadcrumbs .current { color: #fff; font-weight: 800; }
 
     /* Hero Section */
     .re-hero {
@@ -505,13 +501,6 @@
 </head>
 <body>
 
-  <!-- Top Trust Bar -->
-  <div class="top-trust-bar">
-    <span>🛡️ كل عقار يُعرض عبر المنصة يخضع للفحص والتدقيق القانوني الشامل قبل التعاقد</span>
-    <span>·</span>
-    <a href="#audit-section">اطلب فحص شقتك قبل الشراء ←</a>
-  </div>
-
   <!-- Header -->
   <header class="uh-bar" id="siteHeader">
     <div class="uh-inner">
@@ -524,7 +513,8 @@
       </a>
 
       <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
-        <a href="/" class="uh-link active">🏠 الرئيسية</a>
+        <a href="/" class="uh-link">🏠 الرئيسية</a>
+        <a href="/real-estate.html" class="uh-link active">🏢 التسويق العقاري</a>
         <a href="/download.html" class="uh-link">💻 تحميل البرنامج</a>
         <a href="/legal-calculators.html" class="uh-link">🧮 الحاسبات القانونية</a>
         <a href="/legal-forms.html" class="uh-link">📝 صيغ العقود والدعاوي</a>
@@ -540,6 +530,9 @@
             <a href="/court-precedents.html" class="uh-menu-item">⚖️ موسوعة النقض</a>
             <a href="/legal-consultations.html" class="uh-menu-item">🤖 المستشار القانوني</a>
             <a href="/why-trust-us.html" class="uh-menu-item">🛡️ لماذا تثق بنا</a>
+            <a href="/about.html" class="uh-menu-item">⚖️ عن المنصة</a>
+            <a href="/features.html" class="uh-menu-item">⚡ المميزات الكاملة</a>
+            <a href="/pricing.html" class="uh-menu-item">🎁 مجاني 100%</a>
             <a href="/privacy.html" class="uh-menu-item">🔐 سياسة الخصوصية</a>
             <a href="/terms.html" class="uh-menu-item">📜 الشروط والأحكام</a>
             <a href="/contact.html" class="uh-menu-item">📬 تواصل معنا</a>
@@ -553,6 +546,12 @@
       </div>
     </div>
   </header>
+
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumbs" aria-label="مسار التنقل">
+    <a href="/">الرئيسية</a><span class="sep">›</span>
+    <span class="current">التسويق العقاري الموثق</span>
+  </nav>
 
 
 
