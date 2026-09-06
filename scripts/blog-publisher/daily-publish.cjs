@@ -617,14 +617,9 @@ ${list}${midImage}`;
     }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--bg); color: var(--text);
-      min-height: 100vh; line-height: 1.9;
-      background-image:
-        radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.15) 0%, transparent 60%),
-        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-      background-size: 100% 100%, 48px 48px, 48px 48px;
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.9;
     }
     .breadcrumbs { max-width: 860px; margin: 16px auto 0; padding: 0 24px; display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
     .breadcrumbs a { color: var(--muted); text-decoration: none; font-weight: 700; }
