@@ -71,6 +71,7 @@ jobs:
 
       - name: Upload horizontal 16x9 version to YouTube Videos tab
         run: node scripts/youtube-publisher/youtube-publish.cjs --from-fb-log --as-video
+        continue-on-error: true
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}

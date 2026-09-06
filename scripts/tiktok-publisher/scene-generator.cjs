@@ -242,56 +242,55 @@ function promptToKeywords(prompt) {
     .join(' ') || 'law office';
 }
 
+// بنك الأنماط السبعة المعتمدة ثلاثية الأبعاد (Rule #5 — خالية تماماً من الأنمي أو الهلوسة)
+const APPROVED_VERTICAL_DIR = path.join(ROOT, 'scripts', 'tiktok-publisher', 'assets', 'approved-vertical-scenes');
+const APPROVED_CARDS_DIR = path.join(ROOT, 'scripts', 'facebook-publisher', 'assets', 'approved-cards');
+
+async function getApproved3DScene(scene, outputDir, idx) {
+  const sharp = require('sharp');
+  const targetFile = path.join(outputDir, `scene-${idx}.png`);
+
+  // قائمة المشاهد ثلاثية الأبعاد المعتمدة رسمياً والخالية 100% من الأنمي أو الشوائب
+  const master3DSuite = [
+    path.join(APPROVED_VERTICAL_DIR, 'style1_court_scales_3d.jpg'), // 1. ميزان العدالة الذهبي ثلاثي الأبعاد
+    path.join(APPROVED_CARDS_DIR, 'style2_court_hero_bg.jpg'),       // 2. قاعة المحكمة الكلاسيكية المهيبة
+    path.join(APPROVED_CARDS_DIR, 'style3_forensic_board_criminal.jpg'), // 3. غرفة الأدلة الجنائية والتحقيق
+    path.join(APPROVED_VERTICAL_DIR, 'style2_gavel_marble_3d.jpg'), // 4. مطرقة القاضي الرخامية ثلاثية الأبعاد
+    path.join(APPROVED_CARDS_DIR, 'style4_split_duality_matrix.jpg'), // 5. مصفوفة المقارنة والحماية
+    path.join(APPROVED_CARDS_DIR, 'style6_cyber_defense.jpg'),       // 6. درع الحماية والأدلة الرقمية
+    path.join(APPROVED_CARDS_DIR, 'style5_fintech_dashboard_appeals.jpg'), // 7. لوحة المؤشرات والمدد القانونية
+  ];
+
+  const validAssets = master3DSuite.filter(p => fs.existsSync(p));
+  const chosen = validAssets[(parseInt(idx, 10) - 1) % validAssets.length] || validAssets[0];
+
+  try {
+    await sharp(chosen)
+      .resize(1080, 1920, { fit: 'cover', position: 'centre' })
+      .png()
+      .toFile(targetFile);
+    console.log(`[scenes] ✓ تم اعتماد النمط ثلاثي الأبعاد المعتمد (Rule #5): ${path.basename(chosen)}`);
+    return targetFile;
+  } catch (e) {
+    console.warn(`[scenes] تحذير تحويل النمط المعتمد: ${e.message}`);
+    return null;
+  }
+}
+
 async function generateSceneImage(scene, outputDir) {
   const idx = String(scene.id).padStart(2, '0');
-  const baseImagePath = path.join(outputDir, `scene-${idx}-base.png`);
-  const compositedPath = path.join(outputDir, `scene-${idx}.png`);
-  const prompt = `professional photo, vertical composition, 9:16 aspect ratio, ${scene.image_prompt || 'legal concept, modern, professional'}, high quality, no text, no watermarks`;
-
-  console.log(`[scenes] مشهد ${scene.id} — توليد صورة بديلة...`);
-  let ok = false;
-  let imageStatus = 'svg-fallback';
-  // 1) Pexels (لو فيه API key)
-  if (process.env.PEXELS_API_KEY) ok = await generateImage(prompt, baseImagePath);
-  if (ok) imageStatus = 'pexels';
-  // 2) Pollinations — ذكاء اصطناعي مجاني
-  if (!ok) ok = await generatePollinationsImage(prompt, baseImagePath);
-  if (ok && imageStatus === 'svg-fallback') imageStatus = 'pollinations';
-  // 3) Gemini Imagen (fallback ثانٍ)
-  if (!ok && ai) ok = await generateImage(prompt, baseImagePath);
-  if (ok && imageStatus === 'svg-fallback') imageStatus = 'imagen';
-  // 4) SVG محلي (fallback أخير — فيه النص مدمج)
-  if (!ok) {
-    console.log(`[scenes] → fallback للمشهد ${scene.id} (SVG → PNG)`);
-    await generateFallbackSvg(scene.image_prompt, baseImagePath, scene.on_screen_text);
+  console.log(`[scenes] مشهد ${scene.id} — تجهيز الكادر ثلاثي الأبعاد من الأسطول المعتمد (Rule #5)...`);
+  
+  // الاعتماد الحصري والمباشر على أسطول الأنماط السبعة المعتمدة منعاً لأي هلوسة بصرية أو رسوم كرتونية
+  const masterAsset = await getApproved3DScene(scene, outputDir, idx);
+  if (masterAsset) {
+    return { ...scene, imagePath: masterAsset, imageStatus: 'master-3d-suite' };
   }
 
-  // ─── دمج on_screen_text على الصورة (Arabic shaping صحيح) ────────────
-  let finalImagePath = baseImagePath;
-  if (scene.on_screen_text && ok) {
-    try {
-      // eslint-disable-next-line global-require
-      const { burnTextOnImage } = require('./text-renderer.cjs');
-      const compositedBuffer = await burnTextOnImage(
-        baseImagePath,
-        {
-          text: scene.on_screen_text,
-          fontSize: 64,
-          color: '#ffffff',
-          bgColor: 'rgba(0,0,0,0.75)',
-          width: 1100,
-          height: 180,
-        },
-        { x: 0, y: 0 }
-      );
-      fs.writeFileSync(compositedPath, compositedBuffer);
-      finalImagePath = compositedPath;
-    } catch (e) {
-      console.warn(`[scenes] فشل دمج النص على الصورة: ${e.message?.substring(0, 80)}`);
-    }
-  }
-
-  return { ...scene, imagePath: finalImagePath, imageStatus };
+  // Fallback محلي في أسوأ الظروف
+  const baseImagePath = path.join(outputDir, `scene-${idx}.png`);
+  await generateFallbackSvg(scene.image_prompt, baseImagePath, scene.on_screen_text);
+  return { ...scene, imagePath: baseImagePath, imageStatus: 'svg-fallback' };
 }
 
 async function renderScenes(plan, opts = {}) {
@@ -300,54 +299,18 @@ async function renderScenes(plan, opts = {}) {
 
   const results = [];
   for (const scene of plan.scenes) {
-    console.log(`[scenes] مشهد ${scene.id}/${plan.scenes.length} — توليد صورة...`);
+    console.log(`[scenes] مشهد ${scene.id}/${plan.scenes.length} — تجهيز الكادر ثلاثي الأبعاد...`);
     results.push(await generateSceneImage(scene, outputDir));
   }
   return results;
 }
 
 /**
- * عرض المشاهد كمقاطع فيديو حقيقية من Pexels (9:16، متحركة فعلية).
- * لو فشل فيديو مشهد معين → يتحول لصورة بديلة (لا يكسر السلسلة).
+ * في نظام الريلز المطور: الاعتماد الحصري على الأنماط السبعة ثلاثية الأبعاد (Rule #5)
+ * مع حركة الكاميرا السينمائية الفاخرة (Ken Burns) المدمجة داخل video-composer.
  */
 async function renderVideoScenes(plan, opts = {}) {
-  const outputDir = opts.outputDir || path.join(__dirname, 'output', 'videos', `scene-${Date.now()}`);
-  if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
-  const { searchVideos, downloadVideo } = require('./pexels-fetcher.cjs');
-
-  const results = [];
-  for (const scene of plan.scenes) {
-    const idx = String(scene.id).padStart(2, '0');
-    const videoPath = path.join(outputDir, `scene-${idx}.mp4`);
-    let ok = false;
-
-    if (process.env.PEXELS_API_KEY) {
-      try {
-        const query = promptToKeywords(scene.image_prompt || '');
-        const videos = await searchVideos(query, { perPage: 3, orientation: 'portrait' });
-        // بنفضل فيديو مدته >= 5 ثواني عشان التقصير/التمديد يفضل طبيعي
-        const vid = (videos || []).find(v => (v.duration || 0) >= 5) || videos[0];
-        if (vid) {
-          const result = await downloadVideo(vid, videoPath);
-          console.log(`[scenes] ✓ مشهد ${scene.id}/${plan.scenes.length} — فيديو Pexels: ${result.width}x${result.height} (${result.duration}ث)`);
-          results.push({ ...scene, videoPath, videoStatus: 'pexels-video' });
-          ok = true;
-        } else {
-          throw new Error('لا فيديو مناسب في النتائج');
-        }
-      } catch (e) {
-        console.warn(`[scenes] ⚠️ فيديو Pexels فشل للمشهد ${scene.id}: ${e.message?.substring(0, 80)}`);
-      }
-    } else {
-      console.warn('[scenes] ⚠️ PEXELS_API_KEY غير متوفر — صور بديلة');
-    }
-
-    if (!ok) {
-      console.log(`[scenes] → صورة بديلة للمشهد ${scene.id} (تعذّر الفيديو)`);
-      results.push(await generateSceneImage(scene, outputDir));
-    }
-  }
-  return results;
+  return renderScenes(plan, opts);
 }
 
 async function planScenes(topic, opts = {}) {

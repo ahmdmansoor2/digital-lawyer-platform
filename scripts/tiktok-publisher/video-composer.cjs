@@ -148,13 +148,20 @@ function buildAssFile(scenes, subtitles, sceneStartTimes, filePath, opts = {}) {
   lines.push('');
   lines.push('[V4+ Styles]');
   lines.push('Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding');
-  // العناوين: أبيض كبير أسفل الشاشة (~82%)
-  lines.push(`Style: Title,${fontName},56,&H00FFFFFF,&H000000FF,&H00000000,&H8C000000,1,0,0,0,100,100,0,0,1,3,2,2,60,60,340,1`);
-  // الكابشنز: أصفر كبير أعلى الشاشة (~15%)
-  lines.push(`Style: Caption,${fontName},60,&H0047DEFD,&H000000FF,&H00000000,&H96000000,0,0,0,0,100,100,0,0,1,3,2,8,60,60,300,1`);
+  // البراند الدائم: أعلى الشاشة
+  lines.push(`Style: Brand,${fontName},38,&H00E2E8F0,&H000000FF,&H00000000,&H80000000,1,0,0,0,100,100,0,0,1,2,1,8,40,40,240,1`);
+  // العناوين: نص المشهد الثابت أعلى المنتصف أسفل البراند (~17%)
+  lines.push(`Style: Title,${fontName},48,&H00FFFFFF,&H000000FF,&H00000000,&H99000000,1,0,0,0,100,100,0,0,1,3,2,8,60,60,330,1`);
+  // الكابشنز: كلمات منطوقة ذهبية براقة في المنتصف السفلي (منطقة الرؤية الآمنة للموبايل ~70%)
+  lines.push(`Style: Caption,${fontName},64,&H0000FFFF,&H000000FF,&H00000000,&HAA000000,1,0,0,0,100,100,0,0,1,4,2,2,50,50,520,1`);
   lines.push('');
   lines.push('[Events]');
   lines.push('Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text');
+
+  // وسم البراند طوال مدة الفيديو
+  const totalVideoDur = (sceneStartTimes[sceneStartTimes.length - 1] || 0) + (scenes[scenes.length - 1]?.duration_sec || 6);
+  const brandText = sanitizeArabicText(opts.branding || 'منصة المحامي الرقمية');
+  lines.push(`Dialogue: 1,0:00:00.00,${toAssTime(totalVideoDur)},Brand,,0,0,0,,{\\fad(400,0)}⚖️ ${escapeAss(brandText)}`);
 
   // أحداث العناوين (نص المشهد الثابت — يظهر طوال مدة المشهد)
   for (let i = 0; i < scenes.length; i++) {
@@ -183,7 +190,7 @@ function buildAssFile(scenes, subtitles, sceneStartTimes, filePath, opts = {}) {
     if (text && block.end > block.start) blocks.push({ text, start: block.start, end: block.end });
   }
   for (const b of blocks) {
-    lines.push(`Dialogue: 0,${toAssTime(b.start / 1000)},${toAssTime(b.end / 1000)},Caption,,0,0,0,,{\\fad(150,150)}${escapeAss(b.text)}`);
+    lines.push(`Dialogue: 0,${toAssTime(b.start / 1000)},${toAssTime(b.end / 1000)},Caption,,0,0,0,,{\\fad(80,80)}${escapeAss(b.text)}`);
   }
 
   if (!fs.existsSync(ASS_DIR)) fs.mkdirSync(ASS_DIR, { recursive: true });
