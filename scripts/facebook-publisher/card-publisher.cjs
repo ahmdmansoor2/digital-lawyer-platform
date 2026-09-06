@@ -525,13 +525,12 @@ async function renderCard(card, slug) {
   return pngPath;
 }
 
-// ─── بناء كابشن البطاقة التعليمية بنظام NotebookLM Pro ─────────────────────────
+// ─── بناء كابشن البطاقة بنظام NotebookLM Pro ─────────────────────────
 function buildCaption(card) {
   const steps = (card.action_steps || []).map((s, i) => `${i + 1}️⃣ ${s.step}: ${s.action}`).join('\n');
   const hashtags = normalizeHashtags(card.hashtags).join(' ');
 
   return [
-    `🎓 بطاقة تعليمية مؤصلة | مرجعك القانوني اليومي المعتمد`,
     `⚖️ ${card.title}`,
     ``,
     `📌 الواقعة والمسألة القانونية:`,
