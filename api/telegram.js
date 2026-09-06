@@ -25,7 +25,7 @@ async function sendTelegram(text, parseMode = 'HTML') {
   if (!BOT_TOKEN || !CHAT_ID) return;
   try {
     const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-    await fetch(url, {
+    const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -35,6 +35,18 @@ async function sendTelegram(text, parseMode = 'HTML') {
         reply_markup: KEYBOARD
       })
     });
+    const d = await res.json();
+    if (!d.ok && parseMode) {
+      await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text,
+          reply_markup: KEYBOARD
+        })
+      });
+    }
   } catch (e) {
     console.error('Error sending telegram:', e);
   }
@@ -133,10 +145,21 @@ export default async function handler(req, res) {
     return res.status(200).send('OK');
   }
 
+  // 5.1 أمر التشخيص
+  if (text === '/debug') {
+    const key = (GEMINI_API_KEY || '').trim().replace(/^["']|["']$/g, '');
+    const keyLen = key.length;
+    const keyPrefix = key.length > 5 ? key.substring(0, 5) : 'NONE';
+    const botLen = BOT_TOKEN ? BOT_TOKEN.length : 0;
+    await sendTelegram(`🔍 <b>بيانات التشخيص السحابية:</b>\n• طول GEMINI_API_KEY: ${keyLen} (يبدأ بـ ${keyPrefix}...)\n• TELEGRAM_BOT_TOKEN: ${botLen} حرف\n• TELEGRAM_CHAT_ID: ${CHAT_ID}`);
+    return res.status(200).send('OK');
+  }
+
   // 6. استشارة قانونية / ذكاء اصطناعي عبر Gemini
   try {
-    if (GEMINI_API_KEY) {
-      const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+    const cleanKey = (GEMINI_API_KEY || '').trim().replace(/^["']|["']$/g, '');
+    if (cleanKey) {
+      const ai = new GoogleGenAI({ apiKey: cleanKey });
       const response = await ai.models.generateContent({
         model: 'gemini-flash-lite-latest',
         contents: `${SYSTEM_PROMPT}\n\nسؤال أو توجيه المستشار أحمد منصور:\n${text}`
