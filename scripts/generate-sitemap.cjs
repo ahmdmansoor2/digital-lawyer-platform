@@ -24,7 +24,7 @@ const HIGH_PRIORITY = [
   '/', '/download', '/real-estate', '/legal-library', '/legal-calculators', '/legal-forms', '/pillars', '/legal-radar', '/blog/',
   '/courts-directory', '/court-precedents', '/company-incorporation', '/legal-diagnostics'
 ];
-const MEDIUM_PRIORITY = ['/contact', '/privacy', '/terms', '/disclaimer', '/why-trust-us', '/search'];
+const MEDIUM_PRIORITY = ['/contact', '/privacy', '/terms', '/disclaimer', '/why-trust-us', '/search', '/about', '/features', '/pricing'];
 
 function walkDir(dir, base = dir) {
   const results = [];
