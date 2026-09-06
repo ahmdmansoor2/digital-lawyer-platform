@@ -481,6 +481,32 @@ async function generateCardIllustration(card) {
   const promptEn = await generateTopicVisualPrompt(card);
   console.log(`  🎨 الوصف البصري التعبيري: "${promptEn.slice(0, 100)}..."`);
 
+  // دالة مساعدة لجلب صورة معتمدة مسبقاً من بنك النمط المعتمد (Rule #5 Master Suite Local Bank)
+  function getApprovedMasterCard() {
+    const approvedDir = path.join(FB_PUBLISHER_DIR, 'assets', 'approved-cards');
+    if (fs.existsSync(approvedDir)) {
+      const styleFiles = {
+        1: ['style1_glass_flowchart_labor.jpg'],
+        2: ['style2_cinematic_mindmap.jpg', 'style2_court_hero_bg.jpg'],
+        3: ['style3_forensic_board_criminal.jpg'],
+        4: ['style4_split_duality_matrix.jpg'],
+        5: ['style5_fintech_inheritance.jpg', 'style5_fintech_dashboard_appeals.jpg', 'style5_traffic_compensation.jpg'],
+        6: ['style6_cyber_defense.jpg'],
+        7: ['style7_architectural_royal_deed.jpg', 'style7_real_estate_property.jpg']
+      };
+      const masterStyle = selectMasterStyle(card.title, card.category);
+      const candidates = styleFiles[masterStyle.id] || [];
+      for (const f of candidates) {
+        const fullP = path.join(approvedDir, f);
+        if (fs.existsSync(fullP)) {
+          console.log(`  ✓ استخدام صورة معتمدة مسبقاً من بنك النمط [${masterStyle.id}]: ${f}`);
+          return fs.readFileSync(fullP);
+        }
+      }
+    }
+    return null;
+  }
+
   // 1. تجربة Google GenAI Image Models
   if (ai) {
     for (const model of ['gemini-2.5-flash-image', 'gemini-3.1-flash-image']) {
@@ -517,7 +543,11 @@ async function generateCardIllustration(card) {
     console.warn(`  ⚠️ تعذر جلب صورة Flux: ${err.message}`);
   }
 
-  // 3. Fallback سينمائي وقضائي موثق عبر مكتبة الصور الفوتوغرافية العالمية (Pexels 4K Legal)
+  // 3. Fallback من بنك الصور المعتمدة مسبقاً (Rule #5 Master Suite Local Bank)
+  const masterCardBuf = getApprovedMasterCard();
+  if (masterCardBuf) return masterCardBuf;
+
+  // 4. Fallback سينمائي وقضائي موثق عبر مكتبة الصور الفوتوغرافية العالمية (Pexels 4K Legal)
   if (process.env.PEXELS_API_KEY) {
     try {
       const pexelsRes = await fetch(`https://api.pexels.com/v1/search?query=lawyer+courtroom+justice+judge&per_page=15`, {
@@ -757,17 +787,55 @@ async function main() {
   const pngPath = await renderCard(card, topic.slug);
 
   // 2.5 مفتش الجودة والنزاهة البصرية (Rule #5 Quality Gate)
-  const quality = await inspectVisualQuality(pngPath, card.title);
+  // 2.5 مفتش الجودة والنزاهة البصرية (Rule #5 Quality Gate)
+  let quality = await inspectVisualQuality(pngPath, card.title);
   if (!quality.passed) {
-    console.error(`\n❌ [حظر الجودة التلقائي] تم منع النشر فوراً لحماية هيبة المنصة!`);
-    console.error(`   السبب: ${quality.reason}`);
+    console.warn(`\n⚠️ [اعتراض الجودة البصرية] الصورة المولدة لم تجتز المعايير (${quality.reason})`);
+    console.log(`🔄 جاري التراجع التلقائي إلى بنك الصور المعتمدة مسبقاً (Rule #5 Master Suite Bank)...`);
 
-    try {
-      const { sendTelegram } = require('../telegram-bot/assistant.cjs');
-      await sendTelegram(`🚨 <b>إنذار حراسة الجودة والنزاهة البصرية:</b>\nتم منع نشر بطاقة فيسبوك تلقائياً لعدم اجتيازها معايير النزاهة الفنية.\n\n📌 <b>الموضوع:</b> ${card.title}\n⚠️ <b>سبب الرفض:</b> ${quality.reason}\n🛡️ لم يتم نشر أي شيء على فيسبوك لحماية المنصة.`);
-    } catch (e) {}
+    const approvedDir = path.join(FB_PUBLISHER_DIR, 'assets', 'approved-cards');
+    const masterStyle = selectMasterStyle(card.title, card.category);
+    const styleFiles = {
+      1: ['style1_glass_flowchart_labor.jpg'],
+      2: ['style2_cinematic_mindmap.jpg', 'style2_court_hero_bg.jpg'],
+      3: ['style3_forensic_board_criminal.jpg'],
+      4: ['style4_split_duality_matrix.jpg'],
+      5: ['style5_fintech_inheritance.jpg', 'style5_fintech_dashboard_appeals.jpg', 'style5_traffic_compensation.jpg'],
+      6: ['style6_cyber_defense.jpg'],
+      7: ['style7_architectural_royal_deed.jpg', 'style7_real_estate_property.jpg']
+    };
+    const candidates = styleFiles[masterStyle.id] || [];
+    let recovered = false;
 
-    process.exit(1);
+    for (const f of candidates) {
+      const fullP = path.join(approvedDir, f);
+      if (fs.existsSync(fullP)) {
+        const sharp = require('sharp');
+        await sharp(fullP)
+          .resize(CARD_WIDTH, CARD_HEIGHT, { fit: 'cover' })
+          .png({ quality: 95 })
+          .toFile(pngPath);
+        console.log(`  ✓ تم استبدال البطاقة بنجاح بصورة معتمدة 100% من بنك النمط [${masterStyle.id}]: ${f}`);
+        recovered = true;
+        break;
+      }
+    }
+
+    if (recovered) {
+      quality = await inspectVisualQuality(pngPath, card.title);
+    }
+
+    if (!quality.passed) {
+      console.error(`\n❌ [حظر الجودة التلقائي] تم منع النشر فوراً لحماية هيبة المنصة!`);
+      console.error(`   السبب: ${quality.reason}`);
+
+      try {
+        const { sendTelegram } = require('../telegram-bot/assistant.cjs');
+        await sendTelegram(`🚨 <b>إنذار حراسة الجودة والنزاهة البصرية:</b>\nتم منع نشر بطاقة فيسبوك تلقائياً لعدم اجتيازها معايير النزاهة الفنية.\n\n📌 <b>الموضوع:</b> ${card.title}\n⚠️ <b>سبب الرفض:</b> ${quality.reason}\n🛡️ لم يتم نشر أي شيء على فيسبوك لحماية المنصة.`);
+      } catch (e) {}
+
+      process.exit(1);
+    }
   }
 
   // 3. النشر

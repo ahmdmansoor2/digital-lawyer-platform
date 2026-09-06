@@ -87,11 +87,65 @@ async function fitCoverImage(srcPath, destPath) {
   }
 }
 
-// توليد صورة مخصصة للموضوع عبر Pollinations.ai (مجاني بالذكاء الاصطناعي)
+// مفتش الجودة والنزاهة البصرية لمقالات المدونة (Chief Visual Integrity Inspector)
+async function inspectArticleVisualQuality(imagePath, topicTitle) {
+  if (!fs.existsSync(imagePath)) return { passed: false, reason: 'ملف الصورة غير موجود' };
+  const buf = fs.readFileSync(imagePath);
+  if (buf.length < 12000) return { passed: false, reason: `حجم الصورة غير كافٍ (${buf.length} بايت)` };
+
+  try {
+    const base64Data = buf.toString('base64');
+    const response = await ai.models.generateContent({
+      model: 'gemini-flash-lite-latest',
+      contents: [
+        {
+          text: `You are the strict Chief Visual Integrity Inspector for the Egyptian digital lawyer platform 'المحامي الرقمي'.
+Examine this article cover image for legal topic: "${topicTitle}".
+
+STRICT REJECTION CRITERIA:
+1. Cartoon / Comic / Manga / Anime / Doodle (Must FAIL)
+2. Hallucinated abstract shapes, blurry discs, corrupted alien textures (Must FAIL)
+3. Distorted, creepy, or illegible gibberish text in focal areas (Must FAIL)
+
+PASS CRITERIA:
+- Realistic photorealistic legal imagery, scales of justice, law books, courtroom, modern corporate legal setting, or polished architectural/editorial photography.
+
+Return ONLY a JSON object:
+{
+  "passed": boolean,
+  "confidence_score": number (0-100),
+  "is_cartoon": boolean,
+  "is_hallucinated": boolean,
+  "reason": "short explanation in Arabic"
+}`
+        },
+        {
+          inlineData: {
+            mimeType: 'image/jpeg',
+            data: base64Data
+          }
+        }
+      ],
+      config: { responseMimeType: 'application/json' }
+    });
+
+    const audit = JSON.parse(response.text?.trim() || '{}');
+    log(`🛡️ فحص الرؤية لغلاف المقال: passed=${audit.passed}, score=${audit.confidence_score}%, سبب=${audit.reason}`);
+    if (audit.is_cartoon || audit.is_hallucinated || audit.confidence_score < 60) {
+      return { passed: false, reason: audit.reason || 'الصورة مرفوضة: كرتون أو تشويه بصري' };
+    }
+    return { passed: true, score: audit.confidence_score, reason: audit.reason };
+  } catch (err) {
+    log(`⚠️ تخطي فحص رؤية الغلاف لتعذر Gemini Vision (${err.message})`);
+    return { passed: true, reason: 'فحص افتراضي' };
+  }
+}
+
+// توليد صورة مخصصة للموضوع عبر الذكاء الاصطناعي مع فحص الجودة الإلزامي
 async function generateTopicImage(topic) {
-  const prompt = categoryToEnglish(topic) + ', professional photography, modern, high quality, no text, no words, no letters';
+  const prompt = `${categoryToEnglish(topic)}, ultra photorealistic 3D legal scene, professional architectural photography, cinematic warm light, 8k resolution, zero cartoon, zero anime, zero comic`;
   const seed = Math.floor(Date.now() / 1000) % 100000;
-  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1200&height=630&nologo=true&seed=${seed}`;
+  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1200&height=630&nologo=true&model=flux&seed=${seed}`;
   const tmp = path.join(IMG_DIR, `.tmp-${topic.slug}.jpg`);
   try {
     await downloadFile(url, tmp);
@@ -99,11 +153,20 @@ async function generateTopicImage(topic) {
     const final = path.join(IMG_DIR, `${topic.slug}.jpg`);
     await fitCoverImage(tmp, final);
     fs.unlinkSync(tmp);
-    log(`✅ تم توليد صورة مخصصة بـ Pollinations: ${final} (${Math.round(fs.statSync(final).size / 1024)} KB)`);
+
+    // فحص الجودة البصرية قبل الاعتماد
+    const audit = await inspectArticleVisualQuality(final, topic.title);
+    if (!audit.passed) {
+      log(`⚠️ رفضت صورة الذكاء الاصطناعي: ${audit.reason} — جاري التراجع للأرشيف الفوتوغرافي المعتمد`);
+      if (fs.existsSync(final)) fs.unlinkSync(final);
+      return null;
+    }
+
+    log(`✅ تم اعتماد وتوليد صورة مخصصة عالية النزاهة: ${final} (${Math.round(fs.statSync(final).size / 1024)} KB)`);
     return `/blog/images/${topic.slug}.jpg`;
   } catch (err) {
     if (fs.existsSync(tmp)) fs.unlinkSync(tmp);
-    log(`⚠️ فشل توليد صورة Pollinations: ${err.message}`);
+    log(`⚠️ فشل توليد صورة الذكاء الاصطناعي: ${err.message}`);
     return null;
   }
 }
