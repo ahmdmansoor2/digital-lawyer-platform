@@ -168,10 +168,10 @@ function pickTopTrend(opts) {
 // ─── توليد محتوى البطاقة عبر Gemini ───────────────────────────────────────
 async function generateCardContent(topic, retryIdx = 0) {
   const models = [
-    'gemini-3.6-flash',
-    'gemini-3.5-flash',
-    'gemini-3.1-flash-lite',
-    'gemini-3.7-flash',
+    'gemini-flash-lite-latest',
+    'gemini-2.5-flash',
+    'gemini-2.0-flash',
+    'gemini-1.5-flash'
   ];
   const model = models[retryIdx % models.length];
 
@@ -377,8 +377,36 @@ ${tipLines[1] ? `<text x="${rX - 24}" y="796" font-family="${FONT}" font-size="2
 }
 
 // ─── توليد صورة توضيحية حية بالذكاء الاصطناعي (سينمائية ثلاثية الأبعاد) ──────
+// ─── توليد وصف بصري إنجليزي فائق الدقة والتعبير عن الموضوع ──────────────────
+async function generateTopicVisualPrompt(card) {
+  try {
+    if (ai) {
+      const resp = await ai.models.generateContent({
+        model: 'gemini-flash-lite-latest',
+        contents: `You are an art director for a prestigious Egyptian legal and judicial platform.
+Generate a rich, highly descriptive visual prompt in English for Nano Banana Pro / Imagen 3 to generate a single photorealistic, cinematic 3D masterpiece image directly visualizing this topic:
+Topic: "${card.title}"
+Category: "${card.category || 'Egyptian Law'}"
+Context & Points: ${(card.points || []).map((p) => p.label).join(', ')}
+
+Guidelines:
+- Create a powerful visual metaphor representing the core essence of the topic (e.g., employment contracts, real estate keys and classical architecture, family estate papers, court gavel and golden scales of justice, judicial chambers, corporate legal agreement).
+- Style: Photorealistic 3D cinema concept, 8k resolution, volumetric moody lighting, deep royal navy blue, warm gold, and rich emerald tones. Classical Egyptian judicial dignity, marble columns, elegant mahogany.
+- CRITICAL: Absolutely NO text, NO letters, NO typography, NO words, NO watermarks.
+- Output ONLY the prompt string in English.`
+      });
+      const txt = resp.text?.trim().replace(/^["']|["']$/g, '');
+      if (txt && txt.length > 25) return txt;
+    }
+  } catch (e) {}
+
+  return `masterpiece, ultra-realistic 3D cinematic scene of modern Egyptian courtroom and judicial concept, ${card.category || 'Egyptian Law'}, ${card.title}, glowing golden scales of justice, elegant mahogany gavel, grand classical marble columns, dramatic volumetric moody lighting, deep sapphire blue and warm amber gold tones, photorealistic octane render, 8k resolution, elegant depth of field, award-winning atmosphere, no text, no letters, no watermark, clean background`;
+}
+
+// ─── توليد صورة توضيحية حية بالذكاء الاصطناعي (سينمائية ثلاثية الأبعاد عبر نانو بنانا برو) ──────
 async function generateCardIllustration(card) {
-  const promptEn = `masterpiece, ultra-realistic 3D cinematic scene of modern Egyptian courtroom and judicial concept, ${card.category || 'Egyptian Law'}, ${card.title}, glowing golden scales of justice, elegant mahogany gavel, grand classical marble columns, dramatic volumetric moody lighting, deep sapphire blue and warm amber gold tones, photorealistic octane render, 8k resolution, elegant depth of field, award-winning atmosphere, no text, no letters, no watermark, clean background`;
+  const promptEn = await generateTopicVisualPrompt(card);
+  console.log(`  🎨 الوصف البصري التعبيري: "${promptEn.slice(0, 100)}..."`);
 
   // 1. تجربة Nano Banana Pro عبر حساب Google Pro أولاً
   if (ai) {
@@ -395,7 +423,7 @@ async function generateCardIllustration(card) {
         const parts = resp.candidates?.[0]?.content?.parts || [];
         const img = parts.find((p) => p.inlineData && p.inlineData.data);
         if (img) {
-          console.log(`  ✓ صورة توضيحية سينمائية مولدة عبر Nano Banana (${model})`);
+          console.log(`  ✓ صورة تعبيرية حصرية مولدة عبر Nano Banana Pro (${model})`);
           return Buffer.from(img.inlineData.data, 'base64');
         }
       } catch (err) {
@@ -407,11 +435,11 @@ async function generateCardIllustration(card) {
   // 2. Fallback: توليد صورة حية بالذكاء الاصطناعي عبر Pollinations / AI Engine
   try {
     const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(promptEn)}?width=1080&height=1080&nologo=true&seed=${Math.floor(Math.random() * 100000)}`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(20000) });
+    const res = await fetch(url, { signal: AbortSignal.timeout(25000) });
     if (res.ok) {
       const buf = Buffer.from(await res.arrayBuffer());
       if (buf.length > 5000) {
-        console.log(`  ✓ صورة توضيحية سينمائية ثلاثية الأبعاد مولدة بالذكاء الاصطناعي (AI Engine)`);
+        console.log(`  ✓ صورة تعبيرية سينمائية ثلاثية الأبعاد مولدة بالذكاء الاصطناعي (AI Engine)`);
         return buf;
       }
     }
@@ -421,37 +449,35 @@ async function generateCardIllustration(card) {
 
   return null;
 }
-// ─── توليد البطاقة PNG عبر sharp ─────────────────────────────────────────
+
+// ─── توليد الصورة النهائية للنشر على فيسبوك ──────────────────────────────
 async function renderCard(card, slug) {
   const sharp = require('sharp');
   if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
   const pngPath = path.join(OUTPUT_DIR, `${slug}.png`);
-  const svg = buildCardSvg(card);
-  const svgBuf = Buffer.from(svg);
 
-  // توليد صورة توضيحية حية بالذكاء الاصطناعي
+  // توليد صورة تعبيرية حصرية فائقة الواقعية عبر نانو بنانا برو
   const aiIllustrationBuf = await generateCardIllustration(card);
 
   if (aiIllustrationBuf) {
-    // دمج الصورة التوضيحية الحية في خلفية البطاقة مع تعتيم فخم وSVG Glassmorphism
-    const darkenedBg = await sharp(aiIllustrationBuf)
+    // حفظ الصورة التعبيرية النقية مباشرة بدون أي بطاقات نصية أو تشويه
+    await sharp(aiIllustrationBuf)
       .resize(CARD_WIDTH, CARD_HEIGHT, { fit: 'cover' })
-      .modulate({ brightness: 0.38, saturation: 1.15 })
-      .toBuffer();
-
-    await sharp(darkenedBg)
-      .composite([{ input: svgBuf, top: 0, left: 0 }])
       .png({ quality: 95 })
       .toFile(pngPath);
-  } else {
-    await sharp(svgBuf, { density: 200 })
-      .resize(CARD_WIDTH, CARD_HEIGHT)
-      .png({ quality: 95 })
-      .toFile(pngPath);
+    console.log(`  ✓ تم حفظ الصورة التعبيرية النقية (نانو بنانا): ${pngPath} (${(fs.statSync(pngPath).size / 1024).toFixed(0)} KB)`);
+    return pngPath;
   }
 
-  console.log(`  ✓ البطاقة: ${pngPath} (${(fs.statSync(pngPath).size / 1024).toFixed(0)} KB)`);
+  // Fallback اضطراري
+  const svg = buildCardSvg(card);
+  const svgBuf = Buffer.from(svg);
+  await sharp(svgBuf, { density: 200 })
+    .resize(CARD_WIDTH, CARD_HEIGHT)
+    .png({ quality: 95 })
+    .toFile(pngPath);
+  console.log(`  ✓ صورة بديلة: ${pngPath}`);
   return pngPath;
 }
 
@@ -460,7 +486,7 @@ function buildCaption(card) {
   const points = (card.points || []).map((p) => `• ${p.label}: ${p.detail}`).join('\n');
   const hashtags = normalizeHashtags(card.hashtags).join(' ');
   return [
-    `🃏 ${card.title}`,
+    `⚖️ ${card.title}`,
     ``,
     `${card.hook}`,
     ``,
