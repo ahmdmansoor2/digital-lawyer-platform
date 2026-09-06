@@ -1351,6 +1351,17 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1429115699133788",
       "publishedAt": "2026-08-21T07:07:45.067Z"
+    },
+    {
+      "topicId": "trend-unlicensed-lawyer-penalties-egypt",
+      "title": "عقوبة انتحال صفة محامٍ وممارسة المهنة بدون قيد في القانون المصري",
+      "videoPath": "D:\\قانوني 7\\scripts\\facebook-publisher\\output\\fb-trend-unlicensed-lawyer-penalties-egypt.mp4",
+      "source": "trending-topics.json",
+      "videoId": "We_BCsKPtkg",
+      "url": "https://www.youtube.com/watch?v=We_BCsKPtkg",
+      "kind": "short",
+      "fbPermalink": "https://www.facebook.com/reel/1408750981352499",
+      "publishedAt": "2026-09-06T19:16:10.650Z"
     }
   ]
 }
