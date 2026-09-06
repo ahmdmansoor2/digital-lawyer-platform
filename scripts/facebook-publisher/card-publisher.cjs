@@ -31,8 +31,8 @@ const REEL_LOG_FILE = path.join(FB_PUBLISHER_DIR, 'facebook-published-log.json')
 const CARD_LOG_FILE = path.join(FB_PUBLISHER_DIR, 'facebook-cards-published-log.json');
 const OUTPUT_DIR = path.join(FB_PUBLISHER_DIR, 'output', 'cards');
 
-const CARD_WIDTH = 1080;
-const CARD_HEIGHT = 1080;
+const CARD_WIDTH = 1280;
+const CARD_HEIGHT = 720;
 
 const CAIRO_FONT_URL = pathToFileURL(
   path.join(FB_PUBLISHER_DIR, 'fonts', 'Cairo.ttf')
@@ -377,35 +377,103 @@ ${tipLines[1] ? `<text x="${rX - 24}" y="796" font-family="${FONT}" font-size="2
 }
 
 // ─── توليد صورة توضيحية حية بالذكاء الاصطناعي (سينمائية ثلاثية الأبعاد) ──────
+// ─── اختيار النمط البصري من أسطول الأنماط السبعة المعتمدة (Rule #5) ────────
+function selectMasterStyle(topic, category) {
+  const text = `${topic} ${category || ''}`.toLowerCase();
+
+  // النمط 6: الدرع والأمن السيبراني
+  if (/ابتزاز|جرائم إلكترونية|مباحث الإنترنت|سايبر|واتساب|فيسبوك|نصب إلكتروني|تهديد/.test(text)) {
+    return {
+      id: 6,
+      name: '3D Cyber Defense & Digital Forensics',
+      prompt: `3D masterwork, cyber defense and digital forensics, glowing cryptographic shield of justice with streaming blue data circuits, floating dark glassmorphism panels displaying encrypted WhatsApp chat proof, digital tracking map, internet police report, and severe prison sentence badge, dramatic volumetric cinematic neon lighting, ray tracing, 8k resolution, ultra-photorealistic, zero cartoon, zero anime`
+    };
+  }
+
+  // النمط 7: المنظومة المعمارية وصك الملكية
+  if (/تطوير عقاري|ترخيص|تصالح|مخالفات بناء|شهر عقاري|عقد بيع شقة|تسجيل عقار/.test(text)) {
+    return {
+      id: 7,
+      name: '3D Architectural Blueprint & Royal Deed',
+      prompt: `3D architectural masterpiece, glowing navy blueprint with a rising photorealistic miniature glass modern tower, authentic Egyptian royal property deed with golden embossed seal and red wax stamp, royal golden key, floating glass inspection cards for construction license, chain of title, and cadastral survey, cinematic ray-traced lighting, 8k render, zero cartoon, zero anime`
+    };
+  }
+
+  // النمط 4: المصفوفة الثنائية المقارنة
+  if (/مقارنة|شيك|إيصال أمانة|استمارة 6|فصل تعسفي|بيع عرفي|تسجيل رسمي/.test(text)) {
+    return {
+      id: 4,
+      name: '3D Split Contrast & Duality Matrix',
+      prompt: `3D split-screen matrix divided vertically by a vertical beam of golden light. Right side has dark crimson warning tones showing illegal risky action with a cracked red seal and caution icon. Left side has royal emerald green tones showing the legal protected action with a pristine official stamped contract, brass balance scale of justice, photorealistic 8k render, cinematic volumetric lighting, zero cartoon, zero anime`
+    };
+  }
+
+  // النمط 5: لوحة المؤشرات والحاسبات الذكية
+  if (/مواريث|ميراث|تركة|حاسبة|تعويض|مواعيد|طعن|سقوط|مدد/.test(text)) {
+    return {
+      id: 5,
+      name: '3D Glassmorphism Fintech Dashboard',
+      prompt: `3D luxury glassmorphism fintech and judicial dashboard, floating dark glass cards displaying illuminated golden Arabic legal numerals and countdown counters, an antique polished brass balance scale of justice, a heavy dark mahogany judge's gavel on wooden sound block, official Egyptian succession deed with red wax seal, sunbeams streaming into grand classical courthouse, 8k render, zero cartoon, zero anime`
+    };
+  }
+
+  // النمط 3: نمط غرفة الأدلة الجنائية
+  if (/جنايات|قتل|تزوير|مخدرات|سموم|حبس احتياطي|تلبس/.test(text)) {
+    return {
+      id: 3,
+      name: '3D Forensic Evidence & Investigation Board',
+      prompt: `3D forensic investigation board, antique dark mahogany table illuminated by dramatic focused spotlight, official police investigation files tied with red ribbon and red wax seal, forensic magnifying glass inspecting legal documents, official forensic medical report, brass balance scale of justice, moody cinematic detective courtroom atmosphere, 8k photorealistic render, zero cartoon, zero anime`
+    };
+  }
+
+  // النمط 1: النمط الانسيابي الزجاجي
+  if (/عمل|إجراءات|دعوى|محضرين|عقد/.test(text)) {
+    return {
+      id: 1,
+      name: '3D Glassmorphism Sequential Flowchart',
+      prompt: `3D sequential glassmorphism legal flowchart, 4 floating luxury dark glass cards connected by flowing luminous golden arrows, miniature photorealistic 3D legal symbols inside each card, polished brass scales of justice, stamped official Egyptian court document, golden Arabic legal title at top, cinematic ray tracing, 8k render, zero cartoon, zero anime`
+    };
+  }
+
+  // النمط 2 الافتراضي: النمط السينمائي الحي
+  return {
+    id: 2,
+    name: 'Photorealistic 3D Live-Action Cinematic Mind Map',
+    prompt: `Photorealistic 3D cinematic legal mind map, central charismatic modern Egyptian legal advocate in formal bespoke navy suit gesturing towards glowing holographic justice symbols, 4 floating translucent glass panels in the corners displaying legal articles and gold scales of justice, majestic neoclassical Egyptian marble courtroom, dramatic sunbeams through grand arched windows, ray-traced lighting, 8k resolution, zero cartoon, zero anime`
+  };
+}
+
 // ─── توليد وصف بصري إنجليزي فائق الدقة والتعبير عن الموضوع ──────────────────
 async function generateTopicVisualPrompt(card) {
+  const masterStyle = selectMasterStyle(card.title, card.category);
+  console.log(`  🎨 النمط المعتمد المختار: [النمط ${masterStyle.id}: ${masterStyle.name}]`);
+
   try {
     if (ai) {
       const resp = await ai.models.generateContent({
         model: 'gemini-flash-lite-latest',
-        contents: `You are an art director specializing in creating viral, dynamic, educational comic-style infographics and visual mind maps (Gemini Notebook / Manga Infographic Explainer style) for a prestigious Egyptian legal platform.
-Generate a rich, highly descriptive visual prompt in English for an AI image generator to create a stunning, full-page dynamic visual infographic diagram matching this exact topic:
+        contents: `You are an art director for a prestigious Egyptian legal platform enforcing photorealistic 3D visual mastery (Rule #5).
+Generate a rich, highly descriptive visual prompt in English for an AI image generator (16:9 widescreen) matching this exact topic and style:
 Topic: "${card.title}"
 Category: "${card.category || 'Egyptian Law'}"
 Scenario: "${card.scenario || ''}"
 Key Steps: "${(card.action_steps || []).map(s => s.step + ': ' + s.action).join('; ')}"
+Selected Master Style: "${masterStyle.name}"
+Base Style Prompt: "${masterStyle.prompt}"
 
-Visual Requirements to strictly follow:
-- Style: Dynamic educational comic book infographic, graphic novel explainer, manga-style visual mind map, high-energy comic panels separated by dramatic sunburst and speed rays.
-- Top: Prominent bold stylized 3D header banner in Arabic comic typography with warm golden yellow and bold outlines.
-- Center: Dynamic smart modern Egyptian legal advocate/character in an action pose holding a glowing digital tablet with swirling legal energy lines and holographic justice symbols.
-- 4 Dynamic Corner Panels: Angled comic panels illustrating the 4 core steps/elements of the topic (e.g. golden scales of justice, Egyptian constitution & law books, official stamped legal documents, mobile screen, family or property icons).
-- Details: Clean comic speech/thought bubbles with callout arrows pointing to the relevant steps, clear visual metaphors, speed lines, comic shading.
-- Palette: Vibrant, high-contrast palette of royal navy blue, golden amber, fiery comic orange, and rich emerald green.
-- Quality: Masterpiece, award-winning graphic design, 8k resolution, crisp clean lines, highly legible layout.
-- Output ONLY the prompt string in English.`
+STRICT REQUIREMENTS:
+- 16:9 cinematic widescreen aspect ratio.
+- Photorealistic 8k render, Unreal Engine 5 quality, ray tracing, cinematic volumetric light.
+- Neoclassical Egyptian courtroom, polished brass scales of justice, dark mahogany gavel, official stamped Arabic legal parchment with red wax seal.
+- ABSOLUTELY ZERO CARTOON, ZERO ANIME, ZERO COMIC, ZERO MANGA, NO COMIC PANELS, NO SPEECH BUBBLES.
+- Output ONLY the descriptive prompt in English.`
       });
       const txt = resp.text?.trim().replace(/^["']|["']$/g, '');
-      if (txt && txt.length > 25) return txt;
+      if (txt && txt.length > 25 && !/comic|manga|cartoon/i.test(txt)) return txt;
     }
   } catch (e) {}
 
-  return `masterpiece, ultra-detailed educational comic book infographic diagram, manga style visual mind map about Egyptian Law and judicial rights, ${card.title}, dynamic comic panels separated by energy rays, central smart modern Egyptian advocate holding a digital tablet, comic speech bubbles, golden scales of justice, law books, official stamped legal parchment, vibrant comic book colors, deep royal blue and warm amber gold, 8k resolution, graphic novel explainer, clean high contrast layout`;
+  return `${masterStyle.prompt}, topic: ${card.title}, 16:9 aspect ratio, 8k photorealistic render, cinematic lighting, zero cartoon, zero anime`;
 }
 
 // ─── توليد صورة توضيحية حية بالذكاء الاصطناعي (سينمائية ثلاثية الأبعاد عبر نانو بنانا برو) ──────
@@ -413,17 +481,13 @@ async function generateCardIllustration(card) {
   const promptEn = await generateTopicVisualPrompt(card);
   console.log(`  🎨 الوصف البصري التعبيري: "${promptEn.slice(0, 100)}..."`);
 
-  // 1. تجربة Nano Banana Pro عبر حساب Google Pro أولاً
+  // 1. تجربة Google GenAI Image Models
   if (ai) {
-    for (const model of ['gemini-3-pro-image', 'imagen-3.0-generate-002', 'gemini-2.5-flash-image']) {
+    for (const model of ['gemini-2.5-flash-image', 'gemini-3.1-flash-image']) {
       try {
         const resp = await ai.models.generateContent({
           model,
-          contents: [{ text: promptEn }],
-          config: {
-            responseModalities: ['IMAGE', 'TEXT'],
-            imageConfig: { aspectRatio: '1:1', imageSize: '1K' },
-          },
+          contents: [{ text: `${promptEn}. Aspect ratio 16:9, ultra photorealistic 8k.` }],
         });
         const parts = resp.candidates?.[0]?.content?.parts || [];
         const img = parts.find((p) => p.inlineData && p.inlineData.data);
@@ -437,14 +501,15 @@ async function generateCardIllustration(card) {
     }
   }
 
-  // 2. محرك التوليد الفائق (Pollinations مع موديل Flux فائق الدقة والسرعة 8K)
+  // 2. محرك التوليد الفائق (Pollinations مع موديل Flux فائق الدقة والسرعة 8K بنسبة 16:9)
   try {
-    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(promptEn)}?width=1080&height=1080&nologo=true&model=flux&seed=${Math.floor(Math.random() * 100000)}`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(30000) });
+    const cleanPrompt = encodeURIComponent(`${promptEn}, photorealistic 3D, 8k, cinematic lighting, zero cartoon, zero anime`);
+    const url = `https://image.pollinations.ai/prompt/${cleanPrompt}?width=1280&height=720&nologo=true&model=flux&seed=${Math.floor(Math.random() * 100000)}`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(35000) });
     if (res.ok) {
       const buf = Buffer.from(await res.arrayBuffer());
-      if (buf.length > 10000) {
-        console.log(`  ✓ صورة تعبيرية سينمائية ثلاثية الأبعاد مولدة بالذكاء الاصطناعي (Flux Engine 8K)`);
+      if (buf.length > 15000) {
+        console.log(`  ✓ صورة تعبيرية سينمائية ثلاثية الأبعاد 16:9 مولدة بالذكاء الاصطناعي (Flux Engine 8K)`);
         return buf;
       }
     }
