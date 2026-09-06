@@ -175,44 +175,43 @@ async function generateCardContent(topic, retryIdx = 0) {
   ];
   const model = models[retryIdx % models.length];
 
-  const prompt = `أنت خبير قانوني مصري + كاتب إعلانات (copywriter) محترف متخصص في محتوى فيسبوك التعليمي عالي التفاعل.
-صمّم بطاقة تعليمية عن الموضوع التالي بأسلوب يحقق أعلى نسبة مشاهدات ونقرات:
+  const prompt = `أنت محرك NotebookLM Pro القانوني المتخصص في صياغة الأدلة والبطاقات التعليمية القضائية رفيعة المستوى لمنصة المحامي الرقمية.
+حوّل الموضوع القانوني التالي إلى «بطاقة تعليمية مؤصلة وشاملة» بأسلوب NotebookLM Pro المنهجي فائق العمق والدقة والتأثير:
 
-العنوان: ${topic.title}
-التصنيف: ${topic.tag || 'قانون'}
+الموضوع: ${topic.title}
+التصنيف: ${topic.tag || 'قانون مصري'}
 الكلمات المفتاحية: ${topic.keywords || ''}
 
-أرجع JSON فقط بدون أي كلام إضافي:
+أرجع JSON فقط وفق هذا الهيكل الهندسي الدقيق:
 {
-  "hook": "خط افتتاحي يجذب الانتباه خلال ثانية واحدة (سؤال شخصي مباشر أو حقيقة قانونية مفاجئة، 5-8 كلمات)",
-  "title": "عنوان رئيسي قصير بأسلوب مباشر يفيد القارئ (6-9 كلمات) — اختر أسلوب: 'اعرف حقك في...' أو 'متي يحق لك...' أو رقم/فائدة محددة",
-  "points": [
-    { "label": "عنوان النقطة (2-4 كلمات)", "detail": "معلومة قانونية دقيقة مختصرة (7-12 كلمة)" }
+  "title": "عنوان البطاقة التعليمية (واضح، حاسم، جذاب ومؤصل، 6-10 كلمات)",
+  "scenario": "الموقف أو الواقعة العملية في سطرين يجيب عن: ما المشكلة الحقيقية التي تواجه المواطن أو المتعامل على أرض الواقع؟ (20-30 كلمة)",
+  "legal_grounding": "التأصيل والسند التشريعي: اذكر نصوص المواد بدقة وأرقام القوانين المصرية السارية 2026 ذات الصلة (25-40 كلمة)",
+  "cassation_rule": "قاعدة ومبدأ محكمة النقض الحاسم: السابقة القضائية المستقرة التي حسمت هذا النزاع بنص المبدأ (25-40 كلمة)",
+  "action_steps": [
+    { "step": "الخطوة الأولى", "action": "إجراء قانوني عملي حاسم (10-18 كلمة)" },
+    { "step": "الخطوة الثانية", "action": "إجراء توثيقي أو قضائي دقيق (10-18 كلمة)" },
+    { "step": "الخطوة الثالثة", "action": "إجراء وقائي أو تنفيذي حاسم (10-18 كلمة)" }
   ],
-  "tip": "نصيحة عملية في جملة واحدة (8-12 كلمة)",
-  "hashtags": ["هاشتاج1", "هاشتاج2", "هاشتاج3", "هاشتاج4"],
-  "cta": "عبارة CTA قصيرة تدعو لاستشارة محامٍ (4-7 كلمات)"
+  "expert_tip": "نصيحة الخبير القانوني الذهبية لحماية الحق وتفادي الثغرات (15-25 كلمة)",
+  "hashtags": ["هاشتاج1", "هاشتاج2", "هاشتاج3", "هاشتاج4", "هاشتاج5"]
 }
 
-القواعد الذهبية للتفاعل العالي على فيسبوك:
-- الـ hook: اجعله شخصياً ومباشراً — خاطب القارئ بـ "أنت" أو اذكر سيناريو يهمه. لا تبدأ بسؤال عام مثل "هل تعلم؟"
-- العنوان: ركّز على الفائدة والقيمة العملية، وفضّل ذكر رقم أو موعد أو حالة محددة
-- العناوين داخل النقاط: قصيرة وحاسمة، والشرح بدقة قانونية 100٪ — اذكر المادة أو القانون عند اللزوم
-- عربية فصحى سليمة بدون عامية، بأسلوب واضح يقرأه الجميع
-- 3 نقاط فقط كحد أقصى
-- اجعل كل النصوص قصيرة لتظهر كبيرة وواضحة على بطاقة مربعة 1080×1080
-- JSON صحيح 100٪`;
+قواعد الجودة الصارمة لـ NotebookLM:
+1. الدقة والأمانة التشريعية 100% وفق القوانين المصرية وأحكام محكمة النقض.
+2. لغة عربية فصحى قانونية أنيقة وسهلة الفهم تجمع بين الرصانة الأكاديمية والواقعية العملية.
+3. التزام كامل بالهيكل المطلوب دون أي نصوص خارج الـ JSON.`;
 
   try {
     const result = await ai.models.generateContent({
       model,
       contents: prompt,
-      config: { temperature: 0.7, maxOutputTokens: 2000 },
+      config: { temperature: 0.6, maxOutputTokens: 2500 },
     });
     let raw = result.candidates?.[0]?.content?.parts?.[0]?.text || '';
     raw = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     const parsed = JSON.parse(raw.match(/\{[\s\S]*\}/)?.[0] || raw);
-    if (!parsed.title || !Array.isArray(parsed.points)) throw new Error('JSON ناقص');
+    if (!parsed.title || !parsed.legal_grounding) throw new Error('JSON ناقص');
     return parsed;
   } catch (err) {
     if (err.status === 429 || err.message?.includes('429') || err.message?.includes('Quota') || retryIdx < models.length - 1) {
@@ -220,7 +219,7 @@ async function generateCardContent(topic, retryIdx = 0) {
       await sleep(15000);
       return generateCardContent(topic, retryIdx + 1);
     }
-    throw new Error(`فشل توليد البطاقة: ${err.message}`);
+    throw new Error(`فشل توليد بطاقة NotebookLM التعليمية: ${err.message}`);
   }
 }
 
@@ -387,7 +386,8 @@ async function generateTopicVisualPrompt(card) {
 Generate a rich, highly descriptive visual prompt in English for Nano Banana Pro / Imagen 3 to generate a single photorealistic, cinematic 3D masterpiece image directly visualizing this topic:
 Topic: "${card.title}"
 Category: "${card.category || 'Egyptian Law'}"
-Context & Points: ${(card.points || []).map((p) => p.label).join(', ')}
+Scenario: "${card.scenario || ''}"
+Legal Context: "${card.legal_grounding || ''}"
 
 Guidelines:
 - Create a powerful visual metaphor representing the core essence of the topic (e.g., employment contracts, real estate keys and classical architecture, family estate papers, court gavel and golden scales of justice, judicial chambers, corporate legal agreement).
@@ -432,19 +432,44 @@ async function generateCardIllustration(card) {
     }
   }
 
-  // 2. Fallback: توليد صورة حية بالذكاء الاصطناعي عبر Pollinations / AI Engine
+  // 2. محرك التوليد الفائق (Pollinations مع موديل Flux فائق الدقة والسرعة 8K)
   try {
-    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(promptEn)}?width=1080&height=1080&nologo=true&seed=${Math.floor(Math.random() * 100000)}`;
-    const res = await fetch(url, { signal: AbortSignal.timeout(25000) });
+    const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(promptEn)}?width=1080&height=1080&nologo=true&model=flux&seed=${Math.floor(Math.random() * 100000)}`;
+    const res = await fetch(url, { signal: AbortSignal.timeout(30000) });
     if (res.ok) {
       const buf = Buffer.from(await res.arrayBuffer());
-      if (buf.length > 5000) {
-        console.log(`  ✓ صورة تعبيرية سينمائية ثلاثية الأبعاد مولدة بالذكاء الاصطناعي (AI Engine)`);
+      if (buf.length > 10000) {
+        console.log(`  ✓ صورة تعبيرية سينمائية ثلاثية الأبعاد مولدة بالذكاء الاصطناعي (Flux Engine 8K)`);
         return buf;
       }
     }
   } catch (err) {
-    console.warn(`  ⚠️ تعذر جلب الصورة التوضيحية الحية: ${err.message}`);
+    console.warn(`  ⚠️ تعذر جلب صورة Flux: ${err.message}`);
+  }
+
+  // 3. Fallback سينمائي وقضائي موثق عبر مكتبة الصور الفوتوغرافية العالمية (Pexels 4K Legal)
+  if (process.env.PEXELS_API_KEY) {
+    try {
+      const pexelsRes = await fetch(`https://api.pexels.com/v1/search?query=lawyer+courtroom+justice+judge&per_page=15`, {
+        headers: { Authorization: process.env.PEXELS_API_KEY },
+        signal: AbortSignal.timeout(10000)
+      });
+      if (pexelsRes.ok) {
+        const pData = await pexelsRes.json();
+        const photos = pData.photos || [];
+        if (photos.length > 0) {
+          const randPhoto = photos[Math.floor(Math.random() * photos.length)];
+          const imgUrl = randPhoto.src?.large2x || randPhoto.src?.original;
+          const imgFetch = await fetch(imgUrl, { signal: AbortSignal.timeout(15000) });
+          if (imgFetch.ok) {
+            console.log(`  ✓ صورة قضائية فوتوغرافية فائقة الجودة من الأرشيف المعتمد (Pexels Legal)`);
+            return Buffer.from(await imgFetch.arrayBuffer());
+          }
+        }
+      }
+    } catch (pErr) {
+      console.warn(`  ⚠️ تعذر جلب صورة Pexels: ${pErr.message}`);
+    }
   }
 
   return null;
@@ -457,49 +482,76 @@ async function renderCard(card, slug) {
 
   const pngPath = path.join(OUTPUT_DIR, `${slug}.png`);
 
-  // توليد صورة تعبيرية حصرية فائقة الواقعية عبر نانو بنانا برو
+  // توليد صورة تعبيرية حصرية فائقة الواقعية عبر نانو بنانا برو / فلكس (نقية 100% بدون أي كتابة)
   const aiIllustrationBuf = await generateCardIllustration(card);
 
   if (aiIllustrationBuf) {
-    // حفظ الصورة التعبيرية النقية مباشرة بدون أي بطاقات نصية أو تشويه
     await sharp(aiIllustrationBuf)
       .resize(CARD_WIDTH, CARD_HEIGHT, { fit: 'cover' })
       .png({ quality: 95 })
       .toFile(pngPath);
-    console.log(`  ✓ تم حفظ الصورة التعبيرية النقية (نانو بنانا): ${pngPath} (${(fs.statSync(pngPath).size / 1024).toFixed(0)} KB)`);
+    console.log(`  ✓ تم حفظ الصورة التعبيرية السينمائية النقية بنجاح: ${pngPath} (${(fs.statSync(pngPath).size / 1024).toFixed(0)} KB)`);
     return pngPath;
   }
 
-  // Fallback اضطراري
-  const svg = buildCardSvg(card);
-  const svgBuf = Buffer.from(svg);
-  await sharp(svgBuf, { density: 200 })
-    .resize(CARD_WIDTH, CARD_HEIGHT)
+  // في حال تعذر الاتصال تماماً: توليد خلفية ملكية وقضائية راقية بدون نصوص مكدسة
+  const blankCanvas = `<svg xmlns="http://www.w3.org/2000/svg" width="${CARD_WIDTH}" height="${CARD_HEIGHT}" viewBox="0 0 ${CARD_WIDTH} ${CARD_HEIGHT}">
+    <defs>
+      <radialGradient id="bgG" cx="50%" cy="40%" r="70%">
+        <stop offset="0%" stop-color="#1E293B"/>
+        <stop offset="50%" stop-color="#0F172A"/>
+        <stop offset="100%" stop-color="#020617"/>
+      </radialGradient>
+      <linearGradient id="goldG" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#F59E0B"/>
+        <stop offset="100%" stop-color="#D97706"/>
+      </linearGradient>
+    </defs>
+    <rect width="${CARD_WIDTH}" height="${CARD_HEIGHT}" fill="url(#bgG)"/>
+    <circle cx="540" cy="500" r="320" fill="none" stroke="rgba(245, 158, 11, 0.12)" stroke-width="2"/>
+    <text x="540" y="480" font-family="'Cairo', sans-serif" font-size="120" text-anchor="middle" fill="url(#goldG)">⚖️</text>
+    <text x="540" y="600" font-family="'Cairo', sans-serif" font-size="34" font-weight="900" text-anchor="middle" fill="#F8FAFC">منصة المحامي الرقمية</text>
+    <text x="540" y="650" font-family="'Cairo', sans-serif" font-size="22" font-weight="600" text-anchor="middle" fill="#94A3B8">بطاقة تعليمية قضائية موثقة</text>
+  </svg>`;
+
+  await sharp(Buffer.from(blankCanvas))
     .png({ quality: 95 })
     .toFile(pngPath);
-  console.log(`  ✓ صورة بديلة: ${pngPath}`);
+  console.log(`  ✓ تم حفظ خلفية الهيبة القضائية النقية: ${pngPath}`);
   return pngPath;
 }
 
-// ─── بناء الكابشن ─────────────────────────────────────────────────────────
+// ─── بناء كابشن البطاقة التعليمية بنظام NotebookLM Pro ─────────────────────────
 function buildCaption(card) {
-  const points = (card.points || []).map((p) => `• ${p.label}: ${p.detail}`).join('\n');
+  const steps = (card.action_steps || []).map((s, i) => `${i + 1}️⃣ ${s.step}: ${s.action}`).join('\n');
   const hashtags = normalizeHashtags(card.hashtags).join(' ');
+
   return [
+    `🎓 بطاقة تعليمية مؤصلة | مرجعك القانوني اليومي المعتمد`,
     `⚖️ ${card.title}`,
     ``,
-    `${card.hook}`,
+    `📌 الواقعة والمسألة القانونية:`,
+    `${card.scenario || ''}`,
     ``,
-    points,
+    `🏛️ التأصيل والسند التشريعي المصري الساري:`,
+    `${card.legal_grounding || ''}`,
     ``,
-    `💡 نصيحة قانونية: ${card.tip}`,
+    `⚖️ مبدأ محكمة النقض الحاسم:`,
+    `${card.cassation_rule || ''}`,
+    ``,
+    `📋 الدليل الإجرائي العملي (3 خطوات حاسمة):`,
+    steps,
+    ``,
+    `💡 نصيحة الخبير الذهبية:`,
+    `${card.expert_tip || ''}`,
     ``,
     hashtags,
     `───────────────────────`,
-    `⚖️ منصة المحامي الرقمية | مرجعك التشريعي الأول في مصر`,
+    `⚖️ منصة المحامي الرقمية | المرجع التشريعي الأول في مصر`,
     `📌 نصوص القوانين المصرية كاملة • بنك أحكام محكمة النقض • موسوعة العقود والصيغ • 15 حاسبة قانونية ذكية مجاناً 100%`,
-    `🧮 احسب مستحقاتك والتعويضات فوراً: https://mohamidigital.online/legal-calculators.html`,
-    `🌐 تفضل بزيارة المنصة وتجربة كافة الخدمات الذكية لدعم نشر الثقافة القانونية:`,
+    `🧮 احسب مستحقاتك والتعويضات والمدد القانونية فوراً:`,
+    `👉 https://mohamidigital.online/legal-calculators.html`,
+    `🌐 تفضل بزيارة المنصة وتجربة كافة الخدمات الذكية:`,
     `👉 https://mohamidigital.online/`,
   ].join('\n');
 }
@@ -539,7 +591,8 @@ async function main() {
   const card = await generateCardContent({ title: topic.title, tag: topic.tag, keywords: topic.keywords });
   card.category = topic.tag;
   card.hashtags = normalizeHashtags(card.hashtags);
-  console.log(`  ✓ ${card.points.length} نقاط | ${card.hashtags.length} هاشتاجات`);
+  card.points = card.action_steps || [];
+  console.log(`  ✓ ${card.action_steps?.length || 0} خطوات إجرائية | ${card.hashtags.length} هاشتاجات`);
 
   // 2. رسم البطاقة
   console.log('\n[2/3] جاري رسم البطاقة (1080×1080، احترافية)...');
