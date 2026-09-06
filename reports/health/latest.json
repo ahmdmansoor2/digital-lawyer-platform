@@ -1,6 +1,6 @@
 {
   "date": "2026-09-06",
-  "generatedAt": "2026-09-06T18:17:10.988Z",
+  "generatedAt": "2026-09-06T18:19:20.273Z",
   "status": "error",
   "blogArticles": 184,
   "fbPosts": 17,
@@ -52,6 +52,12 @@
     {
       "name": "log_vs_live",
       "label": "الاستضافة: تطابق سجلّ النشر مع المحتوى الحي",
+      "status": "ok",
+      "findings": 0
+    },
+    {
+      "name": "radar_archive",
+      "label": "رصد المحامي: سلامة واكتمال الأرشيف التراكمي",
       "status": "ok",
       "findings": 0
     }

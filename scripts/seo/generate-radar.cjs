@@ -305,7 +305,7 @@ function saveArchive(articles) {
   const data = {
     baseUrl: BASE_URL,
     updatedAt: cairoNow(),
-    articles: articles.slice(0, MAX_ARCHIVE),
+    articles: articles, // أرشيف تراكمي دائم — ممنوع أي تقليص أو بتر للمحتوى
   };
   fs.writeFileSync(ARCHIVE_FILE, JSON.stringify(data, null, 2), 'utf8');
 }
@@ -806,7 +806,7 @@ async function main() {
     }
   }
 
-  const archiveEntries = articles.filter((e) => e.date !== today).slice(0, MAX_ARCHIVE_SHOWN);
+  const archiveEntries = articles.filter((e) => e.date !== today);
 
   // 4) الصفحات المستقلة للموضوعات (اليوم + الأرشيف) — تُعاد كتابتها دائماً لتعكس آخر تحديثات المحتوى
   try {

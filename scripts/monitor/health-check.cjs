@@ -436,6 +436,42 @@ async function checkLogVsLive(slugs) {
   c.summary = `${logArticles.length} مقالاً في السجلّ، ${todayLog.length} منها اليوم`;
 }
 
+// ══ 8) سلامة واكتمال وتراكمية أرشيف رصد المحامي ══════════════════════════════
+async function checkRadarArchive() {
+  const c = addCheck('radar_archive', 'رصد المحامي: سلامة واكتمال الأرشيف التراكمي');
+  try {
+    const archivePath = path.join(ROOT, 'public', 'radar-archive.json');
+    if (!fs.existsSync(archivePath)) {
+      find(c, 'error', 'ملف radar-archive.json مفقود!');
+      return;
+    }
+    const data = JSON.parse(fs.readFileSync(archivePath, 'utf8'));
+    const articles = data.articles || [];
+    const minExpectedDays = 28;
+    if (articles.length < minExpectedDays) {
+      find(c, 'error', `أرشيف رصد المحامي تعرض للبتر أو النقص (${articles.length} يوم فقط، المتوقع ${minExpectedDays}+ يوم)!`);
+    }
+
+    try {
+      const resp = await fetchWithTimeout(`${BASE_URL}/legal-radar.html`);
+      if (resp.status === 200) {
+        const html = await resp.text();
+        const m = html.match(/جميع الموضوعات \((\d+) موضوعاً — (\d+) يوم\)/);
+        if (m) {
+          const shownDays = parseInt(m[2], 10);
+          if (shownDays < articles.length) {
+            find(c, 'error', `صفحة رصد المحامي تعرض ${shownDays} يوم فقط بينما الأرشيف يحتوي على ${articles.length} يوم!`);
+          }
+        }
+      }
+    } catch {}
+
+    c.summary = `${articles.length} يوماً محفوظاً تراكمياً (${articles.reduce((acc, a) => acc + (a.topics?.length || 0), 0)} موضوعاً)`;
+  } catch (e) {
+    find(c, 'warn', `تعذر فحص أرشيف رصد المحامي: ${e.message}`);
+  }
+}
+
 // ══ التقرير ═══════════════════════════════════════════════════════════════
 function severityBadge(s) {
   return s === 'error' ? '🔴' : s === 'warn' ? '🟡' : '✅';
@@ -574,6 +610,7 @@ async function sendTelegramHealthAlert(summary, checks) {
   await checkFacebook(todayLog);
   await checkGithubRuns();
   await checkLogVsLive(slugs);
+  await checkRadarArchive();
 
   const summary = {
     date: cairoDate(),
