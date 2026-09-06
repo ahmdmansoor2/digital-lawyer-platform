@@ -145,6 +145,7 @@ async function processTopic(topic, opts) {
   // 5. النشر على فيسبوك
   if (!opts.dryRun) {
     console.log('\n📤 جاري النشر على فيسبوك...');
+    const hashtags = buildHashtags(topic);
     const description = [
       plan.hook,
       '',
