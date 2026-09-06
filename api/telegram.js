@@ -120,6 +120,7 @@ export default async function handler(req, res) {
     const key = (GEMINI_API_KEY || '').trim().replace(/^["']|["']$/g, '');
     return res.status(200).json({
       status: 'active',
+      deployId: '2026-09-06-tg-fix',
       persona: 'Antigravity Executive AI',
       geminiKeyLength: key.length,
       geminiKeyPrefix: key.substring(0, 8),
@@ -130,7 +131,22 @@ export default async function handler(req, res) {
   }
 
   try {
-    const body = req.body || {};
+    let body = req.body;
+    if (!body && typeof req[Symbol.asyncIterator] === 'function') {
+      const buffers = [];
+      for await (const chunk of req) {
+        buffers.push(chunk);
+      }
+      const raw = Buffer.concat(buffers).toString();
+      try {
+        body = JSON.parse(raw);
+      } catch (_) {}
+    } else if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+      } catch (_) {}
+    }
+    body = body || {};
   
   // معالجة الضغط على الأزرار المضمنة (Inline Keyboard Callbacks)
   if (body.callback_query) {
