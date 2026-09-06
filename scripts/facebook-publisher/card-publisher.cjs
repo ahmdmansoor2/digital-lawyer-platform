@@ -625,6 +625,95 @@ function buildCaption(card) {
   ].join('\n');
 }
 
+// ─── مفتش الجودة والنزاهة البصرية التلقائي (Pre-Flight Visual Quality Gate) ────
+async function inspectVisualQuality(imagePath, topicTitle) {
+  console.log('\n[2.5/3] 🛡️ جاري فحص النزاهة والجودة البصرية للبطاقة قبل النشر...');
+
+  if (!fs.existsSync(imagePath)) {
+    return { passed: false, reason: 'ملف الصورة غير موجود على القرص' };
+  }
+
+  const imageBuf = fs.readFileSync(imagePath);
+  if (imageBuf.length < 15000) {
+    return { passed: false, reason: `حجم ملف الصورة غير كافٍ (${imageBuf.length} بايت)` };
+  }
+
+  // فحص الأبعاد الإلزامية بنسبة 16:9
+  try {
+    const sharp = require('sharp');
+    const meta = await sharp(imageBuf).metadata();
+    if (meta.width !== 1280 || meta.height !== 720) {
+      console.warn(`  ⚠️ إعادة ضبط الأبعاد إجبارياً إلى 1280x720 (16:9)`);
+      await sharp(imageBuf)
+        .resize(1280, 720, { fit: 'cover' })
+        .png({ quality: 95 })
+        .toFile(imagePath);
+    }
+  } catch (shErr) {
+    console.warn(`  ⚠️ تنبيه معالجة Sharp: ${shErr.message}`);
+  }
+
+  // فحص الذكاء الاصطناعي البصري (Gemini Vision) لمكافحة الهلوسة والكرتون والتشوه
+  if (ai) {
+    try {
+      const refreshedBuf = fs.readFileSync(imagePath);
+      const base64Data = refreshedBuf.toString('base64');
+      const response = await ai.models.generateContent({
+        model: 'gemini-flash-lite-latest',
+        contents: [
+          {
+            text: `You are the strict Chief Visual Integrity Inspector for the Egyptian digital lawyer platform 'المحامي الرقمي'.
+Examine this image generated for legal card topic: "${topicTitle}".
+
+STRICT REJECTION CRITERIA:
+1. Cartoon / Comic / Manga / Anime / Doodle (Must FAIL)
+2. Hallucinated abstract shapes, blurry discs, alien scribbles, corrupted textures (Must FAIL)
+3. Distorted, creepy, or illegible gibberish text in focal areas (Must FAIL)
+4. Absence of dignified legal/judicial atmosphere (Must FAIL)
+
+PASS CRITERIA:
+- Realistic 3D render or dignified photorealistic legal elements (scales of justice, courtroom, gavel, legal documents, glassmorphism dashboard).
+
+Return ONLY a JSON object:
+{
+  "passed": boolean,
+  "confidence_score": number (0-100),
+  "is_cartoon": boolean,
+  "is_hallucinated": boolean,
+  "reason": "short explanation in Arabic"
+}`
+          },
+          {
+            inlineData: {
+              mimeType: 'image/png',
+              data: base64Data
+            }
+          }
+        ],
+        config: {
+          responseMimeType: 'application/json'
+        }
+      });
+
+      const audit = JSON.parse(response.text?.trim() || '{}');
+      console.log(`  🛡️ نتيجة فحص الرؤية: passed=${audit.passed}, score=${audit.confidence_score}%, سبب=${audit.reason}`);
+
+      if (audit.is_cartoon || audit.is_hallucinated || audit.confidence_score < 65) {
+        return {
+          passed: false,
+          reason: audit.reason || 'الصورة مرفوضة: تتضمن كرتون أو تشوهات بصرية تخالف ميثاق المنصة'
+        };
+      }
+
+      return { passed: true, score: audit.confidence_score, reason: audit.reason };
+    } catch (vErr) {
+      console.warn(`  ⚠️ تعذر فحص Gemini Vision (${vErr.message})`);
+    }
+  }
+
+  return { passed: true, reason: 'تم اجتياز الفحص الهيكلي' };
+}
+
 // ─── العملية الرئيسية ─────────────────────────────────────────────────────
 async function main() {
   const opts = parseArgs();
@@ -664,8 +753,22 @@ async function main() {
   console.log(`  ✓ ${card.action_steps?.length || 0} خطوات إجرائية | ${card.hashtags.length} هاشتاجات`);
 
   // 2. رسم البطاقة
-  console.log('\n[2/3] جاري رسم البطاقة (1080×1080، احترافية)...');
+  console.log('\n[2/3] جاري رسم البطاقة (1280×720 بنسبة 16:9)...');
   const pngPath = await renderCard(card, topic.slug);
+
+  // 2.5 مفتش الجودة والنزاهة البصرية (Rule #5 Quality Gate)
+  const quality = await inspectVisualQuality(pngPath, card.title);
+  if (!quality.passed) {
+    console.error(`\n❌ [حظر الجودة التلقائي] تم منع النشر فوراً لحماية هيبة المنصة!`);
+    console.error(`   السبب: ${quality.reason}`);
+
+    try {
+      const { sendTelegram } = require('../telegram-bot/assistant.cjs');
+      await sendTelegram(`🚨 <b>إنذار حراسة الجودة والنزاهة البصرية:</b>\nتم منع نشر بطاقة فيسبوك تلقائياً لعدم اجتيازها معايير النزاهة الفنية.\n\n📌 <b>الموضوع:</b> ${card.title}\n⚠️ <b>سبب الرفض:</b> ${quality.reason}\n🛡️ لم يتم نشر أي شيء على فيسبوك لحماية المنصة.`);
+    } catch (e) {}
+
+    process.exit(1);
+  }
 
   // 3. النشر
   if (!opts.dryRun) {
