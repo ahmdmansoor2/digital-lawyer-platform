@@ -154,13 +154,11 @@ export default async function handler(req, res) {
   }
 
   const message = body.message;
-  if (!message || !message.text) {
+  if (!message) {
     return res.status(200).send('OK');
   }
 
-  const senderId = message.chat.id;
-  const text = message.text.trim();
-
+  const senderId = message.chat?.id;
   if (String(senderId) !== String(CHAT_ID)) {
     if (BOT_TOKEN) {
       await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
@@ -172,6 +170,66 @@ export default async function handler(req, res) {
         })
       });
     }
+    return res.status(200).send('OK');
+  }
+
+  // 📸 معالجة استقبال المخططات البيانية والصور من نوت بوك مباشرة عبر تليجرام
+  if (message.photo && message.photo.length > 0) {
+    await sendTelegram('📥 <b>تم استلام المخطط البياني بنجاح يا سيادة المستشار!</b>\nجاري قراءة وتحليل المخطط وصياغة المنشور التأصيلي ونشره على فيسبوك فوراً...', 'HTML', true);
+
+    try {
+      const bestPhoto = message.photo[message.photo.length - 1];
+      const fileRes = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getFile?file_id=${bestPhoto.file_id}`);
+      const fileData = await fileRes.json();
+
+      if (fileData.ok && fileData.result?.file_path) {
+        const imgUrl = `https://api.telegram.org/file/bot${BOT_TOKEN}/${fileData.result.file_path}`;
+        const imgFetch = await fetch(imgUrl);
+        const imgBuf = Buffer.from(await imgFetch.arrayBuffer());
+        const base64Img = imgBuf.toString('base64');
+
+        let caption = '';
+        if (GEMINI_API_KEY) {
+          const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+          const analysis = await ai.models.generateContent({
+            model: 'gemini-flash-lite-latest',
+            contents: [
+              { text: 'أنت محرك النشر القضائي لمنصة المحامي الرقمية. حلل هذا المخطط البياني التعليمي بدقة واستخرج منه: العنوان، المسألة القانونية، السند التشريعي 2026، مبدأ محكمة النقض، 3 خطوات إجرائية حاسمة، ونصيحة الخبير. ثم صيغ المنشور النهائي بأسلوب NotebookLM Pro مع هاشتاجات وروابط المنصة https://mohamidigital.online/legal-calculators.html و https://mohamidigital.online/ .' },
+              { inlineData: { mimeType: 'image/jpeg', data: base64Img } }
+            ]
+          });
+          caption = analysis.candidates?.[0]?.content?.parts?.[0]?.text || '';
+        }
+
+        const fbToken = process.env.FB_PAGE_TOKEN;
+        const fbPageId = process.env.FB_PAGE_ID;
+        if (fbToken && fbPageId) {
+          const formData = new FormData();
+          formData.append('access_token', fbToken);
+          formData.append('caption', caption || message.caption || 'مخطط بياني تعليمي | منصة المحامي الرقمية');
+          formData.append('source', new Blob([imgBuf], { type: 'image/jpeg' }), 'notebook-infographic.jpg');
+
+          const fbRes = await fetch(`https://graph.facebook.com/v22.0/${fbPageId}/photos`, {
+            method: 'POST',
+            body: formData
+          });
+          const fbData = await fbRes.json();
+          if (fbData.id) {
+            const postUrl = `https://www.facebook.com/${fbPageId}_${fbData.post_id || fbData.id}`;
+            await sendTelegram(`✅ <b>تم نشر المخطط البياني بنجاح على فيسبوك!</b>\n\n🔗 <b>رابط المنشور المباشر:</b>\n${postUrl}`, 'HTML', true);
+            return res.status(200).send('OK');
+          }
+        }
+
+        await sendTelegram(`✓ <b>تم تحليل المخطط البياني بنجاح يا سيادة المستشار!</b>\n\n${caption.slice(0, 400)}...`, 'HTML', true);
+      }
+    } catch (err) {
+      await sendTelegram(`⚠️ حدث خطأ أثناء معالجة المخطط البياني: ${err.message}`, 'HTML', true);
+    }
+    return res.status(200).send('OK');
+  }
+
+  if (!message.text) {
     return res.status(200).send('OK');
   }
 

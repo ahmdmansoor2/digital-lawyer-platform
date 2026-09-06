@@ -382,17 +382,21 @@ async function generateTopicVisualPrompt(card) {
     if (ai) {
       const resp = await ai.models.generateContent({
         model: 'gemini-flash-lite-latest',
-        contents: `You are an art director for a prestigious Egyptian legal and judicial platform.
-Generate a rich, highly descriptive visual prompt in English for Nano Banana Pro / Imagen 3 to generate a single photorealistic, cinematic 3D masterpiece image directly visualizing this topic:
+        contents: `You are an art director specializing in creating viral, dynamic, educational comic-style infographics and visual mind maps (Gemini Notebook / Manga Infographic Explainer style) for a prestigious Egyptian legal platform.
+Generate a rich, highly descriptive visual prompt in English for an AI image generator to create a stunning, full-page dynamic visual infographic diagram matching this exact topic:
 Topic: "${card.title}"
 Category: "${card.category || 'Egyptian Law'}"
 Scenario: "${card.scenario || ''}"
-Legal Context: "${card.legal_grounding || ''}"
+Key Steps: "${(card.action_steps || []).map(s => s.step + ': ' + s.action).join('; ')}"
 
-Guidelines:
-- Create a powerful visual metaphor representing the core essence of the topic (e.g., employment contracts, real estate keys and classical architecture, family estate papers, court gavel and golden scales of justice, judicial chambers, corporate legal agreement).
-- Style: Photorealistic 3D cinema concept, 8k resolution, volumetric moody lighting, deep royal navy blue, warm gold, and rich emerald tones. Classical Egyptian judicial dignity, marble columns, elegant mahogany.
-- CRITICAL: Absolutely NO text, NO letters, NO typography, NO words, NO watermarks.
+Visual Requirements to strictly follow:
+- Style: Dynamic educational comic book infographic, graphic novel explainer, manga-style visual mind map, high-energy comic panels separated by dramatic sunburst and speed rays.
+- Top: Prominent bold stylized 3D header banner in Arabic comic typography with warm golden yellow and bold outlines.
+- Center: Dynamic smart modern Egyptian legal advocate/character in an action pose holding a glowing digital tablet with swirling legal energy lines and holographic justice symbols.
+- 4 Dynamic Corner Panels: Angled comic panels illustrating the 4 core steps/elements of the topic (e.g. golden scales of justice, Egyptian constitution & law books, official stamped legal documents, mobile screen, family or property icons).
+- Details: Clean comic speech/thought bubbles with callout arrows pointing to the relevant steps, clear visual metaphors, speed lines, comic shading.
+- Palette: Vibrant, high-contrast palette of royal navy blue, golden amber, fiery comic orange, and rich emerald green.
+- Quality: Masterpiece, award-winning graphic design, 8k resolution, crisp clean lines, highly legible layout.
 - Output ONLY the prompt string in English.`
       });
       const txt = resp.text?.trim().replace(/^["']|["']$/g, '');
@@ -400,7 +404,7 @@ Guidelines:
     }
   } catch (e) {}
 
-  return `masterpiece, ultra-realistic 3D cinematic scene of modern Egyptian courtroom and judicial concept, ${card.category || 'Egyptian Law'}, ${card.title}, glowing golden scales of justice, elegant mahogany gavel, grand classical marble columns, dramatic volumetric moody lighting, deep sapphire blue and warm amber gold tones, photorealistic octane render, 8k resolution, elegant depth of field, award-winning atmosphere, no text, no letters, no watermark, clean background`;
+  return `masterpiece, ultra-detailed educational comic book infographic diagram, manga style visual mind map about Egyptian Law and judicial rights, ${card.title}, dynamic comic panels separated by energy rays, central smart modern Egyptian advocate holding a digital tablet, comic speech bubbles, golden scales of justice, law books, official stamped legal parchment, vibrant comic book colors, deep royal blue and warm amber gold, 8k resolution, graphic novel explainer, clean high contrast layout`;
 }
 
 // ─── توليد صورة توضيحية حية بالذكاء الاصطناعي (سينمائية ثلاثية الأبعاد عبر نانو بنانا برو) ──────
