@@ -59,6 +59,14 @@ async function main() {
 
   console.log(`Found ${urls.length} URLs in sitemap.`);
 
+  // Support manual CLI URLs: node google-indexing.cjs --urls https://...
+  const args = process.argv.slice(2);
+  const cliUrlsIndex = args.indexOf('--urls');
+  let specificUrls = [];
+  if (cliUrlsIndex !== -1 && args[cliUrlsIndex + 1]) {
+    specificUrls = args[cliUrlsIndex + 1].split(',').map(u => u.trim());
+  }
+
   // Priority queue: Homepage, core hubs, latest blogs
   const priorityUrls = [
     'https://mohamidigital.online/',
@@ -70,8 +78,12 @@ async function main() {
     'https://mohamidigital.online/legal-radar.html'
   ];
 
-  const toSubmit = Array.from(new Set([...priorityUrls, ...urls])).slice(0, 100);
-  console.log(`Submitting ${toSubmit.length} URLs to Google Indexing API...`);
+  // Separate blog URLs and reverse them so newest articles are submitted first
+  const blogUrls = urls.filter(u => u.includes('/blog/') && u !== 'https://mohamidigital.online/blog/').reverse();
+  const otherUrls = urls.filter(u => !u.includes('/blog/'));
+
+  const toSubmit = Array.from(new Set([...specificUrls, ...priorityUrls, ...blogUrls, ...otherUrls])).slice(0, 100);
+  console.log(`Submitting ${toSubmit.length} URLs to Google Indexing API (Newest First)...`);
 
   let successCount = 0;
   let failCount = 0;
@@ -92,6 +104,10 @@ async function main() {
       failCount++;
       if (err.message.includes('Permission') || err.message.includes('403')) {
         console.error('⚠️ تأكد من إضافة الإيميل كـ Owner في Google Search Console');
+        break;
+      }
+      if (err.message.includes('Quota exceeded')) {
+        console.warn('⚠️ تم الوصول إلى الحد الأقصى اليومي المسموح به من Google (200 طلب/يوم). سيتم استئناف الباقي غداً تلقائياً.');
         break;
       }
     }
