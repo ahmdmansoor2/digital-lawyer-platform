@@ -91,20 +91,34 @@ function runCmd(command, cwd = ROOT) {
 }
 
 async function sendTelegram(text, parseMode = 'HTML') {
-  if (!CHAT_ID) return false;
+  const token = process.env.TELEGRAM_BOT_TOKEN || BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID || CHAT_ID;
+  if (!token || !chatId) return false;
   try {
-    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-    const res = await fetch(url, {
+    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+    let res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        chat_id: CHAT_ID,
+        chat_id: chatId,
         text,
         parse_mode: parseMode,
         reply_markup: KEYBOARD
       })
     });
-    const d = await res.json();
+    let d = await res.json();
+    if (!d.ok && parseMode) {
+      res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text.replace(/<[^>]*>/g, ''),
+          reply_markup: KEYBOARD
+        })
+      });
+      d = await res.json();
+    }
     return d.ok;
   } catch (err) {
     console.error('[telegram] خطأ إرسال:', err.message);

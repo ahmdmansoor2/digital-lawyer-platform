@@ -830,6 +830,22 @@ async function main() {
     if (fb?.postId) console.log(`   📘 Facebook Post: https://www.facebook.com/${fb.postId}`);
   }
   console.log('═'.repeat(60) + '\n');
+
+  // 8. إشعار تليجرام للمستشار أحمد منصور
+  try {
+    const { sendTelegram } = require('./telegram-bot/assistant.cjs');
+    let tgMsg = `📢 <b>تم نشر مقالات جديدة على المنصة وفيسبوك!</b>\n\n`;
+    for (const { topic, articleUrl, wordCount } of publishedArticles) {
+      const fb = fbPostResults.find(r => r?.topic?.slug === topic.slug);
+      const fbLink = fb?.postId ? `\n📘 <a href="https://www.facebook.com/${fb.postId}">منشور فيسبوك</a>` : '';
+      tgMsg += `⚖️ <b><a href="${articleUrl}">${topic.title}</a></b>\n📊 الكلمات: +${wordCount} كلمة${fbLink}\n\n`;
+    }
+    tgMsg += `🌐 <i>تم البناء والنشر والأرشفة الفورية بنجاح على mohamidigital.online</i>`;
+    await sendTelegram(tgMsg);
+    log('✅ تم إرسال إشعار النشر لتليجرام المستشار أحمد منصور');
+  } catch (tgErr) {
+    log(`⚠️ تعذر إرسال إشعار تليجرام: ${tgErr.message}`);
+  }
 }
 
 main().catch(err => {

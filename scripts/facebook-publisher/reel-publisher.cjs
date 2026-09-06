@@ -214,6 +214,16 @@ async function processTopic(topic, opts) {
     } catch (ytErr) {
       console.warn(`[youtube] ⚠️  فشل رفع YouTube (غير مميت): ${ytErr.message}`);
     }
+
+    // إشعار تليجرام للمستشار أحمد منصور
+    try {
+      const { sendTelegram } = require('../telegram-bot/assistant.cjs');
+      const ytUrl = typeof ytResult !== 'undefined' && ytResult?.url ? `\n🎥 <a href="${ytResult.url}">مشاهدة على YouTube Shorts</a>` : '';
+      const tgMsg = `🎬 <b>تم نشر فيديو ريلز وشورتس جديد!</b>\n\n📌 <b>الموضوع:</b> ${topic.title}\n⏱️ <b>المدة:</b> ${formatDuration(audio.durationSec)}\n🔗 <a href="${result.permalink_url}">مشاهدة على Facebook Reels</a>${ytUrl}\n\n🌐 تم توجيه المتابعين لزيارة المنصة والحاسبات الذكية.`;
+      await sendTelegram(tgMsg);
+    } catch (tgErr) {
+      console.error('[telegram] تعذر إرسال إشعار الريلز:', tgErr.message);
+    }
   } else {
     console.log('\n🔍 [DRY RUN] لم يُنشر — الفيديو محفوظ في:');
     console.log(`   ${videoPath}`);

@@ -129,7 +129,8 @@ export default async function handler(req, res) {
     });
   }
 
-  const body = req.body || {};
+  try {
+    const body = req.body || {};
   
   // معالجة الضغط على الأزرار المضمنة (Inline Keyboard Callbacks)
   if (body.callback_query) {
@@ -233,6 +234,8 @@ export default async function handler(req, res) {
     return res.status(200).send('OK');
   }
 
+  const text = (message.text || '').trim();
+
   // 1. فحص المنظومة الحي
   if (text === '🚀 فحص المنظومة الحي' || text === '/status' || text === '/health') {
     const ok = await triggerWorkflow('daily-health-monitor.yml');
@@ -328,16 +331,31 @@ export default async function handler(req, res) {
         }
       ];
 
-      const chat = ai.chats.create({
-        model: 'gemini-flash-lite-latest',
-        config: {
-          systemInstruction: ANTIGRAVITY_SYSTEM_PROMPT,
-          tools
-        },
-        history: conversationHistory.slice(-MAX_HISTORY)
-      });
+      const candidateModels = ['gemini-flash-lite-latest', 'gemini-3.5-flash-lite', 'gemini-3.5-flash'];
+      let response = null;
+      let lastErr = null;
 
-      const response = await chat.sendMessage({ message: text });
+      for (const modelName of candidateModels) {
+        try {
+          const chat = ai.chats.create({
+            model: modelName,
+            config: {
+              systemInstruction: ANTIGRAVITY_SYSTEM_PROMPT,
+              tools
+            },
+            history: conversationHistory.slice(-MAX_HISTORY)
+          });
+          response = await chat.sendMessage({ message: text });
+          if (response) break;
+        } catch (mErr) {
+          lastErr = mErr;
+          console.warn(`[telegram-gemini] ${modelName} error:`, mErr.message);
+        }
+      }
+
+      if (!response && lastErr) {
+        throw lastErr;
+      }
 
       // معالجة استدعاء الأدوات التنفيذية
       const functionCalls = response.functionCalls;
@@ -381,7 +399,14 @@ export default async function handler(req, res) {
     await sendTelegram(`عذراً يا سيادة المستشار، حدث خطأ في معالجة الاستشارة: ${err.message}`, 'HTML', true);
   }
 
-  return res.status(200).send('OK');
+    return res.status(200).send('OK');
+  } catch (fatalErr) {
+    console.error('[telegram-webhook-fatal]', fatalErr);
+    try {
+      await sendTelegram(`⚠️ تنبيه Antigravity: تعذر معالجة الطلب مؤقتاً (${fatalErr.message})`);
+    } catch (_) {}
+    return res.status(200).send('OK');
+  }
 }
 
 

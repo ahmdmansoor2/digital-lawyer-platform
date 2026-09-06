@@ -621,6 +621,15 @@ async function main() {
 
     console.log(`\n✅ تم نشر البطاقة بنجاح!`);
     console.log(`   🔗 ${result.permalink_url}`);
+
+    // إشعار تليجرام للمستشار أحمد منصور
+    try {
+      const { sendTelegram } = require('../telegram-bot/assistant.cjs');
+      const tgMsg = `🃏 <b>تم نشر بطاقة فيسبوك تعليمية جديدة!</b>\n\n📌 <b>الموضوع:</b> ${card.title}\n📂 <b>التصنيف:</b> ${topic.tag}\n🔗 <b>رابط المنشور:</b> <a href="${result.permalink_url}">فتح على فيسبوك</a>\n\n🌐 تم توجيه المتابعين لدعم المنصة وحاسباتها القانونية.`;
+      await sendTelegram(tgMsg);
+    } catch (tgErr) {
+      console.error('[telegram] تعذر إرسال الإشعار:', tgErr.message);
+    }
   } else {
     console.log('\n[3/3] 🔍 [DRY RUN] لم يُنشر — البطاقة محفوظة في:');
     console.log(`   ${pngPath}`);
