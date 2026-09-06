@@ -74,7 +74,14 @@ async function triggerWorkflow(workflowFileName) {
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    return res.status(200).send('Antigravity Telegram Webhook is Active 24/7 ⚖️');
+    const key = (GEMINI_API_KEY || '').trim().replace(/^["']|["']$/g, '');
+    return res.status(200).json({
+      status: 'active',
+      geminiKeyLength: key.length,
+      geminiKeyPrefix: key.substring(0, 8),
+      botTokenLength: BOT_TOKEN ? BOT_TOKEN.length : 0,
+      chatId: CHAT_ID
+    });
   }
 
   const body = req.body || {};
