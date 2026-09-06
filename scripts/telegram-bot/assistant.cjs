@@ -16,19 +16,51 @@ const { exec } = require('child_process');
 const dotenv = require('dotenv');
 const { GoogleGenAI } = require('@google/genai');
 
+const http = require('http');
 const ROOT = path.join(__dirname, '..', '..');
 dotenv.config({ path: path.join(ROOT, '.env') });
 
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const PORT = process.env.PORT || 8080;
 
 if (!BOT_TOKEN) {
   console.error('[telegram] خطأ: TELEGRAM_BOT_TOKEN غير متوفر في .env');
   process.exit(1);
 }
 
+// خادم صحي سحابي للعمل 24/7 على منصات Render / Railway
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+  res.end('Antigravity Telegram Assistant is Live 24/7 ⚖️');
+});
+server.listen(PORT, () => {
+  console.log(`[telegram] خادم الويب السحابي نشط على المنفذ ${PORT}`);
+});
+
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+
+async function triggerWorkflow(workflowFileName) {
+  if (!GITHUB_TOKEN) return false;
+  try {
+    const repo = 'ahmdmansoor2/digital-lawyer-platform';
+    const url = `https://api.github.com/repos/${repo}/actions/workflows/${workflowFileName}/dispatches`;
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github+json',
+        'User-Agent': 'Antigravity-Telegram-Bot'
+      },
+      body: JSON.stringify({ ref: 'main' })
+    });
+    return res.ok;
+  } catch (e) {
+    return false;
+  }
+}
 
 const KEYBOARD = {
   keyboard: [
@@ -100,6 +132,11 @@ async function handleAction(text) {
     if (res.success) {
       return `🎉 <b>تم نشر المقال بنجاح وإدراجه في الفهرس:</b>\n\n<pre>${res.output.slice(-600)}</pre>`;
     }
+    // محاولة الإطلاق السحابي عبر GitHub Actions إن كان البوت في السحاب
+    const triggered = await triggerWorkflow('daily-blog-publish.yml');
+    if (triggered) {
+      return `🚀 <b>تم إطلاق خط النشر السحابي على GitHub Actions بنجاح!</b>\nسيتم نشر المقال وأرشفته وإرسال إشعار الرابط لسيادتكم فور اكتماله.`;
+    }
     return `⚠️ <b>تعثر النشر:</b>\n\n<pre>${res.output.slice(-600)}</pre>`;
   }
 
@@ -107,7 +144,14 @@ async function handleAction(text) {
   if (t === '🎬 توليد ريلز وشورتس' || t === '/reels' || t.includes('ريلز') || t.includes('شورتس')) {
     await sendTelegram('⏳ <i>جاري توليد سيناريو الريلز وتشغيل الصوت عبر Edge-TTS ورندر الفيديو...</i>');
     const res = await runCmd('node scripts/facebook-publisher/reel-publisher.cjs');
-    return `🎬 <b>نتيجة خط الريلز:</b>\n\n<pre>${res.output.slice(-600)}</pre>`;
+    if (res.success) {
+      return `🎬 <b>نتيجة خط الريلز:</b>\n\n<pre>${res.output.slice(-600)}</pre>`;
+    }
+    const triggered = await triggerWorkflow('daily-reels.yml');
+    if (triggered) {
+      return `🎬 <b>تم إطلاق ماكينة الريلز السحابية عبر GitHub Actions!</b>\nسيتم رفع الفيديو لفيسبوك ويوتيوب فور اكتماله.`;
+    }
+    return `⚠️ <b>تعثر تشغيل الريلز:</b>\n\n<pre>${res.output.slice(-600)}</pre>`;
   }
 
   // 4. بناء ورفع للسيرفر (Deploy)
