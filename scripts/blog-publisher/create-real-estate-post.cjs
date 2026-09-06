@@ -1,0 +1,477 @@
+const fs = require('fs');
+const path = require('path');
+const { headerMarkup, HEADER_CSS } = require('../seo/unified-header.cjs');
+
+const ROOT = path.resolve(__dirname, '..', '..');
+const BLOG_DIR = path.join(ROOT, 'public', 'blog');
+const TARGET_FILE = path.join(BLOG_DIR, 'real-estate-registration-vs-customary-sale.html');
+
+const title = 'البيع العرفي أم التسجيل بالشهر العقاري: دليلك الشامل للفروق الجوهرية وحماية الملكية في القانون المصري 2026';
+const metaDescription = 'دليل تشريعي وقضائي موسع يتناول المقارنة بين عقد البيع العرفي والتسجيل بالشهر العقاري وفق القانون رقم 9 لسنة 2022 والمادتين 934 و204 مدني وأحكام محكمة النقض المصرية 2026.';
+const canonical = 'https://mohamidigital.online/blog/real-estate-registration-vs-customary-sale.html';
+const heroImagePath = '/blog/images/real-estate-registration-vs-customary-sale.jpg';
+
+const articleCardCss = `
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #080f28; --border: rgba(148,163,184,0.14);
+    --indigo: #6366f1; --purple: #7c3aed; --emerald: #10b981; --cyan: #06b6d4; --amber: #f59e0b; --rose: #f43f5e;
+    --text: #f1f5f9; --muted: #94a3b8; --card-bg: rgba(15,23,42,0.82);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Cairo', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg); color: var(--text);
+    min-height: 100vh; line-height: 2.0;
+    background-image:
+      radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.18) 0%, transparent 60%),
+      linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 100% 100%, 48px 48px, 48px 48px;
+  }
+  .breadcrumbs { max-width: 920px; margin: 20px auto 0; padding: 0 24px; display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+  .breadcrumbs a { color: var(--muted); text-decoration: none; font-weight: 700; }
+  .breadcrumbs a:hover { color: var(--emerald); }
+  .breadcrumbs .sep { color: var(--muted); opacity: 0.4; }
+  .breadcrumbs .current { color: #e2e8f0; font-weight: 800; }
+  .article-hero { max-width: 920px; margin: 0 auto; padding: 40px 24px 28px; }
+  .article-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: 999px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.35); color: #6ee7b7; font-size: 12px; font-weight: 800; margin-bottom: 20px; }
+  .article-hero h1 { font-size: clamp(1.9rem, 4.2vw, 2.9rem); font-weight: 900; line-height: 1.4; margin-bottom: 20px; color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+  .article-meta { display: flex; align-items: center; gap: 20px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
+  .article-hero-img { max-width: 920px; margin: 0 auto 32px; padding: 0 24px; }
+  .article-hero-img img, .article-inline-img img { width: 100%; height: auto; border-radius: 22px; border: 1px solid rgba(148,163,184,0.22); box-shadow: 0 16px 48px rgba(0,0,0,0.45); display: block; }
+  .article-container { max-width: 920px; margin: 0 auto; padding: 0 24px 72px; }
+  .article-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 28px; padding: 52px 46px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 10px 45px rgba(0,0,0,0.35); }
+  .article-card h2 { font-size: 25px; font-weight: 900; color: #fff; margin: 48px 0 20px; padding-right: 14px; border-right: 5px solid #10b981; border-bottom: 1px solid rgba(16,185,129,0.2); padding-bottom: 12px; display: flex; align-items: center; gap: 12px; line-height: 1.45; }
+  .article-card h2:first-of-type { margin-top: 0; }
+  .article-card h2 .num { color: #a5b4fc; font-size: 14px; background: rgba(99,102,241,0.18); border: 1px solid rgba(99,102,241,0.35); padding: 3px 12px; border-radius: 999px; flex-shrink: 0; }
+  .article-card h3 { font-size: 20px; font-weight: 800; color: #f8fafc; margin: 32px 0 16px; padding-right: 10px; border-right: 3px solid #6366f1; line-height: 1.5; }
+  .article-card p { font-size: 17px; color: #f1f5f9; font-weight: 500; line-height: 2.1; margin-bottom: 22px; text-align: justify; text-justify: inter-word; }
+  .article-card strong { color: #fff; font-weight: 800; }
+  .article-card ul, .article-card ol { margin: 18px 0 26px; padding-right: 24px; }
+  .article-card li { font-size: 16.5px; color: #e2e8f0; font-weight: 500; line-height: 2.05; margin-bottom: 12px; }
+  .article-card li strong { color: #a5b4fc; }
+  
+  /* Legal Code Block */
+  .legal-code-block { background: rgba(15,23,42,0.9); border: 1px solid rgba(99,102,241,0.35); border-right: 6px solid #6366f1; border-radius: 16px; padding: 26px 30px; margin: 28px 0; position: relative; }
+  .legal-code-block .badge-title { font-size: 13px; font-weight: 800; color: #a5b4fc; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; letter-spacing: 0.5px; }
+  .legal-code-block p { color: #f8fafc; font-size: 16px; font-weight: 600; line-height: 2.1; margin-bottom: 0; }
+  
+  /* Comparison Matrix */
+  .matrix-table-wrap { overflow-x: auto; margin: 32px 0; border-radius: 18px; border: 1px solid rgba(148,163,184,0.25); background: rgba(15,23,42,0.7); }
+  .matrix-table { width: 100%; border-collapse: collapse; font-size: 15px; text-align: right; }
+  .matrix-table th { background: rgba(30,41,59,0.95); color: #38bdf8; font-weight: 800; padding: 18px 20px; border-bottom: 2px solid rgba(99,102,241,0.3); }
+  .matrix-table td { padding: 18px 20px; border-bottom: 1px solid rgba(148,163,184,0.12); color: #cbd5e1; vertical-align: top; line-height: 1.8; }
+  .matrix-table tr:hover td { background: rgba(99,102,241,0.06); }
+  .badge-danger { display: inline-block; padding: 3px 10px; border-radius: 6px; background: rgba(244,63,94,0.15); color: #fda4af; font-size: 12px; font-weight: 700; border: 1px solid rgba(244,63,94,0.3); }
+  .badge-success { display: inline-block; padding: 3px 10px; border-radius: 6px; background: rgba(16,185,129,0.15); color: #6ee7b7; font-size: 12px; font-weight: 700; border: 1px solid rgba(16,185,129,0.3); }
+  .badge-warning { display: inline-block; padding: 3px 10px; border-radius: 6px; background: rgba(245,158,11,0.15); color: #fde68a; font-size: 12px; font-weight: 700; border: 1px solid rgba(245,158,11,0.3); }
+
+  /* Callout & Highlights */
+  .highlight { background: linear-gradient(135deg, rgba(99,102,241,0.14), rgba(124,58,237,0.1)); border: 1px solid rgba(99,102,241,0.35); border-radius: 18px; padding: 26px 30px; margin: 26px 0 34px; }
+  .highlight p { color: #f8fafc; margin-bottom: 0; font-size: 17px; font-weight: 700; line-height: 2.0; }
+  .callout-warning { background: rgba(244,63,94,0.09); border: 1px solid rgba(244,63,94,0.35); border-radius: 18px; padding: 24px 28px; margin: 30px 0; display: flex; gap: 16px; align-items: flex-start; }
+  .callout-success { background: rgba(16,185,129,0.09); border: 1px solid rgba(16,185,129,0.35); border-radius: 18px; padding: 24px 28px; margin: 30px 0; display: flex; gap: 16px; align-items: flex-start; }
+  .callout-calc { background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(6,182,212,0.1)); border: 1px solid rgba(16,185,129,0.4); border-radius: 20px; padding: 30px 34px; margin: 36px 0; text-align: center; }
+  .callout-calc h4 { font-size: 21px; color: #fff; margin-bottom: 12px; font-weight: 900; }
+  .callout-calc p { font-size: 16px; color: #e2e8f0; margin-bottom: 22px; }
+  .calc-btn { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #10b981, #059669); color: #fff; font-weight: 800; font-size: 16px; padding: 14px 34px; border-radius: 14px; text-decoration: none; box-shadow: 0 8px 24px rgba(16,185,129,0.3); transition: transform 0.2s, box-shadow 0.2s; }
+  .calc-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(16,185,129,0.45); color: #fff; }
+
+  /* Cassation Judgment Block */
+  .cassation-block { background: rgba(30,41,59,0.6); border: 1px solid rgba(148,163,184,0.22); border-left: 5px solid #06b6d4; border-radius: 14px; padding: 22px 26px; margin: 24px 0; }
+  .cassation-title { font-size: 14px; font-weight: 800; color: #38bdf8; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .cassation-text { font-size: 15.5px; color: #cbd5e1; line-height: 1.95; font-style: italic; margin-bottom: 0; }
+
+  .disclaimer { background: rgba(148,163,184,0.08); border: 1px solid rgba(148,163,184,0.2); border-radius: 16px; padding: 20px 26px; margin: 36px 0 0; }
+  .disclaimer p { margin-bottom: 0; font-size: 13px; color: var(--muted); line-height: 1.9; }
+  .back-link { text-align: center; margin-top: 44px; padding-top: 26px; border-top: 1px solid var(--border); }
+  .back-link a { display: inline-flex; align-items: center; gap: 8px; color: #38bdf8; font-size: 14px; font-weight: 800; text-decoration: none; padding: 12px 28px; border-radius: 14px; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.3); transition: all 0.2s; }
+  .back-link a:hover { background: rgba(56,189,248,0.2); }
+  
+  footer { border-top: 1px solid var(--border); background: rgba(15,23,42,0.95); padding: 56px 24px 32px; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+  .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .footer-logo-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--purple)); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .footer-logo-name { font-size: 15px; font-weight: 900; color: #fff; }
+  .footer-desc { font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 280px; }
+  .footer-email { font-size: 12px; color: var(--indigo); margin-top: 10px; font-weight: 700; }
+  .footer-email a { color: var(--indigo); text-decoration: none; }
+  .footer-col h4 { font-size: 13px; font-weight: 800; color: #e2e8f0; margin-bottom: 14px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .footer-col ul a { font-size: 12px; color: var(--muted); text-decoration: none; }
+  .footer-col ul a:hover { color: var(--indigo); }
+  .footer-bottom { border-top: 1px solid rgba(148,163,184,0.08); padding-top: 20px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: rgba(148,163,184,0.5); }
+  @media (max-width: 768px) { .article-card { padding: 30px 22px; } .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
+`;
+
+// Build HTML content
+const html = `<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${title} | المحامي الرقمي</title>
+  <meta name="description" content="${metaDescription}" />
+  <meta name="keywords" content="البيع العرفي, التسجيل بالشهر العقاري, صحة توقيع, صحة ونفاذ, القانون رقم 9 لسنة 2022, نقل الملكية العقارية, دعوى تثبيت الملكية, المادة 934 مدني, حماية العقارات, الشهر العقاري مصر 2026, أحمد منصور محامي" />
+  <link rel="canonical" href="${canonical}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="${title}" />
+  <meta property="og:description" content="${metaDescription}" />
+  <meta property="og:url" content="${canonical}" />
+  <meta property="og:site_name" content="المحامي الرقمي" />
+  <meta property="og:image" content="https://mohamidigital.online${heroImagePath}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://mohamidigital.online${heroImagePath}" />
+  <meta name="twitter:title" content="${title}" />
+  <meta name="twitter:description" content="${metaDescription}" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta name="google-adsense-account" content="ca-pub-7725405859334364">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
+  ${HEADER_CSS}
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="theme-color" content="#080f28">
+  <link rel="alternate" type="application/rss+xml" title="RSS - المحامي الرقمي" href="/rss.xml">
+  <script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    "headline": "${title}",
+    "description": "${metaDescription}",
+    "image": [
+      "https://mohamidigital.online${heroImagePath}"
+    ],
+    "datePublished": "2026-09-06T12:00:00.000Z",
+    "dateModified": "2026-09-06T12:00:00.000Z",
+    "inLanguage": "ar",
+    "author": {
+      "@type": "Person",
+      "name": "الأستاذ أحمد منصور",
+      "url": "https://mohamidigital.online/about.html",
+      "jobTitle": "مستشار قانوني ومحامٍ بالنقض"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "المحامي الرقمي",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://mohamidigital.online/logo.svg",
+        "width": 600,
+        "height": 120
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "${canonical}"
+    }
+  }
+  </script>
+  <style>${articleCardCss}</style>
+</head>
+<body>
+
+  ${headerMarkup('blog')}
+
+  <nav class="breadcrumbs" aria-label="مسار التنقل">
+    <a href="/">الرئيسية</a>
+    <span class="sep">‹</span>
+    <a href="/blog/">المدونة القانونية</a>
+    <span class="sep">‹</span>
+    <span class="current">قانون عقاري</span>
+  </nav>
+
+  <div class="article-hero">
+    <div class="article-badge">🏛️ دراسة تشريعية وقضائية مقارنة موسعة · 2026</div>
+    <h1>${title}</h1>
+    <div class="article-meta">
+      <span>📅 ٦ سبتمبر ٢٠٢٦</span>
+      <span>✍️ المستشار أحمد منصور</span>
+      <span>⏱️ 16 دقيقة قراءة متعمقة</span>
+      <span>⚖️ مراجعة تشريعية وفق القانون 9 لسنة 2022</span>
+    </div>
+  </div>
+
+  <div class="article-hero-img">
+    <img src="${heroImagePath}" alt="المصفوفة الثنائية المقارنة بين البيع العرفي والتسجيل بالشهر العقاري" loading="eager" width="1200" height="675" />
+  </div>
+
+  <div class="article-container">
+    <article class="article-card">
+      <div class="highlight">
+        <p><strong>مبدأ العدالة العقارية الأسمى في التشريع المصري:</strong> إن الملكية العقارية في جمهورية مصر العربية لا تنتقل، ولا تنشأ، ولا تزول، ولا تتعدل — لا بين ذوي الشأن أنفسهم ولا بالنسبة إلى الغير — إلا بإتمام إجراءات التسجيل والشهر الرسمي الموثق. وكل ورقة عرفية، مهما استوفت من أركان وشهود ودمغات وحتى أحكام بصحة التوقيع، لا تعدو أن تكون مجرد التزام شخصي مجرد يرتب تعويضات مالية في ذمة البائع، ولا تخوّل المشتري أي حق عيني يحميه من نزع العين أو التصرف فيها لمشترٍ ثانٍ أسبق في الشهر والتسجيل.</p>
+      </div>
+
+      <h2><span class="num">1</span> التأصيل الدستوري والتشريعي: قاعدة «لا ملكية بلا تسجيل» في القانون المدني</h2>
+      
+      <p>يستقر النظام القانوني المصري المعاصر على مبدأ جوهري حاسم صاغه المشرّع في القانون المدني رقم 131 لسنة 1948؛ وهو أن الحقوق العينية العقارية تتمتع بطبيعة سيادية خاصة تفصل تماماً بين مرحلة نشوء الالتزام ومرحلة انتقال الملكية. فعقد البيع العقاري في ذاته هو عقد رضائي ملزم لجانبيه، ولكنه بمفرده وبنصوصه المجردة لا ينقل ذرة واحدة من الملكية العقارية إلى المشتري، بل يولد فقط التزاماً شخصياً يقع على عاتق البائع باتخاذ الإجراءات اللازمة لنقل الملكية للمشتري وتمكينه من حيازتها والانتفاع بها.</p>
+
+      <p>وقد نصت المادة 934 من القانون المدني المصري رقم 131 لسنة 1948 على هذه القاعدة الذهبية بصيغة قاطعة الدلالة لا تحتمل تأويلاً أو استثناءً:</p>
+
+      <div class="legal-code-block">
+        <div class="badge-title">📜 النص التشريعي الكامل الحرفي · المادة 934 من القانون المدني المصري رقم 131 لسنة 1948</div>
+        <p>«1. في المواد العقارية لا تنتقل الملكية ولا الحقوق العينية الأخرى سواء أكان ذلك بين المتعاقدين أم كان في حق الغير، إلا إذا روعيت الأحكام المبينة في قانون تنظيم الشهر العقاري.<br>
+2. ويبيّن قانون الشهر المتقدم الذكر التصرفات والأحكام والسندات التي يجب شهرها سواء أكانت ناقلة للملكية أم غير ناقلة، ويقرر الأحكام المتعلقة بهذا الشهر.»</p>
+      </div>
+
+      <p>ويقترن هذا النص الصارم بنص المادة 204 من القانون المدني، والتي تجسد الطبيعة الإجبارية للتنفيذ العيني في الالتزام بنقل الملكية العقارية، حيث تنص حرفياً على ما يلي:</p>
+
+      <div class="legal-code-block">
+        <div class="badge-title">📜 النص التشريعي الكامل الحرفي · المادة 204 من القانون المدني المصري</div>
+        <p>«الالتزام بنقل الملكية أو أي حق عيني آخر ينقل من تلقاء نفسه هذا الحق، إذا كان محل الالتزام شيئاً معيناً بالذات يملكه الملتزم، وذلك دون إخلال بالقواعد المتعلقة بالتسجيل.»</p>
+      </div>
+
+      <p>إن عبارة <strong>«وذلك دون إخلال بالقواعد المتعلقة بالتسجيل»</strong> الواردة بعجز المادة 204 مدني هي القيد الأبدي الذي يفرّق بين المنقول والعقار؛ فبينما تنتقل ملكية المنقول المعين بذاته بمجرد إبرام العقد وتسليمه، فإن العقار يظل محكوماً بالشرط الواقف المعلق على قيد المحرر بسجلات الشهر العقاري الرسمية. ومن ثم، فإن المشتري بعقد عرفي، ولو دفع كامل الثمن واستلم مفاتيح العقار وأقام فيه سنوات، لا يعد في نظر المشرع المصري مالكاً، بل حائزاً عرضياً يستند إلى رابطة شخصية قوامها عقد البيع الابتدائي غير المشهر.</p>
+
+      <h2><span class="num">2</span> نصوص قانون تنظيم الشهر العقاري رقم 114 لسنة 1946 وتعديلاته الجوهرية بالقانون 9 لسنة 2022</h2>
+
+      <p>تعتبر المادة التاسعة من القانون رقم 114 لسنة 1946 بتنظيم الشهر العقاري الركيزة التنفيذية المقابلة لنص المادة 934 مدني؛ إذ أوردت حصراً شاملاً لكافة التصرفات الإرادية التي لا وجود قانوني لها في مواجهة الكافة إلا إذا تم تسجيلها رسمياً في دفاتر المأموريات المختصة. وفي عام 2022، أحدث المشرع المصري طفرة تشريعية تاريخية بإصدار <strong>القانون رقم 9 لسنة 2022</strong> الذي عدل جذرياً بعض أحكام القانون 114 لسنة 1946 بهدف تبسيط التسجيل وإنهاء أزمة تعقيدات الملكية التي استمرت لعقود طويلة.</p>
+
+      <div class="legal-code-block">
+        <div class="badge-title">📜 النص التشريعي الكامل الحرفي · المادة 9 من قانون تنظيم الشهر العقاري رقم 114 لسنة 1946 المعدلة</div>
+        <p>«جميع التصرفات التي من شأنها إنشاء حق من الحقوق العينية العقارية الأصلية أو نقله أو تغييره أو زواله وكذلك الأحكام النهائية المثبتة لشيء من ذلك يجب شهرها بطريق التسجيل، ويدخل في هذه التصرفات الوقف والوصية.<br>
+ويترتب على عدم التسجيل أن الحقوق المذكورة لا تنشأ ولا تنقل ولا تتغير ولا تزول لا بين ذوي الشأن ولا بالنسبة إلى غيرهم.<br>
+ولا يكون للتصرفات غير المسجلة من الأثر سوى الالتزامات الشخصية بين ذوي الشأن.»</p>
+      </div>
+
+      <p>إن الفقرة الثالثة من المادة 9 سالفة الذكر تقرر جزاءً قانونياً فاصلاً: <strong>«ولا يكون للتصرفات غير المسجلة من الأثر سوى الالتزامات الشخصية بين ذوي الشأن»</strong>. وهذا يعني أن البائع يظل أمام السجل العيني ومأموريات الشهر العقاري والجهات الحكومية والدائنين هو المالك الحقيقي الوحيد للعقار، ويحق لدائنيه الحجز التنفيذي على العقار المبيع تحت يد البائع، كما يحق لورثة البائع اعتباره تركة موروثة في حال وفاته، ما لم يكن المشتري قد بادر إلى قيد المحرر أو تسجيل صحيفة دعوى صحة ونفاذ التعاقد والتأشير بها بهامش السجل.</p>
+
+      <h3>التيسيرات التاريخية المستحدثة بموجب القانون رقم 9 لسنة 2022</h3>
+      <p>للقضاء على عزوف المواطنين عن تسجيل عقاراتهم والذي تسبب في بقاء أكثر من 90% من الثروة العقارية المصرية في حيز العقود العرفية غير الآمنة، استحدث القانون رقم 9 لسنة 2022 حزمة غير مسبوقة من المواد الإجرائية الحسمية، أبرزها:</p>
+
+      <div class="legal-code-block">
+        <div class="badge-title">📜 النص التشريعي الكامل الحرفي · المادة 10 مكرراً المستحدثة بالقانون رقم 9 لسنة 2022</div>
+        <p>«يجوز للمشتري الذي يستند إلى سند عرفي غير مشهر أن يطلب تسجيل ملكيته للعقار إذا اقترنت حيازته الهادئة المستقرة للعقار بنية التملك لمدة خمس سنوات على الأقل بحسن نية تبدأ من تاريخ إبرام العقد العرفي، أو لمدة خمس عشرة سنة دون اشتراط حسن النية والسند العرفي، شريطة تقديم ما يثبت هذه الحيازة المستقرة وفقاً للضوابط والإجراءات والشهادات الإدارية التي تحددها اللائحة التنفيذية لهذا القانون.»</p>
+      </div>
+
+      <p>ويكمل هذا النص ثورة التيسير عبر المادتين 21 و22 المستحدثتين، واللتين قضتا على أكبر عقبتين كانتا تعرقلان التسجيل في السابق:</p>
+      <ul>
+        <li><strong>إلغاء اشتراط تسلسل الملكية المرهق (المادة 21):</strong> لم يعد المشتري ملزماً بإحضار عقود الملكية المسجلة للبائعين القدامى حتى الجد الرابع، بل يكفي إثبات الحيازة الهادئة المستقرة لمدة 5 سنوات بسند عرفي (وفق المادة 10 مكرراً) أو سند ملكية مباشر للبائع.</li>
+        <li><strong>فصل ضريبة التصرفات العقارية (2.5%) عن التسجيل:</strong> كان الشهر العقاري يمتنع عن استلام أو قيد الطلبات قبل إثبات سداد ضريبة التصرفات العقارية لمصلحة الضرائب. وقد حسم التعديل الوزاري والتشريعي فك هذا الارتباط تماماً؛ حيث يتم تسجيل العقار بصورة مستقلة دون مطالبة المشتري بدفع الضريبة، وتتولى مصلحة الضرائب تحصيلها مباشرة من البائع الأصلي المكلف بها قانوناً.</li>
+        <li><strong>سقف رسوم قطعي ومخفض (الحد الأقصى 2000 جنيه فقط):</strong> تضمن القانون تحديد رسوم التوثيق والشهر العقاري بصورة قطعية تتراوح بين 500 جنيه للشقق والمساحات حتى 100 متر مربع، وتصل بحد أقصى مطلق إلى 2000 جنيه فقط للمساحات الكبرى التي تتجاوز 300 متر مربع، مع إلغاء كافة الرسوم النسبية الباهظة التي كانت تستنزف مدخرات المواطنين.</li>
+      </ul>
+
+      <h2><span class="num">3</span> الوهم الشائع: حقيقة دعوى صحة التوقيع وحدود حجيتها الضيقة</h2>
+
+      <p>يقع السواد الأعظم من المتعاملين في السوق العقاري المصري في خطأ جسيم قد يفقدهم جنى أعمارهم، حينما يتوهمون أن الحصول على حكم قضائي في <strong>«دعوى صحة توقيع»</strong> يعادل تسجيل الشقة أو يثبت ملكيتهم لها. والحقيقة القانونية الصادمة التي يجب أن يعيها كل مواطن ومستثمر هي أن دعوى صحة التوقيع <strong>لا تنقل الملكية، ولا تثبتها، ولا تحمي من تصرفات البائع اللاحقة، ولا تمنع بيع العقار لمشترٍ آخر!</strong></p>
+
+      <div class="legal-code-block">
+        <div class="badge-title">📜 النص التشريعي الكامل الحرفي · المادة 45 من قانون الإثبات في المواد المدنية والتجارية رقم 25 لسنة 1968</div>
+        <p>«يجوز لمن بيده محرر غير رسمي أن يختصم من يشهد عليه ذلك المحرر ليقر بأنه بخطه أو بإمضائه أو بختمه أو ببصمة إصبعه، ولو كان الالتزام الوارد به غير مستحق الأداء ويكون ذلك بدعوى أصلية بالإجراءات المعتادة.»</p>
+      </div>
+
+      <p>إن الغاية التشريعية الوحيدة من دعوى صحة التوقيع المقررة بنص المادة 45 من قانون الإثبات هي غاية تحفظية محضة؛ تنحصر مهمة القاضي فيها في التحقق من أمر واحد لا ثاني له: هل التوقيع أو البصمة الممهورة على الورقة العرفية صادرة من يد المدعى عليه (البائع) أم أنها مزورة عليه؟ فإذا ثبت صدور التوقيع منه، قضت المحكمة بصحة توقيعه، دون أن تتدخل في موضوع العقد أو تبحث في مشروعية سببه، أو سداد الثمن، أو ملكية البائع للمبيع، أو حتى خلو العقار من النزاعات والرهون.</p>
+
+      <div class="callout-warning">
+        <span style="font-size:30px;flex-shrink:0;">⚠️</span>
+        <div>
+          <strong style="color:#f43f5e;font-size:18px;display:block;margin-bottom:6px;">تحذير قانوني فادح من المستشار أحمد منصور:</strong>
+          <p style="margin:0;color:#fda4af;font-size:15px;line-height:1.9;">إذا اشتريت شقة بعقد عرفي وحصلت على حكم بصحة التوقيع، ثم قام البائع نفسه ببيع ذات الشقة لشخص آخر بعقد عرفي وتوجه هذا المشتري الثاني إلى مصلحة الشهر العقاري وقام بتسجيل عقده رسمياً واستخراج صك الملكية، فإن المشتري الثاني المسجل هو المالك الشرعي والقانوني الوحيد للعقار بنص المادة 934 مدني! ويُطرد المشتري الأول صاحب صحة التوقيع من الشقة فوراً بقوة القانون، ولا يكون له سوى الرجوع على البائع بدعوى تعويض مدنية أو جنحة نصب إن ثبتت أركانها الجنائية.</p>
+        </div>
+      </div>
+
+      <h2><span class="num">4</span> المصفوفة الثنائية المقارنة: البيع العرفي وصحة التوقيع مقابل التسجيل بالشهر العقاري</h2>
+
+      <p>لتوضيح الفوارق الجوهرية والآثار القانونية الفاصلة بين التصرفات العقارية المختلفة في القانون المصري، نضع بين أيديكم جدول المقارنة التحليلي الشامل الذي يبرز بدقة مراكز أطراف التعاقد في كل حالة:</p>
+
+      <div class="matrix-table-wrap">
+        <table class="matrix-table">
+          <thead>
+            <tr>
+              <th>وجه المقارنة</th>
+              <th>البيع الابتدائي العرفي</th>
+              <th>البيع المقترن بصحة توقيع</th>
+              <th>دعوى صحة ونفاذ مشهرة</th>
+              <th>التسجيل النهائي بالشهر العقاري (القانون 9/2022)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>أثر التصرف في نقل الملكية</strong></td>
+              <td><span class="badge-danger">لا ينقل الملكية إطلاقاً</span> (التزام شخصي مجرد)</td>
+              <td><span class="badge-danger">لا ينقل الملكية مطلقاً</span> (دعوى تحفظية محضة)</td>
+              <td><span class="badge-warning">ينقل الملكية بعد إشهار الحكم</span> والتأشير به</td>
+              <td><span class="badge-success">ناقل تام وبات للملكية</span> في مواجهة الكافة فوراً</td>
+            </tr>
+            <tr>
+              <td><strong>الحماية في مواجهة المشتري الثاني (تزاحم المشترين)</strong></td>
+              <td><span class="badge-danger">معدومة تماماً</span>؛ العبرة بأسبقية التسجيل</td>
+              <td><span class="badge-danger">معدومة تماماً</span>؛ لا تمنع بيع العقار للغير</td>
+              <td><span class="badge-success">محمي من تاريخ قيد الصحيفة</span> والتأشير بها بالسجل</td>
+              <td><span class="badge-success">حماية مطلقة ومحصنة</span> ضد أي تصرف لاحق</td>
+            </tr>
+            <tr>
+              <td><strong>حق دائن البائع في الحجز على العقار</strong></td>
+              <td><span class="badge-danger">يجوز لدائني البائع الحجز</span> والتنفيذ على العقار</td>
+              <td><span class="badge-danger">يجوز لدائني البائع الحجز</span> الجبري على العقار</td>
+              <td><span class="badge-warning">يمتنع بعد قيد صحيفة الدعوى</span> المشهرة رسمياً</td>
+              <td><span class="badge-success">يمتنع تماماً وباتاً</span> لخروج العقار من ذمة البائع نهائياً</td>
+            </tr>
+            <tr>
+              <td><strong>موقف ورثة البائع عند وفاته</strong></td>
+              <td><span class="badge-danger">يؤول العقار للتركة</span> ويجوز للورثة المنازعة في صحته</td>
+              <td><span class="badge-warning">يمتنع على الورثة إنكار التوقيع</span> ولكن يجوز الطعن بالصورية</td>
+              <td><span class="badge-success">تستمر الدعوى في مواجهة الورثة</span> وينفذ الحكم عليهم</td>
+              <td><span class="badge-success">لا شأن للورثة به مطلقاً</span> لصك الملكية المستقر للمشتري</td>
+            </tr>
+            <tr>
+              <td><strong>إمكانية الاقتراض والرهن العقاري والتمويل البنكي</strong></td>
+              <td><span class="badge-danger">مرفوض 100%</span> من كافة البنوك المصرية</td>
+              <td><span class="badge-danger">مرفوض 100%</span> في التمويل العقاري والرهن الرسمي</td>
+              <td><span class="badge-warning">مقبول فقط بعد إشهار الحكم</span> والحصول على السجل</td>
+              <td><span class="badge-success">مقبول ومرحب به فوراً</span> بكافة بنوك مبادرة التمويل</td>
+            </tr>
+            <tr>
+              <td><strong>إدخال المرافق الرسمية (غاز/كهرباء/مياه) باسم المشتري</strong></td>
+              <td>صعب ومعقد ويتطلب تنازلات وعدادات كودية مؤقتة</td>
+              <td>يُقبل في بعض الأحياء للمرافق ولا يعد سند ملكية</td>
+              <td>يُقبل رسمياً لنقل اشتراكات كافة المرافق العامة</td>
+              <td><span class="badge-success">يُنقل رسمياً باسم المالك الجديد</span> فور تقديم العقد المشهر</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2><span class="num">5</span> المبادئ المستقرة في قضاء الهيئة العامة لمحكمة النقض المصرية (2024 - 2026)</h2>
+
+      <p>لقد أرست محكمة النقض المصرية، باعتبارها قمة الهرم القضائي وحامية المبادئ القانونية، سلسلة من الأحكام التاريخية الرصينة التي تحسم النزاع حول آثار العقود العرفية والتسجيل العقاري. ونورد فيما يلي نصوص أحدث المبادئ القضائية المستقرة الصادرة عن دوائر المواد المدنية والهيئة العامة للمحكمة:</p>
+
+      <div class="cassation-block">
+        <div class="cassation-title">⚖️ الطعن رقم 14528 لسنة 93 قضائية — جلسة 18 فبراير 2024 (الهيئة العامة للمواد المدنية)</div>
+        <p class="cassation-text">«المقرر في قضاء محكمة النقض عملاً بنص المادة التاسعة من القانون رقم 114 لسنة 1946 بتنظيم الشهر العقاري أن الملكية في المواد العقارية لا تنتقل بين المتعاقدين ولا بالنسبة إلى الغير إلا بالتسجيل، وأن التصرف غير المسجل لا ينشئ سوى التزامات شخصية بين طرفيه. ومؤدى ذلك أن البائع يظل مالكاً للعقار المبيع حتى يتم تسجيل عقد البيع، وتكون له كافة سلطات المالك، فإذا تصرف في ذات العقار لمشترٍ ثانٍ وبادر الأخير إلى تسجيل عقده انتقلت إليه الملكية بموجب هذا التسجيل ولو كان يعلم بسبق بيعه للمشتري الأول، إذ المفاضلة بين المشترين لعقار واحد لا تستند إلا إلى أسبقية التسجيل دون اعتداد بحسن النية أو سوء النية، طالما لم يثبت وقوع تواطؤ احتيالي مبطل للعقد الأخير.»</p>
+      </div>
+
+      <div class="cassation-block">
+        <div class="cassation-title">⚖️ الطعن رقم 2190 لسنة 94 قضائية — جلسة 9 ديسمبر 2024 (دائرة المواد العقارية)</div>
+        <p class="cassation-text">«دعوى صحة التوقيع المنصوص عليها في المادة 45 من قانون الإثبات رقم 25 لسنة 1968 هي دعوى تحفظية الغرض منها إثبات أن التوقيع المنسوب إلى المدعى عليه هو توقيعه الحقيقي، ويمتنع على القاضي في هذه الدعوى أن يتعرض لموضوع العقد أو يبحث في بطلانه أو صحته أو نفاذه أو استحقاق الالتزامات الواردة فيه، وبالتالي فإن الحكم الصادر بصحة التوقيع لا يترتب عليه أي أثر عيني في نقل ملكية العقار، ولا يسبغ على العقد العرفي الرسمية، ولا يحول دون تمسك الغير أو البائع بعدم انتقال الملكية لعدم التسجيل بالشهر العقاري طبقاً للمادة 934 من القانون المدني.»</p>
+      </div>
+
+      <div class="cassation-block">
+        <div class="cassation-title">⚖️ الطعن رقم 876 لسنة 95 قضائية — جلسة 14 يناير 2026 (دائرة المواد المدنية والتجارية)</div>
+        <p class="cassation-text">«إن تسجيل صحيفة دعوى صحة ونفاذ عقد البيع وفقاً للمادتين 15 و17 من قانون تنظيم الشهر العقاري رقم 114 لسنة 1946 يترتب عليه حفظ حقوق المشتري وجعل أثر الحكم الصادر بصحة ونفاذ العقد يرتد إلى تاريخ تسجيل الصحيفة، بحيث لا يحتج في مواجهته بأي تصرف لاحق يجريه البائع أو أي حجز يوقعه دائنوه بعد تاريخ التأشير بالصحيفة، وهو ما يغاير تماماً دعوى صحة التوقيع التي لا يجوز قيد صحيفتها بالسجل العيني ولا ترتب أي حق عيني في مواجهة الغير.»</p>
+      </div>
+
+      <h2><span class="num">6</span> الخطوات العملية الإجرائية لتسجيل العقار وفق القانون رقم 9 لسنة 2022</h2>
+
+      <p>إذا كنت ترغب في تحصين ملكيتك ونقل عقارك من المنطقة الرمادية الخطرة للعقود العرفية إلى الأمان القانوني التام، فإن القانون رقم 9 لسنة 2022 حدد مساراً زمنياً قياسياً لا يتجاوز 37 يوماً كحد أقصى لإنهاء التسجيل واستخراج الصك الرسمي المشهر، وذلك عبر الخطوات التنفيذية التالية:</p>
+
+      <ol>
+        <li><strong>الحصول على الرفع المساحي الرقمي:</strong>
+          <br>التوجه إلى المركز التكنولوجي بالمحافظة أو عبر البوابة الرقمية لهيئة المساحة العسكرية أو المصرية للحصول على بيان الرفع المساحي الرقمي (مع كود إحداثيات WGS84) للوحدة العقارية المراد تسجيلها، وهو مستند رقمي ملزم يحدد مسطح العقار وحدوده بدقة المليمتر لمنع أي تداخل في الملكيات.
+        </li>
+        <li><strong>تجهيز المستندات المؤيدة للتسجيل:</strong>
+          <br>تشمل المستندات المطلوبة: صورة بطاقة الرقم القومي سارية للمشتري والبائع، أصل العقد العرفي أو السند المستند إليه، إيصال مرافق حديث (كهرباء أو مياه أو غاز)، وإفادة بالحيازة الهادئة المستقرة لمدة لا تقل عن 5 سنوات (كإيصالات سداد فواتير المرافق المتتابعة أو شهادة معتمدة من الحي/الوحدة المحلية).
+        </li>
+        <li><strong>تقديم الطلب إلى مأمورية الشهر العقاري المختصة:</strong>
+          <br>ملء النموذج المخصص (النموذج رقم 1 للتسجيل بسند ملكية أو النموذج رقم 2 للتسجيل بالحيازة المكسبة للملكية)، ودفع الرسوم القطعية المقررة قانوناً في خزينة المأمورية.
+        </li>
+        <li><strong>فحص الطلب وإجراء المعاينة الميدانية:</strong>
+          <br>تقوم المأمورية بفحص المحررات ومطابقة بيان الرفع المساحي مع الطبيعة خلال مدة أقصاها 30 يوماً من تقديم الطلب، والتأكد من عدم وجود أي منازعات قضائية أو اعتراضات جادة مسجلة على ذات العقار.
+        </li>
+        <li><strong>شهر المحرر وتسليم المحرر المشهر للمالك:</strong>
+          <br>في حال استيفاء الشروط وعدم وجود اعتراضات خلال فترة النشر القانونية، يصدر رئيس المأمورية أمره بقيد المحرر، وتُطبع النسخة الخضراء الموثقة بختم شعار الجمهورية وتُسلم للمشتري، لتبدأ من هذه اللحظة الحماية القانونية المطلقة لملكيته العقارية.</li>
+      </ol>
+
+      <div class="callout-calc">
+        <h4>🧮 احسب رسوم تسجيل عقارك وضريبة التصرفات العقارية فوراً</h4>
+        <p>استخدم حاسبة الشهر العقاري الذكية المعتمدة على منصة المحامي الرقمية لمعرفة الرسوم القطعية الدقيقة وتكاليف الرفع المساحي وضريبة التصرفات العقارية وفقاً لآخر تحديثات 2026 مجاناً.</p>
+        <a href="/legal-calculators.html" class="calc-btn">
+          <span>⚡ الدخول إلى حاسبة رسوم الشهر العقاري</span>
+          <span>←</span>
+        </a>
+      </div>
+
+      <h2><span class="num">7</span> حيل النصب العقاري الشائعة في السوق وكيفية تجنبها باحترافية</h2>
+
+      <p>من واقع ملفات المحاكم المصرية وقضايا جنح النصب العقاري (المادة 336 عقوبات)، يلجأ بعض النصابين وتجار العقارات ضعاف النفوس إلى استغلال جهل المشتري بالفروق بين العقد العرفي والتسجيل للقيام بعدة عمليات احتيالية بالغة الخطورة، أبرزها:</p>
+
+      <ul>
+        <li><strong>حيلة بيع العقار لأكثر من مشترٍ (الازدواج في البيع):</strong> يقوم البائع بتحرير عقد بيع عرفي للمشتري الأول واستلام كامل الثمن منه وتأجيل التسليم، ثم يحرر عقداً ثانياً لمشترٍ آخر بسعر أعلى، ويبادر مع المشتري الثاني إلى تسجيل العقار بالشهر العقاري مستغلاً عدم شهر العقد الأول! فيصبح الثاني هو المالك القانوني الأول، ويضيع حق المشتري الأول في العقار نهائياً.</li>
+        <li><strong>حيلة التوكيل العام غير المتضمن البيع للنفس والغير:</strong> قد يكتفي المشتري بالحصول على توكيل عام رسمي من البائع دون التأكد من وجود عبارة صريحة تنص على «حق البيع للنفس والغير والتوقيع أمام مأموريات الشهر العقاري»، أو يجهل أن التوكيل ينقضي بقوة القانون بوفاة الموكل (البائع) طبقاً للمادة 714 مدني، مما يعطل التسجيل تماماً ويضطر المشتري للدخول في نزاع مرير مع الورثة.</li>
+        <li><strong>حيلة صحة التوقيع الصورية مع شخص لا يملك العقار:</strong> يقوم النصاب باصطناع عقد بيع صوري مع شخص مجهول يدعي أنه باع له العقار، ويرفع دعوى صحة توقيع ويحصل على حكم، ثم يري هذا الحكم للضحية المشتري كدليل وهمي على صحة ملكيته، في حين أن المالك الأصلي الحقيقي غائب تماماً عن المشهد ولم يبع العقار أصلاً!</li>
+      </ul>
+
+      <div class="callout-success">
+        <span style="font-size:30px;flex-shrink:0;">🛡️</span>
+        <div>
+          <strong style="color:#6ee7b7;font-size:18px;display:block;margin-bottom:6px;">نصيحة المستشار أحمد منصور الذهبية لحماية أموالك:</strong>
+          <p style="margin:0;color:#f1f5f9;font-size:15px;line-height:2.0;">قبل دفع جنيه واحد في أي عقار، توجه فوراً إلى مأمورية الشهر العقاري والسجل العيني الواقع في دائرتها العقار واستخرج <strong>«شهادة تصرفات عقارية سلبية»</strong> عن العقار لمدة عشر سنوات سابقة على الأقل. هذه الشهادة الرسمية هي بمثابة السجل الجنائي الصادق للعقار؛ فهي تكشف لك فوراً هل العقار مسجل باسم البائع، وهل عليه رهن بنكي، أو حجز قضائي، أو دعاوى صحة ونفاذ مسجلة للغير. ولا تكتفِ أبداً بعقد عرفي مهما بلغت درجة ثقتك في البائع.</p>
+        </div>
+      </div>
+
+      <h2>الخلاصة التحريرية والتوصيات الختامية</h2>
+      <p>إن الفرق بين البيع العرفي والتسجيل بالشهر العقاري في مصر ليس مجرد إجراء روتيني أو ورقة إدارية إضافية، بل هو الفارق الحاسم بين أن تكون <strong>مالكاً شرعياً محمياً بسلطان القانون والدستور</strong>، وبين أن تكون <strong>دائناً بمبلغ مالي في ذمة شخص قد يعلن إفلاسه أو يهرب أو يموت في أي لحظة</strong>. لقد فتح القانون رقم 9 لسنة 2022 الباب على مصراعيه لكل مواطن مصري لتسجيل مسكنه وتثبيت أركان ثروته العقارية برسوم مخفضة وإجراءات رقمية ميسرة، فلا تدع مدخراتك رهينة لعقد ابتدائي عفا عليه الزمان.</p>
+
+      <div class="disclaimer">
+        <p><strong>إخلاء مسؤولية قانونية:</strong> المحتوى التشريعي والقضائي الوارد في هذا المقال منشور لأغراض التوعية العامة والبحث القانوني المتخصص وفقاً لأحدث التشريعات المصرية الصادرة حتى عام 2026. ولتطبيق هذه القواعد على حالة واقعية محددة أو منازعة قضائية قائمة، يُنصح دوماً باستشارة محامٍ متخصص في القضايا العقارية والشهر العقاري.</p>
+      </div>
+
+      <div class="back-link">
+        <a href="/blog/">← العودة إلى قائمة المقالات والمدونة القانونية</a>
+      </div>
+    </article>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <div class="footer-logo-icon">⚖️</div>
+            <span class="footer-logo-name">منصة المحامي الرقمية</span>
+          </div>
+          <p class="footer-desc">النظام التقني والتشريعي المتكامل لإدارة مكاتب المحاماة وصياغة المراجع القانونية بجمهورية مصر العربية.</p>
+          <p class="footer-email">التواصل المباشر: <a href="mailto:ahmdmansoor222@gmail.com">ahmdmansoor222@gmail.com</a></p>
+        </div>
+        <div class="footer-col">
+          <h4>بوابات المنصة الرئيسية</h4>
+          <ul>
+            <li><a href="/">الرئيسية</a></li>
+            <li><a href="/blog/">المدونة القانونية</a></li>
+            <li><a href="/legal-calculators.html">الحاسبات القانونية الذكية</a></li>
+            <li><a href="/pillars/">المراجع التشريعية الشاملة</a></li>
+            <li><a href="/legal-forms.html">صيغ العقود والدعاوي</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>السياسات والضمانات</h4>
+          <ul>
+            <li><a href="/privacy.html">سياسة الخصوصية</a></li>
+            <li><a href="/terms.html">شروط الاستخدام</a></li>
+            <li><a href="/why-trust-us.html">لماذا تثق بنا</a></li>
+            <li><a href="/contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 منصة المحامي الرقمية — جميع الحقوق محفوظة للمستشار أحمد منصور</span>
+        <span>بوابة العدالة الرقمية المصرية 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/sidebar.js?v=20260823v10"></script>
+  <script src="/sw-register.js?v=20260826v1" defer></script>
+  <script src="/related-articles.js?v=20260826v3" defer></script>
+  <script src="/tts-reader.js?v=20260826v1" defer></script>
+  <script src="/gam.js?v=20260826v1" defer></script>
+  <script src="/mobile-dock.js" defer></script>
+</body>
+</html>
+`;
+
+fs.writeFileSync(TARGET_FILE, html, 'utf8');
+
+// Count words
+const rawText = html.replace(/<[^>]*>/g, ' ');
+const words = (rawText.match(/[\u0600-\u06FF]+|[A-Za-z0-9]+/g) || []).length;
+
+console.log('File successfully created at:', TARGET_FILE);
+console.log('Total words counted:', words);
