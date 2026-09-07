@@ -949,7 +949,11 @@
       "slug": "old-rent-law-164-2025-increase",
       "reason": "{\"error\":{\"code\":404,\"message\":\"This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API.\",\"status\":\"NOT_FOUND\"}}",
       "draft": "D:\\قانوني 7\\scripts\\blog-publisher\\drafts\\old-rent-law-164-2025-increase-1788679345923.json"
+    },
+    {
+      "date": "2026-09-07",
+      "reason": "no_new_topic"
     }
   ],
-  "last_run": "2026-09-06T09:22:40.955Z"
+  "last_run": "2026-09-07T19:14:39.948Z"
 }

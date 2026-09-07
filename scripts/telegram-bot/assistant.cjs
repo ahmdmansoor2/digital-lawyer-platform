@@ -36,9 +36,18 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
   res.end('Antigravity Telegram Assistant is Live 24/7 ⚖️');
 });
-server.listen(PORT, () => {
-  console.log(`[telegram] خادم الويب السحابي نشط على المنفذ ${PORT}`);
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    // منفذ مستخدم بالفعل — متابعة كـ client فقط
+  } else {
+    console.warn(`[telegram] تحذير خادم الويب: ${err.message}`);
+  }
 });
+try {
+  server.listen(PORT, () => {
+    console.log(`[telegram] خادم الويب السحابي نشط على المنفذ ${PORT}`);
+  });
+} catch {}
 
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
