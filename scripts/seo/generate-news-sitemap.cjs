@@ -99,7 +99,13 @@ for (const e of entries) {
 }
 
 entries.sort((a, b) => b.date.localeCompare(a.date));
-const limited = entries.slice(0, MAX);
+
+// ─── فلترة صارمة: news-sitemap يقبل فقط آخر 48 ساعة (معيار Google News) ───
+const windowMs = WINDOW_HOURS * 60 * 60 * 1000;
+const cutoff = new Date(Date.now() - windowMs);
+const recent = entries.filter(e => new Date(e.date) >= cutoff);
+console.log(`[news-sitemap] ${entries.length} مقال إجمالي — ${recent.length} ضمن آخر ${WINDOW_HOURS} ساعة`);
+const limited = recent.slice(0, MAX);
 
 const xml =
 `<?xml version="1.0" encoding="UTF-8"?>
