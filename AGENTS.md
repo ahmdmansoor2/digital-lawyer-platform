@@ -753,3 +753,73 @@ commit `54e9559` — تم push. تحقق بـ `firebase deploy --only hosting:ap
 - **`www.mohamidigital.online`** لا يزال مكسوراً (Connection reset) — لم يُضف في Firebase Hosting بعد. `mohamidigital.online` (الرئيسي) شغال 100%.
 - **Search Console** لا يزال ينتظر Verify من المستخدم.
 - `index.html` BUILD_VERSION: `20260816-v1` → `20260818-v1`.
+
+---
+
+## 🔴 الدستور البرمجي الذهبي — سجل الأخطاء المتكررة ومانعها الإلزامي
+
+> **يُلزم كل نموذج AI — سواء كان Gemini, GPT-4o, Claude, Copilot, Cursor أو غيره — بقراءة هذا القسم وتطبيقه حرفياً قبل أي تعديل.**
+
+### 🚫 الأخطاء الثمانية التي وقعت فعلياً والمحظور تكرارها أبداً
+
+| # | الخطأ | تاريخ الاكتشاف | القاعدة الواقية |
+|---|-------|----------------|-----------------|
+| 1 | `news-sitemap.xml` يحتوي 187 مقالاً قديماً بدلاً من آخر 48 ساعة لأن `WINDOW_HOURS=48` كان معرَّفاً لكن غير مُطبَّق في الفلترة | 2026-09-07 | القاعدة أ |
+| 2 | `MAX_ARCHIVE=12` في `generate-radar.cjs` يخفي معظم أرشيف رصد المحامي | 2026-09-06 | القاعدة ب |
+| 3 | نماذج Gemini ملغاة (`gemini-2.5-flash`, `gemini-2.0-flash`, `gemini-1.5-flash`, `gemini-2.5-pro`) تعطي 404 | 2026-09-06 | القاعدة ج |
+| 4 | Facebook Graph API إصدار `v26.0` بدلاً من `v20.0` | 2026-09-06 | القاعدة د |
+| 5 | `filtergraph` collision في FFmpeg — label `[outv]` مُعرَّف مرتين في نفس السلسلة | 2026-09-06 | القاعدة هـ |
+| 6 | 48 رابطاً ميتاً في `sitemap.xml` لملفات غير موجودة | قبل 2026-09 | القاعدة و |
+| 7 | 187 تاريخ نشر مكرر في `news-sitemap.xml` بسبب استخدام `new Date()` بدلاً من `published-log.json` | قبل 2026-09 | القاعدة أ |
+| 8 | 379 صفحة بعنوان فارغ `| |` بسبب غياب fallback في قوالب العناوين | قبل 2026-09 | القاعدة ز |
+
+---
+
+### ✅ القواعد الواقية (يجب تطبيقها في كل تعديل يمس هذه الملفات)
+
+**القاعدة أ — `news-sitemap.xml` = آخر 48 ساعة فقط (مطلق):**
+```js
+// الكود الإلزامي — لا تحذف هذا أبداً:
+const cutoff = new Date(Date.now() - WINDOW_HOURS * 60 * 60 * 1000);
+const recent = entries.filter(e => new Date(e.date) >= cutoff);
+const limited = recent.slice(0, MAX);
+// ❌ ممنوع: const limited = entries.slice(0, MAX);
+```
+
+**القاعدة ب — الأرشيفات لا حد أقصى لها:**
+```js
+// ❌ ممنوع: MAX_ARCHIVE = 12 أو MAX_ARCHIVE_SHOWN = 7
+// ✅ المطلوب: MAX_ARCHIVE = 365 و MAX_ARCHIVE_SHOWN = 365
+// ✅ احذف أي .slice() من دوال saveArchive() وarchiveEntries
+```
+
+**القاعدة ج — نماذج Gemini النشطة فقط:**
+```
+✅ نشطة: gemini-flash-lite-latest | gemini-flash-latest | gemini-3.6-flash | gemini-3.7-flash | gemini-3.1-flash-lite
+❌ ملغاة: gemini-2.5-flash | gemini-2.0-flash | gemini-1.5-flash | gemini-2.5-pro | gemini-2.5-flash-image
+```
+
+**القاعدة د — Facebook Graph API إصدار `v20.0` فقط:**
+```
+❌ ممنوع: v26.0 أو v25.0 أو أي إصدار آخر
+✅ المطلوب: https://graph.facebook.com/v20.0/...
+```
+
+**القاعدة هـ — FFmpeg filtergraph بدون label مكرر:**
+```
+✅ صحيح: [0:v]...[pre_ass]; [pre_ass]ass=file.ass[outv]
+❌ خطأ:  [0:v]...[outv]; [outv]ass=file.ass[outv]
+```
+
+**القاعدة و — `sitemap.xml` روابط حقيقية فقط:**
+```js
+// إلزامي قبل أي إضافة لرابط في sitemap:
+if (!fs.existsSync(filePath)) continue;
+```
+
+**القاعدة ز — عناوين الصفحات لا تكون فارغة:**
+```js
+// ✅ المطلوب دائماً:
+const pageTitle = title || 'المحامي الرقمي';
+// ❌ ممنوع: `${title} | ${siteName}` بدون fallback
+```
