@@ -49,10 +49,11 @@ async function searchVideos(query, opts = {}) {
   }
   const params = new URLSearchParams({
     query: String(query).trim(),
-    per_page: String(opts.perPage || 5),
+    per_page: String(opts.perPage || 8),
     orientation: opts.orientation || 'portrait',
     size: 'medium',
   });
+  if (opts.page) params.set('page', String(opts.page));
   const resp = await fetch(`${API_BASE}/videos/search?${params}`, {
     headers: { Authorization: apiKey },
   });

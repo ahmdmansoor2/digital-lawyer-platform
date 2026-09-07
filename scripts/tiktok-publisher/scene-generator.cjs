@@ -305,26 +305,105 @@ async function renderScenes(plan, opts = {}) {
   return results;
 }
 
+function getDynamicVideoQueries(topic, scene, sceneIndex) {
+  const category = String(topic?.category || topic?.tag || '').toLowerCase();
+  const title = String(topic?.title || '').toLowerCase();
+  const rawPrompt = String(scene?.image_prompt || '').toLowerCase();
+
+  const cleanKeywords = rawPrompt
+    .replace(/realistic|professional|photo|video|cinematic|composition|high quality|9:16|none|watermarks|aspect|ratio|vertical|3d|photorealistic|render|8k/gi, ' ')
+    .split(/[,\s]+/)
+    .filter(w => w.length > 3 && w.length < 25)
+    .slice(0, 3)
+    .join(' ');
+
+  if (category.includes('عقار') || title.includes('عقار') || title.includes('حجز') || title.includes('بناء') || title.includes('شقة')) {
+    const list = [
+      'modern skyscraper architecture',
+      'real estate luxury apartment building',
+      'construction architectural blueprint',
+      'signing contract keys table',
+      'city buildings drone vertical'
+    ];
+    return [cleanKeywords || list[sceneIndex % list.length], ...list];
+  }
+
+  if (category.includes('عمل') || category.includes('عمال') || title.includes('عامل') || title.includes('أجر') || title.includes('فصل')) {
+    const list = [
+      'business office meeting room',
+      'factory worker manufacturing safety',
+      'laptop contract document desk',
+      'handshake corporate partnership',
+      'professionals walking city street'
+    ];
+    return [cleanKeywords || list[sceneIndex % list.length], ...list];
+  }
+
+  if (category.includes('إلكترون') || category.includes('جرائم') || title.includes('ابتزاز') || title.includes('واتساب') || title.includes('نصب')) {
+    const list = [
+      'cyber security digital data stream',
+      'typing keyboard dark room code',
+      'smartphone social media message',
+      'server room blinking lights',
+      'digital network security shield'
+    ];
+    return [cleanKeywords || list[sceneIndex % list.length], ...list];
+  }
+
+  if (category.includes('أسرة') || category.includes('حضانة') || category.includes('ميراث') || title.includes('أب') || title.includes('أم') || title.includes('طلاق')) {
+    const list = [
+      'family home warm living room',
+      'father child walking park nature',
+      'family law court documents desk',
+      'sad person by window dramatic',
+      'happy family together outdoors'
+    ];
+    return [cleanKeywords || list[sceneIndex % list.length], ...list];
+  }
+
+  if (category.includes('تجاري') || category.includes('غش') || title.includes('سلع') || title.includes('شركات')) {
+    const list = [
+      'warehouse cargo shipping boxes',
+      'factory quality control inspection',
+      'official business stamp seal',
+      'counting money cash finance',
+      'cargo trucks highway transport'
+    ];
+    return [cleanKeywords || list[sceneIndex % list.length], ...list];
+  }
+
+  if (category.includes('مرور') || category.includes('حوادث') || category.includes('تعويض')) {
+    const list = [
+      'city traffic road cars moving',
+      'car accident damage inspection',
+      'doctor medical report consultation',
+      'calculator financial planning money',
+      'justice scale lawyer office'
+    ];
+    return [cleanKeywords || list[sceneIndex % list.length], ...list];
+  }
+
+  const generalList = [
+    'justice scales dramatic lighting',
+    'courthouse columns pillars marble',
+    'fountain pen signing official paper',
+    'judge wooden gavel striking table',
+    'law library old leather books'
+  ];
+  return [cleanKeywords || generalList[sceneIndex % generalList.length], ...generalList];
+}
+
 /**
- * عرض المشاهد كمقاطع فيديو حقيقية متحركة (9:16، حركة حقيقية 100%).
+ * عرض المشاهد كمقاطع فيديو حقيقية متحركة متنوعة حسب موضوع المقال (9:16، حركة حقيقية 100%).
  */
 async function renderVideoScenes(plan, opts = {}) {
   const outputDir = opts.outputDir || path.join(__dirname, 'output', 'videos', `scene-${Date.now()}`);
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
   const { searchVideos, downloadVideo } = require('./pexels-fetcher.cjs');
 
-  const judicialKeywords = [
-    'justice scales motion',
-    'courtroom courthouse',
-    'lawyer signing legal document',
-    'judge gavel wooden hammer',
-    'law books library',
-    'forensic evidence investigation',
-    'cyber security code',
-    'contract handshake agreement'
-  ];
-
+  const topic = opts.topic || plan.topic || {};
   const results = [];
+
   for (let i = 0; i < plan.scenes.length; i++) {
     const scene = plan.scenes[i];
     const idx = String(scene.id).padStart(2, '0');
@@ -333,14 +412,18 @@ async function renderVideoScenes(plan, opts = {}) {
 
     if (process.env.PEXELS_API_KEY) {
       try {
-        const query = judicialKeywords[i % judicialKeywords.length];
-        const videos = await searchVideos(query, { perPage: 4, orientation: 'portrait' });
-        const vid = (videos || []).find(v => (v.duration || 0) >= 4) || videos[0];
-        if (vid) {
-          const result = await downloadVideo(vid, videoPath);
-          console.log(`[scenes] ✓ مشهد ${scene.id}/${plan.scenes.length} — فيديو حركة حقيقي: ${result.width}x${result.height} (${result.duration}ث)`);
-          results.push({ ...scene, videoPath, videoStatus: 'real-motion-video' });
-          ok = true;
+        const queries = getDynamicVideoQueries(topic, scene, i);
+        for (const query of queries) {
+          if (ok) break;
+          const seedPage = ((i + (topic.title?.length || 1)) % 3) + 1;
+          const videos = await searchVideos(query, { perPage: 8, orientation: 'portrait', page: seedPage });
+          if (videos?.length) {
+            const vid = videos[Math.floor(Math.random() * videos.length)] || videos[0];
+            const result = await downloadVideo(vid, videoPath);
+            console.log(`[scenes] ✓ مشهد ${scene.id}/${plan.scenes.length} — فيديو حركي موضوعي [${query}]: ${result.width}x${result.height} (${result.duration}ث)`);
+            results.push({ ...scene, videoPath, videoStatus: 'real-motion-video' });
+            ok = true;
+          }
         }
       } catch (e) {
         console.warn(`[scenes] ⚠️ تعذر جلب فيديو المشهد ${scene.id}: ${e.message?.substring(0, 80)}`);
