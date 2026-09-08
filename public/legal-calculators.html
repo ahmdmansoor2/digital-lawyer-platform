@@ -30,15 +30,100 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": ["SoftwareApplication", "WebApplication"],
-    "name": "بوابة الحاسبات القانونية والشرعية الذكية 2026",
-    "description": "15 حاسبة قانونية وشرعية تفاعلية متكاملة للمحامين والمواطنين: المواريث، النفقات، الشهر العقاري، التصالح، الإيجار القديم، مواعيد الطعون، نهاية الخدمة، الضرائب، المحاكم، التقادم، والفائدة القانونية.",
-    "url": "https://mohamidigital.online/legal-calculators.html",
-    "applicationCategory": "LegalServiceApplication",
-    "operatingSystem": "All",
-    "inLanguage": "ar-EG",
-    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EGP", "description": "مجاني 100%"},
-    "provider": {"@type": "Organization", "name": "المحامي الرقمي", "url": "https://mohamidigital.online/"}
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": "https://mohamidigital.online/legal-calculators.html#app",
+        "name": "بوابة الحاسبات القانونية والشرعية الذكية 2026",
+        "description": "15 حاسبة قانونية وشرعية تفاعلية متكاملة للمحامين والمواطنين: المواريث والتركات، النفقات الشرعية، رسوم الشهر العقاري، التصالح في مخالفات البناء، زيادة الإيجار القديم 2026، مواعيد وسقوط الطعون، مستحقات نهاية الخدمة، ضريبة كسب العمل والتأمينات، رسوم المحاكم، التقادم القضائي، والفائدة القانونية.",
+        "url": "https://mohamidigital.online/legal-calculators.html",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "All",
+        "inLanguage": "ar-EG",
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EGP",
+          "description": "مجاني بالكامل 100%"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "منصة المحامي الرقمية",
+          "url": "https://mohamidigital.online/"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "الرئيسية",
+            "item": "https://mohamidigital.online/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "الحاسبات القانونية والشرعية",
+            "item": "https://mohamidigital.online/legal-calculators.html"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "كيف تُحسب زيادة الإيجار القديم وفق القانون رقم 164 لسنة 2025 في مصر؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "وفقاً للقانون رقم 164 لسنة 2025، تُزاد القيمة الإيجارية القانونية للأماكن المؤجرة لغير غرض السكني للأشخاص الاعتبارية بنسبة خمسة أمثال القيمة القانونية السارية، ثم تزداد سنوياً بصفة دورية بنسبة 15% وتستمر لمدة 5 سنوات حتى تحرير العلاقة الإيجارية، وتوفر الحاسبة حساب الأثر المالي الدقيق فوراً."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "ما هي رسوم تسجيل العقارات والشقق بالشهر العقاري في مصر 2026؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "وفقاً للقانون رقم 9 لسنة 2022 لتعديل قانون الشهر العقاري، تم وضع سقف رقمي لرسوم التسجيل يبدأ من 500 جنيه للمساحات حتى 100 متر مربع، 1000 جنيه حتى 200 متر، 1500 جنيه حتى 300 متر، وبحد أقصى 2000 جنيه للمساحات الأكبر من 300 متر، بالإضافة إلى الرسوم الإدارية ورسم الرفع المساحي الرقمي وضريبة التصرفات العقارية 2.5%."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "كيف تُحسب مواعيد الطعن بالاستئناف والنقض والمعارضة في القانون المصري؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ميعاد الاستئناف في المواد المدنية والتجارية 40 يوماً من تاريخ صدور الحكم أو إعلانه (وفق المادة 227 مرافعات)، وميعاد استئناف المواد المستعجلة 15 يوماً، وميعاد الطعن بالنقض المدني والجنائي 60 يوماً، بينما ميعاد معارضة واستئناف الجنح 10 أيام. وإذا صادف اليوم الأخير عطلة رسمية يمتد الميعاد لأول يوم عمل تالٍ."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "كيف تُحسب مكافأة نهاية الخدمة والتعويض عن الفصل التعسفي في قانون العمل؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "وفقاً لقانون العمل المصري رقم 12 لسنة 2003، يستحق العامل مكافأة نهاية خدمة بواقع أجر نصف شهر عن كل سنة من السنوات الخمس الأولى، وأجر شهر كامل عن كل سنة تالية. وفي حالة الفصل التعسفي، تقضي المحكمة العمالية بتعويض لا يقل عن أجر شهرين عن كل سنة خدمة من الراتب الشامل بالإضافة للمقابل النقدي للإجازات."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "كيف تُحسب نفقة الزوجية ونفقة الصغار في محاكم الأسرة المصرية؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "تُقدر النفقات بحسب يسار ودخل الزوج وقدرته المالية؛ وتستقر أحكام محاكم الأسرة على تقدير نفقة الزوجية بنسبة 20% تقريباً من صافي دخل الزوج، ونفقة الصغار بنسبة 10% إلى 15% لكل طفل، بالإضافة إلى أجر مسكن الحضانة ومصاريف التعليم والعلاج المناسبة للمستوى الاجتماعي."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "ما هي قواعد حساب الميراث وتوزيع التركات الشرعية في مصر؟",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "تُقسم التركات وفق أحكام قانون المواريث رقم 77 لسنة 1943 المستمد من الشريعة الإسلامية: يبدأ بتسديد الديون ومصاريف التجهيز والوصايا الواجبة في حدود الثلث، ثم توزيع الفروض المقدرة (نصف، ربع، ثمن، ثلثان، ثلث، سدس) ثم توزيع الباقي تعصيباً للذكر مثل حظ الأنثيين."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
   <style>
@@ -1075,28 +1160,63 @@
   <script>(adsbygoogle = window.adsbygoogle | []).push({});</script>
 </div>
 
+<!-- STATUTORY LEGAL GUIDE -->
+<section class="faq-section" style="margin-top: 40px;">
+  <h2 class="faq-title">🏛️ السند التشريعي والقوانين المصرية المنظمة للحاسبات الـ 15</h2>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px;">
+    <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 14px; padding: 18px;">
+      <h3 style="color: var(--indigo-light); font-size: 1rem; margin-bottom: 8px;">📜 المواريث والتركات الشرعية</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">تستند لقانون المواريث رقم 77 لسنة 1943 وقانون الوصية رقم 71 لسنة 1946 وتعديلاتهما، لتطبيق أحكام الفروض والعصبات والرد وحجب الحرمان والنقصان.</p>
+    </div>
+    <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 14px; padding: 18px;">
+      <h3 style="color: var(--indigo-light); font-size: 1rem; margin-bottom: 8px;">🏠 الشهر العقاري وتسجيل العقارات</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">تستند لأحكام القانون رقم 9 لسنة 2022 بتعديل قانون تنظيم الشهر العقاري رقم 114 لسنة 1946 بوضع حد أقصى للرسوم وميكنة الرفع المساحي الرقمي.</p>
+    </div>
+    <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 14px; padding: 18px;">
+      <h3 style="color: var(--indigo-light); font-size: 1rem; margin-bottom: 8px;">🏢 زيادة الإيجار القديم 2026</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">تستند لأحكام القانون رقم 164 لسنة 2025 والقانون رقم 10 لسنة 2022 بشأن تنظيم بعض أحكام عقود إيجار الأماكن للأشخاص الاعتبارية لغير غرض السكنى.</p>
+    </div>
+    <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 14px; padding: 18px;">
+      <h3 style="color: var(--indigo-light); font-size: 1rem; margin-bottom: 8px;">⚖️ مواعيد وسقوط الطعون القضائية</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">تستند لقانون المرافعات المدنية والتجارية رقم 13 لسنة 1968 وقانون الإجراءات الجنائية رقم 150 لسنة 1950 وقانون مجلس الدولة رقم 47 لسنة 1972.</p>
+    </div>
+    <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 14px; padding: 18px;">
+      <h3 style="color: var(--indigo-light); font-size: 1rem; margin-bottom: 8px;">💼 نهاية الخدمة والتعويض العمالي</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">تستند لأحكام قانون العمل المصري رقم 12 لسنة 2003 (المواد 122 و125 و126) وقانون التأمينات والمعاشات رقم 148 لسنة 2019.</p>
+    </div>
+    <div style="background: rgba(15, 23, 42, 0.75); border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 14px; padding: 18px;">
+      <h3 style="color: var(--indigo-light); font-size: 1rem; margin-bottom: 8px;">🏗️ التصالح في مخالفات البناء</h3>
+      <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">تستند للقانون رقم 187 لسنة 2023 ولائحته التنفيذية بشأن تقنين أوضاع بعض مخالفات البناء والتصالح فيها وتخفيضات السداد الفوري والتقسيط.</p>
+    </div>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section class="faq-section">
-  <h2 class="faq-title">❓ الأسئلة الشائعة حول الحاسبات القانونية</h2>
+  <h2 class="faq-title">❓ الأسئلة الشائعة حول الحاسبات القانونية والشرعية</h2>
   <div class="faq-item" onclick="toggleFaq(this)">
-    <div class="faq-q">كيف يُحسب الميراث والتركات وفق أحكام الشريعة والقانون المصري؟ <span class="faq-arrow">▼</span></div>
-    <div class="faq-a">وفق أحكام قانون المواريث رقم 77 لسنة 1943، يتم أولاً سداد الديون وتنفيذ الوصايا من التركة بما لا يجاوز الثلث، ثم توزيع الفروض لأصحابها (كالزوج/الزوجة والأبوين)، ثم يرث العصبات (كالأبناء للذكر مثل حظ الأنثيين) ما تبقى.</div>
+    <div class="faq-q">كيف تُحسب زيادة الإيجار القديم وفق القانون رقم 164 لسنة 2025 في مصر؟ <span class="faq-arrow">▼</span></div>
+    <div class="faq-a">وفقاً للقانون رقم 164 لسنة 2025، تُزاد القيمة الإيجارية القانونية للأماكن المؤجرة لغير غرض السكني للأشخاص الاعتبارية بنسبة خمسة أمثال القيمة القانونية السارية، ثم تزداد سنوياً بصفة دورية بنسبة 15% وتستمر لمدة 5 سنوات حتى تحرير العلاقة الإيجارية، وتوفر الحاسبة حساب الأثر المالي الدقيق فوراً.</div>
   </div>
   <div class="faq-item" onclick="toggleFaq(this)">
-    <div class="faq-q">كيف تُقدر النفقات الزوجية ونفقة الصغار في المحاكم المصرية؟ <span class="faq-arrow">▼</span></div>
-    <div class="faq-a">تُقدر المحكمة النفقة بناءً على مفردات مرتب الزوج وتحريات الدخل ويسار حاله، وتتراوح إجمالي النفقات عادة بين 25% و40% من صافي دخله الشهري.</div>
+    <div class="faq-q">ما هي رسوم تسجيل العقارات والشقق بالشهر العقاري في مصر 2026؟ <span class="faq-arrow">▼</span></div>
+    <div class="faq-a">وفقاً للقانون رقم 9 لسنة 2022 لتعديل قانون الشهر العقاري، تم وضع سقف رقمي لرسوم التسجيل يبدأ من 500 جنيه للمساحات حتى 100 متر مربع، 1000 جنيه حتى 200 متر، 1500 جنيه حتى 300 متر، وبحد أقصى 2000 جنيه للمساحات الأكبر من 300 متر، بالإضافة إلى الرسوم الإدارية ورسم الرفع المساحي الرقمي وضريبة التصرفات العقارية 2.5%.</div>
   </div>
   <div class="faq-item" onclick="toggleFaq(this)">
-    <div class="faq-q">ما هي قيمة رسوم التصالح في مخالفات البناء 2026؟ <span class="faq-arrow">▼</span></div>
-    <div class="faq-a">وفق قانون التصالح 187 لسنة 2023، يتراوح سعر المتر بين 50 و2500 جنيه حسب المنطقة، مع منح خصم 25% عند السداد الفوري الكاش، أو تقسيط المتبقي على 3 إلى 5 سنوات.</div>
+    <div class="faq-q">كيف تُحسب مواعيد الطعن بالاستئناف والنقض والمعارضة في القانون المصري؟ <span class="faq-arrow">▼</span></div>
+    <div class="faq-a">ميعاد الاستئناف في المواد المدنية والتجارية 40 يوماً من تاريخ صدور الحكم أو إعلانه (وفق المادة 227 مرافعات)، وميعاد استئناف المواد المستعجلة 15 يوماً، وميعاد الطعن بالنقض المدني والجنائي 60 يوماً، بينما ميعاد معارضة واستئناف الجنح 10 أيام. وإذا صادف اليوم الأخير عطلة رسمية يمتد الميعاد لأول يوم عمل تالٍ.</div>
   </div>
   <div class="faq-item" onclick="toggleFaq(this)">
-    <div class="faq-q">ما هي الزيادة القانونية للإيجار القديم للأشخاص الاعتبارية؟ <span class="faq-arrow">▼</span></div>
-    <div class="faq-a">وفق القانون 10 لسنة 2022، زادت القيمة الإيجارية بمقدار 5 أضعاف فوراً في مارس 2022، ثم تزداد سنوياً بنسبة 15% لمدة 5 سنوات، على أن يتم إخلاء العين المؤجرة في مارس 2027.</div>
+    <div class="faq-q">كيف تُحسب مكافأة نهاية الخدمة والتعويض عن الفصل التعسفي في قانون العمل؟ <span class="faq-arrow">▼</span></div>
+    <div class="faq-a">وفقاً لقانون العمل المصري رقم 12 لسنة 2003، يستحق العامل مكافأة نهاية خدمة بواقع أجر نصف شهر عن كل سنة من السنوات الخمس الأولى، وأجر شهر كامل عن كل سنة تالية. وفي حالة الفصل التعسفي، تقضي المحكمة العمالية بتعويض لا يقل عن أجر شهرين عن كل سنة خدمة من الراتب الشامل بالإضافة للمقابل النقدي للإجازات.</div>
   </div>
   <div class="faq-item" onclick="toggleFaq(this)">
-    <div class="faq-q">متى تسقط الدعوى الجنائية أو تنقضي بالتقادم؟ <span class="faq-arrow">▼</span></div>
-    <div class="faq-a">تنقضي الدعوى الجنائية بمضي 10 سنوات في الجنايات، و3 سنوات في الجنح، وسنة واحدة في المخالفات من يوم وقوع الجريمة، ما لم يتخلل المدة إجراء قاطع للتقادم.</div>
+    <div class="faq-q">كيف تُحسب نفقة الزوجية ونفقة الصغار في محاكم الأسرة المصرية؟ <span class="faq-arrow">▼</span></div>
+    <div class="faq-a">تُقدر النفقات بحسب يسار ودخل الزوج وقدرته المالية؛ وتستقر أحكام محاكم الأسرة على تقدير نفقة الزوجية بنسبة 20% تقريباً من صافي دخل الزوج، ونفقة الصغار بنسبة 10% إلى 15% لكل طفل، بالإضافة إلى أجر مسكن الحضانة ومصاريف التعليم والعلاج المناسبة للمستوى الاجتماعي.</div>
+  </div>
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">ما هي قواعد حساب الميراث وتوزيع التركات الشرعية في مصر؟ <span class="faq-arrow">▼</span></div>
+    <div class="faq-a">تُقسم التركات وفق أحكام قانون المواريث رقم 77 لسنة 1943 المستمد من الشريعة الإسلامية: يبدأ بتسديد الديون ومصاريف التجهيز والوصايا الواجبة في حدود الثلث، ثم توزيع الفروض المقدرة (نصف، ربع، ثمن، ثلثان، ثلث، سدس) ثم توزيع الباقي تعصيباً للذكر مثل حظ الأنثيين.</div>
   </div>
 </section>
 
@@ -1898,13 +2018,13 @@ function toggleDevRate() {
 document.getElementById('dev-rate-type').addEventListener('change', toggleDevRate);
 
 function calcDevDelay() {
-  var totalV = parseFloat(document.getElementById('dev-total').value) | 0;
-  var paidV = parseFloat(document.getElementById('dev-paid').value) | 0;
+  var totalV = parseFloat(document.getElementById('dev-total').value) || 0;
+  var paidV = parseFloat(document.getElementById('dev-paid').value) || 0;
   var dueDate = document.getElementById('dev-due-date').value;
   var actualDate = document.getElementById('dev-actual-date').value;
   var rateType = document.getElementById('dev-rate-type').value;
 
-  if (!totalV | !paidV | !dueDate) { alert('يرجى إدخال القيمة الإجمالية والمبلغ المدفوع وتاريخ التسليم المتفق عليه.'); return; }
+  if (!totalV || !paidV || !dueDate) { alert('يرجى إدخال القيمة الإجمالية والمبلغ المدفوع وتاريخ التسليم المتفق عليه.'); return; }
 
   var due = new Date(dueDate);
   var actual = actualDate ? new Date(actualDate) : new Date();
@@ -1923,7 +2043,7 @@ function calcDevDelay() {
   if (rateType === 'statutory') {
     annualRate = 5; rateLabel = '5% سنوياً — الحد القانوني الأدنى';
   } else if (rateType === 'custom') {
-    annualRate = parseFloat(document.getElementById('dev-custom-rate').value) | 8;
+    annualRate = parseFloat(document.getElementById('dev-custom-rate').value) || 8;
     rateLabel = annualRate + '% سنوياً — النسبة التعاقدية';
   } else {
     annualRate = 5; rateLabel = '5% سنوياً — تطبيق الحد القانوني لغياب نص تعاقدي';
@@ -1957,13 +2077,13 @@ function calcDevDelay() {
 
 // ── 13: أجر العمل الإضافي ──
 function calcOvertime() {
-  var basic = parseFloat(document.getElementById('ot-basic').value) | 0;
-  var workDays = parseInt(document.getElementById('ot-days').value) | 26;
-  var dailyHours = parseInt(document.getElementById('ot-daily').value) | 8;
-  var dayHrs = parseFloat(document.getElementById('ot-day-hours').value) | 0;
-  var nightHrs = parseFloat(document.getElementById('ot-night-hours').value) | 0;
-  var restHrs = parseFloat(document.getElementById('ot-rest-hours').value) | 0;
-  var holidayHrs = parseFloat(document.getElementById('ot-holiday-hours').value) | 0;
+  var basic = parseFloat(document.getElementById('ot-basic').value) || 0;
+  var workDays = parseInt(document.getElementById('ot-days').value) || 26;
+  var dailyHours = parseInt(document.getElementById('ot-daily').value) || 8;
+  var dayHrs = parseFloat(document.getElementById('ot-day-hours').value) || 0;
+  var nightHrs = parseFloat(document.getElementById('ot-night-hours').value) || 0;
+  var restHrs = parseFloat(document.getElementById('ot-rest-hours').value) || 0;
+  var holidayHrs = parseFloat(document.getElementById('ot-holiday-hours').value) || 0;
 
   if (!basic) { alert('يرجى إدخال الأجر الشهري الأساسي.'); return; }
 
@@ -1994,7 +2114,7 @@ function calcOvertime() {
 // ── 14: ديوان المسؤولية ──
 function toggleDiwanInputs() {
   var type = document.getElementById('dw-type').value;
-  document.getElementById('dw-base-group').style.display = (type === 'death' | type === 'total_disability' | type === 'partial_disability') ? 'flex' : 'none';
+  document.getElementById('dw-base-group').style.display = (type === 'death' || type === 'total_disability' || type === 'partial_disability') ? 'flex' : 'none';
   document.getElementById('dw-percentage-group').style.display = type === 'partial_disability' ? 'flex' : 'none';
   document.getElementById('dw-days-group').style.display = type === 'temporary' ? 'flex' : 'none';
   document.getElementById('dw-wage-group').style.display = type === 'temporary' ? 'flex' : 'none';
@@ -2002,7 +2122,7 @@ function toggleDiwanInputs() {
 
 function calcDiwan() {
   var type = document.getElementById('dw-type').value;
-  var base = parseFloat(document.getElementById('dw-base').value) | 240000;
+  var base = parseFloat(document.getElementById('dw-base').value) || 240000;
   var rows = '', totalText = '', note = '';
 
   if (type === 'death') {
@@ -2016,7 +2136,7 @@ function calcDiwan() {
     totalText = base.toLocaleString() + ' ج.م';
     note = 'العجز الكلي الدائم يعادل تعويض الوفاة وفق قواعد الديوان، بالإضافة إلى مصاريف العلاج والأجهزة الطبية المؤثبة إن وجدت.';
   } else if (type === 'partial_disability') {
-    var pct = parseFloat(document.getElementById('dw-percentage').value) | 25;
+    var pct = parseFloat(document.getElementById('dw-percentage').value) || 25;
     var comp = base * (pct / 100);
     rows = '<div class="result-row"><span class="result-row-label">نسبة العجز الجزئي:</span><span class="result-row-value">' + pct + '%</span></div>' +
            '<div class="result-row"><span class="result-row-label">الحد المعياري الكامل:</span><span class="result-row-value">' + base.toLocaleString() + ' ج.م</span></div>' +
@@ -2024,8 +2144,8 @@ function calcDiwan() {
     totalText = Math.round(comp).toLocaleString() + ' ج.م';
     note = 'تُحتسب نسبة العجز بناءً على تقرير اللجنة الطبية، ويُطبَّق على الحد المعياري المحدث بقرار وزاري.';
   } else if (type === 'temporary') {
-    var days = parseInt(document.getElementById('dw-days').value) | 30;
-    var wage = parseFloat(document.getElementById('dw-wage').value) | 300;
+    var days = parseInt(document.getElementById('dw-days').value) || 30;
+    var wage = parseFloat(document.getElementById('dw-wage').value) || 300;
     var interruptionComp = days * wage * 0.75; // 75% من الأجر اليومي
     rows = '<div class="result-row"><span class="result-row-label">أيام الانقطاع:</span><span class="result-row-value">' + days + ' يوم</span></div>' +
            '<div class="result-row"><span class="result-row-label">متوسط الأجر اليومي:</span><span class="result-row-value">' + wage.toLocaleString() + ' ج.م</span></div>' +

@@ -13,6 +13,25 @@
         "books/**"
       ],
       "rewrites": [
+        { "source": "/legal-calculators", "destination": "/legal-calculators.html" },
+        { "source": "/legal-calculators/", "destination": "/legal-calculators.html" },
+        { "source": "/legal-forms", "destination": "/legal-forms.html" },
+        { "source": "/legal-radar", "destination": "/legal-radar.html" },
+        { "source": "/courts-directory", "destination": "/courts-directory.html" },
+        { "source": "/court-precedents", "destination": "/court-precedents.html" },
+        { "source": "/lawyers-directory", "destination": "/lawyers-directory.html" },
+        { "source": "/legal-consultations", "destination": "/legal-consultations.html" },
+        { "source": "/company-incorporation", "destination": "/company-incorporation.html" },
+        { "source": "/legal-diagnostics", "destination": "/legal-diagnostics.html" },
+        { "source": "/download", "destination": "/download.html" },
+        { "source": "/real-estate", "destination": "/real-estate.html" },
+        { "source": "/about", "destination": "/about.html" },
+        { "source": "/features", "destination": "/features.html" },
+        { "source": "/pricing", "destination": "/pricing.html" },
+        { "source": "/contact", "destination": "/contact.html" },
+        { "source": "/privacy", "destination": "/privacy.html" },
+        { "source": "/terms", "destination": "/terms.html" },
+        { "source": "/why-trust-us", "destination": "/why-trust-us.html" },
         {
           "source": "!/+(blog|pillars|courts|radar-topics|legal-forms-docs|library-pdfs|newsletter)/**",
           "destination": "/index.html"
