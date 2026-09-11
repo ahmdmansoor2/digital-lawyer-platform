@@ -1370,6 +1370,25 @@
       "url": "https://www.youtube.com/watch?v=gx-wqIpnxJM",
       "fbPermalink": "https://www.facebook.com/reel/2321212901967327",
       "publishedAt": "2026-09-07T17:17:29.274Z"
+    },
+    {
+      "topicId": "blog-rental-deposit-rights",
+      "kind": "short",
+      "videoId": "2C97EL1e5yA",
+      "url": "https://www.youtube.com/watch?v=2C97EL1e5yA",
+      "fbPermalink": "https://www.facebook.com/reel/1130785262705163",
+      "publishedAt": "2026-09-11T15:05:35.377Z"
+    },
+    {
+      "topicId": "blog-rental-deposit-rights",
+      "title": "تأمين الإيجار في القانون المصري: الدليل القانوني الشامل لحقوق المستأجر وضمانات ا — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-rental-deposit-rights-wide.mp4",
+      "source": "blog",
+      "videoId": "5D01nUXi3Jo",
+      "url": "https://www.youtube.com/watch?v=5D01nUXi3Jo",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1130785262705163",
+      "publishedAt": "2026-09-11T15:06:15.837Z"
     }
   ]
 }
