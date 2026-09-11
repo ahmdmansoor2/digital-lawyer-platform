@@ -1389,6 +1389,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1130785262705163",
       "publishedAt": "2026-09-11T15:06:15.837Z"
+    },
+    {
+      "topicId": "blog-digital-copyright",
+      "kind": "short",
+      "videoId": "1eWXLXV9hSI",
+      "url": "https://www.youtube.com/watch?v=1eWXLXV9hSI",
+      "fbPermalink": "https://www.facebook.com/reel/1525227062745074",
+      "publishedAt": "2026-09-11T16:25:50.987Z"
+    },
+    {
+      "topicId": "blog-digital-copyright",
+      "title": "حق المؤلف على المحتوى الرقمي: حماية المدونين وصناع المحتوى في القانون المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-digital-copyright-wide.mp4",
+      "source": "blog",
+      "videoId": "_AiffFynIcg",
+      "url": "https://www.youtube.com/watch?v=_AiffFynIcg",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1525227062745074",
+      "publishedAt": "2026-09-11T16:26:13.577Z"
     }
   ]
 }
