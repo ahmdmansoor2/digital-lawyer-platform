@@ -28,7 +28,7 @@ const PORT = process.env.PORT || 8080;
 
 if (!BOT_TOKEN) {
   console.error('[telegram] خطأ: TELEGRAM_BOT_TOKEN غير متوفر في .env');
-  process.exit(1);
+  if (require.main === module) process.exit(1);
 }
 
 // خادم صحي سحابي للعمل 24/7 على منصات Render / Railway

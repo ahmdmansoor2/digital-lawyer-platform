@@ -218,10 +218,14 @@ async function processTopic(topic, opts) {
 
     // إشعار تليجرام للمستشار أحمد منصور
     try {
-      const { sendTelegram } = require('../telegram-bot/assistant.cjs');
-      const ytUrl = typeof ytResult !== 'undefined' && ytResult?.url ? `\n🎥 <a href="${ytResult.url}">مشاهدة على YouTube Shorts</a>` : '';
-      const tgMsg = `🎬 <b>تم نشر فيديو ريلز وشورتس جديد!</b>\n\n📌 <b>الموضوع:</b> ${topic.title}\n⏱️ <b>المدة:</b> ${formatDuration(audio.durationSec)}\n🔗 <a href="${result.permalink_url}">مشاهدة على Facebook Reels</a>${ytUrl}\n\n🌐 تم توجيه المتابعين لزيارة المنصة والحاسبات الذكية.`;
-      await sendTelegram(tgMsg);
+      if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
+        const { sendTelegram } = require('../telegram-bot/assistant.cjs');
+        const ytUrl = typeof ytResult !== 'undefined' && ytResult?.url ? `\n🎥 <a href="${ytResult.url}">مشاهدة على YouTube Shorts</a>` : '';
+        const tgMsg = `🎬 <b>تم نشر فيديو ريلز وشورتس جديد!</b>\n\n📌 <b>الموضوع:</b> ${topic.title}\n⏱️ <b>المدة:</b> ${formatDuration(audio.durationSec)}\n🔗 <a href="${result.permalink_url}">مشاهدة على Facebook Reels</a>${ytUrl}\n\n🌐 تم توجيه المتابعين لزيارة المنصة والحاسبات الذكية.`;
+        await sendTelegram(tgMsg);
+      } else {
+        console.warn('[telegram] ⏭️ تخطي إشعار تليجرام — TELEGRAM_BOT_TOKEN غير مضبوط (لا يمنع النشر).');
+      }
     } catch (tgErr) {
       console.error('[telegram] تعذر إرسال إشعار الريلز:', tgErr.message);
     }
