@@ -509,7 +509,7 @@ async function generateCardIllustration(card) {
 
   // 1. تجربة Google GenAI Image Models
   if (ai) {
-    for (const model of ['gemini-2.5-flash-image', 'gemini-3.1-flash-image']) {
+    for (const model of ['gemini-3.1-flash-image', 'gemini-3-pro-image']) {
       try {
         const resp = await ai.models.generateContent({
           model,

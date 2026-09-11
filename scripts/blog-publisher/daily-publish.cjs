@@ -30,7 +30,7 @@ const LEGACY_LOG_FILE = path.join(ROOT, 'scripts', 'published-log.json');
 const BASE_URL = 'https://mohamidigital.online';
 const ARTICLES_PER_RUN = Number(process.env.ARTICLES_PER_RUN) || 5; // عدد المقالات في كل تشغيل (قابل للتجاوز عبر env)
 const MIN_WORDS = 3000; // الحد الأدنى لعدد كلمات المقال
-const IMAGE_MODEL = 'gemini-2.5-flash-image'; // Nano Banana
+const IMAGE_MODEL = process.env.IMAGE_MODEL || 'gemini-3.1-flash-image'; // Nano Banana Pro
 // نماذج النص المدعومة — كل نموذج له حصة مجانية يومية منفصلة، نوزّع الطلبات
 // بينهم بالتناوب لرفع الطاقة الكلية اليومية (20 طلباً × عدد النماذج).
 const TEXT_MODELS = [
@@ -158,7 +158,7 @@ function articleWordCount(data) {
 const NANO_BANANA_PRO_MODELS = [
   'gemini-3-pro-image',
   'imagen-3.0-generate-002',
-  'gemini-2.5-flash-image'
+  'gemini-3.1-flash-image'
 ];
 
 async function generateImage(ai, topic, data) {

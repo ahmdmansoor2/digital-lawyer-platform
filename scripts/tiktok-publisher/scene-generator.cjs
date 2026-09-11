@@ -30,9 +30,10 @@ const ai = GEMINI_API_KEY ? new GoogleGenAI({ apiKey: GEMINI_API_KEY }) : null;
 
 const TEXT_MODELS = [
   'gemini-flash-lite-latest',
-  'gemini-2.5-flash',
-  'gemini-2.5-pro',
-  'gemini-3.5-flash',
+  'gemini-flash-latest',
+  'gemini-3.6-flash',
+  'gemini-3.7-flash',
+  'gemini-3.1-flash-lite',
 ];
 let textModelIdx = 0;
 const currentTextModel = () => TEXT_MODELS[textModelIdx % TEXT_MODELS.length];
@@ -42,7 +43,7 @@ function advanceTextModel() {
   return currentTextModel();
 }
 
-const IMAGE_MODEL = 'gemini-2.5-flash-image'; // Nano Banana
+const IMAGE_MODEL = 'gemini-3.1-flash-image'; // Nano Banana Pro (بديل gemini-2.5-flash-image المُلغى)
 
 // ─── 1) توليد السكريبت ──────────────────────────────────────────────────────
 async function generateScript(topic, opts = {}) {
@@ -100,10 +101,7 @@ async function generateScript(topic, opts = {}) {
       });
       const text = resp.text?.trim();
       if (!text) throw new Error('مفيش رد من Gemini');
-      // استخراج JSON من الرد
-      const jsonMatch = text.match(/\{[\s\S]*\}/);
-      if (!jsonMatch) throw new Error('الرد مش JSON صالح');
-      return JSON.parse(jsonMatch[0]);
+      return extractJson(text);
     } catch (e) {
       lastError = e;
       console.warn(`[scenes] ⚠️  فشل ${currentTextModel()}: ${e.message?.substring(0, 100)}`);
@@ -144,6 +142,33 @@ async function generatePollinationsImage(prompt, outputPath) {
     console.warn(`[scenes] Pollinations فشل: ${e.message?.substring(0, 80)}`);
     return false;
   }
+}
+
+function extractJson(text) {
+  const startIdx = text.indexOf('{');
+  if (startIdx === -1) throw new Error('الرد مش JSON صالح');
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  for (let i = startIdx; i < text.length; i++) {
+    const ch = text[i];
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (ch === '\\') escaped = true;
+      else if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') { inString = true; continue; }
+    if (ch === '{') { depth++; continue; }
+    if (ch === '}') {
+      depth--;
+      if (depth === 0) {
+        const candidate = text.slice(startIdx, i + 1);
+        try { return JSON.parse(candidate); } catch { /* حاول الموضع التالي */ }
+      }
+    }
+  }
+  throw new Error('الرد مش JSON صالح');
 }
 
 async function generateImage(prompt, outputPath) {

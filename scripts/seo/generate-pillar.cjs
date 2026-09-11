@@ -35,12 +35,11 @@ if (!ai) {
 if (!fs.existsSync(PILLARS_DIR)) fs.mkdirSync(PILLARS_DIR, { recursive: true });
 
 const TEXT_MODELS = [
-  process.env.TEXT_MODEL || 'gemini-2.5-pro',
-  'gemini-1.5-pro',
-  'gemini-2.5-flash',
-  'gemini-3.5-flash',
-  'gemini-3-flash-preview',
+  process.env.TEXT_MODEL || 'gemini-flash-latest',
   'gemini-flash-lite-latest',
+  'gemini-3.6-flash',
+  'gemini-3.7-flash',
+  'gemini-3.1-flash-lite',
 ];
 let modelIdx = 0;
 const currentModel = () => TEXT_MODELS[modelIdx % TEXT_MODELS.length];

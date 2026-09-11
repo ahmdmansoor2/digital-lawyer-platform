@@ -37,10 +37,11 @@ const SKIP_TRENDS = process.argv.includes('--skip-trends');
 const ai = process.env.GEMINI_API_KEY ? new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY }) : null;
 
 const TEXT_MODELS = [
-  process.env.TEXT_MODEL || 'gemini-3.5-flash',
-  'gemini-3-flash-preview',
+  process.env.TEXT_MODEL || 'gemini-flash-latest',
   'gemini-flash-lite-latest',
-  'gemini-3.1-flash-lite-preview',
+  'gemini-3.6-flash',
+  'gemini-3.7-flash',
+  'gemini-3.1-flash-lite',
 ];
 
 // بذور قانونية عربية — تُستعلم منها اقتراحات Google الحقيقية
