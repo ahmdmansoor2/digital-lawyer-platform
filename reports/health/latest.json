@@ -1,11 +1,11 @@
 {
   "date": "2026-09-11",
-  "generatedAt": "2026-09-11T10:56:49.474Z",
+  "generatedAt": "2026-09-11T16:12:01.598Z",
   "status": "error",
   "blogArticles": 184,
-  "fbPosts": 0,
-  "reels": 0,
-  "ghRuns": 10,
+  "fbPosts": 3,
+  "reels": 3,
+  "ghRuns": 12,
   "checks": [
     {
       "name": "site_root",
@@ -38,10 +38,16 @@
       "findings": 0
     },
     {
+      "name": "news_sitemap",
+      "label": "الاستضافة: خريطة أخبار Google news-sitemap.xml",
+      "status": "ok",
+      "findings": 0
+    },
+    {
       "name": "facebook",
       "label": "فيسبوك: منشورات اليوم والصور والريلز",
-      "status": "warn",
-      "findings": 2
+      "status": "ok",
+      "findings": 0
     },
     {
       "name": "github_runs",
