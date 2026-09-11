@@ -31,13 +31,10 @@
         { "source": "/contact", "destination": "/contact.html" },
         { "source": "/privacy", "destination": "/privacy.html" },
         { "source": "/terms", "destination": "/terms.html" },
-        { "source": "/why-trust-us", "destination": "/why-trust-us.html" },
-        {
-          "source": "!/+(blog|pillars|courts|radar-topics|legal-forms-docs|library-pdfs|newsletter|assets|data|*.html|*.xml|*.json|*.txt|*.js|*.css|*.ico|*.png|*.jpg|*.svg|*.webp|*.woff|*.woff2|*.webmanifest|*.pdf|*.mjs|*.map)/**",
-          "destination": "/index.html"
-        }
+        { "source": "/why-trust-us", "destination": "/why-trust-us.html" }
       ],
       "cleanUrls": false,
+
 
       "headers": [
         {
