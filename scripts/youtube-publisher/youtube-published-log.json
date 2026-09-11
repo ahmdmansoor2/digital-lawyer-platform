@@ -1408,6 +1408,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1525227062745074",
       "publishedAt": "2026-09-11T16:26:13.577Z"
+    },
+    {
+      "topicId": "blog-bankruptcy-judicial-settlement",
+      "kind": "short",
+      "videoId": "ms9IhGmFHfI",
+      "url": "https://www.youtube.com/watch?v=ms9IhGmFHfI",
+      "fbPermalink": "https://www.facebook.com/reel/1454794723139426",
+      "publishedAt": "2026-09-11T20:56:55.533Z"
+    },
+    {
+      "topicId": "blog-bankruptcy-judicial-settlement",
+      "title": "الإعسار والمصلح القضائي: إنقاذ التاجر من الديون المتراكمة في القانون التجاري الم — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-bankruptcy-judicial-settlement-wide.mp4",
+      "source": "blog",
+      "videoId": "Ioys8UbHNFw",
+      "url": "https://www.youtube.com/watch?v=Ioys8UbHNFw",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1454794723139426",
+      "publishedAt": "2026-09-11T20:57:35.394Z"
     }
   ]
 }
