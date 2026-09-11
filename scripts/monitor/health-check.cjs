@@ -299,6 +299,20 @@ async function checkSitemap(articleCount) {
   }
 }
 
+// ══ 4b) خريطة أخبار Google (news-sitemap.xml) ═══════════════════════════════
+async function checkNewsSitemap() {
+  const c = addCheck('news_sitemap', 'الاستضافة: خريطة أخبار Google news-sitemap.xml');
+  try {
+    const { status, text } = await getText(BASE_URL + '/news-sitemap.xml');
+    if (status !== 200) { find(c, 'error', `news-sitemap.xml أعاد HTTP ${status}`); return; }
+    const locs = (text.match(/<loc>([^<]+)<\/loc>/g) || []).length;
+    if (locs === 0) { find(c, 'error', 'news-sitemap.xml فارغ — لا توجد أي مقالة خبرية مفهرسة (هذا يضعف حضورك في Google News)'); return; }
+    c.summary = `${locs} مقالاً في news-sitemap.xml (آخر 48 ساعة أو fallback)`;
+  } catch (e) {
+    find(c, 'error', `تعذّر قراءة news-sitemap.xml: ${e.message}`);
+  }
+}
+
 // ══ 5) فيسبوك: منشورات اليوم + الصور + المطابقة ═══════════════════════════
 async function checkFacebook(todayArticles) {
   const c = addCheck('facebook', 'فيسبوك: منشورات اليوم والصور والريلز');
@@ -607,6 +621,7 @@ async function sendTelegramHealthAlert(summary, checks) {
   } catch { /* لا يوجد سجلّ — الفحص التقاطعي لفيسبوك سيُتخطى */ }
 
   await checkSitemap(slugs && slugs.length);
+  await checkNewsSitemap();
   await checkFacebook(todayLog);
   await checkGithubRuns();
   await checkLogVsLive(slugs);
