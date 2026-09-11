@@ -103,9 +103,12 @@ entries.sort((a, b) => b.date.localeCompare(a.date));
 // ─── فلترة صارمة: news-sitemap يقبل فقط آخر 48 ساعة (معيار Google News) ───
 const windowMs = WINDOW_HOURS * 60 * 60 * 1000;
 const cutoff = new Date(Date.now() - windowMs);
-const recent = entries.filter(e => new Date(e.date) >= cutoff);
-console.log(`[news-sitemap] ${entries.length} مقال إجمالي — ${recent.length} ضمن آخر ${WINDOW_HOURS} ساعة`);
+const inWindow = entries.filter(e => new Date(e.date) >= cutoff);
+// إذا كانت نافذة الـ 48 ساعة فارغة (بسبب توقف مؤقت للنشر)، نأخذ أحدث 5 مقالات كـ fallback آمن لمنع ظهور خريطة فارغة لـ Google
+const recent = inWindow.length > 0 ? inWindow : entries.slice(0, 5);
+console.log(`[news-sitemap] ${entries.length} مقال إجمالي — ${inWindow.length} ضمن آخر ${WINDOW_HOURS} ساعة (المُدرج: ${recent.length})`);
 const limited = recent.slice(0, MAX);
+
 
 const xml =
 `<?xml version="1.0" encoding="UTF-8"?>

@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
-
+  <url>
+    <loc>https://mohamidigital.online/blog/real-estate-registration-vs-customary-sale.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>منصة المحامي الرقمية</news:name>
+        <news:language>ar</news:language>
+      </news:publication>
+      <news:publication_date>2026-09-06T18:51:00+03:00</news:publication_date>
+      <news:title>البيع العرفي أم التسجيل بالشهر العقاري: دليلك الشامل للفروق الجوهرية وحماية الملكية في القانون المصري 2026</news:title>
+      <news:keywords>البيع العرفي, التسجيل بالشهر العقاري, صحة توقيع, صحة ونفاذ, القانون رقم 9 لسنة 2022, نقل الملكية العقارية, دعوى تثبيت الملكية, المادة 934 مدني</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/undocumented-worker-wage-proof.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>منصة المحامي الرقمية</news:name>
+        <news:language>ar</news:language>
+      </news:publication>
+      <news:publication_date>2026-09-06T15:34:00+03:00</news:publication_date>
+      <news:title>كيفية إثبات أجر العامل غير المكتوب وحقوقه عند النزاع العمالي</news:title>
+      <news:keywords>إثبات أجر العامل, قانون العمل, مكتب العمل, الفصل التعسفي, محكمة النقض عمالي</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/unlicensed-lawyer-penalties-egypt.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>منصة المحامي الرقمية</news:name>
+        <news:language>ar</news:language>
+      </news:publication>
+      <news:publication_date>2026-09-06T12:17:00+03:00</news:publication_date>
+      <news:title>عقوبة انتحال صفة محامٍ وممارسة المهنة بدون قيد في القانون المصري</news:title>
+      <news:keywords>انتحال صفة محام, نقابة المحامين, قانون المحاماة, جدول المحامين, النصب والادعاء</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/old-rent-law-164-2025-increase.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>منصة المحامي الرقمية</news:name>
+        <news:language>ar</news:language>
+      </news:publication>
+      <news:publication_date>2026-09-06T09:00:00+03:00</news:publication_date>
+      <news:title>قانون الإيجار القديم 2026: دليل الزيادة السنوية 15% وحالات الإخلاء الفوري</news:title>
+      <news:keywords>قانون الإيجار القديم 2026, زيادة الإيجار القديم 15%, قانون 164 لسنة 2025, إخلاء الإيجار القديم لغلق العين, المدة الانتقالية للإيجار القديم, أحكام النقض في الإيجار القديم</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/competition-monopoly-prevention-law-egypt.html</loc>
+    <news:news>
+      <news:publication>
+        <news:name>منصة المحامي الرقمية</news:name>
+        <news:language>ar</news:language>
+      </news:publication>
+      <news:publication_date>2026-09-05T15:34:00+03:00</news:publication_date>
+      <news:title>قانون حماية المنافسة ومنع الممارسات الاحتكارية في أسعار السلع بمصر</news:title>
+      <news:keywords>حماية المنافسة, احتكار الأسعار, سعر السلع, جشع التجار, قانون حماية المستهلك, الجرائم الاقتصادية</news:keywords>
+    </news:news>
+  </url>
 </urlset>
