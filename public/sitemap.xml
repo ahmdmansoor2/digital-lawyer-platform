@@ -319,12 +319,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/witness-testimony-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://mohamidigital.online/blog/workplace-harassment-law.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -349,6 +343,24 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/blog/witness-testimony-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/travel-ban-reasons.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/trial-period-rights.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/blog/trust-receipt-validity-conditions-and-defenses-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -367,18 +379,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/travel-ban-reasons.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/trial-period-rights.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://mohamidigital.online/blog/traffic-accident-claims.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -386,18 +386,6 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/train-accident-compensation-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/thanaweya-amma-appeals-legal-guide.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/trademark-registration-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -421,37 +409,19 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/takaful-karama-pension-legal-eligibility.html</loc>
+    <loc>https://mohamidigital.online/blog/thanaweya-amma-appeals-legal-guide.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/takaful-karama-social-pension-conditions.html</loc>
+    <loc>https://mohamidigital.online/blog/trademark-registration-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/tax-dispute-procedure.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/sports-contracts-law-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/sports-contracts-player-transfers-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/sports-player-contracts-arbitration-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -487,7 +457,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/social-insurance-pension-law-egypt.html</loc>
+    <loc>https://mohamidigital.online/blog/takaful-karama-pension-legal-eligibility.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/takaful-karama-social-pension-conditions.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -500,6 +476,24 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/sports-contracts-egyptian-law.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/sports-contracts-law-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/sports-contracts-player-transfers-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/sports-player-contracts-arbitration-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -529,7 +523,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/salary-delay-penalties-egypt-labor-law.html</loc>
+    <loc>https://mohamidigital.online/blog/social-insurance-pension-law-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -542,12 +536,6 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/shabka-and-engagement-gifts-law-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/rent-eviction-cases.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -566,6 +554,12 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/salary-deductions-delay-labor-law.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/salary-delay-penalties-egypt-labor-law.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -595,6 +589,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/blog/rent-eviction-cases.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/blog/real-estate-disposal-tax-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -602,6 +602,12 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/real-estate-fraud.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/property-tax-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -619,30 +625,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/private-international-law.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/private-school-fees-legal-rights.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/property-tax-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/power-of-attorney-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://mohamidigital.online/blog/prenuptial-agreement.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -655,7 +637,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/old-rent-law-2026-eviction-and-increase.html</loc>
+    <loc>https://mohamidigital.online/blog/private-international-law.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/private-school-fees-legal-rights.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -667,7 +655,25 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/blog/power-of-attorney-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/blog/old-rent-law-164-2025-increase.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/old-rent-law-2026-eviction-and-increase.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/new-labor-law-egypt-2026-gratuity-calculation.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -691,6 +697,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/blog/martial-rape-custody.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/blog/medical-malpractice-lawsuits-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -698,30 +710,6 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/new-labor-law-egypt-2026-contracts-and-termination.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/new-labor-law-egypt-2026-gratuity-calculation.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/marital-housing-rights.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/martial-rape-custody.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/limited-liability-company-incorporation-procedures-gafi.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -739,7 +727,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/legal-heirship-certificate-procedures-and-documents.html</loc>
+    <loc>https://mohamidigital.online/blog/marital-housing-rights.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -757,7 +745,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/labor-rights-termination.html</loc>
+    <loc>https://mohamidigital.online/blog/limited-liability-company-incorporation-procedures-gafi.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -775,7 +763,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/labor-insurance-egypt.html</loc>
+    <loc>https://mohamidigital.online/blog/legal-heirship-certificate-procedures-and-documents.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -787,7 +775,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/labor-contracts-egypt.html</loc>
+    <loc>https://mohamidigital.online/blog/labor-rights-termination.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -799,7 +787,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/khul-divorce-procedure.html</loc>
+    <loc>https://mohamidigital.online/blog/labor-insurance-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -823,6 +811,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/blog/labor-contracts-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/blog/judicial-fees-court.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -841,7 +835,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/intellectual-property-artist-contracts-egypt.html</loc>
+    <loc>https://mohamidigital.online/blog/khul-divorce-procedure.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -889,6 +883,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/blog/intellectual-property-artist-contracts-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/blog/inheritance-registration.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -902,6 +902,12 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/inheritance-withholding-penalties-article-49.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/inheritance-debt-priority.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -931,12 +937,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/inheritance-debt-priority.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://mohamidigital.online/blog/illegal-immigration-travel-fraud-law.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -955,6 +955,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/blog/gold-purchase-consumer-rights-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/blog/gold-shabka-and-furniture-list-divorce-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -968,6 +974,18 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/high-school-grievance-procedure.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/foreign-currency-laws-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/foreign-currency-trading-laws-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -997,7 +1015,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/gold-purchase-consumer-rights-egypt.html</loc>
+    <loc>https://mohamidigital.online/blog/force-majeure-clause-egyptian-law.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/force-majeure-contract-law-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1015,43 +1039,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/foreign-currency-laws-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/foreign-currency-trading-laws-egypt.html</loc>
+    <loc>https://mohamidigital.online/blog/end-of-service-gratuity-calculation-new-labor-law.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/execution-judgments-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/force-majeure-clause-egyptian-law.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/force-majeure-contract-law-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/employment-contract-termination.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/end-of-service-gratuity-calculation-new-labor-law.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1075,6 +1069,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/blog/employment-contract-termination.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/egyptian-social-insurance-pension-guide.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/blog/egyptian-sports-law-player-contracts.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -1088,6 +1094,12 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/egyptian-stock-market-legal-guide.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/egypt-pharmaceutical-law-counterfeit-drugs.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1111,7 +1123,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/egyptian-social-insurance-pension-guide.html</loc>
+    <loc>https://mohamidigital.online/blog/educational-guardianship-divorced-mother-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1135,12 +1147,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/egypt-pharmaceutical-law-counterfeit-drugs.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://mohamidigital.online/blog/drug-offense-defense.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -1153,7 +1159,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/educational-guardianship-divorced-mother-egypt.html</loc>
+    <loc>https://mohamidigital.online/blog/divorce-damages-claim.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1171,30 +1177,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/digital-copyright.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/divorce-damages-claim.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/cybercrime-phone-extortion-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/debt-collection-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://mohamidigital.online/blog/debt-statute-limitations.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -1202,6 +1184,12 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/digital-broadcasting-copyright-sports-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/digital-copyright.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1226,6 +1214,24 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/cybercrime-law-extortion-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/cybercrime-phone-extortion-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/debt-collection-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/cyber-defamation-whatsapp-police-report-and-penalties.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1261,6 +1267,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/blog/criminal-polygraph-law.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/blog/currency-devaluation-contract-effects.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -1279,7 +1291,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/cyber-defamation-whatsapp-police-report-and-penalties.html</loc>
+    <loc>https://mohamidigital.online/blog/criminal-cassation-appeal-deadlines-and-grounds-2026.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1297,37 +1309,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/criminal-polygraph-law.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/courtroom-advocacy.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/criminal-cassation-appeal-deadlines-and-grounds-2026.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/content-creators-tax-law-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://mohamidigital.online/blog/contract-legal-requirements.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/construction-contract-disputes.html</loc>
+    <loc>https://mohamidigital.online/blog/courtroom-advocacy.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1357,7 +1345,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/company-formation-egypt.html</loc>
+    <loc>https://mohamidigital.online/blog/content-creators-tax-law-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1375,6 +1363,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/blog/construction-contract-disputes.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/blog/commodity-hoarding-price-manipulation-law.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -1382,6 +1376,18 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/company-board-liability.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/company-formation-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://mohamidigital.online/blog/civil-compensation-lawsuits.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1399,13 +1405,19 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/blog/child-custody-egypt.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/blog/child-custody-remarriage-and-father-visitation-rights.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/civil-compensation-lawsuits.html</loc>
+    <loc>https://mohamidigital.online/blog/cheque-fraud-defense.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1417,7 +1429,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/child-custody-egypt.html</loc>
+    <loc>https://mohamidigital.online/blog/building-violation-reconciliation-law-updates-model-8.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1441,13 +1453,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/cheque-fraud-defense.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/building-violation-reconciliation-law-updates-model-8.html</loc>
+    <loc>https://mohamidigital.online/blog/bounced-cheque-laws-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1489,12 +1495,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/bounced-cheque-laws-egypt.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://mohamidigital.online/blog/bitcoin-crypto-law-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -1513,13 +1513,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/bankruptcy-judicial-settlement.html</loc>
+    <loc>https://mohamidigital.online/blog/bank-certificates-inheritance-procedures-egypt.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mohamidigital.online/blog/bank-certificates-inheritance-procedures-egypt.html</loc>
+    <loc>https://mohamidigital.online/blog/bankruptcy-judicial-settlement.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -1537,6 +1537,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://mohamidigital.online/blog/administrative-dismissal-appeal.html</loc>
+    <lastmod>2026-09-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://mohamidigital.online/blog/administrative-grievance.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
@@ -1544,12 +1550,6 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/alexandria-lawyers-directory.html</loc>
-    <lastmod>2026-09-12</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://mohamidigital.online/blog/administrative-dismissal-appeal.html</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
