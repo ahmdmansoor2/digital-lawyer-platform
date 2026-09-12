@@ -1465,6 +1465,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2587366995019769",
       "publishedAt": "2026-09-12T15:32:06.093Z"
+    },
+    {
+      "topicId": "blog-cyber-defamation-whatsapp-police-report-and-penalties",
+      "kind": "short",
+      "videoId": "BuquFhz4XJI",
+      "url": "https://www.youtube.com/watch?v=BuquFhz4XJI",
+      "fbPermalink": "https://www.facebook.com/reel/1453594080150376",
+      "publishedAt": "2026-09-12T20:31:43.678Z"
+    },
+    {
+      "topicId": "blog-cyber-defamation-whatsapp-police-report-and-penalties",
+      "title": "كيفية تحرير محضر في مباحث الإنترنت عن رسائل واتساب وفيس بوك والعقوبات القانونية — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-cyber-defamation-whatsapp-police-report-and-penalties-wide.mp4",
+      "source": "blog",
+      "videoId": "QcYwLldSKqw",
+      "url": "https://www.youtube.com/watch?v=QcYwLldSKqw",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1453594080150376",
+      "publishedAt": "2026-09-12T20:32:14.226Z"
     }
   ]
 }
