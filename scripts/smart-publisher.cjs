@@ -205,9 +205,9 @@ async function downloadFile(url, dest) {
 }
 
 // استدعاء Gemini مع إعادة المحاولة التلقائية عند 429 (Rate Limit) أو 503/5xx (UNAVAILABLE)
-// يحاول عبر النماذج الثلاثة بالتناوب مع مهلة قصيرة حتى ينجح أو تنتهي المحاولات
+// يحاول عبر النماذج بالتناوب مع مهلة قصيرة حتى ينجح أو تنتهي المحاولات
 async function generateContentWithRetry(prompt, config = {}, modelIndex = 0, attempt = 0) {
-  const models = ['gemini-3.6-flash', 'gemini-3.5-flash', 'gemini-3.1-flash-lite', 'gemini-3.7-flash'];
+  const models = ['gemini-flash-latest', 'gemini-2.5-flash', 'gemini-3.6-flash', 'gemini-3.1-flash-lite', 'gemini-3.7-flash'];
   const modelName = models[modelIndex % models.length];
   const MAX_ATTEMPTS = 9;
 
@@ -309,18 +309,35 @@ ${trendsHint}
 
 أعطني فقط مصفوفة JSON صحيحة بدون أي نص إضافي.`;
 
-  const result = await generateContentWithRetry(prompt, { temperature: 0.9, maxOutputTokens: 4000 });
-
-  let raw = result.text || result.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
-  raw = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
-
   let topics = [];
   try {
-    topics = JSON.parse(raw);
-  } catch (e) {
-    const matches = raw.match(/\{[\s\S]*?\}/g) || [];
-    for (const m of matches) {
-      try { topics.push(JSON.parse(m)); } catch {}
+    const result = await generateContentWithRetry(prompt, { temperature: 0.9, maxOutputTokens: 4000 });
+    let raw = result.text || result.candidates?.[0]?.content?.parts?.[0]?.text || '[]';
+    raw = raw.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+    try {
+      topics = JSON.parse(raw);
+    } catch (e) {
+      const matches = raw.match(/\{[\s\S]*?\}/g) || [];
+      for (const m of matches) {
+        try { topics.push(JSON.parse(m)); } catch {}
+      }
+    }
+  } catch (err) {
+    log(`⚠️ تعذر اقتراح مواضيع جديدة عبر Gemini (${err.message}) — تفعيل شبكة الأمان واستخدام المواضيع الجاهزة`);
+    const fallbackPath = path.join(__dirname, 'blog-publisher', 'topics.json');
+    if (fs.existsSync(fallbackPath)) {
+      const fbData = JSON.parse(fs.readFileSync(fallbackPath, 'utf8'));
+      topics = (fbData.evergreen || []).map(t => ({
+        title: t.title,
+        slug: t.slug,
+        tag: t.category,
+        metaDesc: t.title,
+        keywords: (t.keywords || []).join(', '),
+        coverColor: 'indigo',
+        coverIcon: t.icon || '⚖️',
+        readTime: '12',
+        searchVolume: 'high'
+      }));
     }
   }
 
