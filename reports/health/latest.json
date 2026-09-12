@@ -1,11 +1,11 @@
 {
   "date": "2026-09-12",
-  "generatedAt": "2026-09-12T15:19:06.623Z",
+  "generatedAt": "2026-09-12T20:23:05.086Z",
   "status": "error",
   "blogArticles": 204,
-  "fbPosts": 59,
-  "reels": 1,
-  "ghRuns": 17,
+  "fbPosts": 60,
+  "reels": 2,
+  "ghRuns": 20,
   "checks": [
     {
       "name": "site_root",
