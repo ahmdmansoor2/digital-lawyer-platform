@@ -1389,6 +1389,63 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1130785262705163",
       "publishedAt": "2026-09-11T15:06:15.837Z"
+    },
+    {
+      "topicId": "blog-digital-copyright",
+      "kind": "short",
+      "videoId": "1eWXLXV9hSI",
+      "url": "https://www.youtube.com/watch?v=1eWXLXV9hSI",
+      "fbPermalink": "https://www.facebook.com/reel/1525227062745074",
+      "publishedAt": "2026-09-11T16:25:50.987Z"
+    },
+    {
+      "topicId": "blog-digital-copyright",
+      "title": "حق المؤلف على المحتوى الرقمي: حماية المدونين وصناع المحتوى في القانون المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-digital-copyright-wide.mp4",
+      "source": "blog",
+      "videoId": "_AiffFynIcg",
+      "url": "https://www.youtube.com/watch?v=_AiffFynIcg",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1525227062745074",
+      "publishedAt": "2026-09-11T16:26:13.577Z"
+    },
+    {
+      "topicId": "blog-bankruptcy-judicial-settlement",
+      "kind": "short",
+      "videoId": "ms9IhGmFHfI",
+      "url": "https://www.youtube.com/watch?v=ms9IhGmFHfI",
+      "fbPermalink": "https://www.facebook.com/reel/1454794723139426",
+      "publishedAt": "2026-09-11T20:56:55.533Z"
+    },
+    {
+      "topicId": "blog-bankruptcy-judicial-settlement",
+      "title": "الإعسار والمصلح القضائي: إنقاذ التاجر من الديون المتراكمة في القانون التجاري الم — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-bankruptcy-judicial-settlement-wide.mp4",
+      "source": "blog",
+      "videoId": "Ioys8UbHNFw",
+      "url": "https://www.youtube.com/watch?v=Ioys8UbHNFw",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1454794723139426",
+      "publishedAt": "2026-09-11T20:57:35.394Z"
+    },
+    {
+      "topicId": "blog-khul-divorce-procedure",
+      "kind": "short",
+      "videoId": "2fx616f80ek",
+      "url": "https://www.youtube.com/watch?v=2fx616f80ek",
+      "fbPermalink": "https://www.facebook.com/reel/1412048051069635",
+      "publishedAt": "2026-09-12T10:40:30.899Z"
+    },
+    {
+      "topicId": "blog-khul-divorce-procedure",
+      "title": "الطلاق للضرر والخلع في مصر: شروط كل منهما وكيف تختار الأنسب — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-khul-divorce-procedure-wide.mp4",
+      "source": "blog",
+      "videoId": "j9BdTtuUYUA",
+      "url": "https://www.youtube.com/watch?v=j9BdTtuUYUA",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1412048051069635",
+      "publishedAt": "2026-09-12T10:41:03.094Z"
     }
   ]
 }
