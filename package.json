@@ -62,6 +62,7 @@
     "@tiptap/starter-kit": "^2.27.2",
     "@types/dompurify": "^3.0.5",
     "@vitejs/plugin-react": "^5.0.4",
+    "docx": "^9.7.1",
     "dompurify": "^3.4.12",
     "dotenv": "^17.2.3",
     "edge-tts": "^1.0.1",

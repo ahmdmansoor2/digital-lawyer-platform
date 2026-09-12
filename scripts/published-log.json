@@ -2235,6 +2235,286 @@
         "البيع العرفي",
         "صحة توقيع"
       ]
+    },
+    {
+      "title": "دليل قانون الإيجار القديم 2026: الزيادة السنوية 15% وحالات الإخلاء النهائي",
+      "date": "2026-09-12",
+      "slug": "old-rent-law-2026-eviction-and-increase",
+      "url": "https://mohamidigital.online/blog/old-rent-law-2026-eviction-and-increase.html",
+      "tags": [
+        "قانون الإيجار القديم 2026",
+        "زيادة الإيجار القديم 15%",
+        "حالات الإخلاء الفوري"
+      ],
+      "words": 3974,
+      "image": "pollinations",
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "خطوات تسجيل شقة في الشهر العقاري 2026: الأوراق المطلوبة والرسوم والمدة",
+      "date": "2026-09-12",
+      "slug": "shahr-aqary-apartment-registration-guide-2026",
+      "url": "https://mohamidigital.online/blog/shahr-aqary-apartment-registration-guide-2026.html",
+      "tags": [
+        "إجراءات تسجيل شقة بالشهر العقاري",
+        "تسجيل شقة الشهر العقاري 2026",
+        "رسوم تسجيل العقارات"
+      ],
+      "words": 3149,
+      "image": "pollinations",
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "حاسبة مكافأة نهاية الخدمة في قانون العمل الجديد: طريقة الحساب والضوابط",
+      "date": "2026-09-12",
+      "slug": "end-of-service-gratuity-calculation-new-labor-law",
+      "url": "https://mohamidigital.online/blog/end-of-service-gratuity-calculation-new-labor-law.html",
+      "tags": [
+        "حساب مكافأة نهاية الخدمة قانون العمل",
+        "مكافأة نهاية الخدمة قانون العمل الجديد",
+        "طريقة حساب نهاية الخدمة في مصر"
+      ],
+      "words": 3607,
+      "image": "pollinations",
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "شروط صحة إيصال الأمانة في القانون المصري وثغرات البراءة القانونية",
+      "date": "2026-09-12",
+      "slug": "trust-receipt-validity-conditions-and-defenses-egypt",
+      "url": "https://mohamidigital.online/blog/trust-receipt-validity-conditions-and-defenses-egypt.html",
+      "tags": [
+        "إيصال أمانة شروطه وبطلانه",
+        "شروط صحة إيصال الأمانة",
+        "البراءة في إيصال الأمانة"
+      ],
+      "words": 3031,
+      "image": "pollinations",
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "دعوى الطلاق للضرر في القانون المصري: الشروط الإجرائية، طرق الإثبات، وحقوق الزوجة المالية مع قائمة المنقولات",
+      "date": "2026-09-12",
+      "slug": "divorce-for-harm-conditions-proof-and-financial-rights",
+      "url": "https://mohamidigital.online/blog/divorce-for-harm-conditions-proof-and-financial-rights.html",
+      "tags": [
+        "شروط الطلاق للضرر وحقوق الزوجة",
+        "إثبات الطلاق للضرر",
+        "شهادة الشهود في الطلاق للضرر"
+      ],
+      "words": 4189,
+      "image": "pollinations",
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "الفرق بين دعوى صحة التوقيع وصحة ونفاذ: الصيغة القانونية ورسوم الدعوى",
+      "date": "2026-09-12",
+      "slug": "sale-contract-validity-and-enforcement-lawsuit-vs-signature",
+      "url": "https://mohamidigital.online/blog/sale-contract-validity-and-enforcement-lawsuit-vs-signature.html",
+      "tags": [
+        "صيغة دعوى صحة ونفاذ عقد بيع",
+        "الفرق بين صحة التوقيع وصحة ونفاذ",
+        "شروط دعوى صحة ونفاذ"
+      ],
+      "words": 2498,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "ماذا تفعل عند تحويل أموال بالخطأ عبر InstaPay؟ الإجراءات القانونية للاسترداد",
+      "date": "2026-09-12",
+      "slug": "instapay-accidental-transfer-legal-recovery-procedures",
+      "url": "https://mohamidigital.online/blog/instapay-accidental-transfer-legal-recovery-procedures.html",
+      "tags": [
+        "التحويل بالخطأ إنستاباي القانون المصري",
+        "استرداد أموال إنستاباي المحولة بالخطأ",
+        "إجراءات بلاغ مباحث الإنترنت إنستاباي"
+      ],
+      "words": 2640,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "كيفية استخراج إعلام الوراثة خطوة بخطوة: الأوراق، المواعيد، وجلسة الوراثة",
+      "date": "2026-09-12",
+      "slug": "legal-heirship-certificate-procedures-and-documents",
+      "url": "https://mohamidigital.online/blog/legal-heirship-certificate-procedures-and-documents.html",
+      "tags": [
+        "إجراءات استخراج إعلام وراثة",
+        "استخراج إعلام الوراثة في مصر",
+        "الأوراق المطلوبة لإعلام الوراثة"
+      ],
+      "words": 2033,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "آخر مستجدات قانون التصالح 2026: كود الحريق وتخفيض الرسوم ونموذج 8",
+      "date": "2026-09-12",
+      "slug": "building-violation-reconciliation-law-updates-model-8",
+      "url": "https://mohamidigital.online/blog/building-violation-reconciliation-law-updates-model-8.html",
+      "tags": [
+        "قانون التصالح في مخالفات البناء الجديد",
+        "نموذج 8 التصالح في مخالفات البناء",
+        "كود الحريق قانون التصالح"
+      ],
+      "words": 2208,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "المادة 49 مواريث: عقوبة حبس الممتنع عن تسليم الميراث وثغرات البلاغ",
+      "date": "2026-09-12",
+      "slug": "inheritance-withholding-penalties-article-49",
+      "url": "https://mohamidigital.online/blog/inheritance-withholding-penalties-article-49.html",
+      "tags": [
+        "عقوبة الامتناع عن تسليم الميراث",
+        "المادة 49 من قانون المواريث",
+        "حبس الممتنع عن تسليم الميراث"
+      ],
+      "words": 2288,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "دعوى الخلع في المحاكم المصرية: إجراءاتها، كم تستغرق، وما يسقط من حقوق",
+      "date": "2026-09-12",
+      "slug": "khula-divorce-lawsuit-procedures-and-dowry-return",
+      "url": "https://mohamidigital.online/blog/khula-divorce-lawsuit-procedures-and-dowry-return.html",
+      "tags": [
+        "شروط الخلع ورد مقدم الصداق",
+        "إجراءات دعوى الخلع في مصر",
+        "كم تستغرق قضية الخلع"
+      ],
+      "words": 2244,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "مواعيد وأسباب الطعن بالنقض في الجنايات والجنح وفق أحدث أحكام 2026",
+      "date": "2026-09-12",
+      "slug": "criminal-cassation-appeal-deadlines-and-grounds-2026",
+      "url": "https://mohamidigital.online/blog/criminal-cassation-appeal-deadlines-and-grounds-2026.html",
+      "tags": [
+        "الطعن بالنقض الجنائي مواعيده",
+        "ميعاد الطعن بالنقض الجنائي 60 يوما",
+        "أسباب الطعن بالنقض في الجنايات"
+      ],
+      "words": 2402,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "حقوق العامل عند الفصل التعسفي والطعن على استمارة 6 المفروضة جبراً",
+      "date": "2026-09-12",
+      "slug": "arbitrary-dismissal-and-form-6-challenge-labor-law",
+      "url": "https://mohamidigital.online/blog/arbitrary-dismissal-and-form-6-challenge-labor-law.html",
+      "tags": [
+        "فصل الموظف بدون إنذار استمارة 6",
+        "الفصل التعسفي في قانون العمل المصري",
+        "الطعن على استمارة 6"
+      ],
+      "words": 2773,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "حاسبة رسوم رفع الدعاوي القضائية في مصر: النسب والدمغات والرسوم النسبية",
+      "date": "2026-09-12",
+      "slug": "civil-lawsuit-court-fees-calculation-guide",
+      "url": "https://mohamidigital.online/blog/civil-lawsuit-court-fees-calculation-guide.html",
+      "tags": [
+        "حاسبة رسوم الدعاوى المدنية بالمحاكم",
+        "رسوم رفع دعوى قضائية في مصر",
+        "الرسم النسبي ورسم الخدمات"
+      ],
+      "words": 2518,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "عقوبة الشيك بدون رصيد ومتى تسقط الدعوى الجنائية أو المدنية بالتقادم؟",
+      "date": "2026-09-12",
+      "slug": "bounced-cheque-penalties-and-statute-of-limitations",
+      "url": "https://mohamidigital.online/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+      "tags": [
+        "شيك بدون رصيد وسقوط العقوبة",
+        "عقوبة الشيك بدون رصيد في مصر",
+        "تقادم جنحة الشيك بدون رصيد"
+      ],
+      "words": 1615,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "تأسيس الشركات في الهيئة العامة للاستثمار: الخطوات ورأس المال والضرائب",
+      "date": "2026-09-12",
+      "slug": "limited-liability-company-incorporation-procedures-gafi",
+      "url": "https://mohamidigital.online/blog/limited-liability-company-incorporation-procedures-gafi.html",
+      "tags": [
+        "إجراءات تأسيس شركة ذات مسؤولية محدودة",
+        "تأسيس شركة في هيئة الاستثمار مصر",
+        "الأوراق المطلوبة لتأسيس شركة ذ م م"
+      ],
+      "words": 2516,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "حكم الحضانة بعد زواج الأم وشروط استضافة ورؤية الأطفال في القانون المصري",
+      "date": "2026-09-12",
+      "slug": "child-custody-remarriage-and-father-visitation-rights",
+      "url": "https://mohamidigital.online/blog/child-custody-remarriage-and-father-visitation-rights.html",
+      "tags": [
+        "تخفيض سن الحضانة ورؤية الأب",
+        "سقوط الحضانة عن الأم بعد زواجها",
+        "ترتيب الحاضنات في قانون الأحوال الشخصية"
+      ],
+      "words": 1974,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "طرق الاستعلام الإلكتروني عن رول الجلسات والقضايا عبر بوابة وزارة العدل",
+      "date": "2026-09-12",
+      "slug": "judicial-case-inquiry-by-national-id-egypt-justice-portal",
+      "url": "https://mohamidigital.online/blog/judicial-case-inquiry-by-national-id-egypt-justice-portal.html",
+      "tags": [
+        "استعلام عن قضية بالرقم القومي مصر",
+        "الاستعلام عن موقف دعوى قضائية وزارة العدل",
+        "الاستعلام عن رول الجلسة إلكترونيا"
+      ],
+      "words": 1932,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "كيفية تحرير محضر في مباحث الإنترنت عن رسائل واتساب وفيس بوك والعقوبات القانونية",
+      "date": "2026-09-12",
+      "slug": "cyber-defamation-whatsapp-police-report-and-penalties",
+      "url": "https://mohamidigital.online/blog/cyber-defamation-whatsapp-police-report-and-penalties.html",
+      "tags": [
+        "عقوبة السب والقذف على الواتساب",
+        "طريقة عمل محضر في مباحث الإنترنت",
+        "عقوبة التهديد والابتزاز الإلكتروني"
+      ],
+      "words": 2358,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "توزيع تركة المتوفى عن بنت واحدة وزوجة: شروط الرد وحجب الأعمام شرعاً",
+      "date": "2026-09-12",
+      "slug": "inheritance-distribution-single-daughter-and-wife-radd",
+      "url": "https://mohamidigital.online/blog/inheritance-distribution-single-daughter-and-wife-radd.html",
+      "tags": [
+        "ميراث البنت الوحيدة والزوجة",
+        "ميراث البنت الواحدة مع عدم وجود إخوة",
+        "هل يرث الأعمام مع البنت الوحيدة"
+      ],
+      "words": 2376,
+      "image": "pollinations",
+      "model": "gemini-3.1-flash-lite"
     }
   ]
 }

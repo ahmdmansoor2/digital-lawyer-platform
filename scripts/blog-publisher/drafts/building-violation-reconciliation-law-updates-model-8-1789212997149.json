@@ -1,0 +1,19 @@
+{
+  "topic": {
+    "slug": "building-violation-reconciliation-law-updates-model-8",
+    "title": "آخر مستجدات قانون التصالح 2026: كود الحريق وتخفيض الرسوم ونموذج 8",
+    "keywords": [
+      "قانون التصالح في مخالفات البناء الجديد",
+      "نموذج 8 التصالح في مخالفات البناء",
+      "كود الحريق قانون التصالح",
+      "تخفيض رسوم التصالح",
+      "التصالح خارج الحيز العمراني"
+    ],
+    "category": "القانون الإداري",
+    "icon": "🏗️",
+    "coverClass": "amber"
+  },
+  "data": null,
+  "reason": "{\"error\":{\"code\":503,\"message\":\"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.\",\"status\":\"UNAVAILABLE\"}}",
+  "failedAt": "2026-09-12T11:36:37.149Z"
+}

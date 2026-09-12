@@ -35,11 +35,12 @@ const IMAGE_MODEL = process.env.IMAGE_MODEL || 'gemini-3.1-flash-image'; // Nano
 // بينهم بالتناوب لرفع الطاقة الكلية اليومية (20 طلباً × عدد النماذج).
 const TEXT_MODELS = [
   process.env.TEXT_MODEL || 'gemini-3.6-flash',
-  'gemini-3.5-flash',
+  'gemini-flash-latest',
   'gemini-3.1-pro-preview',
   'gemini-3.7-flash',
   'gemini-3.1-flash-lite',
 ];
+
 // مؤشر النموذج الحالي: 0..TEXT_MODELS.length-1
 let textModelIdx = 0;
 
@@ -386,22 +387,23 @@ function articlePrompt(topic, usedTitles, existingSections, usedHeadings) {
 كلمات مفتاحية مستهدفة: ${topic.keywords.join('، ')}
 
 القواعد الصارمة:
-1. المقال قانوني بحت ومرتبط بالقانون المصري تحديداً (نصوص وسوابق وممارسة عملية).
-2. الطول: لا يقل إطلاقاً عن 3000 كلمة — اكتب مقالاً موسعاً وعميقاً.
-3. اللغة عربية فصحى مبسطة بأسلوب صحفي/قانوني يسهل فهمه لغير المتخصصين.
-4. لا تخترع أرقام مواد أو أرقام قوانين أو تواريخ غير متأكد منها — إذا لم تكن متأكداً اذكر الفكرة العامة دون رقم مادة.
-5. أعد الصياغة بأسلوبك الخاص تماماً، لا تنسخ من أي مصدر.
-6. البنية:
-   - title: عنوان جذاب يبدأ بكلمة مفتاحية رئيسية
-   - metaDescription: وصف SEO بحد أقصى 160 حرفاً
+1. المقال تشريعي موسوعي رصين وشديد الدقة ومرتبط بالقانون المصري تحديداً ويتجاوز 3000 كلمة إلزامي.
+2. إلزامية إدراج النصوص التشريعية الحرفية الكاملة من القوانين المصرية ذات الصلة (كما نُشرت بالجريدة الرسمية) وشرح أثرها الإجرائي والعملي مادة بمادة.
+3. إلزامية إدراج أحدث أحكام وقواعد محكمة النقض المصرية وسوابقها القضائية الحديثة (مع ذكر المبادئ القانونية المستقرة ورقم الطعن والسنة القضائية إن أمكن).
+4. تفصيل الإجراءات العملية القضائية والإدارية خطوة بخطوة أمام المحاكم والشهر العقاري والجهات المختصة والمستندات الرسمية اللازمة والمواعيد القانونية الحتمية.
+5. تضمين جداول مقارنة تحليلية أو حسابية لتوضيح الفروق الدقيقة والحسابات المالية (إن وجدت).
+6. اللغة عربية فصحى قانونية رصينة وأنيقة بأسلوب قضائي رفيع وسهل الفهم لجمهور المتقاضين والمحامين.
+7. البنية الإلزامية:
+   - title: عنوان المقال الدقيق كما هو محدد
+   - metaDescription: وصف SEO احترافي بحد أقصى 160 حرفاً
    - quickAnswer: خلاصة الحكم القانوني المباشر في فقرة حاسمة ومحددة من 30 إلى 45 كلمة تجيب عن التساؤل الجوهري للموضوع مع ذكر السند القانوني لاقتناص مقتطف جوجل المميز (Featured Snippet) في النتيجة رقم صفر.
-   - intro: مقدمة تشويقية من 3-4 أسطر
-   - sections: من 12 إلى 16 قسماً، كل قسم بعنوان (heading) وفقرات (paragraphs: array of strings — كل فقرة من 3-5 جمل) واختيارياً list (array of strings — من 4-8 عناصر)
-   - tip: نصيحة عملية قابلة للتنفيذ (سطران إلى ثلاثة أسطر)
-   - conclusion: خاتمة عملية بنصيحة قابلة للتنفيذ
-7. في النهاية أضف دعوة لاستخدام موقع «المحامي الرقمي» بشكل طبيعي داخل النص (مرة واحدة فقط).
-8. مقالك يجب ألا يكرر هذه المواضيع المنشورة سابقاً: ${usedTopics}.
+   - intro: مقدمة تشويقية تأسيسية رصينة
+   - sections: من 14 إلى 18 قسماً متكاملاً، كل قسم بعنوان رئيسي (heading) وفقرات موسعة (paragraphs: array of strings — كل فقرة من 4-6 جمل وافية) وقوائم بنود (list: array of strings)
+   - tip: نصيحة وتوجيه قضائي عملي حاسم
+   - conclusion: خاتمة موسوعية تتضمن خلاصة التوجيهات
+8. في النهاية أضف دعوة رصينة لاستخدام خدمات «منصة المحامي الرقمية» في الاستشارات وإدارة القضايا بشكل طبيعي داخل السياق.
 9. أجب بحصة JSON كاملة واحدة.
+
 ${initialSectionsHint}${headingsHint}${structureHint}
 
 أجب حصراً بصيغة JSON بالبنية التالية بدون أي نص إضافي خارج JSON:
@@ -447,12 +449,13 @@ async function generateArticle(ai, topic, usedTitles, existingSections, usedHead
       } catch (err) {
         lastErr = err;
         const msg = String(err.message || '');
-        // استنفاد الحصة: انتقل فوراً للنموذج التالي دون انتظار (الحصة اليومية لا تتجدد).
-        if (msg.includes('429') || isDailyQuotaError(msg)) {
-          console.log(`[publish] الحصة استُنفدت على ${model} — تجربة نموذج آخر.`);
+        // استنفاد الحصة أو ضغط مؤقت: انتقل فوراً للنموذج التالي دون انتظار.
+        if (msg.includes('429') || msg.includes('503') || isDailyQuotaError(msg)) {
+          console.log(`[publish] خطأ (${msg.includes('503') ? '503 ضغط مؤقت' : '429 استنفاد'}) على ${model} — التحويل للنموذج التالي.`);
           advanceTextModel();
           break; // اكسر حلقة المحاولات لهذا النموذج وانتقل للتالي
         }
+
         const isTransient = msg.includes('JSON') || msg.includes('fetch failed') || msg.includes('ECONNRESET') || msg.includes('ETIMEDOUT');
         if (attempt < 3 && isTransient) {
           console.log(`[publish] استدعاء JSON فشل على ${model} (محاولة ${attempt}/3): ${msg.slice(0, 100)}`);
@@ -563,13 +566,14 @@ async function generateWithRetry(ai, topic, usedTitles, maxAttempts = 2) {
         qerr.dailyQuota = true;
         throw qerr;
       }
-      // أخطاء مؤقتة فقط (شبكة / rate limit قصير): أعد المحاولة بانتظار متزايد.
-      if (msg.includes('fetch failed') || msg.includes('ECONNRESET') || msg.includes('ETIMEDOUT') || msg.includes('429')) {
-        const waitMs = 20000 * attempt;
-        console.log(`[publish] انتظار ${waitMs / 1000} ثانية ثم إعادة المحاولة...`);
+      // أخطاء مؤقتة فقط (شبكة / rate limit قصير / ضغط مؤقت 503): أعد المحاولة بانتظار متزايد.
+      if (msg.includes('fetch failed') || msg.includes('ECONNRESET') || msg.includes('ETIMEDOUT') || msg.includes('429') || msg.includes('503')) {
+        const waitMs = 15000 * attempt;
+        console.log(`[publish] خطأ مؤقت (${msg.includes('503') ? '503' : 'شبكة/حصة'}). انتظار ${waitMs / 1000} ثانية ثم إعادة المحاولة...`);
         await new Promise(r => setTimeout(r, waitMs));
         continue;
       }
+
       break;
     }
   }
