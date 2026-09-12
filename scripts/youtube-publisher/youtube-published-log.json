@@ -1427,6 +1427,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1454794723139426",
       "publishedAt": "2026-09-11T20:57:35.394Z"
+    },
+    {
+      "topicId": "blog-khul-divorce-procedure",
+      "kind": "short",
+      "videoId": "2fx616f80ek",
+      "url": "https://www.youtube.com/watch?v=2fx616f80ek",
+      "fbPermalink": "https://www.facebook.com/reel/1412048051069635",
+      "publishedAt": "2026-09-12T10:40:30.899Z"
+    },
+    {
+      "topicId": "blog-khul-divorce-procedure",
+      "title": "الطلاق للضرر والخلع في مصر: شروط كل منهما وكيف تختار الأنسب — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-khul-divorce-procedure-wide.mp4",
+      "source": "blog",
+      "videoId": "j9BdTtuUYUA",
+      "url": "https://www.youtube.com/watch?v=j9BdTtuUYUA",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1412048051069635",
+      "publishedAt": "2026-09-12T10:41:03.094Z"
     }
   ]
 }
