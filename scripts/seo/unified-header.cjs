@@ -5,7 +5,8 @@
  */
 const ACTIVE = ' active';
 const VERSION = '20260906-luxury-navy-v3';
-const HEADER_CSS = `<link rel="stylesheet" href="/header.css?v=${VERSION}">`;
+const WWW_GUARD_SCRIPT = '<script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script><!-- www-mohami-guard -->';
+const HEADER_CSS = `${WWW_GUARD_SCRIPT}\n<link rel="stylesheet" href="/header.css?v=${VERSION}">`;
 
 function navItem(href, label, isActive) {
   return `<a href="${href}" class="uh-link${isActive ? ACTIVE : ''}">${label}</a>`;
@@ -137,4 +138,4 @@ function headerMarkup(activeKey, opts = {}) {
   </script>`;
 }
 
-module.exports = { headerMarkup, HEADER_CSS, VERSION };
+module.exports = { headerMarkup, HEADER_CSS, VERSION, WWW_GUARD_SCRIPT };
