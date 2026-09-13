@@ -2666,6 +2666,27 @@
       "duration": "47ث",
       "size": 12916255,
       "publishedAt": "2026-09-13T11:43:49.059Z"
+    },
+    {
+      "topicId": "trend-public-utility-expropriation-compensation-egypt",
+      "title": "حقوق التعويض عن نزع الملكية للمنفعة العامة: مشروع الأتوبيس الترددي وتوسعات الطرق",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون العقاري والمدني",
+        "#نزع الملكية للمنفعة العامة",
+        "#تعويضات الطريق الدائري"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-public-utility-expropriation-compensation-egypt.mp4",
+      "videoId": "4360649257532809",
+      "permalink": "https://www.facebook.com/reel/4360649257532809",
+      "source": "trending-topics.json",
+      "duration": "54ث",
+      "size": 21157402,
+      "publishedAt": "2026-09-13T16:12:05.213Z"
     }
   ]
 }
