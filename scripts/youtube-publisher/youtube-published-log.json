@@ -1484,6 +1484,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1453594080150376",
       "publishedAt": "2026-09-12T20:32:14.226Z"
+    },
+    {
+      "topicId": "trend-brics-egypt-customs-import-regulations",
+      "kind": "short",
+      "videoId": "geWoLZh7bV4",
+      "url": "https://www.youtube.com/watch?v=geWoLZh7bV4",
+      "fbPermalink": "https://www.facebook.com/reel/1428806172457860",
+      "publishedAt": "2026-09-13T11:43:50.883Z"
+    },
+    {
+      "topicId": "trend-brics-egypt-customs-import-regulations",
+      "title": "الآثار القانونية والجمركية لانضمام مصر لمجموعة بريكس: دليل المستوردين والمصدرين — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-brics-egypt-customs-import-regulations-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "EKmmtgNjIj0",
+      "url": "https://www.youtube.com/watch?v=EKmmtgNjIj0",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1428806172457860",
+      "publishedAt": "2026-09-13T11:44:12.192Z"
     }
   ]
 }
