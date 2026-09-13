@@ -1,11 +1,11 @@
 {
   "date": "2026-09-13",
-  "generatedAt": "2026-09-13T07:23:24.959Z",
-  "status": "error",
+  "generatedAt": "2026-09-13T11:26:30.860Z",
+  "status": "warn",
   "blogArticles": 204,
   "fbPosts": 0,
   "reels": 0,
-  "ghRuns": 19,
+  "ghRuns": 17,
   "checks": [
     {
       "name": "site_root",
@@ -52,8 +52,8 @@
     {
       "name": "github_runs",
       "label": "GitHub: نتائج تشغيل الـ workflows (آخر 24 ساعة)",
-      "status": "error",
-      "findings": 1
+      "status": "ok",
+      "findings": 0
     },
     {
       "name": "log_vs_live",
