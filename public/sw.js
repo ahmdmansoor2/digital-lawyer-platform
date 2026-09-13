@@ -8,7 +8,7 @@
  */
 'use strict';
 
-const VERSION = 'mohami-v7';
+const VERSION = 'mohami-v8';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 
@@ -73,6 +73,16 @@ async function cacheFirst(request) {
   return fresh;
 }
 
+async function staleWhileRevalidate(request) {
+  const cache = await caches.open(RUNTIME_CACHE);
+  const cached = await cache.match(request);
+  const fetchPromise = fetch(request).then(fresh => {
+    if (fresh && fresh.ok) cache.put(request, fresh.clone());
+    return fresh;
+  }).catch(() => null);
+  return cached || fetchPromise;
+}
+
 function isCodeData(url) {
   return url.pathname.startsWith('/data/codes/') || url.pathname.startsWith('/data/official-codes-pdf/');
 }
@@ -96,9 +106,9 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // الفهرس يظل طازجاً
+  // الفهرس: تقديم فوري من الكاش وتحديث في الخلفية دون أي تجميد
   if (url.pathname === '/search-index.json') {
-    e.respondWith(networkFirst(req));
+    e.respondWith(staleWhileRevalidate(req));
     return;
   }
 

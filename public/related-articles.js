@@ -33,9 +33,40 @@
   tokens(metaTitle + ' ' + metaKw + ' ' + metaDesc).forEach(function (t) { curTokens[t] = true; });
   var curCat = norm(metaKw.split('،')[0] || '');
 
-  fetch('/search-index.json', { headers: { 'X-Mohami-Rel': META_VER } })
-    .then(function (r) { return r.json(); })
-    .then(function (idx) {
+  function loadIndex() {
+    try {
+      var cached = sessionStorage.getItem('mohami_rel_idx');
+      if (cached) {
+        var parsed = JSON.parse(cached);
+        if (parsed && parsed.items) return Promise.resolve(parsed);
+      }
+    } catch (e) {}
+
+    return fetch('/search-index.json', { headers: { 'X-Mohami-Rel': META_VER } })
+      .then(function (r) { return r.json(); })
+      .then(function (idx) {
+        try {
+          var slim = {
+            items: (idx.items || []).filter(function (it) {
+              return it.type === 'blog' || it.type === 'pillar';
+            }).map(function (it) {
+              return {
+                url: it.url,
+                title: it.title,
+                keywords: it.keywords,
+                category: it.category,
+                wordCount: it.wordCount,
+                cover: it.cover
+              };
+            })
+          };
+          sessionStorage.setItem('mohami_rel_idx', JSON.stringify(slim));
+        } catch (e) {}
+        return idx;
+      });
+  }
+
+  loadIndex().then(function (idx) {
       // ترشيح IDF خفيف: تجاهل الكلمات الواردة في كلمات مفتاحية لأكثر من 20% من العناصر
       var df = {};
       idx.items.forEach(function (it) {
