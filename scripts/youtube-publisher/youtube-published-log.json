@@ -1522,6 +1522,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/4360649257532809",
       "publishedAt": "2026-09-13T16:12:41.386Z"
+    },
+    {
+      "topicId": "trend-takaful-and-karama-eligibility-law",
+      "kind": "short",
+      "videoId": "LZx7uLYkp4o",
+      "url": "https://www.youtube.com/watch?v=LZx7uLYkp4o",
+      "fbPermalink": "https://www.facebook.com/reel/1845607923267219",
+      "publishedAt": "2026-09-13T20:46:26.959Z"
+    },
+    {
+      "topicId": "trend-takaful-and-karama-eligibility-law",
+      "title": "شروط ومعايير استحقاق معاش تكافل وكرامة في ضوء تعديلات قانون الضمان الاجتماعي — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-takaful-and-karama-eligibility-law-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "Ls4SlmFwz-A",
+      "url": "https://www.youtube.com/watch?v=Ls4SlmFwz-A",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1845607923267219",
+      "publishedAt": "2026-09-13T20:47:13.951Z"
     }
   ]
 }
