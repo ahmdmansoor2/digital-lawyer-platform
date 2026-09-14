@@ -2708,6 +2708,27 @@
       "duration": "1د 7ث",
       "size": 39306322,
       "publishedAt": "2026-09-13T20:46:22.285Z"
+    },
+    {
+      "topicId": "trend-old-rent-law-2026-eviction-and-increase",
+      "title": "دليل قانون الإيجار القديم 2026: الزيادة السنوية 15% وحالات الإخلاء النهائي",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون الإيجارات",
+        "#قانون الإيجار القديم 2026",
+        "#زيادة الإيجار القديم 15%"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-old-rent-law-2026-eviction-and-increase.mp4",
+      "videoId": "1083890701057495",
+      "permalink": "https://www.facebook.com/reel/1083890701057495",
+      "source": "trending-topics.json",
+      "duration": "52ث",
+      "size": 19943658,
+      "publishedAt": "2026-09-14T12:36:52.596Z"
     }
   ]
 }
