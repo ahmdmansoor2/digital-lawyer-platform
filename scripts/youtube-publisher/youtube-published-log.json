@@ -1560,6 +1560,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1083890701057495",
       "publishedAt": "2026-09-14T12:37:25.483Z"
+    },
+    {
+      "topicId": "trend-shahr-aqary-apartment-registration-guide-2026",
+      "kind": "short",
+      "videoId": "Prua7lAPJfQ",
+      "url": "https://www.youtube.com/watch?v=Prua7lAPJfQ",
+      "fbPermalink": "https://www.facebook.com/reel/1433849291977693",
+      "publishedAt": "2026-09-14T19:52:06.747Z"
+    },
+    {
+      "topicId": "trend-shahr-aqary-apartment-registration-guide-2026",
+      "title": "خطوات تسجيل شقة في الشهر العقاري 2026: الأوراق المطلوبة والرسوم والمدة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-shahr-aqary-apartment-registration-guide-2026-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "qrsiX6uD2UA",
+      "url": "https://www.youtube.com/watch?v=qrsiX6uD2UA",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1433849291977693",
+      "publishedAt": "2026-09-14T19:52:41.383Z"
     }
   ]
 }
