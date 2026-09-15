@@ -2750,6 +2750,27 @@
       "duration": "55ث",
       "size": 22275936,
       "publishedAt": "2026-09-14T19:52:05.108Z"
+    },
+    {
+      "topicId": "trend-end-of-service-gratuity-calculation-new-labor-law",
+      "title": "حاسبة مكافأة نهاية الخدمة في قانون العمل الجديد: طريقة الحساب والضوابط",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون العمل",
+        "#حساب مكافأة نهاية الخدمة قانون العمل",
+        "#مكافأة نهاية الخدمة قانون العمل الجديد"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-end-of-service-gratuity-calculation-new-labor-law.mp4",
+      "videoId": "1106909205369125",
+      "permalink": "https://www.facebook.com/reel/1106909205369125",
+      "source": "trending-topics.json",
+      "duration": "55ث",
+      "size": 18043876,
+      "publishedAt": "2026-09-15T11:41:15.532Z"
     }
   ]
 }
