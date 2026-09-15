@@ -2792,6 +2792,27 @@
       "duration": "55ث",
       "size": 23739306,
       "publishedAt": "2026-09-15T16:53:42.161Z"
+    },
+    {
+      "topicId": "trend-trust-receipt-validity-conditions-and-defenses-egypt",
+      "title": "شروط صحة إيصال الأمانة في القانون المصري وثغرات البراءة القانونية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون الجنائي",
+        "#إيصال أمانة شروطه وبطلانه",
+        "#شروط صحة إيصال الأمانة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-trust-receipt-validity-conditions-and-defenses-egypt.mp4",
+      "videoId": "2187930058418913",
+      "permalink": "https://www.facebook.com/reel/2187930058418913",
+      "source": "trending-topics.json",
+      "duration": "57ث",
+      "size": 19825125,
+      "publishedAt": "2026-09-15T21:17:13.355Z"
     }
   ]
 }
