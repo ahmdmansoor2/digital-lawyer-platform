@@ -1598,6 +1598,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1106909205369125",
       "publishedAt": "2026-09-15T11:41:50.717Z"
+    },
+    {
+      "topicId": "blog-judicial-case-inquiry-by-national-id-egypt-justice-portal",
+      "kind": "short",
+      "videoId": "pJ1cpSM5ZHk",
+      "url": "https://www.youtube.com/watch?v=pJ1cpSM5ZHk",
+      "fbPermalink": "https://www.facebook.com/reel/2340711046742787",
+      "publishedAt": "2026-09-15T16:53:44.043Z"
+    },
+    {
+      "topicId": "blog-judicial-case-inquiry-by-national-id-egypt-justice-portal",
+      "title": "طرق الاستعلام الإلكتروني عن رول الجلسات والقضايا عبر بوابة وزارة العدل — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-judicial-case-inquiry-by-national-id-egypt-justice-portal-wide.mp4",
+      "source": "blog",
+      "videoId": "fnQR2Bf3A3w",
+      "url": "https://www.youtube.com/watch?v=fnQR2Bf3A3w",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2340711046742787",
+      "publishedAt": "2026-09-15T16:54:05.321Z"
     }
   ]
 }

@@ -2771,6 +2771,27 @@
       "duration": "55ث",
       "size": 18043876,
       "publishedAt": "2026-09-15T11:41:15.532Z"
+    },
+    {
+      "topicId": "blog-judicial-case-inquiry-by-national-id-egypt-justice-portal",
+      "title": "طرق الاستعلام الإلكتروني عن رول الجلسات والقضايا عبر بوابة وزارة العدل",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#خلاصة",
+        "#الحكم",
+        "#القانوني"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-judicial-case-inquiry-by-national-id-egypt-justice-portal.mp4",
+      "videoId": "2340711046742787",
+      "permalink": "https://www.facebook.com/reel/2340711046742787",
+      "source": "blog",
+      "duration": "55ث",
+      "size": 23739306,
+      "publishedAt": "2026-09-15T16:53:42.161Z"
     }
   ]
 }
