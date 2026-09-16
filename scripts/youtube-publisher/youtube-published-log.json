@@ -1655,6 +1655,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1869039444061959",
       "publishedAt": "2026-09-16T11:27:35.621Z"
+    },
+    {
+      "topicId": "trend-divorce-for-harm-conditions-proof-and-financial-rights",
+      "kind": "short",
+      "videoId": "-SNZxTwO1bY",
+      "url": "https://www.youtube.com/watch?v=-SNZxTwO1bY",
+      "fbPermalink": "https://www.facebook.com/reel/913383181541050",
+      "publishedAt": "2026-09-16T16:48:13.684Z"
+    },
+    {
+      "topicId": "trend-divorce-for-harm-conditions-proof-and-financial-rights",
+      "title": "دعوى الطلاق للضرر: الشروط، الإثبات، وحقوق الزوجة المالية وقائمة المنقولات — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-divorce-for-harm-conditions-proof-and-financial-rights-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "pX3SbVFJaM0",
+      "url": "https://www.youtube.com/watch?v=pX3SbVFJaM0",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/913383181541050",
+      "publishedAt": "2026-09-16T16:48:45.499Z"
     }
   ]
 }
