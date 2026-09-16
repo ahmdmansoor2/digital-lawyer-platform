@@ -1674,6 +1674,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/913383181541050",
       "publishedAt": "2026-09-16T16:48:45.499Z"
+    },
+    {
+      "topicId": "blog-limited-liability-company-incorporation-procedures-gafi",
+      "kind": "short",
+      "videoId": "mPuz6MnxDRc",
+      "url": "https://www.youtube.com/watch?v=mPuz6MnxDRc",
+      "fbPermalink": "https://www.facebook.com/reel/1088002653957332",
+      "publishedAt": "2026-09-16T21:16:48.828Z"
+    },
+    {
+      "topicId": "blog-limited-liability-company-incorporation-procedures-gafi",
+      "title": "تأسيس الشركات في الهيئة العامة للاستثمار: الخطوات ورأس المال والضرائب — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-limited-liability-company-incorporation-procedures-gafi-wide.mp4",
+      "source": "blog",
+      "videoId": "k7jHJ4Qc0ZE",
+      "url": "https://www.youtube.com/watch?v=k7jHJ4Qc0ZE",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1088002653957332",
+      "publishedAt": "2026-09-16T21:17:22.490Z"
     }
   ]
 }
