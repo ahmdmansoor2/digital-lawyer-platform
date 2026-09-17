@@ -1693,6 +1693,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1088002653957332",
       "publishedAt": "2026-09-16T21:17:22.490Z"
+    },
+    {
+      "topicId": "trend-legal-heirship-certificate-procedures-and-documents",
+      "kind": "short",
+      "videoId": "y3mNCbra00A",
+      "url": "https://www.youtube.com/watch?v=y3mNCbra00A",
+      "fbPermalink": "https://www.facebook.com/reel/2035246127146047",
+      "publishedAt": "2026-09-17T11:35:04.157Z"
+    },
+    {
+      "topicId": "trend-legal-heirship-certificate-procedures-and-documents",
+      "title": "كيفية استخراج إعلام الوراثة خطوة بخطوة: الأوراق، المواعيد، وجلسة الوراثة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-legal-heirship-certificate-procedures-and-documents-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "AaQ1KFKVqic",
+      "url": "https://www.youtube.com/watch?v=AaQ1KFKVqic",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2035246127146047",
+      "publishedAt": "2026-09-17T11:35:38.680Z"
     }
   ]
 }

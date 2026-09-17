@@ -2876,6 +2876,27 @@
       "duration": "58ث",
       "size": 21494282,
       "publishedAt": "2026-09-16T21:16:46.873Z"
+    },
+    {
+      "topicId": "trend-legal-heirship-certificate-procedures-and-documents",
+      "title": "كيفية استخراج إعلام الوراثة خطوة بخطوة: الأوراق، المواعيد، وجلسة الوراثة",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الميراث",
+        "#إجراءات استخراج إعلام وراثة",
+        "#استخراج إعلام الوراثة في مصر"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-legal-heirship-certificate-procedures-and-documents.mp4",
+      "videoId": "2035246127146047",
+      "permalink": "https://www.facebook.com/reel/2035246127146047",
+      "source": "trending-topics.json",
+      "duration": "53ث",
+      "size": 20035842,
+      "publishedAt": "2026-09-17T11:35:02.059Z"
     }
   ]
 }
