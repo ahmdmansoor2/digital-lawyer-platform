@@ -1,11 +1,11 @@
 {
   "date": "2026-09-18",
-  "generatedAt": "2026-09-18T07:04:17.870Z",
+  "generatedAt": "2026-09-18T10:54:02.626Z",
   "status": "error",
-  "blogArticles": 204,
-  "fbPosts": 0,
+  "blogArticles": 207,
+  "fbPosts": 3,
   "reels": 0,
-  "ghRuns": 17,
+  "ghRuns": 19,
   "checks": [
     {
       "name": "site_root",
@@ -28,8 +28,8 @@
     {
       "name": "layout_integrity",
       "label": "المدونة: النزاهة البصرية وتناسق الهيدر ومسار التنقل",
-      "status": "ok",
-      "findings": 0
+      "status": "error",
+      "findings": 1
     },
     {
       "name": "sitemap",
@@ -47,7 +47,7 @@
       "name": "facebook",
       "label": "فيسبوك: منشورات اليوم والصور والريلز",
       "status": "warn",
-      "findings": 2
+      "findings": 1
     },
     {
       "name": "github_runs",
