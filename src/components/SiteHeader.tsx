@@ -123,20 +123,22 @@ export default function SiteHeader({ activeKey = 'home', onEnterApp, userName, o
           {userName && onLogout ? (
             <button
               type="button"
-              className="uh-cta uh-cta--ghost"
+              className="uh-logout-btn"
               onClick={onLogout}
-              title="تسجيل الخروج والتبديل لحساب آخر"
+              title={`تسجيل الخروج (${userName})`}
             >
-              <span>🚪 خروج · {userName}</span>
+              <span>🚪</span>
+              <span>خروج</span>
             </button>
           ) : onEnterApp ? (
             <button
               type="button"
-              className="uh-cta"
+              className="uh-login-btn"
               onClick={handleCtaClick}
               title="دخول المنصة"
             >
-              <span>🔑 دخول المنصة</span>
+              <span>🔑</span>
+              <span>دخول</span>
             </button>
           ) : null}
 
