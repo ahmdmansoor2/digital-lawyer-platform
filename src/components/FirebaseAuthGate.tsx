@@ -220,22 +220,9 @@ export default function FirebaseAuthGate() {
     );
   }
 
-  // ── لوحة تحكم المدير ────────────────────────────────────────────
+  // ── لوحة تحكم المدير ────────────────────────────────────
   if (gateState === 'admin') {
-    return (
-      <div>
-        {/* زر العودة للتطبيق */}
-        <div className="fixed top-3 left-3 z-[9999]">
-          <button
-            onClick={() => setGateState('ready')}
-            className="flex items-center gap-2 px-3 py-1.5 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl text-xs text-slate-300 transition-colors"
-          >
-            ← العودة للتطبيق
-          </button>
-        </div>
-        <AdminPanel adminUid={user!.uid} />
-      </div>
-    );
+    return <AdminPanel adminUid={user!.uid} onBack={() => setGateState('ready')} />;
   }
 
   // ── التطبيق الرئيسي ─────────────────────────────────────────────

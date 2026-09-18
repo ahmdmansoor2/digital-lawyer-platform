@@ -35,9 +35,10 @@ interface UserRecord {
 
 interface AdminPanelProps {
   adminUid: string;
+  onBack?: () => void;
 }
 
-export default function AdminPanel({ adminUid }: AdminPanelProps) {
+export default function AdminPanel({ adminUid, onBack }: AdminPanelProps) {
   const [users, setUsers] = useState<UserRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
@@ -244,21 +245,33 @@ export default function AdminPanel({ adminUid }: AdminPanelProps) {
     <div className="min-h-screen bg-slate-950 text-slate-100 p-4 md:p-8" dir="rtl">
 
       {/* ── Header ──────────────────────────────────────────────────────────── */}
-      <div className="flex items-center gap-3 mb-8">
-        <div className="p-2 bg-emerald-500/20 rounded-xl border border-emerald-500/30">
-          <Shield className="w-7 h-7 text-emerald-400" />
+      <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
+        <div className="flex items-center gap-3">
+          <div className="p-2.5 bg-emerald-500/20 rounded-2xl border border-emerald-500/30">
+            <Shield className="w-7 h-7 text-emerald-400" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold text-white">لوحة تحكم المدير</h1>
+            <p className="text-slate-400 text-sm">منصة المحامي الرقمية — الوصول الكامل</p>
+          </div>
         </div>
-        <div>
-          <h1 className="text-2xl font-bold text-white">لوحة تحكم المدير</h1>
-          <p className="text-slate-400 text-sm">منصة المحامي الرقمية — الوصول الكامل</p>
+        <div className="flex items-center gap-2.5">
+          <button
+            onClick={fetchUsers}
+            className="flex items-center gap-2 px-3.5 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-xs font-bold transition-colors border border-slate-700 text-slate-200 cursor-pointer"
+          >
+            <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
+            <span>تحديث</span>
+          </button>
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="flex items-center gap-1.5 px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-xs font-bold transition-colors text-white shadow-lg shadow-indigo-950/40 cursor-pointer"
+            >
+              <span>← العودة للمنصة</span>
+            </button>
+          )}
         </div>
-        <button
-          onClick={fetchUsers}
-          className="mr-auto flex items-center gap-2 px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-xl text-sm transition-colors border border-slate-700"
-        >
-          <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
-          تحديث
-        </button>
       </div>
 
       {/* ── Status message ───────────────────────────────────────────────────── */}
