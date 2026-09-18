@@ -2981,6 +2981,27 @@
       "duration": "1د 0ث",
       "size": 28842033,
       "publishedAt": "2026-09-18T16:22:47.072Z"
+    },
+    {
+      "topicId": "trend-artistic-contracts-copyright-protection-asala-case",
+      "title": "حقوق الملكية الفكرية والعقود الفنية: حماية المصنفات الغنائية على خطى أزمة أصالة",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الملكية الفكرية",
+        "#حقوق الملكية الفكرية",
+        "#عقود الإنتاج الفني"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-artistic-contracts-copyright-protection-asala-case.mp4",
+      "videoId": "1641104914277411",
+      "permalink": "https://www.facebook.com/reel/1641104914277411",
+      "source": "trending-topics.json",
+      "duration": "1د 1ث",
+      "size": 40428766,
+      "publishedAt": "2026-09-18T20:53:45.385Z"
     }
   ]
 }

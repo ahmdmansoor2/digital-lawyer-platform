@@ -1788,6 +1788,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2539389643154331",
       "publishedAt": "2026-09-18T16:23:27.687Z"
+    },
+    {
+      "topicId": "trend-artistic-contracts-copyright-protection-asala-case",
+      "kind": "short",
+      "videoId": "Tnznth0I90Q",
+      "url": "https://www.youtube.com/watch?v=Tnznth0I90Q",
+      "fbPermalink": "https://www.facebook.com/reel/1641104914277411",
+      "publishedAt": "2026-09-18T20:53:47.403Z"
+    },
+    {
+      "topicId": "trend-artistic-contracts-copyright-protection-asala-case",
+      "title": "حقوق الملكية الفكرية والعقود الفنية: حماية المصنفات الغنائية على خطى أزمة أصالة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-artistic-contracts-copyright-protection-asala-case-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "aS7cJmKTx-s",
+      "url": "https://www.youtube.com/watch?v=aS7cJmKTx-s",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1641104914277411",
+      "publishedAt": "2026-09-18T20:54:25.342Z"
     }
   ]
 }
