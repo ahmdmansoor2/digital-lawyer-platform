@@ -199,6 +199,7 @@ export default function FirebaseLoginScreen({ onSuccess }: FirebaseLoginScreenPr
       const f = await getFirebase();
       if (f.disabled) throw new Error('Firebase disabled');
       const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({ prompt: 'select_account' });
       const result = await signInWithPopup(f.auth, provider);
       await initUserProfile(result.user.uid, result.user.displayName || 'محامي', result.user.email || '');
       onSuccess?.();
@@ -212,7 +213,9 @@ export default function FirebaseLoginScreen({ onSuccess }: FirebaseLoginScreenPr
           const { signInWithRedirect, GoogleAuthProvider } = await import('firebase/auth');
           const f = await getFirebase();
           if (!f.disabled) {
-            await signInWithRedirect(f.auth, new GoogleAuthProvider());
+            const redirProvider = new GoogleAuthProvider();
+            redirProvider.setCustomParameters({ prompt: 'select_account' });
+            await signInWithRedirect(f.auth, redirProvider);
             return;
           }
         } catch (redirErr) {

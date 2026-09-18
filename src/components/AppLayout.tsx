@@ -397,6 +397,21 @@ export default function AppLayout(props: AppLayoutProps) {
               الرئيسية
             </button>
           )}
+          {typeof onLogout === 'function' && (
+            <button
+              onClick={() => {
+                localStorage.removeItem('lawfirm_logged_in');
+                localStorage.removeItem('lawfirm_user_name');
+                localStorage.removeItem('lawfirm_user_role');
+                onLogout();
+              }}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 text-[10.5px] font-bold hover:bg-rose-500/30 transition cursor-pointer"
+              title="تسجيل الخروج والتبديل لحساب آخر"
+            >
+              <LogOut className="w-3 h-3 text-rose-400" />
+              <span>خروج</span>
+            </button>
+          )}
         </div>
       </header>
 

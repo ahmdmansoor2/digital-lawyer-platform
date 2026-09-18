@@ -34,7 +34,7 @@ import { getInitialPublicTheme } from './hooks/usePublicTheme';
 // transactions, deadlines, tasks, documents).
 import { Case, Client, Session, Transaction, LegalDeadline, LawTask, LawDocument, HourLog, Invoice, OfficeProfile, TypographySettings, BailiffPaper, PowerOfAttorney, Opponent, Execution, LegalReference, CaseStatus } from './types';
 
-export default function App({ userUid, onRequestLogin }: { userUid?: string; onRequestLogin?: () => void }) {
+export default function App({ userUid, onRequestLogin, onSignOut }: { userUid?: string; onRequestLogin?: () => void; onSignOut?: () => void }) {
   const getLSKey = useCallback((baseKey: string) => {
     return userUid ? `lawfirm_${userUid}_${baseKey}` : `lawfirm_${baseKey}`;
   }, [userUid]);
@@ -153,8 +153,9 @@ export default function App({ userUid, onRequestLogin }: { userUid?: string; onR
 
   const handleAppLogout = useCallback(() => {
     auth.logout();
-    // v2.9.11: عند الدخول بحساب Google — نخرج من Firebase أيضاً ليعود FirebaseAuthGate لشاشة الدخول
-    if (userUid) {
+    if (onSignOut) {
+      onSignOut();
+    } else if (userUid) {
       import('firebase/auth').then(({ signOut }) => {
         import('./firebaseClient').then(({ getFirebase }) =>
           getFirebase().then(f => { if (!f.disabled) return signOut(f.auth); })
@@ -164,8 +165,16 @@ export default function App({ userUid, onRequestLogin }: { userUid?: string; onR
     localStorage.removeItem(getLSKey('logged_in'));
     localStorage.removeItem(getLSKey('user_name'));
     localStorage.removeItem(getLSKey('user_role'));
+    localStorage.removeItem('lawfirm_logged_in');
+    localStorage.removeItem('lawfirm_user_name');
+    localStorage.removeItem('lawfirm_user_role');
+    (window as any).__firebaseUser = null;
+    setSessionUser({ role: 'مدير المكتب', name: '' });
     setPostLoginView('info-center');
-  }, [auth, getLSKey, userUid]);
+    if (onRequestLogin) {
+      onRequestLogin();
+    }
+  }, [auth, getLSKey, userUid, onSignOut, onRequestLogin]);
 
   const [typographySettings, setTypographySettings] = useState<TypographySettings>(() => {
     const saved = localStorage.getItem(getLSKey('typography_settings'));
@@ -848,7 +857,7 @@ clients: true,
     // شاشة الدخول لا تظهر إلا عند الضغط على زر «دخول التطبيق» في مركز المعلومات
     // (onRequestLogin ← FirebaseAuthGate يفتح FirebaseLoginScreen).
     if (onRequestLogin) {
-      return <InfoCenter userName={undefined} onEnterApp={onRequestLogin} onLogout={() => {}} />;
+      return <InfoCenter userName={undefined} onEnterApp={onRequestLogin} onLogout={handleAppLogout} />;
     }
     // وضع Electron: شاشة الدخول المحلية القديمة كما هي
     return (
@@ -867,20 +876,7 @@ clients: true,
       <InfoCenter
         userName={sessionUser?.name}
         onEnterApp={() => setPostLoginView('app')}
-        onLogout={() => {
-          auth.logout();
-          if (userUid) {
-            import('firebase/auth').then(({ signOut }) => {
-              import('./firebaseClient').then(({ getFirebase }) =>
-                getFirebase().then(f => { if (!f.disabled) return signOut(f.auth); })
-              ).catch(() => {});
-            }).catch(() => {});
-          }
-          localStorage.removeItem(getLSKey('logged_in'));
-          localStorage.removeItem(getLSKey('user_name'));
-          localStorage.removeItem(getLSKey('user_role'));
-          setPostLoginView('app');
-        }}
+        onLogout={handleAppLogout}
       />
     );
   }

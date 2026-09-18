@@ -78,11 +78,21 @@ export default function FirebaseAuthGate() {
   const [user, setUser] = useState<User | null>(null);
   const [gateState, setGateState] = useState<GateState>('loading');
   // v2.18: شاشة الدخول لا تظهر للزوار — تُفتح فقط عند طلب الدخول للمنصة
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(() => typeof window !== 'undefined' && (window.location.hash === '#login' || window.location.search.includes('login=true')));
 
   const subscription = useSubscription(user?.uid ?? null);
 
   const isAdmin = user?.uid === ADMIN_UID;
+
+  useEffect(() => {
+    const handleHash = () => {
+      if (window.location.hash === '#login' || window.location.search.includes('login=true')) {
+        setShowLogin(true);
+      }
+    };
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
 
   // ── استماع لحالة المصادقة ────────────────────────────────────────
   useEffect(() => {
@@ -98,10 +108,9 @@ export default function FirebaseAuthGate() {
         }
         const { onAuthStateChanged } = await import('firebase/auth');
         unsub = onAuthStateChanged(f.auth, (fbUser: any) => {
-          setUser(fbUser);
           if (!fbUser) {
-            // مسح بيانات المستخدم من window عند الخروج
             (window as any).__firebaseUser = null;
+            setUser(null);
             setGateState('unauthenticated');
           } else {
             // ── تمرير بيانات المستخدم لـ App.tsx عبر window ──────────────
@@ -111,6 +120,12 @@ export default function FirebaseAuthGate() {
               email: fbUser.email,
               photoURL: fbUser.photoURL,
             };
+            setUser({
+              uid: fbUser.uid,
+              displayName: fbUser.displayName,
+              email: fbUser.email,
+              photoURL: fbUser.photoURL,
+            } as User);
             // تهيئة البروفايل تلقائياً لو مستخدم جديد
             try { initOfficeProfileIfNew(fbUser); } catch (e) { /* ignore */ }
             setGateState('checking_sub');
@@ -145,7 +160,7 @@ export default function FirebaseAuthGate() {
   }, [subscription.status, subscription.isAllowed, gateState, isAdmin]);
 
   // ── تسجيل الخروج ────────────────────────────────────────────────
-  const handleLogout = async () => {
+  const handleLogout = async (openLogin = false) => {
     try {
       const f = await getFirebase();
       if (!f.disabled) {
@@ -156,7 +171,11 @@ export default function FirebaseAuthGate() {
       console.warn('[handleLogout] signOut failed:', e);
     }
     (window as any).__firebaseUser = null;
+    setUser(null);
     setGateState('unauthenticated');
+    if (openLogin) {
+      setShowLogin(true);
+    }
   };
 
   // ── شاشة التحميل ────────────────────────────────────────────────
@@ -187,7 +206,7 @@ export default function FirebaseAuthGate() {
         />
       );
     }
-    return <App userUid={undefined} onRequestLogin={() => setShowLogin(true)} />;
+    return <App userUid={undefined} onRequestLogin={() => setShowLogin(true)} onSignOut={() => handleLogout(true)} />;
   }
 
   // ── صفحة الاشتراك (انتهت التجربة) ────────────────────────────────
@@ -244,7 +263,7 @@ export default function FirebaseAuthGate() {
         </button>
       )}
 
-      <App userUid={user?.uid} onRequestLogin={() => setShowLogin(true)} />
+      <App userUid={user?.uid} onRequestLogin={() => setShowLogin(true)} onSignOut={() => handleLogout(true)} />
     </div>
   );
 }
