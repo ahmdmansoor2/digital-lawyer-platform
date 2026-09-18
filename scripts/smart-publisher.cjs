@@ -204,12 +204,11 @@ async function downloadFile(url, dest) {
   return buf.length;
 }
 
-// استدعاء Gemini مع إعادة المحاولة التلقائية عند 429 (Rate Limit) أو 503/5xx (UNAVAILABLE)
-// يحاول عبر النماذج بالتناوب مع مهلة قصيرة حتى ينجح أو تنتهي المحاولات
+// استدعاء Gemini مع إعادة المحاولة التلقائية والتناوب بين النماذج الحديثة
 async function generateContentWithRetry(prompt, config = {}, modelIndex = 0, attempt = 0) {
-  const models = ['gemini-flash-latest', 'gemini-2.5-flash', 'gemini-3.6-flash', 'gemini-3.1-flash-lite', 'gemini-3.7-flash'];
+  const models = ['gemini-3.6-flash', 'gemini-3.5-flash-lite'];
   const modelName = models[modelIndex % models.length];
-  const MAX_ATTEMPTS = 9;
+  const MAX_ATTEMPTS = 6;
 
   try {
     const result = await ai.models.generateContent({
@@ -221,10 +220,10 @@ async function generateContentWithRetry(prompt, config = {}, modelIndex = 0, att
   } catch (err) {
     const msg = err.message || '';
     const isRateLimit = err.status === 429 || msg.includes('429') || msg.includes('Quota');
-    const isUnavailable = err.status === 503 || err.status >= 500 || msg.includes('503') || msg.includes('UNAVAILABLE') || msg.includes('high demand');
+    const isUnavailable = err.status === 503 || err.status >= 500 || msg.includes('503') || msg.includes('UNAVAILABLE') || msg.includes('high demand') || msg.includes('NOT_FOUND') || msg.includes('404');
     if ((isRateLimit || isUnavailable) && attempt < MAX_ATTEMPTS) {
-      const waitMs = isRateLimit ? 15000 : 8000;
-      log(`⚠️ Gemini (${modelName}) ${isRateLimit ? 'Rate Limit' : 'غير متاح'} — انتظار ${waitMs / 1000} ثانية (محاولة ${attempt + 1}/${MAX_ATTEMPTS})...`);
+      const waitMs = isRateLimit ? 10000 : 3000;
+      log(`⚠️ Gemini (${modelName}) [${err.status || 'error'}] — تجربة النموذج التالي بعد ${waitMs / 1000} ثانية (محاولة ${attempt + 1}/${MAX_ATTEMPTS})...`);
       await sleep(waitMs);
       return generateContentWithRetry(prompt, config, modelIndex + 1, attempt + 1);
     }
@@ -305,7 +304,7 @@ ${trendsHint}
 القواعد:
 - الـ slug يجب أن يكون بالإنجليزية فقط (حروف وأرقام وhyphens)
 - coverColor يكون أحد: indigo, cyan, purple, emerald
-- لا تكرر مواضيع نُشرت بالفعل في: ${Array.from(publishedSlugs).slice(0, 20).join(', ')}
+- لا تكرر مواضيع نُشرت بالفعل في: ${Array.from(publishedSlugs).slice(-30).join(', ')}
 
 أعطني فقط مصفوفة JSON صحيحة بدون أي نص إضافي.`;
 
