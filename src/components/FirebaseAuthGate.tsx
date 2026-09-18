@@ -251,15 +251,15 @@ export default function FirebaseAuthGate() {
         </div>
       )}
 
-      {/* زر لوحة تحكم المدير — يظهر فقط للمدير */}
+      {/* زر لوحة تحكم المدير — يظهر فقط للمدير في الزاوية العلوية بعيداً عن أزرار المحادثة والإشعارات */}
       {isAdmin && (
         <button
           onClick={() => setGateState('admin')}
           title="لوحة تحكم المدير"
-          className="fixed bottom-4 left-4 z-40 flex items-center gap-1.5 px-3 py-1.5 bg-emerald-900/90 hover:bg-emerald-800 text-emerald-100 rounded-xl shadow-lg border border-emerald-500/40 backdrop-blur-md transition-all hover:scale-105 text-xs font-bold cursor-pointer"
+          className="fixed top-20 left-4 z-40 flex items-center gap-1.5 px-3 py-1.5 bg-emerald-950/90 hover:bg-emerald-900 text-emerald-300 rounded-xl shadow-lg border border-emerald-500/40 backdrop-blur-md transition-all hover:scale-105 text-xs font-bold cursor-pointer"
         >
           <Shield className="w-3.5 h-3.5 text-emerald-400" />
-          لوحة التحكم
+          <span>لوحة تحكم المدير</span>
         </button>
       )}
 
