@@ -75,6 +75,7 @@
     "lucide-react": "^0.546.0",
     "minisearch": "^7.2.0",
     "node-edge-tts": "^1.2.10",
+    "nodemailer": "^10.0.10",
     "pako": "^2.1.0",
     "pdfjs-dist": "^4.4.168",
     "qrcode.react": "^4.2.0",

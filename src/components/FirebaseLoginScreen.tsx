@@ -373,8 +373,14 @@ export default function FirebaseLoginScreen({ onSuccess }: FirebaseLoginScreenPr
           </div>
         </div>
 
-        <div className="mt-5 flex items-center justify-center gap-4 text-xs text-slate-500">
-          <a href="/" className="transition hover:text-slate-300">العودة إلى الموقع</a>
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-500 font-bold">
+          <a href="/" className="transition hover:text-slate-300">الرئيسية</a>
+          <span aria-hidden="true">•</span>
+          <a href="/about.html" className="transition hover:text-slate-300">عن المنصة</a>
+          <span aria-hidden="true">•</span>
+          <a href="/privacy.html" className="transition hover:text-slate-300">سياسة الخصوصية</a>
+          <span aria-hidden="true">•</span>
+          <a href="/terms.html" className="transition hover:text-slate-300">شروط الاستخدام</a>
           <span aria-hidden="true">•</span>
           <a href="/contact.html" className="transition hover:text-slate-300">تواصل معنا</a>
         </div>

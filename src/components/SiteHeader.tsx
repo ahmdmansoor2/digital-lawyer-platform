@@ -38,8 +38,12 @@ const MORE = [
   { href: '/lawyers-directory.html', label: '👨‍⚖️ دليل المحامين المعتمدين', key: 'lawyers' },
   { href: '/company-incorporation.html', label: '🏢 تأسيس الشركات والتراخيص', key: 'companies' },
   { href: '/courts-directory.html', label: '🏛️ دليل المحاكم والشهر العقاري', key: 'courts' },
-  { href: '/legal-radar.html', label: '🔍 رصد المحامي والجريدة الرسمية', key: 'radar' },
+  { href: '/about.html', label: '⚖️ عن المنصة ورسالتنا', key: 'about' },
+  { href: '/why-trust-us.html', label: '🛡️ لماذا تثق بنا', key: 'trust' },
+  { href: '/editorial-policy.html', label: '📜 السياسة التحريرية (E-E-A-T)', key: 'editorial' },
   { href: '/privacy.html', label: '🔐 سياسة الخصوصية والأمان', key: 'privacy' },
+  { href: '/terms.html', label: '📜 شروط وأحكام الاستخدام', key: 'terms' },
+  { href: '/disclaimer.html', label: '⚖️ إخلاء المسؤولية القانونية', key: 'disclaimer' },
   { href: '/contact.html', label: '📬 تواصل معنا', key: 'contact' },
 ];
 

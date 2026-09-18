@@ -192,7 +192,8 @@ html:root, html:root body, html body, body {
   z-index: 100000;
 }
 
-.uh-more.open .uh-menu {
+.uh-more.open .uh-menu,
+.uh-more:hover .uh-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
