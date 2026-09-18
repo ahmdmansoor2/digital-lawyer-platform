@@ -1750,6 +1750,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1367646855534512",
       "publishedAt": "2026-09-17T21:20:27.339Z"
+    },
+    {
+      "topicId": "trend-sports-contracts-professionalism-law-lessons-from-salah",
+      "kind": "short",
+      "videoId": "BMG6vVtv7wI",
+      "url": "https://www.youtube.com/watch?v=BMG6vVtv7wI",
+      "fbPermalink": "https://www.facebook.com/reel/1134621475561008",
+      "publishedAt": "2026-09-18T11:08:16.141Z"
+    },
+    {
+      "topicId": "trend-sports-contracts-professionalism-law-lessons-from-salah",
+      "title": "العقود الرياضية وقانون الاحتراف: دروس من أزمات نجوم الكرة مثل محمد صلاح وإسماعيل — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-contracts-professionalism-law-lessons-from-salah-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "HbNCKgFicA8",
+      "url": "https://www.youtube.com/watch?v=HbNCKgFicA8",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1134621475561008",
+      "publishedAt": "2026-09-18T11:08:50.436Z"
     }
   ]
 }
