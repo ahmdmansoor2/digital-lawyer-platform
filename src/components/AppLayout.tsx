@@ -49,7 +49,6 @@ import {
   UserCircle
 } from 'lucide-react';
 
-import AdSenseBanner from './AdSenseBanner';
 import PublicThemeToggle from './PublicThemeToggle';
 import QuickActionHeader from './QuickActionHeader';
 import WhatsNewModal, { useWhatsNew } from './WhatsNewModal';
@@ -625,7 +624,6 @@ export default function AppLayout(props: AppLayoutProps) {
           onNavigate={onNavigate}
         />
 
-                <AdSenseBanner slot="2168039898" className="max-w-5xl mx-auto" />
         {/* TAB CONTENT RENDERING */}
         {activeTab === 'dashboard' && (
           <LocalErrorBoundary label="لوحة التحكم">
@@ -883,14 +881,12 @@ export default function AppLayout(props: AppLayoutProps) {
         {activeTab === 'inheritance-calculator' && (
           <LocalErrorBoundary label="حاسبة المواريث والتركات">
             <InheritanceCalculator />
-            <AdSenseBanner slot="5434337426" className="max-w-4xl mx-auto w-full my-3" />
           </LocalErrorBoundary>
         )}
 
         {activeTab === 'court-fees-calculator' && (
           <LocalErrorBoundary label="حاسبة الرسوم والمصاريف">
             <CourtFeesCalculator />
-            <AdSenseBanner slot="8607295670" className="max-w-4xl mx-auto w-full my-3" />
           </LocalErrorBoundary>
         )}
 
@@ -902,7 +898,6 @@ export default function AppLayout(props: AppLayoutProps) {
                 onLinkLegalReference={onLinkLegalReference}
               />
             </Suspense>
-            <AdSenseBanner slot="9002240868" className="max-w-4xl mx-auto w-full my-3" />
           </LocalErrorBoundary>
         )}
 
@@ -927,7 +922,6 @@ export default function AppLayout(props: AppLayoutProps) {
                 onDeleteSession={onDeleteSession}
               />
             </Suspense>
-            <AdSenseBanner slot="6851909615" className="max-w-4xl mx-auto w-full my-3" />
           </LocalErrorBoundary>
         )}
 
