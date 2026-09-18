@@ -18,7 +18,7 @@ const ROOT = path.resolve(__dirname, '..');
 const PUBLIC = path.join(ROOT, 'public');
 
 /* ── التعابير ───────────────────────────────────────── */
-const OLD_HEADER_RE = /<header class="site-header" id="siteHeader">[\s\S]*?<\/header>/;
+const OLD_HEADER_RE = /(?:<header class="site-header" id="siteHeader">|<nav class="main-nav">)[\s\S]*?<\/(?:header|nav)>/;
 const OLD_JS_RE = /([ \t]*)<script>\s*\(function\(\)\{\s*var hdr=document\.getElementById\('siteHeader'\);[\s\S]*?<\/script>/g;
 const UH_HEADER_FULL_RE = /<header class="uh-bar" id="siteHeader">[\s\S]*?<\/header>(\s*<script>[\s\S]*?<\/script>)?/;
 const CSS_LINK_RE = /\/header\.css/;

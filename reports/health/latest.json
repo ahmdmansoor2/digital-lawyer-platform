@@ -1,10 +1,10 @@
 {
   "date": "2026-09-18",
-  "generatedAt": "2026-09-18T15:34:53.908Z",
+  "generatedAt": "2026-09-18T17:45:54.351Z",
   "status": "error",
   "blogArticles": 207,
-  "fbPosts": 5,
-  "reels": 1,
+  "fbPosts": 6,
+  "reels": 2,
   "ghRuns": 17,
   "checks": [
     {
@@ -28,7 +28,7 @@
     {
       "name": "layout_integrity",
       "label": "المدونة: النزاهة البصرية وتناسق الهيدر ومسار التنقل",
-      "status": "error",
+      "status": "warn",
       "findings": 1
     },
     {
