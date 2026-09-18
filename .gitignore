@@ -31,3 +31,7 @@ scripts/ia-upload-stats.json
 # Google Search Console Indexing Service Account (حماية المفاتيح)
 google-service-account.json
 *service-account*.json
+# سجلّات منع الازدواج المحلية (IndexNow / Google Indexing)
+scripts/indexnow-log.json
+indexnow-log.json
+scripts/seo/indexing-google-log.json

@@ -93,51 +93,95 @@ async function submitToIndexNow(urls) {
   return results;
 }
 
+const LOG_PATH = path.join(__dirname, '..', 'indexnow-log.json');
+const DEDUP_WINDOW_MS = 24 * 60 * 60 * 1000; // لا يُرسل نفس URL خلال 24 ساعة
+const MAX_PER_RUN = 25; // حد آمن لعرض IndexNow المجاني — لا نغرق محركات البحث بكل الموقع كل رن
+
+function loadLog() {
+  try {
+    if (fs.existsSync(LOG_PATH)) {
+      const parsed = JSON.parse(fs.readFileSync(LOG_PATH, 'utf8'));
+      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) return parsed;
+    }
+  } catch (e) { /* تجاهل سجلّ تالف */ }
+  return {};
+}
+
+function saveLog(log) {
+  try {
+    fs.writeFileSync(LOG_PATH, JSON.stringify(log, null, 2), 'utf8');
+  } catch (e) {
+    console.warn(`⚠️ تعذر حفظ سجلّ التقديم: ${e.message}`);
+  }
+}
+
 async function main() {
   const opts = parseArgs();
-  let urls = [];
+  let requestedUrls = [];
 
   if (opts.url) {
-    urls = [opts.url];
+    requestedUrls = [opts.url];
   } else if (opts.urlsFile) {
     const content = fs.readFileSync(opts.urlsFile, 'utf8');
-    urls = content.split('\n').map(l => l.trim()).filter(l => l && l.startsWith('http'));
+    requestedUrls = content.split('\n').map(l => l.trim()).filter(l => l && l.startsWith('http'));
   } else {
-    urls = extractUrlsFromSitemap();
+    // أحدث المقالات من سجلّ النشر المعتمد أولاً، ثم بقية sitemap
+    const publishedLogPath = path.join(__dirname, '..', 'published-log.json');
+    try {
+      if (fs.existsSync(publishedLogPath)) {
+        const published = JSON.parse(fs.readFileSync(publishedLogPath, 'utf8'));
+        const entries = Array.isArray(published) ? published : (published && published.published) || [];
+        const withDate = entries
+          .filter(e => e && e.url && e.date)
+          .sort((a, b) => String(b.date).localeCompare(String(a.date)));
+        for (const e of withDate) requestedUrls.push(e.url);
+      }
+    } catch (e) {
+      console.warn(`⚠️ تعذر قراءة published-log.json: ${e.message}`);
+    }
+    requestedUrls = [...requestedUrls, ...extractUrlsFromSitemap()];
+  }
+
+  const dedupLog = loadLog();
+  const now = Date.now();
+  const urls = [];
+  const seenAt = {};
+  for (const url of requestedUrls) {
+    if (urls.length >= MAX_PER_RUN) break;
+    if (seenAt[url]) continue;
+    const lastSent = dedupLog[url];
+    if (lastSent && (now - new Date(lastSent).getTime()) < DEDUP_WINDOW_MS) continue;
+    seenAt[url] = true;
+    urls.push(url);
   }
 
   if (urls.length === 0) {
-    console.log('⚠️ لا توجد URLs لإرسالها');
+    console.log('✅ لا URLs جديدة (كل الروابط أُرسلت خلال آخر 24 ساعة).');
     return;
   }
 
-  console.log(`\n🔗 إرسال ${urls.length} URL إلى IndexNow...`);
+  console.log(`\n🔗 إرسال ${urls.length} URL إلى IndexNow (dedup 24h, max ${MAX_PER_RUN}/run)...`);
 
-  // IndexNow يدعم حتى 10,000 URL في طلب واحد
-  const BATCH_SIZE = 10000;
-  for (let i = 0; i < urls.length; i += BATCH_SIZE) {
-    const batch = urls.slice(i, i + BATCH_SIZE);
-    const batchNum = Math.floor(i / BATCH_SIZE) + 1;
-    const totalBatches = Math.ceil(urls.length / BATCH_SIZE);
-
-    console.log(`\n📦 الدفعة ${batchNum}/${totalBatches} (${batch.length} URL)...`);
-
-    try {
-      const results = await submitToIndexNow(batch);
-      for (const res of results) {
-        if (res.status === 200) {
-          console.log(`  ✅ [${res.host}] تم الإرسال بنجاح (${res.status})`);
-        } else if (res.status === 202) {
-          console.log(`  ✅ [${res.host}] تم القبول (${res.status}) — ستُعالج URLs قريباً`);
-        } else {
-          console.log(`  ⚠️ [${res.host}] استجابة: ${res.status} — ${String(res.body).substring(0, 150)}`);
-        }
+  try {
+    const results = await submitToIndexNow(urls);
+    for (const res of results) {
+      if (res.status === 200) {
+        console.log(`  ✅ [${res.host}] تم الإرسال بنجاح (${res.status})`);
+      } else if (res.status === 202) {
+        console.log(`  ✅ [${res.host}] تم القبول (${res.status}) — ستُعالج URLs قريباً`);
+      } else if (res.status === 429) {
+        console.warn(`  ⚠️ [${res.host}] تم الوصول إلى حد IndexNow اليومي (429) — نوقف الإرسال اليوم.`);
+      } else {
+        console.log(`  ⚠️ [${res.host}] استجابة: ${res.status} — ${String(res.body).substring(0, 150)}`);
       }
-    } catch (err) {
-      console.error(`  ❌ خطأ: ${err.message}`);
     }
+  } catch (err) {
+    console.error(`  ❌ خطأ: ${err.message}`);
+    return;
   }
 
+  for (const url of urls) dedupLog[url] = new Date().toISOString();
+  saveLog(dedupLog);
   console.log(`\n🏁 انتهى الإرسال لمحركات Bing (Edge) و IndexNow و Yandex.`);
 }
 

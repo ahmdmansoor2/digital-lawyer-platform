@@ -83,3 +83,9 @@ jobs:
         if: success()
         env:
           GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+
+      - name: Ping sitemaps (Google & Bing)
+        run: |
+          curl -s -o /dev/null "https://www.google.com/ping?sitemap=https://mohamidigital.online/sitemap.xml"
+          curl -s -o /dev/null "https://www.bing.com/ping?sitemap=https://mohamidigital.online/sitemap.xml"
+        if: success()

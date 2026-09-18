@@ -2515,6 +2515,42 @@
       "words": 2376,
       "image": "pollinations",
       "model": "gemini-3.1-flash-lite"
+    },
+    {
+      "title": "العقود الرياضية وقانون الاحتراف: دروس من أزمات نجوم الكرة مثل محمد صلاح وإسماعيل يوسف",
+      "date": "2026-09-18",
+      "slug": "sports-contracts-professionalism-law-lessons-from-salah",
+      "url": "https://mohamidigital.online/blog/sports-contracts-professionalism-law-lessons-from-salah.html",
+      "image": "https://mohamidigital.online/blog/images/sports-contracts-professionalism-law-lessons-from-salah.jpg",
+      "tags": [
+        "قانون الرياضة"
+      ],
+      "words": 1919,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "الآثار القانونية لاحتكار وانخفاض أسعار النفط على العقود التجارية والتوريد في مصر",
+      "date": "2026-09-18",
+      "slug": "oil-prices-drop-commercial-contracts-force-majeure-egypt",
+      "url": "https://mohamidigital.online/blog/oil-prices-drop-commercial-contracts-force-majeure-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/oil-prices-drop-commercial-contracts-force-majeure-egypt.jpg",
+      "tags": [
+        "القانون التجاري"
+      ],
+      "words": 1652,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "حقوق الملكية الفكرية والعقود الفنية: حماية المصنفات الغنائية على خطى أزمة أصالة",
+      "date": "2026-09-18",
+      "slug": "artistic-contracts-copyright-protection-asala-case",
+      "url": "https://mohamidigital.online/blog/artistic-contracts-copyright-protection-asala-case.html",
+      "image": "https://mohamidigital.online/blog/images/artistic-contracts-copyright-protection-asala-case.jpg",
+      "tags": [
+        "الملكية الفكرية"
+      ],
+      "words": 2184,
+      "model": "gemini-3.6-flash"
     }
   ]
 }

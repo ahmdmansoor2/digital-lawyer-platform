@@ -49,6 +49,12 @@ jobs:
         run: node scripts/submit-indexnow.cjs
         if: success()
 
+      - name: Ping sitemaps (Google & Bing)
+        run: |
+          curl -s -o /dev/null "https://www.google.com/ping?sitemap=https://mohamidigital.online/sitemap.xml"
+          curl -s -o /dev/null "https://www.bing.com/ping?sitemap=https://mohamidigital.online/sitemap.xml"
+        if: success()
+
       - name: Commit published pillars & sitemaps back to Git
         run: |
           git config user.name  "Legal Pillars Bot 📚"
