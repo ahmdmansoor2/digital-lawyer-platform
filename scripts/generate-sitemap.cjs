@@ -48,25 +48,55 @@ function urlForPath(filePath) {
   return url;
 }
 
+const GOLDEN_ARTICLES = [
+  'old-rent-law-2026-eviction-and-increase',
+  'shahr-aqary-apartment-registration-guide-2026',
+  'end-of-service-gratuity-calculation-new-labor-law',
+  'trust-receipt-validity-conditions-and-defenses-egypt',
+  'divorce-for-harm-conditions-proof-and-financial-rights',
+  'legal-heirship-certificate-procedures-and-documents',
+  'building-violation-reconciliation-law-updates-model-8',
+  'inheritance-withholding-penalties-article-49',
+  'sale-contract-validity-and-enforcement-lawsuit-vs-signature',
+  'instapay-accidental-transfer-legal-recovery-procedures',
+  'khula-divorce-lawsuit-procedures-and-dowry-return',
+  'criminal-cassation-appeal-deadlines-and-grounds-2026',
+  'arbitrary-dismissal-and-form-6-challenge-labor-law',
+  'civil-lawsuit-court-fees-calculation-guide',
+  'bounced-cheque-penalties-and-statute-of-limitations',
+  'limited-liability-company-incorporation-procedures-gafi',
+  'child-custody-remarriage-and-father-visitation-rights',
+  'judicial-case-inquiry-by-national-id-egypt-justice-portal',
+  'cyber-defamation-whatsapp-police-report-and-penalties',
+  'inheritance-distribution-single-daughter-and-wife-radd'
+];
+
 function getPriority(url) {
   const cleanPath = url.replace(BASE_URL, '').replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  if (cleanPath === '/' || cleanPath === '') return '1.0';
+  if (cleanPath.startsWith('/pillars')) return '1.0';
+  if (GOLDEN_ARTICLES.some(g => cleanPath.includes(g))) return '1.0';
   if (HIGH_PRIORITY.some(p => {
     const cleanP = p.replace(/\.html$/, '').replace(/\/$/, '') || '/';
     return cleanPath === cleanP;
   })) return '1.0';
-  if (MEDIUM_PRIORITY.some(p => cleanPath.startsWith(p.replace(/\.html$/, '')))) return '0.8';
-  if (cleanPath.startsWith('/blog')) return '0.7';
-  if (cleanPath.startsWith('/legal-library-topics')) return '0.7';
-  if (cleanPath.startsWith('/legal-categories')) return '0.6';
-  if (cleanPath.includes('pillar')) return '0.7';
+  if (cleanPath.startsWith('/blog')) return '0.8';
+  if (MEDIUM_PRIORITY.some(p => cleanPath.startsWith(p.replace(/\.html$/, '')))) return '0.7';
+  if (cleanPath.startsWith('/legal-library')) return '0.7';
+  if (cleanPath.startsWith('/radar-topics')) return '0.4';
+  if (cleanPath.startsWith('/courts/')) return '0.3';
+  if (cleanPath.startsWith('/legal-forms-docs/')) return '0.4';
   return '0.5';
 }
 
 function getChangefreq(url) {
   const path = url.replace(BASE_URL, '');
   if (path === '/' || path === '') return 'daily';
+  if (GOLDEN_ARTICLES.some(g => path.includes(g))) return 'daily';
+  if (path.startsWith('/pillars')) return 'weekly';
   if (path.startsWith('/blog/')) return 'weekly';
-  if (path.startsWith('/legal-library')) return 'monthly';
+  if (path.startsWith('/courts/')) return 'yearly';
+  if (path.startsWith('/legal-forms-docs/')) return 'yearly';
   return 'monthly';
 }
 
@@ -103,11 +133,12 @@ function main() {
     u.changefreq = getChangefreq(u.loc);
   }
 
-  // Sort: home first, then library, blog, then others
+  // Sort: highest priority first, home at very top, then alphabetized
   urls.sort((a, b) => {
-    const aP = a.loc === BASE_URL + '/' ? 0 : a.loc.includes('legal-library') ? 1 : a.loc.includes('blog') ? 2 : 3;
-    const bP = b.loc === BASE_URL + '/' ? 0 : b.loc.includes('legal-library') ? 1 : b.loc.includes('blog') ? 2 : 3;
-    if (aP !== bP) return aP - bP;
+    if (a.loc === BASE_URL + '/') return -1;
+    if (b.loc === BASE_URL + '/') return 1;
+    const diff = parseFloat(b.priority) - parseFloat(a.priority);
+    if (Math.abs(diff) > 0.001) return diff;
     return a.loc.localeCompare(b.loc);
   });
 

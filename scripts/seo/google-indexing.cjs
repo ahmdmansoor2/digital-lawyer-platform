@@ -67,23 +67,9 @@ async function main() {
     specificUrls = args[cliUrlsIndex + 1].split(',').map(u => u.trim());
   }
 
-  // Priority queue: Homepage, core hubs, latest blogs
-  const priorityUrls = [
-    'https://mohamidigital.online/',
-    'https://mohamidigital.online/download.html',
-    'https://mohamidigital.online/legal-calculators.html',
-    'https://mohamidigital.online/legal-forms.html',
-    'https://mohamidigital.online/pillars/',
-    'https://mohamidigital.online/blog/',
-    'https://mohamidigital.online/legal-radar.html'
-  ];
-
-  // Separate blog URLs and reverse them so newest articles are submitted first
-  const blogUrls = urls.filter(u => u.includes('/blog/') && u !== 'https://mohamidigital.online/blog/').reverse();
-  const otherUrls = urls.filter(u => !u.includes('/blog/'));
-
-  const toSubmit = Array.from(new Set([...specificUrls, ...priorityUrls, ...blogUrls, ...otherUrls])).slice(0, 100);
-  console.log(`Submitting ${toSubmit.length} URLs to Google Indexing API (Newest First)...`);
+  // Sitemaps are already sorted descending by priority (Priority 1.0 golden articles first)
+  const toSubmit = Array.from(new Set([...specificUrls, ...urls])).slice(0, 100);
+  console.log(`Submitting ${toSubmit.length} URLs to Google Indexing API (Priority 1.0 First)...`);
 
   let successCount = 0;
   let failCount = 0;
