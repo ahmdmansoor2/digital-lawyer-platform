@@ -76,7 +76,7 @@ function initOfficeProfileIfNew(user: User) {
 
 export default function FirebaseAuthGate() {
   const [user, setUser] = useState<User | null>(null);
-  const [gateState, setGateState] = useState<GateState>('loading');
+  const [gateState, setGateState] = useState<GateState>('unauthenticated');
   // v2.18: شاشة الدخول لا تظهر للزوار — تُفتح فقط عند طلب الدخول للمنصة
   const [showLogin, setShowLogin] = useState(() => typeof window !== 'undefined' && (window.location.hash === '#login' || window.location.search.includes('login=true')));
 
