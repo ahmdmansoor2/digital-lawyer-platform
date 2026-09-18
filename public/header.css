@@ -286,32 +286,6 @@ html:root, html:root body, html body, body {
   color: #fff;
 }
 
-.uh-auth-desktop {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.uh-mobile-auth {
-  display: none;
-}
-
-.uh-auth-mobile-quick {
-  display: none;
-}
-
-@media (max-width: 1024px) {
-  .uh-auth-desktop {
-    display: none !important;
-  }
-  .uh-mobile-auth {
-    display: flex !important;
-  }
-  .uh-auth-mobile-quick {
-    display: inline-flex !important;
-  }
-}
-
 /* ── الجوال والتابلت ────────────────────────────────── */
 @media (max-width: 1024px) {
   .uh-burger {

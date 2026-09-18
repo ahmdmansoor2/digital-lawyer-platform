@@ -117,138 +117,26 @@ export default function SiteHeader({ activeKey = 'home', onEnterApp, userName, o
               ))}
             </div>
           </div>
-
-          {/* أزرار حساب المستخدم للجوال داخل القائمة */}
-          <div className="uh-mobile-auth" style={{ borderTop: '1px solid rgba(255,255,255,0.1)', marginTop: '8px', paddingTop: '10px', flexDirection: 'column', gap: '8px' }}>
-            {userName && onLogout ? (
-              <>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', background: 'rgba(255,255,255,0.06)', borderRadius: '10px' }}>
-                  <span style={{ fontSize: '12px', color: '#94a3b8' }}>المستخدم المسجل:</span>
-                  <span style={{ fontSize: '13px', fontWeight: 'bold', color: '#f8fafc' }}>👤 {userName}</span>
-                </div>
-                {onEnterApp && (
-                  <button
-                    type="button"
-                    className="uh-cta"
-                    onClick={(e) => {
-                      setMobileOpen(false);
-                      handleCtaClick(e);
-                    }}
-                    style={{ width: '100%', justifyContent: 'center' }}
-                  >
-                    💼 الانتقال إلى لوحة التحكم
-                  </button>
-                )}
-                <button
-                  type="button"
-                  className="uh-cta uh-cta--ghost"
-                  onClick={() => {
-                    setMobileOpen(false);
-                    onLogout();
-                  }}
-                  style={{ width: '100%', justifyContent: 'center', borderColor: 'rgba(239, 68, 68, 0.4)', color: '#fca5a5', background: 'rgba(239, 68, 68, 0.12)' }}
-                >
-                  🚪 تسجيل الخروج (تبديل الحساب)
-                </button>
-              </>
-            ) : onEnterApp ? (
-              <button
-                type="button"
-                className="uh-cta"
-                onClick={(e) => {
-                  setMobileOpen(false);
-                  handleCtaClick(e);
-                }}
-                style={{ width: '100%', justifyContent: 'center' }}
-              >
-                🔑 دخول المنصة / حساب جديد
-              </button>
-            ) : null}
-          </div>
         </nav>
 
         <div className="uh-actions">
-          {/* نسخة سطح المكتب */}
-          {userName && onLogout ? (
-            <div className="uh-auth-desktop">
-              <span
-                style={{
-                  color: '#e2e8f0',
-                  fontSize: '12.5px',
-                  fontWeight: '600',
-                  background: 'rgba(255, 255, 255, 0.08)',
-                  padding: '6px 12px',
-                  borderRadius: '10px',
-                  border: '1px solid rgba(255, 255, 255, 0.12)',
-                  maxWidth: '130px',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap',
-                }}
-                title={userName}
-              >
-                👤 {userName}
-              </span>
-              {onEnterApp && (
-                <button
-                  type="button"
-                  className="uh-cta"
-                  onClick={handleCtaClick}
-                  style={{ padding: '7px 14px', fontSize: '12.5px' }}
-                  title="الانتقال إلى لوحة التحكم والتطبيقات"
-                >
-                  💼 لوحة التحكم
-                </button>
-              )}
-              <button
-                type="button"
-                className="uh-cta uh-cta--ghost"
-                onClick={onLogout}
-                style={{
-                  padding: '7px 14px',
-                  fontSize: '12.5px',
-                  cursor: 'pointer',
-                  borderColor: 'rgba(239, 68, 68, 0.4)',
-                  color: '#fca5a5',
-                  background: 'rgba(239, 68, 68, 0.12)'
-                }}
-                title="تسجيل الخروج واختيار حساب آخر"
-              >
-                🚪 خروج
-              </button>
-            </div>
-          ) : onEnterApp ? (
-            <button
-              type="button"
-              className="uh-cta uh-auth-desktop"
-              onClick={handleCtaClick}
-              style={{ padding: '7px 16px', fontSize: '13px' }}
-              title="دخول المنصة أو إنشاء حساب"
-            >
-              🔑 دخول المنصة
-            </button>
-          ) : null}
-
-          {/* زر خروج سريع للجوال في الشريط العلوي */}
           {userName && onLogout ? (
             <button
               type="button"
-              className="uh-burger uh-auth-mobile-quick"
+              className="uh-cta uh-cta--ghost"
               onClick={onLogout}
-              title="تسجيل الخروج"
-              style={{ borderColor: 'rgba(239, 68, 68, 0.4)', color: '#fca5a5', background: 'rgba(239, 68, 68, 0.15)' }}
+              title="تسجيل الخروج والتبديل لحساب آخر"
             >
-              🚪
+              <span>🚪 خروج · {userName}</span>
             </button>
           ) : onEnterApp ? (
             <button
               type="button"
-              className="uh-burger uh-auth-mobile-quick"
+              className="uh-cta"
               onClick={handleCtaClick}
-              title="تسجيل الدخول"
-              style={{ borderColor: 'rgba(99, 102, 241, 0.4)', color: '#818cf8', background: 'rgba(99, 102, 241, 0.15)' }}
+              title="دخول المنصة"
             >
-              🔑
+              <span>🔑 دخول المنصة</span>
             </button>
           ) : null}
 
