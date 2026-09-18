@@ -1769,6 +1769,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1134621475561008",
       "publishedAt": "2026-09-18T11:08:50.436Z"
+    },
+    {
+      "topicId": "trend-oil-prices-drop-commercial-contracts-force-majeure-egypt",
+      "kind": "short",
+      "videoId": "oIm2Hqix7R8",
+      "url": "https://www.youtube.com/watch?v=oIm2Hqix7R8",
+      "fbPermalink": "https://www.facebook.com/reel/2539389643154331",
+      "publishedAt": "2026-09-18T16:22:49.427Z"
+    },
+    {
+      "topicId": "trend-oil-prices-drop-commercial-contracts-force-majeure-egypt",
+      "title": "الآثار القانونية لاحتكار وانخفاض أسعار النفط على العقود التجارية والتوريد في مصر — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-oil-prices-drop-commercial-contracts-force-majeure-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "hJNqPlBB0CU",
+      "url": "https://www.youtube.com/watch?v=hJNqPlBB0CU",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2539389643154331",
+      "publishedAt": "2026-09-18T16:23:27.687Z"
     }
   ]
 }
