@@ -18,10 +18,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
   <script>if(location.hostname==="www.mohamidigital.online")location.replace("https://mohamidigital.online"+location.pathname+location.search)</script><!-- www-mohami-guard -->
 <link rel="stylesheet" href="/header.css?v=20260906-luxury-navy-v3">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online","logo":"https://mohamidigital.online/logo.png"}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"تحركات الجنيه المصري وأثرها على السوق المحلي والالتزامات التعاقدية","datePublished":"2026-09-18T17:46:26.934Z","dateModified":"2026-09-18T17:46:26.934Z","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"mainEntityOfPage":"https://mohamidigital.online/legal-radar.html"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"تحركات الجنيه المصري وأثرها على السوق المحلي والالتزامات التعاقدية","datePublished":"2026-09-18T22:21:43.148Z","dateModified":"2026-09-18T22:21:43.148Z","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"https://mohamidigital.online"},"mainEntityOfPage":"https://mohamidigital.online/legal-radar.html"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"https://mohamidigital.online"},{"@type":"ListItem","position":2,"name":"رصد المحامي","item":"https://mohamidigital.online/legal-radar.html"}]}</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -184,13 +185,78 @@
       </div>
     </div>
   </header>
+  <script>
+    (function(){
+      var hdr=document.getElementById('siteHeader');
+      var nav=document.getElementById('headerNav');
+      var burger=document.getElementById('uhBurger');
+      var more=document.getElementById('uhMore');
+      var moreBtn=more?more.querySelector('.uh-more-btn'):null;
+      if(hdr)window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+      function closeMobile(){
+        if(nav)nav.classList.remove('active');
+        if(burger){burger.setAttribute('aria-expanded','false');burger.innerHTML='☰';burger.setAttribute('aria-label','فتح القائمة');}
+      }
+      if(burger){burger.addEventListener('click',function(){
+        var open=nav.classList.toggle('active');
+        burger.setAttribute('aria-expanded',open);
+        burger.innerHTML=open?'✕':'☰';
+        burger.setAttribute('aria-label',open?'إغلاق القائمة':'فتح القائمة');
+        if(!open&&more){more.classList.remove('open');}
+      });}
+      if(moreBtn&&more){
+        moreBtn.addEventListener('click',function(e){
+          e.stopPropagation();
+          var open=more.classList.toggle('open');
+          moreBtn.setAttribute('aria-expanded',open);
+        });
+      }
+      document.addEventListener('click',function(e){
+        if(more&&more.classList.contains('open')&&!more.contains(e.target)){
+          more.classList.remove('open');
+          if(moreBtn)moreBtn.setAttribute('aria-expanded','false');
+        }
+        if(nav&&nav.classList.contains('active')&&burger&&!nav.contains(e.target)&&!burger.contains(e.target)){
+          closeMobile();
+        }
+      });
 
+      /* محرك التحميل المسبق الذكي فائق السرعة والموفر للشبكة (Debounced 65ms) */
+      var prefetchedUrls = new Set();
+      var hoverTimer = null;
+      function instantPrefetch(url) {
+        if (!url || prefetchedUrls.has(url) || url.includes('#') || url.startsWith('javascript:')) return;
+        try {
+          var u = new URL(url, window.location.origin);
+          if (u.origin !== window.location.origin || u.pathname === window.location.pathname) return;
+          prefetchedUrls.add(url);
+          var prefetchLink = document.createElement('link');
+          prefetchLink.rel = 'prefetch';
+          prefetchLink.href = url;
+          document.head.appendChild(prefetchLink);
+        } catch(e){}
+      }
+      function onLinkEnter(e) {
+        var anchor = e.target.closest('a');
+        if (anchor && anchor.href) {
+          clearTimeout(hoverTimer);
+          hoverTimer = setTimeout(function(){ instantPrefetch(anchor.href); }, 65);
+        }
+      }
+      function onLinkLeave() {
+        clearTimeout(hoverTimer);
+      }
+      document.addEventListener('mouseover', onLinkEnter, {passive: true});
+      document.addEventListener('mouseout', onLinkLeave, {passive: true});
+      document.addEventListener('touchstart', onLinkEnter, {passive: true});
+    })();
+  </script>
   <nav class="breadcrumbs" aria-label="مسار التنقل"><a href="/">الرئيسية</a><span class="sep">›</span><span class="current">رصد المحامي</span></nav>
 
   <div class="hero">
     <h1>رصد المحامي</h1>
     <p>نشرة يومية تُصاغ بالذكاء الاصطناعي عن أهم الترندات المصرية والعالمية على Google، بتحليل عملي للمواطن والمحامي.</p>
-    <span class="updated">آخر تحديث: 2026-09-18 17:46:25 بتوقيت القاهرة</span>
+    <span class="updated">آخر تحديث: 2026-09-18 22:21:42 بتوقيت القاهرة</span>
   </div>
 
   <div class="section">
@@ -1283,6 +1349,8 @@
   <!-- AD -->
   <div class="ad-slot" role="complementary" aria-label="إعلان">
     <span class="ad-label">إعلان</span>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7725405859334364" data-ad-slot="2168039898" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
   <div class="cta-section">
