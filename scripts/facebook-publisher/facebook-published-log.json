@@ -3044,6 +3044,27 @@
       "duration": "56ث",
       "size": 22424411,
       "publishedAt": "2026-09-19T15:53:49.924Z"
+    },
+    {
+      "topicId": "trend-cross-border-commercial-disputes-economy-law-egypt",
+      "title": "النزاعات التجارية العابرة للحدود وقوانين الاستثمار والاقتصاد في مصر",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون التجاري",
+        "#تسوية المنازعات التجارية",
+        "#التحكيم التجاري الدولي"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cross-border-commercial-disputes-economy-law-egypt.mp4",
+      "videoId": "1399870534905574",
+      "permalink": "https://www.facebook.com/reel/1399870534905574",
+      "source": "trending-topics.json",
+      "duration": "42ث",
+      "size": 16001680,
+      "publishedAt": "2026-09-19T20:34:46.512Z"
     }
   ]
 }

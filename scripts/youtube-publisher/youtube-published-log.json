@@ -1845,6 +1845,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2526906394385270",
       "publishedAt": "2026-09-19T15:54:25.834Z"
+    },
+    {
+      "topicId": "trend-cross-border-commercial-disputes-economy-law-egypt",
+      "kind": "short",
+      "videoId": "UItycGVgICQ",
+      "url": "https://www.youtube.com/watch?v=UItycGVgICQ",
+      "fbPermalink": "https://www.facebook.com/reel/1399870534905574",
+      "publishedAt": "2026-09-19T20:34:48.271Z"
+    },
+    {
+      "topicId": "trend-cross-border-commercial-disputes-economy-law-egypt",
+      "title": "النزاعات التجارية العابرة للحدود وقوانين الاستثمار والاقتصاد في مصر — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cross-border-commercial-disputes-economy-law-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "-EtG2lRoUpQ",
+      "url": "https://www.youtube.com/watch?v=-EtG2lRoUpQ",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1399870534905574",
+      "publishedAt": "2026-09-19T20:35:13.891Z"
     }
   ]
 }
