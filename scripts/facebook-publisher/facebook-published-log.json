@@ -3023,6 +3023,27 @@
       "duration": "1د 14ث",
       "size": 39140211,
       "publishedAt": "2026-09-19T10:52:55.482Z"
+    },
+    {
+      "topicId": "trend-foreign-companies-incorporation-oil-energy-sector-egypt",
+      "title": "الآثار القانونية لتأسيس الشركات الأجنبية والمستثمرين في قطاع النفط والطاقة بمصر",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#تأسيس الشركات",
+        "#تأسيس شركات الطاقة",
+        "#قانون الاستثمار المصري"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-foreign-companies-incorporation-oil-energy-sector-egypt.mp4",
+      "videoId": "2526906394385270",
+      "permalink": "https://www.facebook.com/reel/2526906394385270",
+      "source": "trending-topics.json",
+      "duration": "56ث",
+      "size": 22424411,
+      "publishedAt": "2026-09-19T15:53:49.924Z"
     }
   ]
 }

@@ -1826,6 +1826,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1753113162402842",
       "publishedAt": "2026-09-19T10:53:43.689Z"
+    },
+    {
+      "topicId": "trend-foreign-companies-incorporation-oil-energy-sector-egypt",
+      "kind": "short",
+      "videoId": "pw066U4SllQ",
+      "url": "https://www.youtube.com/watch?v=pw066U4SllQ",
+      "fbPermalink": "https://www.facebook.com/reel/2526906394385270",
+      "publishedAt": "2026-09-19T15:53:51.993Z"
+    },
+    {
+      "topicId": "trend-foreign-companies-incorporation-oil-energy-sector-egypt",
+      "title": "الآثار القانونية لتأسيس الشركات الأجنبية والمستثمرين في قطاع النفط والطاقة بمصر — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-foreign-companies-incorporation-oil-energy-sector-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "HclTqzMh--A",
+      "url": "https://www.youtube.com/watch?v=HclTqzMh--A",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2526906394385270",
+      "publishedAt": "2026-09-19T15:54:25.834Z"
     }
   ]
 }
