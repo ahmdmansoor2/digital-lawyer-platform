@@ -1807,6 +1807,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1641104914277411",
       "publishedAt": "2026-09-18T20:54:25.342Z"
+    },
+    {
+      "topicId": "trend-telegram-cybercrimes-penalties-and-reporting-procedures-egyp",
+      "kind": "short",
+      "videoId": "oebLxckVLN0",
+      "url": "https://www.youtube.com/watch?v=oebLxckVLN0",
+      "fbPermalink": "https://www.facebook.com/reel/1753113162402842",
+      "publishedAt": "2026-09-19T10:52:57.792Z"
+    },
+    {
+      "topicId": "trend-telegram-cybercrimes-penalties-and-reporting-procedures-egyp",
+      "title": "الجرائم الإلكترونية عبر تطبيق تيليجرام: العقوبات والإجراءات القانونية للبلغ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-telegram-cybercrimes-penalties-and-reporting-procedures-egyp-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "0C9Na8MhGTo",
+      "url": "https://www.youtube.com/watch?v=0C9Na8MhGTo",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1753113162402842",
+      "publishedAt": "2026-09-19T10:53:43.689Z"
     }
   ]
 }

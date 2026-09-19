@@ -3002,6 +3002,27 @@
       "duration": "1د 1ث",
       "size": 40428766,
       "publishedAt": "2026-09-18T20:53:45.385Z"
+    },
+    {
+      "topicId": "trend-telegram-cybercrimes-penalties-and-reporting-procedures-egyp",
+      "title": "الجرائم الإلكترونية عبر تطبيق تيليجرام: العقوبات والإجراءات القانونية للبلغ",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الجرائم الإلكترونية",
+        "#قانون الجرائم الإلكترونية",
+        "#مباحث الإنترنت"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-telegram-cybercrimes-penalties-and-reporting-procedures-egyp.mp4",
+      "videoId": "1753113162402842",
+      "permalink": "https://www.facebook.com/reel/1753113162402842",
+      "source": "trending-topics.json",
+      "duration": "1د 14ث",
+      "size": 39140211,
+      "publishedAt": "2026-09-19T10:52:55.482Z"
     }
   ]
 }
