@@ -1902,6 +1902,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1535761421928895",
       "publishedAt": "2026-09-20T16:02:04.474Z"
+    },
+    {
+      "topicId": "trend-data-leak-telegram-messaging-apps-legal-penalties-egypt",
+      "kind": "short",
+      "videoId": "WJ7a0Gry9gI",
+      "url": "https://www.youtube.com/watch?v=WJ7a0Gry9gI",
+      "fbPermalink": "https://www.facebook.com/reel/2281287946024850",
+      "publishedAt": "2026-09-20T20:46:51.000Z"
+    },
+    {
+      "topicId": "trend-data-leak-telegram-messaging-apps-legal-penalties-egypt",
+      "title": "الآثار القانونية لتسريب ونشر الوثائق والبيانات عبر تطبيقات المراسلة مثل تيليجرام — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-data-leak-telegram-messaging-apps-legal-penalties-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "yNbyNZrd7U4",
+      "url": "https://www.youtube.com/watch?v=yNbyNZrd7U4",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2281287946024850",
+      "publishedAt": "2026-09-20T20:47:22.025Z"
     }
   ]
 }
