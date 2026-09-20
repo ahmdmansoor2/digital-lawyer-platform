@@ -1864,6 +1864,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1399870534905574",
       "publishedAt": "2026-09-19T20:35:13.891Z"
+    },
+    {
+      "topicId": "trend-foreign-workers-sports-professionals-legal-status-egypt",
+      "kind": "short",
+      "videoId": "h6GSeHehwZ0",
+      "url": "https://www.youtube.com/watch?v=h6GSeHehwZ0",
+      "fbPermalink": "https://www.facebook.com/reel/1630253395483606",
+      "publishedAt": "2026-09-20T11:15:20.546Z"
+    },
+    {
+      "topicId": "trend-foreign-workers-sports-professionals-legal-status-egypt",
+      "title": "الوضع القانوني لتوظيف العمالة الأجنبية والمحترفين الرياضيين في الأندية المصرية — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-foreign-workers-sports-professionals-legal-status-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "Ba5ZKNVmqz4",
+      "url": "https://www.youtube.com/watch?v=Ba5ZKNVmqz4",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1630253395483606",
+      "publishedAt": "2026-09-20T11:15:59.230Z"
     }
   ]
 }
