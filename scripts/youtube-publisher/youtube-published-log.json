@@ -1883,6 +1883,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1630253395483606",
       "publishedAt": "2026-09-20T11:15:59.230Z"
+    },
+    {
+      "topicId": "blog-civil-lawsuit-court-fees-calculation-guide",
+      "kind": "short",
+      "videoId": "Z4N7NFRm4cs",
+      "url": "https://www.youtube.com/watch?v=Z4N7NFRm4cs",
+      "fbPermalink": "https://www.facebook.com/reel/1535761421928895",
+      "publishedAt": "2026-09-20T16:01:26.233Z"
+    },
+    {
+      "topicId": "blog-civil-lawsuit-court-fees-calculation-guide",
+      "title": "حاسبة رسوم رفع الدعاوي القضائية في مصر: النسب والدمغات والرسوم النسبية — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-civil-lawsuit-court-fees-calculation-guide-wide.mp4",
+      "source": "blog",
+      "videoId": "Yp7w53DHKQI",
+      "url": "https://www.youtube.com/watch?v=Yp7w53DHKQI",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1535761421928895",
+      "publishedAt": "2026-09-20T16:02:04.474Z"
     }
   ]
 }
