@@ -1940,6 +1940,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2137539050165804",
       "publishedAt": "2026-09-21T12:44:09.813Z"
+    },
+    {
+      "topicId": "trend-commercial-profits-tax-economic-contracts-egypt",
+      "kind": "short",
+      "videoId": "kNhXG_wZRbs",
+      "url": "https://www.youtube.com/watch?v=kNhXG_wZRbs",
+      "fbPermalink": "https://www.facebook.com/reel/2418756475198918",
+      "publishedAt": "2026-09-21T20:00:44.047Z"
+    },
+    {
+      "topicId": "trend-commercial-profits-tax-economic-contracts-egypt",
+      "title": "الضرائب على أرباح الأنشطة التجارية والعقود الاقتصادية في مصر — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-commercial-profits-tax-economic-contracts-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "Yl2fvAEZ-N8",
+      "url": "https://www.youtube.com/watch?v=Yl2fvAEZ-N8",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2418756475198918",
+      "publishedAt": "2026-09-21T20:01:17.539Z"
     }
   ]
 }
