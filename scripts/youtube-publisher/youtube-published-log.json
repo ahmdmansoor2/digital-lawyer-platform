@@ -1978,6 +1978,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2141252130105435",
       "publishedAt": "2026-09-22T11:30:39.093Z"
+    },
+    {
+      "topicId": "trend-egyptian-expat-workers-rights-international-contracts",
+      "kind": "short",
+      "videoId": "SMISmITZmEE",
+      "url": "https://www.youtube.com/watch?v=SMISmITZmEE",
+      "fbPermalink": "https://www.facebook.com/reel/2368260424008467",
+      "publishedAt": "2026-09-22T21:16:48.769Z"
+    },
+    {
+      "topicId": "trend-egyptian-expat-workers-rights-international-contracts",
+      "title": "حقوق العمالة المصرية في الخارج وضمانات العقود الدولية في الدول العربية والأجنبية — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-egyptian-expat-workers-rights-international-contracts-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "GaCXlc7PM3g",
+      "url": "https://www.youtube.com/watch?v=GaCXlc7PM3g",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2368260424008467",
+      "publishedAt": "2026-09-22T21:17:24.353Z"
     }
   ]
 }

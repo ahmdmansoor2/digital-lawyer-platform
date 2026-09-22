@@ -3191,6 +3191,27 @@
       "duration": "53ث",
       "size": 15364025,
       "publishedAt": "2026-09-22T11:30:03.782Z"
+    },
+    {
+      "topicId": "trend-egyptian-expat-workers-rights-international-contracts",
+      "title": "حقوق العمالة المصرية في الخارج وضمانات العقود الدولية في الدول العربية والأجنبية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون العمل",
+        "#العمالة المصرية في الخارج",
+        "#عقود العمل الدولية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-egyptian-expat-workers-rights-international-contracts.mp4",
+      "videoId": "2368260424008467",
+      "permalink": "https://www.facebook.com/reel/2368260424008467",
+      "source": "trending-topics.json",
+      "duration": "59ث",
+      "size": 23628756,
+      "publishedAt": "2026-09-22T21:16:46.238Z"
     }
   ]
 }
