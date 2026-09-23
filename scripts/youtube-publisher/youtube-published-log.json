@@ -2016,6 +2016,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2046644535983423",
       "publishedAt": "2026-09-23T11:28:54.462Z"
+    },
+    {
+      "topicId": "trend-defamation-telegram-channels-groups-legal-liability-egypt",
+      "kind": "short",
+      "videoId": "Rww0Mq_70EE",
+      "url": "https://www.youtube.com/watch?v=Rww0Mq_70EE",
+      "fbPermalink": "https://www.facebook.com/reel/1613237940304673",
+      "publishedAt": "2026-09-23T16:50:59.705Z"
+    },
+    {
+      "topicId": "trend-defamation-telegram-channels-groups-legal-liability-egypt",
+      "title": "المسؤولية القانونية عن التشهير والسب والقذف عبر مجموعات وقنوات تيليجرام — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-defamation-telegram-channels-groups-legal-liability-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "8ks7np6Y4ZI",
+      "url": "https://www.youtube.com/watch?v=8ks7np6Y4ZI",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1613237940304673",
+      "publishedAt": "2026-09-23T16:51:27.350Z"
     }
   ]
 }

@@ -3233,6 +3233,27 @@
       "duration": "1د 8ث",
       "size": 30362338,
       "publishedAt": "2026-09-23T11:28:09.246Z"
+    },
+    {
+      "topicId": "trend-defamation-telegram-channels-groups-legal-liability-egypt",
+      "title": "المسؤولية القانونية عن التشهير والسب والقذف عبر مجموعات وقنوات تيليجرام",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الجرائم الإلكترونية",
+        "#السب والقذف الإلكتروني",
+        "#محضر مباحث الإنترنت"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-defamation-telegram-channels-groups-legal-liability-egypt.mp4",
+      "videoId": "1613237940304673",
+      "permalink": "https://www.facebook.com/reel/1613237940304673",
+      "source": "trending-topics.json",
+      "duration": "57ث",
+      "size": 19825280,
+      "publishedAt": "2026-09-23T16:50:57.748Z"
     }
   ]
 }
