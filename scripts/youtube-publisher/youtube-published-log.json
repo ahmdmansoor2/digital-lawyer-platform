@@ -2092,6 +2092,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1596142918859468",
       "publishedAt": "2026-09-24T17:07:21.073Z"
+    },
+    {
+      "topicId": "trend-sports-companies-incorporation-football-clubs-egypt",
+      "kind": "short",
+      "videoId": "HJ9Y6p2xYNg",
+      "url": "https://www.youtube.com/watch?v=HJ9Y6p2xYNg",
+      "fbPermalink": "https://www.facebook.com/reel/4007238916252672",
+      "publishedAt": "2026-09-24T21:31:00.551Z"
+    },
+    {
+      "topicId": "trend-sports-companies-incorporation-football-clubs-egypt",
+      "title": "شروط وإجراءات تأسيس الشركات الرياضية وشركات كرة القدم في مصر طبقاً لقانون الرياض — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-companies-incorporation-football-clubs-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "A2CgOZ_4Zaw",
+      "url": "https://www.youtube.com/watch?v=A2CgOZ_4Zaw",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/4007238916252672",
+      "publishedAt": "2026-09-24T21:31:41.696Z"
     }
   ]
 }
