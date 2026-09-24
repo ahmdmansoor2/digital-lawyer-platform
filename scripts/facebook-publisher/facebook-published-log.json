@@ -3275,6 +3275,27 @@
       "duration": "43ث",
       "size": 11237406,
       "publishedAt": "2026-09-23T21:29:07.152Z"
+    },
+    {
+      "topicId": "trend-oil-energy-sector-ppp-legal-framework-egypt",
+      "title": "الإطار القانوني لتنظيم قطاع النفط والطاقة والشراكة بين القطاعين العام والخاص في مصر",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون الإداري",
+        "#عقود الشراكة PPP",
+        "#قطاع البترول"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-oil-energy-sector-ppp-legal-framework-egypt.mp4",
+      "videoId": "917120147858382",
+      "permalink": "https://www.facebook.com/reel/917120147858382",
+      "source": "trending-topics.json",
+      "duration": "57ث",
+      "size": 19181919,
+      "publishedAt": "2026-09-24T11:38:55.745Z"
     }
   ]
 }
