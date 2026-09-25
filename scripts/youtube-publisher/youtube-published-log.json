@@ -2130,6 +2130,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2573039866500251",
       "publishedAt": "2026-09-25T17:08:25.648Z"
+    },
+    {
+      "topicId": "blog-instapay-accidental-transfer-legal-recovery-procedures",
+      "kind": "short",
+      "videoId": "FILkJMvDrHs",
+      "url": "https://www.youtube.com/watch?v=FILkJMvDrHs",
+      "fbPermalink": "https://www.facebook.com/reel/4632309530426304",
+      "publishedAt": "2026-09-25T21:30:58.850Z"
+    },
+    {
+      "topicId": "blog-instapay-accidental-transfer-legal-recovery-procedures",
+      "title": "ماذا تفعل عند تحويل أموال بالخطأ عبر InstaPay؟ الإجراءات القانونية للاسترداد — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-instapay-accidental-transfer-legal-recovery-procedures-wide.mp4",
+      "source": "blog",
+      "videoId": "PYVbZALnIo8",
+      "url": "https://www.youtube.com/watch?v=PYVbZALnIo8",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/4632309530426304",
+      "publishedAt": "2026-09-25T21:31:25.155Z"
     }
   ]
 }
