@@ -16,6 +16,7 @@ const PILLARS_DIR = path.join(ROOT, 'public', 'pillars');
 const FORMS_DOCS_DIR = path.join(ROOT, 'public', 'legal-forms-docs');
 const RADAR_TOPICS_DIR = path.join(ROOT, 'public', 'radar-topics');
 const LIBRARY_TOPICS_DIR = path.join(ROOT, 'public', 'legal-library-topics');
+const COURTS_DIR = path.join(ROOT, 'public', 'courts');
 const SITEMAP_FILE = path.join(ROOT, 'public', 'sitemap.xml');
 const SITEMAP_HTML_FILE = path.join(ROOT, 'public', 'sitemap.html');
 const BASE_URL = 'https://mohamidigital.online';
@@ -66,6 +67,7 @@ function buildSitemap() {
   const formsDocFiles = listHtml(FORMS_DOCS_DIR);
   const radarTopicFiles = listHtml(RADAR_TOPICS_DIR);
   const libraryTopicFiles = listHtml(LIBRARY_TOPICS_DIR);
+  const courtFiles = listHtml(COURTS_DIR);
   const today = cairoDateStr();
   const urls = [];
 
@@ -74,7 +76,6 @@ function buildSitemap() {
     { loc: '/', pri: '1.0', freq: 'daily' },
     { loc: '/blog/', pri: '0.9', freq: 'daily' },
     { loc: '/legal-library.html', pri: '0.9', freq: 'monthly' },
-    { loc: '/search.html', pri: '0.7', freq: 'monthly' },
     { loc: '/features.html', pri: '0.8', freq: 'monthly' },
     { loc: '/pricing.html', pri: '0.7', freq: 'monthly' },
     { loc: '/about.html', pri: '0.6', freq: 'monthly' },
@@ -94,9 +95,27 @@ function buildSitemap() {
     { loc: '/qatar-legal-hub-en.html', pri: '0.8', freq: 'monthly' },
     { loc: '/oman-legal-hub.html', pri: '0.85', freq: 'monthly' },
     { loc: '/oman-legal-hub-en.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/kuwait-legal-hub.html', pri: '0.85', freq: 'monthly' },
+    { loc: '/kuwait-legal-hub-en.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/bahrain-legal-hub.html', pri: '0.85', freq: 'monthly' },
+    { loc: '/bahrain-legal-hub-en.html', pri: '0.8', freq: 'monthly' },
+    // بوابات المستثمرين والمركز الاقتصادي
+    { loc: '/saudi-investors-egypt.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/uae-investors-egypt.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/kuwait-investors-egypt.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/economic-hub.html', pri: '0.8', freq: 'monthly' },
     // البوابات والخدمات العامة
     { loc: '/courts-directory.html', pri: '0.8', freq: 'monthly' },
     { loc: '/legal-calculators.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/calculate-inheritance.html', pri: '0.85', freq: 'monthly' },
+    { loc: '/calculate-alimony.html', pri: '0.85', freq: 'monthly' },
+    { loc: '/calculate-end-of-service.html', pri: '0.85', freq: 'monthly' },
+    { loc: '/contract-generator.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/appeal-deadlines.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/real-estate.html', pri: '0.85', freq: 'monthly' },
+    { loc: '/real-estate-registration-fees.html', pri: '0.8', freq: 'monthly' },
+    { loc: '/law-students-hub.html', pri: '0.7', freq: 'monthly' },
+    { loc: '/download.html', pri: '0.7', freq: 'monthly' },
     { loc: '/court-precedents.html', pri: '0.85', freq: 'weekly' },
     { loc: '/lawyers-directory.html', pri: '0.8', freq: 'monthly' },
     { loc: '/legal-consultations.html', pri: '0.8', freq: 'monthly' },
@@ -107,6 +126,25 @@ function buildSitemap() {
     { loc: '/disclaimer.html', pri: '0.3', freq: 'yearly' },
     { loc: '/editorial-policy.html', pri: '0.6', freq: 'yearly' },
   ];
+  // قراءة سجل النشر المعتمد
+  const LOG_FILE = path.join(ROOT, 'scripts', 'published-log.json');
+  const slugToDate = {};
+  if (fs.existsSync(LOG_FILE)) {
+    try {
+      const logData = JSON.parse(fs.readFileSync(LOG_FILE, 'utf8'));
+      const logArr = Array.isArray(logData) ? logData : (logData.published || []);
+      logArr.forEach(entry => {
+        if (entry.date) {
+          if (entry.slug) slugToDate[entry.slug] = entry.date;
+          if (entry.url) {
+            const uSlug = entry.url.split('/').pop().replace('.html', '');
+            slugToDate[uSlug] = entry.date;
+          }
+        }
+      });
+    } catch {}
+  }
+
   function getFileLastmod(dir, f) {
     try {
       const stat = fs.statSync(path.join(dir, f));
@@ -114,6 +152,12 @@ function buildSitemap() {
     } catch {
       return today;
     }
+  }
+
+  function getBlogLastmod(f) {
+    const slug = f.replace(/\.html$/, '');
+    if (slugToDate[slug]) return slugToDate[slug];
+    return getFileLastmod(BLOG_DIR, f);
   }
 
   function getMainLastmod(loc) {
@@ -143,10 +187,10 @@ function buildSitemap() {
 
   // كل مقالات المدونة مرتبة تنازلياً من الأحدث إلى الأقدم
   const blogFilesSorted = blogFiles.map(f => {
-    let mtime = 0;
-    try { mtime = fs.statSync(path.join(BLOG_DIR, f)).mtimeMs; } catch {}
-    return { f, mtime, lastmod: getFileLastmod(BLOG_DIR, f) };
-  }).sort((a, b) => b.mtime - a.mtime);
+    const lmod = getBlogLastmod(f);
+    let timeVal = new Date(lmod).getTime() || 0;
+    return { f, timeVal, lastmod: lmod };
+  }).sort((a, b) => b.timeVal - a.timeVal);
 
   for (const item of blogFilesSorted) {
     urls.push(`  <url>\n    <loc>${BASE_URL}/blog/${item.f}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>`);
@@ -170,6 +214,12 @@ function buildSitemap() {
     urls.push(`  <url>\n    <loc>${BASE_URL}/legal-library-topics/${f}</loc>\n    <lastmod>${lmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`);
   }
 
+  // كل صفحات دليل المحاكم والشهر العقاري
+  for (const f of courtFiles) {
+    const lmod = getFileLastmod(COURTS_DIR, f);
+    urls.push(`  <url>\n    <loc>${BASE_URL}/courts/${f}</loc>\n    <lastmod>${lmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`);
+  }
+
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`;
 }
 
@@ -183,6 +233,7 @@ function buildSitemapHtml() {
   const formsDocFiles = listHtml(FORMS_DOCS_DIR);
   const radarTopicFiles = listHtml(RADAR_TOPICS_DIR);
   const libraryTopicFiles = listHtml(LIBRARY_TOPICS_DIR);
+  const courtFiles = listHtml(COURTS_DIR);
 
   // slug → {title, file}
   const articles = {};
@@ -267,6 +318,19 @@ function buildSitemapHtml() {
 
   const libraryTopicItems = libraryTopics
     .map((p) => `        <li><a href="/legal-library-topics/${p.file}">${esc(p.title)}</a></li>`)
+    .join('\n');
+
+  const courts = courtFiles.map((f) => {
+    let title = f.replace(/\.html$/, '').replace(/-/g, ' ');
+    try {
+      const html = fs.readFileSync(path.join(COURTS_DIR, f), 'utf8');
+      title = extractTitle(html) || title;
+    } catch {}
+    return { file: f, title };
+  });
+
+  const courtItems = courts
+    .map((p) => `        <li><a href="/courts/${p.file}">${esc(p.title)}</a></li>`)
     .join('\n');
 
   return `<!DOCTYPE html>
@@ -443,6 +507,15 @@ ${libraryTopicItems}
     </div>
 
     <div class="section">
+      <h2>🏛️ دليل المحاكم والشهر العقاري</h2>
+      <p class="meta">عناوين واختصاصات المحاكم ومأموريات الشهر العقاري في محافظات مصر (116 مقراً)</p>
+      <ul class="link-list">
+        <li><a href="/courts-directory.html">الدليل العام للمحاكم والشهر العقاري</a></li>
+${courtItems}
+      </ul>
+    </div>
+
+    <div class="section">
       <h2>📚 المدونة القانونية</h2>
       <p class="meta">مقالات متخصصة — محتوى يومي عن القانون المصري</p>
       <ul class="link-list">
@@ -489,3 +562,11 @@ const html = buildSitemapHtml();
 fs.writeFileSync(SITEMAP_HTML_FILE, html, 'utf8');
 const htmlCount = (html.match(/href="\/blog\/[a-z0-9-]+\.html"/g) || []).filter((x, i, a) => a.indexOf(x) === i).length;
 console.log(`[sitemap] تم توليد sitemap.html: ${htmlCount} مقالاً (${SITEMAP_HTML_FILE})`);
+
+const DIST_SITEMAP = path.join(ROOT, 'dist', 'sitemap.xml');
+const DIST_SITEMAP_HTML = path.join(ROOT, 'dist', 'sitemap.html');
+if (fs.existsSync(path.dirname(DIST_SITEMAP))) {
+  fs.writeFileSync(DIST_SITEMAP, xml, 'utf8');
+  fs.writeFileSync(DIST_SITEMAP_HTML, html, 'utf8');
+  console.log(`[sitemap] ✓ تمت مزامنة sitemap.xml و sitemap.html مع dist/`);
+}
