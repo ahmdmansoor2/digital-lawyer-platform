@@ -1,0 +1,851 @@
+const fs = require('fs');
+const path = require('path');
+
+const srcPath = path.join('d:', 'قانوني 7', 'fazlka-news', 'sawt-misr-24-theme.xml');
+
+// Rebuild clean XML
+const xml = `<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html class='rtl' dir='rtl' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  <meta charset='UTF-8'/>
+  <meta content='width=device-width, initial-scale=1, shrink-to-fit=no' name='viewport'/>
+  <meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+  <b:include data='blog' name='all-head-content'/>
+
+  <!-- SEO & Identity Meta -->
+  <title><data:blog.pageTitle/></title>
+  <meta content='صوت مصر 24 - بوابة إخبارية رقمية شاملة ومستقلة | صوت الوطن ونبض المواطن على مدار الساعة' name='description'/>
+  <meta content='#0f172a' name='theme-color'/>
+
+  <!-- Google AdSense -->
+  <script async='async' crossorigin='anonymous' data-ad-client='ca-pub-7725405859334364' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'></script>
+
+  <!-- Fonts & Icons -->
+  <link href='https://fonts.googleapis.com' rel='preconnect'/>
+  <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+  <link href='https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&amp;display=swap' rel='stylesheet'/>
+  <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet'/>
+
+  <b:skin><![CDATA[/* Blogger Default Skin Placeholder */]]></b:skin>
+
+  <!-- Explicit Direct Stylesheet -->
+  <style id='sawt-misr-styles' type='text/css'>
+  /*<![CDATA[*/
+  :root {
+    --primary: #0f172a;
+    --primary-light: #1e293b;
+    --brand-blue: #1d4ed8;
+    --accent-red: #dc2626;
+    --accent-gold: #d97706;
+    --bg-body: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+    --radius: 8px;
+    --font-family: 'Cairo', Tahoma, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* إزالة أي نقاط أو دوائر في المتصفح وتنظيف القوائم عالمياً */
+  ul, ol, li,
+  .widget ul, .widget ol, .widget li,
+  .widget-content ul, .widget-content ol, .widget-content li,
+  .list-label-widget-content ul, .list-label-widget-content li {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* إخفاء مخلفات القالب القديم الموروثة من قاعدة بيانات بلوجر */
+  #HTML400, #HTML301, #HTML302, #HTML303, #HTML304,
+  #LinkList301, #LinkList302, #LinkList303, #LinkList304,
+  #LinkList2, #LinkList500, #Label3, #Stats1, #ContactForm93,
+  #ContactForm1, #PageList301, #PageList1, #FeaturedPost1, #Header1,
+  .widget.HTML[id*="400"], .widget.LinkList[id*="LinkList2"],
+  div[id^="LinkList30"], div[id^="HTML30"] {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* تنسيق أنيق لأي قائمة تسميات موروثة في الشريط الجانبي */
+  .list-label-widget-content li a,
+  .widget.Label ul li a {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px 0 !important;
+    font-weight: 700 !important;
+    color: var(--primary-light) !important;
+    font-size: 14px !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+  }
+  .list-label-widget-content li a:hover,
+  .widget.Label ul li a:hover {
+    color: var(--accent-red) !important;
+    padding-right: 6px !important;
+  }
+  .label-count {
+    background: #f1f5f9 !important;
+    color: var(--text-muted) !important;
+    padding: 2px 8px !important;
+    border-radius: 12px !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+  }
+
+  body {
+    font-family: var(--font-family);
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+    direction: rtl;
+    text-align: right;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+  a:hover { color: var(--accent-red); }
+  img { max-width: 100%; height: auto; display: block; }
+
+  .container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  /* --- Top Bar --- */
+  .top-bar {
+    background-color: var(--primary);
+    color: #94a3b8;
+    font-size: 13px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .top-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .top-date { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+  .top-date i { color: var(--accent-red); }
+  .top-social { display: flex; align-items: center; gap: 14px; }
+  .top-social a { color: #cbd5e1; font-size: 14px; }
+  .top-social a:hover { color: #ffffff; }
+
+  /* --- Header & Ads --- */
+  .site-header {
+    background-color: var(--card-bg);
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  .logo-box {
+    display: flex;
+    flex-direction: column;
+  }
+  .brand-title {
+    font-family: var(--font-family);
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--primary);
+    line-height: 1.1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .brand-title span.sawt { color: var(--primary); }
+  .brand-title span.misr { color: var(--accent-red); }
+  .brand-title span.badge24 {
+    background: linear-gradient(135deg, var(--accent-red), #b91c1c);
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 900;
+    padding: 2px 10px;
+    border-radius: 6px;
+    margin-right: 4px;
+    box-shadow: var(--shadow-sm);
+  }
+  .brand-tagline {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .brand-tagline::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background-color: var(--accent-gold);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .header-ad-banner {
+    width: 728px;
+    height: 90px;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    font-size: 12px;
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  /* --- Navigation Bar --- */
+  .main-nav {
+    background-color: var(--primary);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-md);
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+  }
+  .nav-menu li { list-style: none; }
+  .nav-menu li a {
+    display: block;
+    padding: 15px 18px;
+    color: #f1f5f9;
+    font-weight: 700;
+    font-size: 15px;
+    border-bottom: 3px solid transparent;
+  }
+  .nav-menu li a:hover,
+  .nav-menu li.active a {
+    color: #ffffff;
+    background-color: rgba(255,255,255,0.06);
+    border-bottom-color: var(--accent-red);
+  }
+  .nav-menu li.special-cat a { color: #fde047; }
+
+  /* --- Breaking News Ticker --- */
+  .ticker-wrap {
+    background: #ffffff;
+    border-bottom: 1px solid var(--border-color);
+    padding: 11px 0;
+  }
+  .ticker-inner {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .ticker-badge {
+    background-color: var(--accent-red);
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 13px;
+    padding: 4px 14px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .ticker-content {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  /* --- Content Layout --- */
+  .content-wrapper { padding: 30px 0; }
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 28px;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--border-color);
+    margin-bottom: 22px;
+    padding-bottom: 8px;
+    position: relative;
+  }
+  .section-title {
+    font-size: 21px;
+    font-weight: 900;
+    color: var(--primary);
+    position: relative;
+    padding-bottom: 8px;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: 0;
+    width: 65px;
+    height: 3px;
+    background-color: var(--accent-red);
+    border-radius: 2px;
+  }
+
+  /* --- Post Cards --- */
+  .posts-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+  .post-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .post-thumb-wrap {
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
+    background-color: #cbd5e1;
+    position: relative;
+  }
+  .post-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .post-card:hover .post-thumb {
+    transform: scale(1.05);
+  }
+  .post-card-body {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .post-cat {
+    background: #fee2e2;
+    color: var(--accent-red);
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-weight: 800;
+    font-size: 11.5px;
+  }
+  .post-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+  .post-title a:hover { color: var(--accent-red); }
+  .post-snippet {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .post-card-footer {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 12px;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .read-more-link {
+    color: var(--brand-blue);
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .read-more-link:hover { color: var(--accent-red); }
+
+  /* --- Single Post View --- */
+  .single-post-view {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+  }
+  .single-title {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--primary);
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+  .single-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 16px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .single-thumb {
+    width: 100%;
+    max-height: 440px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+  }
+  .post-content {
+    font-size: 16.5px;
+    line-height: 1.85;
+    color: #1e293b;
+  }
+  .post-content p { margin-bottom: 20px; }
+  .in-post-ad {
+    margin: 26px 0;
+    padding: 16px;
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    text-align: center;
+  }
+
+  /* --- Sidebar --- */
+  .sidebar-widget {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 24px;
+  }
+  .widget-title {
+    font-size: 17px;
+    font-weight: 900;
+    color: var(--primary);
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid var(--border-color);
+    position: relative;
+  }
+  .widget-title::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    width: 45px;
+    height: 2px;
+    background-color: var(--accent-red);
+  }
+  .ad-box-sidebar {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: var(--radius);
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    font-size: 13px;
+    overflow: hidden;
+  }
+  .categories-list { list-style: none; padding: 0; margin: 0; }
+  .categories-list li { border-bottom: 1px solid #f1f5f9; list-style: none; }
+  .categories-list li:last-child { border-bottom: none; }
+  .categories-list li a {
+    display: flex;
+    justify-content: space-between;
+    padding: 11px 0;
+    font-weight: 700;
+    color: var(--primary-light);
+    font-size: 14px;
+  }
+  .categories-list li a:hover {
+    color: var(--accent-red);
+    padding-right: 6px;
+  }
+  .categories-list .count {
+    background: #f1f5f9;
+    color: var(--text-muted);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11.5px;
+  }
+
+  /* --- Footer --- */
+  .site-footer {
+    background-color: var(--primary);
+    color: #94a3b8;
+    padding: 50px 0 20px;
+    margin-top: 50px;
+    border-top: 4px solid var(--accent-red);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+  .footer-col h4 {
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 900;
+    margin-bottom: 16px;
+    position: relative;
+    padding-bottom: 8px;
+  }
+  .footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--accent-red);
+  }
+  .footer-col p { font-size: 13px; line-height: 1.8; }
+  .footer-links { list-style: none; padding: 0; margin: 0; }
+  .footer-links li { margin-bottom: 10px; list-style: none; }
+  .footer-links li a { color: #cbd5e1; font-size: 13px; font-weight: 600; }
+  .footer-links li a:hover { color: #ffffff; padding-right: 5px; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #64748b;
+  }
+  .footer-bottom span { color: #ffffff; font-weight: 800; }
+
+  @media (max-width: 992px) {
+    .header-ad-banner { display: none; }
+    .main-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .top-bar { display: none; }
+    .posts-list { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .nav-menu { overflow-x: auto; white-space: nowrap; }
+    .brand-title { font-size: 27px; }
+  }
+  /*]]>*/
+  </style>
+</head>
+
+<body>
+  <!-- Top Bar -->
+  <div class='top-bar'>
+    <div class='container top-bar-inner'>
+      <div class='top-date'>
+        <i class='fa-regular fa-clock'></i>
+        <span id='live-date'>الأحد، 18 سبتمبر 2026</span>
+      </div>
+      <div class='top-social'>
+        <a href='https://www.facebook.com/Fazlka-news-100701832193892' target='_blank' title='فيسبوك'><i class='fa-brands fa-facebook-f'></i></a>
+        <a href='https://www.youtube.com/channel/UClYcsQJiwn0TkpmeVCQy-VA' target='_blank' title='يوتيوب'><i class='fa-brands fa-youtube'></i></a>
+        <a href='/feeds/posts/default' target='_blank' title='خلاصة RSS'><i class='fa-solid fa-rss'></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Header -->
+  <header class='site-header'>
+    <div class='container header-inner'>
+      <div class='logo-box'>
+        <a class='brand-title' href='/'>
+          <span class='sawt'>صوت</span> <span class='misr'>مصر</span> <span class='badge24'>24</span>
+        </a>
+        <span class='brand-tagline'>بوابة إخبارية رقمية شاملة ومستقلة | صوت الوطن ونبض المواطن على مدار الساعة</span>
+      </div>
+      <!-- Header AdSense Unit (728x90) -->
+      <div class='header-ad-banner'>
+        <ins class='adsbygoogle' data-ad-client='ca-pub-7725405859334364' data-ad-slot='5940963255' style='display:inline-block;width:728px;height:90px'></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Menu -->
+  <nav class='main-nav'>
+    <div class='container nav-inner'>
+      <ul class='nav-menu'>
+        <li class='active'><a href='/'><i class='fa-solid fa-house'></i> الرئيسية</a></li>
+        <li><a href='/search/label/مصر والعالم'>مصر والعالم</a></li>
+        <li class='special-cat'><a href='/search/label/الشؤون القانونية والمحاكم'><i class='fa-solid fa-scale-balanced'></i> شؤون ومحاكم</a></li>
+        <li><a href='/search/label/اقتصاد وأسواق'>اقتصاد وأسواق</a></li>
+        <li><a href='/search/label/حوادث وقضايا'>حوادث ومجتمع</a></li>
+        <li><a href='/search/label/الرياضة'>رياضة وملاعب</a></li>
+        <li><a href='/search/label/منوعات وترند'>ترند ومنوعات</a></li>
+        <li><a href='/p/who-are-we.html'>من نحن</a></li>
+        <li><a href='/p/contact-form.html'>اتصل بنا</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Breaking News Ticker -->
+  <div class='ticker-wrap'>
+    <div class='container ticker-inner'>
+      <div class='ticker-badge'>
+        <i class='fa-solid fa-bolt'></i> عاجل
+      </div>
+      <div class='ticker-content' id='breaking-ticker'>
+        <a href='/'>صوت مصر 24 | تغطية حية ومستمرة لكافة الأحداث الجارية في مصر والعالم على مدار الساعة...</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Section -->
+  <div class='container content-wrapper'>
+    <div class='main-grid'>
+      
+      <!-- Main Content Area -->
+      <main class='main-content'>
+        <b:section class='main' id='main' showaddelement='yes'>
+          <b:widget id='Blog1' locked='true' title='رسائل المدونة الإلكترونية' type='Blog' version='2'>
+            <b:includable id='main' var='top'>
+              <b:if cond='data:view.isMultipleItems'>
+                <!-- Homepage Posts Grid -->
+                <div class='section-header'>
+                  <h2 class='section-title'>آخر التغطيات الإخبارية</h2>
+                </div>
+                <div class='posts-list'>
+                  <b:loop values='data:posts' var='post'>
+                    <article class='post-card'>
+                      <a class='post-thumb-wrap' expr:href='data:post.url'>
+                        <b:if cond='data:post.featuredImage'>
+                          <img class='post-thumb' expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                        <b:else/>
+                          <img class='post-thumb' expr:alt='data:post.title' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj48ZwLVmA8_k6Bci_0nkB76DxlE2Xj_I9RWVp8DTY05EFUnjsv5NIdFUhnf4R2K5LBSfTgywrTwNDmCPLZeY6dGLTOSVRsdRSb-6dzdTGSCHRf5kiEj0fF7RgQ2lplu-zPY0nFdh6kg70/s1600/%25D8%25AA.jpg'/>
+                        </b:if>
+                      </a>
+                      <div class='post-card-body'>
+                        <div class='post-meta'>
+                          <b:if cond='data:post.labels'>
+                            <span class='post-cat'><data:post.labels.first.name/></span>
+                          </b:if>
+                          <span><i class='fa-regular fa-calendar'></i> <data:post.date/></span>
+                        </div>
+                        <h3 class='post-title'>
+                          <a expr:href='data:post.url'><data:post.title/></a>
+                        </h3>
+                        <p class='post-snippet'><data:post.snippets.short/></p>
+                        <div class='post-card-footer'>
+                          <span><i class='fa-regular fa-user'></i> <data:post.author.name/></span>
+                          <a class='read-more-link' expr:href='data:post.url'>التفاصيل <i class='fa-solid fa-arrow-left'></i></a>
+                        </div>
+                      </div>
+                    </article>
+                  </b:loop>
+                </div>
+              <b:else/>
+                <!-- Single Post Page -->
+                <b:loop values='data:posts' var='post'>
+                  <article class='single-post-view'>
+                    <h1 class='single-title'><data:post.title/></h1>
+                    <div class='single-meta'>
+                      <span><i class='fa-regular fa-user'></i> بقلم: <data:post.author.name/></span>
+                      <span><i class='fa-regular fa-calendar'></i> <data:post.date/></span>
+                      <b:if cond='data:post.labels'>
+                        <span><i class='fa-solid fa-folder-open'></i> <data:post.labels.first.name/></span>
+                      </b:if>
+                    </div>
+
+                    <b:if cond='data:post.featuredImage'>
+                      <img class='single-thumb' expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                    </b:if>
+
+                    <!-- In-Post Top AdSense -->
+                    <div class='in-post-ad'>
+                      <ins class='adsbygoogle' data-ad-client='ca-pub-7725405859334364' data-ad-format='auto' data-ad-slot='6851909615' data-full-width-responsive='true' style='display:block'></ins>
+                      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                    </div>
+
+                    <!-- Post Body -->
+                    <div class='post-content'>
+                      <data:post.body/>
+                    </div>
+
+                    <!-- In-Post Bottom AdSense -->
+                    <div class='in-post-ad'>
+                      <ins class='adsbygoogle' data-ad-client='ca-pub-7725405859334364' data-ad-format='auto' data-ad-slot='9002240868' data-full-width-responsive='true' style='display:block'></ins>
+                      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+                    </div>
+                  </article>
+                </b:loop>
+              </b:if>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </main>
+
+      <!-- Sidebar -->
+      <aside class='sidebar-area'>
+        <!-- Ad Widget -->
+        <div class='sidebar-widget'>
+          <div class='widget-title'>إعلان مميز</div>
+          <div class='ad-box-sidebar'>
+            <ins class='adsbygoogle' data-ad-client='ca-pub-7725405859334364' data-ad-format='auto' data-ad-slot='9002240868' data-full-width-responsive='true' style='display:block'></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          </div>
+        </div>
+
+        <!-- Dynamic Sidebar Widgets Section -->
+        <b:section class='sidebar' id='sidebar' showaddelement='yes'>
+          <b:widget id='Label1' locked='false' title='أقسام صوت مصر 24' type='Label' version='2'>
+            <b:includable id='main'>
+              <div class='sidebar-widget'>
+                <h3 class='widget-title'><data:title/></h3>
+                <ul class='categories-list'>
+                  <b:loop values='data:labels' var='label'>
+                    <li>
+                      <a expr:href='data:label.url'>
+                        <span><data:label.name/></span>
+                        <span class='count'><data:label.count/></span>
+                      </a>
+                    </li>
+                  </b:loop>
+                </ul>
+              </div>
+            </b:includable>
+          </b:widget>
+
+          <b:widget id='PopularPosts1' locked='false' title='الأكثر قراءة اليوم' type='PopularPosts' version='2'>
+            <b:includable id='main'>
+              <div class='sidebar-widget'>
+                <h3 class='widget-title'><data:title/></h3>
+                <ul class='categories-list'>
+                  <b:loop values='data:posts' var='post'>
+                    <li>
+                      <a expr:href='data:post.href'><data:post.title/></a>
+                    </li>
+                  </b:loop>
+                </ul>
+              </div>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class='site-footer'>
+    <div class='container'>
+      <div class='footer-grid'>
+        <div class='footer-col'>
+          <h4>عن صوت مصر 24</h4>
+          <p>بوابة إخبارية رقمية مستقلة ترصد نبض الوطن وأهم الأحداث الجارية في مصر والعالم العربي على مدار الساعة، مع تحليلات معمقة لشؤون المحاكم والقضايا والاقتصاد والمجتمع بمصداقية وحياد مهني تام.</p>
+        </div>
+        <div class='footer-col'>
+          <h4>أقسام سريعة</h4>
+          <ul class='footer-links'>
+            <li><a href='/search/label/مصر والعالم'>مصر والعالم</a></li>
+            <li><a href='/search/label/الشؤون القانونية والمحاكم'>الشؤون القانونية والمحاكم</a></li>
+            <li><a href='/search/label/اقتصاد وأسواق'>اقتصاد وأسواق</a></li>
+            <li><a href='/search/label/الرياضة'>رياضة وملاعب</a></li>
+          </ul>
+        </div>
+        <div class='footer-col'>
+          <h4>صفحات تهمك</h4>
+          <ul class='footer-links'>
+            <li><a href='/p/who-are-we.html'>من نحن</a></li>
+            <li><a href='/p/usage-policy.html'>شروط الاستخدام</a></li>
+            <li><a href='/p/privacy-policy-for-fazlka.html'>سياسة الخصوصية</a></li>
+            <li><a href='/p/contact-form.html'>اتصل بإدارة التحرير</a></li>
+          </ul>
+        </div>
+        <div class='footer-col'>
+          <h4>متابعة وتواصل</h4>
+          <p>تابعنا على منصات التواصل الاجتماعي لتصلك التغطيات الإخبارية أولاً بأول.</p>
+          <div class='top-social' style='margin-top:14px;'>
+            <a href='https://www.facebook.com/Fazlka-news-100701832193892' target='_blank'><i class='fa-brands fa-facebook-f'></i></a>
+            <a href='https://www.youtube.com/channel/UClYcsQJiwn0TkpmeVCQy-VA' target='_blank'><i class='fa-brands fa-youtube'></i></a>
+            <a href='/feeds/posts/default' target='_blank'><i class='fa-solid fa-rss'></i></a>
+          </div>
+        </div>
+      </div>
+      <div class='footer-bottom'>
+        جميع الحقوق محفوظة © <span id='current-year'>2026</span> لموقع <span>صوت مصر 24</span> | تحت إشراف الأستاذ أحمد منصور
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    try {
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const el = document.getElementById('live-date');
+      if (el) el.innerText = now.toLocaleDateString('ar-EG', options);
+      const yr = document.getElementById('current-year');
+      if (yr) yr.innerText = now.getFullYear();
+    } catch(e) {}
+  </script>
+</body>
+</html>`;
+
+fs.writeFileSync(srcPath, xml, 'utf8');
+
+const desktopPath = path.join(process.env.USERPROFILE || 'C:\\\\Users\\\\احمد منصور', 'Desktop', 'قالب_صوت_مصر_24_الجديد.xml');
+fs.writeFileSync(desktopPath, xml, 'utf8');
+
+const brainPath = 'C:\\\\Users\\\\احمد منصور\\\\.gemini\\\\antigravity\\\\brain\\\\2b9f6bf3-866d-4977-80cf-9ae85b864176\\\\sawt_misr_24_theme.xml';
+fs.writeFileSync(brainPath, xml, 'utf8');
+
+console.log('Rebuilt clean XML successfully!');

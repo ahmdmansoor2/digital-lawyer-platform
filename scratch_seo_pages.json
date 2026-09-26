@@ -1,0 +1,436 @@
+{
+  "https://mohamidigital.online/": {
+    "title": "منصة المحامي الرقمية | المنظومة القانونية الذكية الأولى في مصر",
+    "desc": "المحامي الرقمي: استشارات قانونية فورية ومجانية للمواطنين · دليل أفضل المحامين المشتغلين بمصر حسب المحافظة والتخصص · برنامج إدارة مكاتب المحاماة مجاناً 100% · صيغ عقود ودعاوى جاهزة · حاسبة رسوم المحاكم · مكتبة قانونية +8,500 مرجع.",
+    "canonical": "https://mohamidigital.online/",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    "h1s": [
+      "منصة المحامي الرقمية — مرجع العدالة والتقاضي والتحول الرقمي 2026",
+      "منصة المحامي الرقمية"
+    ],
+    "schema": 10,
+    "ogTitle": "المحامي الرقمي | المنظومة القانونية الذكية في مصر",
+    "ogImage": "https://mohamidigital.online/og-image.jpg",
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "MEDIUM",
+        "msg": "Multiple H1 tags (2): منصة المحامي الرقمية — مرجع العدالة والتقاضي والتحول الرقمي 2026 | منصة المحامي الرقمية"
+      },
+      {
+        "sev": "LOW",
+        "msg": "Meta desc too long (229 chars)"
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 50621,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/blog/": {
+    "title": "المدونة القانونية | المحامي الرقمي",
+    "desc": "مقالات ونصائح قانونية للمحامين المصريين: إدارة القضايا، تنظيم المكتب، التكنولوجيا القانونية، وأفضل الممارسات في المهنة.",
+    "canonical": "https://mohamidigital.online/blog/",
+    "robots": null,
+    "h1s": [
+      "المدونة القانونية"
+    ],
+    "schema": 3,
+    "ogTitle": "📰 المدونة القانونية الرسمية | المحامي الرقمي",
+    "ogImage": "https://mohamidigital.online/images/og-blog-main.jpg",
+    "lang": "ar",
+    "issues": [],
+    "httpStatus": 200,
+    "contentLength": 186723,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/about.html": {
+    "title": "عن المنصة ورسالتنا القانونية | المحامي الرقمي",
+    "desc": "تعرف على منصة المحامي الرقمية برئاسة المستشار أحمد منصور: رؤيتنا لتطوير العمل القانوني والتقاضي في مصر، تمكين المواطنين والمحامين بأدوات ذكاء اصطناعي مجانية 100%.",
+    "canonical": "https://mohamidigital.online/about.html",
+    "robots": null,
+    "h1s": [
+      "منصة ال��حامي الرقمية: الريادة في العدالة الذكية"
+    ],
+    "schema": 0,
+    "ogTitle": "عن المنصة ورسالتنا القانونية | المحامي الرقمي",
+    "ogImage": "https://mohamidigital.online/og-image.jpg",
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "LOW",
+        "msg": "No JSON-LD structured data found"
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 14007,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/features.html": {
+    "title": "المميزات والخدمات القانونية الكاملة | المحامي الرقمي",
+    "desc": "اكتشف كافة مميزات منصة المحامي الرقمية: 15 حاسبة قانونية وشرعية تفاعلية، موسوعة مبادئ النقض، صيغ العقود والدعاوي، رصد التشريعات والجريدة الرسمية، والعمل الكامل دون إنترنت.",
+    "canonical": "https://mohamidigital.online/features.html",
+    "robots": null,
+    "h1s": [
+      "منظومة متكاملة من الأدوات القانونية التفاعلية"
+    ],
+    "schema": 0,
+    "ogTitle": "المميزات والخدمات القانونية الكاملة | المحامي الرقمي",
+    "ogImage": "https://mohamidigital.online/og-image.jpg",
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "LOW",
+        "msg": "Meta desc too long (171 chars)"
+      },
+      {
+        "sev": "LOW",
+        "msg": "No JSON-LD structured data found"
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 14171,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/lawyers-directory.html": {
+    "title": "دليل المحامين المشتغلين في مصر 2026 - ابحث عن محامٍ وسجل مكتبك | المحامي الرقمي",
+    "desc": "الدليل الرسمي للمحامين المقيدين بنقابة المحامين في مصر: ابحث عن أفضل محامي جنائي، مدني، أسرة، شركات، أو مجلس دولة في محافظتك وتواصل مباشرة عبر الواتساب والمكالمات مجاناً.",
+    "canonical": "https://mohamidigital.online/lawyers-directory.html",
+    "robots": "index, follow, max-image-preview:large",
+    "h1s": [
+      "دليل المحامين المشتغلين بمصر"
+    ],
+    "schema": 1,
+    "ogTitle": "⚖️ دليل المحامين المشتغلين المعتمد في مصر 2026 | المحامي الرقمي",
+    "ogImage": "https://mohamidigital.online/images/og-lawyers-directory.jpg",
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "MEDIUM",
+        "msg": "Title too long (79 chars): \"دليل المحامين المشتغلين في مصر 2026 - ابحث عن محامٍ وسجل مكت...\""
+      },
+      {
+        "sev": "LOW",
+        "msg": "Meta desc too long (170 chars)"
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 35891,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/legal-library.html": {
+    "title": "المكتبة القانونية الجامعة الشاملة (+9,600 مرجع وموسوعة فقهية) | المحامي الرقمي",
+    "desc": "تصفح وحمّل مباشرة أكثر من 9,600 كتاب وموسوعة قانونية وشروح السنهوري وكبار الفقهاء مع عارض مدمج داخل المنصة وروابط تحميل سحابية آمنة ومباشرة.",
+    "canonical": "https://mohamidigital.online/legal-library.html",
+    "robots": "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
+    "h1s": [
+      "المكتبة القانونية الجامعة الشاملة"
+    ],
+    "schema": 1,
+    "ogTitle": "المكتبة القانونية الجامعة الشاملة (+9,600 مرجع وموسوعة)",
+    "ogImage": "https://mohamidigital.online/blog/images/legal-library-hub.jpg",
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "MEDIUM",
+        "msg": "Title too long (78 chars): \"المكتبة القانونية الجامعة الشاملة (+9,600 مرجع وموسوعة فقهية...\""
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 69821,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/calculate-inheritance.html": {
+    "title": "حاسبة المواريث والتركات الشرعية والقانونية 2026 | المحامي الرقمي",
+    "desc": "حاسبة المواريث والتركات أونلاين وفق أحكام الشريعة الإسلامية وقانون المواريث المصري رقم 77 لسنة 1943: حساب أصحاب الفروض والعصبات وقسمة التركة بالجنيه.",
+    "canonical": "https://mohamidigital.online/calculate-inheritance.html",
+    "robots": null,
+    "h1s": [
+      "حاسبة المواريث وتوزيع التركات الشرعية"
+    ],
+    "schema": 3,
+    "ogTitle": null,
+    "ogImage": null,
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "LOW",
+        "msg": "No og:title"
+      },
+      {
+        "sev": "LOW",
+        "msg": "No og:image"
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 35869,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/real-estate.html": {
+    "title": "بوابة التسويق والاستثمار العقاري الموثق قانونياً | المحامي الرقمي",
+    "desc": "بوابة التسويق والاستثمار العقاري الموثق قانونياً في مصر: بيع وشراء وتأجير شقق، فيلات، أراضي ومحلات تجارية مع فحص سندات الملكية والتراخيص بإشراف المستشار القانوني الأستاذ أحمد منصور.",
+    "canonical": "https://mohamidigital.online/real-estate.html",
+    "robots": "index, follow, max-image-preview:large",
+    "h1s": [
+      "بوابة الاستثمار والتسويق العقاري الموثق قانونياً"
+    ],
+    "schema": 1,
+    "ogTitle": "بوابة التسويق والاستثمار العقاري الموثق قانونياً | المحامي الرقمي",
+    "ogImage": "https://mohamidigital.online/og-image.jpg",
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "LOW",
+        "msg": "Meta desc too long (181 chars)"
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 44378,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/legal-radar.html": {
+    "title": "رصد المحامي",
+    "desc": "رصد المحامي — نشرة يومية تحليلية لأهم الترندات المصرية والعالمية على Google، بصياغة تحليلية عملية للمواطن والمحامي المصري.",
+    "canonical": "https://mohamidigital.online/legal-radar.html",
+    "robots": "index, follow, max-image-preview:large",
+    "h1s": [
+      "رصد المحامي"
+    ],
+    "schema": 3,
+    "ogTitle": "رصد المحامي",
+    "ogImage": null,
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "HIGH",
+        "msg": "Title too short (11 chars): \"رصد المحامي\""
+      },
+      {
+        "sev": "LOW",
+        "msg": "No og:image"
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 122181,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/pillars/egyptian-civil-code-ultimate-guide.html": {
+    "title": "الدليل الشامل للقانون المدني المصري: شرح الالتزامات، العقود، والمسؤولية المدنية | المحامي الرقمي",
+    "desc": "مرجع قانوني شامل لشرح القانون المدني المصري رقم 131 لسنة 1948 وتعديلاته. دراسة تفصيلية لنظرية الالتزام، العقود، المسؤولية التقصيرية، الحقوق العينية، وأحكام الملكية والتعويض.",
+    "canonical": "https://mohamidigital.online/pillars/egyptian-civil-code-ultimate-guide.html",
+    "robots": "index, follow",
+    "h1s": [
+      "الدليل الشامل للقانون المدني المصري: شرح الالتزامات، العقود، والمسؤولية المدنية (القانون 131 لسنة 1948)"
+    ],
+    "schema": 3,
+    "ogTitle": "الدليل الشامل للقانون المدني المصري: شرح الالتزامات، العقود، والمسؤولية المدنية",
+    "ogImage": "https://mohamidigital.online/og-image.jpg",
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "MEDIUM",
+        "msg": "Title too long (96 chars): \"الدليل الشامل للقانون المدني المصري: شرح الالتزامات، العقود،...\""
+      },
+      {
+        "sev": "LOW",
+        "msg": "Meta desc too long (173 chars)"
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 23341,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/blog/alimony-calculation-egypt.html": {
+    "title": "النفقة الزوجية والأبناء في مصر: دليل شامل للتقدير والإجراءات القانونية | المحامي الرقمي",
+    "desc": "تعرف على كيفية حساب نفقة الزوجة والأبناء في القانون المصري، وشروط استحقاقها وسقوطها، وإجراءات إقامة الدعوى ودور | المحامي الرقمي في إدارة قضايا الأسرة.",
+    "canonical": "https://mohamidigital.online/blog/alimony-calculation-egypt.html",
+    "robots": null,
+    "h1s": [
+      "النفقة الزوجية والأبناء في مصر: دليل شامل للتقدير والإجراءات القانونية"
+    ],
+    "schema": 53,
+    "ogTitle": "النفقة الزوجية والأبناء في مصر: دليل شامل للتقدير والإجراءات القانونية",
+    "ogImage": "https://mohamidigital.online/blog/images/alimony-calculation-egypt.jpg",
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "MEDIUM",
+        "msg": "Title too long (87 chars): \"النفقة الزوجية والأبناء في مصر: دليل شامل للتقدير والإجراءات...\""
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 157503,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/blog/bounced-check-laws-egypt.html": {
+    "title": "قضايا الشيك بدون رصيد في القانون المصري: الأحكام وإجراءات الدفاع | المحامي الرقمي",
+    "desc": "شرح أحكام قضايا الشيكات المرتجعة وبدون رصيد في مصر، العقوبات المقررة، أسباب البراءة وكيفية التصالح أمام المحكمة.",
+    "canonical": "https://mohamidigital.online/blog/bounced-check-laws-egypt.html",
+    "robots": null,
+    "h1s": [
+      "قضايا الشيك بدون رصيد في القانون المصري: الأحكام وإجراءات الدفاع"
+    ],
+    "schema": 1,
+    "ogTitle": "قضايا الشيك بدون رصيد في القانون المصري: الأحكام وإجراءات الدفاع",
+    "ogImage": "https://mohamidigital.online/blog/images/bounced-check-laws-egypt.jpg",
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "MEDIUM",
+        "msg": "Title too long (81 chars): \"قضايا الشيك بدون رصيد في القانون المصري: الأحكام وإجراءات ال...\""
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 33529,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/courts/assiut-primary-appeal-court.html": {
+    "title": "محكمة أسيوط الابتدائية ومأمورية استئناف أسيوط العالي - المواعيد والعنوان ورسوم التوثيق 2026 | المحامي الرقمي",
+    "desc": "دليل شامل لـ محكمة أسيوط الابتدائية ومأمورية استئناف أسيوط العالي في محافظة أسيوط: مواعيد العمل (صباحي ومسائي)، العنوان التفصيلي، نظام الحجز بأسبقية الحضور، الأوراق المطلوبة لعمل التوكيلات وعقود السيارات، وخريطة الموقع.",
+    "canonical": "https://mohamidigital.online/courts/assiut-primary-appeal-court.html",
+    "robots": "index, follow, max-snippet:-1, max-image-preview:large",
+    "h1s": [
+      "محكمة أسيوط الابتدائية ومأمورية استئناف أسيوط العالي"
+    ],
+    "schema": 3,
+    "ogTitle": "محكمة أسيوط الابتدائية ومأمورية استئناف أسيوط العالي - المواعيد والعنوان ورسوم التوثيق 2026 | المحامي الرقمي",
+    "ogImage": "https://mohamidigital.online/icon.svg",
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "MEDIUM",
+        "msg": "Title too long (108 chars): \"محكمة أسيوط الابتدائية ومأمورية استئناف أسيوط العالي - الموا...\""
+      },
+      {
+        "sev": "LOW",
+        "msg": "Meta desc too long (219 chars)"
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 24457,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/courts-directory.html": {
+    "title": "دليل محاكم وشهر عقاري مصر 2026 | المحامي الرقمي",
+    "desc": "الدليل الأكبر والأشمل لمنظومة العدالة ومصر الرقمية 2026: مقار المحاكم، مكاتب الشهر العقاري المميكنة بدون حجز (أسبقية الحضور)، فروع المولات والنوادي، الفترة المسائية (5-9م)، وسيارات التوثيق المتنقلة 15999.",
+    "canonical": "https://mohamidigital.online/courts-directory.html",
+    "robots": "index, follow, max-snippet:-1, max-image-preview:large",
+    "h1s": [
+      "دليل محاكم وشهر عقاري مصر الرقمية"
+    ],
+    "schema": 3,
+    "ogTitle": "دليل محاكم وشهر عقاري مصر الرقمية 2026 - شامل الفروع بدون حجز والمسائية",
+    "ogImage": null,
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "LOW",
+        "msg": "Meta desc too long (204 chars)"
+      },
+      {
+        "sev": "LOW",
+        "msg": "No og:image"
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 213603,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/legal-forms.html": {
+    "title": "صيغ العقود والدعاوي - نصوص قانونية كاملة جاهزة للتعبئة | منصة المحامي الرقمية",
+    "desc": "صيغ عقود ودعاوي قانونية مصرية كاملة النصوص والبنود: عقود البيع والشراء، عقد بيع سيارة، عقد سمسرة، إيصال أمانة، عقود الإيجار، عقد تأسيس شركة تضامن، عقد عمل، توكيل رسمي، وصحف دعاوى (صحة ونفاذ، فرز وتجنيب، شيك بدون رصيد، إيصال أمانة، حضانة، صحة توقيع، نفقة) مع مذكرات دفاع جاهزة للتعبئ��.",
+    "canonical": "https://mohamidigital.online/legal-forms.html",
+    "robots": "index, follow, max-image-preview:large",
+    "h1s": [
+      "صيغ العقود والدعاوي — نصوص كاملة جاهزة للتعبئة"
+    ],
+    "schema": 5,
+    "ogTitle": "صيغ العقود والدعاوي - نصوص قانونية كاملة جاهزة للتعبئة",
+    "ogImage": null,
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "MEDIUM",
+        "msg": "Title too long (77 chars): \"صيغ العقود والدعاوي - نصوص قانونية كاملة جاهزة للتعبئة | منص...\""
+      },
+      {
+        "sev": "LOW",
+        "msg": "Meta desc too long (285 chars)"
+      },
+      {
+        "sev": "LOW",
+        "msg": "No og:image"
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 78479,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/contact.html": {
+    "title": "تواصل معنا | المحامي الرقمي",
+    "desc": "تواصل مع إدارة منصة المحامي الرقمية والمستشار القانوني أحمد منصور للاستفسارات القانونية والتقنية والمهنية.",
+    "canonical": "https://mohamidigital.online/contact.html",
+    "robots": null,
+    "h1s": [
+      "📬 تواصل معنا (Contact Us)"
+    ],
+    "schema": 0,
+    "ogTitle": null,
+    "ogImage": null,
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "HIGH",
+        "msg": "Title too short (27 chars): \"تواصل معنا | المحامي الرقمي\""
+      },
+      {
+        "sev": "LOW",
+        "msg": "No JSON-LD structured data found"
+      },
+      {
+        "sev": "LOW",
+        "msg": "No og:title"
+      },
+      {
+        "sev": "LOW",
+        "msg": "No og:image"
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 12942,
+    "ttfb": null
+  },
+  "https://mohamidigital.online/sitemap.html": {
+    "title": "خريطة الموقع | المحامي الرقمي",
+    "desc": "كل صفحات موقع المحامي الرقمي في مكان واحد. دليل شامل للخدمات، المدونة، المراجع القانونية، ونماذج الصيغ.",
+    "canonical": "https://mohamidigital.online/sitemap.html",
+    "robots": "index, follow",
+    "h1s": [
+      "🗺️ خريطة الموقع"
+    ],
+    "schema": 0,
+    "ogTitle": null,
+    "ogImage": null,
+    "lang": "ar",
+    "issues": [
+      {
+        "sev": "HIGH",
+        "msg": "Title too short (29 chars): \"خريطة الموقع | المحامي الرقمي\""
+      },
+      {
+        "sev": "LOW",
+        "msg": "No JSON-LD structured data found"
+      },
+      {
+        "sev": "LOW",
+        "msg": "No og:title"
+      },
+      {
+        "sev": "LOW",
+        "msg": "No og:image"
+      }
+    ],
+    "httpStatus": 200,
+    "contentLength": 71378,
+    "ttfb": null
+  }
+}

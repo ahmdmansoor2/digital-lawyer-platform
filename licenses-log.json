@@ -16,5 +16,14 @@
     "licenseKey": "LAWPRO-9079-6C34-BE80-KF6Y",
     "expiresDate": "٥‏/٧‏/٢٠٢٧",
     "generatedAt": "2026-07-05T10:09:28.977Z"
+  },
+  {
+    "customer": "المستشار أحمد منصور",
+    "plan": "enterprise",
+    "issuedAt": 1790099540744,
+    "expiresAt": 1792691540744,
+    "expiresDate": "2026-10-22",
+    "token": "eyJjdXN0b21lciI6Itin2YTZhdiz2KrYtNin2LEg2KPYrdmF2K8g2YXZhti12YjYsSIsInBsYW4iOiJlbnRlcnByaXNlIiwiaXNzdWVkQXQiOjE3OTAwOTk1NDA3NDQsImV4cGlyZXNBdCI6MTc5MjY5MTU0MDc0NCwibWF4Q2FzZXMiOjk5OTksIm1heEZpbGVzIjo5OTk5LCJmZWF0dXJlcyI6WyJiYXNpYyIsImFpIiwibGlicmFyeSIsInByaW50IiwidGVhbSIsImFsbCJdLCJpc3N1ZXIiOiLZhdmG2LXYqSDYp9mE2YXYrdin2YXZiiDYp9mE2LHZgtmF2YrYqSAtINin2YTYqtix2K7Ziti1INin2YTYsdiz2YXZiiIsInZlcnNpb24iOjJ9.BBUQQQJB5_LTWB2R",
+    "generatedAt": "2026-09-22T17:52:36.145Z"
   }
 ]

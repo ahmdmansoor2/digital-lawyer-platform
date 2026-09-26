@@ -74,6 +74,7 @@ function createLegalDocx({
               bold: true,
               size: 36, // 18pt Bold للعناوين الداخلية
               font: fontFamily,
+              rightToLeft: true,
               color: "1e3a8a" // أزرق قضائي وقور
             })
           ],
@@ -93,6 +94,7 @@ function createLegalDocx({
                 text: p,
                 size: 32, // 16pt خط المتن الإلزامي الدستوري
                 font: fontFamily,
+                rightToLeft: true,
                 color: "0f172a"
               })
             ],

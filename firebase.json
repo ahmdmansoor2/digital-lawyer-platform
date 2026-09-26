@@ -12,17 +12,24 @@
         "data/library-docs-chunks/**",
         "books/**"
       ],
+      "redirects": [
+        {
+          "source": "https://www.mohamidigital.online/**",
+          "destination": "https://mohamidigital.online/:splat",
+          "type": 301
+        },
+        { "source": "/lawyers-directory.htm", "destination": "/lawyers-directory.html", "type": 301 },
+        { "source": "/features.htm", "destination": "/features.html", "type": 301 },
+        { "source": "/about.htm", "destination": "/about.html", "type": 301 },
+        { "source": "/pricing.htm", "destination": "/pricing.html", "type": 301 },
+        { "source": "/contact.htm", "destination": "/contact.html", "type": 301 },
+        { "source": "/privacy.htm", "destination": "/privacy.html", "type": 301 },
+        { "source": "/terms.htm", "destination": "/terms.html", "type": 301 },
+        { "source": "/download.htm", "destination": "/download.html", "type": 301 }
+      ],
       "rewrites": [
         { "source": "/lawyers-directory", "destination": "/lawyers-directory.html" },
-        { "source": "/lawyers-directory.htm", "destination": "/lawyers-directory.html" },
         { "source": "/features", "destination": "/features.html" },
-        { "source": "/features.htm", "destination": "/features.html" },
-        { "source": "/about.htm", "destination": "/about.html" },
-        { "source": "/pricing.htm", "destination": "/pricing.html" },
-        { "source": "/contact.htm", "destination": "/contact.html" },
-        { "source": "/privacy.htm", "destination": "/privacy.html" },
-        { "source": "/terms.htm", "destination": "/terms.html" },
-        { "source": "/download.htm", "destination": "/download.html" },
         { "source": "/legal-calculators", "destination": "/legal-calculators.html" },
         { "source": "/legal-calculators/", "destination": "/legal-calculators.html" },
         { "source": "/legal-forms", "destination": "/legal-forms.html" },

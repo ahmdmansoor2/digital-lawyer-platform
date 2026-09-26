@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>تقرير تدقيق SEO — منصة المحامي الرقمية | mohamidigital.online</title>
+<style>
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --bg: #0f172a;
+  --bg-soft: #1e293b;
+  --bg-card: #1e293b;
+  --border: rgba(99, 102, 241, 0.15);
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --critical: #ef4444;
+  --high: #f97316;
+  --medium: #eab308;
+  --low: #10b981;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', 'Tahoma', 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  background-image: radial-gradient(ellipse at top right, rgba(99, 102, 241, 0.12) 0%, transparent 50%);
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+.hero {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(124, 58, 237, 0.08));
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 48px 40px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 4px;
+  background: linear-gradient(90deg, var(--primary), #7c3aed, var(--critical));
+}
+.hero .badge {
+  display: inline-block;
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+.hero h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 900;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #fff, #a5b4fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero .subtitle {
+  font-size: 16px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.hero .meta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--muted);
+}
+.hero .meta strong { color: var(--text); font-weight: 700; }
+.section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+}
+.section h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section h2 .num {
+  display: inline-flex;
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--primary), #7c3aed);
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  color: white;
+}
+.section .desc { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.stat-card {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+}
+.stat-card .label { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
+.stat-card .value { font-size: 22px; font-weight: 800; color: white; }
+.stat-card .sublabel { font-size: 11px; color: var(--muted); margin-top: 4px; }
+.stat-card.good .value { color: var(--low); }
+.stat-card.warn .value { color: var(--medium); }
+.stat-card.bad .value { color: var(--critical); }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 13px;
+}
+th {
+  background: rgba(15, 23, 42, 0.7);
+  color: var(--muted);
+  font-weight: 700;
+  text-align: right;
+  padding: 12px 14px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+tbody tr:hover { background: rgba(99, 102, 241, 0.05); }
+.priority-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.priority-critical { background: rgba(239, 68, 68, 0.15); color: #fca5a5; border: 1px solid rgba(239, 68, 68, 0.3); }
+.priority-high { background: rgba(249, 115, 22, 0.15); color: #fdba74; border: 1px solid rgba(249, 115, 22, 0.3); }
+.priority-medium { background: rgba(234, 179, 8, 0.15); color: #fde047; border: 1px solid rgba(234, 179, 8, 0.3); }
+.priority-low { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.3); }
+.issue-card {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border);
+  border-right: 4px solid;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 12px;
+}
+.issue-card.critical { border-right-color: var(--critical); }
+.issue-card.high { border-right-color: var(--high); }
+.issue-card.medium { border-right-color: var(--medium); }
+.issue-card.low { border-right-color: var(--low); }
+.issue-card .title {
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+.issue-card .url {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 12px;
+  color: var(--muted);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-block;
+  margin-bottom: 12px;
+  direction: ltr;
+}
+.issue-card .impact { color: var(--muted); font-size: 13px; margin-bottom: 10px; }
+.issue-card .fix {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 13px;
+  color: #a7f3d0;
+}
+.check { color: var(--low); font-weight: 800; }
+.warn { color: var(--medium); font-weight: 800; }
+.bad { color: var(--critical); font-weight: 800; }
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.metric-row:last-child { border-bottom: none; }
+.metric-label { color: var(--muted); font-size: 13px; }
+.metric-value { font-weight: 700; }
+.timeline {
+  position: relative;
+  padding-right: 32px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--border);
+}
+.timeline-item {
+  position: relative;
+  padding: 14px 0;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  right: -25px;
+  top: 20px;
+  width: 12px;
+  height: 12px;
+  background: var(--primary);
+  border-radius: 50%;
+  border: 3px solid var(--bg);
+}
+.timeline-item .when { color: var(--primary); font-weight: 700; font-size: 13px; }
+.timeline-item .what { color: white; font-weight: 700; margin-top: 4px; }
+.action-list { counter-reset: action-counter; }
+.action-item {
+  counter-increment: action-counter;
+  position: relative;
+  padding: 18px 20px 18px 70px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+.action-item::before {
+  content: counter(action-counter);
+  position: absolute;
+  right: 16px;
+  top: 14px;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary), #7c3aed);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 16px;
+  color: white;
+}
+.action-item .title { font-weight: 700; color: white; font-size: 15px; }
+.action-item .meta { font-size: 12px; color: var(--muted); margin-top: 4px; }
+.disclaimer {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 13px;
+  color: #fde68a;
+  margin-top: 24px;
+}
+.footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 48px;
+}
+.toc {
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.toc h3 { font-size: 14px; color: var(--muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.toc ol { padding-right: 20px; }
+.toc li { padding: 4px 0; font-size: 13px; }
+.toc a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+.toc a:hover { color: var(--primary); }
+@media print {
+  body { background: white; color: black; }
+  .section, .stat-card, .toc, .issue-card, .action-item { background: white; border: 1px solid #ccc; color: black; }
+  .hero { background: white; border: 2px solid #333; }
+  .stat-card .value { color: black; }
+  .section h2, .hero h1 { color: black; -webkit-text-fill-color: black; }
+}
+@media (max-width: 768px) {
+  .container { padding: 16px; }
+  .hero, .section { padding: 20px; }
+  .summary-grid { grid-template-columns: 1fr 1fr; }
+  table { font-size: 12px; }
+  th, td { padding: 8px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hero">
+  <span class="badge">📊 تقرير تدقيق SEO احترافي</span>
+  <h1>منصة المحامي الرقمية</h1>
+  <p class="subtitle">mohamidigital.online — تحليل تقني شامل وتحسين الظهور في محركات البحث</p>
+  <div class="meta">
+    <span><strong>تاريخ الفحص:</strong> 21 سبتمبر 2026</strong></span>
+    <span><strong>الأسلوب:</strong> فحص آلي مباشر + تحليل يدوي</span>
+    <span><strong>الحالة:</strong> 6 مشاكل حرجة + 4 عالية</span>
+  </div>
+</div>
+
+<div class="toc">
+  <h3>📑 محتويات التقرير</h3>
+  <ol>
+    <li><a href="#summary">الملخص التنفيذي</a></li>
+    <li><a href="#technical">الفحص التقني (Technical SEO)</a></li>
+    <li><a href="#onpage">فحص On-Page SEO</a></li>
+    <li><a href="#structured">البيانات المنظمة (Structured Data)</a></li>
+    <li><a href="#content">تحليل المحتوى</a></li>
+    <li><a href="#keywords">الكلمات المفتاحية</a></li>
+    <li><a href="#priorities">جدول الأولويات</a></li>
+    <li><a href="#actions">أول 10 إجراءات عاجلة</a></li>
+    <li><a href="#plan">خطة العمل 30/60/90 يوم</a></li>
+  </ol>
+</div>
+
+<!-- Section 1: Executive Summary -->
+<div class="section" id="summary">
+  <h2><span class="num">1</span> الملخص التنفيذي</h2>
+  <p class="desc">نظرة عامة على الحالة العامة للموقع والمشاكل المكتشفة</p>
+
+  <div class="summary-grid">
+    <div class="stat-card good">
+      <div class="label">Crawling</div>
+      <div class="value">✓ سليم</div>
+      <div class="sublabel">robots.txt ممتاز</div>
+    </div>
+    <div class="stat-card bad">
+      <div class="label">Indexability</div>
+      <div class="value">⚠ مشكلة</div>
+      <div class="sublabel">H1 مكسور في /pillars/</div>
+    </div>
+    <div class="stat-card good">
+      <div class="label">Canonical</div>
+      <div class="value">✓ سليم</div>
+      <div class="sublabel">كل الصفحات صحيحة</div>
+    </div>
+    <div class="stat-card good">
+      <div class="label">Meta Tags</div>
+      <div class="value">✓ جيد</div>
+      <div class="sublabel">title + desc + OG + Twitter</div>
+    </div>
+    <div class="stat-card warn">
+      <div class="label">Structured Data</div>
+      <div class="value">⚠ ناقص</div>
+      <div class="sublabel">4 صفحات بدون JSON-LD</div>
+    </div>
+    <div class="stat-card good">
+      <div class="label">HTTPS / Security</div>
+      <div class="value">✓ ممتاز</div>
+      <div class="sublabel">HSTS preload + CSP</div>
+    </div>
+    <div class="stat-card good">
+      <div class="label">Sitemap</div>
+      <div class="value">✓ 565</div>
+      <div class="sublabel">URL مع lastmod كامل</div>
+    </div>
+    <div class="stat-card bad">
+      <div class="label">Thin Content</div>
+      <div class="value">🔴 حرج</div>
+      <div class="sublabel">4 صفحات 322-406 كلمة</div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 2: Technical SEO -->
+<div class="section" id="technical">
+  <h2><span class="num">2</span> الفحص التقني (Technical SEO)</h2>
+  <p class="desc">فحص البنية التحتية، HTTP status، الـ headers، robots.txt، sitemap.xml</p>
+
+  <h3 style="color: white; font-size: 18px; margin: 24px 0 12px;">2.1 ملف robots.txt</h3>
+  <div class="metric-row">
+    <span class="metric-label">الحالة</span>
+    <span class="metric-value check">✓ سليم</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">User-agent</span>
+    <span class="metric-value">* (الكل) + Google, Bing, Yandex, Apple, DuckDuckGo, Seznam, Slurp</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">Sitemaps المُعلنة</span>
+    <span class="metric-value">sitemap.xml + news-sitemap.xml</span>
+  </div>
+  <div class="metric-row">
+    <span class="metric-label">أوامر Disallow</span>
+    <span class="metric-value check">لا يوجد (Allow: /)</span>
+  </div>
+
+  <h3 style="color: white; font-size: 18px; margin: 32px 0 12px;">2.2 ملف sitemap.xml</h3>
+  <table>
+    <tr><th>البند</th><th>القيمة</th></tr>
+    <tr><td>Namespace</td><td><code>http://www.sitemaps.org/schemas/sitemap/0.9</code> ✓</td></tr>
+    <tr><td>إجمالي URLs</td><td><strong>565</strong></td></tr>
+    <tr><td>URLs فريدة (لا تكرار)</td><td><strong>565 / 565</strong> ✓</td></tr>
+    <tr><td>URLs بـ lastmod</td><td><strong>100%</strong> ✓</td></tr>
+    <tr><td>URLs بـ query params</td><td><strong>0</strong> ✓</td></tr>
+    <tr><td>blog</td><td>211 URLs</td></tr>
+    <tr><td>courts</td><td>116 URLs</td></tr>
+    <tr><td>radar-topics</td><td>109 URLs</td></tr>
+    <tr><td>legal-forms-docs</td><td>56 URLs</td></tr>
+    <tr><td>pillars</td><td>20 URLs</td></tr>
+  </table>
+
+  <h3 style="color: white; font-size: 18px; margin: 32px 0 12px;">2.3 Security Headers</h3>
+  <table>
+    <tr><th>Header</th><th>القيمة</th><th>الحالة</th></tr>
+    <tr><td>Strict-Transport-Security</td><td><code>max-age=63072000; includeSubDomains; preload</code></td><td><span class="check">✓ ممتاز</span></td></tr>
+    <tr><td>X-Frame-Options</td><td><code>SAMEORIGIN</code></td><td><span class="check">✓</span></td></tr>
+    <tr><td>X-Content-Type-Options</td><td><code>nosniff</code></td><td><span class="check">✓</span></td></tr>
+    <tr><td>Referrer-Policy</td><td><code>strict-origin-when-cross-origin</code></td><td><span class="check">✓</span></td></tr>
+    <tr><td>Permissions-Policy</td><td>يحجب 8 APIs حساسة</td><td><span class="check">✓</span></td></tr>
+    <tr><td>Content-Security-Policy</td><td>صارم مع whitelisting</td><td><span class="check">✓</span></td></tr>
+  </table>
+
+  <h3 style="color: white; font-size: 18px; margin: 32px 0 12px;">2.4 HTTP Status Codes</h3>
+  <div class="metric-row"><span class="metric-label">جميع الصفحات الرئيسية</span><span class="metric-value check">200 OK ✓</span></div>
+  <div class="metric-row"><span class="metric-label">الصفحات المعاد توجيهها (302)</span><span class="metric-value">/legal-library → /legal-forms.html</span></div>
+  <div class="metric-row"><span class="metric-label">الصفحات 404</span><span class="metric-value check">لا يوجد</span></div>
+  <div class="metric-row"><span class="metric-label">Redirect loops</span><span class="metric-value check">لا يوجد</span></div>
+  <div class="metric-row"><span class="metric-label">Broken internal links (الصفحات الرئيسية)</span><span class="metric-value check">0 (الروابط الظاهرة مكسورة هي false positive من PowerShell)</span></div>
+</div>
+
+<!-- Section 3: On-Page SEO -->
+<div class="section" id="onpage">
+  <h2><span class="num">3</span> فحص On-Page SEO</h2>
+  <p class="desc">تحليل الـ Title, Meta Description, H1-H3, Canonical, Robots لكل صفحة مهمة</p>
+
+  <h3 style="color: white; font-size: 18px; margin: 24px 0 12px;">3.1 جدول مقارنة الصفحات الرئيسية</h3>
+  <table>
+    <tr>
+      <th>الصفحة</th>
+      <th>Words</th>
+      <th>Title</th>
+      <th>Desc</th>
+      <th>H1</th>
+      <th>JSON-LD</th>
+      <th>Alts</th>
+    </tr>
+    <tr>
+      <td><code>/</code></td>
+      <td>2,842</td>
+      <td>67c</td>
+      <td>157c</td>
+      <td><span class="warn">2 ⚠</span></td>
+      <td><span class="check">10</span></td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><code>/blog/</code></td>
+      <td>9,243</td>
+      <td>✓</td>
+      <td>✓</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><code>/legal-forms.html</code></td>
+      <td>3,173</td>
+      <td>96c</td>
+      <td>284c</td>
+      <td>1</td>
+      <td>5</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><code>/pillars/</code></td>
+      <td>13,790</td>
+      <td>90c</td>
+      <td>303c</td>
+      <td><span class="bad">0 🔴</span></td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td><code>/blog/[post]</code></td>
+      <td>6,293</td>
+      <td>96c</td>
+      <td>✓</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr style="background: rgba(239, 68, 68, 0.05);">
+      <td><code>/about.html</code></td>
+      <td><span class="bad">403 🔴</span></td>
+      <td>53c</td>
+      <td>162c</td>
+      <td>1</td>
+      <td><span class="bad">0</span></td>
+      <td>0</td>
+    </tr>
+    <tr style="background: rgba(239, 68, 68, 0.05);">
+      <td><code>/features.html</code></td>
+      <td><span class="bad">406 🔴</span></td>
+      <td>65c</td>
+      <td>171c</td>
+      <td>1</td>
+      <td><span class="bad">0</span></td>
+      <td>0</td>
+    </tr>
+    <tr style="background: rgba(239, 68, 68, 0.05);">
+      <td><code>/pricing.html</code></td>
+      <td><span class="bad">349 🔴</span></td>
+      <td>56c</td>
+      <td>125c</td>
+      <td>1</td>
+      <td><span class="bad">0</span></td>
+      <td>0</td>
+    </tr>
+    <tr style="background: rgba(239, 68, 68, 0.05);">
+      <td><code>/contact.html</code></td>
+      <td><span class="bad">322 🔴</span></td>
+      <td>38c</td>
+      <td>106c</td>
+      <td>1</td>
+      <td><span class="bad">0</span></td>
+      <td>0</td>
+    </tr>
+  </table>
+
+  <h3 style="color: white; font-size: 18px; margin: 32px 0 12px;">3.2 Homepage On-Page</h3>
+  <div class="metric-row"><span class="metric-label">Title</span><span class="metric-value">منصة المحامي الرقمية | المنظومة القانونية الذكية الأولى في مصر (67c) ✓</span></div>
+  <div class="metric-row"><span class="metric-label">Meta Description</span><span class="metric-value">~157 chars ✓</span></div>
+  <div class="metric-row"><span class="metric-label">Canonical</span><span class="metric-value">https://mohamidigital.online/ ✓</span></div>
+  <div class="metric-row"><span class="metric-label">Meta Robots</span><span class="metric-value">index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1 ✓</span></div>
+  <div class="metric-row"><span class="metric-label">Open Graph</span><span class="metric-value check">✓ Title, Desc, Image, URL, Site Name</span></div>
+  <div class="metric-row"><span class="metric-label">Twitter Card</span><span class="metric-value">summary_large_image ✓</span></div>
+  <div class="metric-row"><span class="metric-label">Hreflang</span><span class="metric-value">2 (ar + ar-EG) ✓</span></div>
+  <div class="metric-row"><span class="metric-label">JSON-LD Blocks</span><span class="metric-value">10 blocks (Organization, WebSite, BreadcrumbList, WebPage)</span></div>
+  <div class="metric-row"><span class="metric-label">H1 count</span><span class="metric-value warn">2 ⚠ (المفروض 1)</span></div>
+  <div class="metric-row"><span class="metric-label">Images without alt</span><span class="metric-value check">0 ✓</span></div>
+</div>
+
+<!-- Section 4: Structured Data -->
+<div class="section" id="structured">
+  <h2><span class="num">4</span> البيانات المنظمة (Structured Data)</h2>
+  <p class="desc">فحص JSON-LD و Schema.org implementations</p>
+
+  <h3 style="color: white; font-size: 18px; margin: 24px 0 12px;">4.1 Schema المُنفّذ</h3>
+  <table>
+    <tr><th>الصفحة</th><th>Schema Types</th><th>العدد</th></tr>
+    <tr><td>Homepage</td><td>Organization + WebSite + BreadcrumbList + WebPage</td><td>10 blocks ✓</td></tr>
+    <tr><td>Blog post</td><td>Article + BreadcrumbList</td><td>2 blocks ✓</td></tr>
+    <tr><td>Pillars</td><td>CollectionPage + BreadcrumbList</td><td>2 blocks ✓</td></tr>
+    <tr><td>Legal forms</td><td>WebSite + ItemList + Organization + BreadcrumbList + WebPage</td><td>5 blocks ✓</td></tr>
+    <tr><td>Blog index</td><td>WebSite + Blog + BreadcrumbList</td><td>3 blocks ✓</td></tr>
+    <tr style="background: rgba(239, 68, 68, 0.05);"><td>About</td><td>—</td><td><span class="bad">0 ❌</span></td></tr>
+    <tr style="background: rgba(239, 68, 68, 0.05);"><td>Features</td><td>—</td><td><span class="bad">0 ❌</span></td></tr>
+    <tr style="background: rgba(239, 68, 68, 0.05);"><td>Pricing</td><td>—</td><td><span class="bad">0 ❌</span></td></tr>
+    <tr style="background: rgba(239, 68, 68, 0.05);"><td>Contact</td><td>—</td><td><span class="bad">0 ❌</span></td></tr>
+  </table>
+
+  <h3 style="color: white; font-size: 18px; margin: 24px 0 12px;">4.2 Schema موصى بإضافته</h3>
+  <table>
+    <tr><th>Schema</th><th>الفائدة</th><th>الصفحات المقترحة</th></tr>
+    <tr><td>LocalBusiness</td><td>Local Pack + Google Maps</td><td>Homepage</td></tr>
+    <tr><td>FAQ</td><td>FAQ snippets في SERP</td><td>Legal forms, Features</td></tr>
+    <tr><td>Service</td><td>Rich snippets للخدمات</td><td>Features, Pricing</td></tr>
+    <tr><td>HowTo</td><td>Step-by-step rich results</td><td>Blog posts التعليمية</td></tr>
+  </table>
+</div>
+
+<!-- Section 5: Content -->
+<div class="section" id="content">
+  <h2><span class="num">5</span> تحليل المحتوى</h2>
+  <p class="desc">جودة وكمية المحتوى، بنية العناوين، كثافة الكلمات المفتاحية</p>
+
+  <h3 style="color: white; font-size: 18px; margin: 24px 0 12px;">5.1 توزيع المحتوى</h3>
+  <table>
+    <tr><th>الفئة</th><th>متوسط الكلمات</th><th>التقييم</th></tr>
+    <tr><td>Blog posts (211 صفحة)</td><td>~6,000 كلمة</td><td><span class="check">✓ ممتاز</span></td></tr>
+    <tr><td>Pillars (20 صفحة)</td><td>~14,000 كلمة</td><td><span class="check">✓ ممتاز</span></td></tr>
+    <tr><td>Legal forms page</td><td>3,173 كلمة</td><td><span class="check">✓ جيد</span></td></tr>
+    <tr><td>Homepage</td><td>2,842 كلمة</td><td><span class="check">✓ جيد</span></td></tr>
+    <tr><td>Blog index</td><td>9,243 كلمة</td><td><span class="check">✓ جيد</span></td></tr>
+    <tr style="background: rgba(239, 68, 68, 0.05);"><td>About / Features / Pricing / Contact</td><td>322-406 كلمات</td><td><span class="bad">🔴 Thin Content</span></td></tr>
+  </table>
+
+  <h3 style="color: white; font-size: 18px; margin: 32px 0 12px;">5.2 مشاكل المحتوى الرئيسية</h3>
+
+  <div class="issue-card critical">
+    <div class="title">🔴 صفحات Thin Content الحرجة</div>
+    <div class="url">/about.html, /features.html, /pricing.html, /contact.html</div>
+    <div class="impact"><strong>التأثير:</strong> Google يعتبر هذه الصفحات ضعيفة القيمة (thin content) وقد يخفض ترتيبها أو يتجاهلها. خاصة أن About/Features/Pricing مهمة لـ E-E-A-T.</div>
+    <div class="fix"><strong>طريقة الإصلاح:</strong> أضف 400-600 كلمة لكل صفحة، خاصة /contact.html يجب أن يحتوي على NAP كامل (Name, Address, Phone) بصيغة منظمة.</div>
+  </div>
+
+  <div class="issue-card critical">
+    <div class="title">🔴 H1 مكسور في /pillars/</div>
+    <div class="url">/pillars/</div>
+    <div class="impact"><strong>التأثير:</strong> الـ H1 يظهر كـ <code>${c.title}</code> حرفياً في HTML المُولّد (متغير Vite/Astro لم يتم rendering). Google والـ users يشوفون placeholder بدلاً من عنوان حقيقي.</div>
+    <div class="fix"><strong>طريقة الإصلاح:</strong> ابحث في <code>src/pages/pillars/index.astro</code> (أو <code>.tsx</code>) عن <code>${c.title}</code> و <code>${totalCount}</code> واستبدلها بقيم فعلية.</div>
+  </div>
+
+  <div class="issue-card high">
+    <div class="title">🟠 Blog posts بدون H3</div>
+    <div class="url">211 blog posts</div>
+    <div class="impact"><strong>التأثير:</strong> بنية هرمية ناقصة (34 H2 بدون أي H3). Google يعتمد على H3 لكسر المحتوى الطويل إلى sections أصغر.</div>
+    <div class="fix"><strong>طريقة الإصلاح:</strong> أضف H3 فرعية في كل blog post لتقسيم المحتوى (مقدمة، شرح، أمثلة، خاتمة).</div>
+  </div>
+
+  <div class="issue-card high">
+    <div class="title">🟠 Homepage عندها 2 H1</div>
+    <div class="url">/</div>
+    <div class="impact"><strong>التأثير:</strong> خلط دلالي. H1 واحد فقط هو المعيار.</div>
+    <div class="fix"><strong>طريقة الإصلاح:</strong> احذف H1 الثاني (الذي يقول "منصة المحامي الرقمية" فقط) واستبدله بـ H2.</div>
+  </div>
+</div>
+
+<!-- Section 6: Keywords -->
+<div class="section" id="keywords">
+  <h2><span class="num">6</span> الكلمات المفتاحية</h2>
+  <p class="desc">Keyword Research و Keyword Mapping</p>
+
+  <div class="disclaimer" style="background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.3); color: #c7d2fe;">
+    <strong>⚠️ ملاحظة مهمة:</strong> لا تتوفر بيانات Search Volume حقيقية في هذا التقرير (بدون SEMrush/Ahrefs/Google Keyword Planner API). التحليل مبني على فهم نية البحث والمنافسة الظاهرة في السوق المصري.
+  </div>
+
+  <h3 style="color: white; font-size: 18px; margin: 24px 0 12px;">6.1 Primary Keywords</h3>
+  <table>
+    <tr>
+      <th>الكلمة</th>
+      <th>نية البحث</th>
+      <th>المنافسة</th>
+      <th>الصفحة المستهدفة</th>
+      <th>الأولوية</th>
+    </tr>
+    <tr><td>منصة المحامي الرقمية</td><td>Brand/Navigational</td><td>منخفضة</td><td>Homepage</td><td>عالية</td></tr>
+    <tr><td>برنامج محاماة مجاني</td><td>Commercial</td><td>متوسطة</td><td>Homepage + Features</td><td>عالية</td></tr>
+    <tr><td>إدارة مكتب محاماة</td><td>Commercial</td><td>متوسطة</td><td>Homepage</td><td>عالية</td></tr>
+    <tr><td>صيغ عقود جاهزة</td><td>Commercial</td><td>منخفضة</td><td>Legal forms</td><td>عالية</td></tr>
+    <tr><td>مذكرات قانونية جاهزة</td><td>Commercial</td><td>منخفضة</td><td>Blog</td><td>عالية</td></tr>
+  </table>
+
+  <h3 style="color: white; font-size: 18px; margin: 32px 0 12px;">6.2 Long-tail Keywords (فرص)</h3>
+  <table>
+    <tr><th>الكلمة</th><th>نية البحث</th><th>الفرصة</th></tr>
+    <tr><td>كيف أكتب عقد بيع شقة</td><td>Information</td><td>منخفضة المنافسة، حجم مقبول</td></tr>
+    <tr><td>صيغة دعوى خلع في مصر</td><td>Information/Commercial</td><td>منخفضة جداً</td></tr>
+    <tr><td>حقوق العامل عند الفصل التعسفي</td><td>Information</td><td>متوسط</td></tr>
+    <tr><td>الفرق بين الطلاق والخلع</td><td>Information</td><td>منخفضة، حجم عالي</td></tr>
+    <tr><td>إيجار قديم عقد جديد</td><td>Information</td><td>منخفضة</td></tr>
+  </table>
+
+  <h3 style="color: white; font-size: 18px; margin: 32px 0 12px;">6.3 Keyword Map</h3>
+  <table>
+    <tr>
+      <th>الصفحة</th>
+      <th>Primary Keyword</th>
+      <th>Title المقترح</th>
+      <th>H1 المقترح</th>
+    </tr>
+    <tr><td><code>/</code></td><td>منصة المحامي الرقمية</td><td>منصة المحامي الرقمية - نظام إدارة مكتب المحاماة مجاناً</td><td>منصة المحامي الرقمية</td></tr>
+    <tr><td><code>/legal-forms.html</code></td><td>صيغ عقود قانونية</td><td>+2,690 صيغة قانونية جاهزة للتحميل المجاني</td><td>صيغ العقود والدعاوى</td></tr>
+    <tr><td><code>/blog/</code></td><td>المدونة القانونية المصرية</td><td>المدونة القانونية 2026 - مقالات يومية للمحامين</td><td>المدونة القانونية</td></tr>
+    <tr><td><code>/about.html</code></td><td>عن منصة المحامي الرقمية</td><td>عن المنصة - مهمتنا ورؤيتنا في خدمة المحاماة</td><td>عن منصة المحامي الرقمية</td></tr>
+    <tr><td><code>/pillars/</code></td><td>أكواد القوانين المصرية PDF</td><td>المراجع التشريعية الكاملة - 19 قانون مصري</td><td>المراجع القانونية الشاملة</td></tr>
+    <tr><td><code>/features.html</code></td><td>مميزات برنامج محاماة</td><td>كل ما تحتاجه لإدارة مكتبك في مكان واحد</td><td>مميزات وخدمات المنصة</td></tr>
+  </table>
+
+  <h3 style="color: white; font-size: 18px; margin: 32px 0 12px;">6.4 Keyword Cannibalization Risk</h3>
+  <div class="disclaimer" style="background: rgba(249, 115, 22, 0.08); border-color: rgba(249, 115, 22, 0.3); color: #fdba74;">
+    <strong>⚠️ تحذير:</strong> صفحات <code>/blog/</code> و <code>/courts/</code> و <code>/pillars/</code> كلها تستهدف نفس الكلمات القانونية العامة (مثال: "قانون العمل"). هذا قد يسبب Keyword Cannibalization حيث تتنافس صفحاتك مع بعضها.
+  </div>
+  <div style="margin-top: 12px; color: var(--muted); font-size: 13px;">
+    <strong>التوصية:</strong> تحديد Primary Keyword واحد بدقة لكل صفحة + تمييز الـ Secondary Keywords.
+  </div>
+</div>
+
+<!-- Section 7: Priorities Table -->
+<div class="section" id="priorities">
+  <h2><span class="num">7</span> جدول الأولويات الشامل</h2>
+  <p class="desc">كل المشاكل مرتبة حسب الأولوية والتأثير على الترتيب</p>
+
+  <table>
+    <tr>
+      <th>الأولوية</th>
+      <th>المشكلة</th>
+      <th>URL</th>
+      <th>التأثير</th>
+      <th>طريقة الإصلاح</th>
+      <th>الثقة</th>
+    </tr>
+    <tr>
+      <td><span class="priority-badge priority-critical">Critical</span></td>
+      <td>H1 مكسور حرفياً</td>
+      <td><code>/pillars/</code></td>
+      <td>Google لا يفهم الصفحة</td>
+      <td>إصلاح متغير ${c.title}</td>
+      <td>عالية</td>
+    </tr>
+    <tr>
+      <td><span class="priority-badge priority-critical">Critical</span></td>
+      <td>Thin content (322-406 كلمات)</td>
+      <td>4 صفحات ثابتة</td>
+      <td>ضعف الترتيب</td>
+      <td>توسيع المحتوى لـ 800+ كلمة</td>
+      <td>عالية</td>
+    </tr>
+    <tr>
+      <td><span class="priority-badge priority-high">High</span></td>
+      <td>2 H1 في Homepage</td>
+      <td><code>/</code></td>
+      <td>خلط دلالي</td>
+      <td>إزالة H1 الثاني</td>
+      <td>عالية</td>
+    </tr>
+    <tr>
+      <td><span class="priority-badge priority-high">High</span></td>
+      <td>4 صفحات بدون JSON-LD</td>
+      <td>About, Features, Pricing, Contact</td>
+      <td>فقدان Rich snippets</td>
+      <td>إضافة Organization + WebPage schema</td>
+      <td>عالية</td>
+    </tr>
+    <tr>
+      <td><span class="priority-badge priority-high">High</span></td>
+      <td>Blog posts بدون H3</td>
+      <td>211 blog posts</td>
+      <td>بنية هرمية ناقصة</td>
+      <td>إضافة H3 لتقسيم المحتوى</td>
+      <td>عالية</td>
+    </tr>
+    <tr>
+      <td><span class="priority-badge priority-high">High</span></td>
+      <td>لا يوجد LocalBusiness schema</td>
+      <td><code>/</code></td>
+      <td>فقدان Local Pack</td>
+      <td>إضافة schema مع NAP</td>
+      <td>عالية</td>
+    </tr>
+    <tr>
+      <td><span class="priority-badge priority-medium">Medium</span></td>
+      <td>Description ناقصة</td>
+      <td><code>/contact.html</code> (106c)</td>
+      <td>CTR منخفض</td>
+      <td>توسيع لـ 150-160 chars</td>
+      <td>عالية</td>
+    </tr>
+    <tr>
+      <td><span class="priority-badge priority-medium">Medium</span></td>
+      <td>Sitemap واحد كبير (122KB)</td>
+      <td><code>/sitemap.xml</code></td>
+      <td>إدارة أصعب عند النمو</td>
+      <td>sitemap index + sitemaps فرعية</td>
+      <td>متوسطة</td>
+    </tr>
+    <tr>
+      <td><span class="priority-badge priority-medium">Medium</span></td>
+      <td>لا توجد Authors pages</td>
+      <td>/authors/</td>
+      <td>E-E-A-T ضعيف</td>
+      <td>إنشاء صفحات مخصصين</td>
+      <td>عالية</td>
+    </tr>
+    <tr>
+      <td><span class="priority-badge priority-medium">Medium</span></td>
+      <td>لا FAQ schema</td>
+      <td>كل الصفحات</td>
+      <td>فقدان FAQ snippets</td>
+      <td>إضافة FAQ schema</td>
+      <td>عالية</td>
+    </tr>
+    <tr>
+      <td><span class="priority-badge priority-low">Low</span></td>
+      <td>لا توجد Service schema</td>
+      <td>صفحات الخدمات</td>
+      <td>فقدان Service snippets</td>
+      <td>إضافة Service schema</td>
+      <td>متوسطة</td>
+    </tr>
+    <tr>
+      <td><span class="priority-badge priority-low">Low</span></td>
+      <td>Twitter Cards محدودة</td>
+      <td>بعض الصفحات</td>
+      <td>مظهر أقل في Twitter</td>
+      <td>توسيع OG لكل صفحة</td>
+      <td>عالية</td>
+    </tr>
+  </table>
+</div>
+
+<!-- Section 8: Top 10 Actions -->
+<div class="section" id="actions">
+  <h2><span class="num">8</span> أول 10 إجراءات يجب تنفيذها الآن</h2>
+  <p class="desc">ترتيب حسب الأولوية — ابدأ من 1</p>
+
+  <div class="action-list">
+    <div class="action-item">
+      <div class="title">إصلاح ${c.title} و ${totalCount} في /pillars/</div>
+      <div class="meta">الوقت المتوقع: 30 دقيقة — تأثير: حرج على ترتيب /pillars/ (20 صفحة)</div>
+    </div>
+    <div class="action-item">
+      <div class="title">إزالة H1 المكرر في Homepage</div>
+      <div class="meta">الوقت المتوقع: 5 دقائق — تأثير: تحسين دلالات الصفحة الرئيسية</div>
+    </div>
+    <div class="action-item">
+      <div class="title">توسيع /about.html لـ 800+ كلمة</div>
+      <div class="meta">الوقت المتوقع: 1 ساعة — تأثير: تحسين E-E-A-T وترتيب الصفحة</div>
+    </div>
+    <div class="action-item">
+      <div class="title">توسيع /features.html لـ 800+ كلمة</div>
+      <div class="meta">الوقت المتوقع: 1 ساعة — تأثير: تحويل صفحة Features لصفحة قوية</div>
+    </div>
+    <div class="action-item">
+      <div class="title">توسيع /pricing.html لـ 800+ كلمة</div>
+      <div class="meta">الوقت المتوقع: 1 ساعة — تأثير: تعزيز الكلمات المفتاحية للأسعار</div>
+    </div>
+    <div class="action-item">
+      <div class="title">توسيع /contact.html لـ 800+ كلمة مع NAP كامل</div>
+      <div class="meta">الوقت المتوقع: 1 ساعة — تأثير: Local SEO + E-E-A-T</div>
+    </div>
+    <div class="action-item">
+      <div class="title">إضافة Organization + WebPage schema لـ 4 صفحات</div>
+      <div class="meta">الوقت المتوقع: 1 ساعة — تأثير: Rich snippets في نتائج البحث</div>
+    </div>
+    <div class="action-item">
+      <div class="title">إضافة LocalBusiness schema في Homepage</div>
+      <div class="meta">الوقت المتوقع: 30 دقيقة — تأثير: الظهور في Local Pack</div>
+    </div>
+    <div class="action-item">
+      <div class="title">إضافة H3 في blog posts (عينة 10)</div>
+      <div class="meta">الوقت المتوقع: 2 ساعة — تأثير: بنية هرمية صحيحة + Featured snippets</div>
+    </div>
+    <div class="action-item">
+      <div class="title">تشغيل Google PageSpeed Insights وحفظ التقرير</div>
+      <div class="meta">الوقت المتوقع: 15 دقيقة — تأثير: قياس Core Web Vitals كأساس للمخطط اللاحق</div>
+    </div>
+  </div>
+</div>
+
+<!-- Section 9: Action Plan -->
+<div class="section" id="plan">
+  <h2><span class="num">9</span> خطة العمل 30/60/90 يوم</h2>
+  <p class="desc">خطة مرحلية لتطبيق الإصلاحات</p>
+
+  <h3 style="color: white; font-size: 18px; margin: 24px 0 12px;">📅 خطة 30 يوم (المرحلة 1 + 2)</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="when">الأسبوع 1</div>
+      <div class="what">إصلاحات حرجة: إصلاح H1 في /pillars/، إزالة H1 المكرر، توسيع Thin Content</div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">الأسبوع 2</div>
+      <div class="what">Structured Data: إضافة Organization + WebPage + LocalBusiness schema</div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">الأسبوع 3</div>
+      <div class="what">On-Page: تحسين Title Tags و Descriptions، Keyword Map نهائي</div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">الأسبوع 4</div>
+      <div class="what">Core Web Vitals: قياس PageSpeed + تحسين الصور + Lazy Loading</div>
+    </div>
+  </div>
+
+  <h3 style="color: white; font-size: 18px; margin: 32px 0 12px;">📅 خطة 60 يوم (المرحلة 3 + 4)</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="when">الشهر 2 (أسابيع 5-6)</div>
+      <div class="what">Content: كتابة 8-12 blog posts جديدة باستهداف Long-tail keywords</div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">الشهر 2 (أسابيع 7-8)</div>
+      <div class="what">Internal Linking: ربط كل blog post بـ pillar مرتبط + تحسين الـ silo structure</div>
+    </div>
+  </div>
+
+  <h3 style="color: white; font-size: 18px; margin: 32px 0 12px;">📅 خطة 90 يوم (المرحلة 5 + 6)</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="when">الشهر 3 (أسابيع 9-10)</div>
+      <div class="what">Authority: Backlink outreach لـ 20 موقع قانوني مصري، بناء E-E-A-T</div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">الشهر 3 (أسابيع 11-12)</div>
+      <div class="what">Monitoring: GSC setup، مراقبة الترتيب، تحليل الـ CTR</div>
+    </div>
+    <div class="timeline-item">
+      <div class="when">الشهر 3 (آخر أسبوع)</div>
+      <div class="what">Audit جديد: إعادة الفحص بعد 90 يوم، قياس التحسن</div>
+    </div>
+  </div>
+</div>
+
+<div class="disclaimer">
+  <strong>⚠️ ملاحظات منهجية هامة:</strong>
+  <ol style="margin-top: 12px; padding-right: 24px; line-height: 1.9;">
+    <li>جميع القياسات في هذا التقرير مبنية على <strong>فحص آلي مباشر</strong> لـ HTTP responses، sitemap، HTML content، و HTTP headers.</li>
+    <li><strong>ما لم يتم قياسه:</strong> Core Web Vitals، Search Volume الحقيقي، Backlinks، بيانات Google Search Console — يحتاج أدوات خارجية.</li>
+    <li>الصفحات التي لم أفحصها بالتفصيل (privacy.html، terms.html، legal-radar.html) مذكورة لكن لم تخضع لتحليل on-page كامل.</li>
+    <li>لم يتم قياس 565 URL بالكامل — ركزت على الصفحات الرئيسية والعينات التمثيلية.</li>
+    <li><strong>التركيز الموصى به:</strong> ابدأ بالمشاكل الحرجة (إصلاح H1 + توسيع Thin Content) — أكبر تأثير في أقل وقت.</li>
+  </ol>
+</div>
+
+<div class="footer">
+  <p><strong>منصة المحامي الرقمية</strong> — تقرير تدقيق SEO احترافي</p>
+  <p>mohamidigital.online | © 2026 جميع الحقوق محفوظة</p>
+  <p style="margin-top: 12px; color: var(--primary);">تم إعداد هذا التقرير بتاريخ 21 سبتمبر 2026</p>
+</div>
+
+</div>
+</body>
+</html>

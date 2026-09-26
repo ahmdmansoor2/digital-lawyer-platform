@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>شهادة إيجابية بالاستعلام عن قضايا - نيابة الأسرة</title>
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 10mm;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, "Simplified Arabic", "Times New Roman", sans-serif;
+      color: #000;
+      background-color: #f1f5f9;
+      padding: 20px 0;
+      direction: rtl;
+    }
+    .page-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: #fff;
+      padding: 12mm 14mm 10mm;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .page-sheet {
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        box-shadow: none;
+        padding: 8mm 10mm 6mm;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+
+    /* الإطار الخارجي الأسود المطابق تماماً للشهادة الأصلية */
+    .outer-border {
+      border: 1.5px solid #000;
+      min-height: 272mm;
+      padding: 10mm 10mm 6mm;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* العلامة المائية في المنتصف */
+    .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      height: 320px;
+      opacity: 0.05;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .header-top-version {
+      text-align: left;
+      font-size: 11px;
+      font-family: Arial, sans-serif;
+      color: #333;
+      margin-bottom: 2px;
+      direction: ltr;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .header-right {
+      text-align: right;
+      line-height: 1.45;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .header-right .sub {
+      font-size: 13px;
+      font-weight: normal;
+    }
+    .header-left img {
+      width: 85px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .doc-title {
+      text-align: center;
+      font-size: 19px;
+      font-weight: 900;
+      margin: 10px 0 16px;
+      text-decoration: underline;
+      letter-spacing: 0.5px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .meta-section {
+      font-size: 13.5px;
+      line-height: 1.9;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .meta-line {
+      display: flex;
+      justify-content: flex-start;
+      gap: 30px;
+    }
+    .bold-val {
+      font-weight: bold;
+    }
+
+    /* جدول القضايا المطابق */
+    table.cases-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.5px;
+      text-align: center;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+      border: 1.5px solid #000;
+    }
+    table.cases-table th, table.cases-table td {
+      border: 1px solid #000;
+      padding: 5px 3px;
+      vertical-align: middle;
+      line-height: 1.35;
+    }
+    table.cases-table th {
+      font-weight: bold;
+      background-color: #fff;
+    }
+    .col-m { width: 3.5%; }
+    .col-num { width: 8.5%; }
+    .col-year { width: 6.5%; }
+    .col-type { width: 9%; }
+    .col-date { width: 10%; }
+    .col-p1 { width: 14%; }
+    .col-p2 { width: 14%; }
+    .col-req { width: 13%; }
+    .col-court { width: 10.5%; }
+    .col-status { width: 7.5%; }
+    .col-lastdate { width: 7.5%; }
+
+    .footer-notes {
+      font-size: 13px;
+      line-height: 1.8;
+      margin-top: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .system-bar {
+      font-size: 10.5px;
+      color: #333;
+      display: flex;
+      justify-content: space-between;
+      border-top: 0.5px solid #aaa;
+      padding-top: 4px;
+      margin-top: auto;
+      direction: ltr;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* شريط أدوات الطباعة والتحكم المكتبي */
+    .toolbar {
+      max-width: 210mm;
+      margin: 0 auto 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e293b;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 8px;
+    }
+    .btn-print {
+      background: #06b6d4;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .btn-print:hover { background: #22d3ee; }
+    [contenteditable="true"]:hover {
+      outline: 1px dashed #3b82f6;
+      background: rgba(59,130,246,0.03);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar no-print">
+    <div>
+      <strong>قالب شهادة استعلام عن قضايا (نيابة الأسرة)</strong> — انقر على أي نص أو خلية للتعديل المباشر
+    </div>
+    <button class="btn-print" onclick="window.print()">🖨️ طباعة / حفظ كـ PDF</button>
+  </div>
+
+  <div class="page-sheet">
+    <div class="header-top-version">Version 31/12/2023</div>
+    
+    <div class="outer-border">
+      
+      <!-- شعار مائي خفيف في الخلفية -->
+      <svg class="watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M12 3v18M3 9l9-6 9 6M6 14l-3-5h6l-3 5zm12 0l-3-5h6l-3 5zM4 21h16" />
+      </svg>
+
+      <div class="content-body">
+        <!-- الترويسة العليا -->
+        <div class="header-row">
+          <div class="header-right" contenteditable="true">
+            <div>نيابة  الاسكندرية الكلية لشئون الاسرة</div>
+            <div>الدخيلة الجزئية لشئون الاسرة</div>
+            <div class="sub">(ولاية على النفس)</div>
+          </div>
+          <div class="header-left">
+            <img src="prosecution_logo.png" alt="شعار النيابة العامة" />
+          </div>
+        </div>
+
+        <!-- عنوان الشهادة -->
+        <div class="doc-title" contenteditable="true">
+          شهاده إيجابيه بالاستعلام عن قضايا
+        </div>
+
+        <!-- بيانات المستعلم والبحث -->
+        <div class="meta-section" contenteditable="true">
+          <div class="meta-line">
+            <div>بناء على الطلب المقدم من / <span class="bold-val">مبروك نصر سعد البمبى</span></div>
+            <div>رقم قومى / <span class="bold-val">28609141701312</span></div>
+          </div>
+          <div>والراغب اعطاؤه شهادة بالاستعلام عن قضايا تبين الآتى :</div>
+          <div>بالبحث على الحاسب الآلى بالقضايا المسجله بالرقم القومى / <span class="bold-val">28609141701312</span></div>
+          <div class="meta-line">
+            <div>من تاريخ <span class="bold-val">2017-01-01</span></div>
+            <div>الى تاريخ <span class="bold-val">2025-08-23</span></div>
+          </div>
+          <div style="font-size: 12.5px; color: #222;">وتم الاستعلام بالرقم القومى فقط دون ادنى مسئولية على النيابة</div>
+          <div style="margin-top: 4px;">وقد استدل على قيد دعاوى سالف الذكر :</div>
+        </div>
+
+        <!-- جدول القضايا -->
+        <table class="cases-table" contenteditable="true">
+          <thead>
+            <tr>
+              <th class="col-m">م</th>
+              <th class="col-num">رقم الدعوى</th>
+              <th class="col-year">السنة</th>
+              <th class="col-type">نوع الدعوى</th>
+              <th class="col-date">تاريخ القيد</th>
+              <th class="col-p1">طرف أول</th>
+              <th class="col-p2">طرف ثاني</th>
+              <th class="col-req">نوع الطلب</th>
+              <th class="col-court">اسم النيابه</th>
+              <th class="col-status">موقف آخر جلسه</th>
+              <th class="col-lastdate">تاريخ آخر جلسه</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>278</td>
+              <td>2022</td>
+              <td>أسرة متنوع</td>
+              <td>2022/01/29</td>
+              <td>مبروك نصر سعد البمبى</td>
+              <td>هانم عادل السيد</td>
+              <td>رؤية صغار</td>
+              <td>الدخيلة الجزئية لشئون الاسرة</td>
+              <td>رفض الدعوى</td>
+              <td>27-04-2022</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>1599</td>
+              <td>2022</td>
+              <td>أسرة متنوع</td>
+              <td>2022/06/08</td>
+              <td>نصر سعد شبل</td>
+              <td>مبروك نصر سعد البمبى</td>
+              <td>نفقة أقارب</td>
+              <td>الدخيلة الجزئية لشئون الاسرة</td>
+              <td>حكم قطعى</td>
+              <td>26-07-2022</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>1600</td>
+              <td>2022</td>
+              <td>أسرة متنوع</td>
+              <td>2022/06/08</td>
+              <td>ساميه محمد احمد</td>
+              <td>مبروك نصر سعد البمبى</td>
+              <td>نفقة أقارب</td>
+              <td>الدخيلة الجزئية لشئون الاسرة</td>
+              <td>حكم قطعى</td>
+              <td>26-07-2022</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>3867</td>
+              <td>2022</td>
+              <td>أسرة متنوع</td>
+              <td>2022/12/25</td>
+              <td>مبروك نصر سعد البمبى<br>ساميه محمد احمد</td>
+              <td>هانم عادل السيد<br>حسنه احمد ابراهيم</td>
+              <td>ضم صغار للجدة للأب - سقوط حضانة</td>
+              <td>الدخيلة الجزئية لشئون الاسرة</td>
+              <td>حكم قطعى</td>
+              <td>22-06-2023</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- بيانات القيد والسداد والرسوم -->
+        <div class="footer-notes" contenteditable="true">
+          <div style="text-align: right; margin-bottom: 3px;">حررت هذه الصورة بناء على الطلب</div>
+          <div style="text-align: right; margin-bottom: 3px;">بالقسيمة رقم <span class="bold-val">24777</span></div>
+          <div style="display: flex; justify-content: flex-start; gap: 40px; margin-bottom: 3px;">
+            <div>وقيدت برقم صور <span class="bold-val">3139-2025</span></div>
+            <div>بتاريخ <span class="bold-val">2025/08/23</span></div>
+            <div>رقم طلب الاستخراج <span class="bold-val">2025/21004</span></div>
+          </div>
+          <div>بعد سداد الرسوم المقرره برقم مدفوعة <span class="bold-val">8713106513121855243</span></div>
+        </div>
+      </div>
+
+      <!-- شريط النظام أسفل الصفحة -->
+      <div class="system-bar" contenteditable="true">
+        <div>family03.pgo.local/10 :رقم الجهاز</div>
+        <div>1 صفحه رقم 2 من</div>
+        <div>null</div>
+        <div>23/08/2025 9:15 AM تاريخ</div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
