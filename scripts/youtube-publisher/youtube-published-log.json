@@ -2168,6 +2168,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1070122796025839",
       "publishedAt": "2026-09-26T11:20:01.549Z"
+    },
+    {
+      "topicId": "blog-divorce-for-harm-conditions-proof-and-financial-rights",
+      "kind": "short",
+      "videoId": "3e4j9JBUPmg",
+      "url": "https://www.youtube.com/watch?v=3e4j9JBUPmg",
+      "fbPermalink": "https://www.facebook.com/reel/1117931663918655",
+      "publishedAt": "2026-09-26T16:20:07.307Z"
+    },
+    {
+      "topicId": "blog-divorce-for-harm-conditions-proof-and-financial-rights",
+      "title": "دعوى الطلاق للضرر في القانون المصري: الشروط الإجرائية، طرق الإثبات، وحقوق الزوجة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-divorce-for-harm-conditions-proof-and-financial-rights-wide.mp4",
+      "source": "blog",
+      "videoId": "GlkgKAiD6D0",
+      "url": "https://www.youtube.com/watch?v=GlkgKAiD6D0",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1117931663918655",
+      "publishedAt": "2026-09-26T16:20:35.800Z"
     }
   ]
 }
