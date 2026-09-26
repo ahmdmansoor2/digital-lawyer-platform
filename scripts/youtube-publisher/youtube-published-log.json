@@ -2187,6 +2187,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1117931663918655",
       "publishedAt": "2026-09-26T16:20:35.800Z"
+    },
+    {
+      "topicId": "blog-trust-receipt-validity-conditions-and-defenses-egypt",
+      "kind": "short",
+      "videoId": "tdY60gsBLD8",
+      "url": "https://www.youtube.com/watch?v=tdY60gsBLD8",
+      "fbPermalink": "https://www.facebook.com/reel/1783116899623891",
+      "publishedAt": "2026-09-26T21:05:32.600Z"
+    },
+    {
+      "topicId": "blog-trust-receipt-validity-conditions-and-defenses-egypt",
+      "title": "شروط صحة إيصال الأمانة في القانون المصري وثغرات البراءة القانونية — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-trust-receipt-validity-conditions-and-defenses-egypt-wide.mp4",
+      "source": "blog",
+      "videoId": "am5STTXAgFs",
+      "url": "https://www.youtube.com/watch?v=am5STTXAgFs",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1783116899623891",
+      "publishedAt": "2026-09-26T21:06:02.669Z"
     }
   ]
 }
