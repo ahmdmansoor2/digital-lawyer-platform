@@ -15,7 +15,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import LicenseActivation from './components/LicenseActivation';
 import PrintPageFallback from './components/PrintPageFallback';
-import AppLayout from './components/AppLayout';
+const AppLayout = React.lazy(() => import('./components/AppLayout'));
 import InfoCenter from './components/InfoCenter';
 import { useAuth } from './contexts/AuthContext';
 import { OfficeProfileProvider, useOfficeProfile } from './contexts/OfficeProfileContext';
@@ -882,8 +882,16 @@ clients: true,
   }
 
   return (
-    <AppLayout
-      onShowInfoCenter={() => setPostLoginView('info-center')}
+    <React.Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-slate-950 text-slate-300" dir="rtl">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+          <p className="text-sm font-bold">جاري تجهيز مساحة العمل...</p>
+        </div>
+      </div>
+    }>
+      <AppLayout
+        onShowInfoCenter={() => setPostLoginView('info-center')}
       // ─── Data ───────────────────────────────────────────────────────
       cases={cases}
       clients={clients}
@@ -986,5 +994,6 @@ clients: true,
       onLinkLegalReference={handleLinkLegalReference}
       onLicenseDeactivated={handleLicenseDeactivated}
     />
+    </React.Suspense>
   );
 }

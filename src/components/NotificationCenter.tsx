@@ -52,29 +52,38 @@ export default function NotificationCenter() {
   const [pushMsg, setPushMsg] = useState('');
   const panelRef = useRef<HTMLDivElement>(null);
 
-  // تحميل مؤجل للفهرس + تهيئة خط الأساس في أول زيارة
+  // تحميل مؤجل للفهرس (بعد 3.5 ثوانٍ أو عند فتح النافذة فوراً) حتى لا يعطل تحميل الصفحة الأولي
   useEffect(() => {
     let alive = true;
-    loadSearchIndex().then(idx => {
-      if (!alive) return;
-      setIndexData(idx);
-      const prev = readSeen();
-      if (!prev.__seeded && Object.keys(prev).length === 0) {
-        // أول زيارة: علّم الكل كمقروء دون شارة، وابدأ الرصد من الآن
-        const map: Record<string, 1> = { __seeded: 1 };
-        idx.items.forEach(i => (map[i.id] = 1));
-        writeSeen(map);
-        setSeen(map);
-        setSeeded(false); // لا شارة أول زيارة
-      } else {
-        setSeen(prev);
-        setSeeded(true);
-      }
-    }).catch(() => {});
+    const fetchIndex = () => {
+      loadSearchIndex().then(idx => {
+        if (!alive) return;
+        setIndexData(idx);
+        const prev = readSeen();
+        if (!prev.__seeded && Object.keys(prev).length === 0) {
+          const map: Record<string, 1> = { __seeded: 1 };
+          idx.items.forEach(i => (map[i.id] = 1));
+          writeSeen(map);
+          setSeen(map);
+          setSeeded(false);
+        } else {
+          setSeen(prev);
+          setSeeded(true);
+        }
+      }).catch(() => {});
+    };
+
+    if (open) {
+      fetchIndex();
+    } else {
+      const timer = setTimeout(fetchIndex, 3500);
+      return () => { alive = false; clearTimeout(timer); };
+    }
+
     getVapid().then(v => { if (alive) setVapid(v); });
     try { setPushOn(Notification.permission === 'granted' && !!localStorage.getItem('mohami_push_token')); } catch {}
     return () => { alive = false; };
-  }, []);
+  }, [open]);
 
   const freshItems = useMemo(() => {
     if (!indexData || !seeded) return [];

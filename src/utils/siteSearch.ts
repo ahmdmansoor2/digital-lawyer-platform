@@ -116,9 +116,19 @@ export function search(index: SearchIndex | null, q: string, limit = 12): Ranked
   return results.slice(0, limit);
 }
 
-/** تحميل فهرس الموقع (مرة واحدة، مع تخزين مؤقت خارجي اختياري) */
+let _cachedSearchIndexPromise: Promise<SearchIndex> | null = null;
+
+/** تحميل فهرس الموقع مع تخزين مؤقت في الذاكرة لتفادي إعادة التنزيل المتكررة */
 export async function loadSearchIndex(): Promise<SearchIndex> {
-  const r = await fetch('/search-index.json?t=' + Date.now());
-  if (!r.ok) throw new Error('HTTP ' + r.status);
-  return r.json() as Promise<SearchIndex>;
+  if (_cachedSearchIndexPromise) return _cachedSearchIndexPromise;
+  _cachedSearchIndexPromise = fetch('/search-index.json')
+    .then((r) => {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json() as Promise<SearchIndex>;
+    })
+    .catch((err) => {
+      _cachedSearchIndexPromise = null;
+      throw err;
+    });
+  return _cachedSearchIndexPromise;
 }

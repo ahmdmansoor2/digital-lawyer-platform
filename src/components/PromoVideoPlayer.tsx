@@ -118,7 +118,7 @@ export default function PromoVideoPlayer({ onEnterApp }: { onEnterApp?: () => vo
             ref={videoRef}
             src="/media/promo_video.mp4"
             poster="/images/promo/presenter_talk.jpg"
-            preload="metadata"
+            preload="none"
             playsInline
             onTimeUpdate={handleTimeUpdate}
             onEnded={() => setIsPlaying(false)}
