@@ -2301,6 +2301,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2161810724541510",
       "publishedAt": "2026-09-29T20:00:13.577Z"
+    },
+    {
+      "topicId": "blog-trial-period-rights",
+      "kind": "short",
+      "videoId": "Ksao5h0UIPc",
+      "url": "https://www.youtube.com/watch?v=Ksao5h0UIPc",
+      "fbPermalink": "https://www.facebook.com/reel/2136240540436726",
+      "publishedAt": "2026-09-30T12:29:34.518Z"
+    },
+    {
+      "topicId": "blog-trial-period-rights",
+      "title": "فترة التجربة في قانون العمل المصري: دليل شامل لحقوق الموظف وضمانات صاحب العمل — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-trial-period-rights-wide.mp4",
+      "source": "blog",
+      "videoId": "eCj2M8hHQwA",
+      "url": "https://www.youtube.com/watch?v=eCj2M8hHQwA",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2136240540436726",
+      "publishedAt": "2026-09-30T12:30:08.233Z"
     }
   ]
 }
