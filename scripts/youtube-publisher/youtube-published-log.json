@@ -2320,6 +2320,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2136240540436726",
       "publishedAt": "2026-09-30T12:30:08.233Z"
+    },
+    {
+      "topicId": "blog-rent-increase-egypt",
+      "kind": "short",
+      "videoId": "wSAf73QIPkg",
+      "url": "https://www.youtube.com/watch?v=wSAf73QIPkg",
+      "fbPermalink": "https://www.facebook.com/reel/2955235101479022",
+      "publishedAt": "2026-09-30T19:59:12.146Z"
+    },
+    {
+      "topicId": "blog-rent-increase-egypt",
+      "title": "زيادة الأجرة في القانون المصري: الدليل القانوني الشامل للملاك والمستأجرين — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-rent-increase-egypt-wide.mp4",
+      "source": "blog",
+      "videoId": "PP2p_05TH-o",
+      "url": "https://www.youtube.com/watch?v=PP2p_05TH-o",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2955235101479022",
+      "publishedAt": "2026-09-30T19:59:38.943Z"
     }
   ]
 }
