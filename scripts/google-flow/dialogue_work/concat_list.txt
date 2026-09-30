@@ -1,0 +1,2 @@
+file 'D:/قانوني 7/scripts/google-flow/dialogue_work/scene1_rendered.mp4'
+file 'D:/قانوني 7/scripts/google-flow/dialogue_work/scene2_rendered.mp4'
