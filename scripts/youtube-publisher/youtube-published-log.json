@@ -2358,6 +2358,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1167765002577207",
       "publishedAt": "2026-10-01T13:04:40.066Z"
+    },
+    {
+      "topicId": "blog-power-of-attorney-egypt",
+      "kind": "short",
+      "videoId": "Lu0EbK40vyo",
+      "url": "https://www.youtube.com/watch?v=Lu0EbK40vyo",
+      "fbPermalink": "https://www.facebook.com/reel/3416004745250840",
+      "publishedAt": "2026-10-01T20:23:09.062Z"
+    },
+    {
+      "topicId": "blog-power-of-attorney-egypt",
+      "title": "التوكيل الرسمي في مصر: الدليل القانوني الشامل للأنواع والشروط والمخاطر وطرق الإل — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-power-of-attorney-egypt-wide.mp4",
+      "source": "blog",
+      "videoId": "eI2z1gIiWKc",
+      "url": "https://www.youtube.com/watch?v=eI2z1gIiWKc",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/3416004745250840",
+      "publishedAt": "2026-10-01T20:23:44.642Z"
     }
   ]
 }
