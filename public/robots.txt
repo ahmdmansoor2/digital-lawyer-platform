@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /search.html
+Disallow: /*?q=*
 
 # Microsoft Bing & Edge
 User-agent: Bingbot
