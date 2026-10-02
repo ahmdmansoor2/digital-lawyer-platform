@@ -2377,6 +2377,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/3416004745250840",
       "publishedAt": "2026-10-01T20:23:44.642Z"
+    },
+    {
+      "topicId": "blog-cheque-return-egypt",
+      "kind": "short",
+      "videoId": "ZooYx8rXvUk",
+      "url": "https://www.youtube.com/watch?v=ZooYx8rXvUk",
+      "fbPermalink": "https://www.facebook.com/reel/1115052280973428",
+      "publishedAt": "2026-10-02T12:26:10.051Z"
+    },
+    {
+      "topicId": "blog-cheque-return-egypt",
+      "title": "رجوع الشيك بدون رصيد: دليل التحصيل والعقوبات وطرق الحجز — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-cheque-return-egypt-wide.mp4",
+      "source": "blog",
+      "videoId": "hDb4qmmlApA",
+      "url": "https://www.youtube.com/watch?v=hDb4qmmlApA",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1115052280973428",
+      "publishedAt": "2026-10-02T12:26:37.149Z"
     }
   ]
 }
