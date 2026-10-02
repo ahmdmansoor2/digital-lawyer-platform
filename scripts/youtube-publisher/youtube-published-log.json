@@ -2396,6 +2396,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1115052280973428",
       "publishedAt": "2026-10-02T12:26:37.149Z"
+    },
+    {
+      "topicId": "blog-company-formation-egypt",
+      "kind": "short",
+      "videoId": "DkDazjoxWRk",
+      "url": "https://www.youtube.com/watch?v=DkDazjoxWRk",
+      "fbPermalink": "https://www.facebook.com/reel/3227517667432009",
+      "publishedAt": "2026-10-02T19:56:26.843Z"
+    },
+    {
+      "topicId": "blog-company-formation-egypt",
+      "title": "تأسيس شركة في مصر: أنواع الشركات واختلافاتها وأفضل اختيار لعملك — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-company-formation-egypt-wide.mp4",
+      "source": "blog",
+      "videoId": "vaphuoZGQXQ",
+      "url": "https://www.youtube.com/watch?v=vaphuoZGQXQ",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/3227517667432009",
+      "publishedAt": "2026-10-02T19:57:08.437Z"
     }
   ]
 }
