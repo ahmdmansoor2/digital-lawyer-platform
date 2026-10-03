@@ -2453,6 +2453,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2088275105117583",
       "publishedAt": "2026-10-03T16:14:01.228Z"
+    },
+    {
+      "topicId": "blog-execution-judgments-egypt",
+      "kind": "short",
+      "videoId": "IAk8y6BetuY",
+      "url": "https://www.youtube.com/watch?v=IAk8y6BetuY",
+      "fbPermalink": "https://www.facebook.com/reel/1810980223425464",
+      "publishedAt": "2026-10-03T21:09:36.959Z"
+    },
+    {
+      "topicId": "blog-execution-judgments-egypt",
+      "title": "التنفيذ الجبري للأحكام في مصر: كيف تستوفي حقك بعد الحكم؟ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-execution-judgments-egypt-wide.mp4",
+      "source": "blog",
+      "videoId": "GvLe0PaLj1M",
+      "url": "https://www.youtube.com/watch?v=GvLe0PaLj1M",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1810980223425464",
+      "publishedAt": "2026-10-03T21:09:57.452Z"
     }
   ]
 }
