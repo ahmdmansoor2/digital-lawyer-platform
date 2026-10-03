@@ -2415,6 +2415,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/3227517667432009",
       "publishedAt": "2026-10-02T19:57:08.437Z"
+    },
+    {
+      "topicId": "blog-consumer-rights-egypt",
+      "kind": "short",
+      "videoId": "QdB_YADGrcE",
+      "url": "https://www.youtube.com/watch?v=QdB_YADGrcE",
+      "fbPermalink": "https://www.facebook.com/reel/1531581618787977",
+      "publishedAt": "2026-10-03T11:36:49.837Z"
+    },
+    {
+      "topicId": "blog-consumer-rights-egypt",
+      "title": "حقوق المستهلك في مصر: الدليل القانوني الشامل لاسترجاع السلعة المعيبة واسترداد حق — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-consumer-rights-egypt-wide.mp4",
+      "source": "blog",
+      "videoId": "e5S8WLTAV6o",
+      "url": "https://www.youtube.com/watch?v=e5S8WLTAV6o",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1531581618787977",
+      "publishedAt": "2026-10-03T11:37:17.732Z"
     }
   ]
 }
