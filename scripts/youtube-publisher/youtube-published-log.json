@@ -2434,6 +2434,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1531581618787977",
       "publishedAt": "2026-10-03T11:37:17.732Z"
+    },
+    {
+      "topicId": "blog-civil-marriage-contract",
+      "kind": "short",
+      "videoId": "lypgjMRMQng",
+      "url": "https://www.youtube.com/watch?v=lypgjMRMQng",
+      "fbPermalink": "https://www.facebook.com/reel/2088275105117583",
+      "publishedAt": "2026-10-03T16:13:26.981Z"
+    },
+    {
+      "topicId": "blog-civil-marriage-contract",
+      "title": "عقد الزواج المدني وخلافاته في القانون المصري: الدليل القانوني الشامل للأزواج وال — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-civil-marriage-contract-wide.mp4",
+      "source": "blog",
+      "videoId": "6MX5w04zsa0",
+      "url": "https://www.youtube.com/watch?v=6MX5w04zsa0",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2088275105117583",
+      "publishedAt": "2026-10-03T16:14:01.228Z"
     }
   ]
 }
