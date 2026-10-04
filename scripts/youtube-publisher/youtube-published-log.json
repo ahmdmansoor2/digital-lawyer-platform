@@ -2491,6 +2491,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2588895834927240",
       "publishedAt": "2026-10-04T12:17:40.903Z"
+    },
+    {
+      "topicId": "blog-divorce-procedures-egypt",
+      "kind": "short",
+      "videoId": "-Oy9kG-d78s",
+      "url": "https://www.youtube.com/watch?v=-Oy9kG-d78s",
+      "fbPermalink": "https://www.facebook.com/reel/2114155425842283",
+      "publishedAt": "2026-10-04T18:40:25.851Z"
+    },
+    {
+      "topicId": "blog-divorce-procedures-egypt",
+      "title": "إجراءات الطلاق في مصر: من التوثيق الودي إلى محكمة الأسرة خطوة بخطوة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-divorce-procedures-egypt-wide.mp4",
+      "source": "blog",
+      "videoId": "ONe-h-nFaZM",
+      "url": "https://www.youtube.com/watch?v=ONe-h-nFaZM",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2114155425842283",
+      "publishedAt": "2026-10-04T18:41:01.631Z"
     }
   ]
 }
