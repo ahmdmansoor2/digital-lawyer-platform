@@ -2472,6 +2472,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1810980223425464",
       "publishedAt": "2026-10-03T21:09:57.452Z"
+    },
+    {
+      "topicId": "blog-employment-contract-termination",
+      "kind": "short",
+      "videoId": "SrTs8oysPyE",
+      "url": "https://www.youtube.com/watch?v=SrTs8oysPyE",
+      "fbPermalink": "https://www.facebook.com/reel/2588895834927240",
+      "publishedAt": "2026-10-04T12:17:18.810Z"
+    },
+    {
+      "topicId": "blog-employment-contract-termination",
+      "title": "إنهاء عقد العمل في القانون المصري: الدليل الشامل للحقوق والالتزامات للعمال وأصحا — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-employment-contract-termination-wide.mp4",
+      "source": "blog",
+      "videoId": "W6GHUqEErwQ",
+      "url": "https://www.youtube.com/watch?v=W6GHUqEErwQ",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2588895834927240",
+      "publishedAt": "2026-10-04T12:17:40.903Z"
     }
   ]
 }
