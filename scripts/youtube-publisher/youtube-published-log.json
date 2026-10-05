@@ -2510,6 +2510,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2114155425842283",
       "publishedAt": "2026-10-04T18:41:01.631Z"
+    },
+    {
+      "topicId": "blog-inheritance-shares-egypt",
+      "kind": "short",
+      "videoId": "XyKifU0LhgU",
+      "url": "https://www.youtube.com/watch?v=XyKifU0LhgU",
+      "fbPermalink": "https://www.facebook.com/reel/1628677745297201",
+      "publishedAt": "2026-10-05T14:29:06.946Z"
+    },
+    {
+      "topicId": "blog-inheritance-shares-egypt",
+      "title": "الميراث في مصر: دليل شامل وفهم بسيط لقواعد أنصبة الورثة وقسمة التركة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-inheritance-shares-egypt-wide.mp4",
+      "source": "blog",
+      "videoId": "voDSGcsUG40",
+      "url": "https://www.youtube.com/watch?v=voDSGcsUG40",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1628677745297201",
+      "publishedAt": "2026-10-05T14:29:43.117Z"
     }
   ]
 }
