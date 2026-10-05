@@ -3799,6 +3799,27 @@
       "duration": "1د 0ث",
       "size": 20874033,
       "publishedAt": "2026-10-05T14:29:04.914Z"
+    },
+    {
+      "topicId": "blog-late-tenant-payment",
+      "title": "تأخر سداد الإيجار في القانون المصري: الإجراءات القانونية واستصدار حكم إخلاء",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#تعتبر",
+        "#العلاقة",
+        "#المالك"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-late-tenant-payment.mp4",
+      "videoId": "1645488216982589",
+      "permalink": "https://www.facebook.com/reel/1645488216982589",
+      "source": "blog",
+      "duration": "50ث",
+      "size": 15850196,
+      "publishedAt": "2026-10-05T22:01:44.388Z"
     }
   ]
 }

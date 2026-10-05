@@ -2529,6 +2529,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1628677745297201",
       "publishedAt": "2026-10-05T14:29:43.117Z"
+    },
+    {
+      "topicId": "blog-late-tenant-payment",
+      "kind": "short",
+      "videoId": "BVuezD4togI",
+      "url": "https://www.youtube.com/watch?v=BVuezD4togI",
+      "fbPermalink": "https://www.facebook.com/reel/1645488216982589",
+      "publishedAt": "2026-10-05T22:01:46.570Z"
+    },
+    {
+      "topicId": "blog-late-tenant-payment",
+      "title": "تأخر سداد الإيجار في القانون المصري: الإجراءات القانونية واستصدار حكم إخلاء — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-late-tenant-payment-wide.mp4",
+      "source": "blog",
+      "videoId": "UsaH59dYmFY",
+      "url": "https://www.youtube.com/watch?v=UsaH59dYmFY",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1645488216982589",
+      "publishedAt": "2026-10-05T22:02:15.658Z"
     }
   ]
 }
