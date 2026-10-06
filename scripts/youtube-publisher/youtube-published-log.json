@@ -2567,6 +2567,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1405665551735644",
       "publishedAt": "2026-10-06T13:17:41.016Z"
+    },
+    {
+      "topicId": "blog-courtroom-advocacy",
+      "kind": "short",
+      "videoId": "PFKaI3KCPEg",
+      "url": "https://www.youtube.com/watch?v=PFKaI3KCPEg",
+      "fbPermalink": "https://www.facebook.com/reel/2170023106966261",
+      "publishedAt": "2026-10-06T20:13:59.422Z"
+    },
+    {
+      "topicId": "blog-courtroom-advocacy",
+      "title": "فن المرافعة أمام المحاكم: دليلك الشامل للاحتراف — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-courtroom-advocacy-wide.mp4",
+      "source": "blog",
+      "videoId": "V5eGuc_xBjc",
+      "url": "https://www.youtube.com/watch?v=V5eGuc_xBjc",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2170023106966261",
+      "publishedAt": "2026-10-06T20:14:28.765Z"
     }
   ]
 }

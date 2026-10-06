@@ -3841,6 +3841,27 @@
       "duration": "1د 3ث",
       "size": 16355017,
       "publishedAt": "2026-10-06T13:17:03.510Z"
+    },
+    {
+      "topicId": "blog-courtroom-advocacy",
+      "title": "فن المرافعة أمام المحاكم: دليلك الشامل للاحتراف",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#المرافعة",
+        "#قراءة",
+        "#مذكرة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-courtroom-advocacy.mp4",
+      "videoId": "2170023106966261",
+      "permalink": "https://www.facebook.com/reel/2170023106966261",
+      "source": "blog",
+      "duration": "47ث",
+      "size": 16945716,
+      "publishedAt": "2026-10-06T20:13:57.370Z"
     }
   ]
 }
