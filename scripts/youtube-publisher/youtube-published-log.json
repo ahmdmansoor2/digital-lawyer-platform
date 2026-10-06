@@ -2548,6 +2548,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1645488216982589",
       "publishedAt": "2026-10-05T22:02:15.658Z"
+    },
+    {
+      "topicId": "blog-law-firm-marketing",
+      "kind": "short",
+      "videoId": "I1gv727EGRo",
+      "url": "https://www.youtube.com/watch?v=I1gv727EGRo",
+      "fbPermalink": "https://www.facebook.com/reel/1405665551735644",
+      "publishedAt": "2026-10-06T13:17:05.814Z"
+    },
+    {
+      "topicId": "blog-law-firm-marketing",
+      "title": "التسويق لمكتب المحاماة: كيف تجذب موكلك بدون إعلانات مكلفة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-law-firm-marketing-wide.mp4",
+      "source": "blog",
+      "videoId": "aB8JD7xE_-Q",
+      "url": "https://www.youtube.com/watch?v=aB8JD7xE_-Q",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1405665551735644",
+      "publishedAt": "2026-10-06T13:17:41.016Z"
     }
   ]
 }

@@ -3820,6 +3820,27 @@
       "duration": "50ث",
       "size": 15850196,
       "publishedAt": "2026-10-05T22:01:44.388Z"
+    },
+    {
+      "topicId": "blog-law-firm-marketing",
+      "title": "التسويق لمكتب المحاماة: كيف تجذب موكلك بدون إعلانات مكلفة",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#المحامي",
+        "#قانونية",
+        "#ممتازة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-law-firm-marketing.mp4",
+      "videoId": "1405665551735644",
+      "permalink": "https://www.facebook.com/reel/1405665551735644",
+      "source": "blog",
+      "duration": "1د 3ث",
+      "size": 16355017,
+      "publishedAt": "2026-10-06T13:17:03.510Z"
     }
   ]
 }
