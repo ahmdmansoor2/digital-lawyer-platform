@@ -3883,6 +3883,27 @@
       "duration": "41ث",
       "size": 16697569,
       "publishedAt": "2026-10-07T13:14:27.344Z"
+    },
+    {
+      "topicId": "blog-case-management-guide",
+      "title": "الدليل الشامل لإدارة القضايا: من القيد إلى الحكم",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#إدارة",
+        "#القضايا",
+        "#الدليل"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-case-management-guide.mp4",
+      "videoId": "1151289673992398",
+      "permalink": "https://www.facebook.com/reel/1151289673992398",
+      "source": "blog",
+      "duration": "1د 6ث",
+      "size": 25044928,
+      "publishedAt": "2026-10-07T20:37:34.681Z"
     }
   ]
 }

@@ -2605,6 +2605,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1142801045072737",
       "publishedAt": "2026-10-07T13:14:56.831Z"
+    },
+    {
+      "topicId": "blog-case-management-guide",
+      "kind": "short",
+      "videoId": "ccIkhxIxX1o",
+      "url": "https://www.youtube.com/watch?v=ccIkhxIxX1o",
+      "fbPermalink": "https://www.facebook.com/reel/1151289673992398",
+      "publishedAt": "2026-10-07T20:37:38.222Z"
+    },
+    {
+      "topicId": "blog-case-management-guide",
+      "title": "الدليل الشامل لإدارة القضايا: من القيد إلى الحكم — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-case-management-guide-wide.mp4",
+      "source": "blog",
+      "videoId": "KiAvf5cnFhg",
+      "url": "https://www.youtube.com/watch?v=KiAvf5cnFhg",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1151289673992398",
+      "publishedAt": "2026-10-07T20:38:16.756Z"
     }
   ]
 }
