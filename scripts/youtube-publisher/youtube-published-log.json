@@ -2586,6 +2586,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2170023106966261",
       "publishedAt": "2026-10-06T20:14:28.765Z"
+    },
+    {
+      "topicId": "blog-tech-for-lawyers",
+      "kind": "short",
+      "videoId": "m0Y8j7Ga1p4",
+      "url": "https://www.youtube.com/watch?v=m0Y8j7Ga1p4",
+      "fbPermalink": "https://www.facebook.com/reel/1142801045072737",
+      "publishedAt": "2026-10-07T13:14:29.105Z"
+    },
+    {
+      "topicId": "blog-tech-for-lawyers",
+      "title": "التكنولوجيا القانونية: لماذا المحامي الذكي هو المحامي الناجح؟ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-tech-for-lawyers-wide.mp4",
+      "source": "blog",
+      "videoId": "q6NNo6gU6qw",
+      "url": "https://www.youtube.com/watch?v=q6NNo6gU6qw",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1142801045072737",
+      "publishedAt": "2026-10-07T13:14:56.831Z"
     }
   ]
 }
