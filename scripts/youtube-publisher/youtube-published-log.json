@@ -2643,6 +2643,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1074516652137568",
       "publishedAt": "2026-10-08T13:22:28.428Z"
+    },
+    {
+      "topicId": "demo-001",
+      "kind": "short",
+      "videoId": "R-162WKHr0o",
+      "url": "https://www.youtube.com/watch?v=R-162WKHr0o",
+      "fbPermalink": "https://www.facebook.com/reel/1819827842701994",
+      "publishedAt": "2026-10-08T20:42:40.273Z"
+    },
+    {
+      "topicId": "demo-001",
+      "title": "حقوقك في إجازة رعاية الطفل — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-demo-001-wide.mp4",
+      "source": "fb-log",
+      "videoId": "iPNl1l9haw0",
+      "url": "https://www.youtube.com/watch?v=iPNl1l9haw0",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1819827842701994",
+      "publishedAt": "2026-10-08T20:43:08.353Z"
     }
   ]
 }

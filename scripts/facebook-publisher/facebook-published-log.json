@@ -3925,6 +3925,26 @@
       "duration": "55ث",
       "size": 18869709,
       "publishedAt": "2026-10-08T13:21:53.588Z"
+    },
+    {
+      "topicId": "demo-001",
+      "title": "حقوقك في إجازة رعاية الطفل",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون عمالي",
+        "#إجازة",
+        "#رعاية الطفل"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-demo-001.mp4",
+      "videoId": "1819827842701994",
+      "permalink": "https://www.facebook.com/reel/1819827842701994",
+      "duration": "48ث",
+      "size": 14749606,
+      "publishedAt": "2026-10-08T20:42:38.778Z"
     }
   ]
 }
