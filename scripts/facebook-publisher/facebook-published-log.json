@@ -3904,6 +3904,27 @@
       "duration": "1د 6ث",
       "size": 25044928,
       "publishedAt": "2026-10-07T20:37:34.681Z"
+    },
+    {
+      "topicId": "blog-legal-practice-tips",
+      "title": "10 نصائح ذهبية لإدارة مكتب المحاماة باحترافية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#محامياً",
+        "#مبتدئاً",
+        "#النصائح"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-legal-practice-tips.mp4",
+      "videoId": "1074516652137568",
+      "permalink": "https://www.facebook.com/reel/1074516652137568",
+      "source": "blog",
+      "duration": "55ث",
+      "size": 18869709,
+      "publishedAt": "2026-10-08T13:21:53.588Z"
     }
   ]
 }

@@ -2624,6 +2624,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1151289673992398",
       "publishedAt": "2026-10-07T20:38:16.756Z"
+    },
+    {
+      "topicId": "blog-legal-practice-tips",
+      "kind": "short",
+      "videoId": "bYhRapAOno0",
+      "url": "https://www.youtube.com/watch?v=bYhRapAOno0",
+      "fbPermalink": "https://www.facebook.com/reel/1074516652137568",
+      "publishedAt": "2026-10-08T13:21:55.681Z"
+    },
+    {
+      "topicId": "blog-legal-practice-tips",
+      "title": "10 نصائح ذهبية لإدارة مكتب المحاماة باحترافية — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-legal-practice-tips-wide.mp4",
+      "source": "blog",
+      "videoId": "nmOBSGG2_VM",
+      "url": "https://www.youtube.com/watch?v=nmOBSGG2_VM",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1074516652137568",
+      "publishedAt": "2026-10-08T13:22:28.428Z"
     }
   ]
 }
