@@ -3945,6 +3945,26 @@
       "duration": "48ث",
       "size": 14749606,
       "publishedAt": "2026-10-08T20:42:38.778Z"
+    },
+    {
+      "topicId": "demo-002",
+      "title": "الفرق بين الطعن بالنقض والاستئناف",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#إجراءات قضائية",
+        "#نقض",
+        "#استئناف"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-demo-002.mp4",
+      "videoId": "1495880942512452",
+      "permalink": "https://www.facebook.com/reel/1495880942512452",
+      "duration": "1د 7ث",
+      "size": 23861264,
+      "publishedAt": "2026-10-09T13:09:28.226Z"
     }
   ]
 }

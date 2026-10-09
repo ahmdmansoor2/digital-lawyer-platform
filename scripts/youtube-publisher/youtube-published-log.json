@@ -2662,6 +2662,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1819827842701994",
       "publishedAt": "2026-10-08T20:43:08.353Z"
+    },
+    {
+      "topicId": "demo-002",
+      "kind": "short",
+      "videoId": "IsN_EiqKyk0",
+      "url": "https://www.youtube.com/watch?v=IsN_EiqKyk0",
+      "fbPermalink": "https://www.facebook.com/reel/1495880942512452",
+      "publishedAt": "2026-10-09T13:09:29.991Z"
+    },
+    {
+      "topicId": "demo-002",
+      "title": "الفرق بين الطعن بالنقض والاستئناف — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-demo-002-wide.mp4",
+      "source": "fb-log",
+      "videoId": "zrRENraFhms",
+      "url": "https://www.youtube.com/watch?v=zrRENraFhms",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1495880942512452",
+      "publishedAt": "2026-10-09T13:09:53.540Z"
     }
   ]
 }
