@@ -3965,6 +3965,26 @@
       "duration": "1د 7ث",
       "size": 23861264,
       "publishedAt": "2026-10-09T13:09:28.226Z"
+    },
+    {
+      "topicId": "demo-003",
+      "title": "متى يحق لك فسخ العقد من طرف واحد؟",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون مدني",
+        "#فسخ العقد",
+        "#إخلال"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-demo-003.mp4",
+      "videoId": "1418499366373237",
+      "permalink": "https://www.facebook.com/reel/1418499366373237",
+      "duration": "56ث",
+      "size": 14321883,
+      "publishedAt": "2026-10-09T20:07:57.142Z"
     }
   ]
 }

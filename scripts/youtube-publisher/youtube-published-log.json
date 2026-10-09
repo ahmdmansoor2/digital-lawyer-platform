@@ -2681,6 +2681,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1495880942512452",
       "publishedAt": "2026-10-09T13:09:53.540Z"
+    },
+    {
+      "topicId": "demo-003",
+      "kind": "short",
+      "videoId": "C1ySqOMnk2U",
+      "url": "https://www.youtube.com/watch?v=C1ySqOMnk2U",
+      "fbPermalink": "https://www.facebook.com/reel/1418499366373237",
+      "publishedAt": "2026-10-09T20:07:58.974Z"
+    },
+    {
+      "topicId": "demo-003",
+      "title": "متى يحق لك فسخ العقد من طرف واحد؟ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-demo-003-wide.mp4",
+      "source": "fb-log",
+      "videoId": "bsenVpLPjPo",
+      "url": "https://www.youtube.com/watch?v=bsenVpLPjPo",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1418499366373237",
+      "publishedAt": "2026-10-09T20:08:30.772Z"
     }
   ]
 }
