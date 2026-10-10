@@ -13,11 +13,6 @@
         "books/**"
       ],
       "redirects": [
-        {
-          "source": "https://www.mohamidigital.online/**",
-          "destination": "https://mohamidigital.online/:splat",
-          "type": 301
-        },
         { "source": "/lawyers-directory.htm", "destination": "/lawyers-directory.html", "type": 301 },
         { "source": "/features.htm", "destination": "/features.html", "type": 301 },
         { "source": "/about.htm", "destination": "/about.html", "type": 301 },
