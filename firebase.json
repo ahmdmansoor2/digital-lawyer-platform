@@ -402,6 +402,316 @@
           "source": "/blog/khula-laws-personal-status-egypt",
           "destination": "/blog/khula-divorce-lawsuit-procedures-and-dowry-return.html",
           "type": 301
+        },
+        {
+          "source": "/blog/Check-without-balance-penalties-egypt.html",
+          "destination": "/blog/bounced-check-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/Check-without-balance-penalties-egypt",
+          "destination": "/blog/bounced-check-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/debt-collection-egypt.html",
+          "destination": "/blog/bounced-check-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/debt-collection-egypt",
+          "destination": "/blog/bounced-check-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cyber-extortion-report-egypt.html",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cyber-extortion-report-egypt",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-reporting-egypt.html",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-reporting-egypt",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "destination": "/blog/cybercrime-defamation-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cyber-defamation-slander-laws-egypt",
+          "destination": "/blog/cybercrime-defamation-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/personal-data-protection-law.html",
+          "destination": "/blog/cybercrime-data-leaks-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/personal-data-protection-law",
+          "destination": "/blog/cybercrime-data-leaks-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/data-protection-egypt.html",
+          "destination": "/blog/cybercrime-data-leaks-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/data-protection-egypt",
+          "destination": "/blog/cybercrime-data-leaks-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/foreign-currency-illegal-trading-egypt.html",
+          "destination": "/blog/foreign-currency-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/foreign-currency-illegal-trading-egypt",
+          "destination": "/blog/foreign-currency-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/official-holidays-labor-rights-egypt.html",
+          "destination": "/blog/official-holidays-labor-law-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/official-holidays-labor-rights-egypt",
+          "destination": "/blog/official-holidays-labor-law-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/official-holidays-overtime-labor-law-egypt.html",
+          "destination": "/blog/official-holidays-labor-law-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/official-holidays-overtime-labor-law-egypt",
+          "destination": "/blog/official-holidays-labor-law-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/force-majeure-clause-egyptian-law.html",
+          "destination": "/blog/force-majeure-contract-law-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/force-majeure-clause-egyptian-law",
+          "destination": "/blog/force-majeure-contract-law-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/currency-fluctuation-impact-contracts-egypt.html",
+          "destination": "/blog/currency-devaluation-contract-effects.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/currency-fluctuation-impact-contracts-egypt",
+          "destination": "/blog/currency-devaluation-contract-effects.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/educational-guardianship-divorced-mother-egypt.html",
+          "destination": "/blog/educational-guardianship-divorce-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/educational-guardianship-divorced-mother-egypt",
+          "destination": "/blog/educational-guardianship-divorce-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/takaful-karama-social-pension-conditions.html",
+          "destination": "/blog/takaful-karama-pension-legal-eligibility.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/takaful-karama-social-pension-conditions",
+          "destination": "/blog/takaful-karama-pension-legal-eligibility.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/university-tanseeq-appeals-egypt.html",
+          "destination": "/blog/university-admission-coordination-appeals-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/university-tanseeq-appeals-egypt",
+          "destination": "/blog/university-admission-coordination-appeals-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/judicial-recess-deadlines-egypt.html",
+          "destination": "/blog/judicial-recess-court-deadlines-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/judicial-recess-deadlines-egypt",
+          "destination": "/blog/judicial-recess-court-deadlines-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/company-formation-egypt.html",
+          "destination": "/blog/company-incorporation-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/company-formation-egypt",
+          "destination": "/blog/company-incorporation-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/administrative-appeals-egypt.html",
+          "destination": "/blog/administrative-court-state-council.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/administrative-appeals-egypt",
+          "destination": "/blog/administrative-court-state-council.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/consumer-protection-egypt.html",
+          "destination": "/blog/consumer-protection-return-policy.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/consumer-protection-egypt",
+          "destination": "/blog/consumer-protection-return-policy.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/electronic-signature-egypt.html",
+          "destination": "/blog/electronic-signature-evidence-law.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/electronic-signature-egypt",
+          "destination": "/blog/electronic-signature-evidence-law.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/trademark-registration-egypt.html",
+          "destination": "/blog/intellectual-property-trademark-registration.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/trademark-registration-egypt",
+          "destination": "/blog/intellectual-property-trademark-registration.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/tax-disputes-egypt.html",
+          "destination": "/blog/tax-disputes-settlement-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/tax-disputes-egypt",
+          "destination": "/blog/tax-disputes-settlement-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/real-estate-registration-egypt.html",
+          "destination": "/blog/real-estate-registration-laws.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/real-estate-registration-egypt",
+          "destination": "/blog/real-estate-registration-laws.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/marriage-foreigners-egypt.html",
+          "destination": "/blog/foreigners-ownership-marriage-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/marriage-foreigners-egypt",
+          "destination": "/blog/foreigners-ownership-marriage-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/travel-ban-egypt.html",
+          "destination": "/blog/travel-ban-lifting-procedures.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/travel-ban-egypt",
+          "destination": "/blog/travel-ban-lifting-procedures.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/old-rent-law-egypt.html",
+          "destination": "/blog/old-rent-law-amendments-eviction.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/old-rent-law-egypt",
+          "destination": "/blog/old-rent-law-amendments-eviction.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/building-reconciliation-law.html",
+          "destination": "/blog/new-building-reconciliation-law.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/building-reconciliation-law",
+          "destination": "/blog/new-building-reconciliation-law.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/criminal-defense-rights.html",
+          "destination": "/blog/pretrial-detention-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/criminal-defense-rights",
+          "destination": "/blog/pretrial-detention-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/criminal-polygraph-law.html",
+          "destination": "/blog/pretrial-detention-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/criminal-polygraph-law",
+          "destination": "/blog/pretrial-detention-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/martial-rape-custody.html",
+          "destination": "/blog/child-custody-visitation-hosting-laws.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/martial-rape-custody",
+          "destination": "/blog/child-custody-visitation-hosting-laws.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/medical-liability-law-egypt.html",
+          "destination": "/blog/medical-malpractice-lawsuits-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/medical-liability-law-egypt",
+          "destination": "/blog/medical-malpractice-lawsuits-egypt.html",
+          "type": 301
         }
       ],
       "rewrites": [
