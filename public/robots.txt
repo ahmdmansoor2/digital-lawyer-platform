@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /__/
+Disallow: /404.html
 Disallow: /search.html
+Disallow: /data/forms-chunks/
 Disallow: /*?q=*
 
 # Microsoft Bing & Edge
@@ -49,4 +52,4 @@ Allow: /
 
 # Sitemaps
 Sitemap: https://mohamidigital.online/sitemap.xml
-Sitemap: https://mohamidigital.online/news-sitemap.xml
+
