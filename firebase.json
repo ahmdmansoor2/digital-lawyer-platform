@@ -13,39 +13,476 @@
         "books/**"
       ],
       "redirects": [
-        { "source": "/lawyers-directory.htm", "destination": "/lawyers-directory.html", "type": 301 },
-        { "source": "/features.htm", "destination": "/features.html", "type": 301 },
-        { "source": "/about.htm", "destination": "/about.html", "type": 301 },
-        { "source": "/pricing.htm", "destination": "/pricing.html", "type": 301 },
-        { "source": "/contact.htm", "destination": "/contact.html", "type": 301 },
-        { "source": "/privacy.htm", "destination": "/privacy.html", "type": 301 },
-        { "source": "/terms.htm", "destination": "/terms.html", "type": 301 },
-        { "source": "/download.htm", "destination": "/download.html", "type": 301 }
+        {
+          "source": "/lawyers-directory.htm",
+          "destination": "/lawyers-directory.html",
+          "type": 301
+        },
+        {
+          "source": "/features.htm",
+          "destination": "/features.html",
+          "type": 301
+        },
+        {
+          "source": "/about.htm",
+          "destination": "/about.html",
+          "type": 301
+        },
+        {
+          "source": "/pricing.htm",
+          "destination": "/pricing.html",
+          "type": 301
+        },
+        {
+          "source": "/contact.htm",
+          "destination": "/contact.html",
+          "type": 301
+        },
+        {
+          "source": "/privacy.htm",
+          "destination": "/privacy.html",
+          "type": 301
+        },
+        {
+          "source": "/terms.htm",
+          "destination": "/terms.html",
+          "type": 301
+        },
+        {
+          "source": "/download.htm",
+          "destination": "/download.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-check-laws-egypt.html",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-check-laws-egypt",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-check-penalties-egypt.html",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-check-penalties-egypt",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-checks-laws-egypt.html",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-checks-laws-egypt",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-checks-provisions-egypt.html",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-checks-provisions-egypt",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-cheque-laws-egypt.html",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-cheque-laws-egypt",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-cheque-penalties-egypt.html",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-cheque-penalties-egypt",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-cheques-bank-loans-egypt.html",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/bounced-cheques-bank-loans-egypt",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cheque-fraud-defense.html",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cheque-fraud-defense",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cheque-return-egypt.html",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cheque-return-egypt",
+          "destination": "/blog/bounced-cheque-penalties-and-statute-of-limitations.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-blackmail-laws-egypt.html",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-blackmail-laws-egypt",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-extortion-banking-fraud-egypt.html",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-extortion-banking-fraud-egypt",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-law-extortion-egypt.html",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-law-extortion-egypt",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-phone-extortion-egypt.html",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-phone-extortion-egypt",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/instapay-fraud-cybercrime-egypt-law.html",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/instapay-fraud-cybercrime-egypt-law",
+          "destination": "/blog/cybercrime-extortion-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cyberbullying-defamation-law-egypt.html",
+          "destination": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cyberbullying-defamation-law-egypt",
+          "destination": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-defamation-laws-egypt.html",
+          "destination": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-defamation-laws-egypt",
+          "destination": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-law-defamation-egypt.html",
+          "destination": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-law-defamation-egypt",
+          "destination": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cyber-defamation-whatsapp-police-report-and-penalties.html",
+          "destination": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cyber-defamation-whatsapp-police-report-and-penalties",
+          "destination": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-data-leaks-laws-egypt.html",
+          "destination": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-data-leaks-laws-egypt",
+          "destination": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-law-data-leaks-egypt.html",
+          "destination": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-law-data-leaks-egypt",
+          "destination": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/egyptian-sports-law-player-contracts.html",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/egyptian-sports-law-player-contracts",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-contracts-egyptian-law.html",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-contracts-egyptian-law",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-contracts-law-egypt.html",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-contracts-law-egypt",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-contracts-player-transfers-egypt.html",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-contracts-player-transfers-egypt",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-contracts-professionalism-law-lessons-from-salah.html",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-contracts-professionalism-law-lessons-from-salah",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-player-contracts-arbitration-egypt.html",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-player-contracts-arbitration-egypt",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-player-contracts-egypt.html",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-player-contracts-egypt",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-player-contracts-law-egypt.html",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/sports-player-contracts-law-egypt",
+          "destination": "/blog/sports-contracts-arbitration-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/foreign-currency-laws-egypt.html",
+          "destination": "/blog/foreign-currency-illegal-trading-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/foreign-currency-laws-egypt",
+          "destination": "/blog/foreign-currency-illegal-trading-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/foreign-currency-trading-laws-egypt.html",
+          "destination": "/blog/foreign-currency-illegal-trading-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/foreign-currency-trading-laws-egypt",
+          "destination": "/blog/foreign-currency-illegal-trading-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/foreign-currency-trading-penalties-egypt.html",
+          "destination": "/blog/foreign-currency-illegal-trading-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/foreign-currency-trading-penalties-egypt",
+          "destination": "/blog/foreign-currency-illegal-trading-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/illegal-currency-trading-penalties-egypt.html",
+          "destination": "/blog/foreign-currency-illegal-trading-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/illegal-currency-trading-penalties-egypt",
+          "destination": "/blog/foreign-currency-illegal-trading-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/khul-divorce-procedure.html",
+          "destination": "/blog/khula-divorce-lawsuit-procedures-and-dowry-return.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/khul-divorce-procedure",
+          "destination": "/blog/khula-divorce-lawsuit-procedures-and-dowry-return.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/khul-divorce-procedures-egypt.html",
+          "destination": "/blog/khula-divorce-lawsuit-procedures-and-dowry-return.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/khul-divorce-procedures-egypt",
+          "destination": "/blog/khula-divorce-lawsuit-procedures-and-dowry-return.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/khula-laws-personal-status-egypt.html",
+          "destination": "/blog/khula-divorce-lawsuit-procedures-and-dowry-return.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/khula-laws-personal-status-egypt",
+          "destination": "/blog/khula-divorce-lawsuit-procedures-and-dowry-return.html",
+          "type": 301
+        }
       ],
       "rewrites": [
-        { "source": "/lawyers-directory", "destination": "/lawyers-directory.html" },
-        { "source": "/features", "destination": "/features.html" },
-        { "source": "/legal-calculators", "destination": "/legal-calculators.html" },
-        { "source": "/legal-calculators/", "destination": "/legal-calculators.html" },
-        { "source": "/legal-forms", "destination": "/legal-forms.html" },
-        { "source": "/legal-radar", "destination": "/legal-radar.html" },
-        { "source": "/courts-directory", "destination": "/courts-directory.html" },
-        { "source": "/court-precedents", "destination": "/court-precedents.html" },
-        { "source": "/legal-consultations", "destination": "/legal-consultations.html" },
-        { "source": "/company-incorporation", "destination": "/company-incorporation.html" },
-        { "source": "/legal-diagnostics", "destination": "/legal-diagnostics.html" },
-        { "source": "/download", "destination": "/download.html" },
-        { "source": "/real-estate", "destination": "/real-estate.html" },
-        { "source": "/about", "destination": "/about.html" },
-        { "source": "/pricing", "destination": "/pricing.html" },
-        { "source": "/contact", "destination": "/contact.html" },
-        { "source": "/privacy", "destination": "/privacy.html" },
-        { "source": "/terms", "destination": "/terms.html" },
-        { "source": "/why-trust-us", "destination": "/why-trust-us.html" }
+        {
+          "source": "/lawyers-directory",
+          "destination": "/lawyers-directory.html"
+        },
+        {
+          "source": "/features",
+          "destination": "/features.html"
+        },
+        {
+          "source": "/legal-calculators",
+          "destination": "/legal-calculators.html"
+        },
+        {
+          "source": "/legal-calculators/",
+          "destination": "/legal-calculators.html"
+        },
+        {
+          "source": "/legal-forms",
+          "destination": "/legal-forms.html"
+        },
+        {
+          "source": "/legal-radar",
+          "destination": "/legal-radar.html"
+        },
+        {
+          "source": "/courts-directory",
+          "destination": "/courts-directory.html"
+        },
+        {
+          "source": "/court-precedents",
+          "destination": "/court-precedents.html"
+        },
+        {
+          "source": "/legal-consultations",
+          "destination": "/legal-consultations.html"
+        },
+        {
+          "source": "/company-incorporation",
+          "destination": "/company-incorporation.html"
+        },
+        {
+          "source": "/legal-diagnostics",
+          "destination": "/legal-diagnostics.html"
+        },
+        {
+          "source": "/download",
+          "destination": "/download.html"
+        },
+        {
+          "source": "/real-estate",
+          "destination": "/real-estate.html"
+        },
+        {
+          "source": "/about",
+          "destination": "/about.html"
+        },
+        {
+          "source": "/pricing",
+          "destination": "/pricing.html"
+        },
+        {
+          "source": "/contact",
+          "destination": "/contact.html"
+        },
+        {
+          "source": "/privacy",
+          "destination": "/privacy.html"
+        },
+        {
+          "source": "/terms",
+          "destination": "/terms.html"
+        },
+        {
+          "source": "/why-trust-us",
+          "destination": "/why-trust-us.html"
+        }
       ],
       "cleanUrls": false,
-
-
       "headers": [
         {
           "source": "**",

@@ -427,7 +427,7 @@ function buildTopicPage(t, i, date) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${esc(t.title)} - رصد المحامي | منصة المحامي الرقمية</title>
   <meta name="description" content="${esc(t.summary || `موضوع رصد المحامي عن ${t.title}`)}" />
-  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="canonical" href="${pageUrl}" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="${esc(t.title)}" />
@@ -541,7 +541,7 @@ function buildPage(todayTopics, archiveEntries, generatedAt) {
   <meta name="description" content="رصد المحامي — نشرة يومية تحليلية لأهم الترندات المصرية والعالمية على Google، بصياغة تحليلية عملية للمواطن والمحامي المصري." />
   <meta name="keywords" content="رصد المحامي, ترندات مصر, أخبار مصر اليوم, الأكثر بحثاً, ترند جوجل مصر, أخبار عربية, أخبار عالمية, تحليل ترندات" />
   <meta name="author" content="منصة المحامي الرقمية" />
-  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="robots" content="noindex, nofollow" />
   <link rel="canonical" href="${BASE_URL}/legal-radar.html" />
   <meta property="og:type" content="article" />
   <meta property="og:title" content="رصد المحامي" />

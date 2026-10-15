@@ -8,7 +8,7 @@
  */
 'use strict';
 
-const VERSION = 'mohami-v11';
+const VERSION = 'mohami-v12';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 
@@ -96,7 +96,8 @@ self.addEventListener('fetch', (e) => {
 
   // صفحات التنقل
   if (req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html')) {
-    e.respondWith(networkFirst(req, '/'));
+    // Don't fallback to '/' for missing subpages to prevent Soft 404 / 'Alternate page with proper canonical tag'
+    e.respondWith(networkFirst(req, null));
     return;
   }
 

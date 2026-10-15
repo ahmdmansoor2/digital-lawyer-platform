@@ -32,6 +32,46 @@ function cairoDateStr() {
 }
 
 // خريطة مواضيعية لتجميع مقالات المدونة في sitemap.html
+
+// Excluded duplicate articles to prevent keyword cannibalization
+const CANNIBALIZATION_EXCLUSIONS = new Set([
+  "bounced-check-laws-egypt.html",
+  "bounced-check-penalties-egypt.html",
+  "bounced-checks-laws-egypt.html",
+  "bounced-checks-provisions-egypt.html",
+  "bounced-cheque-laws-egypt.html",
+  "bounced-cheque-penalties-egypt.html",
+  "bounced-cheques-bank-loans-egypt.html",
+  "cheque-fraud-defense.html",
+  "cheque-return-egypt.html",
+  "cybercrime-blackmail-laws-egypt.html",
+  "cybercrime-extortion-banking-fraud-egypt.html",
+  "cybercrime-law-extortion-egypt.html",
+  "cybercrime-phone-extortion-egypt.html",
+  "instapay-fraud-cybercrime-egypt-law.html",
+  "cyberbullying-defamation-law-egypt.html",
+  "cybercrime-defamation-laws-egypt.html",
+  "cybercrime-law-defamation-egypt.html",
+  "cyber-defamation-whatsapp-police-report-and-penalties.html",
+  "cybercrime-data-leaks-laws-egypt.html",
+  "cybercrime-law-data-leaks-egypt.html",
+  "egyptian-sports-law-player-contracts.html",
+  "sports-contracts-egyptian-law.html",
+  "sports-contracts-law-egypt.html",
+  "sports-contracts-player-transfers-egypt.html",
+  "sports-contracts-professionalism-law-lessons-from-salah.html",
+  "sports-player-contracts-arbitration-egypt.html",
+  "sports-player-contracts-egypt.html",
+  "sports-player-contracts-law-egypt.html",
+  "foreign-currency-laws-egypt.html",
+  "foreign-currency-trading-laws-egypt.html",
+  "foreign-currency-trading-penalties-egypt.html",
+  "illegal-currency-trading-penalties-egypt.html",
+  "khul-divorce-procedure.html",
+  "khul-divorce-procedures-egypt.html",
+  "khula-laws-personal-status-egypt.html"
+]);
+
 const TOPIC_GROUPS = [
   { id: 'lawfirm', title: 'إدارة مكاتب المحاماة', slugs: ['legal-practice-tips', 'case-management-guide', 'tech-for-lawyers', 'courtroom-advocacy', 'law-firm-marketing'] },
   { id: 'labor', title: 'قانون العمل', slugs: ['labor-contracts-egypt', 'employment-contract-termination', 'labor-rights-termination', 'labor-dismissal-compensation', 'trial-period-rights', 'official-holidays-labor-law-egypt', 'official-holidays-overtime-labor-law-egypt', 'labor-insurance-egypt', 'workplace-harassment-law'] },
@@ -62,7 +102,7 @@ function extractTitle(html) {
 }
 
 function buildSitemap() {
-  const blogFiles = listHtml(BLOG_DIR);
+  const blogFiles = listHtml(BLOG_DIR).filter(f => !CANNIBALIZATION_EXCLUSIONS.has(f));
   const pillarFiles = listHtml(PILLARS_DIR);
   const formsDocFiles = listHtml(FORMS_DOCS_DIR);
   const radarTopicFiles = listHtml(RADAR_TOPICS_DIR);
@@ -83,7 +123,6 @@ function buildSitemap() {
     { loc: '/contact.html', pri: '0.6', freq: 'monthly' },
     { loc: '/privacy.html', pri: '0.3', freq: 'yearly' },
     { loc: '/terms.html', pri: '0.3', freq: 'yearly' },
-    { loc: '/sitemap.html', pri: '0.3', freq: 'monthly' },
     { loc: '/legal-forms.html', pri: '0.8', freq: 'monthly' },
     { loc: '/legal-radar.html', pri: '0.6', freq: 'daily' },
     // بوابات دول الخليج
@@ -203,10 +242,7 @@ function buildSitemap() {
   }
 
   // كل صفحات موضوعات رصد المحامي المستقلة
-  for (const f of radarTopicFiles) {
-    const lmod = getFileLastmod(RADAR_TOPICS_DIR, f);
-    urls.push(`  <url>\n    <loc>${BASE_URL}/radar-topics/${f}</loc>\n    <lastmod>${lmod}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>0.5</priority>\n  </url>`);
-  }
+  // radar-topics excluded from sitemap
 
   // كل أدلة المكتبة القانونية
   for (const f of libraryTopicFiles) {
