@@ -553,6 +553,31 @@
 
   </main>
 
+  <!-- SMART CONTRACT RISK & CLAUSE CHECKER (v7) -->
+  <section id="contract-risk-checker" style="max-width:1280px; margin:20px auto 30px; padding:0 20px;">
+    <div style="background:linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.9)); border:1px solid rgba(16,185,129,0.4); border-radius:20px; padding:26px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:14px; margin-bottom:16px;">
+        <div>
+          <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:rgba(16,185,129,0.16); border:1px solid rgba(16,185,129,0.4); color:#6ee7b7; font-size:11.5px; font-weight:800; margin-bottom:6px;">🛡️ أداة الفحص الوقائي للعقود 2026</span>
+          <h2 style="font-size:1.3rem; font-weight:900; color:#fff; margin:0;">الفاحص الذكي للثغرات والمخاطر التعاقدية قبل التوقيع</h2>
+          <p style="font-size:0.86rem; color:#94a3b8; margin:4px 0 0;">افحص أي عقد (بيع عقار، إيجار، عمل، شراكة) لاكتشاف البنود الحمائية الناقصة أو الثغرات القانونية مع إمكانية حقن البنود الناقصة تلقائياً في وثيقتك.</p>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" onclick="auditCurrentPreviewContract()" style="padding:10px 16px; border-radius:11px; background:linear-gradient(135deg,#10b981,#059669); border:none; color:#fff; font-family:'Cairo',sans-serif; font-weight:800; font-size:12.5px; cursor:pointer;">🔍 فحص العقد المعروض في المعاينة الآن</button>
+          <button type="button" onclick="document.getElementById('customAuditBox').style.display = document.getElementById('customAuditBox').style.display === 'none' ? 'block' : 'none'" style="padding:10px 16px; border-radius:11px; background:rgba(99,102,241,0.2); border:1px solid rgba(99,102,241,0.45); color:#c7d2fe; font-family:'Cairo',sans-serif; font-weight:800; font-size:12.5px; cursor:pointer;">📋 لصق نص عقد خارجي للفحص</button>
+        </div>
+      </div>
+
+      <div id="customAuditBox" style="display:none; margin-bottom:16px;">
+        <textarea id="externalContractInput" rows="4" placeholder="الصق نص العقد المراد فحصه هنا (عقد بيع شقة، عقد إيجار، عقد عمل، عقد شراكة)..." style="width:100%; padding:12px; border-radius:12px; background:#020617; border:1px solid rgba(148,163,184,0.3); color:#fff; font-family:'Cairo',sans-serif; font-size:13px; margin-bottom:8px;"></textarea>
+        <button type="button" onclick="runContractRiskAudit(document.getElementById('externalContractInput').value)" style="padding:9px 18px; border-radius:10px; background:#6366f1; border:none; color:#fff; font-family:'Cairo',sans-serif; font-weight:800; font-size:12.5px; cursor:pointer;">⚡ بدء الفحص القانوني للنص الملصق</button>
+      </div>
+
+      <div id="contractAuditResult" style="display:none; background:rgba(2,6,23,0.75); border:1px solid rgba(148,163,184,0.2); border-radius:14px; padding:18px;"></div>
+    </div>
+  </section>
+
+
   <!-- Footer -->
   
   <!-- E-E-A-T Legal Verification & Editorial Review Card -->
@@ -589,6 +614,81 @@
   <script>
     // Embedded Featured & Notary Lists
     const CURATED_LIST = [
+      {
+        id: "attorney_fees_contract",
+        title: "عقد اتفاق أتعاب محاماة ومباشرة قضايا (مادة 82 محاماة)",
+        category: "⚖️ عقود واتفاقات المحاماة",
+        badge: "مطابق لقانون المحاماة 17 لسنة 1983",
+        icon: "💼",
+        fields: [
+          { key: "l_name", label: "اسم الأستاذ المحامي (الطرف الأول)", val: "الأستاذ / أحمد منصور — المحامي بالنقض والإدارية العليا" },
+          { key: "l_addr", label: "عنوان مكتب المحامي", val: "مدينة نصر — القاهرة" },
+          { key: "c_name", label: "اسم الموكل (الطرف الثاني)", val: "السيد / طارق محمود عبد الرحمن" },
+          { key: "c_nid", label: "الرقم القومي للموكل", val: "28504101234567" },
+          { key: "c_addr", label: "محل إقامة الموكل", val: "القاهرة — مصر الجديدة" },
+          { key: "case_desc", label: "موضوع القضية أو العمل القانوني محل الاتفاق", val: "إقامة ومباشرة دعوى مدنية / جنائية / أسرة حتى صدور حكم بات" },
+          { key: "adv_fee", label: "مقدم الأتعاب المسدد عند التعاقد (جنيه)", val: "15,000" },
+          { key: "final_fee", label: "مؤخر الأتعاب المستحق عند الحكم أو الإنهاء (جنيه)", val: "25,000" }
+        ],
+        generate: function(v) {
+          return "عقد اتفاق وتحديد أتعاب محاماة (وفق قانون المحاماة رقم 17 لسنة 1983)\n\n" +
+            "إنه في يوم .................... الموافق ..... / ..... / 2026م، تحرر هذا العقد بين كل من:\n\n" +
+            "أولاً: مكتب " + (v.l_name || "....................") + "، الكائن مقره في: " + (v.l_addr || "....................") + ". (طرف أول — محامٍ)\n" +
+            "ثانياً: " + (v.c_name || "....................") + "، بطاقة رقم قومي: (" + (v.c_nid || "....................") + ")، المقيم في: " + (v.c_addr || "....................") + ". (طرف ثانٍ — موكل)\n\n" +
+            "بعد أن أقر الطرفان بأهليتهما القانونية للتعاقد، اتفقا على الآتي:\n\n" +
+            "(البند الأول — موضوع الوكالة والمهمة القانونية):\n" +
+            "عهد الطرف الثاني (الموكل) إلى الطرف الأول (المحامي) بمباشرة العمل القانوني الآتي: (" + (v.case_desc || "....................") + ")، ويلتزم الطرف الأول ببذل العناية المهنية القانونية المعتادة وفق أصول المهنة ومواعيد المرافعات.\n\n" +
+            "(البند الثاني — قيمة الأتعاب وطريقة السداد):\n" +
+            "اتفق الطرفان طبقاً لنص المادة (82) من قانون المحاماة على تحديد أتعاب الطرف الأول على النحو التالي:\n" +
+            "1. مبلغ وقدره (" + (v.adv_fee || "....................") + " جنيه مصري) كمقدم أتعاب سُدد نقداً بمجلس هذا العقد ولا يُرد.\n" +
+            "2. مبلغ وقدره (" + (v.final_fee || "....................") + " جنيه مصري) كمؤخر أتعاب يستحق فور صدور الحكم في الدعوى أو انتهاء النزاع صلحاً أو تنازلاً.\n\n" +
+            "(البند الثالث — الرسوم والمصروفات القضائية):\n" +
+            "الأتعاب الموضحة بالبند الثاني لا تشمل الرسوم القضائية أو رسوم الشهر العقاري أو أمانات الخبراء أو مصروفات الإعلانات والدمغات، ويتحملها الموكل كاملة.\n\n" +
+            "(البند الرابع — إنهاء التوكيل قبل إتمام المهمة):\n" +
+            "في حال قيام الموكل بإلغاء التوكيل أو التصالح مع الخصم دون علم المحامي قبل انتهاء العمل الموكل فيه، يستحق الطرف الأول كامل الأتعاب المتفق عليها في هذا العقد فوراً.\n\n" +
+            "الطرف الأول (المحامي)                                    الطرف الثاني (الموكل)\n" +
+            ".................................                        .................................";
+        }
+      },
+      {
+        id: "portfolio_docket",
+        title: "حافظة مستندات قضائية رسمية جاهزة للطباعة A4",
+        category: "⚖️ صحف الدعاوى والمحاكم",
+        badge: "نموذج جلسات المحاكم والنيابات",
+        icon: "🗂️",
+        fields: [
+          { key: "court_name", label: "اسم المحكمة والدائرة", val: "محكمة شمال القاهرة الابتدائية — الدائرة (4) مدني كلي" },
+          { key: "case_num", label: "رقم الدعوى والسنة", val: "1480 لسنة 2026 مدني كلي" },
+          { key: "hearing_date", label: "تاريخ الجلسة المحددة", val: "الأحد الموافق 15 / 11 / 2026م" },
+          { key: "client_name", label: "مقدمة من (اسم الموكل وصفته)", val: "السيد / أحمد محمد إبراهيم (مدعٍ)" },
+          { key: "lawyer_name", label: "وكيله الأستاذ المحامي", val: "الأستاذ / أحمد منصور — المحامي بالنقض" },
+          { key: "opponent_name", label: "ضد (اسم الخصم وصفته)", val: "السيد / محمود حسن علي (مدعى عليه)" },
+          { key: "doc_1", label: "المستند الأول وتاريخه وعدد أوراقه", val: "1. أصل عقد البيع الابتدائي المؤرخ 15/1/2026 (مكون من 3 ورقات)." },
+          { key: "doc_2", label: "المستند الثاني وتاريخه وعدد أوراقه", val: "2. أصل الإنذار الرسمي على يد محضر المعلن بتاريخ 1/6/2026 (ورقتان)." },
+          { key: "doc_3", label: "المستند الثالث وتاريخه وعدد أوراقه", val: "3. شهادة رسمية من مأمورية الشهر العقاري المختصة (ورقة واحدة)." },
+          { key: "doc_4", label: "المستند الرابع (اختياري)", val: "4. صورة رسمية من محضر الجلسة وإعلام الوراثة الشرعي." }
+        ],
+        generate: function(v) {
+          return "حافظة مستندات مرفوعة أمام القضاء\n" +
+            "═══════════════════════════════════════════════════════════\n" +
+            "محكمة: " + (v.court_name || "....................") + "\n" +
+            "في القضية رقم: (" + (v.case_num || "....................") + ") | المحدد لنظرها جلسة: (" + (v.hearing_date || "....................") + ")\n" +
+            "═══════════════════════════════════════════════════════════\n\n" +
+            "مقدمة من: " + (v.client_name || "....................") + "\n" +
+            "ويمثله قانوناً: " + (v.lawyer_name || "....................") + "\n\n" +
+            "ضـــــــد: " + (v.opponent_name || "....................") + "\n\n" +
+            "بيان المستندات المودعة بالحافظة:\n" +
+            "───────────────────────────────────────────────────────────\n" +
+            "• " + (v.doc_1 || "1. ........................................................") + "\n\n" +
+            "• " + (v.doc_2 || "2. ........................................................") + "\n\n" +
+            "• " + (v.doc_3 || "3. ........................................................") + "\n\n" +
+            (v.doc_4 ? ("• " + v.doc_4 + "\n\n") : "") +
+            "───────────────────────────────────────────────────────────\n" +
+            "إجمالي عدد المستندات المودعة بالحافظة: ( أربعة مستندات ) طويت عليها هذه الحافظة للتمسك بدلالتها القانونية أمام الهيئة الموقرة.\n\n" +
+            "تحريراً في: ..... / ..... / 2026م                         وكيل المقدم (المحامي)\n" +
+            "                                                       " + (v.lawyer_name || "....................");
+        }
+      },
       {
         id: "inheritance_division",
         title: "عقد قسمة تركة رضائي وإنذار تسليم ميراث شرعي",
@@ -1151,6 +1251,117 @@
       if (watermarkEl) watermarkEl.innerText = nameVal;
     }
 
+    
+    // ── Smart Contract Risk & Clause Checker Engine (v7) ──
+    const CONTRACT_AUDIT_RULES = [
+      {
+        id: 'nid_check',
+        title: 'بيانات الرقم القومي والأهلية القانونية للمتعاقدين',
+        regex: /(رقم قومي|بطاقة رقم|أهليتهما القانونية)/i,
+        clauseToInject: '• يقر الطرفان بأهليتهما القانونية الكاملة للتعاقد والتصرف وبصحة بيانات الرقم القومي والموطن المختار لكل منهما.'
+      },
+      {
+        id: 'penalty_clause',
+        title: 'الشرط الجزائي الاتفاقي التعويضي (المادة 223 مدني)',
+        regex: /(شرط جزائي|تعويض اتفاقي|غرامة تأخير|مبلغ تعويضي)/i,
+        clauseToInject: '• (بند الشرط الجزائي): اتفق الطرفان طبقاً للمادة (223) من القانون المدني على أنه في حال إخلال أي طرف بالتزاماته الجوهرية في هذا العقد يلتزم بدفع تعويض اتفاقي نهائي غير خاضع للرقابة القضائية قدره (................ جنيه) للطرف الآخر دون حاجة لتنبيه أو إنذار.'
+      },
+      {
+        id: 'rescission_clause',
+        title: 'الشرط الفاسخ الصريح عند الإخلال (المادة 158 مدني)',
+        regex: /(مفسوخاً من تلقاء نفسه|فسخ العقد|الشرط الفاسخ)/i,
+        clauseToInject: '• (بند الشرط الفاسخ الصريح): يعتبر هذا العقد مفسوخاً من تلقاء نفسه دون حاجة إلى تنبيه أو إنذار أو حكم قضائي طبقاً للمادة (158) من القانون المدني في حال تقاعس الطرف الملتزم عن الوفاء بالتزاماته التعاقدية في مواعيدها.'
+      },
+      {
+        id: 'inspection_clause',
+        title: 'المعاينة التامة النافية للجهالة شرعاً وقانوناً (المادة 419 مدني)',
+        regex: /(المعاينة التامة|النافية للجهالة|عاين)/i,
+        clauseToInject: '• (بند المعاينة النافية للجهالة): يقر الطرف الثاني بأنه عاين محل التعاقد المعاينة التامة النافية للجهالة شرعاً وقانوناً طبقاً للمادة (419) من القانون المدني وقبله بحالته الراهنة.'
+      },
+      {
+        id: 'encumbrance_clause',
+        title: 'ضمان عدم التعرض وخلو المبيع من الرهون والديون والحقوق العينية',
+        regex: /(خالص من كافة الديون|الرهون|حقوق الغير|ضمان التعرض)/i,
+        clauseToInject: '• (بند الضمان وخلو العين من الرهون): يضمن الطرف الأول عدم التعرض المادي أو القانوني للطرف الثاني، ويقر بخلو محل العقد من كافة الرهون والاختصاصات والامتيازات والضرائب المستحقة وحقوق الغير أياً كان نوعها.'
+      },
+      {
+        id: 'jurisdiction_clause',
+        title: 'تحديد المحكمة المختصة بنظر المنازعات التعاقدية',
+        regex: /(تختص محاكم|المحكمة المختصة|محكمة .* الجزئية|محكمة .* الابتدائية|هيئات التحكيم)/i,
+        clauseToInject: '• (بند الاختصاص القضائي): تختص محاكم (القاهرة / المحافظة المختصة) على اختلاف درجاتها بالفصل في أي نزاع ينشأ حول تفسير أو تنفيذ هذا العقد.'
+      }
+    ];
+
+    let lastMissingClauses = [];
+
+    function auditCurrentPreviewContract() {
+      const text = (document.getElementById('paperContent') && document.getElementById('paperContent').innerText) || '';
+      runContractRiskAudit(text);
+    }
+
+    function runContractRiskAudit(text) {
+      if (!text || text.trim().length < 20) {
+        alert('يرجى اختيار عقد في المعاينة أو لصق نص العقد أولاً لفحصه.');
+        return;
+      }
+      const passed = [];
+      const missing = [];
+      CONTRACT_AUDIT_RULES.forEach(rule => {
+        if (rule.regex.test(text)) {
+          passed.push(rule);
+        } else {
+          missing.push(rule);
+        }
+      });
+      lastMissingClauses = missing;
+      const score = Math.round((passed.length / CONTRACT_AUDIT_RULES.length) * 100);
+      const scoreColor = score >= 80 ? '#10b981' : (score >= 50 ? '#f59e0b' : '#ef4444');
+
+      const resBox = document.getElementById('contractAuditResult');
+      resBox.style.display = 'block';
+      resBox.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; padding-bottom:12px; border-bottom:1px solid rgba(148,163,184,0.18); margin-bottom:14px;">
+          <div>
+            <strong style="color:#fff; font-size:1rem;">📊 تقرير الفحص القانوني الآلي للعقد:</strong>
+            <div style="font-size:0.82rem; color:#94a3b8;">تم فحص ${CONTRACT_AUDIT_RULES.length} معايير وبنود حمائية جوهرية وفق القانون المدني المصري</div>
+          </div>
+          <div style="padding:8px 16px; border-radius:12px; background:rgba(15,23,42,0.9); border:2px solid ${scoreColor}; color:${scoreColor}; font-weight:900; font-size:1.1rem;">
+            مؤشر الأمان القانوني: ${score}%
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+          <div>
+            <div style="font-size:0.88rem; font-weight:800; color:#6ee7b7; margin-bottom:8px;">✅ البنود القانونية المستوفاة (${passed.length}):</div>
+            <ul style="margin:0; padding-right:18px; color:#cbd5e1; font-size:0.82rem; line-height:1.7;">
+              ${passed.map(p => `<li>${p.title}</li>`).join('') || '<li>لم يتم رصد بنود حمائية قياسية بعد.</li>'}
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:0.88rem; font-weight:800; color:#fcd34d; margin-bottom:8px;">⚠️ البنود الحمائية المقترح إضافتها (${missing.length}):</div>
+            <ul style="margin:0; padding-right:18px; color:#cbd5e1; font-size:0.82rem; line-height:1.7;">
+              ${missing.map(m => `<li>${m.title}</li>`).join('') || '<li style="color:#6ee7b7;">جميع البنود الحمائية الستة متوافرة في هذا العقد!</li>'}
+            </ul>
+          </div>
+        </div>
+        ${missing.length > 0 ? `
+        <div style="margin-top:14px; padding-top:12px; border-top:1px dashed rgba(148,163,184,0.25); display:flex; justify-content:flex-end;">
+          <button type="button" onclick="injectMissingProtectiveClauses()" style="padding:9px 18px; border-radius:10px; background:linear-gradient(135deg,#6366f1,#4f46e5); border:none; color:#fff; font-family:'Cairo',sans-serif; font-weight:800; font-size:12.5px; cursor:pointer;">➕ إدراج كافة البنود الحمائية الناقصة (${missing.length}) داخل العقد تلقائياً</button>
+        </div>` : ''}
+      `;
+      resBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function injectMissingProtectiveClauses() {
+      if (!lastMissingClauses || lastMissingClauses.length === 0) return;
+      const pc = document.getElementById('paperContent');
+      if (pc) {
+        const addedText = "\n\n═══════════════════════════════════════════════════════════\nبنود حمائية إضافية مكملة للعقد (مدرجة عبر الفاحص القانوني الذكي):\n" +
+          lastMissingClauses.map(m => m.clauseToInject).join("\n\n");
+        pc.innerText = pc.innerText + addedText;
+        auditCurrentPreviewContract();
+      }
+    }
+
     // Export Actions
     function printDocument() {
       applyOfficeHeaderToPaper();
@@ -1208,11 +1419,21 @@
         const params = new URLSearchParams(window.location.search);
         const wantedType = params.get('type');
         const wantedQuery = params.get('q');
-        if (wantedType) {
+                if (wantedType) {
           const allLocal = [...CURATED_LIST, ...NOTARY_LIST];
           const found = allLocal.find(item => item.id === wantedType);
           if (found) {
             selectItem(found);
+            try {
+              const savedPrec = sessionStorage.getItem('selected_cassation_precedent');
+              if (savedPrec) {
+                const pc = document.getElementById('paperContent');
+                if (pc) {
+                  pc.innerText = pc.innerText + "\n\n═══════════════════════════════════════════════════════════\nالسند القضائي من مبادئ محكمة النقض المستقرة:\n" + savedPrec;
+                }
+                sessionStorage.removeItem('selected_cassation_precedent');
+              }
+            } catch (err) {}
           }
         } else if (wantedQuery) {
           filterCategory('all');

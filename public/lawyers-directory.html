@@ -409,6 +409,57 @@
 
   <!-- FOOTER -->
   
+  
+  <!-- JUDICIAL DELEGATION GENERATOR FOR LAWYERS (v7) -->
+  <section id="judicial-delegation-tool" style="max-width:1240px; margin:28px auto; padding:26px; background:linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.9)); border:1px solid rgba(99,102,241,0.4); border-radius:22px;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:14px; margin-bottom:18px;">
+      <div>
+        <span style="display:inline-block; padding:4px 12px; border-radius:999px; background:rgba(99,102,241,0.2); border:1px solid rgba(99,102,241,0.45); color:#c7d2fe; font-size:11.5px; font-weight:800; margin-bottom:6px;">🤝 خدمة تبادل الحضور والإنابات بين السادة المحامين</span>
+        <h2 style="font-size:1.3rem; font-weight:900; color:#fff; margin:0;">مُولِّد خطاب الإنابة القضائية الفوري لحضور الجلسات (وفق قانون المحاماة 17/1983)</h2>
+        <p style="font-size:0.86rem; color:#94a3b8; margin:4px 0 0;">حرر خطاب إنابة قضائية رسمي لزميلك في أي محافظة لحضور جلسة أو إبداء طلبات أمام المحكمة وأرسله فوراً عبر واتساب أو اطبعه بصيغة A4.</p>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-bottom:14px;">
+      <div>
+        <label style="display:block; font-size:12px; font-weight:700; color:#cbd5e1; margin-bottom:4px;">الأستاذ المحامي الأصيل (المُنيب):</label>
+        <input type="text" id="delFromLawyer" placeholder="الأستاذ / أحمد منصور المحامي بالنقض" style="width:100%; padding:9px 12px; border-radius:10px; background:#020617; border:1px solid rgba(148,163,184,0.28); color:#fff; font-family:'Cairo',sans-serif; font-size:12.5px;" />
+      </div>
+      <div>
+        <label style="display:block; font-size:12px; font-weight:700; color:#cbd5e1; margin-bottom:4px;">الزميل الأستاذ المحامي (المُناب):</label>
+        <input type="text" id="delToLawyer" placeholder="اختر زميلاً من الدليل أو اكتب اسمه" style="width:100%; padding:9px 12px; border-radius:10px; background:#020617; border:1px solid rgba(148,163,184,0.28); color:#fff; font-family:'Cairo',sans-serif; font-size:12.5px;" />
+      </div>
+      <div>
+        <label style="display:block; font-size:12px; font-weight:700; color:#cbd5e1; margin-bottom:4px;">المحكمة والدائرة:</label>
+        <input type="text" id="delCourt" placeholder="مثال: محكمة شمال القاهرة الابتدائية - الدائرة 5" style="width:100%; padding:9px 12px; border-radius:10px; background:#020617; border:1px solid rgba(148,163,184,0.28); color:#fff; font-family:'Cairo',sans-serif; font-size:12.5px;" />
+      </div>
+      <div>
+        <label style="display:block; font-size:12px; font-weight:700; color:#cbd5e1; margin-bottom:4px;">رقم الدعوى وتاريخ الجلسة:</label>
+        <input type="text" id="delCaseDate" placeholder="مثال: دعوى 1420 لسنة 2026 - جلسة 20/10/2026" style="width:100%; padding:9px 12px; border-radius:10px; background:#020617; border:1px solid rgba(148,163,184,0.28); color:#fff; font-family:'Cairo',sans-serif; font-size:12.5px;" />
+      </div>
+      <div>
+        <label style="display:block; font-size:12px; font-weight:700; color:#cbd5e1; margin-bottom:4px;">اسم الموكل ورقم التوكيل:</label>
+        <input type="text" id="delPoaInfo" placeholder="مثال: عن المدعي / محمد علي - توكيل 4510 أ مدينة نصر" style="width:100%; padding:9px 12px; border-radius:10px; background:#020617; border:1px solid rgba(148,163,184,0.28); color:#fff; font-family:'Cairo',sans-serif; font-size:12.5px;" />
+      </div>
+      <div>
+        <label style="display:block; font-size:12px; font-weight:700; color:#cbd5e1; margin-bottom:4px;">المطلوب إثباته في محضر الجلسة:</label>
+        <input type="text" id="delActionReq" value="الحضور وإثبات الوكالة وطلب أجل للاطلاع وتقديم المستندات" style="width:100%; padding:9px 12px; border-radius:10px; background:#020617; border:1px solid rgba(148,163,184,0.28); color:#fff; font-family:'Cairo',sans-serif; font-size:12.5px;" />
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <button type="button" onclick="generateJudicialDelegation()" style="padding:10px 20px; border-radius:11px; background:linear-gradient(135deg,#6366f1,#4f46e5); border:none; color:#fff; font-family:'Cairo',sans-serif; font-weight:800; font-size:13px; cursor:pointer;">📜 توليد خطاب الإنابة القضائية الرسمي</button>
+    </div>
+
+    <div id="delegationOutputBox" style="display:none; margin-top:16px; background:#020617; border:1px solid rgba(16,185,129,0.4); border-radius:14px; padding:18px;">
+      <pre id="delegationTextContent" style="white-space:pre-wrap; font-family:'Cairo',sans-serif; font-size:13.5px; color:#f8fafc; line-height:1.9; margin:0 0 14px;"></pre>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button type="button" onclick="navigator.clipboard.writeText(document.getElementById('delegationTextContent').innerText).then(()=>alert('✅ تم نسخ خطاب الإنابة القضائية!'))" style="padding:8px 16px; border-radius:9px; background:rgba(99,102,241,0.2); border:1px solid rgba(99,102,241,0.45); color:#c7d2fe; font-family:'Cairo',sans-serif; font-weight:800; font-size:12px; cursor:pointer;">📋 نسخ خطاب الإنابة</button>
+        <button type="button" onclick="window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(document.getElementById('delegationTextContent').innerText), '_blank')" style="padding:8px 16px; border-radius:9px; background:linear-gradient(135deg,#10b981,#059669); border:none; color:#fff; font-family:'Cairo',sans-serif; font-weight:800; font-size:12px; cursor:pointer;">💬 إرسال للزميل عبر واتساب</button>
+      </div>
+    </div>
+  </section>
+
   <!-- GOVERNORATE LOCAL SEO DIRECTORY LINKS -->
   <section style="max-width:1240px; margin:24px auto 40px; padding:24px; background:rgba(15,23,42,0.85); border:1px solid rgba(99,102,241,0.28); border-radius:20px;">
     <h2 style="font-size:1.2rem; font-weight:900; color:#fff; margin:0 0 10px;">🗺️ تصفح دليل المحامين المعتمدين حسب المحافظة (صفحات مخصصة لكل محافظة)</h2>
@@ -578,6 +629,7 @@
             <div class="lawyer-actions">
               <a href="${waLink}" target="_blank" rel="noopener" class="btn-wa">💬 واتساب فوري</a>
               <a href="${telLink}" class="btn-call">📞 اتصال مباشر</a>
+              <button type="button" onclick="prefillDelegationForLawyer('${l.name}', '${l.courts || ""}')" style="grid-column:1/-1; padding:8px; border-radius:10px; background:rgba(99,102,241,0.14); border:1px solid rgba(99,102,241,0.35); color:#c7d2fe; font-family:'Cairo',sans-serif; font-weight:800; font-size:0.8rem; cursor:pointer;">🤝 تحرير خطاب إنابة قضائية لهذا الزميل</button>
             </div>
           </div>
         `;
@@ -708,6 +760,58 @@
         </div>
       `;
       document.body.appendChild(confirmBanner);
+    }
+
+    
+    function prefillDelegationForLawyer(lawyerName, lawyerCourts) {
+      const toEl = document.getElementById('delToLawyer');
+      const ctEl = document.getElementById('delCourt');
+      if (toEl) toEl.value = lawyerName;
+      if (ctEl && lawyerCourts) ctEl.value = lawyerCourts.split('-')[0].trim();
+      const toolSec = document.getElementById('judicial-delegation-tool');
+      if (toolSec) toolSec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function generateJudicialDelegation() {
+      const fromL = (document.getElementById('delFromLawyer').value || '').trim() || 'الأستاذ / أحمد منصور المحامي بالنقض';
+      const toL = (document.getElementById('delToLawyer').value || '').trim() || 'الأستاذ / ................................ المحامي';
+      const court = (document.getElementById('delCourt').value || '').trim() || 'المحكمة المختصة';
+      const caseDate = (document.getElementById('delCaseDate').value || '').trim() || 'الدعوى رقم ........ لسنة 2026';
+      const poa = (document.getElementById('delPoaInfo').value || '').trim() || 'بموجب التوكيل الرسمي العام المودع بملف الدعوى';
+      const actionReq = (document.getElementById('delActionReq').value || '').trim();
+      const todayStr = new Date().toLocaleDateString('ar-EG', { year:'numeric', month:'long', day:'numeric' });
+
+      const text = `⚖️ إقرار وخطاب إنابة قضائية رسمية (وفق المادة 56 من قانون المحاماة رقم 17 لسنة 1983)
+` +
+        `═══════════════════════════════════════════════════════════
+` +
+        `أنيب أنا الموقع أدناه / ${fromL}
+` +
+        `زميلي السيد الأستاذ / ${toL}
+
+` +
+        `وذلك في الحضور نيابة عني وعلى مسؤوليتي المهنية أمام: (${court})
+` +
+        `في: (${caseDate})
+` +
+        `بصفتي وكيلاً عن: (${poa})
+
+` +
+        `المطلوب إثباته بمحضر الجلسة:
+` +
+        `« ${actionReq} »
+
+` +
+        `ولسيادته كافة الصلاحيات المخولة لي بالتوكيل في هذه الجلسة، وهذه إنابة مني بذلك.
+` +
+        `تحريراً في: ${todayStr}م
+` +
+        `المحامي المُنيب: ${fromL}
+` +
+        `عبر منظومة الإنابات القضائية — منصة المحامي الرقمية (mohamidigital.online)`;
+
+      document.getElementById('delegationTextContent').innerText = text;
+      document.getElementById('delegationOutputBox').style.display = 'block';
     }
 
     loadLawyersData();
