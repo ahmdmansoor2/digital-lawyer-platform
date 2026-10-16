@@ -865,7 +865,18 @@
     // Initialize list & fetch general catalog in background
     function initApp() {
       applyOfficeProfileToPaper();
-      filterCategory('curated');
+
+      // Check for deep-linking search query parameter (?q=... or ?search=...)
+      const urlParams = new URLSearchParams(window.location.search);
+      const searchQ = urlParams.get('q') || urlParams.get('search');
+
+      if (searchQ) {
+        filterCategory('all');
+        const input = document.getElementById('tplSearchInput');
+        if (input) input.value = searchQ;
+      } else {
+        filterCategory('curated');
+      }
 
       // Fetch the catalog asynchronously so the page stays ultra-fast (<40KB initial load)
       fetch('/data/legal-forms-summary.json')
@@ -873,7 +884,9 @@
         .then(data => {
           if (data && data.forms) {
             GENERAL_SUMMARY = data.forms;
-            if (activeCategory !== 'curated' && activeCategory !== 'notary') {
+            if (searchQ) {
+              applyFilter();
+            } else if (activeCategory !== 'curated' && activeCategory !== 'notary') {
               applyFilter();
             }
           }
