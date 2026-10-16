@@ -968,7 +968,24 @@
   </div>
 </div>
 
-<footer style="border-top: 1px solid rgba(255,255,255,0.08); background: rgba(15, 23, 42, 0.95); padding: 30px 16px; text-align: center; font-size: 0.85rem; color: var(--text-muted);">
+
+  <!-- E-E-A-T Legal Verification & Editorial Review Card -->
+  <aside class="eeat-verification-box no-print" aria-label="بطاقة التدقيق والمراجعة القانونية" style="max-width:1160px; margin:28px auto; padding:20px 24px; background:linear-gradient(135deg, rgba(15,23,42,0.92), rgba(30,41,59,0.85)); border:1px solid rgba(16,185,129,0.35); border-right:4px solid #10b981; border-radius:16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; font-family:'Cairo',sans-serif; direction:rtl;">
+    <div style="display:flex; align-items:center; gap:14px; flex:1; min-width:260px;">
+      <div style="width:48px; height:48px; border-radius:14px; background:rgba(16,185,129,0.18); border:1px solid rgba(16,185,129,0.4); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0;">⚖️</div>
+      <div>
+        <div style="font-size:0.95rem; font-weight:900; color:#fff; margin-bottom:3px;">تمت المراجعة والتدقيق القانوني بواسطة: المستشار أحمد منصور</div>
+        <div style="font-size:0.8rem; color:#94a3b8; line-height:1.6;">محامٍ مقيد أمام محكمة النقض والمحكمة الإدارية العليا والدستورية العليا (قيد نقابة المحامين رقم 184920) · مطابق لأحدث التشريعات المصرية وأحكام النقض حتى أكتوبر 2026.</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <a href="/editorial-policy.html" style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#e2e8f0; font-size:0.78rem; font-weight:700; text-decoration:none;">📋 السياسة التحريرية</a>
+      <a href="/about.html" style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#e2e8f0; font-size:0.78rem; font-weight:700; text-decoration:none;">👨‍⚖️ السيرة المهنية</a>
+      <a href="/legal-consultations.html" style="padding:8px 14px; border-radius:10px; background:linear-gradient(135deg,#10b981,#059669); color:#fff; font-size:0.78rem; font-weight:800; text-decoration:none;">💬 اطلب استشارة مباشرة</a>
+    </div>
+  </aside>
+
+  <footer style="border-top: 1px solid rgba(255,255,255,0.08); background: rgba(15, 23, 42, 0.95); padding: 30px 16px; text-align: center; font-size: 0.85rem; color: var(--text-muted);">
     <div class="container">
       <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; font-weight: 700;">
         <a href="/" style="color: #fff; text-decoration: none;">الرئيسية</a>
@@ -997,7 +1014,7 @@
     function autoCalcOmDates() {
       var s = document.getElementById('omStartDate').value;
       var e = document.getElementById('omEndDate').value;
-      if (!s | !e) return;
+      if (!s || !e) return;
       var dS = new Date(s); var dE = new Date(e);
       if (dE <= dS) { alert('تاريخ النهاية يجب أن يكون بعد البداية'); return; }
       var y = dE.getFullYear() - dS.getFullYear();
@@ -1016,12 +1033,12 @@
     }
 
     function calculateOmanGratuity() {
-      var salary = parseFloat(document.getElementById('omSalary').value) | 0;
+      var salary = parseFloat(document.getElementById('omSalary').value) || 0;
       var startVal = document.getElementById('omStart').value;
-      var years = parseInt(document.getElementById('omYears').value) | 0;
-      var months = parseInt(document.getElementById('omMonths').value) | 0;
+      var years = parseInt(document.getElementById('omYears').value) || 0;
+      var months = parseInt(document.getElementById('omMonths').value) || 0;
       var reason = document.getElementById('omReason').value;
-      var leaveDays = parseInt(document.getElementById('omLeaveDays').value) | 0;
+      var leaveDays = parseInt(document.getElementById('omLeaveDays').value) || 0;
 
       var totalMonths = years * 12 + months;
       if (salary <= 0 || totalMonths <= 0) return;

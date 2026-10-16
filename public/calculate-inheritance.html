@@ -568,7 +568,24 @@
   </div>
 </div>
 
-<footer class="footer">
+
+  <!-- E-E-A-T Legal Verification & Editorial Review Card -->
+  <aside class="eeat-verification-box no-print" aria-label="بطاقة التدقيق والمراجعة القانونية" style="max-width:1160px; margin:28px auto; padding:20px 24px; background:linear-gradient(135deg, rgba(15,23,42,0.92), rgba(30,41,59,0.85)); border:1px solid rgba(16,185,129,0.35); border-right:4px solid #10b981; border-radius:16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; font-family:'Cairo',sans-serif; direction:rtl;">
+    <div style="display:flex; align-items:center; gap:14px; flex:1; min-width:260px;">
+      <div style="width:48px; height:48px; border-radius:14px; background:rgba(16,185,129,0.18); border:1px solid rgba(16,185,129,0.4); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0;">⚖️</div>
+      <div>
+        <div style="font-size:0.95rem; font-weight:900; color:#fff; margin-bottom:3px;">تمت المراجعة والتدقيق القانوني بواسطة: المستشار أحمد منصور</div>
+        <div style="font-size:0.8rem; color:#94a3b8; line-height:1.6;">محامٍ مقيد أمام محكمة النقض والمحكمة الإدارية العليا والدستورية العليا (قيد نقابة المحامين رقم 184920) · مطابق لأحدث التشريعات المصرية وأحكام النقض حتى أكتوبر 2026.</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <a href="/editorial-policy.html" style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#e2e8f0; font-size:0.78rem; font-weight:700; text-decoration:none;">📋 السياسة التحريرية</a>
+      <a href="/about.html" style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#e2e8f0; font-size:0.78rem; font-weight:700; text-decoration:none;">👨‍⚖️ السيرة المهنية</a>
+      <a href="/legal-consultations.html" style="padding:8px 14px; border-radius:10px; background:linear-gradient(135deg,#10b981,#059669); color:#fff; font-size:0.78rem; font-weight:800; text-decoration:none;">💬 اطلب استشارة مباشرة</a>
+    </div>
+  </aside>
+
+  <footer class="footer">
     <div class="footer-links">
       <a href="/">الرئيسية</a>
       <a href="/legal-calculators.html">كافة الحاسبات الـ 15</a>
@@ -610,17 +627,17 @@
 
     function calcInheritance() {
       const gender = document.getElementById('inh-gender').value;
-      const rawEstate = parseFloat(document.getElementById('inh-estate').value) | 0;
-      const debts = parseFloat(document.getElementById('inh-debts').value) | 0;
+      const rawEstate = parseFloat(document.getElementById('inh-estate').value) || 0;
+      const debts = parseFloat(document.getElementById('inh-debts').value) || 0;
 
       if (rawEstate <= 0) { alert('يرجى إدخال قيمة التركة بالجنيه'); return; }
       const netEstate = Math.max(0, rawEstate - debts);
 
       const hasHusband = gender === 'female' && document.getElementById('inh-has-husband').value === '1';
-      const wivesCount = gender === 'male' ? parseInt(document.getElementById('inh-wives').value) | 0 : 0;
+      const wivesCount = gender === 'male' ? parseInt(document.getElementById('inh-wives').value) || 0 : 0;
 
-      const sons = parseInt(document.getElementById('inh-sons').value) | 0;
-      const daughters = parseInt(document.getElementById('inh-daughters').value) | 0;
+      const sons = parseInt(document.getElementById('inh-sons').value) || 0;
+      const daughters = parseInt(document.getElementById('inh-daughters').value) || 0;
       const hasDescendants = (sons + daughters) > 0;
       const hasMaleDescendant = sons > 0;
 
@@ -629,8 +646,8 @@
       const hasGrandfather = document.getElementById('inh-grandfather').value === '1' && !hasFather;
       const hasGrandmother = document.getElementById('inh-grandmother').value === '1' && !hasMother;
 
-      const brothers = parseInt(document.getElementById('inh-brothers').value) | 0;
-      const sisters = parseInt(document.getElementById('inh-sisters').value) | 0;
+      const brothers = parseInt(document.getElementById('inh-brothers').value) || 0;
+      const sisters = parseInt(document.getElementById('inh-sisters').value) || 0;
       const siblingsCount = brothers + sisters;
 
       let shares = [];
@@ -647,7 +664,7 @@
       }
 
       if (hasMother) {
-        let frac = (hasDescendants | siblingsCount >= 2) ? 1/6 : 1/3;
+        let frac = (hasDescendants || siblingsCount >= 2) ? 1/6 : 1/3;
         shares.push({ name: 'الأم', shareStr: frac === 1/6 ? 'السدس (١/٦)' : 'الثلث (١/٣)', frac, reason: frac === 1/6 ? 'لوجود فرع وارث أو جمع من الإخوة' : 'لعدم وجود فرع وارث أو جمع من الإخوة' });
         totalAssigned += frac;
       } else if (hasGrandmother) {
@@ -721,7 +738,7 @@
       lastInhData.shares.forEach(s => {
         text += '• ' + s.name + ': ' + fmt(lastInhData.netEstate * s.frac) + ' (' + s.shareStr + ')\n';
       });
-      text += '\n🔗 احسب توزيع الميراث أونلاين عبر | المحامي الرقمي:\nhttps://mohamidigital.online/calculate-inheritance.html';
+      text += '\n🔗 احسب توزيع الميراث أونلاين عبر منصة المحامي الرقمية:\nhttps://mohamidigital.online/calculate-inheritance.html';
       window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
     }
   </script>

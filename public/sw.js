@@ -1,14 +1,11 @@
 /**
- * sw.js — Service Worker لمنصة المحامي الرقمية (PWA).
- * سياسة متحفظة:
- *  - التنقلات (HTML): network-first مع سقوط للنسخة المخبأة ثم الصفحة الرئيسية.
- *  - أصول ثابتة (css/js/img/fonts/assets): cache-first.
- *  - search-index.json: network-first دائماً حتى لا يتقادم البحث.
- *  - لا تخزين لأي طلب غير GET أو خارج النطاق.
+ * sw.js — Service Worker لمنصة المحامي الرقمية (PWA) - نسخة محسنة للـ SEO
+ * - التنقلات (HTML): network-first بدون إسقاط صفحات الخطأ 404 على الصفحة الرئيسية '/'.
+ * - الأصول الثابتة (css/js/img/fonts/assets): cache-first.
  */
 'use strict';
 
-const VERSION = 'mohami-v12';
+const VERSION = 'mohami-v5-seo';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 
@@ -17,11 +14,8 @@ const PRECACHE = [
   '/header.css',
   '/manifest.webmanifest',
   '/icon.svg',
-  '/pillars/',
-  '/pillars/index.html',
-  '/courts-directory.html',
-  '/legal-calculators.html',
-  '/court-precedents.html'
+  '/logo.svg',
+  '/404.html'
 ];
 
 self.addEventListener('install', (e) => {
@@ -43,23 +37,23 @@ self.addEventListener('activate', (e) => {
 function isStaticAsset(url) {
   return (
     url.pathname.startsWith('/assets/') ||
-    url.pathname.startsWith('/blog/') === false && /\.(css|js|png|jpg|jpeg|svg|webp|ico|woff2?)$/.test(url.pathname)
-  ) || /\.(css|js|png|jpg|jpeg|svg|webp|ico|woff2?)$/.test(url.pathname);
+    /\.(css|js|png|jpg|jpeg|svg|webp|ico|woff2?)$/.test(url.pathname)
+  );
 }
 
-async function networkFirst(request, fallbackUrl) {
+async function networkFirstHtml(request) {
   const cache = await caches.open(RUNTIME_CACHE);
   try {
     const fresh = await fetch(request);
-    if (fresh && fresh.ok) cache.put(request, fresh.clone());
+    if (fresh && fresh.status === 200) {
+      cache.put(request, fresh.clone());
+    }
     return fresh;
   } catch (err) {
     const cached = await cache.match(request);
     if (cached) return cached;
-    if (fallbackUrl) {
-      const shell = await caches.match(fallbackUrl);
-      if (shell) return shell;
-    }
+    const errPage = await caches.match('/404.html');
+    if (errPage) return errPage;
     throw err;
   }
 }
@@ -73,20 +67,6 @@ async function cacheFirst(request) {
   return fresh;
 }
 
-async function staleWhileRevalidate(request) {
-  const cache = await caches.open(RUNTIME_CACHE);
-  const cached = await cache.match(request);
-  const fetchPromise = fetch(request).then(fresh => {
-    if (fresh && fresh.ok) cache.put(request, fresh.clone());
-    return fresh;
-  }).catch(() => null);
-  return cached || fetchPromise;
-}
-
-function isCodeData(url) {
-  return url.pathname.startsWith('/data/codes/') || url.pathname.startsWith('/data/official-codes-pdf/');
-}
-
 self.addEventListener('fetch', (e) => {
   const req = e.request;
   if (req.method !== 'GET') return;
@@ -94,26 +74,11 @@ self.addEventListener('fetch', (e) => {
   const url = new URL(req.url);
   if (url.origin !== location.origin) return;
 
-  // صفحات التنقل
   if (req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html')) {
-    // Don't fallback to '/' for missing subpages to prevent Soft 404 / 'Alternate page with proper canonical tag'
-    e.respondWith(networkFirst(req, null));
+    e.respondWith(networkFirstHtml(req));
     return;
   }
 
-  // الأكواد التشريعية وكتب PDF الرسمية — حفظ دائم للعمل دون إنترنت في المحاكم
-  if (isCodeData(url)) {
-    e.respondWith(cacheFirst(req).catch(() => Response.error()));
-    return;
-  }
-
-  // الفهرس: تقديم فوري من الكاش وتحديث في الخلفية دون أي تجميد
-  if (url.pathname === '/search-index.json') {
-    e.respondWith(staleWhileRevalidate(req));
-    return;
-  }
-
-  // الأصول الثابتة
   if (isStaticAsset(url)) {
     e.respondWith(cacheFirst(req).catch(() => Response.error()));
   }

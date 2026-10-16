@@ -309,7 +309,7 @@
       return s;
     }
     function searchIndex(q) {
-      if (!indexData | !q.trim()) return [];
+      if (!indexData || !q.trim()) return [];
       const ranked = [];
       for (const it of indexData.items) {
         const s = scoreItem(it, q);
@@ -369,7 +369,7 @@
           indexData = data;
           loadingBar.style.display = 'none';
           // شغّل البحث بعد التحميل
-          const initialQ = new URLSearchParams(window.location.search).get('q') | input.value;
+          const initialQ = new URLSearchParams(window.location.search).get('q') || input.value;
           if (initialQ) input.value = initialQ;
           render(input.value.trim());
         })

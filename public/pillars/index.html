@@ -2008,7 +2008,7 @@ function renderCodes(items) {
         <p class="code-desc">${c.desc}</p>
 
         <div class="code-highlights">
-          <span style="background:rgba(16,185,129,0.15); color:#34d399; font-weight:800;">📜 ${c.totalArticles | (c.articles ? c.articles.length : 0)} مادة قانونية كاملة 100%</span>
+          <span style="background:rgba(16,185,129,0.15); color:#34d399; font-weight:800;">📜 ${c.totalArticles || (c.articles ? c.articles.length : 0)} مادة قانونية كاملة 100%</span>
           ${c.highlights.map(h => `<span>${h}</span>`).join('')}
         </div>
       </div>
@@ -2089,7 +2089,7 @@ function loadAllArticles() {
 
 function jumpToArticle() {
   const numInput = document.getElementById('jumpArticleInput');
-  if (!numInput | !numInput.value) return;
+  if (!numInput || !numInput.value) return;
   const targetNum = numInput.value.trim();
   
   // Set search to this article number
@@ -2120,7 +2120,7 @@ function copyAllCodeArticles() {
 
 function copyArticleCitation(artNum, btn) {
   if (!currentActiveCode) return;
-  const art = (currentActiveCode.articles || []).find(a => a.num === artNum | a.num.startsWith(artNum));
+  const art = (currentActiveCode.articles || []).find(a => a.num === artNum || a.num.startsWith(artNum));
   if (!art) return;
 
   const citationText = `«${art.text.trim()}»\n\n— [${art.num}${art.title ? ' — ' + art.title : ''}] من ${currentActiveCode.title} (${currentActiveCode.lawNum}) — الجريدة الرسمية والوقائع المصرية.\n[مرجع تشريعي موثق: | المحامي الرقمي https://mohamidigital.online/pillars/]`;
@@ -2153,7 +2153,7 @@ async function openCodeModal(codeId) {
       if (fullData && Array.isArray(fullData.articles) && fullData.articles.length > 0) {
         code = {
           ...code,
-          totalArticles: fullData.totalArticles | fullData.articles.length,
+          totalArticles: fullData.totalArticles || fullData.articles.length,
           gazetteDate: fullData.gazetteDate || 'الجريدة الرسمية المعتمدة حتى 2026',
           chapters: fullData.chapters || code.chapters || [],
           articles: fullData.articles
@@ -2165,7 +2165,7 @@ async function openCodeModal(codeId) {
   }
 
   currentActiveCode = code;
-  const totalCount = code.totalArticles | (code.articles ? code.articles.length : 0);
+  const totalCount = code.totalArticles || (code.articles ? code.articles.length : 0);
 
   document.getElementById('modalTag').innerText = code.tag;
   document.getElementById('modalTitle').innerText = '📄 ' + code.title;
