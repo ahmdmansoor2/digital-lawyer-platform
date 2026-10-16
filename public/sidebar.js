@@ -691,9 +691,52 @@
     dock.innerHTML = html;
     document.body.appendChild(dock);
   }
+  var CONSENT_KEY = 'mohami_cookie_consent_2026';
+
+  function showCookieBanner(forceShow) {
+    try {
+      if (!forceShow && localStorage.getItem(CONSENT_KEY)) return;
+    } catch (e) {}
+
+    var existing = document.getElementById('mohami-cookie-banner');
+    if (existing) existing.remove();
+
+    var banner = document.createElement('div');
+    banner.id = 'mohami-cookie-banner';
+    banner.className = 'no-print';
+    banner.setAttribute('role', 'region');
+    banner.setAttribute('aria-label', 'إشعار ملفات تعريف الارتباط والخصوصية');
+    banner.style.cssText = 'position:fixed; bottom:16px; left:16px; right:16px; max-width:920px; margin:0 auto; z-index:9999995; background:rgba(15,23,42,0.97); border:1px solid rgba(99,102,241,0.45); border-radius:16px; padding:14px 18px; box-shadow:0 16px 40px rgba(0,0,0,0.85); backdrop-filter:blur(16px); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family:"Cairo",sans-serif; direction:rtl; color:#e2e8f0; font-size:12.5px; line-height:1.6;';
+
+    banner.innerHTML =
+      '<div style="flex:1; min-width:240px;">' +
+        '<strong style="color:#fff;">🍪 إشعار الخصوصية وملفات تعريف الارتباط (Cookies):</strong> ' +
+        'نستخدم ملفات تعريف الارتباط وتقنيات Google AdSense لتحسين تجربتك وتقديم الحاسبات والخدمات القانونية مجاناً. باستمرارك أو ضغطك على «موافقة»، فإنك توافق على <a href="/privacy.html" style="color:#6ee7b7; text-decoration:underline; font-weight:700;">سياسة الخصوصية وملفات تعريف الارتباط</a>.' +
+      '</div>' +
+      '<div style="display:flex; gap:8px; flex-shrink:0;">' +
+        '<button type="button" id="mohamiCookieAcceptAll" style="padding:8px 16px; border-radius:10px; background:linear-gradient(135deg,#10b981,#059669); border:none; color:#fff; font-family:\'Cairo\',sans-serif; font-weight:800; font-size:12px; cursor:pointer;">✓ موافقة وقبول الكل</button>' +
+        '<button type="button" id="mohamiCookieEssential" style="padding:8px 12px; border-radius:10px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#cbd5e1; font-family:\'Cairo\',sans-serif; font-weight:700; font-size:12px; cursor:pointer;">الضرورية فقط</button>' +
+      '</div>';
+
+    document.body.appendChild(banner);
+
+    document.getElementById('mohamiCookieAcceptAll').onclick = function() {
+      try { localStorage.setItem(CONSENT_KEY, 'all'); } catch (e) {}
+      banner.remove();
+    };
+    document.getElementById('mohamiCookieEssential').onclick = function() {
+      try { localStorage.setItem(CONSENT_KEY, 'essential'); } catch (e) {}
+      banner.remove();
+    };
+  }
+
+  window.openMohamiCookieSettings = function() {
+    showCookieBanner(true);
+  };
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', mountDock);
+    document.addEventListener('DOMContentLoaded', function() { showCookieBanner(false); });
   } else {
-    mountDock();
+    showCookieBanner(false);
   }
 })();
