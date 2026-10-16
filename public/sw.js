@@ -5,13 +5,11 @@
  */
 'use strict';
 
-const VERSION = 'mohami-v8-theme-20261016';
+const VERSION = 'mohami-v9-20261016';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 
 const PRECACHE = [
-  '/',
-  '/header.css?v=20261016v8',
   '/manifest.webmanifest',
   '/icon.svg',
   '/logo.svg',
@@ -36,10 +34,18 @@ self.addEventListener('activate', (e) => {
 });
 
 function isStaticAsset(url) {
-  if (url.pathname === '/sw.js' || url.pathname === '/sw-register.js') return false;
+  if (
+    url.pathname === '/sw.js' ||
+    url.pathname === '/sw-register.js' ||
+    url.pathname === '/header.css' ||
+    url.pathname === '/sidebar.js' ||
+    url.pathname === '/mobile-dock.js'
+  ) {
+    return false;
+  }
   return (
     url.pathname.startsWith('/assets/') ||
-    /\.(css|js|png|jpg|jpeg|svg|webp|ico|woff2?)$/.test(url.pathname)
+    /\.(png|jpg|jpeg|svg|webp|ico|woff2?)$/.test(url.pathname)
   );
 }
 
