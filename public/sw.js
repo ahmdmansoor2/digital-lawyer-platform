@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const VERSION = 'mohami-v9-20261016';
+const VERSION = 'mohami-clean-stable-v10';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 
@@ -34,18 +34,9 @@ self.addEventListener('activate', (e) => {
 });
 
 function isStaticAsset(url) {
-  if (
-    url.pathname === '/sw.js' ||
-    url.pathname === '/sw-register.js' ||
-    url.pathname === '/header.css' ||
-    url.pathname === '/sidebar.js' ||
-    url.pathname === '/mobile-dock.js'
-  ) {
-    return false;
-  }
   return (
     url.pathname.startsWith('/assets/') ||
-    /\.(png|jpg|jpeg|svg|webp|ico|woff2?)$/.test(url.pathname)
+    /\.(css|js|png|jpg|jpeg|svg|webp|ico|woff2?)$/.test(url.pathname)
   );
 }
 
