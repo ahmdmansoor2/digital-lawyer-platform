@@ -796,8 +796,13 @@
   function updateThemeButtonsUI() {
     var light = isLightMode();
     document.querySelectorAll('.mohami-theme-toggle-btn').forEach(function(btn) {
-      btn.innerHTML = light ? '🌙 <span>ليلي</span>' : '☀️ <span>نهاري</span>';
-      btn.title = light ? 'التبديل إلى الوضع الليلي الفخم' : 'التبديل إلى الوضع النهاري الورقي المريح للقراءة';
+      if (btn.id === 'mohamiHeaderThemeBtn' || btn.id === 'mohamiFloatingThemeBtn') {
+        btn.innerHTML = light ? '🌙' : '☀️';
+        btn.title = light ? 'التبديل إلى الوضع الليلي' : 'التبديل إلى الوضع النهاري';
+      } else {
+        btn.innerHTML = light ? '🌙 <span>ليلي</span>' : '☀️ <span>نهاري</span>';
+        btn.title = light ? 'التبديل إلى الوضع الليلي الفخم' : 'التبديل إلى الوضع النهاري الورقي';
+      }
     });
   }
 
@@ -820,6 +825,7 @@
       document.body.appendChild(bar);
     }
 
+    // 1. Floating Theme Button (Left Stack, Top)
     if (!document.getElementById('mohamiFloatingThemeBtn')) {
       var flBtn = document.createElement('button');
       flBtn.id = 'mohamiFloatingThemeBtn';
@@ -828,11 +834,12 @@
       flBtn.title = 'تبديل الوضع (نهاري / ليلي)';
       flBtn.setAttribute('aria-label', 'تبديل الوضع بين نهاري وليلي');
       var isMob = window.innerWidth <= 768;
-      flBtn.style.cssText = 'position:fixed; bottom:' + (isMob ? '82px' : '24px') + '; left:' + (isMob ? '14px' : '76px') + '; z-index:999988; padding:8px 14px; border-radius:999px; background:rgba(15,23,42,0.92); border:1.5px solid rgba(245,158,11,0.6); color:#fbbf24; font-family:Cairo,sans-serif; font-size:12.5px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:6px; box-shadow:0 8px 24px rgba(0,0,0,0.55); backdrop-filter:blur(8px); transition:all 0.25s ease;';
+      flBtn.style.cssText = 'position:fixed; z-index:999988; width:42px; height:42px; border-radius:12px; background:rgba(15,23,42,0.92); border:1.5px solid rgba(245,158,11,0.6); color:#fbbf24; font-size:18px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,0.55); backdrop-filter:blur(8px); transition:all 0.25s ease; left:' + (isMob ? '16px' : '24px') + '; bottom:' + (isMob ? '138px' : '78px') + ';';
       flBtn.onclick = toggleTheme;
       document.body.appendChild(flBtn);
     }
 
+    // 2. Back To Top Button (Left Stack, Bottom)
     if (!document.getElementById('mohamiBackToTopBtn')) {
       var upBtn = document.createElement('button');
       upBtn.id = 'mohamiBackToTopBtn';
@@ -840,7 +847,8 @@
       upBtn.className = 'no-print';
       upBtn.title = 'العودة إلى أعلى الصفحة';
       upBtn.setAttribute('aria-label', 'العودة إلى أعلى الصفحة');
-      upBtn.style.cssText = 'position:fixed; bottom:24px; left:24px; z-index:999989; width:42px; height:42px; border-radius:12px; background:rgba(99,102,241,0.92); border:1px solid rgba(255,255,255,0.25); color:#fff; font-size:18px; font-weight:900; cursor:pointer; display:none; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,0.45); transition:all 0.25s ease;';
+      var isMob = window.innerWidth <= 768;
+      upBtn.style.cssText = 'position:fixed; z-index:999989; width:42px; height:42px; border-radius:12px; background:rgba(99,102,241,0.92); border:1px solid rgba(255,255,255,0.25); color:#fff; font-size:18px; font-weight:900; cursor:pointer; display:none; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,0.45); transition:all 0.25s ease; left:' + (isMob ? '16px' : '24px') + '; bottom:' + (isMob ? '84px' : '24px') + ';';
       upBtn.innerHTML = '↑';
       upBtn.onclick = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
       document.body.appendChild(upBtn);
@@ -859,52 +867,46 @@
       var isMobile = window.innerWidth <= 768;
 
       if (flBtn) {
-        if (isMobile) {
-          flBtn.style.bottom = '82px';
-          flBtn.style.left = '14px';
-        } else {
-          flBtn.style.bottom = '24px';
-          flBtn.style.left = '76px';
-        }
+        flBtn.style.left = isMobile ? '16px' : '24px';
+        flBtn.style.bottom = isMobile ? '138px' : '78px';
       }
 
       if (upBtn) {
         upBtn.style.display = scrollTop > 380 ? 'flex' : 'none';
-        if (isMobile) {
-          upBtn.style.bottom = '132px';
-          upBtn.style.left = '14px';
-        } else {
-          upBtn.style.bottom = '24px';
-          upBtn.style.left = '24px';
-        }
+        upBtn.style.left = isMobile ? '16px' : '24px';
+        upBtn.style.bottom = isMobile ? '84px' : '24px';
       }
     }, { passive: true });
   }
 
-  // 2. Inject Theme Toggle, Font Controls & Quick Search Trigger into Top Header
+  // 2. Inject Compact Theme Toggle & Quick Search Trigger into Top Header
   function mountHeaderControls() {
     var targetContainer = document.querySelector('.uh-actions') || document.querySelector('.unified-header .uh-inner');
     if (!targetContainer || document.getElementById('mohamiHeaderThemeBtn')) return;
 
     var toolsWrap = document.createElement('div');
+    toolsWrap.id = 'mohamiHeaderToolsWrap';
     toolsWrap.className = 'no-print';
-    toolsWrap.style.cssText = 'display:inline-flex; align-items:center; gap:6px;';
+    toolsWrap.style.cssText = 'display:inline-flex; align-items:center; gap:6px; flex-shrink:0;';
 
-    // Quick Search Button (Ctrl+K)
+    // Quick Search Button (Ctrl+K) - Compact Icon Button
     var searchBtn = document.createElement('button');
     searchBtn.type = 'button';
     searchBtn.id = 'mohamiQuickSearchBtn';
     searchBtn.title = 'بحث فوري في المنصة (Ctrl+K)';
-    searchBtn.style.cssText = 'padding:6px 10px; border-radius:10px; background:rgba(99,102,241,0.14); border:1px solid rgba(99,102,241,0.35); color:inherit; font-family:Cairo,sans-serif; font-size:12px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:5px;';
-    searchBtn.innerHTML = '🔍 <span style="display:inline;">بحث</span>';
+    searchBtn.setAttribute('aria-label', 'بحث فوري في المنصة');
+    searchBtn.style.cssText = 'width:36px; height:36px; border-radius:10px; background:rgba(99,102,241,0.14); border:1px solid rgba(99,102,241,0.35); color:inherit; font-size:15px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; transition:all 0.2s ease;';
+    searchBtn.innerHTML = '🔍';
     searchBtn.onclick = openSpotlightSearch;
 
-    // Theme Toggle Button (☀️ نهاري / 🌙 ليلي)
+    // Theme Toggle Button (☀️ / 🌙) - Compact Icon Button
     var themeBtn = document.createElement('button');
     themeBtn.type = 'button';
     themeBtn.id = 'mohamiHeaderThemeBtn';
     themeBtn.className = 'mohami-theme-toggle-btn';
-    themeBtn.style.cssText = 'padding:6px 10px; border-radius:10px; background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.4); color:inherit; font-family:Cairo,sans-serif; font-size:12px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:5px;';
+    themeBtn.title = 'التبديل بين الوضع النهاري والليلي';
+    themeBtn.setAttribute('aria-label', 'التبديل بين الوضع النهاري والليلي');
+    themeBtn.style.cssText = 'width:36px; height:36px; border-radius:10px; background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.4); color:inherit; font-size:16px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; transition:all 0.2s ease;';
     themeBtn.onclick = toggleTheme;
 
     toolsWrap.appendChild(searchBtn);

@@ -1124,26 +1124,73 @@ html.public-theme-light body {
   color-scheme: light !important;
 }
 
+/* Comprehensive Container & Background Neutralization in Light Mode */
 html.public-theme-light body:not(:has(#app-workspace-wrapper[style*="block"])),
-html.public-theme-light .portal-shell {
+html.public-theme-light .portal-shell,
+html.public-theme-light main,
+html.public-theme-light .main-container,
+html.public-theme-light .ns-container,
+html.public-theme-light .container,
+html.public-theme-light .page-wrapper,
+html.public-theme-light .content-wrap,
+html.public-theme-light .page-body,
+html.public-theme-light section,
+html.public-theme-light article {
   background-color: #f8fafc !important;
-  background-image:
-    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(99, 102, 241, 0.08) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 40% at 10% 65%, rgba(16, 185, 129, 0.06) 0%, transparent 55%),
-    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 50%, #f8fafc 100%) !important;
+  background-image: none !important;
   color: #0f172a !important;
+}
+
+/* Override Tailwind Dark Utility Classes in Light Mode */
+html.public-theme-light .bg-slate-900,
+html.public-theme-light .bg-slate-950,
+html.public-theme-light .bg-slate-800,
+html.public-theme-light .bg-gray-900,
+html.public-theme-light .bg-zinc-900,
+html.public-theme-light .bg-black {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+html.public-theme-light .text-slate-100,
+html.public-theme-light .text-slate-200,
+html.public-theme-light .text-slate-300,
+html.public-theme-light .text-gray-100,
+html.public-theme-light .text-white {
+  color: #0f172a !important;
+}
+html.public-theme-light .text-slate-400,
+html.public-theme-light .text-gray-400,
+html.public-theme-light .text-slate-500 {
+  color: #475569 !important;
 }
 
 /* Remove dark background glows in Light Mode */
 html.public-theme-light .bg-glow {
-  opacity: 0.25 !important;
+  opacity: 0.1 !important;
+  filter: grayscale(1) !important;
 }
 
-/* Top Unified Header & Navigation in Light Mode */
+/* Top Unified Header Stability & Symmetry in Light Mode */
+.uh-inner {
+  flex-wrap: nowrap !important;
+}
+.uh-actions {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
+}
+#mohamiHeaderToolsWrap {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-shrink: 0 !important;
+}
+
 html.public-theme-light .uh-bar,
 html.public-theme-light .unified-header,
 html.public-theme-light .uh-bar.scrolled {
-  background: rgba(255, 255, 255, 0.94) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
   border-bottom: 1px solid rgba(15, 23, 42, 0.12) !important;
   box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
 }
@@ -1178,11 +1225,27 @@ html.public-theme-light .uh-burger {
   color: #0f172a !important;
 }
 
-/* All Headings & Typography in Light Mode */
-html.public-theme-light body:not(:has(#app-workspace-wrapper[style*="block"])) h1,
-html.public-theme-light body:not(:has(#app-workspace-wrapper[style*="block"])) h2,
-html.public-theme-light body:not(:has(#app-workspace-wrapper[style*="block"])) h3,
-html.public-theme-light body:not(:has(#app-workspace-wrapper[style*="block"])) h4,
+/* Floating Actions in Light Mode */
+html.public-theme-light #mohamiFloatingThemeBtn {
+  background: #ffffff !important;
+  border: 1.5px solid #d97706 !important;
+  color: #d97706 !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14) !important;
+}
+html.public-theme-light #mohamiBackToTopBtn {
+  background: #4f46e5 !important;
+  border: 1px solid rgba(79, 70, 229, 0.3) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.25) !important;
+}
+
+/* Universal Typography & Anti-Disappearing Text in Light Mode */
+html.public-theme-light h1,
+html.public-theme-light h2,
+html.public-theme-light h3,
+html.public-theme-light h4,
+html.public-theme-light h5,
+html.public-theme-light h6,
 html.public-theme-light .hero h1,
 html.public-theme-light .ns-hero h1,
 html.public-theme-light .section-title,
@@ -1191,40 +1254,46 @@ html.public-theme-light .lawyer-name,
 html.public-theme-light .card-title,
 html.public-theme-light .prec-title,
 html.public-theme-light .term-title,
-html.public-theme-light .page-title {
+html.public-theme-light .page-title,
+html.public-theme-light strong:not(.uh-cta *):not(.ns-cta *):not(.btn *):not(.calc-btn *) {
   color: #0f172a !important;
   -webkit-text-fill-color: #0f172a !important;
   text-shadow: none !important;
 }
 
-html.public-theme-light .article-card p,
-html.public-theme-light .topic-page-body p,
-html.public-theme-light .topic-full p,
-html.public-theme-light .full-sec p,
-html.public-theme-light .article-card li,
-html.public-theme-light .topic-page-body li,
-html.public-theme-light .full-sec li,
-html.public-theme-light .ns-section p,
-html.public-theme-light .ns-section li,
-html.public-theme-light .ns-card p,
+html.public-theme-light p,
+html.public-theme-light li,
+html.public-theme-light label,
+html.public-theme-light dd,
+html.public-theme-light dt,
+html.public-theme-light td,
+html.public-theme-light th,
+html.public-theme-light blockquote,
 html.public-theme-light .lawyer-bio,
 html.public-theme-light .term-def,
 html.public-theme-light .prec-text,
-html.public-theme-light .faq-a,
-html.public-theme-light .content-section p,
-html.public-theme-light .content-section li {
+html.public-theme-light .faq-a {
   color: #1e293b !important;
   text-shadow: none !important;
 }
 
-html.public-theme-light .article-card strong,
-html.public-theme-light .topic-page-body strong,
-html.public-theme-light .full-sec strong {
-  color: #0f172a !important;
-  text-shadow: none !important;
+html.public-theme-light .muted,
+html.public-theme-light .text-muted,
+html.public-theme-light .meta,
+html.public-theme-light small {
+  color: #475569 !important;
 }
 
-/* All Cards, Containers, Heroes & Sections in Light Mode */
+html.public-theme-light a:not(.uh-cta):not(.ns-cta):not(.btn):not(.btn-primary):not(.btn-wa):not(.calc-btn):not([style*="linear-gradient"]):not(.dock-item) {
+  color: #3730a3 !important;
+  text-decoration: none;
+}
+html.public-theme-light a:not(.uh-cta):not(.ns-cta):not(.btn):not(.btn-primary):not(.btn-wa):not(.calc-btn):not([style*="linear-gradient"]):not(.dock-item):hover {
+  color: #1e1b4b !important;
+  text-decoration: underline;
+}
+
+/* All Cards, Boxes & Sections in Light Mode */
 html.public-theme-light .ns-hero,
 html.public-theme-light .hero,
 html.public-theme-light .hero-box {
@@ -1259,26 +1328,26 @@ html.public-theme-light .control-panel,
 html.public-theme-light .faq-item,
 html.public-theme-light .section,
 html.public-theme-light .eeat-verification-box,
-html.public-theme-light .matched-card {
+html.public-theme-light .matched-card,
+html.public-theme-light .card,
+html.public-theme-light .panel,
+html.public-theme-light .box,
+html.public-theme-light .feature-card,
+html.public-theme-light .step-card {
   background: #ffffff !important;
-  border-color: rgba(15, 23, 42, 0.12) !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
   box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05) !important;
   color: #0f172a !important;
 }
 
-html.public-theme-light .ns-card h3 a,
-html.public-theme-light .ns-links-cloud a {
-  color: #3730a3 !important;
-}
-html.public-theme-light .ns-links-cloud a,
+html.public-theme-light .stat-pill,
+html.public-theme-light .hero-stat,
 html.public-theme-light .gov-pill,
 html.public-theme-light .spec-tag,
 html.public-theme-light .lawyer-meta,
-html.public-theme-light .result-row,
-html.public-theme-light .stat-pill,
-html.public-theme-light .hero-stat {
+html.public-theme-light .result-row {
   background: #f1f5f9 !important;
-  border-color: rgba(15, 23, 42, 0.12) !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
   color: #1e293b !important;
 }
 
@@ -1290,52 +1359,63 @@ html.public-theme-light .search-bar,
 html.public-theme-light .search-input,
 html.public-theme-light .form-item-option {
   background: #ffffff !important;
-  border-color: rgba(15, 23, 42, 0.22) !important;
+  border: 1.5px solid #cbd5e1 !important;
   color: #0f172a !important;
 }
 html.public-theme-light input::placeholder,
 html.public-theme-light textarea::placeholder {
   color: #64748b !important;
+  opacity: 1 !important;
 }
 
-/* Override Inline Dark Backgrounds & Light Text safely in Light Mode */
+/* Overwrite Hardcoded Inline Dark Backgrounds in Light Mode */
+html.public-theme-light [style*="background:#060913"],
+html.public-theme-light [style*="background: #060913"],
+html.public-theme-light [style*="background:#080f28"],
+html.public-theme-light [style*="background: #080f28"],
+html.public-theme-light [style*="background:#0a0f1d"],
+html.public-theme-light [style*="background: #0a0f1d"],
+html.public-theme-light [style*="background:#020617"],
+html.public-theme-light [style*="background: #020617"],
+html.public-theme-light [style*="background:#0f172a"],
+html.public-theme-light [style*="background: #0f172a"],
+html.public-theme-light [style*="background:#1e293b"],
+html.public-theme-light [style*="background: #1e293b"],
 html.public-theme-light [style*="background:rgba(15,23,42"],
 html.public-theme-light [style*="background: rgba(15, 23, 42"],
 html.public-theme-light [style*="background:rgba(30,41,59"],
 html.public-theme-light [style*="background: rgba(30, 41, 59"],
 html.public-theme-light [style*="background:rgba(2,6,23"],
-html.public-theme-light [style*="background:#020617"],
-html.public-theme-light [style*="background: #020617"],
-html.public-theme-light [style*="background:#0f172a"],
-html.public-theme-light [style*="background:#0b1120"],
-html.public-theme-light [style*="background:linear-gradient(135deg, rgba(15,23,42"],
-html.public-theme-light [style*="background: linear-gradient(135deg, rgba(30, 41, 59"] {
+html.public-theme-light [style*="background: rgba(2, 6, 23"],
+html.public-theme-light [style*="background:rgba(8,15,40"],
+html.public-theme-light [style*="background: rgba(8, 15, 40"] {
   background: #ffffff !important;
-  border-color: rgba(15, 23, 42, 0.14) !important;
-  color: #0f172a !important;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05) !important;
-}
-
-html.public-theme-light [style*="color:#cbd5e1"],
-html.public-theme-light [style*="color: #cbd5e1"],
-html.public-theme-light [style*="color:#e2e8f0"],
-html.public-theme-light [style*="color: #e2e8f0"],
-html.public-theme-light [style*="color:#94a3b8"],
-html.public-theme-light [style*="color: #94a3b8"] {
-  color: #334155 !important;
-}
-
-html.public-theme-light div[style*="color:#fff"]:not([style*="linear-gradient"]):not([style*="background:#6366f1"]):not([style*="background:#10b981"]),
-html.public-theme-light span[style*="color:#fff"]:not([style*="linear-gradient"]):not([style*="background:#6366f1"]):not([style*="background:#10b981"]),
-html.public-theme-light h2[style*="color:#fff"],
-html.public-theme-light h3[style*="color:#fff"],
-html.public-theme-light strong[style*="color:#fff"],
-html.public-theme-light strong[style*="color: #fff"],
-html.public-theme-light pre[style*="color:#f8fafc"] {
+  border-color: rgba(15, 23, 42, 0.12) !important;
   color: #0f172a !important;
 }
 
-/* Preserve Crisp White Text on Solid Primary/Emerald Buttons in Light Mode */
+/* Overwrite Hardcoded Light Text Colors to Prevent Disappearing (White-on-White) */
+html.public-theme-light [style*="color:#fff"]:not(.uh-cta):not(.ns-cta):not(.btn):not(.btn-primary):not(.btn-wa):not(.calc-btn):not([style*="background:#6366f1"]):not([style*="background:#10b981"]):not([style*="linear-gradient"]),
+html.public-theme-light [style*="color: #fff"]:not(.uh-cta):not(.ns-cta):not(.btn):not(.btn-primary):not(.btn-wa):not(.calc-btn):not([style*="background:#6366f1"]):not([style*="background:#10b981"]):not([style*="linear-gradient"]),
+html.public-theme-light [style*="color:#ffffff"]:not(.uh-cta):not(.ns-cta):not(.btn):not(.btn-primary):not(.btn-wa):not(.calc-btn):not([style*="background:#6366f1"]):not([style*="background:#10b981"]):not([style*="linear-gradient"]),
+html.public-theme-light [style*="color: #ffffff"]:not(.uh-cta):not(.ns-cta):not(.btn):not(.btn-primary):not(.btn-wa):not(.calc-btn):not([style*="background:#6366f1"]):not([style*="background:#10b981"]):not([style*="linear-gradient"]),
+html.public-theme-light [style*="color:white"]:not(.uh-cta):not(.ns-cta):not(.btn):not(.btn-primary):not(.btn-wa):not(.calc-btn),
+html.public-theme-light [style*="color: white"]:not(.uh-cta):not(.ns-cta):not(.btn):not(.btn-primary):not(.btn-wa):not(.calc-btn),
+html.public-theme-light [style*="color:#f8fafc"]:not(.uh-cta):not(.ns-cta):not(.btn),
+html.public-theme-light [style*="color: #f8fafc"]:not(.uh-cta):not(.ns-cta):not(.btn),
+html.public-theme-light [style*="color:#f1f5f9"]:not(.uh-cta):not(.ns-cta):not(.btn),
+html.public-theme-light [style*="color: #f1f5f9"]:not(.uh-cta):not(.ns-cta):not(.btn),
+html.public-theme-light [style*="color:#e2e8f0"]:not(.uh-cta):not(.ns-cta):not(.btn),
+html.public-theme-light [style*="color: #e2e8f0"]:not(.uh-cta):not(.ns-cta):not(.btn),
+html.public-theme-light [style*="color:#cbd5e1"]:not(.uh-cta):not(.ns-cta):not(.btn),
+html.public-theme-light [style*="color: #cbd5e1"]:not(.uh-cta):not(.ns-cta):not(.btn),
+html.public-theme-light [style*="color:#94a3b8"]:not(.uh-cta):not(.ns-cta):not(.btn),
+html.public-theme-light [style*="color: #94a3b8"]:not(.uh-cta):not(.ns-cta):not(.btn) {
+  color: #1e293b !important;
+  -webkit-text-fill-color: #1e293b !important;
+}
+
+/* Preserve Crisp White Text on Solid Vibrant Action Buttons in Light Mode */
 html.public-theme-light .uh-cta:not(.uh-cta--ghost),
 html.public-theme-light .ns-cta,
 html.public-theme-light .calc-btn,
