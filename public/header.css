@@ -1,20 +1,30 @@
 /* ============================================================================
- * خلفية الموقع العام الفاخرة الموحدة 2026 — Midnight Sapphire (أزرق ملكي فاخر)
+ * خلفية الصفحات العامة الثابتة — تطبق فقط على الصفحات المستقلة ولا تؤثر على التطبيق
  * ============================================================================ */
-html:root, html:root body, html body, body {
-  background-color: #080f28 !important;
+html:not(.public-theme-light) body:not(:has(#root)) {
+  background-color: #060913;
   background-image: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.20) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 85% 60%, rgba(16, 185, 129, 0.09) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 40% at 15% 40%, rgba(124, 58, 237, 0.16) 0%, transparent 55%),
-    linear-gradient(180deg, #080f28 0%, #0d1840 40%, #060a1c 100%) !important;
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(99, 102, 241, 0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 65% 45% at 90% 25%, rgba(124, 58, 237, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 40% at 10% 65%, rgba(16, 185, 129, 0.10) 0%, transparent 55%),
+    linear-gradient(180deg, #060913 0%, #0a0f1d 35%, #050812 100%);
+  background-attachment: scroll;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   color: #f1f5f9;
-  font-family: 'Cairo', 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-family: 'Cairo', 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  min-height: 100vh;
 }
+
+/* ============================================================================
+ * header.css — الشريط العلوي الزجاجي الموحّد 2026 (glassmorphism)
+ * كلاساته ببادئة .uh- لتجنّب أي تعارض مع أنماط الصفحات (nav / header ...).
+ * يُحمَّل من: الصفحات الثابتة (link في head) + تطبيق React (index.html).
+ * الثيم: داكن افتراضياً + overrides لقسم html.public-theme-light.
+ * RTL أولاً عبر الخصائص المنطقية (inset-inline / ms- / me-).
+ * ============================================================================ */
 
 .uh-bar {
   position: sticky;
@@ -192,8 +202,7 @@ html:root, html:root body, html body, body {
   z-index: 100000;
 }
 
-.uh-more.open .uh-menu,
-.uh-more:hover .uh-menu {
+.uh-more.open .uh-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -265,55 +274,6 @@ html:root, html:root body, html body, body {
   background: rgba(99, 102, 241, 0.22);
   box-shadow: inset 0 0 0 1px rgba(99, 102, 241, 0.5);
   filter: brightness(1.05);
-}
-
-.uh-logout-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 11px;
-  border-radius: 9px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #fca5a5;
-  background: rgba(239, 68, 68, 0.12);
-  border: 1px solid rgba(239, 68, 68, 0.35);
-  cursor: pointer;
-  transition: all 0.18s ease;
-  white-space: nowrap;
-  font-family: inherit;
-  line-height: 1.4;
-}
-
-.uh-logout-btn:hover {
-  background: rgba(239, 68, 68, 0.22);
-  border-color: rgba(239, 68, 68, 0.6);
-  color: #fff;
-  transform: translateY(-1px);
-}
-
-.uh-login-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 5px 12px;
-  border-radius: 9px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #e0e7ff;
-  background: rgba(99, 102, 241, 0.18);
-  border: 1px solid rgba(99, 102, 241, 0.4);
-  cursor: pointer;
-  transition: all 0.18s ease;
-  white-space: nowrap;
-  font-family: inherit;
-  line-height: 1.4;
-}
-
-.uh-login-btn:hover {
-  background: rgba(99, 102, 241, 0.32);
-  color: #fff;
-  transform: translateY(-1px);
 }
 
 .uh-burger {
@@ -538,7 +498,7 @@ aside[role="navigation"] .overflow-y-auto::-webkit-scrollbar-thumb:hover {
 }
 
 /* 1. ترويسات وعناوين الأقسام الرئيسية (H2) */
-.article-card h2, .topic-page-body h2, .topic-full h2 {
+html:not(.public-theme-light) .article-card h2, html:not(.public-theme-light) .topic-page-body h2, html:not(.public-theme-light) .topic-full h2 {
   font-size: clamp(22px, 3.5vw, 28px) !important;
   font-weight: 900 !important;
   color: #ffffff !important;
@@ -552,7 +512,7 @@ aside[role="navigation"] .overflow-y-auto::-webkit-scrollbar-thumb:hover {
 }
 
 /* 2. الترويسات الفرعية (H3) */
-.article-card h3, .topic-page-body h3, .topic-full h3 {
+html:not(.public-theme-light) .article-card h3, html:not(.public-theme-light) .topic-page-body h3, html:not(.public-theme-light) .topic-full h3 {
   font-size: clamp(19px, 2.5vw, 22px) !important;
   font-weight: 800 !important;
   color: #f8fafc !important;
@@ -572,7 +532,7 @@ aside[role="navigation"] .overflow-y-auto::-webkit-scrollbar-thumb:hover {
 }
 
 /* 4. فقرات المحتوى القرائي فائق الوضوح والراحة (P) */
-.article-card p, .topic-page-body p, .topic-full p, .full-sec p {
+html:not(.public-theme-light) .article-card p, html:not(.public-theme-light) .topic-page-body p, html:not(.public-theme-light) .topic-full p, html:not(.public-theme-light) .full-sec p {
   font-size: 17.5px !important;
   font-weight: 500 !important;
   color: #f1f5f9 !important;
@@ -584,14 +544,14 @@ aside[role="navigation"] .overflow-y-auto::-webkit-scrollbar-thumb:hover {
 }
 
 /* 5. الكلمات البارزة والمهمة (Strong) */
-.article-card strong, .topic-page-body strong, .full-sec strong {
+html:not(.public-theme-light) .article-card strong, html:not(.public-theme-light) .topic-page-body strong, html:not(.public-theme-light) .full-sec strong {
   color: #ffffff !important;
   font-weight: 800 !important;
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.3) !important;
 }
 
 /* 6. القوائم النقطية والرقمية (Lists) */
-.article-card li, .topic-page-body li, .full-sec li {
+html:not(.public-theme-light) .article-card li, html:not(.public-theme-light) .topic-page-body li, html:not(.public-theme-light) .full-sec li {
   font-size: 17px !important;
   font-weight: 500 !important;
   color: #e2e8f0 !important;
@@ -607,13 +567,22 @@ aside[role="navigation"] .overflow-y-auto::-webkit-scrollbar-thumb:hover {
 
 
 /* ══════════════════════════════════════════════════════════════════════
-   UNIFIED GLASSMORPHIC HEADINGS (تأثير زجاجي فخم وواضح مريح للعين)
+   UNIFIED GLASSMORPHIC HEADINGS — Scoped strictly to standalone pages
+   (Will NEVER affect or leak into the React application / Desktop app)
    ══════════════════════════════════════════════════════════════════════ */
-h1, h2, h3, h4,
-.hero h1, .hero h2,
-.section-title,
-.article-card h1, .article-card h2, .article-card h3,
-.topic-page-head h1, .topic-page-body h2, .topic-page-body h3 {
+html:not(.public-theme-light) body:not(:has(#root)) h1,
+html:not(.public-theme-light) body:not(:has(#root)) h2,
+html:not(.public-theme-light) body:not(:has(#root)) h3,
+html:not(.public-theme-light) body:not(:has(#root)) h4,
+html:not(.public-theme-light) body:not(:has(#root)) .hero h1,
+html:not(.public-theme-light) body:not(:has(#root)) .hero h2,
+body:not(:has(#root)) .section-title,
+body:not(:has(#root)) .article-card h1,
+body:not(:has(#root)) .article-card h2,
+body:not(:has(#root)) .article-card h3,
+body:not(:has(#root)) .topic-page-head h1,
+body:not(:has(#root)) .topic-page-body h2,
+body:not(:has(#root)) .topic-page-body h3 {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
   background: none !important;
@@ -624,12 +593,14 @@ h1, h2, h3, h4,
   text-shadow: 0 4px 16px rgba(0, 0, 0, 0.75), 0 0 25px rgba(99, 102, 241, 0.25) !important;
 }
 
-.text-white {
+html:not(.public-theme-light) body:not(:has(#root)) .text-white {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
 
-.hero p, .sub-title, .section-desc {
+html:not(.public-theme-light) body:not(:has(#root)) .hero p,
+body:not(:has(#root)) .sub-title,
+body:not(:has(#root)) .section-desc {
   color: #cbd5e1 !important;
   font-weight: 500;
   line-height: 1.8;
@@ -1118,260 +1089,328 @@ h1, h2, h3, h4,
   }
 }
 
-/* ════════════════════════════════════════════════════════════════════════════
-   SMART CONVERSION BANNER (منظومة المحامي الرقمية - تجربة 30 يوماً مجاناً)
-   ════════════════════════════════════════════════════════════════════════════ */
-.smart-download-banner {
-  margin: 40px auto;
-  max-width: 1050px;
-  padding: 0 16px;
-  box-sizing: border-box;
-}
-
-.sdb-card {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.94) 0%, rgba(30, 27, 75, 0.90) 50%, rgba(15, 23, 42, 0.96) 100%) !important;
-  border: 1px solid rgba(99, 102, 241, 0.45) !important;
-  border-radius: 22px !important;
-  padding: 30px 26px !important;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(99, 102, 241, 0.2) !important;
-  backdrop-filter: blur(16px) !important;
-  -webkit-backdrop-filter: blur(16px) !important;
-  position: relative !important;
-  overflow: hidden !important;
-  text-align: right !important;
-  direction: rtl !important;
-}
-
-.sdb-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #6366f1, #a855f7, #10b981);
-}
-
-.sdb-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.sdb-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(16, 185, 129, 0.18) !important;
-  border: 1px solid rgba(16, 185, 129, 0.45) !important;
-  color: #34d399 !important;
-  font-size: 0.84rem !important;
-  font-weight: 800 !important;
-  padding: 4px 14px !important;
-  border-radius: 99px !important;
-}
-
-.sdb-title {
-  font-size: clamp(1.25rem, 2.5vw, 1.65rem) !important;
-  font-weight: 900 !important;
-  color: #ffffff !important;
-  margin-bottom: 12px !important;
-  line-height: 1.35 !important;
-  letter-spacing: -0.2px;
-}
-
-.sdb-desc {
-  font-size: 0.96rem !important;
-  color: #cbd5e1 !important;
-  line-height: 1.8 !important;
-  margin-bottom: 22px !important;
-  max-width: 900px !important;
-}
-
-.sdb-platforms {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-
-.sdb-platform-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(15, 23, 42, 0.75) !important;
-  border: 1px solid rgba(255, 255, 255, 0.14) !important;
-  color: #e2e8f0 !important;
-  font-size: 0.84rem !important;
-  font-weight: 700 !important;
-  padding: 6px 14px !important;
-  border-radius: 10px !important;
-}
-
-.sdb-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-items: center;
-}
-
-.sdb-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
-  color: #ffffff !important;
-  font-size: 1rem !important;
-  font-weight: 800 !important;
-  padding: 13px 26px !important;
-  border-radius: 12px !important;
-  text-decoration: none !important;
-  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.45) !important;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s !important;
-}
-
-.sdb-btn-primary:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 28px rgba(99, 102, 241, 0.6) !important;
-  color: #ffffff !important;
-}
-
-.sdb-btn-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(16, 185, 129, 0.15) !important;
-  border: 1px solid rgba(16, 185, 129, 0.45) !important;
-  color: #34d399 !important;
-  font-size: 0.95rem !important;
-  font-weight: 800 !important;
-  padding: 12px 22px !important;
-  border-radius: 12px !important;
-  text-decoration: none !important;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.sdb-btn-whatsapp:hover {
-  background: rgba(16, 185, 129, 0.25) !important;
-  border-color: #34d399 !important;
-  color: #ffffff !important;
-  transform: translateY(-2px) !important;
-}
-
-@media (max-width: 640px) {
-  .sdb-card {
-    padding: 22px 18px !important;
-    border-radius: 18px !important;
-  }
-  .sdb-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-  .sdb-btn-primary, .sdb-btn-whatsapp {
-    width: 100%;
-    justify-content: center;
-    box-sizing: border-box;
-  }
-}
-
-/* ════════════════════════════════════════════════════════════════════════════
-   UNIVERSAL MOBILE RESPONSIVENESS SUITE 2026 (تحسين شامل لكل صفحات الموقع)
-   ════════════════════════════════════════════════════════════════════════════ */
-@media (max-width: 768px) {
-  html, body {
-    overflow-x: hidden !important;
-    max-width: 100vw !important;
-    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px)) !important;
-  }
-  .container, .main-container, .wrapper, .page-wrap, main, article, section, .hero-section {
-    max-width: 100% !important;
-    padding-left: 14px !important;
-    padding-right: 14px !important;
-    box-sizing: border-box !important;
-  }
-  img, video, iframe, canvas {
-    max-width: 100% !important;
-    height: auto !important;
-  }
-  table {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch !important;
-  }
-  input, select, textarea {
-    font-size: 16px !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .grid, .cards-grid, .features-grid, .posts-grid, .pillars-grid, .calculators-grid {
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
-  }
-  .modal-box, .dialog-box, .popup-card {
-    max-width: 95vw !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-title, h1 {
-    font-size: clamp(1.45rem, 5.5vw, 1.95rem) !important;
-    line-height: 1.35 !important;
-  }
-  .hero-desc, .sub-title {
-    font-size: 0.9rem !important;
-    line-height: 1.75 !important;
-  }
-  .card, .calc-card, .article-card, .law-card {
-    padding: 16px 12px !important;
-    border-radius: 14px !important;
-  }
-}
 
 /* ============================================================================
- * درع حماية تخطيط المدونة ومنع أي قوائم قديمة ملغاة + تنسيق مسار التنقل
- * ============================================================================ */
-.main-nav, .header-nav {
-  display: none !important;
+   MASTER JUDICIAL LIGHT MODE ENGINE (html.public-theme-light — v8)
+   Covers all 30 CSS custom properties, standalone classes, and inline styles
+   while strictly isolating #app-workspace-wrapper and .paper-sheet (A4 print)
+   ============================================================================ */
+html.public-theme-light,
+html.public-theme-light body {
+  --bg: #f8fafc !important;
+  --bg2: #f1f5f9 !important;
+  --bg3: #ffffff !important;
+  --bg-dark: #f8fafc !important;
+  --card: #ffffff !important;
+  --card-bg: #ffffff !important;
+  --bg-card: #ffffff !important;
+  --surface: #ffffff !important;
+  --text: #0f172a !important;
+  --text-main: #0f172a !important;
+  --muted: #475569 !important;
+  --text-muted: #475569 !important;
+  --border: rgba(15, 23, 42, 0.12) !important;
+  --card-border: rgba(15, 23, 42, 0.12) !important;
+  --border-color: rgba(15, 23, 42, 0.12) !important;
+  --border-hover: rgba(79, 70, 229, 0.45) !important;
+  --indigo: #4f46e5 !important;
+  --indigo-light: #4338ca !important;
+  --primary: #4f46e5 !important;
+  --primary-light: #4338ca !important;
+  --emerald: #059669 !important;
+  --amber: #d97706 !important;
+  --gold: #b45309 !important;
+  --cyan: #0284c7 !important;
+  color-scheme: light !important;
 }
 
-.breadcrumbs {
-  max-width: 900px !important;
-  margin: 16px auto 0 !important;
-  padding: 0 24px !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  font-size: 13px !important;
-  color: #94a3b8 !important;
+html.public-theme-light body:not(:has(#app-workspace-wrapper[style*="block"])),
+html.public-theme-light .portal-shell {
+  background-color: #f8fafc !important;
+  background-image:
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(99, 102, 241, 0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 40% at 10% 65%, rgba(16, 185, 129, 0.06) 0%, transparent 55%),
+    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 50%, #f8fafc 100%) !important;
+  color: #0f172a !important;
 }
 
-.breadcrumbs a {
-  color: #94a3b8 !important;
-  text-decoration: none !important;
-  font-weight: 700 !important;
-  transition: color 0.2s ease !important;
+/* Remove dark background glows in Light Mode */
+html.public-theme-light .bg-glow {
+  opacity: 0.25 !important;
 }
 
-.breadcrumbs a:hover {
-  color: #6366f1 !important;
+/* Top Unified Header & Navigation in Light Mode */
+html.public-theme-light .uh-bar,
+html.public-theme-light .unified-header,
+html.public-theme-light .uh-bar.scrolled {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06) !important;
+}
+html.public-theme-light .uh-title,
+html.public-theme-light .unified-header a {
+  color: #0f172a !important;
+}
+html.public-theme-light .uh-sub {
+  color: #4f46e5 !important;
+}
+html.public-theme-light .uh-link,
+html.public-theme-light .uh-more-btn,
+html.public-theme-light .uh-menu-item {
+  color: #334155 !important;
+}
+html.public-theme-light .uh-link:hover,
+html.public-theme-light .uh-link.active,
+html.public-theme-light .uh-more-btn:hover,
+html.public-theme-light .uh-menu-item:hover {
+  background: rgba(79, 70, 229, 0.10) !important;
+  color: #4f46e5 !important;
+}
+html.public-theme-light .uh-menu,
+html.public-theme-light .uh-nav.active {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.14) !important;
+}
+html.public-theme-light .uh-burger {
+  background: #f1f5f9 !important;
+  border-color: rgba(15, 23, 42, 0.15) !important;
+  color: #0f172a !important;
 }
 
-.breadcrumbs .sep {
-  color: #94a3b8 !important;
-  opacity: 0.4 !important;
+/* All Headings & Typography in Light Mode */
+html.public-theme-light body:not(:has(#app-workspace-wrapper[style*="block"])) h1,
+html.public-theme-light body:not(:has(#app-workspace-wrapper[style*="block"])) h2,
+html.public-theme-light body:not(:has(#app-workspace-wrapper[style*="block"])) h3,
+html.public-theme-light body:not(:has(#app-workspace-wrapper[style*="block"])) h4,
+html.public-theme-light .hero h1,
+html.public-theme-light .ns-hero h1,
+html.public-theme-light .section-title,
+html.public-theme-light .calc-title,
+html.public-theme-light .lawyer-name,
+html.public-theme-light .card-title,
+html.public-theme-light .prec-title,
+html.public-theme-light .term-title,
+html.public-theme-light .page-title {
+  color: #0f172a !important;
+  -webkit-text-fill-color: #0f172a !important;
+  text-shadow: none !important;
 }
 
-.breadcrumbs .current,
-.breadcrumbs span:last-child {
-  color: #e2e8f0 !important;
-  font-weight: 800 !important;
+html.public-theme-light .article-card p,
+html.public-theme-light .topic-page-body p,
+html.public-theme-light .topic-full p,
+html.public-theme-light .full-sec p,
+html.public-theme-light .article-card li,
+html.public-theme-light .topic-page-body li,
+html.public-theme-light .full-sec li,
+html.public-theme-light .ns-section p,
+html.public-theme-light .ns-section li,
+html.public-theme-light .ns-card p,
+html.public-theme-light .lawyer-bio,
+html.public-theme-light .term-def,
+html.public-theme-light .prec-text,
+html.public-theme-light .faq-a,
+html.public-theme-light .content-section p,
+html.public-theme-light .content-section li {
+  color: #1e293b !important;
+  text-shadow: none !important;
 }
 
+html.public-theme-light .article-card strong,
+html.public-theme-light .topic-page-body strong,
+html.public-theme-light .full-sec strong {
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
 
+/* All Cards, Containers, Heroes & Sections in Light Mode */
+html.public-theme-light .ns-hero,
+html.public-theme-light .hero,
+html.public-theme-light .hero-box {
+  background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 60%, #ecfdf5 100%) !important;
+  border-color: rgba(79, 70, 229, 0.22) !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06) !important;
+}
+html.public-theme-light .ns-hero p,
+html.public-theme-light .hero p,
+html.public-theme-light .hero-box p {
+  color: #334155 !important;
+}
+
+html.public-theme-light .ns-card,
+html.public-theme-light .ns-section,
+html.public-theme-light .ns-faq-item,
+html.public-theme-light .calc-card,
+html.public-theme-light .result-box,
+html.public-theme-light .lawyer-card,
+html.public-theme-light .dir-card,
+html.public-theme-light .topic-card,
+html.public-theme-light .form-card,
+html.public-theme-light .term-card,
+html.public-theme-light .prec-card,
+html.public-theme-light .mini-card,
+html.public-theme-light .entity-card,
+html.public-theme-light .page-card,
+html.public-theme-light .info-card,
+html.public-theme-light .article-card,
+html.public-theme-light .controls-box,
+html.public-theme-light .control-panel,
+html.public-theme-light .faq-item,
+html.public-theme-light .section,
+html.public-theme-light .eeat-verification-box,
+html.public-theme-light .matched-card {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05) !important;
+  color: #0f172a !important;
+}
+
+html.public-theme-light .ns-card h3 a,
+html.public-theme-light .ns-links-cloud a {
+  color: #3730a3 !important;
+}
+html.public-theme-light .ns-links-cloud a,
+html.public-theme-light .gov-pill,
+html.public-theme-light .spec-tag,
+html.public-theme-light .lawyer-meta,
+html.public-theme-light .result-row,
+html.public-theme-light .stat-pill,
+html.public-theme-light .hero-stat {
+  background: #f1f5f9 !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  color: #1e293b !important;
+}
+
+/* Inputs, Selects, Textareas & Search Bars in Light Mode */
+html.public-theme-light input:not([type="submit"]):not([type="button"]),
+html.public-theme-light select,
+html.public-theme-light textarea,
+html.public-theme-light .search-bar,
+html.public-theme-light .search-input,
+html.public-theme-light .form-item-option {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.22) !important;
+  color: #0f172a !important;
+}
+html.public-theme-light input::placeholder,
+html.public-theme-light textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Override Inline Dark Backgrounds & Light Text safely in Light Mode */
+html.public-theme-light [style*="background:rgba(15,23,42"],
+html.public-theme-light [style*="background: rgba(15, 23, 42"],
+html.public-theme-light [style*="background:rgba(30,41,59"],
+html.public-theme-light [style*="background: rgba(30, 41, 59"],
+html.public-theme-light [style*="background:rgba(2,6,23"],
+html.public-theme-light [style*="background:#020617"],
+html.public-theme-light [style*="background: #020617"],
+html.public-theme-light [style*="background:#0f172a"],
+html.public-theme-light [style*="background:#0b1120"],
+html.public-theme-light [style*="background:linear-gradient(135deg, rgba(15,23,42"],
+html.public-theme-light [style*="background: linear-gradient(135deg, rgba(30, 41, 59"] {
+  background: #ffffff !important;
+  border-color: rgba(15, 23, 42, 0.14) !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05) !important;
+}
+
+html.public-theme-light [style*="color:#cbd5e1"],
+html.public-theme-light [style*="color: #cbd5e1"],
+html.public-theme-light [style*="color:#e2e8f0"],
+html.public-theme-light [style*="color: #e2e8f0"],
+html.public-theme-light [style*="color:#94a3b8"],
+html.public-theme-light [style*="color: #94a3b8"] {
+  color: #334155 !important;
+}
+
+html.public-theme-light div[style*="color:#fff"]:not([style*="linear-gradient"]):not([style*="background:#6366f1"]):not([style*="background:#10b981"]),
+html.public-theme-light span[style*="color:#fff"]:not([style*="linear-gradient"]):not([style*="background:#6366f1"]):not([style*="background:#10b981"]),
+html.public-theme-light h2[style*="color:#fff"],
+html.public-theme-light h3[style*="color:#fff"],
+html.public-theme-light strong[style*="color:#fff"],
+html.public-theme-light strong[style*="color: #fff"],
+html.public-theme-light pre[style*="color:#f8fafc"] {
+  color: #0f172a !important;
+}
+
+/* Preserve Crisp White Text on Solid Primary/Emerald Buttons in Light Mode */
+html.public-theme-light .uh-cta:not(.uh-cta--ghost),
+html.public-theme-light .ns-cta,
+html.public-theme-light .calc-btn,
+html.public-theme-light .btn-primary,
+html.public-theme-light .btn-wa,
+html.public-theme-light .btn-wa-direct,
+html.public-theme-light a[style*="linear-gradient(135deg,#10b981"],
+html.public-theme-light a[style*="linear-gradient(135deg, #10b981"],
+html.public-theme-light a[style*="linear-gradient(135deg,#6366f1"],
+html.public-theme-light a[style*="linear-gradient(135deg, #6366f1"],
+html.public-theme-light button[style*="linear-gradient"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Footers, Sidebar Drawer & Mobile Dock in Light Mode */
+html.public-theme-light footer,
+html.public-theme-light .footer,
+html.public-theme-light .ns-footer {
+  background: #f1f5f9 !important;
+  border-top: 1px solid rgba(15, 23, 42, 0.12) !important;
+  color: #475569 !important;
+}
+html.public-theme-light footer a,
+html.public-theme-light .footer a,
+html.public-theme-light .ns-footer a {
+  color: #334155 !important;
+}
+
+html.public-theme-light #gs-drawer {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-left: 1px solid rgba(15, 23, 42, 0.12) !important;
+  box-shadow: -12px 0 40px rgba(15, 23, 42, 0.15) !important;
+}
+html.public-theme-light .gs-header {
+  background: #f8fafc !important;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1) !important;
+}
+html.public-theme-light .gs-header-title {
+  color: #0f172a !important;
+}
+html.public-theme-light .gs-link {
+  color: #334155 !important;
+}
+html.public-theme-light .gs-link:hover {
+  background: rgba(79, 70, 229, 0.1) !important;
+  color: #4f46e5 !important;
+}
+html.public-theme-light #global-sidebar-trigger {
+  background: #0f172a !important;
+  color: #ffffff !important;
+}
+html.public-theme-light .site-mobile-dock {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: rgba(79, 70, 229, 0.3) !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15) !important;
+}
+html.public-theme-light .site-mobile-dock .dock-item {
+  color: #475569 !important;
+}
+html.public-theme-light .site-mobile-dock .dock-item.active,
+html.public-theme-light .site-mobile-dock .dock-item:hover {
+  color: #4f46e5 !important;
+  background: rgba(79, 70, 229, 0.12) !important;
+}
+
+/* Top Reading Progress Bar */
+#mohamiReadingProgressBar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #10b981, #6366f1, #f59e0b);
+  z-index: 1000005;
+  transition: width 0.1s ease-out;
+  pointer-events: none;
+}
