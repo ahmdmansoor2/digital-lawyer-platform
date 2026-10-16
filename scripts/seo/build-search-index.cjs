@@ -31,6 +31,7 @@ const SEARCH_PATHS = [
   { dir: path.join(PUBLIC_DIR, 'blog'), type: 'blog', urlPrefix: '/blog/' },
   { dir: path.join(PUBLIC_DIR, 'pillars'), type: 'pillar', urlPrefix: '/pillars/' },
   { dir: path.join(PUBLIC_DIR, 'courts'), type: 'court', urlPrefix: '/courts/' },
+  { dir: path.join(PUBLIC_DIR, 'lawyers'), type: 'page', urlPrefix: '/lawyers/' },
   { dir: path.join(PUBLIC_DIR, 'legal-library-topics'), type: 'pillar', urlPrefix: '/legal-library-topics/' },
   { dir: path.join(PUBLIC_DIR, 'radar-topics'), type: 'radar', urlPrefix: '/radar-topics/' },
   { dir: path.join(PUBLIC_DIR, 'legal-forms-docs'), type: 'form', urlPrefix: '/legal-forms-docs/' },
