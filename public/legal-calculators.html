@@ -1526,7 +1526,7 @@ function calcRealEstate() {
   const surveyFee = 300;
   const techFee = 150;
   let propTax = 0;
-  const taxExempt = reason === 'gift' | reason === 'inheritance';
+  const taxExempt = reason === 'gift' || reason === 'inheritance';
   if (!taxExempt && price > 0) propTax = price * 0.025;
 
   const total = registrationFee + servicesFee + stampDuty + lawyersDuty + surveyFee + techFee + propTax;
@@ -1866,7 +1866,7 @@ function calcCourt() {
   let courtFee = 0;
   let feeNote = '';
 
-  if (type === 'criminal' | type === 'labor') {
+  if (type === 'criminal' || type === 'labor') {
     courtFee = 0;
     feeNote = 'الدعاوى العمالية والبلاغات الجنائية معفاة من الرسوم.';
   } else if (type === 'family') {

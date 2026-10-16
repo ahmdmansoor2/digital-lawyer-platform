@@ -879,7 +879,7 @@
       const candles = [];
       let lastClose = basePrice * (1 - 0.012);
       const spread = basePrice * 0.003;
-      const decimals = (isUSD | currentMetric === 'usd' | currentMetric === 'eur') ? 2 : 0;
+      const decimals = (isUSD | currentMetric === 'usd' || currentMetric === 'eur') ? 2 : 0;
 
       for (let i = candleCount - 1; i >= 1; i--) {
         const time = new Date(now.getTime() - i * intervalMs);
@@ -1110,7 +1110,7 @@
         const isBull = candle.close >= candle.open;
         const badgeColor = isBull ? '#10b981' : '#ef4444';
         const changeTxt = isBull ? '🟢 شمعة صاعدة' : '🔴 شمعة هابطة';
-        const u = candle.unit | 'ج.م';
+        const u = candle.unit || 'ج.م';
 
         tooltip.style.display = 'block';
         tooltip.style.left = pointX + 'px';
@@ -1247,7 +1247,7 @@
               gp,
               ounce
             );
-            if (statusEl) statusEl.textContent = '● أسعار اليوم المعتمدة (' + (localData.dateDisplay | 'اليوم') + ')';
+            if (statusEl) statusEl.textContent = '● أسعار اليوم المعتمدة (' + (localData.dateDisplay || 'اليوم') + ')';
           }
         } catch (e) {
           if (statusEl) statusEl.textContent = '● أسعار اليوم المعتمدة';

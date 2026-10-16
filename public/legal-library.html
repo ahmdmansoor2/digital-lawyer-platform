@@ -1084,7 +1084,7 @@
                 <span>✍️</span>
                 <strong>${book.author}</strong>
               </div>
-              <div class="book-path-info">📁 مستند وورد جاهز للتحرير والطباعة · ${book.size | 'سحابي'}</div>
+              <div class="book-path-info">📁 مستند وورد جاهز للتحرير والطباعة · ${book.size || 'سحابي'}</div>
             </div>
             <div class="book-actions" style="display: flex; gap: 8px;">
               <button onclick="handleBookAction('${book.id}', 'preview')" class="btn-card btn-card-open" style="flex: 1.3; background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); color: #ffffff; border: 1px solid rgba(165,180,252,0.4); font-weight: 800;">
@@ -1102,7 +1102,7 @@
           <article class="book-card" style="border-top: 3px solid #ef4444;">
             <div>
               <div class="book-header">
-                <div class="book-icon" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5;">${book.icon | '📕'}</div>
+                <div class="book-icon" style="background: rgba(220,38,38,0.15); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5;">${book.icon || '📕'}</div>
                 <div class="book-meta-top">
                   <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:6px;">
                     <span class="book-tag">${book.categoryName}</span>
@@ -1115,7 +1115,7 @@
                 <span>✍️</span>
                 <strong>${book.author}</strong>
               </div>
-              <div class="book-path-info">📁 موسوعة كاملة (${book.size | 'سحابي'}) · تصفح وقراءة مدمجة</div>
+              <div class="book-path-info">📁 موسوعة كاملة (${book.size || 'سحابي'}) · تصفح وقراءة مدمجة</div>
             </div>
             <div class="book-actions" style="display: flex; gap: 8px;">
               <button onclick="handleBookAction('${book.id}', 'preview')" class="btn-card btn-card-open" style="flex: 1.3; background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); color: #ffffff; border: 1px solid rgba(165,180,252,0.4); font-weight: 800;">
@@ -1178,8 +1178,8 @@
       FILTERED_BOOKS = ALL_BOOKS.filter(b => {
         const isDoc = b.path && (b.path.toLowerCase().endsWith('.doc') | b.path.toLowerCase().endsWith('.docx'));
         const matchFormat = currentFormat === 'all' | (currentFormat === 'doc' && isDoc) | (currentFormat === 'pdf' && !isDoc);
-        const matchCat = currentCat === 'all' | b.category === currentCat;
-        const matchQuery = !query | b.title.toLowerCase().includes(query) | (b.author && b.author.toLowerCase().includes(query)) | (b.path && b.path.toLowerCase().includes(query));
+        const matchCat = currentCat === 'all' || b.category === currentCat;
+        const matchQuery = !query || b.title.toLowerCase().includes(query) | (b.author && b.author.toLowerCase().includes(query)) | (b.path && b.path.toLowerCase().includes(query));
         return matchFormat && matchCat && matchQuery;
       });
 
@@ -1248,7 +1248,7 @@
     function openReader(book) {
       selectedBook = book;
       document.getElementById('readerTitle').innerText = book.title;
-      document.getElementById('readerAuthor').innerText = `✍️ ${book.author} · 📁 كتاب إلكتروني PDF · ${book.size | 'سحابي'}`;
+      document.getElementById('readerAuthor').innerText = `✍️ ${book.author} · 📁 كتاب إلكتروني PDF · ${book.size || 'سحابي'}`;
       
       const fullViewUrl = `https://drive.google.com/file/d/${book.id}/view`;
       const downloadUrl = `https://drive.usercontent.google.com/download?id=${book.id}&export=download&confirm=t`;

@@ -480,7 +480,7 @@
 
       // Check local storage for newly registered lawyers in browser session
       try {
-        const local = JSON.parse(localStorage.getItem('registered_lawyers') | '[]');
+        const local = JSON.parse(localStorage.getItem('registered_lawyers') || '[]');
         if (Array.isArray(local) && local.length > 0) {
           LAWYERS = [...local, ...LAWYERS];
         }
@@ -500,9 +500,9 @@
       }
 
       grid.innerHTML = items.map(l => {
-        const waNumber = (l.whatsapp | l.phone | '').replace(/[^0-9]/g, '');
+        const waNumber = (l.whatsapp || l.phone || '').replace(/[^0-9]/g, '');
         const waLink = waNumber.startsWith('2') ? `https://wa.me/${waNumber}` : `https://wa.me/2${waNumber}`;
-        const telLink = `tel:${l.phone | ''}`;
+        const telLink = `tel:${l.phone || ''}`;
 
         return `
           <div class="lawyer-card">
@@ -515,19 +515,19 @@
                     <div class="lawyer-gov">📍 ${l.governorate} · ${l.city}</div>
                   </div>
                 </div>
-                <span class="lawyer-badge ${l.badgeClass | 'badge-appeal'}">${l.degreeBadge | 'محامٍ مقيد'}</span>
+                <span class="lawyer-badge ${l.badgeClass || 'badge-appeal'}">${l.degreeBadge || 'محامٍ مقيد'}</span>
               </div>
 
               <div class="lawyer-specs">
-                ${(l.specialties | []).map(s => `<span class="spec-tag">⚖️ ${s}</span>`).join('')}
+                ${(l.specialties || []).map(s => `<span class="spec-tag">⚖️ ${s}</span>`).join('')}
               </div>
 
-              <p class="lawyer-bio">${l.bio | 'محامٍ معتمد يقدم الاستشارات القانونية والترافع أمام المحاكم.'}</p>
+              <p class="lawyer-bio">${l.bio || 'محامٍ معتمد يقدم الاستشارات القانونية والترافع أمام المحاكم.'}</p>
 
               <div class="lawyer-meta">
-                <div class="meta-row">🏛️ <strong>المحاكم:</strong> ${l.courts | 'المحاكم الابتدائية والاستئناف'}</div>
+                <div class="meta-row">🏛️ <strong>المحاكم:</strong> ${l.courts || 'المحاكم الابتدائية والاستئناف'}</div>
                 <div class="meta-row">🏢 <strong>المكتب:</strong> ${l.address | l.city}</div>
-                <div class="meta-row">📜 <strong>رقم القيد:</strong> ${l.regNumber | 'مقيد بالنقابة العامة'} · خبرة ${l.experienceYears | '10+'} سنوات</div>
+                <div class="meta-row">📜 <strong>رقم القيد:</strong> ${l.regNumber || 'مقيد بالنقابة العامة'} · خبرة ${l.experienceYears || '10+'} سنوات</div>
               </div>
             </div>
 
@@ -541,20 +541,20 @@
     }
 
     function filterLawyers() {
-      const q = (document.getElementById('searchInput').value | '').trim().toLowerCase();
+      const q = (document.getElementById('searchInput').value || '').trim().toLowerCase();
       const selectedGov = document.getElementById('govSelect').value;
       const selectedDegree = document.getElementById('degreeSelect').value;
 
       const filtered = LAWYERS.filter(l => {
-        const matchGov = selectedGov === 'all' | l.governorate.includes(selectedGov);
-        const matchDegree = selectedDegree === 'all' | l.degree.includes(selectedDegree) | (l.degreeBadge && l.degreeBadge.includes(selectedDegree));
+        const matchGov = selectedGov === 'all' || l.governorate.includes(selectedGov);
+        const matchDegree = selectedDegree === 'all' || l.degree.includes(selectedDegree) | (l.degreeBadge && l.degreeBadge.includes(selectedDegree));
         
         let matchSpec = true;
         if (currentSpecialty !== 'all') {
-          matchSpec = (l.specialties | []).some(s => s.toLowerCase().includes(currentSpecialty.toLowerCase())) | (l.bio && l.bio.toLowerCase().includes(currentSpecialty.toLowerCase()));
+          matchSpec = (l.specialties || []).some(s => s.toLowerCase().includes(currentSpecialty.toLowerCase())) | (l.bio && l.bio.toLowerCase().includes(currentSpecialty.toLowerCase()));
         }
 
-        const matchQ = !q | l.name.toLowerCase().includes(q) | l.governorate.toLowerCase().includes(q) | l.city.toLowerCase().includes(q) | (l.courts && l.courts.toLowerCase().includes(q)) | (l.specialties && l.specialties.join(' ').toLowerCase().includes(q)) | (l.bio && l.bio.toLowerCase().includes(q));
+        const matchQ = !q || l.name.toLowerCase().includes(q) || l.governorate.toLowerCase().includes(q) || l.city.toLowerCase().includes(q) | (l.courts && l.courts.toLowerCase().includes(q)) | (l.specialties && l.specialties.join(' ').toLowerCase().includes(q)) | (l.bio && l.bio.toLowerCase().includes(q));
 
         return matchGov && matchDegree && matchSpec && matchQ;
       });
@@ -603,7 +603,7 @@
 
       // Save locally
       try {
-        const local = JSON.parse(localStorage.getItem('registered_lawyers') | '[]');
+        const local = JSON.parse(localStorage.getItem('registered_lawyers') || '[]');
         local.unshift(newLawyer);
         localStorage.setItem('registered_lawyers', JSON.stringify(local));
       } catch (err) {}

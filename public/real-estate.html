@@ -1014,7 +1014,7 @@
     }
 
     function onPropSearch() {
-      const q = (document.getElementById('propSearchInput').value | '').trim().toLowerCase();
+      const q = (document.getElementById('propSearchInput').value || '').trim().toLowerCase();
       const gov = document.getElementById('govSelect').value;
       const priceRange = document.getElementById('priceSelect').value;
 
@@ -1037,7 +1037,7 @@
       }
 
       if (q) {
-        filtered = filtered.filter(p => p.title.toLowerCase().includes(q) | p.location.toLowerCase().includes(q) | p.specs.toLowerCase().includes(q));
+        filtered = filtered.filter(p => p.title.toLowerCase().includes(q) || p.location.toLowerCase().includes(q) || p.specs.toLowerCase().includes(q));
       }
 
       renderProperties(filtered);

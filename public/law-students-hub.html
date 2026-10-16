@@ -1582,7 +1582,7 @@ function selectUniversity(id) {
 function renderSubjects(year) {
   const grid = document.getElementById('subjectsGrid');
   if (!grid) return;
-  const subjects = LAW_CURRICULUM_DATA[year] | [];
+  const subjects = LAW_CURRICULUM_DATA[year] || [];
   let currentUni = null;
   for (let i = 0; i < EGYPT_UNIVERSITIES.length; i++) {
     if (EGYPT_UNIVERSITIES[i].id === currentUniId) {
@@ -1600,10 +1600,10 @@ function renderSubjects(year) {
     
     html += '<div class="subject-card">';
     html += '  <div class="subject-header">';
-    html += '    <div class="subject-icon">' + (s.icon | '⚖️') + '</div>';
+    html += '    <div class="subject-icon">' + (s.icon || '⚖️') + '</div>';
     html += '    <div style="flex:1;">';
     html += '      <h3 class="subject-title">' + s.title + '</h3>';
-    html += '      <div class="subject-meta">' + (s.courseCode | 'LAW') + ' · حجم الكتاب: ' + s.size + ' · معتمد بـ: ' + currentUni.name + '</div>';
+    html += '      <div class="subject-meta">' + (s.courseCode || 'LAW') + ' · حجم الكتاب: ' + s.size + ' · معتمد بـ: ' + currentUni.name + '</div>';
     html += '    </div>';
     html += '  </div>';
     html += '  <div class="faculty-doctor-pill">';

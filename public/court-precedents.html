@@ -1249,8 +1249,8 @@ function copyPrecedent(btn, idx) {
 function filterPrecedents() {
   const q = document.getElementById('searchInput').value.trim().toLowerCase();
   const filtered = PRECEDENTS_DATA.filter(p => {
-    const matchCat = activeCategory === 'all' | p.category === activeCategory;
-    const matchQ = !q | p.title.toLowerCase().includes(q) | p.text.toLowerCase().includes(q) | p.citation.toLowerCase().includes(q) | p.keywords.toLowerCase().includes(q);
+    const matchCat = activeCategory === 'all' || p.category === activeCategory;
+    const matchQ = !q || p.title.toLowerCase().includes(q) || p.text.toLowerCase().includes(q) || p.citation.toLowerCase().includes(q) || p.keywords.toLowerCase().includes(q);
     return matchCat && matchQ;
   });
   renderPrecedents(filtered);

@@ -375,7 +375,7 @@
       } catch (e) {}
 
       try {
-        const local = JSON.parse(localStorage.getItem('registered_lawyers') | '[]');
+        const local = JSON.parse(localStorage.getItem('registered_lawyers') || '[]');
         if (Array.isArray(local) && local.length > 0) {
           LAWYERS_POOL = [...local, ...LAWYERS_POOL];
         }
@@ -432,9 +432,9 @@
       const gov = document.getElementById('consultGov').value;
       const title = document.getElementById('consultTitle').value.trim();
       const details = document.getElementById('consultDetails').value.trim();
-      const clientName = document.getElementById('clientName').value.trim() | 'مواطن كريم';
+      const clientName = document.getElementById('clientName').value.trim() || 'مواطن كريم';
 
-      const knowledge = LEGAL_KNOWLEDGE[branch] | LEGAL_KNOWLEDGE.civil;
+      const knowledge = LEGAL_KNOWLEDGE[branch] || LEGAL_KNOWLEDGE.civil;
 
       document.getElementById('resAdaptation').innerText = `بشأن موضوع "${title}": ${knowledge.adaptation}`;
       document.getElementById('resLawRef').innerText = knowledge.lawRef;
@@ -448,7 +448,7 @@
 
       const grid = document.getElementById('matchedLawyersGrid');
       grid.innerHTML = matched.slice(0, 3).map(l => {
-        const waNumber = (l.whatsapp | l.phone | '').replace(/[^0-9]/g, '');
+        const waNumber = (l.whatsapp || l.phone || '').replace(/[^0-9]/g, '');
         const waMsg = encodeURIComponent(`مرحباً أستاذ ${l.name}، أود استشارتكم بشأن: ${title} بمحافظة ${gov}`);
         const waLink = waNumber.startsWith('2') ? `https://wa.me/${waNumber}?text=${waMsg}` : `https://wa.me/2${waNumber}?text=${waMsg}`;
 
@@ -457,7 +457,7 @@
             <div>
               <div class="matched-name">${l.name}</div>
               <div class="matched-sub">📍 ${l.governorate} · ${l.degree}</div>
-              <div style="font-size:0.75rem; color:#cbd5e1; margin-bottom:8px;">⚖️ ${ (l.specialties | []).slice(0, 2).join(' · ') }</div>
+              <div style="font-size:0.75rem; color:#cbd5e1; margin-bottom:8px;">⚖️ ${ (l.specialties || []).slice(0, 2).join(' · ') }</div>
             </div>
             <a href="${waLink}" target="_blank" class="btn-wa-direct">💬 تواصل واتساب فوري مع المحامي</a>
           </div>

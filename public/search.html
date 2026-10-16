@@ -276,7 +276,7 @@
     }
     function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
     function normalize(s) {
-      return (s | '').toLowerCase()
+      return (s || '').toLowerCase()
         .replace(/[\u064B-\u0652\u0670\u0640]/g, '')
         .replace(/[إأآا]/g, 'ا').replace(/[ىي]/g, 'ي').replace(/ة/g, 'ه')
         .replace(/[^\u0600-\u06FFa-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
@@ -294,9 +294,9 @@
     }
     function scoreItem(item, q) {
       const qn = normalize(q); if (!qn) return 0;
-      const title = normalize(item.title); const desc = normalize(item.description | '');
-      const cat = normalize(item.category | ''); const kw = normalize(item.keywords | '');
-      const snip = normalize(item.snippet | '');
+      const title = normalize(item.title); const desc = normalize(item.description || '');
+      const cat = normalize(item.category || ''); const kw = normalize(item.keywords || '');
+      const snip = normalize(item.snippet || '');
       const tokens = qn.split(/\s+/).filter(Boolean); let s = 0;
       for (const t of tokens) {
         if (title.includes(t)) s += 20;
@@ -340,7 +340,7 @@
         const typeLabel = it.type === 'blog' ? 'مقال' : it.type === 'pillar' ? 'مرجع شامل' : 'صفحة';
         return '<a href="' + escapeHtml(it.url) + '" class="result-card">' +
           '<div class="result-title">' + highlight(it.title, q) + '</div>' +
-          '<div class="result-desc">' + highlight(it.description | it.snippet | '', q) + '</div>' +
+          '<div class="result-desc">' + highlight(it.description || it.snippet || '', q) + '</div>' +
           '<div class="result-meta">' +
           '<span class="result-badge result-badge-' + it.type + '">' + typeLabel + '</span>' +
           (it.category ? '<span class="result-cat">' + escapeHtml(it.category) + '</span>' : '') +

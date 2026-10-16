@@ -584,7 +584,7 @@
       const surveyFee = 300;
       const techFee = 150;
       let propTax = 0;
-      const taxExempt = reason === 'gift' | reason === 'inheritance';
+      const taxExempt = reason === 'gift' || reason === 'inheritance';
       if (!taxExempt && price > 0) propTax = price * 0.025;
 
       const total = registrationFee + servicesFee + stampDuty + lawyersDuty + surveyFee + techFee + propTax;

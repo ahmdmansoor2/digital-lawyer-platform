@@ -862,8 +862,8 @@ function renderExplorer(items) {
 function filterBySearch() {
   const q = document.getElementById('searchInput').value.trim().toLowerCase();
   const filtered = ALL_DISPUTES.filter(d => {
-    const matchCat = currentFilterCat === 'all' | d.cat === currentFilterCat;
-    const matchQ = !q | d.label.toLowerCase().includes(q) | d.action.toLowerCase().includes(q) | d.court.toLowerCase().includes(q) | d.tips.toLowerCase().includes(q);
+    const matchCat = currentFilterCat === 'all' || d.cat === currentFilterCat;
+    const matchQ = !q || d.label.toLowerCase().includes(q) || d.action.toLowerCase().includes(q) || d.court.toLowerCase().includes(q) || d.tips.toLowerCase().includes(q);
     return matchCat && matchQ;
   });
   renderExplorer(filtered);

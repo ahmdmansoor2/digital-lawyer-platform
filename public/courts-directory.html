@@ -1500,7 +1500,7 @@ function filterFormCategory(cat, btn) {
 
 function renderModalFormsList() {
   const listEl = document.getElementById('formsSelectList');
-  const filtered = NOTARY_FORMS_DB.filter(f => currentModalCategory === 'all' | f.category === currentModalCategory);
+  const filtered = NOTARY_FORMS_DB.filter(f => currentModalCategory === 'all' || f.category === currentModalCategory);
 
   listEl.innerHTML = filtered.map((f, idx) => `
     <button onclick="selectFormById('${f.id}', this)" class="form-list-item ${idx === 0 ? 'selected-form' : ''}" style="width:100%; text-align:right; padding:12px 14px; border-radius:12px; background:rgba(30,41,59,0.6); border:1px solid rgba(148,163,184,0.2); color:#f1f5f9; font-family:'Cairo'; font-size:13px; font-weight:700; cursor:pointer; transition:all 0.2s; display:flex; flex-direction:column; gap:4px;">
@@ -1529,7 +1529,7 @@ function selectFormById(formId, btnEl) {
 }
 
 function selectFormByIndex(idx) {
-  const filtered = NOTARY_FORMS_DB.filter(f => currentModalCategory === 'all' | f.category === currentModalCategory);
+  const filtered = NOTARY_FORMS_DB.filter(f => currentModalCategory === 'all' || f.category === currentModalCategory);
   if (filtered[idx]) {
     selectFormById(filtered[idx].id, document.querySelector('.form-list-item'));
   }
@@ -1714,7 +1714,7 @@ const NOTARY_DATA = {
 function updateNotaryInfo() {
   const txKey = document.getElementById('notaryTxSelect').value;
   const timeKey = document.getElementById('notaryTimeSelect').value;
-  const data = NOTARY_DATA[txKey] | NOTARY_DATA.poa_lawyer;
+  const data = NOTARY_DATA[txKey] || NOTARY_DATA.poa_lawyer;
   const display = document.getElementById('notaryResultDisplay');
 
   let feeText = data.feesMorning;
@@ -3976,13 +3976,13 @@ function getBookingPolicyArabic(c) {
   if (c.isNoBooking || c.subType === 'no_booking') {
     return "⚡ استقبال مباشر بأسبقية الحضور وسحب الأرقام الصباحية (بدون حجز مسبق)";
   }
-  if (c.subType === 'mobile_van' | c.type === 'mobile_van') {
+  if (c.subType === 'mobile_van' || c.type === 'mobile_van') {
     return "🚗 خدمة فورية بموقع التمركز أو طلب خاص للمنزل عبر الخط الساخن 15999";
   }
   if (c.isNight) {
     return "🌙 متاح بالحجز المسبق عبر تطبيق «أرغب في عمل توكيل» أو بوابة مصر الرقمية";
   }
-  if (c.subType === 'post_office' | c.type === 'post_office') {
+  if (c.subType === 'post_office' || c.type === 'post_office') {
     return "📮 شباك البريد المصري المطور للتوثيق (استقبال مباشر وحجز مسبق عبر مصر الرقمية)";
   }
   return "🏛️ استقبال رسمي للمتقاضين والمواطنين وحجز إلكتروني عبر بوابة مصر الرقمية";
@@ -3996,14 +3996,14 @@ function getBestTimeArabic(c) {
 }
 
 function applyFilters() {
-  const query = (document.getElementById('searchInput').value | '').trim().toLowerCase();
+  const query = (document.getElementById('searchInput').value || '').trim().toLowerCase();
   const gov = document.getElementById('govSelect').value;
   const type = document.getElementById('typeSelect').value;
 
   const filtered = COURTS_DATA.filter(c => {
     // 1. Text Search Query
     if (query) {
-      const matchText = (c.name + ' ' + c.address + ' ' + c.govName + ' ' + c.scope + ' ' + (c.badgeText | '')).toLowerCase();
+      const matchText = (c.name + ' ' + c.address + ' ' + c.govName + ' ' + c.scope + ' ' + (c.badgeText || '')).toLowerCase();
       if (!matchText.includes(query)) return false;
     }
 
@@ -4176,7 +4176,7 @@ function shareBranchBySlug(slug) {
                '📍 *الفرع:* ' + c.name + '\n' +
                '🏢 *العنوان:* ' + c.address + '\n' +
                '⏱️ *المواعيد:* ' + c.hours + '\n' +
-               '⚡ *نظام الحجز:* ' + (c.bookingPolicy | 'مصر الرقمية') + '\n\n' +
+               '⚡ *نظام الحجز:* ' + (c.bookingPolicy || 'مصر الرقمية') + '\n\n' +
                '🗺️ *رابط خرائط جوجل:* https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(c.mapQuery) + '\n' +
                '📄 *صفحة الفرع التفصيلية:* https://mohamidigital.online/courts/' + c.slug + '.html';
   const url = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(text);

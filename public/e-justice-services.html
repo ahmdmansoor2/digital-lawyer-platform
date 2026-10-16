@@ -527,7 +527,7 @@
       document.querySelectorAll('.service-tabs .service-btn').forEach(b => b.classList.remove('active'));
       if (btn) btn.classList.add('active');
 
-      const data = SERVICES_DATA[key] | SERVICES_DATA.efiling;
+      const data = SERVICES_DATA[key] || SERVICES_DATA.efiling;
       const display = document.getElementById('serviceDisplay');
 
       display.innerHTML = `

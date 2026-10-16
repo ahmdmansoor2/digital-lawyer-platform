@@ -1367,7 +1367,7 @@
       if (btn) btn.classList.add('active');
       const items = document.querySelectorAll('.article-item');
       items.forEach(item => {
-        if (chap === 'all' | item.getAttribute('data-chap') === chap) {
+        if (chap === 'all' || item.getAttribute('data-chap') === chap) {
           item.style.display = 'block';
         } else {
           item.style.display = 'none';
