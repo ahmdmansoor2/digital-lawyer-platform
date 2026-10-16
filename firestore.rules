@@ -50,6 +50,19 @@ service cloud.firestore {
       allow read, update, delete: if false;
     }
 
+    // ── دليل المحامين: تسجيل المحامي (إنشاء للجميع، قراءة للجميع، تعديل للمدير) ──
+    match /registered_lawyers/{lawyerId} {
+      allow create: if request.resource.data.name is string && request.resource.data.phone is string;
+      allow read: if true;
+      allow update, delete: if isAdmin();
+    }
+
+    // ── طلبات الاستشارات القانونية العامة (إنشاء للزوار، قراءة وإدارة للمشرف) ──
+    match /consultations_requests/{reqId} {
+      allow create: if request.resource.data.clientName is string;
+      allow read, update, delete: if isAdmin();
+    }
+
     // ── منع أي وصول غير مُصرَّح به ──────────────────────────────────
     match /{document=**} {
       allow read, write: if false;

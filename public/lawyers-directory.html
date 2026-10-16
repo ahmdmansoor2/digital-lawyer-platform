@@ -264,6 +264,15 @@
 
   <!-- CONTROLS & FILTERS -->
   <section class="controls-box">
+    <div style="margin: 0 0 16px; padding: 12px 18px; background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <div style="font-size: 0.95rem; color: #e2e8f0; font-weight: 700;">
+        📍 هل تبحث عن دليل مخصص لمحافظتك؟ تصفح الدليل الإقليمي ومحاكم المحافظات:
+      </div>
+      <a href="/lawyers/" style="display: inline-flex; align-items: center; gap: 6px; background: #4f46e5; color: #fff; padding: 7px 16px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 800;">
+        <span>تصفح دليل الـ 27 محافظة ←</span>
+      </a>
+    </div>
+
     <input type="text" id="searchInput" class="search-input" placeholder="🔍 ابحث باسم المحامي، المدينة، المحكمة، أو التخصص الدقيق (مثال: محامي نقض، مدينة نصر، قضايا أسرة، شركات، طنطا)..." oninput="filterLawyers()">
 
     <div class="filter-grid">
@@ -478,11 +487,44 @@
         console.error('Error fetching lawyers data:', e);
       }
 
+      // Check Firestore cloud documents
+      try {
+        const fsRes = await fetch('https://firestore.googleapis.com/v1/projects/justice-91571/databases/(default)/documents/registered_lawyers');
+        if (fsRes.ok) {
+          const fsData = await fsRes.json();
+          if (fsData && fsData.documents) {
+            const cloudLawyers = fsData.documents.map(doc => {
+              const f = doc.fields || {};
+              return {
+                id: doc.name.split('/').pop(),
+                name: f.name ? f.name.stringValue : '',
+                degree: f.degree ? f.degree.stringValue : 'محامٍ مقيد',
+                degreeBadge: f.degreeBadge ? f.degreeBadge.stringValue : 'محامٍ مقيد',
+                badgeClass: f.badgeClass ? f.badgeClass.stringValue : 'badge-appeal',
+                regNumber: f.regNumber ? f.regNumber.stringValue : '',
+                governorate: f.governorate ? f.governorate.stringValue : '',
+                city: f.city ? f.city.stringValue : '',
+                courts: f.courts ? f.courts.stringValue : '',
+                specialties: f.specialties && f.specialties.arrayValue && f.specialties.arrayValue.values ? f.specialties.arrayValue.values.map(v => v.stringValue) : [],
+                phone: f.phone ? f.phone.stringValue : '',
+                whatsapp: f.whatsapp ? f.whatsapp.stringValue : '',
+                address: f.address ? f.address.stringValue : '',
+                bio: f.bio ? f.bio.stringValue : '',
+                experienceYears: 10,
+                isVerified: true
+              };
+            });
+            LAWYERS = [...cloudLawyers, ...LAWYERS];
+          }
+        }
+      } catch (e) {}
+
       // Check local storage for newly registered lawyers in browser session
       try {
         const local = JSON.parse(localStorage.getItem('registered_lawyers') || '[]');
         if (Array.isArray(local) && local.length > 0) {
-          LAWYERS = [...local, ...LAWYERS];
+          const ids = new Set(LAWYERS.map(l => l.id));
+          local.forEach(l => { if (!ids.has(l.id)) LAWYERS.unshift(l); });
         }
       } catch (e) {}
 
@@ -607,6 +649,30 @@
         local.unshift(newLawyer);
         localStorage.setItem('registered_lawyers', JSON.stringify(local));
       } catch (err) {}
+
+      // Sync to Firestore Cloud Database
+      fetch('https://firestore.googleapis.com/v1/projects/justice-91571/databases/(default)/documents/registered_lawyers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields: {
+            name: { stringValue: newLawyer.name },
+            degree: { stringValue: newLawyer.degree },
+            degreeBadge: { stringValue: newLawyer.degreeBadge },
+            badgeClass: { stringValue: newLawyer.badgeClass },
+            regNumber: { stringValue: newLawyer.regNumber },
+            governorate: { stringValue: newLawyer.governorate },
+            city: { stringValue: newLawyer.city },
+            courts: { stringValue: newLawyer.courts },
+            phone: { stringValue: newLawyer.phone },
+            whatsapp: { stringValue: newLawyer.whatsapp },
+            address: { stringValue: newLawyer.address },
+            bio: { stringValue: newLawyer.bio },
+            specialties: { arrayValue: { values: newLawyer.specialties.map(s => ({ stringValue: s })) } },
+            createdAt: { timestampValue: new Date().toISOString() }
+          }
+        })
+      }).catch(err => console.warn('Firestore cloud sync notice:', err));
 
       LAWYERS.unshift(newLawyer);
       closeRegisterModalDirect();

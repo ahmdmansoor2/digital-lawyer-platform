@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -463,6 +463,24 @@
           </div>
         `;
       }).join('');
+
+      // Record consultation request in Firestore cloud database
+      try {
+        fetch('https://firestore.googleapis.com/v1/projects/justice-91571/databases/(default)/documents/consultations_requests', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fields: {
+              clientName: { stringValue: clientName },
+              title: { stringValue: title },
+              branch: { stringValue: branch },
+              governorate: { stringValue: gov },
+              details: { stringValue: details },
+              createdAt: { timestampValue: new Date().toISOString() }
+            }
+          })
+        }).catch(() => {});
+      } catch (err) {}
 
       document.getElementById('resultSection').style.display = 'block';
       document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
