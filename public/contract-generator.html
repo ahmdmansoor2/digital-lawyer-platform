@@ -551,6 +551,21 @@
         <div class="paper-watermark">منصة المحامي الرقمية</div>
         
         <div>
+          <!-- Lawyer Office Letterhead (Loaded from localStorage lawfirm_office_profile) -->
+          <div id="officeLetterhead" style="display:none; border-bottom:2px double #0f172a; padding-bottom:12px; margin-bottom:18px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; direction:rtl;">
+              <div style="text-align:right;">
+                <div id="lhOfficeName" style="font-size:18px; font-weight:900; color:#0f172a; margin-bottom:3px;"></div>
+                <div id="lhManagingPartner" style="font-size:13px; font-weight:700; color:#334155;"></div>
+                <div id="lhBarId" style="font-size:11px; color:#64748b; margin-top:2px;"></div>
+              </div>
+              <div style="text-align:left; font-size:11px; color:#475569; line-height:1.6;">
+                <div id="lhPhone"></div>
+                <div id="lhAddress"></div>
+              </div>
+            </div>
+          </div>
+
           <div class="paper-header">
             <h2 class="paper-title" id="paperTitle">توكيل رسمي عام في القضايا</h2>
             <div class="paper-sub" id="paperSub">صيغة قانونية معتمدة ومطابقة لأحدث التشريعات المصرية 2026</div>
@@ -814,8 +829,42 @@
     // Date init
     document.getElementById('docCurrentDate').innerText = new Date().toLocaleDateString('ar-EG', { year:'numeric', month:'long', day:'numeric' });
 
+    // Lawyer Office Profile Integration (localStorage: lawfirm_office_profile)
+    function getOfficeProfile() {
+      try {
+        const raw = localStorage.getItem('lawfirm_office_profile');
+        if (raw) {
+          const p = JSON.parse(raw);
+          if (p && (p.officeName || p.managingPartner)) return p;
+        }
+      } catch (e) {}
+      return null;
+    }
+
+    function applyOfficeProfileToPaper() {
+      const p = getOfficeProfile();
+      if (!p) return;
+      const lh = document.getElementById('officeLetterhead');
+      const on = document.getElementById('lhOfficeName');
+      const mp = document.getElementById('lhManagingPartner');
+      const bi = document.getElementById('lhBarId');
+      const ph = document.getElementById('lhPhone');
+      const ad = document.getElementById('lhAddress');
+      const wm = document.querySelector('.paper-watermark');
+
+      if (on && p.officeName) on.textContent = p.officeName;
+      if (mp && p.managingPartner) mp.textContent = 'الأستاذ / ' + p.managingPartner + ' المحامي';
+      if (bi && p.barId) bi.textContent = 'رقم القيد: ' + p.barId + (p.courtJurisdiction ? ' | ' + p.courtJurisdiction : '');
+      if (ph && p.phone) ph.textContent = 'هاتف: ' + p.phone;
+      if (ad && p.address) ad.textContent = p.address;
+
+      if (lh) lh.style.display = 'block';
+      if (wm) wm.style.opacity = '0.04';
+    }
+
     // Initialize list & fetch general catalog in background
     function initApp() {
+      applyOfficeProfileToPaper();
       filterCategory('curated');
 
       // Fetch the catalog asynchronously so the page stays ultra-fast (<40KB initial load)
@@ -1058,10 +1107,24 @@
       const sub = document.getElementById('paperSub').innerText;
       const content = document.getElementById('paperContent').innerText;
       
+      const op = getOfficeProfile();
+      let officeHeaderHtml = '';
+      if (op && (op.officeName || op.managingPartner)) {
+        officeHeaderHtml = '<div style="border-bottom:2px double #000;padding-bottom:10px;margin-bottom:20px;font-family:Arial;">' +
+          '<table width="100%" style="direction:rtl;border:none;"><tr>' +
+          '<td align="right"><strong>' + (op.officeName || '') + '</strong><br/><span style="font-size:11pt;color:#333;">الأستاذ / ' + (op.managingPartner || '') + ' المحامي</span><br/><span style="font-size:9pt;color:#666;">' + (op.barId ? 'قيد: ' + op.barId : '') + '</span></td>' +
+          '<td align="left" style="font-size:9pt;color:#555;">' + (op.phone ? 'هاتف: ' + op.phone + '<br/>' : '') + (op.address || '') + '</td>' +
+          '</tr></table></div>';
+      }
+
+      const footerNotice = (op && op.officeName) 
+        ? op.officeName + ' · بالتنسيق مع منصة المحامي الرقمية (mohamidigital.online)'
+        : 'صادر من منصة المحامي الرقمية (mohamidigital.online) · إشراف المستشار أحمد منصور';
+      
       const html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
         '<head><meta charset="utf-8"><title>' + title + '</title>' +
         '<style>body{font-family:Arial,sans-serif;direction:rtl;text-align:right;padding:30px;line-height:2;} h2{text-align:center;border-bottom:2px solid #000;padding-bottom:10px;} pre{white-space:pre-wrap;font-family:Arial;font-size:14pt;} .ft{border-top:1px solid #ccc;margin-top:40px;padding-top:10px;text-align:center;font-size:10pt;color:#555;}</style></head>' +
-        '<body><h2>' + title + '</h2><p style="text-align:center;color:#666;">' + sub + '</p><hr/><pre>' + content + '</pre><div class="ft">صادر من منصة المحامي الرقمية (mohamidigital.online) · إشراف المستشار أحمد منصور</div></body></html>';
+        '<body>' + officeHeaderHtml + '<h2>' + title + '</h2><p style="text-align:center;color:#666;">' + sub + '</p><hr/><pre>' + content + '</pre><div class="ft">' + footerNotice + '</div></body></html>';
 
       const blob = new Blob(['\ufeff' + html], { type: 'application/msword;charset=utf-8' });
       const url = URL.createObjectURL(blob);
