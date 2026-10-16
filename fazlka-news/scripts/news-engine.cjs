@@ -33,31 +33,41 @@ if (!fs.existsSync(OUTPUT_DIR)) {
 
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
-// دالة جلب صور الأخبار عالية الدقة 16:9 من Pexels
-async function fetchNewsImage(keywords, category) {
+// دالة جلب صور الأخبار الفوتوغرافية الحقيقية بنسبة 16:9 من Pexels مع منع التكرار تماماً
+async function fetchNewsImage(keywords, category, usedImageUrls = new Set()) {
   const categoryFallbacks = {
-    'مصر والعالم': 'cairo egypt news politics',
-    'شؤون ومحاكم': 'courtroom justice law gavel judge egyptian court',
-    'اقتصاد وأسواق': 'stock market trading economy money bank cairo',
-    'حوادث ومجتمع': 'police night emergency security society cairo',
-    'رياضة وملاعب': 'football soccer stadium players match al ahly zamalek',
-    'ترند ومنوعات': 'social media digital technology mobile viral'
+    'مصر والعالم': 'cairo egypt news politics editorial photo',
+    'شؤون ومحاكم': 'courtroom justice law gavel judge lawyer realistic',
+    'اقتصاد وأسواق': 'stock market trading economy money bank cairo finance',
+    'حوادث ومجتمع': 'police night emergency security society urban photo',
+    'رياضة وملاعب': 'football soccer stadium players match tournament',
+    'ترند ومنوعات': 'technology smartphone internet media digital press'
   };
 
   const queries = [
+    keywords ? `${keywords} realistic photo` : null,
     keywords,
-    categoryFallbacks[category] || 'egypt cairo news',
-    'breaking news cairo egypt'
+    categoryFallbacks[category] || 'egypt cairo news photography',
+    `${category} realistic news photo`
   ].filter(Boolean);
 
   for (const q of queries) {
     try {
-      console.log(`🔍 جاري البحث في Pexels عن صورة لـ "${q}"...`);
-      const photos = await searchPhotos(q, { perPage: 5, orientation: 'landscape' });
+      console.log(`🔍 جاري البحث في Pexels عن صورة فوتوغرافية واقعية لـ "${q}"...`);
+      const photos = await searchPhotos(q, { perPage: 15, orientation: 'landscape' });
       if (photos && photos.length > 0) {
-        const p = photos[0];
+        // تصفية واستبعاد أي صورة سبق استخدامها في أي مقال سابق
+        const freshPhotos = photos.filter(p => {
+          const u = p.src.large2x || p.src.large || p.src.medium;
+          return !usedImageUrls.has(u);
+        });
+
+        const selectedList = freshPhotos.length > 0 ? freshPhotos : photos;
+        // اختيار صورة متنوعة من النتائج الفوتوغرافية غير المكررة
+        const p = selectedList[Math.floor(Math.random() * Math.min(selectedList.length, 5))];
         const url = p.src.large2x || p.src.large || p.src.medium;
-        console.log(`📸 تم العثور على صورة مميزة: ${url.slice(0, 70)}...`);
+
+        console.log(`📸 تم العثور على صورة فوتوغرافية حقيقية (غير مكررة): ${url.slice(0, 70)}...`);
         return {
           url,
           alt: p.alt || keywords || 'صوت مصر 24',
@@ -69,8 +79,21 @@ async function fetchNewsImage(keywords, category) {
     }
   }
 
+  // في حال تعذر البحث بالكامل، اختيار صورة فوتوغرافية حقيقية غير مكررة من مخزون متنوع
+  const defaultBank = [
+    'https://images.pexels.com/photos/10586819/pexels-photo-10586819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    'https://images.pexels.com/photos/6077325/pexels-photo-6077325.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    'https://images.pexels.com/photos/11633645/pexels-photo-11633645.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    'https://images.pexels.com/photos/7567230/pexels-photo-7567230.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    'https://images.pexels.com/photos/12955791/pexels-photo-12955791.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    'https://images.pexels.com/photos/16459372/pexels-photo-16459372.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    'https://images.pexels.com/photos/30911676/pexels-photo-30911676.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'
+  ];
+  const freshDefaults = defaultBank.filter(u => !usedImageUrls.has(u));
+  const fallbackUrl = freshDefaults.length > 0 ? freshDefaults[Math.floor(Math.random() * freshDefaults.length)] : defaultBank[0];
+
   return {
-    url: 'https://images.pexels.com/photos/10586819/pexels-photo-10586819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+    url: fallbackUrl,
     alt: 'صوت مصر 24 - تغطية إخبارية مستمرة',
     photographer: 'Pexels'
   };
@@ -78,18 +101,18 @@ async function fetchNewsImage(keywords, category) {
 
 // خلاصات Google News المخصصة لكل قسم من أقسام البوابة الستة
 const SECTION_FEEDS = {
+  'مصر والعالم': 'https://news.google.com/rss?hl=ar&gl=EG&ceid=EG:ar',
   'شؤون ومحاكم': 'https://news.google.com/rss/search?q=%D9%85%D8%AD%D9%83%D9%85%D8%A9%20OR%20%D8%A7%D9%84%D9%86%D9%8A%D8%A7%D8%A8%D8%A9%20OR%20%D8%A7%D9%84%D9%82%D8%B6%D8%A7%D8%A1%20OR%20%D8%A7%D9%84%D9%86%D9%82%D8%B6&hl=ar&gl=EG&ceid=EG:ar',
   'اقتصاد وأسواق': 'https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=ar&gl=EG&ceid=EG:ar',
   'حوادث ومجتمع': 'https://news.google.com/rss/search?q=%D8%AD%D9%88%D8%A7%D8%AF%D8%AB%20OR%20%D8%A7%D9%84%D8%AF%D8%A7%D8%AE%D9%84%D9%8A%D8%A9%20OR%20%D9%82%D8%B6%D8%A7%D9%8A%D8%A7%20OR%20%D8%AC%D9%86%D8%A7%D9%8A%D8%A7%D8%AA&hl=ar&gl=EG&ceid=EG:ar',
   'رياضة وملاعب': 'https://news.google.com/rss/headlines/section/topic/SPORTS?hl=ar&gl=EG&ceid=EG:ar',
-  'ترند ومنوعات': 'https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=ar&gl=EG&ceid=EG:ar',
-  'مصر والعالم': 'https://news.google.com/rss?hl=ar&gl=EG&ceid=EG:ar'
+  'ترند ومنوعات': 'https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=ar&gl=EG&ceid=EG:ar'
 };
 
 const ALL_SECTIONS = [
+  'مصر والعالم',
   'شؤون ومحاكم',
   'اقتصاد وأسواق',
-  'مصر والعالم',
   'حوادث ومجتمع',
   'رياضة وملاعب',
   'ترند ومنوعات'
@@ -223,15 +246,26 @@ async function runNewsCycle(count = 1, targetSection = null) {
     try { history = JSON.parse(fs.readFileSync(LOG_FILE, 'utf8')); } catch(e) {}
   }
   const publishedTitles = new Set(history.map(h => h.original_title));
+  // بناء قائمة الصور المستخدمة سابقاً لمنع تكرار أي صورة نهائياً
+  const usedImageUrls = new Set(history.map(h => h.image_url).filter(Boolean));
 
   let generatedCount = 0;
 
-  // تحديد الأقسام المستهدفة
+  // تحديد الأقسام المستهدفة مع التدوير التلقائي المستمر بين الأقسام الستة
   const sectionsToCover = targetSection 
     ? [targetSection]
     : ALL_SECTIONS;
 
   let sectionIndex = 0;
+  if (!targetSection && history.length > 0) {
+    const last = history[history.length - 1];
+    if (last && last.category) {
+      const lastIdx = ALL_SECTIONS.indexOf(last.category);
+      if (lastIdx !== -1) {
+        sectionIndex = (lastIdx + 1) % ALL_SECTIONS.length;
+      }
+    }
+  }
 
   while (generatedCount < count && sectionIndex < sectionsToCover.length * 4) {
     const currentSection = sectionsToCover[sectionIndex % sectionsToCover.length];
@@ -254,11 +288,12 @@ async function runNewsCycle(count = 1, targetSection = null) {
       article.generated_at = new Date().toISOString();
       article.original_title = candidate.title;
 
-      // 1. جلب صورة خبرية واقعية وعالية الدقة بنسبة 16:9 من Pexels
+      // 1. جلب صورة خبرية واقعية فوتوغرافية 100% بنسبة 16:9 مع منع التكرار تماماً
       console.log(`📸 جاري البحث عن صورة خبرية واقعية لقسم [${article.category}]...`);
-      const photo = await fetchNewsImage(article.image_keywords, article.category);
+      const photo = await fetchNewsImage(article.image_keywords, article.category, usedImageUrls);
       article.image_url = photo.url;
       article.image_alt = photo.alt;
+      usedImageUrls.add(photo.url);
 
       const imageBanner = `
 <div class="separator" style="clear: both; text-align: center; margin-bottom: 24px;">
@@ -323,7 +358,7 @@ ${adSnippet}
       }
 
       generatedCount++;
-      if (selectedNews.indexOf(candidate) < selectedNews.length - 1) {
+      if (generatedCount < count) {
         console.log(`⏳ انتظار دقيقتين ونصف (150 ثانية) بين المقالات لتفادي قيود مكافحة السبام في سيرفرات جوجل وضمان نشر كل مقال بنجاح...`);
         await new Promise(r => setTimeout(r, 150000));
       }

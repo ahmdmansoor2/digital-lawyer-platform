@@ -7,6 +7,12 @@ const fs = require('fs');
 const path = require('path');
 const { Document, Packer, Paragraph, TextRun, AlignmentType, HeadingLevel, PageNumber, Footer } = require('docx');
 
+const hindiDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+function toHindiDigits(str) {
+  if (typeof str !== 'string') return str;
+  return str.replace(/[0-9]/g, w => hindiDigits[+w]);
+}
+
 function createLegalDocx({
   title = "صحيفة دعوى / مذكرة دفاع",
   subTitle = "مكتب الأستاذ أحمد منصور المحامي بالنقض والدستورية العليا",
@@ -37,7 +43,7 @@ function createLegalDocx({
       bidirectional: true,
       children: [
         new TextRun({
-          text: title,
+          text: toHindiDigits(title),
           bold: true,
           size: 40, // 20pt Bold للعنوان الرئيسي
           font: fontFamily,
@@ -51,7 +57,7 @@ function createLegalDocx({
       bidirectional: true,
       children: [
         new TextRun({
-          text: subTitle,
+          text: toHindiDigits(subTitle),
           size: 24, // 12pt
           font: fontFamily,
           color: "475569"
@@ -70,7 +76,7 @@ function createLegalDocx({
           bidirectional: true,
           children: [
             new TextRun({
-              text: sec.heading,
+              text: toHindiDigits(sec.heading),
               bold: true,
               size: 36, // 18pt Bold للعناوين الداخلية
               font: fontFamily,
@@ -91,7 +97,7 @@ function createLegalDocx({
             bidirectional: true,           // من اليمين إلى اليسار
             children: [
               new TextRun({
-                text: p,
+                text: toHindiDigits(p),
                 size: 32, // 16pt خط المتن الإلزامي الدستوري
                 font: fontFamily,
                 rightToLeft: true,
