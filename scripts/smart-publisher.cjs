@@ -859,6 +859,14 @@ async function main() {
     log(`⚠️ تعذّر توليد sitemap: ${e.message}`);
   }
 
+  // 3a. إعادة بناء فهرس المدونة index.html لضمان الترتيب التنازلي الشامل
+  log('\n📰 جاري تحديث فهرس المدونة index.html...');
+  try {
+    execSync('node scripts/blog-publisher/rebuild-blog-index.cjs', { cwd: ROOT, stdio: 'inherit' });
+  } catch (e) {
+    log(`⚠️ تعذّر تحديث فهرس المدونة: ${e.message}`);
+  }
+
   // 3b. بناء الموقع (Build)
   log('\n🔨 جاري بناء الموقع...');
   try {
