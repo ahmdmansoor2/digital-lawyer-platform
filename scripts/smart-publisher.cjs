@@ -196,8 +196,8 @@ function sleep(ms) {
   return new Promise(r => setTimeout(r, ms));
 }
 
-async function downloadFile(url, dest) {
-  const res = await fetch(url);
+async function downloadFile(url, dest, timeoutMs = 20000) {
+  const res = await fetch(url, { signal: AbortSignal.timeout(timeoutMs) });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const buf = Buffer.from(await res.arrayBuffer());
   fs.writeFileSync(dest, buf);
@@ -206,7 +206,7 @@ async function downloadFile(url, dest) {
 
 // استدعاء Gemini مع إعادة المحاولة التلقائية والتناوب بين النماذج الحديثة
 async function generateContentWithRetry(prompt, config = {}, modelIndex = 0, attempt = 0) {
-  const models = ['gemini-3.6-flash', 'gemini-3.5-flash-lite'];
+  const models = ['gemini-flash-latest', 'gemini-flash-lite-latest', 'gemini-3.5-flash'];
   const modelName = models[modelIndex % models.length];
   const MAX_ATTEMPTS = 6;
 
@@ -747,11 +747,15 @@ async function postToFacebook(topic, articleUrl, imageUrl) {
 // ── أدوات HTTP ───────────────────────────────────────────────────────────────
 function httpGet(url) {
   return new Promise((resolve, reject) => {
-    https.get(url, res => {
+    const req = https.get(url, res => {
       let d = '';
       res.on('data', c => d += c);
       res.on('end', () => { try { resolve(JSON.parse(d)); } catch { resolve({}); } });
-    }).on('error', reject);
+    });
+    req.setTimeout(25000, () => {
+      req.destroy(new Error('HTTP GET timed out after 25s'));
+    });
+    req.on('error', reject);
   });
 }
 
@@ -769,6 +773,9 @@ function httpPost(url, params) {
       let d = '';
       res.on('data', c => d += c);
       res.on('end', () => { try { resolve(JSON.parse(d)); } catch { resolve({}); } });
+    });
+    req.setTimeout(25000, () => {
+      req.destroy(new Error('HTTP POST timed out after 25s'));
     });
     req.on('error', reject);
     req.write(postData);
@@ -867,28 +874,31 @@ async function main() {
     log(`⚠️ تعذّر تحديث فهرس المدونة: ${e.message}`);
   }
 
-  // 3b. بناء الموقع (Build)
-  log('\n🔨 جاري بناء الموقع...');
-  try {
-    execSync('npm run build', { cwd: ROOT, stdio: 'inherit' });
-    log('✅ اكتمل البناء');
-  } catch (e) {
-    log(`❌ فشل البناء: ${e.message}`);
-    process.exit(1);
-  }
+  // 3b. بناء الموقع ونشره سحابياً
+  if (process.env.CI) {
+    log('ℹ️ بيئة CI: سيتم تفويض بناء ونشر الموقع سحابياً للخطوة المركزية في الـ Workflow بعد اكتمال الفهارس والخرائط');
+  } else {
+    log('\n🔨 جاري بناء الموقع محلياً...');
+    try {
+      execSync('npm run build', { cwd: ROOT, stdio: 'inherit' });
+      log('✅ اكتمل البناء');
+    } catch (e) {
+      log(`❌ فشل البناء: ${e.message}`);
+      process.exit(1);
+    }
 
-  // 4. النشر السحابي للموقع
-  log('\n🌐 جاري النشر على Firebase Hosting...');
-  try {
-    const tokenFlag = process.env.FIREBASE_TOKEN
-      ? `--token "${process.env.FIREBASE_TOKEN}"` : '';
-    execSync(`npx -y firebase-tools deploy --only hosting:app ${tokenFlag}`, {
-      cwd: ROOT, stdio: 'inherit'
-    });
-    log('✅ تم رفع الموقع والصور الجديدة على Firebase!');
-  } catch (e) {
-    log(`❌ فشل النشر على Firebase: ${e.message}`);
-    process.exit(1);
+    log('\n🌐 جاري النشر على Firebase Hosting...');
+    try {
+      const tokenFlag = process.env.FIREBASE_TOKEN
+        ? `--token "${process.env.FIREBASE_TOKEN}"` : '';
+      execSync(`npx -y firebase-tools deploy --only hosting:app ${tokenFlag}`, {
+        cwd: ROOT, stdio: 'inherit'
+      });
+      log('✅ تم رفع الموقع والصور الجديدة على Firebase!');
+    } catch (e) {
+      log(`❌ فشل النشر على Firebase: ${e.message}`);
+      process.exit(1);
+    }
   }
 
   // 5. النشر المتوازي الفوري ⚡ على صفحة Facebook بجميع المنشورات في نفس اللحظة
