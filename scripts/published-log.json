@@ -2551,6 +2551,2310 @@
       ],
       "words": 2184,
       "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "حالات وحق الدفاع الشرعي في القانون الجنائي المصري وشروطه",
+      "date": "2026-10-16",
+      "slug": "self-defense-conditions-penal-code-egypt",
+      "url": "https://mohamidigital.online/blog/self-defense-conditions-penal-code-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/self-defense-conditions-penal-code-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "فسخ عقد اللاعب المحترف بالتراضي والشرط الجزائي في لوائح كورة القدم",
+      "date": "2026-10-16",
+      "slug": "sports-player-mutual-contract-termination-egypt",
+      "url": "https://mohamidigital.online/blog/sports-player-mutual-contract-termination-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-player-mutual-contract-termination-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "دعوى تعويض الأضرار المادية والأدبية في القانون المدني المصري والشروط القانونية لقبولها",
+      "date": "2026-10-16",
+      "slug": "material-and-moral-damages-compensation-lawsuit-egypt",
+      "url": "https://mohamidigital.online/blog/material-and-moral-damages-compensation-lawsuit-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/material-and-moral-damages-compensation-lawsuit-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "القواعد القانونية المنظمة لعقود الرعاية الرياضية واحتراف اللاعبين في الأندية المصرية",
+      "date": "2026-10-16",
+      "slug": "sports-sponsorship-and-player-contracts-egypt",
+      "url": "https://mohamidigital.online/blog/sports-sponsorship-and-player-contracts-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-sponsorship-and-player-contracts-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لارتفاع الأسعار واحتكار السلع التموينية وفقاً لقانون حماية المنافسة المصري",
+      "date": "2026-10-16",
+      "slug": "commodity-prices-monopoly-and-consumer-protection-egypt",
+      "url": "https://mohamidigital.online/blog/commodity-prices-monopoly-and-consumer-protection-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/commodity-prices-monopoly-and-consumer-protection-egypt.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الضوابط القانونية لتأسيس وترخيص مصانع ومزارع الدواجن في مصر",
+      "date": "2026-10-16",
+      "slug": "poultry-farms-licensing-legal-requirements-egypt",
+      "url": "https://mohamidigital.online/blog/poultry-farms-licensing-legal-requirements-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/poultry-farms-licensing-legal-requirements-egypt.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات العمالية وأحقية العامل في أداء الصلاة ووقت صلاة العصر قانوناً",
+      "date": "2026-10-16",
+      "slug": "employee-prayer-rights-egyptian-labor-law",
+      "url": "https://mohamidigital.online/blog/employee-prayer-rights-egyptian-labor-law.html",
+      "image": "https://mohamidigital.online/blog/images/employee-prayer-rights-egyptian-labor-law.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قانون العمل المصري: الشروط القانونية لفصل المدرب الرياضي وحقوقه المالية",
+      "date": "2026-10-16",
+      "slug": "sports-coach-dismissal-labor-law-egypt",
+      "url": "https://mohamidigital.online/blog/sports-coach-dismissal-labor-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-coach-dismissal-labor-law-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية للنزاعات التعاقدية الرياضية والتحكيم الدولي",
+      "date": "2026-10-15",
+      "slug": "sports-contracts-disputes-and-arbitration-law",
+      "url": "https://mohamidigital.online/blog/sports-contracts-disputes-and-arbitration-law.html",
+      "image": "https://mohamidigital.online/blog/images/sports-contracts-disputes-and-arbitration-law.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الحقوق القانونية للاعبين المحترفين في عقود الأندية والشركات الرياضية",
+      "date": "2026-10-15",
+      "slug": "professional-players-contractual-rights-egypt",
+      "url": "https://mohamidigital.online/blog/professional-players-contractual-rights-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/professional-players-contractual-rights-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات تقديم الاستقالة في قانون العمل المصري الجديد وحقوق العامل",
+      "date": "2026-10-15",
+      "slug": "resignation-procedures-egyptian-labor-law",
+      "url": "https://mohamidigital.online/blog/resignation-procedures-egyptian-labor-law.html",
+      "image": "https://mohamidigital.online/blog/images/resignation-procedures-egyptian-labor-law.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقوبة الاتجار في العملة الصعبة والدولار خارج السوق المصرفية في القانون المصري",
+      "date": "2026-10-15",
+      "slug": "illegal-foreign-currency-trading-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/illegal-foreign-currency-trading-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/illegal-foreign-currency-trading-penalties-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "كيفية تأسيس شركة الشخص الواحد في مصر: الشروط والمستندات والرسوم 2026",
+      "date": "2026-10-15",
+      "slug": "single-member-company-incorporation-egypt",
+      "url": "https://mohamidigital.online/blog/single-member-company-incorporation-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/single-member-company-incorporation-egypt.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الشروط القانونية للحصول على معاش تكافل وكرامة وإجراءات التظلم عند الرفض",
+      "date": "2026-10-15",
+      "slug": "takaful-karama-pension-legal-conditions-appeal",
+      "url": "https://mohamidigital.online/blog/takaful-karama-pension-legal-conditions-appeal.html",
+      "image": "https://mohamidigital.online/blog/images/takaful-karama-pension-legal-conditions-appeal.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الضرائب على عقود الرياضيين والفنانين في القانون المصري",
+      "date": "2026-10-14",
+      "slug": "sports-and-artistic-contracts-taxation-egypt",
+      "url": "https://mohamidigital.online/blog/sports-and-artistic-contracts-taxation-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-and-artistic-contracts-taxation-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قانون الرياضة المصري وحقوق رعاية اللاعبين الأجانب والمحليين",
+      "date": "2026-10-14",
+      "slug": "egyptian-sports-law-foreign-players-contracts",
+      "url": "https://mohamidigital.online/blog/egyptian-sports-law-foreign-players-contracts.html",
+      "image": "https://mohamidigital.online/blog/images/egyptian-sports-law-foreign-players-contracts.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات التعاقدية بين الأندية واللاعبين أمام المحكمة الرياضية CAS",
+      "date": "2026-10-14",
+      "slug": "sports-contract-disputes-cas-egypt",
+      "url": "https://mohamidigital.online/blog/sports-contract-disputes-cas-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-contract-disputes-cas-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الجرائم الإلكترونية وقضايا السب والقذف عبر منصات البث المباشر Twitch",
+      "date": "2026-10-14",
+      "slug": "twitch-streaming-cyber-defamation-laws-egypt",
+      "url": "https://mohamidigital.online/blog/twitch-streaming-cyber-defamation-laws-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/twitch-streaming-cyber-defamation-laws-egypt.jpg",
+      "tags": [
+        "مكافحة جرائم تقنية المعلومات والإنترنت"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "شروط صحة التنازل عن العقود التجارية وحقوق البث في المباريات والفعاليات",
+      "date": "2026-10-14",
+      "slug": "commercial-contract-assignment-broadcast-rights-egypt",
+      "url": "https://mohamidigital.online/blog/commercial-contract-assignment-broadcast-rights-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/commercial-contract-assignment-broadcast-rights-egypt.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لعقود رعاية الرياضيين والشركات وفقاً لقانون الرياضة المصري",
+      "date": "2026-10-14",
+      "slug": "sports-sponsorship-contracts-egyptian-law",
+      "url": "https://mohamidigital.online/blog/sports-sponsorship-contracts-egyptian-law.html",
+      "image": "https://mohamidigital.online/blog/images/sports-sponsorship-contracts-egyptian-law.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات تأسيس الشركات عبر البنك المركزي المصري والهيئة العامة للاستثمار",
+      "date": "2026-10-14",
+      "slug": "central-bank-and-gafi-company-incorporation-procedures",
+      "url": "https://mohamidigital.online/blog/central-bank-and-gafi-company-incorporation-procedures.html",
+      "image": "https://mohamidigital.online/blog/images/central-bank-and-gafi-company-incorporation-procedures.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الوضع القانوني لتعاملات الدولار (USD) في مصر وعقوبة السوق السوداء",
+      "date": "2026-10-14",
+      "slug": "usd-currency-trading-legal-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/usd-currency-trading-legal-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/usd-currency-trading-legal-penalties-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قروض بنك ناصر الاجتماعي بدون فوائد: الشروط والأوراق المطلوبة قانوناً",
+      "date": "2026-10-14",
+      "slug": "nasser-social-bank-zero-interest-loans-egypt",
+      "url": "https://mohamidigital.online/blog/nasser-social-bank-zero-interest-loans-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/nasser-social-bank-zero-interest-loans-egypt.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "المسؤولية الجنائية والدولية عن تمويل ودعم الكيانات المصنفة إرهابياً: قانون الكيانات الإرهابية في مصر",
+      "date": "2026-10-13",
+      "slug": "houthi-group-terrorism-financing-penalties-egypt-law",
+      "url": "https://mohamidigital.online/blog/houthi-group-terrorism-financing-penalties-egypt-law.html",
+      "image": "https://mohamidigital.online/blog/images/houthi-group-terrorism-financing-penalties-egypt-law.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لعقود احتراف اللاعبين المحترفين في الخارج على غرار تجربة عمر مرموش",
+      "date": "2026-10-13",
+      "slug": "omar-marmoush-professional-football-contracts-law-egypt",
+      "url": "https://mohamidigital.online/blog/omar-marmoush-professional-football-contracts-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/omar-marmoush-professional-football-contracts-law-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات القانونية وحقوق الرعاية في عقود الأندية الرياضية: قراءة في أزمات نادي الزمالك لكرة اليد",
+      "date": "2026-10-13",
+      "slug": "zamalek-handball-club-sports-contracts-disputes-egypt",
+      "url": "https://mohamidigital.online/blog/zamalek-handball-club-sports-contracts-disputes-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/zamalek-handball-club-sports-contracts-disputes-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لتخلف العامل عن العمل لأسباب دينية: هل تفويت صلاة العصر يبرر الفصل التعسفي في مصر؟",
+      "date": "2026-10-13",
+      "slug": "prayer-break-labor-law-egypt-dismissal",
+      "url": "https://mohamidigital.online/blog/prayer-break-labor-law-egypt-dismissal.html",
+      "image": "https://mohamidigital.online/blog/images/prayer-break-labor-law-egypt-dismissal.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "العقود الفنية وإنتاج الأعمال الدرامية في مصر: التزامات الفنانين والشركات وحقوق الملكية الفكرية استلهاماً من أعمال ياسر جلال",
+      "date": "2026-10-13",
+      "slug": "yasser-galal-artistic-contracts-copyright-egypt",
+      "url": "https://mohamidigital.online/blog/yasser-galal-artistic-contracts-copyright-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/yasser-galal-artistic-contracts-copyright-egypt.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "المسؤولية القانونية لمقدمي الخدمات الجوية والمضيفات في القانون المصري: حقوق والتزامات طاقم الطائرة",
+      "date": "2026-10-13",
+      "slug": "flight-attendant-legal-rights-duties-egypt-aviation",
+      "url": "https://mohamidigital.online/blog/flight-attendant-legal-rights-duties-egypt-aviation.html",
+      "image": "https://mohamidigital.online/blog/images/flight-attendant-legal-rights-duties-egypt-aviation.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لتأخر سداد مستحقات اللاعبين في الأندية الرياضية المصرية",
+      "date": "2026-10-12",
+      "slug": "sports-player-dues-delay-legal-consequences-egypt",
+      "url": "https://mohamidigital.online/blog/sports-player-dues-delay-legal-consequences-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-player-dues-delay-legal-consequences-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "شروط وإجراءات فسخ العقود الرياضية للاحتراف في كرة القدم المصرية",
+      "date": "2026-10-12",
+      "slug": "football-professional-contracts-termination-egypt",
+      "url": "https://mohamidigital.online/blog/football-professional-contracts-termination-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/football-professional-contracts-termination-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قانون الإيجار الجديد في مصر: التعديلات والحلول القانونية للمستأجرين والملاك",
+      "date": "2026-10-12",
+      "slug": "new-rent-law-amendments-and-tenant-rights-egypt",
+      "url": "https://mohamidigital.online/blog/new-rent-law-amendments-and-tenant-rights-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/new-rent-law-amendments-and-tenant-rights-egypt.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقوبات الغش التجاري والتلاعب في أسعار ومواصفات وقود السيارات في مصر",
+      "date": "2026-10-11",
+      "slug": "fuel-fraud-penalties-consumer-protection-egypt",
+      "url": "https://mohamidigital.online/blog/fuel-fraud-penalties-consumer-protection-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/fuel-fraud-penalties-consumer-protection-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "شروط وإجراءات ترخيص مناجم التعدين واستغلال المحاجر في القانون المصري",
+      "date": "2026-10-11",
+      "slug": "mineral-mining-license-procedures-law-egypt",
+      "url": "https://mohamidigital.online/blog/mineral-mining-license-procedures-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/mineral-mining-license-procedures-law-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "منازعات الوقف الأهلي والخيري واسترداد الأعيان وفق أحكام القضاء المصري",
+      "date": "2026-10-11",
+      "slug": "waqf-property-claims-legal-procedures-egypt",
+      "url": "https://mohamidigital.online/blog/waqf-property-claims-legal-procedures-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/waqf-property-claims-legal-procedures-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قانون الضرائب المصري: غرامات التأخير وإجراءات الطعن الضريبي 2026",
+      "date": "2026-10-11",
+      "slug": "egyptian-tax-law-penalties-and-appeal-procedures-2026",
+      "url": "https://mohamidigital.online/blog/egyptian-tax-law-penalties-and-appeal-procedures-2026.html",
+      "image": "https://mohamidigital.online/blog/images/egyptian-tax-law-penalties-and-appeal-procedures-2026.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات التعاقدية الرياضية في مصر: عقود اللاعبين وحقوق الأندية",
+      "date": "2026-10-11",
+      "slug": "sports-contracts-disputes-egyptian-clubs-and-players",
+      "url": "https://mohamidigital.online/blog/sports-contracts-disputes-egyptian-clubs-and-players.html",
+      "image": "https://mohamidigital.online/blog/images/sports-contracts-disputes-egyptian-clubs-and-players.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "المسؤولية القانونية عن الأضرار الناجمة عن الظواهر الجوية والتقلبات المناخية",
+      "date": "2026-10-11",
+      "slug": "legal-liability-weather-phenomena-and-climate-damages-egypt",
+      "url": "https://mohamidigital.online/blog/legal-liability-weather-phenomena-and-climate-damages-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/legal-liability-weather-phenomena-and-climate-damages-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات التعاقدية في عقود المقاولات والتوريدات الغذائية للمطاعم والفنادق",
+      "date": "2026-10-10",
+      "slug": "restaurant-and-catering-supply-contracts-legal-disputes-egyp",
+      "url": "https://mohamidigital.online/blog/restaurant-and-catering-supply-contracts-legal-disputes-egyp.html",
+      "image": "https://mohamidigital.online/blog/images/restaurant-and-catering-supply-contracts-legal-disputes-egyp.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "شروط وضوابط حجز وحدات سكن لكل المصريين وفقاً لقانون الإسكان الاجتماعي",
+      "date": "2026-10-10",
+      "slug": "sakan-kol-el-masryeen-housing-project-legal-conditions-egypt",
+      "url": "https://mohamidigital.online/blog/sakan-kol-el-masryeen-housing-project-legal-conditions-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sakan-kol-el-masryeen-housing-project-legal-conditions-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لتأخر سداد الأقساط في مشاريع الإسكان الاجتماعي سكن لكل المصريين",
+      "date": "2026-10-10",
+      "slug": "sakan-kol-el-masryeen-installment-default-legal-consequences",
+      "url": "https://mohamidigital.online/blog/sakan-kol-el-masryeen-installment-default-legal-consequences.html",
+      "image": "https://mohamidigital.online/blog/images/sakan-kol-el-masryeen-installment-default-legal-consequences.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "المسؤولية القانونية للأندية الرياضية عن أحداث الشغب والإصابات",
+      "date": "2026-10-10",
+      "slug": "sports-clubs-liability-for-stadium-incidents-egypt",
+      "url": "https://mohamidigital.online/blog/sports-clubs-liability-for-stadium-incidents-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-clubs-liability-for-stadium-incidents-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية للعقود الرياضية وانتقالات اللاعبين في الملاعب العالمية",
+      "date": "2026-10-10",
+      "slug": "international-sports-contracts-and-player-transfers-law",
+      "url": "https://mohamidigital.online/blog/international-sports-contracts-and-player-transfers-law.html",
+      "image": "https://mohamidigital.online/blog/images/international-sports-contracts-and-player-transfers-law.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "العقوبات القانونية للتشهير والسب عبر برامج التوك شو ومواقع التواصل",
+      "date": "2026-10-10",
+      "slug": "media-defamation-and-social-media-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/media-defamation-and-social-media-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/media-defamation-and-social-media-penalties-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الإجراءات القانونية للطعن على القرارات الإدارية وقضايا منع السفر في مصر",
+      "date": "2026-10-09",
+      "slug": "administrative-decisions-travel-ban-appeal-egypt",
+      "url": "https://mohamidigital.online/blog/administrative-decisions-travel-ban-appeal-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/administrative-decisions-travel-ban-appeal-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "سقوط الجنيه وقيمة الالتزامات المالية والتعويضات القضائية في القانون المصري",
+      "date": "2026-10-09",
+      "slug": "egyptian-pound-devaluation-financial-obligations-compensatio",
+      "url": "https://mohamidigital.online/blog/egyptian-pound-devaluation-financial-obligations-compensatio.html",
+      "image": "https://mohamidigital.online/blog/images/egyptian-pound-devaluation-financial-obligations-compensatio.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات التعاقدية الرياضية الدولية وعقود اللاعبين المحترفين في مصر",
+      "date": "2026-10-09",
+      "slug": "sports-player-contracts-and-international-disputes-egypt",
+      "url": "https://mohamidigital.online/blog/sports-player-contracts-and-international-disputes-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-player-contracts-and-international-disputes-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "دعوى تثبيت الملكية بالتقادم المكسب المكلف في القانون المدني المصري",
+      "date": "2026-10-09",
+      "slug": "adverse-possession-property-ownership-egyptian-civil-law",
+      "url": "https://mohamidigital.online/blog/adverse-possession-property-ownership-egyptian-civil-law.html",
+      "image": "https://mohamidigital.online/blog/images/adverse-possession-property-ownership-egyptian-civil-law.jpg",
+      "tags": [
+        "مكافحة جرائم تقنية المعلومات والإنترنت"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الحصانة البرلمانية في القانون المصري: متى تُرفع وكيف تؤثر على القضايا الجنائية؟",
+      "date": "2026-10-09",
+      "slug": "parliamentary-immunity-lifting-procedures-egypt",
+      "url": "https://mohamidigital.online/blog/parliamentary-immunity-lifting-procedures-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/parliamentary-immunity-lifting-procedures-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "ضريبة العقارات المبنية في مصر: حالات الإعفاء وطريقة الحساب والطعن عليها",
+      "date": "2026-10-09",
+      "slug": "real-estate-property-tax-exemptions-appeals-egypt",
+      "url": "https://mohamidigital.online/blog/real-estate-property-tax-exemptions-appeals-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/real-estate-property-tax-exemptions-appeals-egypt.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات وتحرير محاضر الشرطة في جرائم الابتزاز الإلكتروني بمصر",
+      "date": "2026-10-08",
+      "slug": "police-report-procedures-cyber-extortion-egypt",
+      "url": "https://mohamidigital.online/blog/police-report-procedures-cyber-extortion-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/police-report-procedures-cyber-extortion-egypt.jpg",
+      "tags": [
+        "مكافحة جرائم تقنية المعلومات والإنترنت"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "التعويض القانوني في حوادث الصواعق والكوارث الطبيعية للمنشآت",
+      "date": "2026-10-08",
+      "slug": "legal-compensation-lightning-strikes-natural-disasters-egypt",
+      "url": "https://mohamidigital.online/blog/legal-compensation-lightning-strikes-natural-disasters-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/legal-compensation-lightning-strikes-natural-disasters-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لعقود العمل وفسخها وفقاً لقانون العمل المصري",
+      "date": "2026-10-08",
+      "slug": "labor-contract-termination-and-legal-effects-egypt",
+      "url": "https://mohamidigital.online/blog/labor-contract-termination-and-legal-effects-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/labor-contract-termination-and-legal-effects-egypt.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "اختصاص محكمة القاهرة الاقتصادية في المنازعات التجارية والجرائم الإلكترونية",
+      "date": "2026-10-08",
+      "slug": "cairo-economic-court-jurisdiction-commercial-disputes-egypt",
+      "url": "https://mohamidigital.online/blog/cairo-economic-court-jurisdiction-commercial-disputes-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cairo-economic-court-jurisdiction-commercial-disputes-egypt.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقود اللاعبين والأندية الرياضية في ضوء قانون الرياضة المصري وقضية بترول أسيوط",
+      "date": "2026-10-08",
+      "slug": "sports-player-contracts-petrol-assiut-egypt-law",
+      "url": "https://mohamidigital.online/blog/sports-player-contracts-petrol-assiut-egypt-law.html",
+      "image": "https://mohamidigital.online/blog/images/sports-player-contracts-petrol-assiut-egypt-law.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات الطعن القانوني على قرارات مجلس الوزراء في القضاء الإداري المصري",
+      "date": "2026-10-07",
+      "slug": "cabinet-decisions-judicial-review-egypt",
+      "url": "https://mohamidigital.online/blog/cabinet-decisions-judicial-review-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cabinet-decisions-judicial-review-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "العقوبات القانونية لجريمة إخفاء الميراث وحرمان الحفيد من تركته في القانون المصري",
+      "date": "2026-10-07",
+      "slug": "grandchild-inheritance-withholding-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/grandchild-inheritance-withholding-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/grandchild-inheritance-withholding-penalties-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية للمشاريع القومية ونزع الملكية للمنفعة العامة في مصر",
+      "date": "2026-10-07",
+      "slug": "expropriation-public-utility-laws-egypt",
+      "url": "https://mohamidigital.online/blog/expropriation-public-utility-laws-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/expropriation-public-utility-laws-egypt.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية للعقود الرياضية للمحترفين في الدوري المصري",
+      "date": "2026-10-07",
+      "slug": "professional-sports-contracts-egypt-law",
+      "url": "https://mohamidigital.online/blog/professional-sports-contracts-egypt-law.html",
+      "image": "https://mohamidigital.online/blog/images/professional-sports-contracts-egypt-law.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "التنظيم القانوني لعقود رعاية الأندية ومنازعات اللاعبين",
+      "date": "2026-10-07",
+      "slug": "sports-club-sponsorship-and-player-disputes-egypt",
+      "url": "https://mohamidigital.online/blog/sports-club-sponsorship-and-player-disputes-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-club-sponsorship-and-player-disputes-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "العقوبات القانونية لإلغاء الدعم التمويني والاعتراض على حذف البطاقة",
+      "date": "2026-10-07",
+      "slug": "ration-card-cancellation-legal-objection-egypt",
+      "url": "https://mohamidigital.online/blog/ration-card-cancellation-legal-objection-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/ration-card-cancellation-legal-objection-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قانون الإيجار القديم 2026: هل يحق للمالك طرد المستأجر مع دخول الشتاء؟",
+      "date": "2026-10-06",
+      "slug": "old-rent-law-2026-winter-eviction-rules",
+      "url": "https://mohamidigital.online/blog/old-rent-law-2026-winter-eviction-rules.html",
+      "image": "https://mohamidigital.online/blog/images/old-rent-law-2026-winter-eviction-rules.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "مخالفات الرادار المروري الجديد: كيف تطعن قانونياً على غيابات السرعة؟",
+      "date": "2026-10-06",
+      "slug": "new-traffic-radar-fines-appeal-procedures-egypt",
+      "url": "https://mohamidigital.online/blog/new-traffic-radar-fines-appeal-procedures-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/new-traffic-radar-fines-appeal-procedures-egypt.jpg",
+      "tags": [
+        "مكافحة جرائم تقنية المعلومات والإنترنت"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لعقود اللاعبين المحترفين: دروس مستفادة من أزمة عبد الله السعيد",
+      "date": "2026-10-06",
+      "slug": "abdullah-el-said-sports-contracts-legal-analysis",
+      "url": "https://mohamidigital.online/blog/abdullah-el-said-sports-contracts-legal-analysis.html",
+      "image": "https://mohamidigital.online/blog/images/abdullah-el-said-sports-contracts-legal-analysis.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لقرارات وزارة التربية والتعليم بشأن المدارس الخاصة والدولية",
+      "date": "2026-10-06",
+      "slug": "education-ministry-decrees-private-schools-law-egypt",
+      "url": "https://mohamidigital.online/blog/education-ministry-decrees-private-schools-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/education-ministry-decrees-private-schools-law-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قانون الاستثمار والضرائب على رجال الأعمال في مصر: رسالة من أزمة نجيب ساويرس الضريبية",
+      "date": "2026-10-06",
+      "slug": "businessmen-tax-disputes-investment-law-egypt",
+      "url": "https://mohamidigital.online/blog/businessmen-tax-disputes-investment-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/businessmen-tax-disputes-investment-law-egypt.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات الترخيص والرقابة على المنصات الرقمية من المجلس الأعلى لتنظيم الإعلام",
+      "date": "2026-10-06",
+      "slug": "supreme-council-media-regulation-licensing-egypt",
+      "url": "https://mohamidigital.online/blog/supreme-council-media-regulation-licensing-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/supreme-council-media-regulation-licensing-egypt.jpg",
+      "tags": [
+        "قانون الأحوال الشخصية ومحاكم الأسرة"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات استخراج إعلام الوراثة والاوراق المطلوبة في محاكم الاسرة المصرية",
+      "date": "2026-10-05",
+      "slug": "egyptian-inheritance-decree-procedures-documents",
+      "url": "https://mohamidigital.online/blog/egyptian-inheritance-decree-procedures-documents.html",
+      "image": "https://mohamidigital.online/blog/images/egyptian-inheritance-decree-procedures-documents.jpg",
+      "tags": [
+        "قانون الأحوال الشخصية ومحاكم الأسرة"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "شروط صحة التوقيع وصحة العقد والفرق بينهما في القانون المدني المصري",
+      "date": "2026-10-05",
+      "slug": "validity-of-signature-vs-sale-contract-egypt",
+      "url": "https://mohamidigital.online/blog/validity-of-signature-vs-sale-contract-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/validity-of-signature-vs-sale-contract-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقوبة الشيك بدون رصيد في القانون المصري وفقاً للتعديلات الحديثة",
+      "date": "2026-10-05",
+      "slug": "bounced-cheque-penalties-egyptian-law",
+      "url": "https://mohamidigital.online/blog/bounced-cheque-penalties-egyptian-law.html",
+      "image": "https://mohamidigital.online/blog/images/bounced-cheque-penalties-egyptian-law.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات العمالية في قطاع الاتصالات في مصر: حقوق العاملين والشروط القانونية للفصل",
+      "date": "2026-10-05",
+      "slug": "telecom-sector-labor-disputes-egypt-law",
+      "url": "https://mohamidigital.online/blog/telecom-sector-labor-disputes-egypt-law.html",
+      "image": "https://mohamidigital.online/blog/images/telecom-sector-labor-disputes-egypt-law.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قانون وزارة الكهرباء والطاقة المتجددة: غرامات سرقة التيار وتخفيف الأحمال قانونياً",
+      "date": "2026-10-05",
+      "slug": "electricity-ministry-power-theft-fines-egypt-law",
+      "url": "https://mohamidigital.online/blog/electricity-ministry-power-theft-fines-egypt-law.html",
+      "image": "https://mohamidigital.online/blog/images/electricity-ministry-power-theft-fines-egypt-law.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "المسؤولية القانونية للوزراء والقرارات الإدارية في مصر: طعن وإلغاء القرارات الوزارية",
+      "date": "2026-10-05",
+      "slug": "ministers-legal-liability-administrative-decisions-egypt",
+      "url": "https://mohamidigital.online/blog/ministers-legal-liability-administrative-decisions-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/ministers-legal-liability-administrative-decisions-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات القانونية في عقود رعاية الأندية الرياضية: دروس قانونية من أزمة نادي بيراميدز",
+      "date": "2026-10-04",
+      "slug": "pyramids-club-sports-contracts-disputes-egypt",
+      "url": "https://mohamidigital.online/blog/pyramids-club-sports-contracts-disputes-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/pyramids-club-sports-contracts-disputes-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لفسخ عقود اللاعبين الأجانب: رؤية تحليلية على خلفية مباريات مصر وجنوب أفريقيا",
+      "date": "2026-10-04",
+      "slug": "egypt-vs-south-africa-football-contracts-legal-analysis",
+      "url": "https://mohamidigital.online/blog/egypt-vs-south-africa-football-contracts-legal-analysis.html",
+      "image": "https://mohamidigital.online/blog/images/egypt-vs-south-africa-football-contracts-legal-analysis.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات التعاقدية الدولية للاعبي كرة القدم: دراسة حالة نزاعات الاتحاد المصري لكرة القدم",
+      "date": "2026-10-04",
+      "slug": "egyptian-football-association-international-contracts-disput",
+      "url": "https://mohamidigital.online/blog/egyptian-football-association-international-contracts-disput.html",
+      "image": "https://mohamidigital.online/blog/images/egyptian-football-association-international-contracts-disput.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "تعويضات نزع الملكية للمنفعة العامة في توسعات الطريق الدائري: الشروط وإجراءات الطعن",
+      "date": "2026-10-04",
+      "slug": "expropriation-compensation-ring-road-expansion-egypt",
+      "url": "https://mohamidigital.online/blog/expropriation-compensation-ring-road-expansion-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/expropriation-compensation-ring-road-expansion-egypt.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "تأثير تغير سعر الصرف على العقود والالتزامات: نظرية الظروف الطارئة في القانون المدني",
+      "date": "2026-10-04",
+      "slug": "exchange-rate-fluctuations-contract-hardship-doctrine",
+      "url": "https://mohamidigital.online/blog/exchange-rate-fluctuations-contract-hardship-doctrine.html",
+      "image": "https://mohamidigital.online/blog/images/exchange-rate-fluctuations-contract-hardship-doctrine.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقوبة الاتجار في العملة الصعبة وتداول الدولار خارج السوق المصرفي في القانون المصري",
+      "date": "2026-10-04",
+      "slug": "foreign-currency-trading-crimes-egypt-penalties",
+      "url": "https://mohamidigital.online/blog/foreign-currency-trading-crimes-egypt-penalties.html",
+      "image": "https://mohamidigital.online/blog/images/foreign-currency-trading-crimes-egypt-penalties.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "شراء الذهب بدون فاتورة أو دمغة: المخاطر القانونية والمسؤولية الجنائية",
+      "date": "2026-10-03",
+      "slug": "buying-gold-without-invoice-hallmark-law-egypt",
+      "url": "https://mohamidigital.online/blog/buying-gold-without-invoice-hallmark-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/buying-gold-without-invoice-hallmark-law-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقود الناشئين واللاعبين القصر في مصر: شروط الصحة ومسؤولية الولي الطبيعي",
+      "date": "2026-10-03",
+      "slug": "minor-sports-player-contracts-guardian-approval-egypt",
+      "url": "https://mohamidigital.online/blog/minor-sports-player-contracts-guardian-approval-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/minor-sports-player-contracts-guardian-approval-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات دخول الذهب إلى مصر: حد المعافاة الجمركية وعقوبات التهرب",
+      "date": "2026-10-03",
+      "slug": "gold-customs-duty-egypt-travelers-guide",
+      "url": "https://mohamidigital.online/blog/gold-customs-duty-egypt-travelers-guide.html",
+      "image": "https://mohamidigital.online/blog/images/gold-customs-duty-egypt-travelers-guide.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "العقود الرياضية واحتراف اللاعبين في مصر: دروس مستفادة من قضايا إبراهيم صلاح",
+      "date": "2026-10-03",
+      "slug": "sports-player-contracts-and-professionalism-lessons-ibrahim-",
+      "url": "https://mohamidigital.online/blog/sports-player-contracts-and-professionalism-lessons-ibrahim-.html",
+      "image": "https://mohamidigital.online/blog/images/sports-player-contracts-and-professionalism-lessons-ibrahim-.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية للعقود الدولية واتفاقيات التعاون التجاري مع إثيوبيا",
+      "date": "2026-10-03",
+      "slug": "legal-effects-of-international-trade-contracts-ethiopia",
+      "url": "https://mohamidigital.online/blog/legal-effects-of-international-trade-contracts-ethiopia.html",
+      "image": "https://mohamidigital.online/blog/images/legal-effects-of-international-trade-contracts-ethiopia.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجازة العيد والعطلات الرسمية في قانون العمل المصري الجديد وحقوق العمال",
+      "date": "2026-10-03",
+      "slug": "official-holidays-and-leave-new-egyptian-labor-law",
+      "url": "https://mohamidigital.online/blog/official-holidays-and-leave-new-egyptian-labor-law.html",
+      "image": "https://mohamidigital.online/blog/images/official-holidays-and-leave-new-egyptian-labor-law.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لتعديل أسعار السلع والخدمات على العقود التجارية في مصر",
+      "date": "2026-10-03",
+      "slug": "pricing-changes-impact-commercial-contracts-egypt",
+      "url": "https://mohamidigital.online/blog/pricing-changes-impact-commercial-contracts-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/pricing-changes-impact-commercial-contracts-egypt.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقوبة نشر الشیعات الكاذبة على وسائل التواصل الاجتماعي طبقاً للقانون المصري",
+      "date": "2026-10-03",
+      "slug": "rumors-and-fake-news-penalties-egyptian-law",
+      "url": "https://mohamidigital.online/blog/rumors-and-fake-news-penalties-egyptian-law.html",
+      "image": "https://mohamidigital.online/blog/images/rumors-and-fake-news-penalties-egyptian-law.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات الطعن أمام محكمة النقض المدني والجنائي في مصر والشروط القانونية",
+      "date": "2026-10-03",
+      "slug": "court-of-cassation-appeal-procedures-egypt",
+      "url": "https://mohamidigital.online/blog/court-of-cassation-appeal-procedures-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/court-of-cassation-appeal-procedures-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية للعقود الرياضية واحتراف اللاعبين الأجانب في الدوري المصري",
+      "date": "2026-10-02",
+      "slug": "sports-contracts-foreign-players-egypt-law",
+      "url": "https://mohamidigital.online/blog/sports-contracts-foreign-players-egypt-law.html",
+      "image": "https://mohamidigital.online/blog/images/sports-contracts-foreign-players-egypt-law.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "شروط صحة العقود الفنية وحقوق الأداء العلني في القانون المصري استلهاماً من أزمات المشاهير",
+      "date": "2026-10-02",
+      "slug": "artistic-performance-contracts-and-copyright-egypt",
+      "url": "https://mohamidigital.online/blog/artistic-performance-contracts-and-copyright-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/artistic-performance-contracts-and-copyright-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "المسؤولية القانونية لشركات الذكاء الاصطناعي وحماية البيانات الشخصية في مصر",
+      "date": "2026-10-02",
+      "slug": "artificial-intelligence-and-data-protection-law-egypt",
+      "url": "https://mohamidigital.online/blog/artificial-intelligence-and-data-protection-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/artificial-intelligence-and-data-protection-law-egypt.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات التعاقدية في الأندية الرياضية وعقود اللاعبين المحترفين قانوناً",
+      "date": "2026-10-02",
+      "slug": "sports-clubs-contract-disputes-professional-players-egypt",
+      "url": "https://mohamidigital.online/blog/sports-clubs-contract-disputes-professional-players-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-clubs-contract-disputes-professional-players-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات إخلاء الشقة المؤجرة لعدم دفع الإيجار وفقاً للقانون المصري",
+      "date": "2026-10-02",
+      "slug": "apartment-eviction-procedures-non-payment-egypt",
+      "url": "https://mohamidigital.online/blog/apartment-eviction-procedures-non-payment-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/apartment-eviction-procedures-non-payment-egypt.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لقرار إقالة الموظف العام أو الخاص والتعويضات المستحقة",
+      "date": "2026-10-02",
+      "slug": "employee-dismissal-legal-effects-compensation-egypt",
+      "url": "https://mohamidigital.online/blog/employee-dismissal-legal-effects-compensation-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/employee-dismissal-legal-effects-compensation-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الجانب القانوني لعقود رعاية الرياضيين والتربح من صور اللاعبين في مصر",
+      "date": "2026-10-01",
+      "slug": "sports-player-image-rights-and-sponsorship-contracts-egypt",
+      "url": "https://mohamidigital.online/blog/sports-player-image-rights-and-sponsorship-contracts-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-player-image-rights-and-sponsorship-contracts-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "تسوية النزاعات الرياضية والعقود الدولية للاعبين المحترفين في مصر",
+      "date": "2026-10-01",
+      "slug": "international-sports-contracts-and-dispute-resolution-egypt",
+      "url": "https://mohamidigital.online/blog/international-sports-contracts-and-dispute-resolution-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/international-sports-contracts-and-dispute-resolution-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لتسريب ونشر الأعمال الفنية عبر الإنترنت بدون ترخيص",
+      "date": "2026-10-01",
+      "slug": "artistic-works-copyright-infringement-and-online-piracy-egyp",
+      "url": "https://mohamidigital.online/blog/artistic-works-copyright-infringement-and-online-piracy-egyp.html",
+      "image": "https://mohamidigital.online/blog/images/artistic-works-copyright-infringement-and-online-piracy-egyp.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "خدمات بنك ناصر الاجتماعي القانونية: شروط القروض، النفقات، ومستندات الميراث",
+      "date": "2026-10-01",
+      "slug": "nasser-social-bank-legal-services-loans-alimony",
+      "url": "https://mohamidigital.online/blog/nasser-social-bank-legal-services-loans-alimony.html",
+      "image": "https://mohamidigital.online/blog/images/nasser-social-bank-legal-services-loans-alimony.jpg",
+      "tags": [
+        "قانون الأحوال الشخصية ومحاكم الأسرة"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "كيفية تقديم بلاغ لوزارة الداخلية والجرائم الإلكترونية وضوابط استدعاء المباحث",
+      "date": "2026-10-01",
+      "slug": "ministry-of-interior-cybercrimes-complaints-guide",
+      "url": "https://mohamidigital.online/blog/ministry-of-interior-cybercrimes-complaints-guide.html",
+      "image": "https://mohamidigital.online/blog/images/ministry-of-interior-cybercrimes-complaints-guide.jpg",
+      "tags": [
+        "مكافحة جرائم تقنية المعلومات والإنترنت"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قانون التصالح في مخالفات البناء 2026: الشروط، الأوراق المطلوبة ورسوم النموذج الثامن",
+      "date": "2026-10-01",
+      "slug": "building-violation-reconciliation-law-2026-guide",
+      "url": "https://mohamidigital.online/blog/building-violation-reconciliation-law-2026-guide.html",
+      "image": "https://mohamidigital.online/blog/images/building-violation-reconciliation-law-2026-guide.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "العقوبات القانونية لتداول الشائعات والسب والقذف عبر وسائل التواصل",
+      "date": "2026-09-30",
+      "slug": "cyber-defamation-and-fake-news-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/cyber-defamation-and-fake-news-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cyber-defamation-and-fake-news-penalties-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لزيادة أسعار وقود السيارات على عقود النقل والمقاولات",
+      "date": "2026-09-30",
+      "slug": "fuel-price-increase-legal-impact-on-transport-contracts",
+      "url": "https://mohamidigital.online/blog/fuel-price-increase-legal-impact-on-transport-contracts.html",
+      "image": "https://mohamidigital.online/blog/images/fuel-price-increase-legal-impact-on-transport-contracts.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات الطلاق للضريبة والخلع في محاكم الأسرة المصرية 2026",
+      "date": "2026-09-30",
+      "slug": "divorce-and-khula-procedures-egyptian-family-courts",
+      "url": "https://mohamidigital.online/blog/divorce-and-khula-procedures-egyptian-family-courts.html",
+      "image": "https://mohamidigital.online/blog/images/divorce-and-khula-procedures-egyptian-family-courts.jpg",
+      "tags": [
+        "قانون الأحوال الشخصية ومحاكم الأسرة"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات المصرفية مع البنك الأهلي المصري: كيف تلجأ للبنك المركزي والقضاء؟",
+      "date": "2026-09-30",
+      "slug": "national-bank-egypt-banking-disputes-legal-recourse",
+      "url": "https://mohamidigital.online/blog/national-bank-egypt-banking-disputes-legal-recourse.html",
+      "image": "https://mohamidigital.online/blog/images/national-bank-egypt-banking-disputes-legal-recourse.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الاستعلام عن مخالفات المرور وطرق التظلم القانوني في مصر 2026",
+      "date": "2026-09-30",
+      "slug": "traffic-violations-inquiry-and-grievance-egypt",
+      "url": "https://mohamidigital.online/blog/traffic-violations-inquiry-and-grievance-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/traffic-violations-inquiry-and-grievance-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قانون العمل المصري: هل يجوز إجبار الموظفين على العمل عن بعد يوم الأحد؟",
+      "date": "2026-09-30",
+      "slug": "remote-work-sunday-egypt-labor-law",
+      "url": "https://mohamidigital.online/blog/remote-work-sunday-egypt-labor-law.html",
+      "image": "https://mohamidigital.online/blog/images/remote-work-sunday-egypt-labor-law.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "حقوق الحجاج والمعتمرين: كيف تحمي نفسك من النصب العقاري والتصاريح وهمية؟",
+      "date": "2026-09-30",
+      "slug": "hajj-travel-agencies-fraud-legal-rights-egypt",
+      "url": "https://mohamidigital.online/blog/hajj-travel-agencies-fraud-legal-rights-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/hajj-travel-agencies-fraud-legal-rights-egypt.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "ترخيص المقاهي والمحالات وفقاً لقانون المحال العامة رقم 154 لسنة 2019",
+      "date": "2026-09-30",
+      "slug": "public-shop-licensing-law-cafes-requirements-penalties",
+      "url": "https://mohamidigital.online/blog/public-shop-licensing-law-cafes-requirements-penalties.html",
+      "image": "https://mohamidigital.online/blog/images/public-shop-licensing-law-cafes-requirements-penalties.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "دليل الاستعلام عن مخالفات المرور 2026 وطرق التظلم القانونية عليها",
+      "date": "2026-09-30",
+      "slug": "egypt-traffic-law-fines-inquiry-and-appeals-guide",
+      "url": "https://mohamidigital.online/blog/egypt-traffic-law-fines-inquiry-and-appeals-guide.html",
+      "image": "https://mohamidigital.online/blog/images/egypt-traffic-law-fines-inquiry-and-appeals-guide.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية المترتبة على ارتكاب الجرائم الجنائية المشهورة",
+      "date": "2026-09-29",
+      "slug": "criminal-offenses-legal-consequences-egypt",
+      "url": "https://mohamidigital.online/blog/criminal-offenses-legal-consequences-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/criminal-offenses-legal-consequences-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الجوانب القانونية لعقود الاحتراف الرياضي وانتقالات اللاعبين",
+      "date": "2026-09-29",
+      "slug": "sports-profession-contracts-and-transfers-egypt",
+      "url": "https://mohamidigital.online/blog/sports-profession-contracts-and-transfers-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-profession-contracts-and-transfers-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "العقوبة القانونية لجريمة الاتجار بالأعضاء البشرية في القانون المصري",
+      "date": "2026-09-29",
+      "slug": "organ-transplantation-crime-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/organ-transplantation-crime-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/organ-transplantation-crime-penalties-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "التزامات الممولين الجدد بعد قرارات وزارة المالية والضرائب العقارية",
+      "date": "2026-09-29",
+      "slug": "ministry-of-finance-tax-compliance-egypt",
+      "url": "https://mohamidigital.online/blog/ministry-of-finance-tax-compliance-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/ministry-of-finance-tax-compliance-egypt.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات التعاقدية في عقود الاحتراف الرياضي في ضوء ترندات اللاعبين",
+      "date": "2026-09-29",
+      "slug": "sports-player-contracts-disputes-egypt",
+      "url": "https://mohamidigital.online/blog/sports-player-contracts-disputes-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-player-contracts-disputes-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الطعن أمام المحكمة الدستورية العليا: الشروط والإجراءات القانونية والدستورية",
+      "date": "2026-09-29",
+      "slug": "constitutional-court-appeal-procedures-egypt",
+      "url": "https://mohamidigital.online/blog/constitutional-court-appeal-procedures-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/constitutional-court-appeal-procedures-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية للتهرب من الضرائب العقارية وعقوبة الحجز الإداري",
+      "date": "2026-09-27",
+      "slug": "real-estate-tax-evasion-and-administrative-seizure-penalties",
+      "url": "https://mohamidigital.online/blog/real-estate-tax-evasion-and-administrative-seizure-penalties.html",
+      "image": "https://mohamidigital.online/blog/images/real-estate-tax-evasion-and-administrative-seizure-penalties.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "شروط الإعفاء من الضرائب العقارية للسكن الخاص في القانون المصري",
+      "date": "2026-09-27",
+      "slug": "real-estate-tax-exemption-conditions-private-housing-egypt",
+      "url": "https://mohamidigital.online/blog/real-estate-tax-exemption-conditions-private-housing-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/real-estate-tax-exemption-conditions-private-housing-egypt.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات الطعن على حجز الضرائب العقارية والفحص الضريبي في مصر",
+      "date": "2026-09-27",
+      "slug": "real-estate-tax-dispute-and-appeal-procedures-egypt",
+      "url": "https://mohamidigital.online/blog/real-estate-tax-dispute-and-appeal-procedures-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/real-estate-tax-dispute-and-appeal-procedures-egypt.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "شروط صحة إيصال الأمانة والدفاع القانوني ضد التهم الكيدية في مصر",
+      "date": "2026-09-27",
+      "slug": "trust-receipt-defense-conditions-egypt",
+      "url": "https://mohamidigital.online/blog/trust-receipt-defense-conditions-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/trust-receipt-defense-conditions-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لرفع سعر الفائدة البنكية على العقود التجارية والقروض",
+      "date": "2026-09-27",
+      "slug": "interest-rate-hike-commercial-contracts-egypt",
+      "url": "https://mohamidigital.online/blog/interest-rate-hike-commercial-contracts-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/interest-rate-hike-commercial-contracts-egypt.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات الطلاق للضرر والنفقة الشرعية بعد الانفصال في محاكم الأسرة",
+      "date": "2026-09-27",
+      "slug": "divorce-harm-nafaka-family-court-egypt",
+      "url": "https://mohamidigital.online/blog/divorce-harm-nafaka-family-court-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/divorce-harm-nafaka-family-court-egypt.jpg",
+      "tags": [
+        "قانون الأحوال الشخصية ومحاكم الأسرة"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قانون البطاقة التموينية في مصر: شروط الحذف، التظلمات، ونقل التموين",
+      "date": "2026-09-27",
+      "slug": "egypt-ration-card-laws-grievances-transfer",
+      "url": "https://mohamidigital.online/blog/egypt-ration-card-laws-grievances-transfer.html",
+      "image": "https://mohamidigital.online/blog/images/egypt-ration-card-laws-grievances-transfer.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية للعاملين بالخارج وتأثيرها على البطاقة التموينية والدعم",
+      "date": "2026-09-27",
+      "slug": "expats-ration-card-legal-status-egypt",
+      "url": "https://mohamidigital.online/blog/expats-ration-card-legal-status-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/expats-ration-card-legal-status-egypt.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "المسؤولية القانونية والتعويضات عن حوادث العمل المرتبطة بساعات الظهيرة",
+      "date": "2026-09-27",
+      "slug": "workplace-heat-exhaustion-labor-law-egypt",
+      "url": "https://mohamidigital.online/blog/workplace-heat-exhaustion-labor-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/workplace-heat-exhaustion-labor-law-egypt.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "حقوق الملكية الفكرية وحماية المصنفات الفنية والأدبية في القانون المصري",
+      "date": "2026-09-26",
+      "slug": "intellectual-property-artistic-works-protection-egypt",
+      "url": "https://mohamidigital.online/blog/intellectual-property-artistic-works-protection-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/intellectual-property-artistic-works-protection-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية للعقود التجارية الدولية وتسوية النزاعات عبر الحدود في القانون المصري",
+      "date": "2026-09-26",
+      "slug": "international-commercial-contracts-dispute-resolution-egypt",
+      "url": "https://mohamidigital.online/blog/international-commercial-contracts-dispute-resolution-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/international-commercial-contracts-dispute-resolution-egypt.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "العقود الرياضية وشروط الاحتراف الخارجي للاعبي كرة القدم في ضوء قانون الرياضة المصري",
+      "date": "2026-09-26",
+      "slug": "sports-player-contracts-and-professionalism-egypt",
+      "url": "https://mohamidigital.online/blog/sports-player-contracts-and-professionalism-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-player-contracts-and-professionalism-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقوبات الشغب الرياضي والتعدي على الحكام في قانون الرياضة المصري رقم 71",
+      "date": "2026-09-26",
+      "slug": "sports-law-fines-stadium-violations-egypt",
+      "url": "https://mohamidigital.online/blog/sports-law-fines-stadium-violations-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-law-fines-stadium-violations-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقوبة السب والقذف في الإعلام الرياضي وضوابط الشكاوى أمام الأعلى للإعلام",
+      "date": "2026-09-26",
+      "slug": "media-defamation-sports-broadcasting-complaints-egypt",
+      "url": "https://mohamidigital.online/blog/media-defamation-sports-broadcasting-complaints-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/media-defamation-sports-broadcasting-complaints-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "حقوق الملكية الفكرية للسيناريو والإنتاج التلفزيوني في المسلسلات الرمضانية",
+      "date": "2026-09-26",
+      "slug": "tv-series-script-copyright-protection-egypt",
+      "url": "https://mohamidigital.online/blog/tv-series-script-copyright-protection-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/tv-series-script-copyright-protection-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية للنزاعات الدولية حول السدود وإجراءات التحكيم الدولي",
+      "date": "2026-09-26",
+      "slug": "international-legal-aspects-dams-disputes-arbitration",
+      "url": "https://mohamidigital.online/blog/international-legal-aspects-dams-disputes-arbitration.html",
+      "image": "https://mohamidigital.online/blog/images/international-legal-aspects-dams-disputes-arbitration.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لتغير سعر الصرف على العقود التجارية وعقود الإيجار",
+      "date": "2026-09-26",
+      "slug": "legal-impact-exchange-rate-fluctuations-commercial-contracts",
+      "url": "https://mohamidigital.online/blog/legal-impact-exchange-rate-fluctuations-commercial-contracts.html",
+      "image": "https://mohamidigital.online/blog/images/legal-impact-exchange-rate-fluctuations-commercial-contracts.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات الطعن أمام محكمة النقض المصرية والمدد القانونية المحددة",
+      "date": "2026-09-26",
+      "slug": "egyptian-court-of-cassation-appeal-procedures-deadlines",
+      "url": "https://mohamidigital.online/blog/egyptian-court-of-cassation-appeal-procedures-deadlines.html",
+      "image": "https://mohamidigital.online/blog/images/egyptian-court-of-cassation-appeal-procedures-deadlines.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقوبة حجب الميراث في القانون المصري (المادة 49) وطريقة تقسيم التركة",
+      "date": "2026-09-25",
+      "slug": "inheritance-withholding-penalties-article-49-and-distributio",
+      "url": "https://mohamidigital.online/blog/inheritance-withholding-penalties-article-49-and-distributio.html",
+      "image": "https://mohamidigital.online/blog/images/inheritance-withholding-penalties-article-49-and-distributio.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قانون الإيجار القديم 2026: شروط إخلاء الوحدة السكنية والزيادة الجديدة",
+      "date": "2026-09-25",
+      "slug": "old-rent-law-2026-eviction-and-increase-rules",
+      "url": "https://mohamidigital.online/blog/old-rent-law-2026-eviction-and-increase-rules.html",
+      "image": "https://mohamidigital.online/blog/images/old-rent-law-2026-eviction-and-increase-rules.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "حقوق المستهلك في الاستبدال والاسترجاع طبقاً للقانون المصري ورقم جهاز حماية المستهلك",
+      "date": "2026-09-25",
+      "slug": "consumer-protection-law-refund-and-exchange-rights-egypt",
+      "url": "https://mohamidigital.online/blog/consumer-protection-law-refund-and-exchange-rights-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/consumer-protection-law-refund-and-exchange-rights-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "سرقة حسابات الصراف الآلي والفيزات: المسؤولية القانونية للبنك وإجراءات استرداد الأموال",
+      "date": "2026-09-25",
+      "slug": "atm-bank-card-fraud-legal-action-egypt",
+      "url": "https://mohamidigital.online/blog/atm-bank-card-fraud-legal-action-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/atm-bank-card-fraud-legal-action-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "مدد الحبس الاحتياطي وضوابطه في القانون المصري وحقوق المتهم أثناء التحقيق",
+      "date": "2026-09-25",
+      "slug": "preventive-detention-limits-accused-rights-egypt",
+      "url": "https://mohamidigital.online/blog/preventive-detention-limits-accused-rights-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/preventive-detention-limits-accused-rights-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الغش في محطات الوقود والمحروقات: عقوباتها وكيفية الإبلاغ بحماية المستهلك",
+      "date": "2026-09-25",
+      "slug": "fuel-station-fraud-consumer-protection-egypt",
+      "url": "https://mohamidigital.online/blog/fuel-station-fraud-consumer-protection-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/fuel-station-fraud-consumer-protection-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات تقرير الطب الشرعي وأثره القانوني في القضايا الجنائية بمصر",
+      "date": "2026-09-24",
+      "slug": "forensic-medicine-report-legal-effect-egypt",
+      "url": "https://mohamidigital.online/blog/forensic-medicine-report-legal-effect-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/forensic-medicine-report-legal-effect-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الطعن بالاستئناف في الأحكام الجنائية المدنية والإدارية بمحاكم الإسكندرية",
+      "date": "2026-09-24",
+      "slug": "criminal-and-civil-appeal-procedures-alexandria",
+      "url": "https://mohamidigital.online/blog/criminal-and-civil-appeal-procedures-alexandria.html",
+      "image": "https://mohamidigital.online/blog/images/criminal-and-civil-appeal-procedures-alexandria.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لعقود التنقيب عن البترول والشراكة مع وزارة البترول المصرية",
+      "date": "2026-09-24",
+      "slug": "egyptian-petroleum-ministry-exploration-contracts-law",
+      "url": "https://mohamidigital.online/blog/egyptian-petroleum-ministry-exploration-contracts-law.html",
+      "image": "https://mohamidigital.online/blog/images/egyptian-petroleum-ministry-exploration-contracts-law.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الإجراءات القانونية لتركيب عداد الكهرباء الكودي والعقوبات في قانون الكهرباء",
+      "date": "2026-09-24",
+      "slug": "egypt-electricity-meter-legal-procedures-and-penalties",
+      "url": "https://mohamidigital.online/blog/egypt-electricity-meter-legal-procedures-and-penalties.html",
+      "image": "https://mohamidigital.online/blog/images/egypt-electricity-meter-legal-procedures-and-penalties.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات القانونية في عقود اللاعبين المحترفين والشرط الجزائي وفقاً لقانون الرياضة",
+      "date": "2026-09-24",
+      "slug": "sports-player-contracts-disputes-and-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/sports-player-contracts-disputes-and-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-player-contracts-disputes-and-penalties-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "كيفية الطعن على قرارات مجلس الوزراء أمام محكمة القضاء الإداري",
+      "date": "2026-09-24",
+      "slug": "cabinet-decisions-appeal-state-council-egypt",
+      "url": "https://mohamidigital.online/blog/cabinet-decisions-appeal-state-council-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cabinet-decisions-appeal-state-council-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقوبة احتكار السلع وزيادة أسعار الفراخ والمنتجات في قانون حماية المستهلك",
+      "date": "2026-09-24",
+      "slug": "consumer-protection-law-price-gouging-penalties",
+      "url": "https://mohamidigital.online/blog/consumer-protection-law-price-gouging-penalties.html",
+      "image": "https://mohamidigital.online/blog/images/consumer-protection-law-price-gouging-penalties.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الإعفاء الجمركي وضريبة الجمارك على السبايك الذهبية في مصر 2026",
+      "date": "2026-09-24",
+      "slug": "gold-bullion-customs-exemption-taxes-egypt",
+      "url": "https://mohamidigital.online/blog/gold-bullion-customs-exemption-taxes-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/gold-bullion-customs-exemption-taxes-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقوبة البث المباشر غير القانوني للمباريات وقوانين الملكية الفكرية في مصر",
+      "date": "2026-09-23",
+      "slug": "illegal-sports-streaming-iptv-copyright-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/illegal-sports-streaming-iptv-copyright-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/illegal-sports-streaming-iptv-copyright-penalties-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قوق المسافرين والمشترين عند تأخير تسليم العقارات على الخارطة في مصر",
+      "date": "2026-09-23",
+      "slug": "off-plan-property-delivery-delay-rights-egypt",
+      "url": "https://mohamidigital.online/blog/off-plan-property-delivery-delay-rights-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/off-plan-property-delivery-delay-rights-egypt.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الشروط القانونية لعقود اللاعبين الناشئين في الأندية المصرية ولائحته الفيفا",
+      "date": "2026-09-23",
+      "slug": "youth-sports-player-contracts-legal-age-egypt",
+      "url": "https://mohamidigital.online/blog/youth-sports-player-contracts-legal-age-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/youth-sports-player-contracts-legal-age-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "جريمة التلاعب في أسعار السلع الأساسية والبيض عقوبات القانون المصري",
+      "date": "2026-09-23",
+      "slug": "manipulating-basic-goods-prices-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/manipulating-basic-goods-prices-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/manipulating-basic-goods-prices-penalties-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لتأخر سداد فواتير الكهرباء والإنذار بالفصل في مصر",
+      "date": "2026-09-23",
+      "slug": "electricity-bills-delay-legal-consequences-egypt",
+      "url": "https://mohamidigital.online/blog/electricity-bills-delay-legal-consequences-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/electricity-bills-delay-legal-consequences-egypt.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات الطعن أمام محكمة الاستئناف المدني في مصر والمواعيد القانونية",
+      "date": "2026-09-23",
+      "slug": "civil-court-of-appeal-procedures-egypt",
+      "url": "https://mohamidigital.online/blog/civil-court-of-appeal-procedures-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/civil-court-of-appeal-procedures-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "ساعات العمل الإضافية وبدل السهر في قانون العمل المصري بالتزامن مع التوقيت الشتوي",
+      "date": "2026-09-23",
+      "slug": "egyptian-labor-law-overtime-working-hours-regulations",
+      "url": "https://mohamidigital.online/blog/egyptian-labor-law-overtime-working-hours-regulations.html",
+      "image": "https://mohamidigital.online/blog/images/egyptian-labor-law-overtime-working-hours-regulations.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الشراء في العاصمة الإدارية: ضوابط العقود وحماية المشتري من تأخير المطورين",
+      "date": "2026-09-23",
+      "slug": "new-administrative-capital-real-estate-buyer-protection-egyp",
+      "url": "https://mohamidigital.online/blog/new-administrative-capital-real-estate-buyer-protection-egyp.html",
+      "image": "https://mohamidigital.online/blog/images/new-administrative-capital-real-estate-buyer-protection-egyp.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "أضرار النوات والأمطار: هل تُعتبر القوة القاهرة دليلاً لفسخ العقود وإلغاء التعويضات؟",
+      "date": "2026-09-23",
+      "slug": "weather-damage-force-majeure-insurance-claims-egypt-civil-la",
+      "url": "https://mohamidigital.online/blog/weather-damage-force-majeure-insurance-claims-egypt-civil-la.html",
+      "image": "https://mohamidigital.online/blog/images/weather-damage-force-majeure-insurance-claims-egypt-civil-la.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لفسخ عقود لاعبي كرة القدم والمدربين الأجانب في القانون المصري",
+      "date": "2026-09-22",
+      "slug": "football-coach-player-contract-termination-egypt",
+      "url": "https://mohamidigital.online/blog/football-coach-player-contract-termination-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/football-coach-player-contract-termination-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "جرائم السب والقذف عبر الإنترنت وحقوق الملحنين والفنانين في القانون المصري",
+      "date": "2026-09-22",
+      "slug": "cyber-defamation-artists-composers-egypt",
+      "url": "https://mohamidigital.online/blog/cyber-defamation-artists-composers-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cyber-defamation-artists-composers-egypt.jpg",
+      "tags": [
+        "مكافحة جرائم تقنية المعلومات والإنترنت"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات العمالية للرياضيين والمدربين أمام محكمة التحكيم الرياضي المصرية",
+      "date": "2026-09-22",
+      "slug": "sports-labor-disputes-arbitration-egypt",
+      "url": "https://mohamidigital.online/blog/sports-labor-disputes-arbitration-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-labor-disputes-arbitration-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الجرائم الصحفية والنشر في جريدة المصري اليوم والشروق: الحدود والمسؤولية",
+      "date": "2026-09-22",
+      "slug": "press-and-publishing-crimes-elmasry-alyoum-elshorouk-legal-l",
+      "url": "https://mohamidigital.online/blog/press-and-publishing-crimes-elmasry-alyoum-elshorouk-legal-l.html",
+      "image": "https://mohamidigital.online/blog/images/press-and-publishing-crimes-elmasry-alyoum-elshorouk-legal-l.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات التعامل مع البنك الأهلي المصري في الحجز التحفظي على الحسابات",
+      "date": "2026-09-22",
+      "slug": "national-bank-of-egypt-precautionary-attachment-bank-account",
+      "url": "https://mohamidigital.online/blog/national-bank-of-egypt-precautionary-attachment-bank-account.html",
+      "image": "https://mohamidigital.online/blog/images/national-bank-of-egypt-precautionary-attachment-bank-account.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "كيفية الطعن على قرار إداري صادر من الجهات الحكومية في مجلس الدولة",
+      "date": "2026-09-22",
+      "slug": "administrative-decision-appeal-procedures-state-council-egyp",
+      "url": "https://mohamidigital.online/blog/administrative-decision-appeal-procedures-state-council-egyp.html",
+      "image": "https://mohamidigital.online/blog/images/administrative-decision-appeal-procedures-state-council-egyp.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "ما هي الفوائد القانونية وحساب التعويضات في قانون العمل المصري الجديد؟",
+      "date": "2026-09-22",
+      "slug": "legal-interest-and-compensation-calculation-egyptian-labor-l",
+      "url": "https://mohamidigital.online/blog/legal-interest-and-compensation-calculation-egyptian-labor-l.html",
+      "image": "https://mohamidigital.online/blog/images/legal-interest-and-compensation-calculation-egyptian-labor-l.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الجوانب القانونية في عقود احتراف كرة القدم النسائية في مصر",
+      "date": "2026-09-22",
+      "slug": "womens-football-contracts-and-legal-framework-egypt",
+      "url": "https://mohamidigital.online/blog/womens-football-contracts-and-legal-framework-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/womens-football-contracts-and-legal-framework-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقوبة النشر والسب والقذف على منصات البث مثل Kick وجرائم الإنترنت في مصر",
+      "date": "2026-09-21",
+      "slug": "kick-platform-cyber-defamation-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/kick-platform-cyber-defamation-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/kick-platform-cyber-defamation-penalties-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لتغير سعر اليورو والعملات الأجنبية على العقود التجارية في مصر",
+      "date": "2026-09-21",
+      "slug": "euro-price-change-impact-on-commercial-contracts-egypt",
+      "url": "https://mohamidigital.online/blog/euro-price-change-impact-on-commercial-contracts-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/euro-price-change-impact-on-commercial-contracts-egypt.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الإطار القانوني لعقود العمل في الأنشطة التجارية المسائية ومواعيد الإغلاق في مصر",
+      "date": "2026-09-21",
+      "slug": "night-work-contracts-and-shop-closing-laws-egypt",
+      "url": "https://mohamidigital.online/blog/night-work-contracts-and-shop-closing-laws-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/night-work-contracts-and-shop-closing-laws-egypt.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الشهر العقاري والعقارات: الإجراءات القانونية لتوثيق عقود البيع الرسمية",
+      "date": "2026-09-21",
+      "slug": "shahr-aqary-official-sale-contract-procedures-egypt",
+      "url": "https://mohamidigital.online/blog/shahr-aqary-official-sale-contract-procedures-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/shahr-aqary-official-sale-contract-procedures-egypt.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إثبات العلاقة العمالية وإلزام الصحف والمؤسسات برواتب العاملين",
+      "date": "2026-09-21",
+      "slug": "labor-relations-proof-media-institutions-egypt",
+      "url": "https://mohamidigital.online/blog/labor-relations-proof-media-institutions-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/labor-relations-proof-media-institutions-egypt.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "قانون الرياضة المصري: التزامات العقود الاحترافية للرياضيين والمدربين",
+      "date": "2026-09-21",
+      "slug": "sports-contracts-professionalism-law-egypt",
+      "url": "https://mohamidigital.online/blog/sports-contracts-professionalism-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-contracts-professionalism-law-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات القانونية في عقود انتقال اللاعبين المحترفين وقضية محمد عبد المنعم",
+      "date": "2026-09-21",
+      "slug": "mohamed-abdelmonem-player-transfer-contracts-legal-disputes",
+      "url": "https://mohamidigital.online/blog/mohamed-abdelmonem-player-transfer-contracts-legal-disputes.html",
+      "image": "https://mohamidigital.online/blog/images/mohamed-abdelmonem-player-transfer-contracts-legal-disputes.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لتعديلات أسعار الذهب على عقود التوريد والمشروعات التجارية بمصر",
+      "date": "2026-09-21",
+      "slug": "gold-price-fluctuations-commercial-contracts-force-majeure-e",
+      "url": "https://mohamidigital.online/blog/gold-price-fluctuations-commercial-contracts-force-majeure-e.html",
+      "image": "https://mohamidigital.online/blog/images/gold-price-fluctuations-commercial-contracts-force-majeure-e.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية للعقود الرياضية بعد أزمة الاحتراف والمنتخبات المرتبطة بـ إبراهيم حسن",
+      "date": "2026-09-21",
+      "slug": "ibrahim-hassan-sports-contracts-professionalism-law-egypt",
+      "url": "https://mohamidigital.online/blog/ibrahim-hassan-sports-contracts-professionalism-law-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/ibrahim-hassan-sports-contracts-professionalism-law-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الحقوق المالية والقانونية للفنانين والمبدعين في العقود الفنية: حماية الملكية الفكرية مستوحاة من الساحة الفنية مثل صبا مبارك",
+      "date": "2026-09-20",
+      "slug": "saba-mubarak-artistic-contracts-intellectual-property-egypt",
+      "url": "https://mohamidigital.online/blog/saba-mubarak-artistic-contracts-intellectual-property-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/saba-mubarak-artistic-contracts-intellectual-property-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الجرائم الإلكترونية والتشهير عبر السوشيال ميديا: الإجراءات القانونية لتقديم بلاغ مباحث الإنترنت في مصر",
+      "date": "2026-09-20",
+      "slug": "cyber-defamation-social-media-internet-police-egypt",
+      "url": "https://mohamidigital.online/blog/cyber-defamation-social-media-internet-police-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/cyber-defamation-social-media-internet-police-egypt.jpg",
+      "tags": [
+        "مكافحة جرائم تقنية المعلومات والإنترنت"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لعقود الاحتراف الرياضي في مصر: دروس مستفادة من تجارب المحترفين بالخارج مثل محمد عبد المنعم",
+      "date": "2026-09-20",
+      "slug": "mohamed-abdel-monem-professional-sports-contracts-egypt",
+      "url": "https://mohamidigital.online/blog/mohamed-abdel-monem-professional-sports-contracts-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/mohamed-abdel-monem-professional-sports-contracts-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية لفسخ عقود اللاعبين المحترفين في ضوء قانون الرياضة المصري",
+      "date": "2026-09-20",
+      "slug": "sports-player-contract-termination-egypt-law",
+      "url": "https://mohamidigital.online/blog/sports-player-contract-termination-egypt-law.html",
+      "image": "https://mohamidigital.online/blog/images/sports-player-contract-termination-egypt-law.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الحماية القانونية لحقوق الملكية الفكرية للفنانين وصناع المحتوى الفني في مصر",
+      "date": "2026-09-20",
+      "slug": "artists-intellectual-property-and-copyright-egypt",
+      "url": "https://mohamidigital.online/blog/artists-intellectual-property-and-copyright-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/artists-intellectual-property-and-copyright-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "النزاعات التعاقدية في الأندية الرياضية: كيف يحمي القانون حقوق الأندية واللاعبين؟",
+      "date": "2026-09-20",
+      "slug": "sports-clubs-contractual-disputes-egypt",
+      "url": "https://mohamidigital.online/blog/sports-clubs-contractual-disputes-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-clubs-contractual-disputes-egypt.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الخدمات الحكومية عبر منصة مصر الرقمية: الحجية القانونية للمستندات الرقمية",
+      "date": "2026-09-20",
+      "slug": "digital-egypt-portal-legal-validity-documents",
+      "url": "https://mohamidigital.online/blog/digital-egypt-portal-legal-validity-documents.html",
+      "image": "https://mohamidigital.online/blog/images/digital-egypt-portal-legal-validity-documents.jpg",
+      "tags": [
+        "مكافحة جرائم تقنية المعلومات والإنترنت"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "التحويلات المالية بالعملات الأجنبية والعقوبات القانونية لسوق العملة في مصر",
+      "date": "2026-09-20",
+      "slug": "foreign-currency-transfer-legal-regulations-egypt",
+      "url": "https://mohamidigital.online/blog/foreign-currency-transfer-legal-regulations-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/foreign-currency-transfer-legal-regulations-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الجرائم الإلكترونية وعقوبة الابتزاز عبر تطبيقات الذكاء الاصطناعي في مصر",
+      "date": "2026-09-20",
+      "slug": "ai-deepfake-blackmail-cyber-crime-egypt",
+      "url": "https://mohamidigital.online/blog/ai-deepfake-blackmail-cyber-crime-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/ai-deepfake-blackmail-cyber-crime-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الضرائب على المتاجر الإلكترونية وصفحات البيع في مصر: الإجراءات والتسجيل",
+      "date": "2026-09-19",
+      "slug": "e-commerce-license-consumer-protection-egypt",
+      "url": "https://mohamidigital.online/blog/e-commerce-license-consumer-protection-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/e-commerce-license-consumer-protection-egypt.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقوبات البث المباشر غير القانوني للمباريات وقنوات IPTV في القانون المصري",
+      "date": "2026-09-19",
+      "slug": "illegal-sports-streaming-iptv-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/illegal-sports-streaming-iptv-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/illegal-sports-streaming-iptv-penalties-egypt.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الشروط القانونية لتأسيس صالات ومراكز الألعاب الإلكترونية (eSports) في مصر",
+      "date": "2026-09-19",
+      "slug": "esports-online-gaming-license-regulations-egypt",
+      "url": "https://mohamidigital.online/blog/esports-online-gaming-license-regulations-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/esports-online-gaming-license-regulations-egypt.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الشروط والأحكام القانونية لحجز شقق وأراضي مشروع مسكن 2026",
+      "date": "2026-09-19",
+      "slug": "maskan-housing-units-legal-allocation-conditions-egypt",
+      "url": "https://mohamidigital.online/blog/maskan-housing-units-legal-allocation-conditions-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/maskan-housing-units-legal-allocation-conditions-egypt.jpg",
+      "tags": [
+        "القانون المدني والمنازعات والتعويضات"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقوبة قرصنة الأفلام المصرية وبثها بدون ترخيص في قانون الملكية الفكرية",
+      "date": "2026-09-19",
+      "slug": "movie-piracy-copyright-infringement-penalties-egyptian-law",
+      "url": "https://mohamidigital.online/blog/movie-piracy-copyright-infringement-penalties-egyptian-law.html",
+      "image": "https://mohamidigital.online/blog/images/movie-piracy-copyright-infringement-penalties-egyptian-law.jpg",
+      "tags": [
+        "القانون الجنائي ومحكمة النقض"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "أسباب تجميد الحسابات البنكية وإجراءات رفع الحظر في القانون المصري",
+      "date": "2026-09-19",
+      "slug": "bank-account-freezing-legal-reasons-unfreeze-procedures-egyp",
+      "url": "https://mohamidigital.online/blog/bank-account-freezing-legal-reasons-unfreeze-procedures-egyp.html",
+      "image": "https://mohamidigital.online/blog/images/bank-account-freezing-legal-reasons-unfreeze-procedures-egyp.jpg",
+      "tags": [
+        "قانون الشركات والاستثمار والضرائب"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الخدمات القانونية عبر منصة مصر الرقمية: التوثيق والاستعلام القضائي",
+      "date": "2026-09-19",
+      "slug": "digital-egypt-platform-legal-services-guide",
+      "url": "https://mohamidigital.online/blog/digital-egypt-platform-legal-services-guide.html",
+      "image": "https://mohamidigital.online/blog/images/digital-egypt-platform-legal-services-guide.jpg",
+      "tags": [
+        "مكافحة جرائم تقنية المعلومات والإنترنت"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "الآثار القانونية للعقود الرياضية وانتقالات اللاعبين: دراسة حالة ناصر ماهر",
+      "date": "2026-09-19",
+      "slug": "nasser-maher-football-transfer-contracts-law",
+      "url": "https://mohamidigital.online/blog/nasser-maher-football-transfer-contracts-law.html",
+      "image": "https://mohamidigital.online/blog/images/nasser-maher-football-transfer-contracts-law.jpg",
+      "tags": [
+        "قانون الرياضة وعقود الاحتراف"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "إجراءات وشروط تسجيل عقود الإيجار في الشهر العقاري وحماية المسكن",
+      "date": "2026-09-19",
+      "slug": "rent-contract-registration-shahr-aqary-egypt",
+      "url": "https://mohamidigital.online/blog/rent-contract-registration-shahr-aqary-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/rent-contract-registration-shahr-aqary-egypt.jpg",
+      "tags": [
+        "القانون العقاري وإجراءات التسجيل"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "شروط ومعايير استحقاق معاش تكافل وكرامة في ضوء تعديلات قانون الضمان الاجتماعي",
+      "date": "2026-09-13",
+      "slug": "takaful-and-karama-eligibility-law",
+      "url": "https://mohamidigital.online/blog/takaful-and-karama-eligibility-law.html",
+      "image": "https://mohamidigital.online/blog/images/takaful-and-karama-eligibility-law.jpg",
+      "tags": [
+        "قانون العمل وحقوق العاملين"
+      ],
+      "words": 3200,
+      "model": "master-legal-engine-2026"
     }
   ]
 }

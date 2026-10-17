@@ -248,6 +248,17 @@ async function publishArticleToFacebook(article, token, pageId) {
     return { slug, status: 'no-file' };
   }
 
+  // 🛡️ بروتوكول حظر النشر الأعمى (Rule #7 & Rule #10)
+  try {
+    const liveResp = await fetch(url, { method: 'HEAD', signal: AbortSignal.timeout(8000) });
+    if (liveResp.status !== 200 && liveResp.status !== 301) {
+      console.log(`[fb] ⛔ [Fail-Closed] إجهاض النشر فوراً: المقال ${slug} غير متاح حياً على السيرفر (${liveResp.status}). لن يُنشر لمنع روابط 404.`);
+      return { slug, status: 'not-live' };
+    }
+  } catch (err) {
+    console.log(`[fb] ⚠️ تعذر التحقق من الرابط الحي (${err.message}) — استمرار مشروط.`);
+  }
+
   // نص المنشور = عنوان + نص المقال + الخاتمة الموحدة لدعم المنصة
   const siteFooter = [
     '',

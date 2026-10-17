@@ -122,11 +122,26 @@
 
     <div class="btn-row">
       <a href="/" class="btn-act btn-primary">🏠 الرئيسية</a>
-      <a href="/courts-directory.html" class="btn-act btn-secondary">🏛️ دليل المحاكم والشهر العقاري</a>
+      <a href="/blog/" class="btn-act btn-secondary">📰 المدونة القانونية</a>
+      <a href="/legal-calculators.html" class="btn-act btn-secondary">🧮 الحاسبات الذكية</a>
+      <a href="/court-precedents.html" class="btn-act btn-secondary">⚖️ أحكام النقض</a>
     </div>
   </div>
 
-
-<script src="/mobile-dock.js" defer></script>
+  <script>
+    // توجيه ذكي إن جاء الزائر من فيسبوك لمقال غير موجود
+    (function() {
+      if (location.pathname.startsWith('/blog/')) {
+        var slug = location.pathname.replace('/blog/', '').replace('.html', '').replace(/[-_]/g, ' ');
+        if (slug) {
+          var desc = document.querySelector('.desc-404');
+          if (desc) {
+            desc.innerHTML = 'الموضوع الذي تبحث عنه بخصوص: <strong>' + decodeURIComponent(slug) + '</strong> تم تحديثه أو نقله. يمكنك تصفحه عبر محرك بحث المدونة أو الانتقال للحاسبات القانونية.';
+          }
+        }
+      }
+    })();
+  </script>
+<script src="/sidebar.js" defer></script>
 </body>
 </html>

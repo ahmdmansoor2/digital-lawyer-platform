@@ -665,6 +665,22 @@ async function postToFacebook(topic, articleUrl, imageUrl) {
     if (page?.access_token) pageToken = page.access_token;
   } catch {}
 
+  // 🛡️ بروتوكول سلامة الروابط ومنع النشر الأعمى (Rule #7 & Rule #10):
+  // التحقق الإلزامي من أن الرابط حي ويعطي 200 OK قبل إرساله لفيسبوك
+  try {
+    const checkLive = await new Promise((resolve) => {
+      https.get(articleUrl + '?_chk=' + Date.now(), { timeout: 8000 }, (res) => {
+        resolve(res.statusCode);
+      }).on('error', () => resolve(null));
+    });
+    if (checkLive !== 200 && checkLive !== 301) {
+      log(`⛔ [Fail-Closed] إجهاض النشر على فيسبوك فوراً: الرابط ${articleUrl} أعطى (${checkLive}) على السيرفر الحي ولم يتم رفعه بعد. لن يتم النشر لحماية سمعة المنصة ومنع روابط 404.`);
+      return null;
+    }
+  } catch (chkErr) {
+    log(`⚠️ تنبيه فحص الرابط الحي: ${chkErr.message}`);
+  }
+
   // مطالبة فيسبوك بكشط الرابط
   try {
     log(`🔄 مطالبة Facebook بمسح الرابط والصورة: ${articleUrl}`);
