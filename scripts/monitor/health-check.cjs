@@ -187,6 +187,21 @@ async function checkBlogIndex() {
     }
     const bad = countReplacementChars(text);
     if (bad > 0) find(c, 'error', `${bad} رمز ترميز تالف في فهرس المدونة`, BASE_URL + '/blog/');
+
+    // فحص حداثة وتطابق الفهرس ومكافحة التجمد (Freshness & Completeness Guard)
+    try {
+      const pubLogFile = path.join(ROOT, 'scripts', 'published-log.json');
+      if (fs.existsSync(pubLogFile)) {
+        const pLog = JSON.parse(fs.readFileSync(pubLogFile, 'utf8'));
+        const pubList = pLog.published || [];
+        if (pubList.length > 0) {
+          if (slugs.length < pubList.length * 0.9) {
+            find(c, 'error', `فهرس المدونة ناقص بشكل حاد: يعرض ${slugs.length} مقالاً بينما السجل يضم ${pubList.length} مقالاً!`);
+          }
+        }
+      }
+    } catch {}
+
     c.summary = `${slugs.length} مقالاً في الفهرس`;
     return slugs;
   } catch (e) {

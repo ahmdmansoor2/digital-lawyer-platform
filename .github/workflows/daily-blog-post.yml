@@ -57,6 +57,9 @@ jobs:
       - name: Apply Google News on-site requirements (SWG + NewsArticle schema)
         run: node scripts/seo/news-requirements.cjs
 
+      - name: Rebuild Blog Index in strict descending order
+        run: node scripts/blog-publisher/rebuild-blog-index.cjs
+
       - name: Commit & Push changes
         run: |
           git config user.name  "Smart Legal Publisher 🤖"
