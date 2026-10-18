@@ -1892,6 +1892,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1763910429076336",
       "publishedAt": "2026-10-18T15:49:35.569Z"
+    },
+    {
+      "topicId": "blog-khula-divorce-lawsuit-procedures-and-dowry-return",
+      "kind": "short",
+      "videoId": "Sm87fh1MZ_Y",
+      "url": "https://www.youtube.com/watch?v=Sm87fh1MZ_Y",
+      "fbPermalink": "https://www.facebook.com/reel/4650161981933482",
+      "publishedAt": "2026-10-18T20:34:28.769Z"
+    },
+    {
+      "topicId": "blog-khula-divorce-lawsuit-procedures-and-dowry-return",
+      "title": "دعوى الخلع في المحاكم المصرية: إجراءاتها، كم تستغرق، وما يسقط من حقوق — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-khula-divorce-lawsuit-procedures-and-dowry-return-wide.mp4",
+      "source": "blog",
+      "videoId": "f_BqSwd40qE",
+      "url": "https://www.youtube.com/watch?v=f_BqSwd40qE",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/4650161981933482",
+      "publishedAt": "2026-10-18T20:35:02.363Z"
     }
   ]
 }
