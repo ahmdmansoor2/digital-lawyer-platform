@@ -1930,6 +1930,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1452822803605813",
       "publishedAt": "2026-10-19T12:58:56.741Z"
+    },
+    {
+      "topicId": "blog-building-violation-reconciliation-law-updates-model-8",
+      "kind": "short",
+      "videoId": "LYcEtw8gn9w",
+      "url": "https://www.youtube.com/watch?v=LYcEtw8gn9w",
+      "fbPermalink": "https://www.facebook.com/reel/1410130991102003",
+      "publishedAt": "2026-10-19T20:36:05.244Z"
+    },
+    {
+      "topicId": "blog-building-violation-reconciliation-law-updates-model-8",
+      "title": "آخر مستجدات قانون التصالح 2026: كود الحريق وتخفيض الرسوم ونموذج 8 — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-building-violation-reconciliation-law-updates-model-8-wide.mp4",
+      "source": "blog",
+      "videoId": "Tw-J0-WAomY",
+      "url": "https://www.youtube.com/watch?v=Tw-J0-WAomY",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1410130991102003",
+      "publishedAt": "2026-10-19T20:36:47.246Z"
     }
   ]
 }
