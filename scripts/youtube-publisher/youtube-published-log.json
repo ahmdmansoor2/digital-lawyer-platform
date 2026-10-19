@@ -1911,6 +1911,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/4650161981933482",
       "publishedAt": "2026-10-18T20:35:02.363Z"
+    },
+    {
+      "topicId": "blog-inheritance-withholding-penalties-article-49",
+      "kind": "short",
+      "videoId": "Te_xZobNKQg",
+      "url": "https://www.youtube.com/watch?v=Te_xZobNKQg",
+      "fbPermalink": "https://www.facebook.com/reel/1452822803605813",
+      "publishedAt": "2026-10-19T12:58:35.172Z"
+    },
+    {
+      "topicId": "blog-inheritance-withholding-penalties-article-49",
+      "title": "المادة 49 مواريث: عقوبة حبس الممتنع عن تسليم الميراث وثغرات البلاغ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-inheritance-withholding-penalties-article-49-wide.mp4",
+      "source": "blog",
+      "videoId": "Tnu7RBl1qsA",
+      "url": "https://www.youtube.com/watch?v=Tnu7RBl1qsA",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1452822803605813",
+      "publishedAt": "2026-10-19T12:58:56.741Z"
     }
   ]
 }
