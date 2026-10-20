@@ -700,6 +700,54 @@
         {
           "source": "/why-trust-us",
           "destination": "/why-trust-us.html"
+        },
+        {
+          "source": "/felony-appeal-generator",
+          "destination": "/felony-appeal-generator.html"
+        },
+        {
+          "source": "/bailiff-notices-generator",
+          "destination": "/bailiff-notices-generator.html"
+        },
+        {
+          "source": "/criminal-procedure-new",
+          "destination": "/criminal-procedure-new.html"
+        },
+        {
+          "source": "/property-buyer-checklist",
+          "destination": "/property-buyer-checklist.html"
+        },
+        {
+          "source": "/inheritance-deed-generator",
+          "destination": "/inheritance-deed-generator.html"
+        },
+        {
+          "source": "/calculate-old-rent",
+          "destination": "/calculate-old-rent.html"
+        },
+        {
+          "source": "/calculate-building-reconciliation",
+          "destination": "/calculate-building-reconciliation.html"
+        },
+        {
+          "source": "/calculate-court-fees",
+          "destination": "/calculate-court-fees.html"
+        },
+        {
+          "source": "/calculate-prescription-periods",
+          "destination": "/calculate-prescription-periods.html"
+        },
+        {
+          "source": "/calculate-attorney-fees",
+          "destination": "/calculate-attorney-fees.html"
+        },
+        {
+          "source": "/calculate-traffic-compensation",
+          "destination": "/calculate-traffic-compensation.html"
+        },
+        {
+          "source": "/legal-glossary",
+          "destination": "/legal-glossary.html"
         }
       ],
       "cleanUrls": false,
@@ -888,6 +936,24 @@
             {
               "key": "Cache-Control",
               "value": "public, max-age=604800"
+            }
+          ]
+        },
+        {
+          "source": "/@(404|search|action).html",
+          "headers": [
+            {
+              "key": "X-Robots-Tag",
+              "value": "noindex, nofollow"
+            }
+          ]
+        },
+        {
+          "source": "/__/auth/**",
+          "headers": [
+            {
+              "key": "X-Robots-Tag",
+              "value": "noindex, nofollow"
             }
           ]
         }
