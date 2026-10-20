@@ -61,4 +61,5 @@ Allow: /
 
 # Sitemaps
 Sitemap: https://mohamidigital.online/sitemap.xml
+Sitemap: https://mohamidigital.online/priority-tier1-sitemap.xml
 Sitemap: https://mohamidigital.online/news-sitemap.xml
