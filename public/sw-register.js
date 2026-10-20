@@ -1,5 +1,5 @@
 /**
- * sw-register.js — تسجيل Service Worker المستقر وتنظيف كاشات الثيم
+ * sw-register.js — تسجيل Service Worker مع التفريغ التلقائي للكاش القديم (Cache-Busting)
  */
 (function () {
   try {
@@ -12,13 +12,15 @@
   if (location.protocol !== 'https:' && location.hostname !== 'localhost') return;
 
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/sw.js?v=20261016clean', { scope: '/' }).then(function (reg) {
+    navigator.serviceWorker.register('/sw.js?v=20261020v13', { scope: '/' }).then(function (reg) {
       if (reg) {
         reg.update();
         if (window.caches) {
           caches.keys().then(function (names) {
             names.forEach(function (name) {
-              if (name.includes('mohami-v8') || name.includes('mohami-v9')) caches.delete(name);
+              if (!name.includes('mohami-v13-domination-20261020')) {
+                caches.delete(name);
+              }
             });
           });
         }

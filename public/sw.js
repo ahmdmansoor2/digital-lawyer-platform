@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const VERSION = 'mohami-clean-stable-v10';
+const VERSION = 'mohami-v13-domination-20261020';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 
