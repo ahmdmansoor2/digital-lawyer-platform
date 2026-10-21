@@ -2044,6 +2044,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1554190396475350",
       "publishedAt": "2026-10-21T17:09:09.335Z"
+    },
+    {
+      "topicId": "blog-end-of-service-gratuity-calculation-new-labor-law",
+      "kind": "short",
+      "videoId": "1_9MYDmivjk",
+      "url": "https://www.youtube.com/watch?v=1_9MYDmivjk",
+      "fbPermalink": "https://www.facebook.com/reel/1762960448300395",
+      "publishedAt": "2026-10-21T21:36:16.065Z"
+    },
+    {
+      "topicId": "blog-end-of-service-gratuity-calculation-new-labor-law",
+      "title": "حاسبة مكافأة نهاية الخدمة في قانون العمل الجديد: طريقة الحساب والضوابط — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-end-of-service-gratuity-calculation-new-labor-law-wide.mp4",
+      "source": "blog",
+      "videoId": "33j120e0VA8",
+      "url": "https://www.youtube.com/watch?v=33j120e0VA8",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1762960448300395",
+      "publishedAt": "2026-10-21T21:36:38.179Z"
     }
   ]
 }
