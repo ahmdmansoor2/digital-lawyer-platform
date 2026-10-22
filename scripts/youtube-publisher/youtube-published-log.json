@@ -2082,6 +2082,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2213680352900099",
       "publishedAt": "2026-10-22T12:03:24.854Z"
+    },
+    {
+      "topicId": "blog-old-rent-law-2026-eviction-and-increase",
+      "kind": "short",
+      "videoId": "qsRJc-6YOX4",
+      "url": "https://www.youtube.com/watch?v=qsRJc-6YOX4",
+      "fbPermalink": "https://www.facebook.com/reel/1132337449143127",
+      "publishedAt": "2026-10-22T17:09:27.041Z"
+    },
+    {
+      "topicId": "blog-old-rent-law-2026-eviction-and-increase",
+      "title": "دليل قانون الإيجار القديم 2026: الزيادة السنوية 15% وحالات الإخلاء النهائي — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-old-rent-law-2026-eviction-and-increase-wide.mp4",
+      "source": "blog",
+      "videoId": "S4k5UO3bhho",
+      "url": "https://www.youtube.com/watch?v=S4k5UO3bhho",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1132337449143127",
+      "publishedAt": "2026-10-22T17:09:48.939Z"
     }
   ]
 }
