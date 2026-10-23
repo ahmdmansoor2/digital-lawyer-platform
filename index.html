@@ -82,8 +82,8 @@
       "@context": "https://schema.org",
       "@type": ["Organization", "LegalService"],
       "@id": "https://mohamidigital.online/#organization",
-      "name": "منصة المحامي الرقمية",
-      "alternateName": ["المحامي الرقمي", "Digital Lawyer Platform", "Mohami Digital"],
+      "name": "المحامي الرقمي",
+      "alternateName": ["منصة المحامي الرقمية", "Digital Lawyer Platform", "Mohami Digital"],
       "url": "https://mohamidigital.online/",
       "logo": {
         "@type": "ImageObject",
@@ -256,7 +256,7 @@
 
     <!-- React Application Styles (Non-blocking load; JS bundle loads on-demand when lawyer opens workspace) -->
     
-    <script src="/sw-register.js?v=20261020v13" defer></script>
+    <script src="/sw-register.js?v=20261023v14" defer></script>
 
     <style>
       .portal-shell {
@@ -280,6 +280,29 @@
         text-align: center;
         margin-bottom: 40px;
         box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+      }
+      .ns-hero-main-title {
+        margin: 16px 0 24px 0;
+        line-height: 1.2;
+      }
+      .ns-brand-headline {
+        display: block;
+        font-size: clamp(44px, 8vw, 84px);
+        font-weight: 900;
+        letter-spacing: -0.5px;
+        background: linear-gradient(135deg, #ffffff 0%, #facc15 45%, #d4af37 70%, #ffffff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 4px 30px rgba(212, 175, 55, 0.4);
+        margin-bottom: 12px;
+        line-height: 1.15;
+      }
+      .ns-brand-tagline {
+        display: block;
+        font-size: clamp(19px, 3.2vw, 30px);
+        font-weight: 700;
+        color: #e2e8f0;
+        line-height: 1.4;
       }
       .ns-hero h1 {
         font-size: clamp(28px, 4.5vw, 44px);
@@ -440,8 +463,11 @@
 
       <main class="ns-container">
         <section class="ns-hero" aria-labelledby="hero-heading">
-          <span class="ns-badge">⚖️ المنظومة القانونية الرقمية الشاملة — مجانية 100% للمحامين والمواطنين</span>
-          <h1 id="hero-heading">منصة المحامي الرقمية | المنظومة القانونية الذكية الأولى في مصر</h1>
+          <span class="ns-badge">⚖️ المنظومة القانونية والتشريعية الأولى في مصر — برعاية المستشار أحمد منصور</span>
+          <h1 id="hero-heading" class="ns-hero-main-title">
+            <span class="ns-brand-headline">المحامي الرقمي</span>
+            <span class="ns-brand-tagline">المنظومة القانونية والتشريعية الذكية الأولى في جمهورية مصر العربية</span>
+          </h1>
           <p>
             النظام الأشمل لإدارة مكاتب المحاماة والخدمات القانونية في جمهورية مصر العربية. يجمع بين برنامج إدارة القضايا والجلسات والموكلين وأوراق المحضرين على المتصفح وWindows وAndroid وiOS، وبين 15 حاسبة قانونية وشرعية تفاعلية، ودليل المحاكم والشهر العقاري، وأكثر من 2,700 صيغة عقد ودعوى جاهزة، ومكتبة التشريعات وأحكام النقض.
           </p>

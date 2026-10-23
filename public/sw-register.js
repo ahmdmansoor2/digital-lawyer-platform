@@ -12,7 +12,7 @@
   if (location.protocol !== 'https:' && location.hostname !== 'localhost') return;
 
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/sw.js?v=20261020v13', { scope: '/' }).then(function (reg) {
+    navigator.serviceWorker.register('/sw.js?v=20261023v14', { scope: '/' }).then(function (reg) {
       if (reg) {
         reg.update();
         if (window.caches) {
