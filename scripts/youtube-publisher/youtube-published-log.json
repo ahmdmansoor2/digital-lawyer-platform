@@ -2120,6 +2120,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2669933940145255",
       "publishedAt": "2026-10-23T11:31:39.187Z"
+    },
+    {
+      "topicId": "blog-debt-statute-limitations",
+      "kind": "short",
+      "videoId": "dDU0F1antKk",
+      "url": "https://www.youtube.com/watch?v=dDU0F1antKk",
+      "fbPermalink": "https://www.facebook.com/reel/962454996924015",
+      "publishedAt": "2026-10-23T17:01:36.943Z"
+    },
+    {
+      "topicId": "blog-debt-statute-limitations",
+      "title": "تقادم الديون في القانون المصري: متى يسقط حق المطالبة؟ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-debt-statute-limitations-wide.mp4",
+      "source": "blog",
+      "videoId": "K7pTpY30s84",
+      "url": "https://www.youtube.com/watch?v=K7pTpY30s84",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/962454996924015",
+      "publishedAt": "2026-10-23T17:02:04.778Z"
     }
   ]
 }
