@@ -2101,6 +2101,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1132337449143127",
       "publishedAt": "2026-10-22T17:09:48.939Z"
+    },
+    {
+      "topicId": "blog-administrative-grievance",
+      "kind": "short",
+      "videoId": "2oFDbDwX5o4",
+      "url": "https://www.youtube.com/watch?v=2oFDbDwX5o4",
+      "fbPermalink": "https://www.facebook.com/reel/2669933940145255",
+      "publishedAt": "2026-10-23T11:31:19.778Z"
+    },
+    {
+      "topicId": "blog-administrative-grievance",
+      "title": "التظلم الإداري في مصر: الدليل القانوني الشامل لقرارات الإدارة العامة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-administrative-grievance-wide.mp4",
+      "source": "blog",
+      "videoId": "mj8GMbM8Oy0",
+      "url": "https://www.youtube.com/watch?v=mj8GMbM8Oy0",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2669933940145255",
+      "publishedAt": "2026-10-23T11:31:39.187Z"
     }
   ]
 }
