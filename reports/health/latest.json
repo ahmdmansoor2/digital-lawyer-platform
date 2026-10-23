@@ -1,10 +1,10 @@
 {
   "date": "2026-10-23",
-  "generatedAt": "2026-10-23T16:47:32.533Z",
+  "generatedAt": "2026-10-23T21:13:26.516Z",
   "status": "error",
   "blogArticles": 402,
-  "fbPosts": 1,
-  "reels": 1,
+  "fbPosts": 2,
+  "reels": 2,
   "ghRuns": 18,
   "checks": [
     {
