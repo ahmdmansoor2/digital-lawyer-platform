@@ -2139,6 +2139,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/962454996924015",
       "publishedAt": "2026-10-23T17:02:04.778Z"
+    },
+    {
+      "topicId": "trend-inheritance-withholding-penalties-article-49",
+      "kind": "short",
+      "videoId": "aV0SorMa_2U",
+      "url": "https://www.youtube.com/watch?v=aV0SorMa_2U",
+      "fbPermalink": "https://www.facebook.com/reel/1619215523285450",
+      "publishedAt": "2026-10-29T12:52:44.746Z"
+    },
+    {
+      "topicId": "trend-inheritance-withholding-penalties-article-49",
+      "title": "المادة 49 مواريث: عقوبة حبس الممتنع عن تسليم الميراث وثغرات البلاغ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-inheritance-withholding-penalties-article-49-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "N-Z3JAFuoAw",
+      "url": "https://www.youtube.com/watch?v=N-Z3JAFuoAw",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1619215523285450",
+      "publishedAt": "2026-10-29T12:53:15.568Z"
     }
   ]
 }
