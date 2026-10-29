@@ -2158,6 +2158,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1619215523285450",
       "publishedAt": "2026-10-29T12:53:15.568Z"
+    },
+    {
+      "topicId": "trend-sale-contract-validity-and-enforcement-lawsuit-vs-signature",
+      "kind": "short",
+      "videoId": "Jgc9yeCTlks",
+      "url": "https://www.youtube.com/watch?v=Jgc9yeCTlks",
+      "fbPermalink": "https://www.facebook.com/reel/2204053353855655",
+      "publishedAt": "2026-10-29T20:16:03.267Z"
+    },
+    {
+      "topicId": "trend-sale-contract-validity-and-enforcement-lawsuit-vs-signature",
+      "title": "الفرق بين دعوى صحة التوقيع وصحة ونفاذ: الصيغة القانونية ورسوم الدعوى — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sale-contract-validity-and-enforcement-lawsuit-vs-signature-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "ZUZkGTPBx_U",
+      "url": "https://www.youtube.com/watch?v=ZUZkGTPBx_U",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2204053353855655",
+      "publishedAt": "2026-10-29T20:16:53.440Z"
     }
   ]
 }
