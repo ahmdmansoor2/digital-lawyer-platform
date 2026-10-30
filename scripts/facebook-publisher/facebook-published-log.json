@@ -3431,6 +3431,27 @@
       "duration": "1د 2ث",
       "size": 21082181,
       "publishedAt": "2026-10-30T12:45:11.882Z"
+    },
+    {
+      "topicId": "trend-khula-divorce-lawsuit-procedures-and-dowry-return",
+      "title": "دعوى الخلع في المحاكم المصرية: إجراءاتها، كم تستغرق، وما يسقط من حقوق",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون الأسرة",
+        "#شروط الخلع ورد مقدم الصداق",
+        "#إجراءات دعوى الخلع في مصر"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-khula-divorce-lawsuit-procedures-and-dowry-return.mp4",
+      "videoId": "1644019993762806",
+      "permalink": "https://www.facebook.com/reel/1644019993762806",
+      "source": "trending-topics.json",
+      "duration": "1د 4ث",
+      "size": 14199216,
+      "publishedAt": "2026-10-30T20:00:11.365Z"
     }
   ]
 }
