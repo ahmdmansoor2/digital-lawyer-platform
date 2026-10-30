@@ -225,6 +225,38 @@
           "mainEntity": [
             {
               "@type": "Question",
+              "name": "هل خدمات الاستشارات القانونية في منصة المحامي الرقمي مجانية تماماً؟",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "نعم، منصة المحامي الرقمي (Mohami Digital) هي منظومة قانونية مجانية 100% تقدم استشارات الذكاء الاصطناعي، وأدوات الحسابات القانونية، والبحث في أحكام محكمة النقض دون أي رسوم."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "كيف يمكن للمحامين الاستفادة من منصة المحامي الرقمي؟",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "تتيح المنصة للمحامين والقضاة والباحثين أتمتة مكاتبهم، ومتابعة القضايا وجداول الجلسات، والبحث الفوري في قاعدة بيانات أحكام محكمة النقض، وصياغة المذكرات القانونية بدقة عالية."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "ما هي الحاسبات القانونية المتاحة في المنصة؟",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "توفر المنصة أدوات مؤتمتة دقيقة تشمل: حاسبة المواريث الشرعية، وحاسبة مكافأة نهاية الخدمة وقضايا العمل، وحاسبة الرسوم القضائية بدقة فورية."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "من هو مؤسس منصة المحامي الرقمي؟",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "أسس المنصة المستشار القانوني أحمد منصور لتكون المنظومة الوطنية والإقليمية الموحدة لخدمة العدالة والتقاضي في مصر ودول الخليج والوطن العربي."
+              }
+            },
+            {
+              "@type": "Question",
               "name": "كيف أحصل على استشارة قانونية مجانية في مصر؟",
               "acceptedAnswer": {
                 "@type": "Answer",
@@ -504,6 +536,245 @@
         .ns-hero { padding: 36px 20px; }
         .ns-grid { grid-template-columns: 1fr; }
       }
+    
+      /* ─── Hero Intent Cards & Trust Bar ─── */
+      .badges-wrapper {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+      .badge-gold {
+        background: rgba(245, 158, 11, 0.15);
+        border: 1px solid #f59e0b;
+        color: #f59e0b;
+        font-family: 'Cairo', sans-serif;
+        font-weight: 700;
+        padding: 0.35rem 1rem;
+        border-radius: 999px;
+        font-size: 0.9rem;
+      }
+      .badge-regional {
+        background: rgba(16, 185, 129, 0.12);
+        border: 1px solid #10b981;
+        color: #10b981;
+        font-family: 'Cairo', sans-serif;
+        font-weight: 600;
+        padding: 0.35rem 1rem;
+        border-radius: 999px;
+        font-size: 0.9rem;
+      }
+      .hero-title {
+        font-family: 'Cairo', sans-serif;
+        font-size: clamp(2rem, 4.5vw, 3.25rem);
+        font-weight: 800;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+        color: #ffffff;
+        text-align: center;
+      }
+      .hero-title .highlight {
+        color: #6366f1;
+      }
+      .hero-subtitle {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        color: #94a3b8;
+        max-width: 820px;
+        margin: 0 auto 2rem;
+        text-align: center;
+        line-height: 1.7;
+      }
+      .legal-heritage-note {
+        font-family: 'Amiri', serif;
+        font-size: 1.25rem;
+        color: #e2e8f0;
+        background: rgba(255, 255, 255, 0.03);
+        border-right: 4px solid #f59e0b;
+        padding: 0.8rem 1.5rem;
+        margin: 0 auto 2.5rem;
+        max-width: 760px;
+        border-radius: 6px;
+        text-align: center;
+      }
+      .intent-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2.5rem;
+        text-align: right;
+      }
+      .intent-card {
+        background: rgba(30, 41, 59, 0.65);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(99, 102, 241, 0.25);
+        border-radius: 16px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .intent-card:hover {
+        transform: translateY(-6px);
+        border-color: #6366f1;
+        box-shadow: 0 12px 30px -10px rgba(99, 102, 241, 0.35);
+      }
+      .intent-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+      .intent-title {
+        font-family: 'Cairo', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 800;
+        color: #ffffff;
+      }
+      .intent-tag {
+        font-size: 0.8rem;
+        color: #10b981;
+        background: rgba(16, 185, 129, 0.1);
+        padding: 0.25rem 0.75rem;
+        border-radius: 6px;
+        font-weight: 600;
+      }
+      .intent-desc {
+        color: #94a3b8;
+        font-size: 0.95rem;
+        margin-bottom: 1.25rem;
+        line-height: 1.6;
+      }
+      .intent-features {
+        list-style: none;
+        margin-bottom: 1.75rem;
+        padding: 0;
+      }
+      .intent-features li {
+        margin-bottom: 0.6rem;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #cbd5e1;
+      }
+      .intent-features li::before {
+        content: "✓";
+        color: #f59e0b;
+        font-weight: bold;
+      }
+      .btn-action {
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: linear-gradient(135deg, #6366f1, #4f46e5);
+        color: #ffffff !important;
+        font-family: 'Cairo', sans-serif;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 0.9rem 1.5rem;
+        border-radius: 10px;
+        transition: background 0.25s ease, transform 0.2s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .btn-action:hover {
+        background: #4f46e5;
+        transform: scale(1.02);
+      }
+      .trust-footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 1.25rem 1.75rem;
+        border-radius: 12px;
+        font-size: 0.92rem;
+        color: #94a3b8;
+        margin-bottom: 2.5rem;
+      }
+      .contact-links {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .contact-links a {
+        color: #f8fafc;
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.06);
+        padding: 0.4rem 0.9rem;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: background 0.2s;
+      }
+      .contact-links a:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      /* ─── FAQ Accordion (details/summary) ─── */
+      .faq-grid-accordion {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 950px;
+        margin: 0 auto;
+      }
+      .faq-card {
+        background: rgba(30, 41, 59, 0.65);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(99, 102, 241, 0.25);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: border-color 0.3s ease;
+      }
+      .faq-card[open] {
+        border-color: #6366f1;
+      }
+      .faq-question {
+        font-family: 'Cairo', sans-serif;
+        font-weight: 700;
+        font-size: 1.12rem;
+        padding: 1.25rem 1.5rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        color: #ffffff;
+      }
+      .faq-question::-webkit-details-marker {
+        display: none;
+      }
+      .faq-icon {
+        color: #f59e0b;
+        font-size: 1.5rem;
+        font-weight: 800;
+        transition: transform 0.3s ease;
+        line-height: 1;
+      }
+      .faq-card[open] .faq-icon {
+        transform: rotate(45deg);
+      }
+      .faq-answer {
+        padding: 0 1.5rem 1.25rem;
+        color: #94a3b8;
+        font-size: 1rem;
+        line-height: 1.7;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 1rem;
+      }
+      .faq-answer p {
+        margin: 0;
+      }
+
     </style>
   </head>
   <body class="bg-slate-900 font-sans antialiased text-slate-100 selection:bg-indigo-500 selection:text-white">
@@ -539,18 +810,95 @@
 
       <main class="ns-container">
         <section class="ns-hero" aria-labelledby="hero-heading">
-          <span class="ns-badge">⚖️ المنظومة القانونية والتشريعية الأولى في مصر — برعاية المستشار أحمد منصور</span>
-          <h1 id="hero-heading" class="ns-hero-main-title">
-            <span class="ns-brand-headline">المحامي الرقمي</span>
-            <span class="ns-brand-tagline">المنظومة القانونية والتشريعية الذكية الأولى في جمهورية مصر العربية</span>
+          <div class="badges-wrapper">
+            <span class="badge-regional">المنظومة الوطنية والإقليمية الموحدة 2026</span>
+            <span class="badge-gold">مساعدك القانوني الذكي · مجاناً 100%</span>
+          </div>
+
+          <h1 id="hero-heading" class="hero-title">
+            منظومة العدالة القانونية <span class="highlight">لمصر والوطن العربي</span>
           </h1>
-          <p>
-            النظام الأشمل لإدارة مكاتب المحاماة والخدمات القانونية في جمهورية مصر العربية. يجمع بين برنامج إدارة القضايا والجلسات والموكلين وأوراق المحضرين على المتصفح وWindows وAndroid وiOS، وبين 15 حاسبة قانونية وشرعية تفاعلية، ودليل المحاكم والشهر العقاري، وأكثر من 2,700 صيغة عقد ودعوى جاهزة، ومكتبة التشريعات وأحكام النقض.
+
+          <p class="hero-subtitle">
+            منصة تقنية قانونية شاملة تدمج بين الذكاء الاصطناعي والخبرة القضائية الممتدة؛ نقدم الاستشارات القانونية، وإعداد ومراجعة العقود، وتأسيس الشركات، وأتمتة مكاتب المحاماة بأعلى معايير الدقة والسرية برعاية وإشراف المستشار أحمد منصور.
           </p>
-          <div class="ns-actions">
-            <button type="button" id="heroOpenAppBtn" class="ns-cta">🚀 دخول نظام إدارة المكتب (للمحامين)</button>
-            <a href="https://mohamidigital.online/legal-consultations.html" class="ns-cta-secondary">💬 بوابة الاستشارات القانونية المجانية</a>
-            <a href="https://mohamidigital.online/lawyers-directory.html" class="ns-cta-secondary">⚖️ دليل المحامين المشتغلين بمصر</a>
+
+          <blockquote class="legal-heritage-note">
+            "ربط التراث القضائي وأحكام محكمة النقض بأحدث تقنيات الذكاء الاصطناعي لخدمة العدالة في مصر ودول الخليج."
+          </blockquote>
+
+          <!-- بطاقات تحديد مسار الزائر (Intent Segmentation) -->
+          <div class="intent-grid">
+            <!-- المسار الأول: أنا محام -->
+            <article class="intent-card">
+              <div>
+                <div class="intent-header">
+                  <h2 class="intent-title">أنا محام</h2>
+                  <span class="intent-tag">للمحامين والقضاة والباحثين</span>
+                </div>
+                <p class="intent-desc">
+                  أتمتة كاملة لمكتبك القانوني ووصول فوري إلى السوابق القضائية وأدوات الصياغة وإدارة الجلسات.
+                </p>
+                <ul class="intent-features">
+                  <li>البحث الفوري في أحكام محكمة النقض</li>
+                  <li>أتمتة المكاتب ومتابعة الجلسات والقضايا</li>
+                  <li>صياغة المذكرات القانونية والدعاوى</li>
+                  <li>حاسبات الرسوم القضائية والمواريث</li>
+                </ul>
+              </div>
+              <button type="button" id="heroOpenAppBtn" class="btn-action">🚀 دخول نظام إدارة المكتب (مجاناً)</button>
+            </article>
+
+            <!-- المسار الثاني: أنا مواطن -->
+            <article class="intent-card">
+              <div>
+                <div class="intent-header">
+                  <h2 class="intent-title">أنا مواطن</h2>
+                  <span class="intent-tag">للأفراد والمغتربين</span>
+                </div>
+                <p class="intent-desc">
+                  إجابات قانونية فورية ومبسطة لحماية حقوقك الأسرية والمدنية والعمالية دون أي تعقيد.
+                </p>
+                <ul class="intent-features">
+                  <li>استشارات قانونية فورية بالذكاء الاصطناعي</li>
+                  <li>حاسبة المواريث الشرعية وتوزيع التركات</li>
+                  <li>حاسبة مكافأة نهاية الخدمة وقضايا العمل</li>
+                  <li>استشارات الأسرة والتوثيق وصكوك العقارات</li>
+                </ul>
+              </div>
+              <a href="https://mohamidigital.online/legal-consultations.html" class="btn-action">💬 احصل على استشارتك المجانية</a>
+            </article>
+
+            <!-- المسار الثالث: أنا مستثمر -->
+            <article class="intent-card">
+              <div>
+                <div class="intent-header">
+                  <h2 class="intent-title">أنا مستثمر</h2>
+                  <span class="intent-tag">للشركات ورواد الأعمال</span>
+                </div>
+                <p class="intent-desc">
+                  بنية قانونية رقمية لتأسيس الشركات وحماية المعاملات التجارية في مصر ودول الخليج.
+                </p>
+                <ul class="intent-features">
+                  <li>تأسيس الشركات ومعاملات الأنشطة التجارية</li>
+                  <li>توليد ومراجعة العقود والاتفاقيات آلياً</li>
+                  <li>استشارات تشريعات العمل والتوظيف</li>
+                  <li>التقاضي المؤسسي والتسويات التجارية</li>
+                </ul>
+              </div>
+              <a href="https://mohamidigital.online/legal-forms.html" class="btn-action">📝 خدمات الشركات وصيغ العقود</a>
+            </article>
+          </div>
+
+          <!-- شريط الموثوقية (E-E-A-T) وبيانات التواصل الرسمية -->
+          <div class="trust-footer">
+            <div>
+              <strong>إشراف وتأسيس:</strong> المستشار القانوني أحمد منصور | مواعيد الدعم: الأحد - الخميس (10:00 - 21:00)
+            </div>
+            <div class="contact-links">
+              <a href="tel:+201270076762">📞 اتصال مباشر: 01270076762</a>
+              <a href="sms:+201000787780">💬 رسائل نصية: +201000787780</a>
+            </div>
           </div>
         </section>
 
@@ -719,40 +1067,125 @@
         </section>
 
         <section class="ns-section" aria-labelledby="faq-heading">
-          <h2 id="faq-heading">❓ الأسئلة القانونية الشائعة</h2>
-          <div class="ns-grid">
-            <article class="ns-card">
-              <h3>كيف أحصل على استشارة قانونية مجانية في مصر؟</h3>
-              <p>يمكنك الحصول على استشارة قانونية مجانية فورية من خلال <a href="https://mohamidigital.online/legal-consultations.html" style="color:#a5b4fc;">بوابة الاستشارات القانونية</a> على منصة المحامي الرقمية — اكتب موضوع نزاعك واختر المحافظة وستحصل على تكييف قانوني فوري مع بيان المحكمة المختصة والمحامي المناسب في محافظتك.</p>
-            </article>
-            <article class="ns-card">
-              <h3>كيف أجد محامياً جيداً في محافظتي في مصر؟</h3>
-              <p>من خلال <a href="https://mohamidigital.online/lawyers-directory.html" style="color:#a5b4fc;">دليل المحامين المشتغلين</a> يمكنك البحث بالمحافظة والتخصص (جنائي، أسرة، مدني، عقارات، شركات، مجلس دولة) ودرجة القيد (نقض، استئناف، ابتدائي) والتواصل المباشر مع المحامي عبر الهاتف والواتساب.</p>
-            </article>
-            <article class="ns-card">
-              <h3>كيف أرفع دعوى طلاق أو خلع في مصر؟</h3>
-              <p>لرفع دعوى طلاق للضرر وفق القانون 25 لسنة 1929، يتم التقدم بطلب لمكتب تسوية المنازعات الأسرية ثم إيداع صحيفة الدعوى بمحكمة الأسرة المختصة. وللخلع وفق المادة 20 من القانون 1 لسنة 2000 تتنازل الزوجة عن حقوقها المالية الشرعية وترد الصداق.</p>
-            </article>
-            <article class="ns-card">
-              <h3>ما هي شروط الحضانة في قانون الأحوال الشخصية المصري؟</h3>
-              <p>تستمر الحضانة للأم حتى بلوغ الأبناء الذكور والإناث 15 سنة ميلادية ويُخيّر الصغير بعدها، ويشترط ألا تكون الحاضنة متزوجة بغير ذي رحم محرم للصغير وأن تكون قادرة على تربيته وصيانته.</p>
-            </article>
-            <article class="ns-card">
-              <h3>ما هي عقوبة شيك بدون رصيد في مصر؟</h3>
-              <p>وفق المادة 534 من قانون التجارة رقم 17 لسنة 1999، يعاقب بالحبس وبغرامة لا تجاوز 50 ألف جنيه أو بإحدى هاتين العقوبتين كل من أصدر عمداً شيكاً ليس له مقابل وفاء قابل للصرف، وينقضي الالتزام الجنائي بالتصالح في أي مرحلة.</p>
-            </article>
-            <article class="ns-card">
-              <h3>كيف أؤسس شركة في مصر 2026؟</h3>
-              <p>يتم التأسيس إلكترونياً عبر الهيئة العامة للاستثمار GAFI أو مراكز خدمات المستثمرين (شركة شخص واحد، شركة ذات مسؤولية محدودة LLC، أو شركة مساهمة) وفق قانون الشركات 159 لسنة 1981 وقانون الاستثمار 72 لسنة 2017.</p>
-            </article>
-            <article class="ns-card">
-              <h3>ما هي مدة الحبس الاحتياطي القصوى في مصر؟</h3>
-              <p>لا يجوز أن تزيد مدة الحبس الاحتياطي على ثلث الحد الأقصى للعقوبة السالبة للحرية، وبحد أقصى 6 أشهر في الجنح و18 شهراً في الجنايات، وسنتين إذا كانت العقوبة المقررة للجريمة هي السجن المؤبد أو الإعدام.</p>
-            </article>
-            <article class="ns-card">
-              <h3>ما هي منصة المحامي الرقمية وهل هي مجانية؟</h3>
-              <p>منصة المحامي الرقمية هي منظومة قانونية رقمية مجانية 100% تقدم استشارات قانونية للمواطنين، ودليل المحامين، ونظام إدارة مكاتب المحاماة (قضايا/جلسات/موكلين/محضرين) يعمل على المتصفح وWindows وAndroid وiOS، مع حاسبات ومكتبة قانونية شاملة.</p>
-            </article>
+          <div style="text-align: center; max-width: 750px; margin: 0 auto 2.5rem;">
+            <span class="badge-gold">الأسئلة الشائعة</span>
+            <h2 id="faq-heading" style="font-family: 'Cairo', sans-serif; font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 800; margin: 0.75rem 0 1rem; color: #ffffff;">
+              كل ما ترغب في معرفته عن منصة المحامي الرقمي
+            </h2>
+            <p style="color: #94a3b8; font-size: 1.05rem;">
+              إجابات دقيقة وموثقة حول الخدمات المجانية، وأدوات الذكاء الاصطناعي، وطريقة الاستفادة من المنظومة القضائية.
+            </p>
+          </div>
+
+          <div class="faq-grid-accordion">
+            <details class="faq-card" open>
+              <summary class="faq-question">
+                <span>هل خدمات الاستشارات القانونية في منصة المحامي الرقمي مجانية تماماً؟</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                <p>نعم، منصة المحامي الرقمي (Mohami Digital) هي منظومة قانونية مجانية 100% تقدم استشارات الذكاء الاصطناعي، وأدوات الحسابات القانونية، والبحث في أحكام محكمة النقض دون أي رسوم.</p>
+              </div>
+            </details>
+            <details class="faq-card">
+              <summary class="faq-question">
+                <span>كيف يمكن للمحامين الاستفادة من منصة المحامي الرقمي؟</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                <p>تتيح المنصة للمحامين والقضاة والباحثين أتمتة مكاتبهم، ومتابعة القضايا وجداول الجلسات، والبحث الفوري في قاعدة بيانات أحكام محكمة النقض، وصياغة المذكرات القانونية بدقة عالية.</p>
+              </div>
+            </details>
+            <details class="faq-card">
+              <summary class="faq-question">
+                <span>ما هي الحاسبات القانونية المتاحة في المنصة؟</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                <p>توفر المنصة أدوات مؤتمتة دقيقة تشمل: حاسبة المواريث الشرعية، وحاسبة مكافأة نهاية الخدمة وقضايا العمل، وحاسبة الرسوم القضائية بدقة فورية.</p>
+              </div>
+            </details>
+            <details class="faq-card">
+              <summary class="faq-question">
+                <span>من هو مؤسس منصة المحامي الرقمي؟</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                <p>أسس المنصة المستشار القانوني أحمد منصور لتكون المنظومة الوطنية والإقليمية الموحدة لخدمة العدالة والتقاضي في مصر ودول الخليج والوطن العربي.</p>
+              </div>
+            </details>
+            <details class="faq-card">
+              <summary class="faq-question">
+                <span>كيف أحصل على استشارة قانونية مجانية في مصر؟</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                <p>يمكنك الحصول على استشارة قانونية مجانية فورية من خلال <a href="https://mohamidigital.online/legal-consultations.html" style="color:#a5b4fc;">بوابة الاستشارات القانونية</a> على منصة المحامي الرقمية — اكتب موضوع نزاعك واختر المحافظة وستحصل على تكييف قانوني فوري مع بيان المحكمة المختصة والمحامي المناسب في محافظتك.</p>
+              </div>
+            </details>
+            <details class="faq-card">
+              <summary class="faq-question">
+                <span>كيف أجد محامياً جيداً في محافظتي في مصر؟</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                <p>من خلال <a href="https://mohamidigital.online/lawyers-directory.html" style="color:#a5b4fc;">دليل المحامين المشتغلين</a> يمكنك البحث بالمحافظة والتخصص (جنائي، أسرة، مدني، عقارات، شركات، مجلس دولة) ودرجة القيد (نقض، استئناف، ابتدائي) والتواصل المباشر مع المحامي عبر الهاتف والواتساب.</p>
+              </div>
+            </details>
+            <details class="faq-card">
+              <summary class="faq-question">
+                <span>كيف أرفع دعوى طلاق أو خلع في مصر؟</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                <p>لرفع دعوى طلاق للضرر وفق القانون 25 لسنة 1929، يتم التقدم بطلب لمكتب تسوية المنازعات الأسرية ثم إيداع صحيفة الدعوى بمحكمة الأسرة المختصة. وللخلع وفق المادة 20 من القانون 1 لسنة 2000 تتنازل الزوجة عن حقوقها المالية الشرعية وترد الصداق.</p>
+              </div>
+            </details>
+            <details class="faq-card">
+              <summary class="faq-question">
+                <span>ما هي شروط الحضانة في قانون الأحوال الشخصية المصري؟</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                <p>تستمر الحضانة للأم حتى بلوغ الأبناء الذكور والإناث 15 سنة ميلادية ويُخيّر الصغير بعدها، ويشترط ألا تكون الحاضنة متزوجة بغير ذي رحم محرم للصغير وأن تكون قادرة على تربيته وصيانته.</p>
+              </div>
+            </details>
+            <details class="faq-card">
+              <summary class="faq-question">
+                <span>ما هي عقوبة شيك بدون رصيد في مصر؟</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                <p>وفق المادة 534 من قانون التجارة رقم 17 لسنة 1999، يعاقب بالحبس وبغرامة لا تجاوز 50 ألف جنيه أو بإحدى هاتين العقوبتين كل من أصدر عمداً شيكاً ليس له مقابل وفاء قابل للصرف، وينقضي الالتزام الجنائي بالتصالح في أي مرحلة.</p>
+              </div>
+            </details>
+            <details class="faq-card">
+              <summary class="faq-question">
+                <span>كيف أؤسس شركة في مصر 2026؟</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                <p>يتم التأسيس إلكترونياً عبر الهيئة العامة للاستثمار GAFI أو مراكز خدمات المستثمرين (شركة شخص واحد، شركة ذات مسؤولية محدودة LLC، أو شركة مساهمة) وفق قانون الشركات 159 لسنة 1981 وقانون الاستثمار 72 لسنة 2017.</p>
+              </div>
+            </details>
+            <details class="faq-card">
+              <summary class="faq-question">
+                <span>ما هي مدة الحبس الاحتياطي القصوى في مصر؟</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                <p>لا يجوز أن تزيد مدة الحبس الاحتياطي على ثلث الحد الأقصى للعقوبة السالبة للحرية، وبحد أقصى 6 أشهر في الجنح و18 شهراً في الجنايات، وسنتين إذا كانت العقوبة المقررة للجريمة هي السجن المؤبد أو الإعدام.</p>
+              </div>
+            </details>
+            <details class="faq-card">
+              <summary class="faq-question">
+                <span>ما هي منصة المحامي الرقمية وهل هي مجانية؟</span>
+                <span class="faq-icon">+</span>
+              </summary>
+              <div class="faq-answer">
+                <p>منصة المحامي الرقمية هي منظومة قانونية رقمية مجانية 100% تقدم استشارات قانونية للمواطنين، ودليل المحامين، ونظام إدارة مكاتب المحاماة (قضايا/جلسات/موكلين/محضرين) يعمل على المتصفح وWindows وAndroid وiOS، مع حاسبات ومكتبة قانونية شاملة.</p>
+              </div>
+            </details>
           </div>
         </section>
       </main>
