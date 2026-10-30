@@ -229,8 +229,7 @@ function buildContractPage(contract, idx) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
-${schemas.map((s) => `  <script type="application/ld+json">${s}</script>`).join('\n')}
+  ${schemas.map((s) => `  <script type="application/ld+json">${s}</script>`).join('\n')}
   ${HEADER_CSS}
   <style>
 ${PAGE_CSS}
@@ -246,12 +245,7 @@ ${PAGE_CSS}
     <p>${description}</p>
   </div>
 
-  <!-- TOP AD -->
-  <div class="ad-slot" role="complementary" aria-label="إعلان">
-    <span class="ad-label">إعلان</span>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+  
 
   <div class="container">
     <a class="back-link" href="/legal-forms.html">→ العودة إلى كل صيغ العقود والدعاوي</a>
@@ -381,8 +375,7 @@ function buildMemoPage(def, templates) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
-${schemas.map((s) => `  <script type="application/ld+json">${s}</script>`).join('\n')}
+  ${schemas.map((s) => `  <script type="application/ld+json">${s}</script>`).join('\n')}
   ${HEADER_CSS}
   <style>
 ${PAGE_CSS}
@@ -398,12 +391,7 @@ ${PAGE_CSS}
     <p>${description}</p>
   </div>
 
-  <!-- TOP AD -->
-  <div class="ad-slot" role="complementary" aria-label="إعلان">
-    <span class="ad-label">إعلان</span>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+  
 
   <div class="container">
     <a class="back-link" href="/legal-forms.html">→ العودة إلى كل صيغ العقود والدعاوي</a>
@@ -696,8 +684,7 @@ function buildPage(contracts, legal) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}","logo":"${BASE_URL}/logo.png"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}","logo":"${BASE_URL}/logo.png"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"صيغ العقود والدعاوي","url":"${BASE_URL}/legal-forms.html","isPartOf":{"@type":"WebSite","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"inLanguage":"ar-EG","dateModified":"${nowISO}"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"${BASE_URL}"},{"@type":"ListItem","position":2,"name":"صيغ العقود والدعاوي","item":"${BASE_URL}/legal-forms.html"}]}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"صيغ العقود والدعاوي","itemListElement":[${itemList}]}</script>
@@ -717,12 +704,7 @@ ${PAGE_CSS}
     <p>صيغ قانونية شاملة بنصوصها الكاملة وكل بنودها، مع الحقول التكميلية المطلوب ملؤها قبل التعاقد أو رفع الدعوى — وفق القانون المدني المصري وقانون الإثبات والمرافعات.</p>
   </div>
 
-  <!-- TOP AD -->
-  <div class="ad-slot" role="complementary" aria-label="إعلان">
-    <span class="ad-label">إعلان</span>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+  
 
   <div class="toc-wrap">
     <div class="toc">

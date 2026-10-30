@@ -438,8 +438,7 @@ function buildTopicPage(t, i, date) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
-  ${HEADER_CSS}
+    ${HEADER_CSS}
 ${schemas.map((s) => `  <script type="application/ld+json">${s}</script>`).join('\n')}
   <style>
 ${RADAR_CSS}
@@ -461,12 +460,7 @@ ${RADAR_CSS}
     </div>
   </div>
 
-  <!-- AD -->
-  <div class="ad-slot" role="complementary" aria-label="إعلان">
-    <span class="ad-label">إعلان</span>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+  
 
   <div class="cta-section">
     <a href="/" class="cta-btn">جرّب منصة المحامي الرقمية مجاناً 🚀</a>
@@ -552,8 +546,7 @@ function buildPage(todayTopics, archiveEntries, generatedAt) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}" crossorigin="anonymous"></script>
-  ${HEADER_CSS}
+    ${HEADER_CSS}
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}","logo":"${BASE_URL}/logo.png"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"NewsArticle","headline":"${esc(headline)}","datePublished":"${nowISO}","dateModified":"${nowISO}","inLanguage":"ar-EG","author":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"publisher":{"@type":"Organization","name":"منصة المحامي الرقمية","url":"${BASE_URL}"},"mainEntityOfPage":"${BASE_URL}/legal-radar.html"}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"الرئيسية","item":"${BASE_URL}"},{"@type":"ListItem","position":2,"name":"رصد المحامي","item":"${BASE_URL}/legal-radar.html"}]}</script>
@@ -573,12 +566,7 @@ ${RADAR_CSS}
 
   ${allCardsHtml}
 
-  <!-- AD -->
-  <div class="ad-slot" role="complementary" aria-label="إعلان">
-    <span class="ad-label">إعلان</span>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="${AD_CLIENT}" data-ad-slot="${AD_SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins>
-    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-  </div>
+  
 
   <div class="cta-section">
     <a href="/" class="cta-btn">جرّب منصة المحامي الرقمية مجاناً 🚀</a>

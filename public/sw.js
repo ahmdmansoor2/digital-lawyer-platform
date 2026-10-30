@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const VERSION = 'mohami-v14-brand-20261023';
+const VERSION = 'mohami-v15-adsense-clean-20261030';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 
