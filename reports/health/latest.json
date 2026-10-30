@@ -1,6 +1,6 @@
 {
-  "date": "2026-10-30",
-  "generatedAt": "2026-10-30T12:28:52.428Z",
+  "date": "2026-10-31",
+  "generatedAt": "2026-10-30T22:06:17.701Z",
   "status": "error",
   "blogArticles": 402,
   "fbPosts": 0,
@@ -64,8 +64,8 @@
     {
       "name": "radar_archive",
       "label": "رصد المحامي: سلامة واكتمال الأرشيف التراكمي",
-      "status": "error",
-      "findings": 1
+      "status": "ok",
+      "findings": 0
     }
   ]
 }
