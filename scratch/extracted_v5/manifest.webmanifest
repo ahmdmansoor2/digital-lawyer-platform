@@ -1,0 +1,65 @@
+{
+  "name": "منصة المحامي الرقمية — المنظومة القانونية الذكية في مصر",
+  "short_name": "المحامي الرقمي",
+  "description": "استشارات قانونية فورية، دليل المحامين بجميع محافظات مصر، برنامج إدارة مكاتب المحاماة، مولد العقود والدعاوى، 15 حاسبة قانونية وشرعية، ومكتبة قانونية +9,600 مرجع.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "categories": [
+    "legal",
+    "education",
+    "productivity",
+    "business"
+  ],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "💬 استشارة قانونية فورية",
+      "short_name": "استشارة",
+      "url": "/legal-consultations.html"
+    },
+    {
+      "name": "📝 مولد العقود وحوافظ المستندات",
+      "short_name": "مولد العقود",
+      "url": "/contract-generator.html"
+    },
+    {
+      "name": "🧮 الحاسبات القانونية الـ 15",
+      "short_name": "الحاسبات",
+      "url": "/legal-calculators.html"
+    },
+    {
+      "name": "👨‍⚖️ دليل المحامين بالمحافظات",
+      "short_name": "دليل المحامين",
+      "url": "/lawyers-directory.html"
+    },
+    {
+      "name": "🏛️ دليل المحاكم والشهر العقاري",
+      "short_name": "المحاكم",
+      "url": "/courts-directory.html"
+    },
+    {
+      "name": "⚖️ بنك مبادئ وأحكام النقض",
+      "short_name": "أحكام النقض",
+      "url": "/court-precedents.html"
+    }
+  ]
+}

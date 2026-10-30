@@ -2120,6 +2120,63 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2669933940145255",
       "publishedAt": "2026-10-23T11:31:39.187Z"
+    },
+    {
+      "topicId": "blog-debt-statute-limitations",
+      "kind": "short",
+      "videoId": "dDU0F1antKk",
+      "url": "https://www.youtube.com/watch?v=dDU0F1antKk",
+      "fbPermalink": "https://www.facebook.com/reel/962454996924015",
+      "publishedAt": "2026-10-23T17:01:36.943Z"
+    },
+    {
+      "topicId": "blog-debt-statute-limitations",
+      "title": "تقادم الديون في القانون المصري: متى يسقط حق المطالبة؟ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-debt-statute-limitations-wide.mp4",
+      "source": "blog",
+      "videoId": "K7pTpY30s84",
+      "url": "https://www.youtube.com/watch?v=K7pTpY30s84",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/962454996924015",
+      "publishedAt": "2026-10-23T17:02:04.778Z"
+    },
+    {
+      "topicId": "trend-inheritance-withholding-penalties-article-49",
+      "kind": "short",
+      "videoId": "aV0SorMa_2U",
+      "url": "https://www.youtube.com/watch?v=aV0SorMa_2U",
+      "fbPermalink": "https://www.facebook.com/reel/1619215523285450",
+      "publishedAt": "2026-10-29T12:52:44.746Z"
+    },
+    {
+      "topicId": "trend-inheritance-withholding-penalties-article-49",
+      "title": "المادة 49 مواريث: عقوبة حبس الممتنع عن تسليم الميراث وثغرات البلاغ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-inheritance-withholding-penalties-article-49-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "N-Z3JAFuoAw",
+      "url": "https://www.youtube.com/watch?v=N-Z3JAFuoAw",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1619215523285450",
+      "publishedAt": "2026-10-29T12:53:15.568Z"
+    },
+    {
+      "topicId": "trend-sale-contract-validity-and-enforcement-lawsuit-vs-signature",
+      "kind": "short",
+      "videoId": "Jgc9yeCTlks",
+      "url": "https://www.youtube.com/watch?v=Jgc9yeCTlks",
+      "fbPermalink": "https://www.facebook.com/reel/2204053353855655",
+      "publishedAt": "2026-10-29T20:16:03.267Z"
+    },
+    {
+      "topicId": "trend-sale-contract-validity-and-enforcement-lawsuit-vs-signature",
+      "title": "الفرق بين دعوى صحة التوقيع وصحة ونفاذ: الصيغة القانونية ورسوم الدعوى — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sale-contract-validity-and-enforcement-lawsuit-vs-signature-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "ZUZkGTPBx_U",
+      "url": "https://www.youtube.com/watch?v=ZUZkGTPBx_U",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2204053353855655",
+      "publishedAt": "2026-10-29T20:16:53.440Z"
     }
   ]
 }

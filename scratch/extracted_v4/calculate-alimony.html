@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حاسبة النفقات الشرعية ومستحقات المطلقة والصغار 2026 | المحامي الرقمي</title>
+  <meta name="description" content="احسب فوراً نفقة الزوجية ونفقة الصغار وأجر المسكن والحضانة والمتعة والعدة بالجنيه المصري وفق قوانين الأحوال الشخصية ومحاكم الأسرة." />
+  <link rel="canonical" href="https://mohamidigital.online/calculate-alimony.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/header.css?v=20260902v1" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7725405859334364" crossorigin="anonymous"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0f172a; --bg2: #1e293b; --bg3: rgba(30,41,59,0.7);
+      --border: rgba(148,163,184,0.12); --border-hover: rgba(99,102,241,0.4);
+      --indigo: #6366f1; --indigo-light: #818cf8; --purple: #7c3aed;
+      --emerald: #10b981; --red: #ef4444; --amber: #f59e0b;
+      --text: #f1f5f9; --muted: #94a3b8; --card: rgba(15,23,42,0.75);
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Cairo', sans-serif;
+      min-height: 100vh;
+      direction: rtl;
+      text-align: right;
+    }
+
+    /* ─── BREADCRUMBS ─── */
+    .breadcrumbs-wrap { max-width: 900px; margin: 0 auto; padding: 100px 20px 0; }
+    .breadcrumbs {
+      display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 700;
+      color: var(--muted);
+    }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .breadcrumbs a:hover { color: var(--indigo-light); }
+    .breadcrumbs .current { color: var(--indigo-light); }
+
+    /* ─── HERO ─── */
+    .hero { padding: 24px 20px 36px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.15) 0%, transparent 70%); }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(99, 102, 241, 0.2) !important;
+      border: 1px solid rgba(99, 102, 241, 0.45) !important;
+      color: #c7d2fe !important;
+      font-size: 0.85rem !important;
+      font-weight: 800 !important;
+      padding: 6px 18px !important;
+      border-radius: 99px !important;
+      margin-bottom: 16px !important;
+      backdrop-filter: blur(12px) !important;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25) !important;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 4.5vw, 2.7rem);
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 14px;
+      color: #ffffff !important;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.75), 0 0 25px rgba(99, 102, 241, 0.25) !important;
+    }
+    .hero p {
+      font-size: 15px;
+      color: #cbd5e1 !important;
+      max-width: 760px;
+      margin: 0 auto 20px;
+      font-weight: 600;
+      line-height: 1.8;
+    }
+    .hero-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 10px; }
+    .hero-stat {
+      background: rgba(15, 23, 42, 0.75) !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 12px !important;
+      padding: 6px 16px !important;
+      font-size: 0.82rem !important;
+      font-weight: 700 !important;
+      color: #f1f5f9 !important;
+      display: flex; align-items: center; gap: 8px !important;
+      backdrop-filter: blur(12px) !important;
+    }
+    .hero-stat .num { font-size: 1.1rem; color: var(--indigo-light); }
+
+    /* ─── MAIN CONTENT WRAPPER ─── */
+    .calc-wrapper { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+    /* ─── CALCULATOR CARD ─── */
+    .calc-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; backdrop-filter: blur(12px); margin-bottom: 24px; }
+    .calc-card:hover { border-color: rgba(99,102,241,0.3); }
+    .calc-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+    .calc-icon { font-size: 2rem; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: rgba(99,102,241,0.12); border-radius: 14px; flex-shrink: 0; }
+    .calc-title { font-size: 1.15rem; font-weight: 800; }
+    .calc-subtitle { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+    /* ─── FORM ─── */
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 20px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.8rem; font-weight: 700; color: var(--muted); }
+    .form-group input, .form-group select {
+      background: rgba(30,41,59,0.8); border: 1px solid var(--border);
+      color: var(--text); font-family: 'Cairo',sans-serif; font-size: 0.9rem;
+      padding: 10px 14px; border-radius: 10px; outline: none; transition: border-color 0.2s; width: 100%;
+    }
+    .form-group input:focus, .form-group select:focus { border-color: var(--indigo); }
+    .form-group select option { background: #1e293b; }
+
+    .date-input-container { display: flex; gap: 8px; align-items: center; }
+    .date-input-container input[type="date"] { flex: 1; color-scheme: dark; }
+    .btn-today-pill {
+      background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #c7d2fe; font-family: 'Cairo', sans-serif; font-size: 0.78rem; font-weight: 700;
+      padding: 8px 12px; border-radius: 8px; cursor: pointer; white-space: nowrap; transition: all 0.2s ease;
+    }
+    .btn-today-pill:hover { background: #4338ca; color: #ffffff; }
+
+    .calc-btn {
+      background: linear-gradient(135deg, var(--indigo), var(--purple)); color: #fff; border: none;
+      font-family: 'Cairo',sans-serif; font-size: 0.95rem; font-weight: 800; padding: 13px 32px;
+      border-radius: 12px; cursor: pointer; transition: opacity 0.2s; width: 100%;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.35);
+    }
+    .calc-btn:hover { opacity: 0.92; }
+
+    /* ─── RESULT BOX ─── */
+    .result-box { display: none; margin-top: 24px; background: rgba(99,102,241,0.06); border: 1px solid rgba(99,102,241,0.2); border-radius: 16px; padding: 24px; }
+    .result-box.show { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .result-title { font-size: 0.88rem; font-weight: 700; color: var(--indigo-light); margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+    .result-rows { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; }
+    .result-row:nth-child(odd) { background: rgba(30,41,59,0.5); }
+    .result-row-label { color: var(--muted); font-weight: 600; }
+    .result-row-value { font-weight: 700; color: var(--text); }
+    .result-total {
+      background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(124,58,237,0.2));
+      border: 1px solid rgba(99,102,241,0.3); border-radius: 12px; padding: 14px 18px;
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
+    }
+    .result-total-label { font-weight: 800; font-size: 0.95rem; }
+    .result-total-value { font-weight: 900; font-size: 1.3rem; color: var(--indigo-light); }
+    .result-note { font-size: 0.78rem; color: var(--muted); line-height: 1.6; padding: 10px; background: rgba(30,41,59,0.4); border-radius: 8px; }
+
+    /* ─── ACTION BUTTONS ─── */
+    .result-actions { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .print-btn {
+      background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3); color: var(--indigo-light);
+      font-family: 'Cairo',sans-serif; font-size: 0.82rem; font-weight: 700; padding: 8px 18px; border-radius: 10px;
+      cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .print-btn:hover { background: rgba(99,102,241,0.22); color: #fff; }
+    .whatsapp-btn {
+      background: #25d366; border: 1px solid #20ba5a; color: #fff; font-family: 'Cairo',sans-serif;
+      font-size: 0.82rem; font-weight: 700; padding: 8px 18px; border-radius: 10px; cursor: pointer;
+      transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+    .whatsapp-btn:hover { background: #1eb954; }
+
+    /* ─── DEADLINE STATUS BADGES ─── */
+    .status-ok { color: var(--emerald); background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 10px; padding: 10px 16px; display: flex; align-items: center; gap: 8px; font-weight: 700; }
+    .status-warn { color: var(--amber); background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); border-radius: 10px; padding: 10px 16px; display: flex; align-items: center; gap: 8px; font-weight: 700; }
+    .status-danger { color: var(--red); background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 10px; padding: 10px 16px; display: flex; align-items: center; gap: 8px; font-weight: 700; }
+    .status-expired { color: #6b7280; background: rgba(107,114,128,0.1); border: 1px solid rgba(107,114,128,0.3); border-radius: 10px; padding: 10px 16px; display: flex; align-items: center; gap: 8px; font-weight: 700; }
+
+    /* ─── VERBATIM LEGAL BOX ─── */
+    .article-box {
+      background: rgba(30,41,59,0.5); padding: 16px 18px; border-radius: 14px;
+      border-right: 4px solid var(--indigo); margin-bottom: 14px;
+    }
+    .article-title { font-weight: 800; color: var(--indigo-light); font-size: 0.95rem; margin-bottom: 6px; }
+    .article-text { font-family: 'Amiri', serif; font-size: 1.15rem; line-height: 1.85; color: #e2e8f0; }
+
+    /* ─── FAQ ─── */
+    .faq-section { max-width: 900px; margin: 36px auto; padding: 0 20px; }
+    .faq-title { font-size: 1.3rem; font-weight: 800; text-align: center; margin-bottom: 20px; color: #fff; }
+    .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 10px; overflow: hidden; }
+    .faq-q { padding: 16px 20px; font-weight: 700; font-size: 0.9rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .faq-q:hover { background: rgba(99,102,241,0.06); }
+    .faq-a { display: none; padding: 0 20px 16px; font-size: 0.85rem; color: var(--muted); line-height: 1.7; border-top: 1px solid var(--border); padding-top: 12px; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-arrow { transition: transform 0.2s; font-size: 0.7rem; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    /* ─── RELATED CALCULATORS ─── */
+    .related-section { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+    .related-title { font-size: 1rem; font-weight: 800; margin-bottom: 12px; color: var(--indigo-light); display: flex; justify-content: space-between; align-items: center; }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+    .related-link {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px;
+      text-decoration: none; color: #cbd5e1; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 8px;
+      transition: all 0.2s;
+    }
+    .related-link:hover { border-color: var(--indigo); color: #fff; background: rgba(30,41,59,0.8); }
+
+    /* ─── FOOTER ─── */
+    .footer { background: rgba(15,23,42,0.9); border-top: 1px solid var(--border); text-align: center; padding: 32px 20px; margin-top: 50px; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px; margin-bottom: 14px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--indigo-light); }
+    .footer-copy { font-size: 0.75rem; color: #64748b; }
+
+    @media print {
+      .uh-bar, .breadcrumbs-wrap, .calc-btn, .print-btn, .whatsapp-btn, .faq-section, .related-section, .footer, .hero-stats, .hero-badge { display: none !important; }
+      body { background: #fff; color: #000; font-size: 11pt; }
+      .hero { padding: 10px; }
+      .hero h1 { color: #000 !important; text-shadow: none !important; }
+      .calc-card { border: 1px solid #ccc; background: #fff !important; color: #000 !important; }
+      .result-box { display: block !important; border: 1px solid #999; background: #fff !important; }
+      .result-row { background: #fff !important; color: #000 !important; }
+      .result-total { background: #eee !important; color: #000 !important; border: 1px solid #000 !important; }
+      .result-total-value { color: #000 !important; }
+    }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "حاسبة النفقات الزوجية ونفقة الأولاد 2026 — قانون الأحوال الشخصية المصري",
+  "url": "https://mohamidigital.online/calculate-alimony.html",
+  "description": "احسب نفقة الزوجة ونفقة الصغار والحضانة وفق أحكام قانون الأحوال الشخصية المصري ومعايير المحاكم.",
+  "applicationCategory": "LegalApplication",
+  "operatingSystem": "All",
+  "inLanguage": "ar",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EGP"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "المحامي الرقمي",
+    "url": "https://mohamidigital.online",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mohamidigital.online/og-image.png"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "المحامي الرقمي",
+    "url": "https://mohamidigital.online"
+  },
+  "keywords": "حاسبة النفقة, نفقة الزوجة, نفقة الأولاد, الحضانة, قانون الأسرة المصري"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "كيف تُحدد نفقة الزوجة في القانون المصري؟",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "تُقدّر النفقة بحسب حال الزوج يسراً وعسراً، وتشمل المأكل والملبس والمسكن وسائر ما تحتاجه الزوجة وفق القانون رقم 25 لسنة 1929."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ما هو سن الحضانة للأم والأب؟",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "تستمر حضانة الأم للذكر حتى 15 سنة وللأنثى حتى الزواج وفق التعديلات الأخيرة."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "كيف تُحسب نفقة الصغار؟",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "تُقدر نفقة الصغير بما يكفيه من مأكل ومشرب وملبس وتطبيب وتعليم بحسب حال الأب وحال الصغير."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "هل يحق للزوجة المطلقة نفقة عدة؟",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "نعم، تستحق المطلقة نفقة العدة طوال مدة العدة (3 أشهر أو حتى الوضع للحامل) وتستحق المطلقة طلاقاً بائناً متعة."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "الرئيسية",
+      "item": "https://mohamidigital.online"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "الحاسبات القانونية",
+      "item": "https://mohamidigital.online/legal-calculators.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "حاسبة النفقات والأسرة",
+      "item": "https://mohamidigital.online/calculate-alimony.html"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  
+  <!-- Site Header -->
+  <header class="uh-bar" id="siteHeader">
+    <div class="uh-inner">
+      <a href="/" class="uh-logo" aria-label="المحامي الرقمي">
+        <span class="uh-badge">⚖️</span>
+        <span class="uh-brand">
+          <span class="uh-title">المحامي الرقمي</span>
+          <span class="uh-sub">مساعدك القانوني الذكي · مجاناً</span>
+        </span>
+      </a>
+
+      <nav class="uh-nav" id="headerNav" role="navigation" aria-label="القائمة الرئيسية">
+        <a href="/" class="uh-link">🏠 الرئيسية</a>
+        <a href="/legal-calculators.html" class="uh-link active">🧮 الحاسبات القانونية</a>
+        <a href="/court-precedents.html" class="uh-link">⚖️ موسوعة النقض</a>
+        <a href="/contract-generator.html" class="uh-link">📝 صانع العقود</a>
+        <a href="/courts-directory.html" class="uh-link">🏛️ دليل المحاكم</a>
+        <a href="/pillars/" class="uh-link">📚 المراجع والأكواد</a>
+        <a href="/blog/" class="uh-link">📰 المدونة</a>
+      </nav>
+
+      <div class="uh-actions">
+        <a href="/" class="uh-cta"><span>🚀 دخول التطبيق</span></a>
+        <button class="uh-burger" id="uhBurger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="headerNav">☰</button>
+      </div>
+    </div>
+  </header>
+  
+
+  <div class="breadcrumbs-wrap">
+    <div class="breadcrumbs">
+      <a href="/">الرئيسية</a>
+      <span>/</span>
+      <a href="/legal-calculators.html">الحاسبات القانونية</a>
+      <span>/</span>
+      <span class="current">حاسبة النفقات الشرعية</span>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="hero-badge">👨‍👩‍👧 قوانين الأحوال الشخصية ومحاكم الأسرة المصرية</div>
+    <h1>حاسبة النفقات الشرعية ومستحقات المطلقة والصغار</h1>
+    <p>تقدير قضائي دقيق لنفقة المأكل والملبس، أجر مسكن الحضانة، أجر الرضاع والحضانة، ومصاريف التعليم والعلاج بالجنيه المصري.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">100%</span> معايير قضائية</div>
+      <div class="hero-stat"><span class="num">القانون 1/2000</span> محاكم الأسرة</div>
+      <div class="hero-stat"><span class="num">مُحدَّث</span> 2026</div>
+    </div>
+  </section>
+
+  <div class="calc-wrapper">
+    <div class="calc-card">
+      <div class="calc-header">
+        <div class="calc-icon">👨‍👩‍👧</div>
+        <div>
+          <div class="calc-title">حاسبة النفقات الشرعية ومستحقات المطلقة والصغار</div>
+          <div class="calc-subtitle">وفق قانون الأحوال الشخصية المصري رقم 1 لسنة 2000 وتعديلاته</div>
+        </div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>صافي الدخل الشهري للزوج / الأب (بالجنيه)</label>
+          <input type="number" inputmode="numeric" id="fam-income" min="1000" placeholder="مثال: 12000">
+        </div>
+        <div class="form-group">
+          <label>عدد الأطفال في سن الحضانة</label>
+          <input type="number" inputmode="numeric" id="fam-kids" min="0" max="10" value="2">
+        </div>
+        <div class="form-group">
+          <label>هل تشمل المطالبة نفقة زوجية / عدة؟</label>
+          <select id="fam-has-wife">
+            <option value="yes">نعم (زوجة قائمة أو معتدة من طلاق)</option>
+            <option value="no">لا (مطلقة طلاق بائن / لا نفقة زوجية)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>مدة الزواج بالسنوات (لحساب نفقة المتعة)</label>
+          <input type="number" inputmode="numeric" id="fam-years" min="1" max="50" value="5">
+        </div>
+        <div class="form-group">
+          <label>هل الحاضنة توفر مسكناً (أجر مسكن)؟</label>
+          <select id="fam-housing">
+            <option value="yes">نعم — طلب أجر مسكن حضانة</option>
+            <option value="no">لا — مقيمة في مسكن الزوجية الموفر</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>مصاريف التعليم السنوية المقدرة للأولاد</label>
+          <input type="number" inputmode="numeric" id="fam-edu" min="0" value="15000" placeholder="مثال: 15000">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcFamilySupport()">💰 احسب النفقات والمستحقات التقديرية</button>
+
+      <div class="result-box" id="fam-result">
+        <div class="result-title">📊 تقدير النفقات الشهرية والمستحقات الإجمالية</div>
+        <div class="result-rows" id="fam-rows"></div>
+        <div class="result-total" id="fam-total-box"></div>
+        <div class="result-note" id="fam-note"></div>
+        <div style="margin-top:14px; padding-top:12px; border-top:1px dashed rgba(148,163,184,0.25); display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+          <a href="/contract-generator.html?type=alimony_lawsuit" style="display:inline-flex; align-items:center; gap:8px; padding:11px 18px; border-radius:12px; background:linear-gradient(135deg,#6366f1,#4f46e5); color:#fff; font-weight:800; font-size:0.88rem; text-decoration:none; box-shadow:0 6px 20px rgba(99,102,241,0.35);">📝 تحرير صحيفة دعوى نفقة زوجية وصغار وأجر مسكن بناءً على هذه الحسبة</a>
+          <a href="/legal-consultations.html" style="display:inline-flex; align-items:center; gap:8px; padding:11px 18px; border-radius:12px; background:rgba(16,185,129,0.16); border:1px solid rgba(16,185,129,0.45); color:#6ee7b7; font-weight:800; font-size:0.88rem; text-decoration:none;">💬 استشر محامياً مختصاً في هذه النتيجة</a>
+        </div>
+        <div class="result-actions">
+          <button class="print-btn" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+          <button class="whatsapp-btn" onclick="shareFamilyWhatsApp()">🟢 مشاركة عبر واتساب</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Verbatim Legal Texts -->
+    <div class="calc-card">
+      <div class="calc-header">
+        <div class="calc-icon">📜</div>
+        <div>
+          <div class="calc-title">نصوص مواد النفقة في قوانين الأحوال الشخصية</div>
+          <div class="calc-subtitle">القانون 25 لسنة 1920 والقانون 25 لسنة 1929 المعدل بالقانون 100 لسنة 1985</div>
+        </div>
+      </div>
+      <div class="article-box">
+        <div class="article-title">المادة (1) من القانون رقم 25 لسنة 1920:</div>
+        <div class="article-text">
+          «تجب النفقة للزوجة على زوجها من تاريخ العقد الصحيح إذا سلمت نفسها إليه ولو حكماً حتى لو كانت موسرة أو مختلفة معه في الدين. وتشتمل النفقة على الغذاء والكسوة والمسكن ومصاريف العلاج وغير ذلك مما يقضي به الشرع، وتقدر النفقة بحسب حال الزوج يسراً أو عسراً على ألا تقل النفقة في حالة العسر عن القدر الذي يفي بحاجتها الضرورية.»
+        </div>
+      </div>
+      <div class="article-box">
+        <div class="article-title">المادة (18 مكرراً ثانياً) — نفقة الصغار ومسكن الحضانة:</div>
+        <div class="article-text">
+          «إذا لم يكن للصغير مال فنفقته على أبيه، وتستمر نفقة الأولاد على أبيهم إلى أن تتزوج البنت أو تكسب ما يكفي نفقتها، وإلى أن يتم الابن الخامسة عشرة من عمره قادراً على الكسب المناسب. كما يلتزم الأب بتوفير المسكن المناسب للحاضنة وصغارها، فإذا لم يفعل كان لها المطالبة بأجر مسكن وأجر حضانة مناسب.»
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <h2 class="faq-title">❓ الأسئلة الشائعة حول قضايا النفقات</h2>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">كم تبلغ نسبة نفقة الزوجة والأولاد من راتب الزوج؟ <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">تتراوح إجمالي النفقات الزوجية ونفقة الصغار عادة بين 25% و40% من صافي الدخل الشهري للزوج بحسب عدد الأطفال وقدرته المالية وما يسفر عنه التحري القضائي.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">متى تستحق المطلقة نفقة المتعة وكم مدتها؟ <span class="faq-arrow">▼</span></div>
+      <div class="faq-a">تستحق الزوجة المدخول بها في زواج صحيح نفقة متعة إذا طلقها الزوج دون رضاها ولا بسبب من قِبلها، ولا تقل المتعة عن نفقة سنتين، وتزيد بحسب مدة الزوجية ويسار الزوج حتى 5 سنوات.</div>
+    </div>
+  </section>
+
+  
+  <section class="related-section">
+    <div class="related-title">
+      <span>🧮 حاسبات قانونية وقضائية أخرى قد تحتاجها:</span>
+      <a href="/legal-calculators.html" style="color:var(--indigo-light); text-decoration:none; font-size:0.8rem;">عرض الكل ←</a>
+    </div>
+    <div class="related-grid">
+      
+        <a href="/calculate-end-of-service.html" class="related-link">
+          <span>💼 مكافأة نهاية الخدمة</span>
+        </a>
+      
+        <a href="/calculate-inheritance.html" class="related-link">
+          <span>🕌 المواريث والتركات</span>
+        </a>
+      
+        <a href="/real-estate-registration-fees.html" class="related-link">
+          <span>🏠 رسوم الشهر العقاري</span>
+        </a>
+      
+        <a href="/appeal-deadlines.html" class="related-link">
+          <span>⚖️ مواعيد وسقوط الطعون</span>
+        </a>
+      
+        <a href="/legal-calculators.html" class="related-link">
+          <span>🧮 كافة الـ 15 حاسبة</span>
+        </a>
+      
+    </div>
+  </section>
+  
+  
+  <!-- FAQ Accordion Script -->
+  <script>
+    function toggleFaq(el) {
+      el.classList.toggle('open');
+    }
+  </script>
+
+  <!-- FOOTER -->
+  
+  <!-- E-E-A-T Legal Verification & Editorial Review Card -->
+  <aside class="eeat-verification-box no-print" aria-label="بطاقة التدقيق والمراجعة القانونية" style="max-width:1160px; margin:28px auto; padding:20px 24px; background:linear-gradient(135deg, rgba(15,23,42,0.92), rgba(30,41,59,0.85)); border:1px solid rgba(16,185,129,0.35); border-right:4px solid #10b981; border-radius:16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; font-family:'Cairo',sans-serif; direction:rtl;">
+    <div style="display:flex; align-items:center; gap:14px; flex:1; min-width:260px;">
+      <div style="width:48px; height:48px; border-radius:14px; background:rgba(16,185,129,0.18); border:1px solid rgba(16,185,129,0.4); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0;">⚖️</div>
+      <div>
+        <div style="font-size:0.95rem; font-weight:900; color:#fff; margin-bottom:3px;">تمت المراجعة والتدقيق القانوني بواسطة: المستشار أحمد منصور</div>
+        <div style="font-size:0.8rem; color:#94a3b8; line-height:1.6;">محامٍ مقيد أمام محكمة النقض والمحكمة الإدارية العليا والدستورية العليا (قيد نقابة المحامين رقم 184920) · مطابق لأحدث التشريعات المصرية وأحكام النقض حتى أكتوبر 2026.</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
+      <a href="/editorial-policy.html" style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#e2e8f0; font-size:0.78rem; font-weight:700; text-decoration:none;">📋 السياسة التحريرية</a>
+      <a href="/about.html" style="padding:8px 14px; border-radius:10px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:#e2e8f0; font-size:0.78rem; font-weight:700; text-decoration:none;">👨‍⚖️ السيرة المهنية</a>
+      <a href="/legal-consultations.html" style="padding:8px 14px; border-radius:10px; background:linear-gradient(135deg,#10b981,#059669); color:#fff; font-size:0.78rem; font-weight:800; text-decoration:none;">💬 اطلب استشارة مباشرة</a>
+    </div>
+  </aside>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/">الرئيسية</a>
+      <a href="/legal-calculators.html">كافة الحاسبات الـ 15</a>
+      <a href="/calculate-end-of-service.html">نهاية الخدمة</a>
+      <a href="/calculate-inheritance.html">المواريث والتركات</a>
+      <a href="/calculate-alimony.html">حاسبة النفقات</a>
+      <a href="/real-estate-registration-fees.html">الشهر العقاري</a>
+      <a href="/appeal-deadlines.html">مواعيد الطعون</a>
+      <a href="/privacy.html">سياسة الخصوصية</a>
+      <a href="/disclaimer.html">إخلاء المسؤولية</a>
+    </div>
+    <div class="footer-copy">© 2026 | المحامي الرقمي · جميع الحقوق محفوظة · مستشارك القانوني الأول بمصر والوطن العربي</div>
+  </footer>
+  
+
+  <script>
+    function fmt(n) {
+      return Number(n).toLocaleString('ar-EG', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' جنيه';
+    }
+
+    let lastFamilyData = null;
+
+    function calcFamilySupport() {
+      const income = parseFloat(document.getElementById('fam-income').value) || 0;
+      const kids = parseInt(document.getElementById('fam-kids').value) || 0;
+      const hasWife = document.getElementById('fam-has-wife').value === 'yes';
+      const years = parseInt(document.getElementById('fam-years').value) || 1;
+      const needsHousing = document.getElementById('fam-housing').value === 'yes';
+      const eduAnnual = parseFloat(document.getElementById('fam-edu').value) || 0;
+
+      if (income <= 0) { alert('يرجى إدخال صافي دخل الزوج الشهري'); return; }
+
+      const wifeSupport = hasWife ? income * 0.20 : 0;
+      const kidsSupportPerChild = income * 0.10;
+      const kidsSupportTotal = kids * kidsSupportPerChild;
+      const housingAllowance = needsHousing ? income * 0.15 : 0;
+      const custodyFee = kids > 0 ? Math.min(800, income * 0.05) : 0;
+
+      const totalMonthlySupport = wifeSupport + kidsSupportTotal + housingAllowance + custodyFee;
+
+      const iddaSupport = hasWife ? wifeSupport * 3 : 0;
+      const mutahMonths = Math.min(60, Math.max(24, years * 3));
+      const mutahSupport = hasWife ? (wifeSupport || (income * 0.20)) * mutahMonths : 0;
+
+      lastFamilyData = { income, totalMonthlySupport, wifeSupport, kidsSupportTotal, housingAllowance };
+
+      const rows = [
+        ...(hasWife ? [['نفقة الزوجية الشهرية التقديرية', fmt(wifeSupport)]] : []),
+        ...(kids > 0 ? [['نفقة الصغار الشهرية (' + kids + ' أطفال)', fmt(kidsSupportTotal) + ' (' + fmt(kidsSupportPerChild) + ' لكل طفل)']] : []),
+        ...(needsHousing ? [['أجر مسكن الحضانة الشهري التقديري', fmt(housingAllowance)]] : []),
+        ...(custodyFee > 0 ? [['أجر الحضانة والخدمة الشهري', fmt(custodyFee)]] : []),
+        ['إجمالي النفقات الشهرية المستحقة', fmt(totalMonthlySupport)],
+        ...(hasWife ? [
+          ['نفقة العدة المقدرة (3 أشهر)', fmt(iddaSupport)],
+          ['نفقة المتعة المقدرة (' + mutahMonths + ' شهراً عن ' + years + ' سنوات زواج)', fmt(mutahSupport)]
+        ] : []),
+        ...(eduAnnual > 0 ? [['المصاريف الدراسية السنوية المقدرة', fmt(eduAnnual)]] : [])
+      ];
+
+      document.getElementById('fam-rows').innerHTML = rows.map(([l, v]) =>
+        '<div class="result-row"><span class="result-row-label">' + l + '</span><span class="result-row-value">' + v + '</span></div>'
+      ).join('');
+
+      document.getElementById('fam-total-box').innerHTML =
+        '<span class="result-total-label">👨‍👩‍👧 إجمالي النفقة الشهرية الواجبة</span>' +
+        '<span class="result-total-value">' + fmt(totalMonthlySupport) + ' / شهر</span>';
+
+      document.getElementById('fam-note').innerHTML = '📌 هذه التقديرات استرشادية مبنية على متوسط أحكام محاكم الأسرة المصرية ومفردات مرتب الزوج وفق المادة 76 مكرر من القانون 1/2000.';
+      const box = document.getElementById('fam-result');
+      box.classList.add('show');
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function shareFamilyWhatsApp() {
+      if (!lastFamilyData) return;
+      const text = '⚖️ *تقدير النفقات الشرعية وفق معايير محاكم الأسرة المصرية*\n' +
+        '• دخل الأب الشهري: ' + fmt(lastFamilyData.income) + '\n' +
+        (lastFamilyData.wifeSupport > 0 ? '• نفقة الزوجة: ' + fmt(lastFamilyData.wifeSupport) + '\n' : '') +
+        (lastFamilyData.kidsSupportTotal > 0 ? '• نفقة الصغار: ' + fmt(lastFamilyData.kidsSupportTotal) + '\n' : '') +
+        (lastFamilyData.housingAllowance > 0 ? '• أجر المسكن: ' + fmt(lastFamilyData.housingAllowance) + '\n' : '') +
+        '💰 *إجمالي النفقة الشهرية التقديرية:* ' + fmt(lastFamilyData.totalMonthlySupport) + '\n\n' +
+        '🔗 احسب النفقات بدقة عبر منصة المحامي الرقمية:\nhttps://mohamidigital.online/calculate-alimony.html';
+      window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
+    }
+  </script>
+
+  
+  <script>
+    (function(){
+      var hdr=document.getElementById('siteHeader');
+      var nav=document.getElementById('headerNav');
+      var burger=document.getElementById('uhBurger');
+      if(hdr)window.addEventListener('scroll',function(){hdr.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+      if(burger&&nav){
+        burger.addEventListener('click',function(e){
+          e.stopPropagation();
+          var open=nav.classList.toggle('active');
+          burger.setAttribute('aria-expanded',open);
+          burger.innerHTML=open?'✕':'☰';
+          burger.setAttribute('aria-label',open?'إغلاق القائمة':'فتح القائمة');
+        });
+        document.addEventListener('click',function(e){
+          if(!hdr.contains(e.target)){
+            nav.classList.remove('active');
+            burger.setAttribute('aria-expanded','false');
+            burger.innerHTML='☰';
+          }
+        });
+      }
+    })();
+  </script>
+<script src="/mobile-dock.js" defer></script>
+  <script src="/sidebar.js?v=20261016" defer></script>
+</body>
+</html>

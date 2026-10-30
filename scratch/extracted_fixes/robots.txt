@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+Disallow: /__/
+Disallow: /404.html
+Disallow: /search.html
+Disallow: /action.html
+Disallow: /radar-topics/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /__/
+Disallow: /404.html
+Disallow: /search.html
+Disallow: /action.html
+Disallow: /radar-topics/
+
+User-agent: AdsBot-Google
+Allow: /
+
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Disallow: /__/
+Disallow: /404.html
+Disallow: /search.html
+Disallow: /radar-topics/
+
+Sitemap: https://mohamidigital.online/sitemap.xml
