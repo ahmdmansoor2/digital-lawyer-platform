@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const VERSION = 'mohami-v16-title-update-20261031';
+const VERSION = 'mohami-v17-trending-spotlight-20261031';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 
