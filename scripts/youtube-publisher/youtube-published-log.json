@@ -2234,6 +2234,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1815580526311983",
       "publishedAt": "2026-10-31T12:14:20.475Z"
+    },
+    {
+      "topicId": "trend-arbitrary-dismissal-and-form-6-challenge-labor-law",
+      "kind": "short",
+      "videoId": "yycMnAGT6Ks",
+      "url": "https://www.youtube.com/watch?v=yycMnAGT6Ks",
+      "fbPermalink": "https://www.facebook.com/reel/1167975338989228",
+      "publishedAt": "2026-10-31T19:16:32.465Z"
+    },
+    {
+      "topicId": "trend-arbitrary-dismissal-and-form-6-challenge-labor-law",
+      "title": "حقوق العامل عند الفصل التعسفي والطعن على استمارة 6 المفروضة جبراً — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-arbitrary-dismissal-and-form-6-challenge-labor-law-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "Rd69_tgu2rM",
+      "url": "https://www.youtube.com/watch?v=Rd69_tgu2rM",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1167975338989228",
+      "publishedAt": "2026-10-31T19:16:59.337Z"
     }
   ]
 }

@@ -3473,6 +3473,27 @@
       "duration": "54ث",
       "size": 15172149,
       "publishedAt": "2026-10-31T12:13:53.555Z"
+    },
+    {
+      "topicId": "trend-arbitrary-dismissal-and-form-6-challenge-labor-law",
+      "title": "حقوق العامل عند الفصل التعسفي والطعن على استمارة 6 المفروضة جبراً",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون العمل",
+        "#فصل الموظف بدون إنذار استمارة 6",
+        "#الفصل التعسفي في قانون العمل المصري"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-arbitrary-dismissal-and-form-6-challenge-labor-law.mp4",
+      "videoId": "1167975338989228",
+      "permalink": "https://www.facebook.com/reel/1167975338989228",
+      "source": "trending-topics.json",
+      "duration": "49ث",
+      "size": 13116927,
+      "publishedAt": "2026-10-31T19:16:30.602Z"
     }
   ]
 }
