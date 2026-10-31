@@ -775,6 +775,283 @@
         margin: 0;
       }
 
+    
+      /* ─── Cassation Search & Tools Hub ─── */
+      .tools-hub-section {
+        padding: 3rem 0;
+        margin-top: 1rem;
+      }
+      .section-header {
+        text-align: center;
+        max-width: 750px;
+        margin: 0 auto 2.5rem;
+      }
+      .section-title {
+        font-family: 'Cairo', sans-serif;
+        font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+        font-weight: 800;
+        margin: 0.75rem 0;
+        color: #ffffff;
+      }
+      .section-subtitle {
+        color: #94a3b8;
+        font-size: 1.05rem;
+      }
+      .cassation-search-box {
+        background: rgba(30, 41, 59, 0.7);
+        border: 1px solid rgba(99, 102, 241, 0.35);
+        border-radius: 16px;
+        padding: 2rem;
+        max-width: 950px;
+        margin: 0 auto 2.5rem;
+        text-align: right;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      }
+      .cassation-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+      .cassation-header h3 {
+        font-family: 'Cairo', sans-serif;
+        font-size: 1.35rem;
+        color: #ffffff;
+        margin: 0;
+      }
+      .search-form {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.25rem;
+      }
+      .search-form input {
+        flex: 1;
+        min-width: 260px;
+        padding: 0.95rem 1.25rem;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: #0f172a;
+        color: #ffffff;
+        font-family: 'IBM Plex Sans Arabic', sans-serif;
+        font-size: 0.95rem;
+      }
+      .search-form input:focus {
+        outline: none;
+        border-color: #6366f1;
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.25);
+      }
+      .search-form button {
+        background: linear-gradient(135deg, #6366f1, #4f46e5);
+        color: #ffffff;
+        font-family: 'Cairo', sans-serif;
+        font-weight: 700;
+        border: none;
+        padding: 0.95rem 2rem;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.2s, background 0.2s;
+        font-size: 1rem;
+      }
+      .search-form button:hover {
+        background: #4f46e5;
+        transform: scale(1.02);
+      }
+      .cassation-sample {
+        font-family: 'Amiri', serif;
+        font-size: 1.15rem;
+        color: #e2e8f0;
+        border-right: 3px solid #f59e0b;
+        padding-right: 1rem;
+        margin: 0;
+        line-height: 1.7;
+      }
+      .calculators-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.25rem;
+        max-width: 1100px;
+        margin: 0 auto;
+        text-align: right;
+      }
+      .calc-card {
+        background: rgba(30, 41, 59, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 1.5rem;
+        text-decoration: none;
+        color: #f8fafc;
+        transition: all 0.25s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .calc-card:hover {
+        border-color: #6366f1;
+        transform: translateY(-4px);
+        box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.25);
+      }
+      .calc-badge {
+        font-size: 0.78rem;
+        color: #10b981;
+        font-weight: 600;
+      }
+      .calc-card h4 {
+        font-family: 'Cairo', sans-serif;
+        font-size: 1.2rem;
+        margin: 0.5rem 0;
+        color: #ffffff;
+      }
+      .calc-card p {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+      }
+      .calc-link {
+        font-family: 'Cairo', sans-serif;
+        color: #f59e0b;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      /* ─── E-E-A-T Authority Section ─── */
+      .authority-section {
+        padding: 4rem 0 2rem;
+      }
+      .authority-card {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(15, 23, 42, 0.95));
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        border-radius: 18px;
+        padding: 2.5rem;
+        text-align: right;
+        box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.4);
+      }
+      .authority-content h2 {
+        font-family: 'Cairo', sans-serif;
+        font-size: clamp(1.5rem, 2.8vw, 2rem);
+        margin: 0.75rem 0 1rem;
+        color: #ffffff;
+      }
+      .authority-content p {
+        color: #cbd5e1;
+        font-size: 1.05rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+      }
+      .authority-highlights {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1rem;
+      }
+      .highlight-item {
+        background: rgba(15, 23, 42, 0.6);
+        padding: 1.1rem 1.25rem;
+        border-radius: 10px;
+        border-right: 3px solid #6366f1;
+      }
+      .highlight-item strong {
+        display: block;
+        font-family: 'Cairo', sans-serif;
+        color: #ffffff;
+        margin-bottom: 0.35rem;
+        font-size: 1.05rem;
+      }
+      .highlight-item span {
+        color: #94a3b8;
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      /* ─── Mega-Footer ─── */
+      .mohami-footer {
+        background-color: #090e1a;
+        color: #94a3b8;
+        padding: 4.5rem 1.5rem 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-family: 'IBM Plex Sans Arabic', sans-serif;
+        text-align: right;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 2.5rem;
+        max-width: 1200px;
+        margin: 0 auto 3rem;
+      }
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+      }
+      .footer-brand h3 {
+        font-family: 'Cairo', sans-serif;
+        color: #ffffff;
+        font-size: 1.2rem;
+        margin: 0;
+      }
+      .footer-about {
+        font-size: 0.92rem;
+        line-height: 1.7;
+        margin-bottom: 1.25rem;
+        color: #94a3b8;
+      }
+      .footer-col h4 {
+        font-family: 'Cairo', sans-serif;
+        color: #ffffff;
+        font-size: 1.15rem;
+        margin-bottom: 1.25rem;
+        border-bottom: 2px solid #6366f1;
+        display: inline-block;
+        padding-bottom: 0.35rem;
+      }
+      .footer-links, .footer-contact {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .footer-links li, .footer-contact li {
+        margin-bottom: 0.7rem;
+        font-size: 0.92rem;
+        line-height: 1.5;
+      }
+      .footer-links a, .footer-contact a {
+        color: #cbd5e1;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover, .footer-contact a:hover {
+        color: #f59e0b;
+      }
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 0.88rem;
+      }
+      .footer-compliance-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem 1.25rem;
+        margin-top: 1rem;
+      }
+      .footer-compliance-links a {
+        color: #94a3b8;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-compliance-links a:hover {
+        color: #38bdf8;
+      }
+
     </style>
   </head>
   <body class="bg-slate-900 font-sans antialiased text-slate-100 selection:bg-indigo-500 selection:text-white">
@@ -899,6 +1176,61 @@
               <a href="tel:+201270076762">📞 اتصال مباشر: 01270076762</a>
               <a href="sms:+201000787780">💬 رسائل نصية: +201000787780</a>
             </div>
+          </div>
+        </section>
+
+        <!-- 1. قسم مركز الأدوات القانونية الذكية ومحرك بحث محكمة النقض -->
+        <section class="tools-hub-section" aria-labelledby="tools-hub-heading">
+          <div class="section-header">
+            <span class="badge-gold">مجانية 100% · وصول فوري</span>
+            <h2 id="tools-hub-heading" class="section-title">الأدوات والحاسبات القانونية الذكية</h2>
+            <p class="section-subtitle">أتمتة كاملة للحسابات القانونية المعقدة والبحث الفوري في السوابق القضائية لمصر والوطن العربي.</p>
+          </div>
+
+          <!-- صندوق بحث أحكام محكمة النقض -->
+          <div class="cassation-search-box">
+            <div class="cassation-header">
+              <span class="badge-regional">قاعدة البيانات التشريعية</span>
+              <h3>محرك بحث أحكام محكمة النقض والسوابق القضائية</h3>
+            </div>
+            <form class="search-form" action="https://mohamidigital.online/court-precedents.html" method="GET">
+              <input type="text" name="q" placeholder="ابحث برقم الطعن، أو السنة القضائية، أو المبدأ القانوني (مثال: دعوى صحة توقيع، فصل تعسفي)..." required>
+              <button type="submit">بحث في الأحكام</button>
+            </form>
+            <p class="cassation-sample">
+              "المقرر في قضاء محكمة النقض أن العقد شريعة المتعاقدين، فلا يجوز نقضه ولا تعديله إلا باتفاق الطرفين أو للأسباب التي يقررها القانون."
+            </p>
+          </div>
+
+          <!-- شبكة الحاسبات القانونية الأربع المعتمدة -->
+          <div class="calculators-grid">
+            <a href="https://mohamidigital.online/legal-calculators.html" class="calc-card">
+              <span class="calc-badge">الأحوال الشخصية</span>
+              <h4>حاسبة المواريث الشرعية</h4>
+              <p>حساب الأنصبة الشرعية وتقسيم التركات وإعداد الوصية بدقة فورية.</p>
+              <span class="calc-link">ابدأ الحساب ←</span>
+            </a>
+
+            <a href="https://mohamidigital.online/legal-calculators.html" class="calc-card">
+              <span class="calc-badge">قوانين العمل</span>
+              <h4>حاسبة مكافأة نهاية الخدمة</h4>
+              <p>حساب مستحقات العاملين والشركات في قضايا التوظيف والعمالية لمصر والخليج.</p>
+              <span class="calc-link">ابدأ الحساب ←</span>
+            </a>
+
+            <a href="https://mohamidigital.online/legal-calculators.html" class="calc-card">
+              <span class="calc-badge">الإجراءات القضائية</span>
+              <h4>حاسبة الرسوم القضائية</h4>
+              <p>تقدير الرسوم والمصاريف القضائية للدعاوى المدنية والتجارية والاستئنافية.</p>
+              <span class="calc-link">ابدأ الحساب ←</span>
+            </a>
+
+            <a href="https://mohamidigital.online/contract-generator.html" class="calc-card">
+              <span class="calc-badge">الذكاء الاصطناعي</span>
+              <h4>إعداد ومراجعة العقود آلياً</h4>
+              <p>توليد وصياغة العقود التجارية والمدنية والمذكرات القانونية بالذكاء الاصطناعي.</p>
+              <span class="calc-link">توليد عقد الآن ←</span>
+            </a>
           </div>
         </section>
 
@@ -1188,25 +1520,100 @@
             </details>
           </div>
         </section>
+
+        <!-- 2. قسم الموثوقية والريادة المؤسسية (E-E-A-T) -->
+        <section class="authority-section" aria-labelledby="authority-heading">
+          <div class="authority-card">
+            <div class="authority-content">
+              <span class="badge-gold">الريادة المؤسسية والموثوقية القضائية</span>
+              <h2 id="authority-heading">تحت إشراف وتأسيس المستشار القانوني أحمد منصور</h2>
+              <p>
+                تأسست <strong>منصة المحامي الرقمي (Mohami Digital)</strong> لتكون الجسر الواصل بين عراقة الفقه القضائي وأحدث تقنيات الذكاء الاصطناعي في مصر ودول الخليج. نلتزم بتقديم حلول قانونية مجانية 100% تحافظ على الحقوق وتلبي احتياجات المحامين والمواطنين والشركات بأعلى معايير الدقة والسرية.
+              </p>
+              <div class="authority-highlights">
+                <div class="highlight-item">
+                  <strong>منتدى القانون المصري (Egypt Law Forum)</strong>
+                  <span>رؤية تشريعية حديثة لتطوير منظومة العدالة الرقمية وأتمتة التقاضي.</span>
+                </div>
+                <div class="highlight-item">
+                  <strong>تكامل قانوني عربي</strong>
+                  <span>تغطية شاملة للتشريعات المصرية وقوانين الأعمال والاستثمار في دول الخليج.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </main>
 
-      <footer class="ns-footer">
-        <div>© 2026 منصة المحامي الرقمية (mohamidigital.online) — إشراف المستشار القانوني الأستاذ أحمد منصور — جميع الحقوق محفوظة</div>
-        <div class="ns-legal-links">
-          <a href="https://mohamidigital.online/legal-calculators.html">الحاسبات القانونية</a> ·
-          <a href="https://mohamidigital.online/courts-directory.html">دليل المحاكم والشهر العقاري</a> ·
-          <a href="https://mohamidigital.online/court-precedents.html">أحكام النقض</a> ·
-          <a href="https://mohamidigital.online/legal-forms.html">صيغ العقود والدعاوى</a> ·
-          <a href="https://mohamidigital.online/legal-library.html">المكتبة القانونية</a> ·
-          <a href="https://mohamidigital.online/blog/">المدونة القانونية</a> ·
-          <a href="https://mohamidigital.online/pillars/">المراجع الشاملة</a> ·
-          <a href="https://mohamidigital.online/about.html">عن المنصة</a> ·
-          <a href="https://mohamidigital.online/why-trust-us.html">لماذا تثق بنا</a> ·
-          <a href="https://mohamidigital.online/editorial-policy.html">السياسة التحريرية</a> ·
-          <a href="https://mohamidigital.online/privacy.html">سياسة الخصوصية</a> ·
-          <a href="https://mohamidigital.online/terms.html">شروط الاستخدام</a> ·
-          <a href="https://mohamidigital.online/disclaimer.html">إخلاء المسؤولية</a> ·
-          <a href="https://mohamidigital.online/contact.html">تواصل معنا</a>
+            <!-- 3. التذييل الذكي الشامل (SEO Mega-Footer) -->
+      <footer class="mohami-footer">
+        <div class="footer-grid">
+          
+          <!-- عمود الهوية -->
+          <div class="footer-col">
+            <div class="footer-brand">
+              <img src="https://mohamidigital.online/logo.png" alt="شعار المحامي الرقمي" width="42" height="42">
+              <h3>المحامي الرقمي | Mohami Digital</h3>
+            </div>
+            <p class="footer-about">
+              منصة المحامي الرقمية — المنظومة الوطنية والإقليمية الموحدة 2026 للاستشارات القانونية بالذكاء الاصطناعي وأتمتة مكاتب المحاماة في مصر والوطن العربي.
+            </p>
+            <span class="badge-gold">مساعدك القانوني الذكي · مجاناً</span>
+          </div>
+
+          <!-- عمود خدمات الأفراد والمواطنين -->
+          <div class="footer-col">
+            <h4>خدمات الأفراد والمواطنين</h4>
+            <ul class="footer-links">
+              <li><a href="https://mohamidigital.online/legal-consultations.html">تقديم استشارات قانونية مجانية</a></li>
+              <li><a href="https://mohamidigital.online/lawyers-directory.html">دليل المحامين المشتغلين بمصر</a></li>
+              <li><a href="https://mohamidigital.online/courts-directory.html">دليل المحاكم والشهر العقاري</a></li>
+              <li><a href="https://mohamidigital.online/legal-calculators.html">حاسبة المواريث والتركات الشرعية</a></li>
+              <li><a href="https://mohamidigital.online/blog/marital-housing-rights.html">دعاوى الأسرة والتمكين من مسكن الزوجية</a></li>
+              <li><a href="https://mohamidigital.online/blog/egypt-digital-notary-services.html">التوثيق والتوكيلات عبر بوابة مصر الرقمية</a></li>
+            </ul>
+          </div>
+
+          <!-- عمود خدمات الشركات والمحامين -->
+          <div class="footer-col">
+            <h4>خدمات الشركات والمحامين</h4>
+            <ul class="footer-links">
+              <li><a href="https://mohamidigital.online/company-incorporation.html">تأسيس الشركات وتراخيص الاستثمار (GAFI)</a></li>
+              <li><a href="https://mohamidigital.online/contract-generator.html">توليد وصياغة العقود بالذكاء الاصطناعي</a></li>
+              <li><a href="https://mohamidigital.online/legal-forms.html">موسوعة صيغ العقود وصحف الدعاوى (+2700)</a></li>
+              <li><a href="https://mohamidigital.online/court-precedents.html">بنك أحكام ومبادئ محكمة النقض</a></li>
+              <li><a href="https://mohamidigital.online/pillars/">المراجع التشريعية وأكواد القوانين الرسمية</a></li>
+              <li><a href="https://mohamidigital.online/?app=1">نظام إدارة مكاتب المحاماة (تطبيق الويب)</a></li>
+            </ul>
+          </div>
+
+          <!-- عمود بيانات الاتصال الرسمية (NAP) -->
+          <div class="footer-col">
+            <h4>التواصل والدعم القانوني</h4>
+            <ul class="footer-contact">
+              <li><strong>المؤسس:</strong> المستشار القانوني أحمد منصور</li>
+              <li><strong>نطاق الخدمة:</strong> جمهورية مصر العربية والوطن العربي (GCC)</li>
+              <li><strong>هاتف الدعم:</strong> <a href="tel:+201270076762">012 70076762</a></li>
+              <li><strong>الرسائل النصية:</strong> <a href="sms:+201000787780">+201000787780</a></li>
+              <li><strong>مواعيد العمل:</strong> الأحد - الخميس (10:00 ص - 21:00 م)</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2026 المحامي الرقمي (Mohami Digital) - منصة المحامي الرقمية. جميع الحقوق محفوظة — تحت إشراف وتأسيس المستشار القانوني أحمد منصور.</p>
+          <div class="footer-compliance-links">
+            <a href="https://mohamidigital.online/privacy.html">سياسة الخصوصية</a> ·
+            <a href="https://mohamidigital.online/terms.html">شروط الاستخدام</a> ·
+            <a href="https://mohamidigital.online/editorial-policy.html">السياسة التحريرية</a> ·
+            <a href="https://mohamidigital.online/why-trust-us.html">لماذا تثق بنا</a> ·
+            <a href="https://mohamidigital.online/disclaimer.html">إخلاء المسؤولية</a> ·
+            <a href="https://mohamidigital.online/about.html">عن المنصة</a> ·
+            <a href="https://mohamidigital.online/contact.html">تواصل معنا</a> ·
+            <a href="https://mohamidigital.online/html-sitemap-hub.html">خريطة الموقع الشاملة</a>
+          </div>
         </div>
       </footer>
     </div>
