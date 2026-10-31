@@ -2215,6 +2215,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1644019993762806",
       "publishedAt": "2026-10-30T20:00:47.565Z"
+    },
+    {
+      "topicId": "trend-criminal-cassation-appeal-deadlines-and-grounds-2026",
+      "kind": "short",
+      "videoId": "EZ8DuLdHbv8",
+      "url": "https://www.youtube.com/watch?v=EZ8DuLdHbv8",
+      "fbPermalink": "https://www.facebook.com/reel/1815580526311983",
+      "publishedAt": "2026-10-31T12:13:55.705Z"
+    },
+    {
+      "topicId": "trend-criminal-cassation-appeal-deadlines-and-grounds-2026",
+      "title": "مواعيد وأسباب الطعن بالنقض في الجنايات والجنح وفق أحدث أحكام 2026 — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-criminal-cassation-appeal-deadlines-and-grounds-2026-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "QtwVkvzpB_M",
+      "url": "https://www.youtube.com/watch?v=QtwVkvzpB_M",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1815580526311983",
+      "publishedAt": "2026-10-31T12:14:20.475Z"
     }
   ]
 }
