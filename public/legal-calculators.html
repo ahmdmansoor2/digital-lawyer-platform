@@ -478,7 +478,21 @@
           <div style="font-size:0.72rem; color:#94a3b8;">نفقة الزوجية والصغار والعدة ونسب الحجز</div>
         </div>
       </a>
-      <a href="/calculate-old-rent.html" style="background:rgba(15,23,42,0.7); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:12px 14px; text-decoration:none; display:flex; align-items:center; gap:10px; transition:border-color 0.2s;">
+            <a href="/real-estate-registration-fees.html" style="background:rgba(15,23,42,0.7); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:12px 14px; text-decoration:none; display:flex; align-items:center; gap:10px; transition:border-color 0.2s;">
+        <span style="font-size:1.4rem;">🏠</span>
+        <div>
+          <div style="font-size:0.86rem; font-weight:800; color:#f1f5f9;">حاسبة رسوم الشهر العقاري 2026</div>
+          <div style="font-size:0.72rem; color:#94a3b8;">قانون 9 لسنة 2022 والرفع المساحي الرقمي</div>
+        </div>
+      </a>
+      <a href="/appeal-deadlines.html" style="background:rgba(15,23,42,0.7); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:12px 14px; text-decoration:none; display:flex; align-items:center; gap:10px; transition:border-color 0.2s;">
+        <span style="font-size:1.4rem;">⚖️</span>
+        <div>
+          <div style="font-size:0.86rem; font-weight:800; color:#f1f5f9;">حاسبة مواعيد وسقوط الطعون</div>
+          <div style="font-size:0.72rem; color:#94a3b8;">استئناف ونقض واستبعاد العطلات الرسمية</div>
+        </div>
+      </a>
+<a href="/calculate-old-rent.html" style="background:rgba(15,23,42,0.7); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:12px 14px; text-decoration:none; display:flex; align-items:center; gap:10px; transition:border-color 0.2s;">
         <span style="font-size:1.4rem;">🏢</span>
         <div>
           <div style="font-size:0.86rem; font-weight:800; color:#f1f5f9;">حاسبة الإيجار القديم 2026</div>
@@ -1417,6 +1431,30 @@
 
 <script>
 // ─── TAB SWITCHING ───────────────────────────────────────────────────
+
+// ─── HASH & URL PARAM DEEP-LINKING ──────────────────────────────────
+function applyDeepLinkedTab() {
+  try {
+    var raw = (window.location.hash || '').replace('#', '').replace('tab-', '');
+    var params = new URLSearchParams(window.location.search);
+    var tab = params.get('tab') || raw;
+    if (tab) {
+      var btn = document.querySelector('.tab-btn[onclick*="' + tab + '"]');
+      if (btn) {
+        switchTab(tab, btn);
+        var p = document.getElementById('tab-' + tab);
+        if (p) {
+          setTimeout(function() {
+            p.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    }
+  } catch (e) {}
+}
+window.addEventListener('DOMContentLoaded', applyDeepLinkedTab);
+window.addEventListener('hashchange', applyDeepLinkedTab);
+
 function switchTab(id, btn) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
