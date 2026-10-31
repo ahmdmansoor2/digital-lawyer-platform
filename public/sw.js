@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const VERSION = 'mohami-v18-cinematic-spotlight-20261031';
+const VERSION = 'mohami-v19-cinematic-8k-20261031';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 
