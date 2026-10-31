@@ -12,13 +12,13 @@
   if (location.protocol !== 'https:' && location.hostname !== 'localhost') return;
 
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/sw.js?v=20261030v15', { scope: '/' }).then(function (reg) {
+    navigator.serviceWorker.register('/sw.js?v=20261031v16', { scope: '/' }).then(function (reg) {
       if (reg) {
         reg.update();
         if (window.caches) {
           caches.keys().then(function (names) {
             names.forEach(function (name) {
-              if (!name.includes('mohami-v13-domination-20261020')) {
+              if (!name.includes('mohami-v16-title-update-20261031')) {
                 caches.delete(name);
               }
             });
