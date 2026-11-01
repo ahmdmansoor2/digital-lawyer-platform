@@ -3515,6 +3515,27 @@
       "duration": "45ث",
       "size": 14923213,
       "publishedAt": "2026-11-01T13:12:58.748Z"
+    },
+    {
+      "topicId": "trend-bounced-cheque-penalties-and-statute-of-limitations",
+      "title": "عقوبة الشيك بدون رصيد ومتى تسقط الدعوى الجنائية أو المدنية بالتقادم؟",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون التجاري",
+        "#شيك بدون رصيد وسقوط العقوبة",
+        "#عقوبة الشيك بدون رصيد في مصر"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-bounced-cheque-penalties-and-statute-of-limitations.mp4",
+      "videoId": "1760370361921611",
+      "permalink": "https://www.facebook.com/reel/1760370361921611",
+      "source": "trending-topics.json",
+      "duration": "51ث",
+      "size": 19759844,
+      "publishedAt": "2026-11-01T19:34:35.698Z"
     }
   ]
 }

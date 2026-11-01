@@ -2272,6 +2272,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1127707073081329",
       "publishedAt": "2026-11-01T13:13:21.908Z"
+    },
+    {
+      "topicId": "trend-bounced-cheque-penalties-and-statute-of-limitations",
+      "kind": "short",
+      "videoId": "j8q2vzuDCaA",
+      "url": "https://www.youtube.com/watch?v=j8q2vzuDCaA",
+      "fbPermalink": "https://www.facebook.com/reel/1760370361921611",
+      "publishedAt": "2026-11-01T19:34:37.591Z"
+    },
+    {
+      "topicId": "trend-bounced-cheque-penalties-and-statute-of-limitations",
+      "title": "عقوبة الشيك بدون رصيد ومتى تسقط الدعوى الجنائية أو المدنية بالتقادم؟ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-bounced-cheque-penalties-and-statute-of-limitations-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "YJyOo67CUdU",
+      "url": "https://www.youtube.com/watch?v=YJyOo67CUdU",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1760370361921611",
+      "publishedAt": "2026-11-01T19:35:06.707Z"
     }
   ]
 }
