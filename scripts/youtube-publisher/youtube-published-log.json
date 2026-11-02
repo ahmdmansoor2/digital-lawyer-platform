@@ -2291,6 +2291,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1760370361921611",
       "publishedAt": "2026-11-01T19:35:06.707Z"
+    },
+    {
+      "topicId": "trend-limited-liability-company-incorporation-procedures-gafi",
+      "kind": "short",
+      "videoId": "Z4y3iW836ns",
+      "url": "https://www.youtube.com/watch?v=Z4y3iW836ns",
+      "fbPermalink": "https://www.facebook.com/reel/2572078296630460",
+      "publishedAt": "2026-11-02T15:40:27.331Z"
+    },
+    {
+      "topicId": "trend-limited-liability-company-incorporation-procedures-gafi",
+      "title": "تأسيس الشركات في الهيئة العامة للاستثمار: الخطوات ورأس المال والضرائب — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-limited-liability-company-incorporation-procedures-gafi-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "FcoEcn3aTL0",
+      "url": "https://www.youtube.com/watch?v=FcoEcn3aTL0",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2572078296630460",
+      "publishedAt": "2026-11-02T15:41:12.189Z"
     }
   ]
 }
