@@ -2329,6 +2329,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/3293595797507681",
       "publishedAt": "2026-11-03T00:57:06.942Z"
+    },
+    {
+      "topicId": "trend-judicial-case-inquiry-by-national-id-egypt-justice-portal",
+      "kind": "short",
+      "videoId": "4VecbVYBTMA",
+      "url": "https://www.youtube.com/watch?v=4VecbVYBTMA",
+      "fbPermalink": "https://www.facebook.com/reel/1153884947212094",
+      "publishedAt": "2026-11-03T14:05:29.128Z"
+    },
+    {
+      "topicId": "trend-judicial-case-inquiry-by-national-id-egypt-justice-portal",
+      "title": "طرق الاستعلام الإلكتروني عن رول الجلسات والقضايا عبر بوابة وزارة العدل — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-judicial-case-inquiry-by-national-id-egypt-justice-portal-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "K5W2W371l3o",
+      "url": "https://www.youtube.com/watch?v=K5W2W371l3o",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1153884947212094",
+      "publishedAt": "2026-11-03T14:06:11.071Z"
     }
   ]
 }

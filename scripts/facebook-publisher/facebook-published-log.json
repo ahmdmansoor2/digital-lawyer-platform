@@ -3578,6 +3578,27 @@
       "duration": "49ث",
       "size": 12777878,
       "publishedAt": "2026-11-03T00:56:37.007Z"
+    },
+    {
+      "topicId": "trend-judicial-case-inquiry-by-national-id-egypt-justice-portal",
+      "title": "طرق الاستعلام الإلكتروني عن رول الجلسات والقضايا عبر بوابة وزارة العدل",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#خدمات المحاكم",
+        "#استعلام عن قضية بالرقم القومي مصر",
+        "#الاستعلام عن موقف دعوى قضائية وزارة العدل"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-judicial-case-inquiry-by-national-id-egypt-justice-portal.mp4",
+      "videoId": "1153884947212094",
+      "permalink": "https://www.facebook.com/reel/1153884947212094",
+      "source": "trending-topics.json",
+      "duration": "51ث",
+      "size": 17902594,
+      "publishedAt": "2026-11-03T14:05:26.388Z"
     }
   ]
 }
