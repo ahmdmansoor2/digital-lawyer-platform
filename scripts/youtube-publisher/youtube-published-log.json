@@ -2386,6 +2386,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1675168024232917",
       "publishedAt": "2026-11-04T14:23:43.623Z"
+    },
+    {
+      "topicId": "trend-sports-broadcasting-contracts-and-piracy-penalties-egypt",
+      "kind": "short",
+      "videoId": "BA_QJ6vHEzw",
+      "url": "https://www.youtube.com/watch?v=BA_QJ6vHEzw",
+      "fbPermalink": "https://www.facebook.com/reel/1130262992752585",
+      "publishedAt": "2026-11-04T21:34:00.541Z"
+    },
+    {
+      "topicId": "trend-sports-broadcasting-contracts-and-piracy-penalties-egypt",
+      "title": "عقود البث التلفزيوني المباريات الرياضية والعقوبات القانونية للمحتوى القرصنة في م — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-broadcasting-contracts-and-piracy-penalties-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "QGK2E6oklI0",
+      "url": "https://www.youtube.com/watch?v=QGK2E6oklI0",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1130262992752585",
+      "publishedAt": "2026-11-04T21:34:53.881Z"
     }
   ]
 }

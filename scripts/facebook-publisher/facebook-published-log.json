@@ -3641,6 +3641,27 @@
       "duration": "51ث",
       "size": 23948770,
       "publishedAt": "2026-11-04T14:23:12.885Z"
+    },
+    {
+      "topicId": "trend-sports-broadcasting-contracts-and-piracy-penalties-egypt",
+      "title": "عقود البث التلفزيوني المباريات الرياضية والعقوبات القانونية للمحتوى القرصنة في مصر",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون الرياضة",
+        "#قانون الرياضة المصري",
+        "#قرصنة المباريات"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-broadcasting-contracts-and-piracy-penalties-egypt.mp4",
+      "videoId": "1130262992752585",
+      "permalink": "https://www.facebook.com/reel/1130262992752585",
+      "source": "trending-topics.json",
+      "duration": "1د 14ث",
+      "size": 33078386,
+      "publishedAt": "2026-11-04T21:33:58.791Z"
     }
   ]
 }
