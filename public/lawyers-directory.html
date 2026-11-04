@@ -184,7 +184,69 @@
     .select-filter, select, .search-input { position: relative !important; z-index: 55 !important; }
     .grid-container, #courtsGrid, #precedentsGrid, #lawyersGrid, #results { position: relative !important; z-index: 1 !important; }
     
-  </style>
+  
+    .verification-policy-banner {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 18px;
+      padding: 22px 26px;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 0 20px rgba(212, 175, 55, 0.05);
+    }
+    .verification-policy-banner .v-icon {
+      font-size: 2.4rem;
+      background: rgba(212, 175, 55, 0.15);
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      flex-shrink: 0;
+    }
+    .verification-policy-banner .v-content h3 {
+      color: #fbbf24;
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .verification-policy-banner .v-content p {
+      color: #cbd5e1;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .verification-policy-banner .v-btn {
+      background: linear-gradient(135deg, #d4af37, #f59e0b);
+      color: #0f172a;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+      font-family: inherit;
+    }
+    .verification-policy-banner .v-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);
+    }
+    @media (max-width: 768px) {
+      .verification-policy-banner {
+        flex-direction: column;
+        text-align: center;
+      }
+      .verification-policy-banner .v-btn {
+        width: 100%;
+      }
+    }
+    </style>
   <link rel="stylesheet" href="/header.css?v=20260823v10" />
 <link rel="manifest" href="/manifest.webmanifest"><!-- mohami-manifest --><meta name="theme-color" content="#0f172a"><!-- mohami-theme --><link rel="apple-touch-icon" href="/icon.svg"><!-- mohami-apple --><link rel="alternate" type="application/rss+xml" title="RSS | المحامي الرقمي" href="/rss.xml"/><!-- mohami-rss -->  </head>
 <body>
@@ -304,6 +366,16 @@
   <!-- LAWYERS DIRECTORY GRID -->
   <main class="list-container">
     <div class="count-banner">يتم عرض <strong id="visibleLawyersCount">0</strong> محامٍ معتمد</div>
+    <!-- سياسة التوثيق والاعتماد المهني الصارم -->
+    <div class="verification-policy-banner">
+      <div class="v-icon">🛡️</div>
+      <div class="v-content">
+        <h3>سياسة التدقيق والاعتماد المهني الصارم (E-E-A-T Verified)</h3>
+        <p>تلتزم منصة المحامي الرقمية بأعلى معايير المصداقية وحماية المتقاضين؛ وتخضع كافة طلبات انضمام السادة المحامين للفحص اليدوي المباشر والتحقق من كارنيه نقابة المحامين المصرية الساري ودرجة القيد الرسمية وصحة مقر العمل قبل اعتماد أي ملف في الدليل، ضماناً لحظر أي بيانات غير حقيقية.</p>
+      </div>
+      <button class="v-btn" onclick="openRegisterModal()">📝 انضم للدليل المعتمد</button>
+    </div>
+    
     <div class="lawyers-grid" id="lawyersGrid"></div>
   </main>
 
@@ -752,7 +824,7 @@
           <h3 style="color:#fff; font-size:1.25rem; font-weight:900; margin:0 0 8px;">تم إدراج مكتبكم في الدليل السحابي بنجاح!</h3>
           <p style="color:#cbd5e1; font-size:0.9rem; line-height:1.7; margin:0 0 18px;">تم حفظ بيانات <strong>${newLawyer.name}</strong> وتفعيل ترويسة مكتبكم تلقائياً في مولد العقود والطباعة. لتوثيق الشارة الذهبية الدائمة، يمكنك إرسال تأكيد القيد عبر واتساب للإدارة:</p>
           <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
-            <a href="https://wa.me/201000000000?text=${waVerifyMsg}" target="_blank" rel="noopener" style="padding:10px 18px; border-radius:12px; background:linear-gradient(135deg,#10b981,#059669); color:#fff; font-weight:800; text-decoration:none; font-size:0.9rem;">💬 توثيق الشارة عبر واتساب</a>
+            <a href="https://wa.me/201000787780?text=${waVerifyMsg}" target="_blank" rel="noopener" style="padding:10px 18px; border-radius:12px; background:linear-gradient(135deg,#10b981,#059669); color:#fff; font-weight:800; text-decoration:none; font-size:0.9rem;">💬 توثيق الشارة عبر واتساب</a>
             <button type="button" onclick="this.closest('div[style*="position:fixed"]').remove()" style="padding:10px 18px; border-radius:12px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff; font-weight:700; cursor:pointer; font-size:0.9rem;">إغلاق ومعاينة البطاقة</button>
           </div>
         </div>

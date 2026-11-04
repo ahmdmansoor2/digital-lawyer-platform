@@ -12,13 +12,13 @@
   if (location.protocol !== 'https:' && location.hostname !== 'localhost') return;
 
   window.addEventListener('load', function () {
-    navigator.serviceWorker.register('/sw.js?v=20261031v19', { scope: '/' }).then(function (reg) {
+    navigator.serviceWorker.register('/sw.js?v=20261104v20', { scope: '/' }).then(function (reg) {
       if (reg) {
         reg.update();
         if (window.caches) {
           caches.keys().then(function (names) {
             names.forEach(function (name) {
-              if (!name.includes('mohami-v19-cinematic-8k-20261031')) {
+              if (!name.includes('mohami-v20-verified-author-20261104')) {
                 caches.delete(name);
               }
             });
