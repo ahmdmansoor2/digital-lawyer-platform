@@ -2367,6 +2367,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1531712923352949",
       "publishedAt": "2026-11-03T20:59:40.512Z"
+    },
+    {
+      "topicId": "trend-inheritance-distribution-single-daughter-and-wife-radd",
+      "kind": "short",
+      "videoId": "gTqDaYukrRM",
+      "url": "https://www.youtube.com/watch?v=gTqDaYukrRM",
+      "fbPermalink": "https://www.facebook.com/reel/1675168024232917",
+      "publishedAt": "2026-11-04T14:23:15.626Z"
+    },
+    {
+      "topicId": "trend-inheritance-distribution-single-daughter-and-wife-radd",
+      "title": "توزيع تركة المتوفى عن بنت واحدة وزوجة: شروط الرد وحجب الأعمام شرعاً — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-inheritance-distribution-single-daughter-and-wife-radd-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "kdSBDVD0jhc",
+      "url": "https://www.youtube.com/watch?v=kdSBDVD0jhc",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1675168024232917",
+      "publishedAt": "2026-11-04T14:23:43.623Z"
     }
   ]
 }
