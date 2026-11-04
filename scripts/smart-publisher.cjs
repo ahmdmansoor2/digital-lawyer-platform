@@ -206,7 +206,7 @@ async function downloadFile(url, dest, timeoutMs = 20000) {
 
 // استدعاء Gemini مع إعادة المحاولة التلقائية والتناوب بين النماذج الحديثة
 async function generateContentWithRetry(prompt, config = {}, modelIndex = 0, attempt = 0) {
-  const models = ['gemini-flash-latest', 'gemini-flash-lite-latest', 'gemini-3.5-flash'];
+  const models = ['gemini-flash-lite-latest', 'gemini-3.5-flash', 'gemini-flash-latest'];
   const modelName = models[modelIndex % models.length];
   const MAX_ATTEMPTS = 6;
 

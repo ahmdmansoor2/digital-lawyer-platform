@@ -4855,6 +4855,42 @@
       ],
       "words": 3200,
       "model": "master-legal-engine-2026"
+    },
+    {
+      "title": "عقود البث التلفزيوني المباريات الرياضية والعقوبات القانونية للمحتوى القرصنة في مصر",
+      "date": "2026-11-04",
+      "slug": "sports-broadcasting-contracts-and-piracy-penalties-egypt",
+      "url": "https://mohamidigital.online/blog/sports-broadcasting-contracts-and-piracy-penalties-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-broadcasting-contracts-and-piracy-penalties-egypt.jpg",
+      "tags": [
+        "قانون الرياضة"
+      ],
+      "words": 1767,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "النزاعات التعاقدية في الأندية الرياضية وطرق حلها قانونياً وفقاً لقانون الرياضة المصري",
+      "date": "2026-11-04",
+      "slug": "sports-clubs-contractual-disputes-and-resolution-egypt",
+      "url": "https://mohamidigital.online/blog/sports-clubs-contractual-disputes-and-resolution-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/sports-clubs-contractual-disputes-and-resolution-egypt.jpg",
+      "tags": [
+        "قانون الرياضة"
+      ],
+      "words": 1715,
+      "model": "gemini-3.6-flash"
+    },
+    {
+      "title": "الآثار القانونية لتغير أسعار العملات الأجنبية على العقود الرياضية والتجارية في مصر",
+      "date": "2026-11-04",
+      "slug": "foreign-currency-fluctuations-impact-on-contracts-egypt",
+      "url": "https://mohamidigital.online/blog/foreign-currency-fluctuations-impact-on-contracts-egypt.html",
+      "image": "https://mohamidigital.online/blog/images/foreign-currency-fluctuations-impact-on-contracts-egypt.jpg",
+      "tags": [
+        "قانون تجاري"
+      ],
+      "words": 2488,
+      "model": "gemini-3.6-flash"
     }
   ]
 }
