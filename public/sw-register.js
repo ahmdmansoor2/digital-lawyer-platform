@@ -18,7 +18,7 @@
         if (window.caches) {
           caches.keys().then(function (names) {
             names.forEach(function (name) {
-              if (!name.includes('mohami-v21-radar-floating-fix-20261104')) {
+              if (!name.includes('mohami-v22-blog-readtime-fix-20261104')) {
                 caches.delete(name);
               }
             });

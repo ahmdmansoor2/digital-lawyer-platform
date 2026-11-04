@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const VERSION = 'mohami-v21-radar-floating-fix-20261104';
+const VERSION = 'mohami-v22-blog-readtime-fix-20261104';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 

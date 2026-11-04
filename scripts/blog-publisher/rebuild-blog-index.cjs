@@ -113,10 +113,23 @@ for (const file of htmlFiles) {
   }
   if (!tag) tag = 'استشارات تشريعية';
 
-  // استخراج وقت القراءة
-  let readTime = '6';
-  const rtMatch = html.match(/⏱️\s*(\d+)\s*دقائق?/);
-  if (rtMatch) readTime = rtMatch[1];
+  // حساب وقت القراءة الدقيق ديناميكياً بناءً على عدد كلمات المقال الفعلي
+  const textOnly = html
+    .replace(/<script[\s\S]*?<\/script>/gi, '')
+    .replace(/<style[\s\S]*?<\/style>/gi, '')
+    .replace(/<nav[\s\S]*?<\/nav>/gi, '')
+    .replace(/<footer[\s\S]*?<\/footer>/gi, '')
+    .replace(/<[^>]+>/g, ' ');
+  const wordCount = textOnly.split(/\s+/).filter(w => w.length > 1).length;
+  let readTime = Math.max(4, Math.round(wordCount / 190));
+
+  const rtMatch = html.match(/⏱️\s*(\d+)\s*(?:دقائق|دقيقة)/);
+  if (rtMatch) {
+    const parsed = parseInt(rtMatch[1], 10);
+    if (!isNaN(parsed) && parsed >= 3) {
+      readTime = parsed;
+    }
+  }
 
   // استخراج الصورة البارزة
   let image = '';
@@ -167,6 +180,10 @@ const cardsHtml = articles.map(a => {
     ? a.date
     : formatArabicDate(a.date);
 
+  const readTimeUnit = (a.readTime >= 3 && a.readTime <= 10) ? 'دقائق' : 'دقيقة';
+  const readTimeLabel = `⏱️ وقت القراءة: ${a.readTime} ${readTimeUnit}`;
+  const dateLabel = `📅 تاريخ النشر: ${formattedDate}`;
+
   return `      <a href="/blog/${a.slug}.html" class="post-card">
         <div class="post-cover">
           <img src="${a.image}" alt="${a.title}" class="post-cover-img" loading="lazy" decoding="async"/>
@@ -174,8 +191,8 @@ const cardsHtml = articles.map(a => {
         </div>
         <div class="post-body">
           <div class="post-meta">
-            <span>📅 ${formattedDate}</span>
-            <span>⏱️ ${a.readTime} دقائق</span>
+            <span>${dateLabel}</span>
+            <span>${readTimeLabel}</span>
           </div>
           <h3>${a.title}</h3>
           <p>${a.metaDesc}</p>

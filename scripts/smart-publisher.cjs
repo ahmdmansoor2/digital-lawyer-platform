@@ -635,8 +635,8 @@ function updateBlogIndex(topic, imageRelPath) {
         </div>
         <div class="post-body">
           <div class="post-meta">
-            <span>📅 ${dateAr}</span>
-            <span>⏱️ ${topic.readTime} دقائق</span>
+            <span>📅 تاريخ النشر: ${dateAr}</span>
+            <span>⏱️ وقت القراءة: ${topic.readTime} ${(parseInt(topic.readTime) >= 3 && parseInt(topic.readTime) <= 10) ? 'دقائق' : 'دقيقة'}</span>
           </div>
           <h3>${topic.title}</h3>
           <p>${topic.metaDesc}</p>
