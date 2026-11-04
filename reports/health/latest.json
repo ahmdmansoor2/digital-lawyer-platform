@@ -1,17 +1,17 @@
 {
   "date": "2026-11-04",
-  "generatedAt": "2026-11-03T23:03:54.621Z",
+  "generatedAt": "2026-11-04T14:04:12.570Z",
   "status": "error",
   "blogArticles": 402,
   "fbPosts": 0,
   "reels": 0,
-  "ghRuns": 16,
+  "ghRuns": 12,
   "checks": [
     {
       "name": "site_root",
       "label": "الموقع: الصفحة الرئيسية وأصول التطبيق",
-      "status": "ok",
-      "findings": 0
+      "status": "error",
+      "findings": 1
     },
     {
       "name": "blog_index",
