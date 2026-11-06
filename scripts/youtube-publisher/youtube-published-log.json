@@ -2424,6 +2424,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1553966129456526",
       "publishedAt": "2026-11-06T14:14:34.127Z"
+    },
+    {
+      "topicId": "trend-foreign-currency-fluctuations-impact-on-contracts-egypt",
+      "kind": "short",
+      "videoId": "hdRzZZM1Gyc",
+      "url": "https://www.youtube.com/watch?v=hdRzZZM1Gyc",
+      "fbPermalink": "https://www.facebook.com/reel/974294628632181",
+      "publishedAt": "2026-11-06T20:52:00.852Z"
+    },
+    {
+      "topicId": "trend-foreign-currency-fluctuations-impact-on-contracts-egypt",
+      "title": "الآثار القانونية لتغير أسعار العملات الأجنبية على العقود الرياضية والتجارية في م — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-foreign-currency-fluctuations-impact-on-contracts-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "TJ5DP3otICo",
+      "url": "https://www.youtube.com/watch?v=TJ5DP3otICo",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/974294628632181",
+      "publishedAt": "2026-11-06T20:52:29.375Z"
     }
   ]
 }
