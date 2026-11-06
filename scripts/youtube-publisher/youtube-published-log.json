@@ -2405,6 +2405,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1130262992752585",
       "publishedAt": "2026-11-04T21:34:53.881Z"
+    },
+    {
+      "topicId": "trend-sports-clubs-contractual-disputes-and-resolution-egypt",
+      "kind": "short",
+      "videoId": "XmRv84tNqxk",
+      "url": "https://www.youtube.com/watch?v=XmRv84tNqxk",
+      "fbPermalink": "https://www.facebook.com/reel/1553966129456526",
+      "publishedAt": "2026-11-06T14:13:57.595Z"
+    },
+    {
+      "topicId": "trend-sports-clubs-contractual-disputes-and-resolution-egypt",
+      "title": "النزاعات التعاقدية في الأندية الرياضية وطرق حلها قانونياً وفقاً لقانون الرياضة ا — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-clubs-contractual-disputes-and-resolution-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "Ut-E3Ifroqc",
+      "url": "https://www.youtube.com/watch?v=Ut-E3Ifroqc",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1553966129456526",
+      "publishedAt": "2026-11-06T14:14:34.127Z"
     }
   ]
 }
