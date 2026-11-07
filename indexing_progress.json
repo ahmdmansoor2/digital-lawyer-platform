@@ -1,6 +1,7 @@
 {
   "completed_days": [
-    1
+    1,
+    2
   ],
   "submitted_urls": {
     "https://mohamidigital.online/": "2026-11-06 18:59 UTC",
@@ -9,7 +10,14 @@
     "https://mohamidigital.online/court-precedents.html": "2026-11-06 18:59 UTC",
     "https://mohamidigital.online/contract-generator.html": "2026-11-06 18:59 UTC",
     "https://mohamidigital.online/legal-forms.html": "2026-11-06 18:59 UTC",
-    "https://mohamidigital.online/legal-library.html": "2026-11-06 18:59 UTC"
+    "https://mohamidigital.online/legal-library.html": "2026-11-06 18:59 UTC",
+    "https://mohamidigital.online/law-students-hub.html": "2026-11-07 13:46 UTC",
+    "https://mohamidigital.online/saudi-legal-hub.html": "2026-11-07 13:46 UTC",
+    "https://mohamidigital.online/uae-legal-hub.html": "2026-11-07 13:46 UTC",
+    "https://mohamidigital.online/qatar-legal-hub.html": "2026-11-07 13:46 UTC",
+    "https://mohamidigital.online/kuwait-legal-hub.html": "2026-11-07 13:46 UTC",
+    "https://mohamidigital.online/oman-legal-hub.html": "2026-11-07 13:46 UTC",
+    "https://mohamidigital.online/bahrain-legal-hub.html": "2026-11-07 13:46 UTC"
   },
-  "last_run": "2026-11-06T18:59:35.000Z"
+  "last_run": "2026-11-07T13:46:06.277080+00:00"
 }
