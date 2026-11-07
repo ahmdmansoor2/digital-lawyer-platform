@@ -2462,6 +2462,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2529181244233954",
       "publishedAt": "2026-11-07T12:55:51.337Z"
+    },
+    {
+      "topicId": "trend-sports-facilities-workers-rights-labor-law-egypt",
+      "kind": "short",
+      "videoId": "iUVbEzdQ0w0",
+      "url": "https://www.youtube.com/watch?v=iUVbEzdQ0w0",
+      "fbPermalink": "https://www.facebook.com/reel/988355690434331",
+      "publishedAt": "2026-11-07T19:24:18.675Z"
+    },
+    {
+      "topicId": "trend-sports-facilities-workers-rights-labor-law-egypt",
+      "title": "حقوق العمال في المنشآت الرياضية والترفيهية وفقاً لقانون العمل المصري رقم 12 لسنة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-facilities-workers-rights-labor-law-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "SmgSXaYWong",
+      "url": "https://www.youtube.com/watch?v=SmgSXaYWong",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/988355690434331",
+      "publishedAt": "2026-11-07T19:24:47.429Z"
     }
   ]
 }
