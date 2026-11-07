@@ -3704,6 +3704,27 @@
       "duration": "1د 9ث",
       "size": 18461264,
       "publishedAt": "2026-11-06T20:51:58.732Z"
+    },
+    {
+      "topicId": "trend-sports-contracts-documentation-and-sponsorship-egypt",
+      "title": "شروط وإجراءات توثيق العقود الرياضية وحماية حقوق الرعاية والاحتراف في مصر",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#توثيق العقود",
+        "#توثيق العقود الرياضية",
+        "#عقود الرعاية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-contracts-documentation-and-sponsorship-egypt.mp4",
+      "videoId": "2529181244233954",
+      "permalink": "https://www.facebook.com/reel/2529181244233954",
+      "source": "trending-topics.json",
+      "duration": "1د 6ث",
+      "size": 24176552,
+      "publishedAt": "2026-11-07T12:55:13.334Z"
     }
   ]
 }

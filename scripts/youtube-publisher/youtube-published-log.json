@@ -2443,6 +2443,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/974294628632181",
       "publishedAt": "2026-11-06T20:52:29.375Z"
+    },
+    {
+      "topicId": "trend-sports-contracts-documentation-and-sponsorship-egypt",
+      "kind": "short",
+      "videoId": "T1-tPGobd_4",
+      "url": "https://www.youtube.com/watch?v=T1-tPGobd_4",
+      "fbPermalink": "https://www.facebook.com/reel/2529181244233954",
+      "publishedAt": "2026-11-07T12:55:16.602Z"
+    },
+    {
+      "topicId": "trend-sports-contracts-documentation-and-sponsorship-egypt",
+      "title": "شروط وإجراءات توثيق العقود الرياضية وحماية حقوق الرعاية والاحتراف في مصر — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-contracts-documentation-and-sponsorship-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "BpOajLoLriE",
+      "url": "https://www.youtube.com/watch?v=BpOajLoLriE",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2529181244233954",
+      "publishedAt": "2026-11-07T12:55:51.337Z"
     }
   ]
 }
