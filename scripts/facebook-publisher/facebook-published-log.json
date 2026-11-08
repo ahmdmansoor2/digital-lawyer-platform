@@ -3767,6 +3767,27 @@
       "duration": "1د 9ث",
       "size": 30333621,
       "publishedAt": "2026-11-08T13:15:41.863Z"
+    },
+    {
+      "topicId": "trend-appealing-sports-federations-disciplinary-decisions-egypt",
+      "title": "إجراءات الطعن القانوني على القرارات التأديبية الصادرة من الاتحادات الرياضية المصرية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#التقاضي والتحكيم",
+        "#القرارات التأديبية",
+        "#الاتحادات الرياضية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-appealing-sports-federations-disciplinary-decisions-egypt.mp4",
+      "videoId": "1129990383349214",
+      "permalink": "https://www.facebook.com/reel/1129990383349214",
+      "source": "trending-topics.json",
+      "duration": "1د 1ث",
+      "size": 24065808,
+      "publishedAt": "2026-11-08T19:33:55.395Z"
     }
   ]
 }

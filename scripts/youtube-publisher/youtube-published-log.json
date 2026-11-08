@@ -2500,6 +2500,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1111180458197614",
       "publishedAt": "2026-11-08T13:16:12.292Z"
+    },
+    {
+      "topicId": "trend-appealing-sports-federations-disciplinary-decisions-egypt",
+      "kind": "short",
+      "videoId": "BpmggGLkUF8",
+      "url": "https://www.youtube.com/watch?v=BpmggGLkUF8",
+      "fbPermalink": "https://www.facebook.com/reel/1129990383349214",
+      "publishedAt": "2026-11-08T19:33:57.322Z"
+    },
+    {
+      "topicId": "trend-appealing-sports-federations-disciplinary-decisions-egypt",
+      "title": "إجراءات الطعن القانوني على القرارات التأديبية الصادرة من الاتحادات الرياضية المص — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-appealing-sports-federations-disciplinary-decisions-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "QQxgNMpnoOg",
+      "url": "https://www.youtube.com/watch?v=QQxgNMpnoOg",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1129990383349214",
+      "publishedAt": "2026-11-08T19:34:35.979Z"
     }
   ]
 }
