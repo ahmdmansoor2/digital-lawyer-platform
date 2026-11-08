@@ -2481,6 +2481,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/988355690434331",
       "publishedAt": "2026-11-07T19:24:47.429Z"
+    },
+    {
+      "topicId": "trend-stadium-riots-legal-liability-sports-clubs-egypt",
+      "kind": "short",
+      "videoId": "cPDl2oIuAOY",
+      "url": "https://www.youtube.com/watch?v=cPDl2oIuAOY",
+      "fbPermalink": "https://www.facebook.com/reel/1111180458197614",
+      "publishedAt": "2026-11-08T13:15:43.922Z"
+    },
+    {
+      "topicId": "trend-stadium-riots-legal-liability-sports-clubs-egypt",
+      "title": "المسؤولية القانونية لإدارات الأندية الرياضية عن الشغب في الملاعب وفقاً للقانون ا — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-stadium-riots-legal-liability-sports-clubs-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "lkV2ggEUOQg",
+      "url": "https://www.youtube.com/watch?v=lkV2ggEUOQg",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1111180458197614",
+      "publishedAt": "2026-11-08T13:16:12.292Z"
     }
   ]
 }
