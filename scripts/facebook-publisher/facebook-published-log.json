@@ -3788,6 +3788,27 @@
       "duration": "1د 1ث",
       "size": 24065808,
       "publishedAt": "2026-11-08T19:33:55.395Z"
+    },
+    {
+      "topicId": "trend-private-sports-academies-legal-regulations-egypt",
+      "title": "القواعد القانونية المنظمة لإنشاء ورعاية الأكاديميات الرياضية الخاصة في مصر",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#تأسيس الشركات",
+        "#الأكاديميات الرياضية",
+        "#تراخيص النشاط الرياضي"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-private-sports-academies-legal-regulations-egypt.mp4",
+      "videoId": "1642404484280352",
+      "permalink": "https://www.facebook.com/reel/1642404484280352",
+      "source": "trending-topics.json",
+      "duration": "56ث",
+      "size": 26121032,
+      "publishedAt": "2026-11-09T16:04:00.181Z"
     }
   ]
 }

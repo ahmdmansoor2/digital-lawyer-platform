@@ -2519,6 +2519,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1129990383349214",
       "publishedAt": "2026-11-08T19:34:35.979Z"
+    },
+    {
+      "topicId": "trend-private-sports-academies-legal-regulations-egypt",
+      "kind": "short",
+      "videoId": "LjmOoksALBY",
+      "url": "https://www.youtube.com/watch?v=LjmOoksALBY",
+      "fbPermalink": "https://www.facebook.com/reel/1642404484280352",
+      "publishedAt": "2026-11-09T16:04:02.670Z"
+    },
+    {
+      "topicId": "trend-private-sports-academies-legal-regulations-egypt",
+      "title": "القواعد القانونية المنظمة لإنشاء ورعاية الأكاديميات الرياضية الخاصة في مصر — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-private-sports-academies-legal-regulations-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "H-RPiC48WbA",
+      "url": "https://www.youtube.com/watch?v=H-RPiC48WbA",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1642404484280352",
+      "publishedAt": "2026-11-09T16:04:41.434Z"
     }
   ]
 }
