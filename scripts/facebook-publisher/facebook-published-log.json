@@ -3830,6 +3830,27 @@
       "duration": "51ث",
       "size": 15030414,
       "publishedAt": "2026-11-10T01:29:47.886Z"
+    },
+    {
+      "topicId": "trend-sports-commercial-ads-consumer-protection-egypt",
+      "title": "شروط صحة الإعلانات التجارية المرتبطة بالفعاليات الرياضية وفقاً لقانون حماية المستهلك",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#حماية المستهلك",
+        "#الإعلانات التجارية",
+        "#قانون حماية المستهلك المصري"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-commercial-ads-consumer-protection-egypt.mp4",
+      "videoId": "985179187511784",
+      "permalink": "https://www.facebook.com/reel/985179187511784",
+      "source": "trending-topics.json",
+      "duration": "1د 2ث",
+      "size": 26685459,
+      "publishedAt": "2026-11-10T14:53:03.675Z"
     }
   ]
 }

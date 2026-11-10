@@ -2557,6 +2557,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1492716072904774",
       "publishedAt": "2026-11-10T01:30:22.897Z"
+    },
+    {
+      "topicId": "trend-sports-commercial-ads-consumer-protection-egypt",
+      "kind": "short",
+      "videoId": "sYkdbp8aPbM",
+      "url": "https://www.youtube.com/watch?v=sYkdbp8aPbM",
+      "fbPermalink": "https://www.facebook.com/reel/985179187511784",
+      "publishedAt": "2026-11-10T14:53:06.418Z"
+    },
+    {
+      "topicId": "trend-sports-commercial-ads-consumer-protection-egypt",
+      "title": "شروط صحة الإعلانات التجارية المرتبطة بالفعاليات الرياضية وفقاً لقانون حماية المس — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-sports-commercial-ads-consumer-protection-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "gFSgiW9jU1U",
+      "url": "https://www.youtube.com/watch?v=gFSgiW9jU1U",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/985179187511784",
+      "publishedAt": "2026-11-10T14:53:43.849Z"
     }
   ]
 }
