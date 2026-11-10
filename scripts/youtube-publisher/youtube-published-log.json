@@ -2538,6 +2538,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1642404484280352",
       "publishedAt": "2026-11-09T16:04:41.434Z"
+    },
+    {
+      "topicId": "trend-delayed-salaries-legal-consequences-sports-egypt",
+      "kind": "short",
+      "videoId": "RFOvUyZvXRw",
+      "url": "https://www.youtube.com/watch?v=RFOvUyZvXRw",
+      "fbPermalink": "https://www.facebook.com/reel/1492716072904774",
+      "publishedAt": "2026-11-10T01:29:50.461Z"
+    },
+    {
+      "topicId": "trend-delayed-salaries-legal-consequences-sports-egypt",
+      "title": "الآثار القانونية للتأخير في سداد مستحقات اللاعبين والمدربين في الأندية المصرية — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-delayed-salaries-legal-consequences-sports-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "LTeUsoZmUHI",
+      "url": "https://www.youtube.com/watch?v=LTeUsoZmUHI",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1492716072904774",
+      "publishedAt": "2026-11-10T01:30:22.897Z"
     }
   ]
 }
