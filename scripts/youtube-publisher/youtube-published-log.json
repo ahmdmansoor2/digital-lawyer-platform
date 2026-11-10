@@ -2576,6 +2576,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/985179187511784",
       "publishedAt": "2026-11-10T14:53:43.849Z"
+    },
+    {
+      "topicId": "trend-social-housing-legal-purchase-procedures-egypt",
+      "kind": "short",
+      "videoId": "df_Q4TNQUp8",
+      "url": "https://www.youtube.com/watch?v=df_Q4TNQUp8",
+      "fbPermalink": "https://www.facebook.com/reel/1848741502813239",
+      "publishedAt": "2026-11-10T21:19:30.768Z"
+    },
+    {
+      "topicId": "trend-social-housing-legal-purchase-procedures-egypt",
+      "title": "الإجراءات القانونية لشراء وحدات الإسكان الاجتماعي ودعم الأسر الأولى بالرعاية في — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-social-housing-legal-purchase-procedures-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "y8zbevbnm_A",
+      "url": "https://www.youtube.com/watch?v=y8zbevbnm_A",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1848741502813239",
+      "publishedAt": "2026-11-10T21:20:12.715Z"
     }
   ]
 }

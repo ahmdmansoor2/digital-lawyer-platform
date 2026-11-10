@@ -3851,6 +3851,27 @@
       "duration": "1د 2ث",
       "size": 26685459,
       "publishedAt": "2026-11-10T14:53:03.675Z"
+    },
+    {
+      "topicId": "trend-social-housing-legal-purchase-procedures-egypt",
+      "title": "الإجراءات القانونية لشراء وحدات الإسكان الاجتماعي ودعم الأسر الأولى بالرعاية في مصر",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون العقاري",
+        "#الإسكان الاجتماعي",
+        "#شروط التخصيص"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-social-housing-legal-purchase-procedures-egypt.mp4",
+      "videoId": "1848741502813239",
+      "permalink": "https://www.facebook.com/reel/1848741502813239",
+      "source": "trending-topics.json",
+      "duration": "1د 8ث",
+      "size": 22394964,
+      "publishedAt": "2026-11-10T21:19:28.965Z"
     }
   ]
 }
