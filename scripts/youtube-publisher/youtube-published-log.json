@@ -2595,6 +2595,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1848741502813239",
       "publishedAt": "2026-11-10T21:20:12.715Z"
+    },
+    {
+      "topicId": "trend-recovering-real-estate-advance-payments-developer-default-eg",
+      "kind": "short",
+      "videoId": "14H7TSm-Xbs",
+      "url": "https://www.youtube.com/watch?v=14H7TSm-Xbs",
+      "fbPermalink": "https://www.facebook.com/reel/1737512387338798",
+      "publishedAt": "2026-11-11T21:55:11.511Z"
+    },
+    {
+      "topicId": "trend-recovering-real-estate-advance-payments-developer-default-eg",
+      "title": "كيفية استرداد مقدمات الوحدات السكنية والعقارية في حالة إخلال المطور العقاري بالم — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-recovering-real-estate-advance-payments-developer-default-eg-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "OHUB95ieCSU",
+      "url": "https://www.youtube.com/watch?v=OHUB95ieCSU",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1737512387338798",
+      "publishedAt": "2026-11-11T21:55:41.656Z"
     }
   ]
 }
