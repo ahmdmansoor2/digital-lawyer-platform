@@ -3893,6 +3893,27 @@
       "duration": "50ث",
       "size": 16174155,
       "publishedAt": "2026-11-11T21:55:08.883Z"
+    },
+    {
+      "topicId": "trend-rent-payment-default-legal-consequences-egypt",
+      "title": "الآثار القانونية للامتناع عن دفع الأجرة الشهرية في قانون الإيجار القديم والجديد",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون الإيجارات",
+        "#طرد لعدم السداد",
+        "#الإيجار الجديد"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-rent-payment-default-legal-consequences-egypt.mp4",
+      "videoId": "1144801381864065",
+      "permalink": "https://www.facebook.com/reel/1144801381864065",
+      "source": "trending-topics.json",
+      "duration": "1د 16ث",
+      "size": 35368399,
+      "publishedAt": "2026-11-12T15:07:46.676Z"
     }
   ]
 }
