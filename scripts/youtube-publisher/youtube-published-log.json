@@ -2633,6 +2633,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1144801381864065",
       "publishedAt": "2026-11-12T15:08:38.406Z"
+    },
+    {
+      "topicId": "trend-bad-checks-penalties-commercial-law-amendments-egypt",
+      "kind": "short",
+      "videoId": "1DBGOIQOn18",
+      "url": "https://www.youtube.com/watch?v=1DBGOIQOn18",
+      "fbPermalink": "https://www.facebook.com/reel/1133186275975990",
+      "publishedAt": "2026-11-12T21:52:24.458Z"
+    },
+    {
+      "topicId": "trend-bad-checks-penalties-commercial-law-amendments-egypt",
+      "title": "جريمة إصدار شيك بدون رصيد وفقاً لأحدث تعديلات قانون التجارة المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-bad-checks-penalties-commercial-law-amendments-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "UXAoWAtR5vo",
+      "url": "https://www.youtube.com/watch?v=UXAoWAtR5vo",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1133186275975990",
+      "publishedAt": "2026-11-12T21:52:53.176Z"
     }
   ]
 }
