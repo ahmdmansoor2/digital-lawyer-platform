@@ -2652,6 +2652,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1133186275975990",
       "publishedAt": "2026-11-12T21:52:53.176Z"
+    },
+    {
+      "topicId": "trend-establishing-companies-digital-egypt-portal-guide",
+      "kind": "short",
+      "videoId": "qpvXLWajUbc",
+      "url": "https://www.youtube.com/watch?v=qpvXLWajUbc",
+      "fbPermalink": "https://www.facebook.com/reel/1173934471829811",
+      "publishedAt": "2026-11-13T14:31:41.162Z"
+    },
+    {
+      "topicId": "trend-establishing-companies-digital-egypt-portal-guide",
+      "title": "خطوات وشروط تسجيل الشركات الفردية والشركات ذات المسؤولية المحدودة عبر البوابة ال — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-establishing-companies-digital-egypt-portal-guide-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "fv9xENcN0ag",
+      "url": "https://www.youtube.com/watch?v=fv9xENcN0ag",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1173934471829811",
+      "publishedAt": "2026-11-13T14:32:22.520Z"
     }
   ]
 }
