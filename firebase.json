@@ -626,6 +626,10 @@
       ],
       "rewrites": [
         {
+          "source": "/lawyers-data.json",
+          "destination": "/data/lawyers-data.json"
+        },
+        {
           "source": "/lawyers-directory",
           "destination": "/lawyers-directory.html"
         },
