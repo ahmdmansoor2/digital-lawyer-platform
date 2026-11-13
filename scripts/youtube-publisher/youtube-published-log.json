@@ -2671,6 +2671,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1173934471829811",
       "publishedAt": "2026-11-13T14:32:22.520Z"
+    },
+    {
+      "topicId": "trend-takaful-and-karama-legal-conditions-and-documents-egypt",
+      "kind": "short",
+      "videoId": "ZM7s6T9IvKs",
+      "url": "https://www.youtube.com/watch?v=ZM7s6T9IvKs",
+      "fbPermalink": "https://www.facebook.com/reel/1810820619821483",
+      "publishedAt": "2026-11-13T21:26:43.847Z"
+    },
+    {
+      "topicId": "trend-takaful-and-karama-legal-conditions-and-documents-egypt",
+      "title": "شروط وإجراءات الحصول على معاش تكافل وكرامة قانوناً والأوراق المطلوبة في مصر — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-takaful-and-karama-legal-conditions-and-documents-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "Qb22E53h-OE",
+      "url": "https://www.youtube.com/watch?v=Qb22E53h-OE",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1810820619821483",
+      "publishedAt": "2026-11-13T21:27:15.677Z"
     }
   ]
 }

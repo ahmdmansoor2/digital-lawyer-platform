@@ -3956,6 +3956,27 @@
       "duration": "59ث",
       "size": 21321942,
       "publishedAt": "2026-11-13T14:31:39.321Z"
+    },
+    {
+      "topicId": "trend-takaful-and-karama-legal-conditions-and-documents-egypt",
+      "title": "شروط وإجراءات الحصول على معاش تكافل وكرامة قانوناً والأوراق المطلوبة في مصر",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الضمان الاجتماعي",
+        "#معاش تكافل وكرامة",
+        "#وزارة التضامن الاجتماعي"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-takaful-and-karama-legal-conditions-and-documents-egypt.mp4",
+      "videoId": "1810820619821483",
+      "permalink": "https://www.facebook.com/reel/1810820619821483",
+      "source": "trending-topics.json",
+      "duration": "56ث",
+      "size": 28466734,
+      "publishedAt": "2026-11-13T21:26:42.163Z"
     }
   ]
 }
