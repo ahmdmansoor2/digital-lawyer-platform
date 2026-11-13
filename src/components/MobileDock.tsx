@@ -11,7 +11,8 @@ interface MobileDockProps {
   onEnterApp?: () => void;
 }
 
-export default function MobileDock({ onOpenAIAdvisor, onEnterApp }: MobileDockProps) {
+export default function MobileDock(props: MobileDockProps) {
+  return null;
   return (
     <div className="fixed bottom-4 inset-x-3 z-[9999] lg:hidden no-print animate-in fade-in slide-in-from-bottom-5 duration-300">
       <nav 

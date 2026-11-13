@@ -1,4 +1,11 @@
 /**
+ * mobile-dock.js — DISABLED_PERMANENTLY per user request (Zero Floating Icons)
+ */
+(function() {
+  'use strict';
+  return;
+})();
+/**
  * mobile-dock.js — شريط التنقل السفلي الذكي للموبايل (Mobile Bottom Dock)
  * للصفحات الثابتة فقط — ولا يتدخل في تطبيق React
  * منصة المحامي الرقمية 2026

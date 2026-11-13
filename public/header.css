@@ -1761,3 +1761,32 @@ html.public-theme-light #mohamiCookieEssential {
     z-index: 999991 !important;
   }
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   🚫 TOTAL BAN ON FLOATING ICONS (حذف وإلغاء كافة الأيقونات العائمة نهائياً)
+   ══════════════════════════════════════════════════════════════════════ */
+#global-sidebar-trigger,
+.site-mobile-dock,
+#siteMobileDock,
+[data-ai-advisor],
+button[title*="المستشار"],
+button[title*="فهرس المنصة"],
+button[title*="الجديد على المنصة"],
+#mohamiBackToTopBtn,
+#global-nav-floating-wrap,
+.back-to-portal-btn,
+#backToPortalBtn,
+.floating-action-bar,
+.whatsapp-float,
+#whatsapp-floating-btn {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}

@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const VERSION = 'mohami-v24-floating-v18-20261113';
+const VERSION = 'mohami-v25-zero-floating-icons-20261113';
 const SHELL_CACHE = VERSION + '-shell';
 const RUNTIME_CACHE = VERSION + '-runtime';
 

@@ -356,7 +356,7 @@ export default function AIAdvisor({ isOpen, onClose, onOpen }: AIAdvisorProps = 
         data-ai-advisor
         aria-label="المستشار الذكي"
         title="المستشار الذكي — اسأل من محتوى المنصة"
-        className="hidden sm:flex fixed bottom-5 left-5 z-[9890] w-12 h-12 rounded-full items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 group"
+        className="hidden !hidden"
         style={{
           background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
           boxShadow: '0 8px 24px rgba(99,102,241,.45)',

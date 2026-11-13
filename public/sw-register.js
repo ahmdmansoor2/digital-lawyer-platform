@@ -18,7 +18,7 @@
         if (window.caches) {
           caches.keys().then(function (names) {
             names.forEach(function (name) {
-              if (!name.includes('mohami-v24-floating-v18-20261113')) {
+              if (!name.includes('mohami-v25-zero-floating-icons-20261113')) {
                 caches.delete(name);
               }
             });

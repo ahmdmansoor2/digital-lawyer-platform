@@ -609,7 +609,7 @@
   drawer.appendChild(footer);
 
   function mount() {
-    document.body.appendChild(trigger);
+    // document.body.appendChild(trigger); // Floating trigger removed permanently
 
 
 
@@ -1030,7 +1030,7 @@
       upBtn.style.cssText = 'position:fixed; bottom:24px; left:24px; z-index:999989; width:42px; height:42px; border-radius:12px; background:#4f46e5; border:1px solid rgba(255,255,255,0.25); color:#fff; font-size:18px; font-weight:900; cursor:pointer; display:none; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,0.35); transition:all 0.25s ease;';
       upBtn.innerHTML = '↑';
       upBtn.onclick = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
-      document.body.appendChild(upBtn);
+      // document.body.appendChild(upBtn); // Floating back-to-top removed permanently
     }
 
     window.addEventListener('scroll', function() {

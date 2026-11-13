@@ -169,7 +169,7 @@ export default function GlobalSidebar({ onEnterApp }: GlobalSidebarProps) {
         id="global-sidebar-trigger"
         onClick={() => setOpen(prev => !prev)}
         aria-label="فتح فهرس المنصة السريع"
-        className="flex items-center gap-1.5 sm:gap-2 p-2 sm:px-4 sm:py-3 rounded-full sm:rounded-2xl bg-slate-900/95 hover:bg-slate-800 border border-indigo-500/40 hover:border-indigo-400 text-white text-xs sm:text-sm font-bold shadow-2xl shadow-black/80 backdrop-blur-2xl transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer select-none fixed bottom-[76px] right-3 sm:bottom-6 sm:right-6 z-[99990]"
+        className="hidden !hidden"
         style={{ direction: 'rtl' }}
         title="فهرس المنصة الشامل"
       >
