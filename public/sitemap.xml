@@ -8,13 +8,17 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/blog/</loc>
-    <lastmod>2026-11-12</lastmod>
+
+    <lastmod>2026-11-13</lastmod>
+ (fix(seo): add missing clean URL rewrites, include legal-radar in tier1 sitemap, and sync sitemaps)
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://mohamidigital.online/legal-library.html</loc>
-    <lastmod>2026-11-12</lastmod>
+
+    <lastmod>2026-11-13</lastmod>
+ (fix(seo): add missing clean URL rewrites, include legal-radar in tier1 sitemap, and sync sitemaps)
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -68,7 +72,9 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/legal-radar.html</loc>
-    <lastmod>2026-11-12</lastmod>
+
+    <lastmod>2026-11-13</lastmod>
+ (fix(seo): add missing clean URL rewrites, include legal-radar in tier1 sitemap, and sync sitemaps)
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -170,13 +176,17 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/courts-directory.html</loc>
-    <lastmod>2026-11-12</lastmod>
+
+    <lastmod>2026-11-13</lastmod>
+ (fix(seo): add missing clean URL rewrites, include legal-radar in tier1 sitemap, and sync sitemaps)
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://mohamidigital.online/legal-calculators.html</loc>
-    <lastmod>2026-11-12</lastmod>
+
+    <lastmod>2026-11-13</lastmod>
+ (fix(seo): add missing clean URL rewrites, include legal-radar in tier1 sitemap, and sync sitemaps)
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -200,7 +210,9 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/contract-generator.html</loc>
-    <lastmod>2026-11-12</lastmod>
+
+    <lastmod>2026-11-13</lastmod>
+ (fix(seo): add missing clean URL rewrites, include legal-radar in tier1 sitemap, and sync sitemaps)
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -236,7 +248,9 @@
   </url>
   <url>
     <loc>https://mohamidigital.online/court-precedents.html</loc>
-    <lastmod>2026-11-12</lastmod>
+
+    <lastmod>2026-11-13</lastmod>
+ (fix(seo): add missing clean URL rewrites, include legal-radar in tier1 sitemap, and sync sitemaps)
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>

@@ -748,6 +748,70 @@
         {
           "source": "/legal-glossary",
           "destination": "/legal-glossary.html"
+        },
+        {
+          "source": "/legal-library",
+          "destination": "/legal-library.html"
+        },
+        {
+          "source": "/legal-library/",
+          "destination": "/legal-library.html"
+        },
+        {
+          "source": "/contract-generator",
+          "destination": "/contract-generator.html"
+        },
+        {
+          "source": "/contract-generator/",
+          "destination": "/contract-generator.html"
+        },
+        {
+          "source": "/author-ahmed-mansour",
+          "destination": "/author-ahmed-mansour.html"
+        },
+        {
+          "source": "/author-ahmed-mansour/",
+          "destination": "/author-ahmed-mansour.html"
+        },
+        {
+          "source": "/calculate-alimony",
+          "destination": "/calculate-alimony.html"
+        },
+        {
+          "source": "/calculate-end-of-service",
+          "destination": "/calculate-end-of-service.html"
+        },
+        {
+          "source": "/calculate-inheritance",
+          "destination": "/calculate-inheritance.html"
+        },
+        {
+          "source": "/real-estate-registration-fees",
+          "destination": "/real-estate-registration-fees.html"
+        },
+        {
+          "source": "/appeal-deadlines",
+          "destination": "/appeal-deadlines.html"
+        },
+        {
+          "source": "/e-justice-services",
+          "destination": "/e-justice-services.html"
+        },
+        {
+          "source": "/economic-hub",
+          "destination": "/economic-hub.html"
+        },
+        {
+          "source": "/law-students-hub",
+          "destination": "/law-students-hub.html"
+        },
+        {
+          "source": "/sitemap",
+          "destination": "/sitemap.html"
+        },
+        {
+          "source": "/html-sitemap-hub",
+          "destination": "/html-sitemap-hub.html"
         }
       ],
       "cleanUrls": false,
