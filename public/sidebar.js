@@ -97,6 +97,7 @@
       links: [
         { label: 'المكتبة القانونية السحابية (5TB)', href: '/legal-library.html', icon: '🏛️' },
         { label: 'بنك مبادئ محكمة النقض الكبرى', href: '/court-precedents.html', icon: '⚖️' },
+        { label: 'المعجم القانوني والقضائي التفاعلي', href: '/legal-glossary.html', icon: '📖' },
         { label: 'المراجع والأكواد التشريعية الشاملة', href: '/pillars/', icon: '📚' },
         { label: 'رصد المحامي والجريدة الرسمية', href: '/legal-radar.html', icon: '📡' },
       ],
@@ -640,7 +641,21 @@
       closeDrawer();
     });
 
-    // ── Top Navbar Trigger Injection removed to preserve pristine navbar layout ──
+    // ── Top Navbar Trigger Injection (Desktop/Tablet only) ──
+    var uhActions = document.querySelector('.uh-actions');
+    if (window.innerWidth > 768 && uhActions && !uhActions.querySelector('.gs-nav-trigger') && !uhActions.querySelector('[title*="فهرس"]')) {
+      var navBtn = document.createElement('button');
+      navBtn.type = 'button';
+      navBtn.className = 'uh-cta uh-cta--ghost gs-nav-trigger';
+      navBtn.style.cssText = 'padding: 7px 12px !important; font-size: 0.82rem !important; border-color: rgba(99, 102, 241, 0.4) !important; cursor: pointer !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; font-family: "Cairo", sans-serif !important; font-weight: 700 !important; color: inherit;';
+      navBtn.title = 'فتح فهرس المنصة الشامل';
+      navBtn.innerHTML = '<span>🧭 الفهرس</span>';
+      navBtn.addEventListener('click', function () {
+        if (isOpen) closeDrawer();
+        else openDrawer();
+      });
+      uhActions.insertBefore(navBtn, uhActions.firstChild);
+    }
   }
 
   function openDrawer() {
@@ -691,6 +706,16 @@
     dock.innerHTML = html;
     document.body.appendChild(dock);
   }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mountDock);
+  } else {
+    mountDock();
+  }
+})();
+
+
+// ── Google AdSense & GDPR Cookie Consent Banner (v6) ──
+(function() {
   var CONSENT_KEY = 'mohami_cookie_consent_2026';
 
   function showCookieBanner(forceShow) {
@@ -738,5 +763,609 @@
     document.addEventListener('DOMContentLoaded', function() { showCookieBanner(false); });
   } else {
     showCookieBanner(false);
+  }
+})();
+
+// ── Mohami v9 UI/UX Suite: Universal Light/Dark Theme Engine, Runtime Contrast Normalizer, Font Resizer, Spotlight Search (Ctrl+K), Progress Bar & Auto-TOC ──
+(function() {
+  'use strict';
+  if (document.documentElement.hasAttribute("data-mohami-v9-mounted")) return;
+  document.documentElement.setAttribute("data-mohami-v9-mounted", "1");
+
+  var THEME_KEY = 'mohami_theme_mode';
+  var FONT_KEY = 'mohami_font_scale';
+  var searchIndexCache = null;
+
+  function isLightMode() {
+    return document.documentElement.classList.contains('public-theme-light');
+  }
+
+  function parseRgba(str) {
+    if (!str) return [0, 0, 0, 0];
+    var m = str.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*([\d.]+))?\)/);
+    if (!m) return [0, 0, 0, 0];
+    return [parseInt(m[1], 10), parseInt(m[2], 10), parseInt(m[3], 10), m[4] !== undefined ? parseFloat(m[4]) : 1];
+  }
+
+  function lum(rgb) {
+    var a = [rgb[0], rgb[1], rgb[2]].map(function(v) {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+  }
+
+  function isDarkGradient(bgImg) {
+    if (!bgImg || bgImg === 'none') return false;
+    return (
+      bgImg.indexOf('15, 23, 42') !== -1 ||
+      bgImg.indexOf('30, 41, 59') !== -1 ||
+      bgImg.indexOf('2, 6, 23') !== -1 ||
+      bgImg.indexOf('6, 9, 19') !== -1 ||
+      bgImg.indexOf('10, 15, 29') !== -1 ||
+      bgImg.indexOf('30, 27, 75') !== -1 ||
+      bgImg.indexOf('17, 24, 39') !== -1
+    );
+  }
+
+  function isVibrantSolidBg(rgb, bgImg) {
+    if (bgImg && bgImg !== 'none' && !isDarkGradient(bgImg) && bgImg.indexOf('248, 250, 252') === -1 && bgImg.indexOf('241, 245, 249') === -1 && bgImg.indexOf('255, 255, 255') === -1 && bgImg.indexOf('238, 242, 255') === -1) {
+      if (bgImg.indexOf('0.0') !== -1 || bgImg.indexOf('0.1') !== -1 || bgImg.indexOf('0.2') !== -1) return false;
+      return true;
+    }
+    if (rgb[3] > 0.7) {
+      var r = rgb[0], g = rgb[1], b = rgb[2];
+      var maxC = Math.max(r, g, b), minC = Math.min(r, g, b);
+      if (maxC - minC > 55 && lum(rgb) < 0.45) return true;
+    }
+    return false;
+  }
+
+  function getEffectiveBg(el) {
+    var cur = el;
+    while (cur && cur !== document.documentElement) {
+      var cs = window.getComputedStyle(cur);
+      var bg = parseRgba(cs.backgroundColor);
+      var bgImg = cs.backgroundImage || 'none';
+      if (isVibrantSolidBg(bg, bgImg)) {
+        return { rgb: [30, 64, 175, 1], vibrant: true };
+      }
+      if (bg[3] > 0.18) {
+        if (bg[3] < 0.85) {
+          var a = bg[3];
+          return {
+            rgb: [
+              Math.round(bg[0] * a + 248 * (1 - a)),
+              Math.round(bg[1] * a + 250 * (1 - a)),
+              Math.round(bg[2] * a + 252 * (1 - a)),
+              1
+            ],
+            vibrant: false
+          };
+        }
+        return { rgb: bg, vibrant: false };
+      }
+      cur = cur.parentElement;
+    }
+    return { rgb: [248, 250, 252, 1], vibrant: false };
+  }
+
+  function mapToDarkAccent(rgb) {
+    var r = rgb[0], g = rgb[1], b = rgb[2];
+    if (g > r + 25 && g >= b) return '#065f46';
+    if (b > r + 30 && g > r + 15) return '#075985';
+    if (b > r + 20 && b >= g) return '#3730a3';
+    if (r > b + 40 && g > b + 20) return '#92400e';
+    if (r > g + 35 && r > b + 20) return '#991b1b';
+    if (r > g + 20 && b > g + 20) return '#6b21a8';
+    return '#0f172a';
+  }
+
+  function syncLightModeDOM() {
+    if (!document.body) return;
+    var light = isLightMode();
+
+    if (!light) {
+      var fixedEls = document.querySelectorAll('[data-mohami-lm-fixed="1"]');
+      for (var i = 0; i < fixedEls.length; i++) {
+        var fel = fixedEls[i];
+        var orig = fel.getAttribute('data-mohami-orig-style');
+        if (orig === null || orig === '__EMPTY__') {
+          fel.removeAttribute('style');
+        } else {
+          fel.setAttribute('style', orig);
+        }
+        fel.removeAttribute('data-mohami-lm-fixed');
+      }
+      return;
+    }
+
+    document.documentElement.classList.add('mohami-no-transitions');
+    void document.body.offsetHeight;
+
+    try {
+      var allEls = document.querySelectorAll('body *');
+      for (var idx = 0; idx < allEls.length; idx++) {
+        var el = allEls[idx];
+        var tag = el.tagName;
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'SVG' || tag === 'PATH' || tag === 'NOSCRIPT') continue;
+        if (el.closest('#app-workspace-wrapper') || el.closest('.paper-sheet') || el.id === 'global-sidebar-trigger' || el.id === 'mohamiHeaderThemeBtn') continue;
+
+        var cs = window.getComputedStyle(el);
+        if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+
+        var cls = (typeof el.className === 'string' ? el.className : '') || '';
+        var bg = parseRgba(cs.backgroundColor);
+        var bgImg = cs.backgroundImage || 'none';
+        var vibrant = isVibrantSolidBg(bg, bgImg);
+
+        if (!vibrant) {
+          var hasDarkBg = (bg[3] > 0.20 && lum(bg) < 0.28) || isDarkGradient(bgImg);
+          if (hasDarkBg) {
+            if (!el.hasAttribute('data-mohami-lm-fixed')) {
+              el.setAttribute('data-mohami-orig-style', el.getAttribute('style') || '__EMPTY__');
+              el.setAttribute('data-mohami-lm-fixed', '1');
+            }
+            var isSecondary = (bg[0] >= 25 && bg[1] >= 35) || tag === 'LI' || tag === 'TR' || tag === 'TH' || cls.indexOf('pill') !== -1 || cls.indexOf('tag') !== -1 || cls.indexOf('chip') !== -1 || cls.indexOf('row') !== -1 || cls.indexOf('item') !== -1 || cls.indexOf('secondary') !== -1;
+            el.style.setProperty('background', isSecondary ? '#f1f5f9' : '#ffffff', 'important');
+            el.style.setProperty('border-color', '#cbd5e1', 'important');
+            if (cs.boxShadow && cs.boxShadow !== 'none') {
+              el.style.setProperty('box-shadow', '0 4px 16px rgba(15, 23, 42, 0.06)', 'important');
+            }
+          }
+        }
+      }
+
+      for (var j = 0; j < allEls.length; j++) {
+        var tel = allEls[j];
+        var ttag = tel.tagName;
+        if (ttag === 'SCRIPT' || ttag === 'STYLE' || ttag === 'SVG' || ttag === 'PATH' || ttag === 'NOSCRIPT') continue;
+        if (tel.closest('#app-workspace-wrapper') || tel.closest('.paper-sheet') || tel.id === 'global-sidebar-trigger' || tel.id === 'mohamiHeaderThemeBtn') continue;
+
+        var tcs = window.getComputedStyle(tel);
+        if (tcs.display === 'none' || tcs.visibility === 'hidden') continue;
+
+        var hasText = false;
+        for (var c = 0; c < tel.childNodes.length; c++) {
+          if (tel.childNodes[c].nodeType === 3 && tel.childNodes[c].nodeValue.trim().length > 0) {
+            hasText = true;
+            break;
+          }
+        }
+        if (hasText || ttag === 'INPUT' || ttag === 'SELECT' || ttag === 'TEXTAREA') {
+          var fillStr = tcs.webkitTextFillColor;
+          var hasZeroFill = fillStr === 'rgba(0, 0, 0, 0)' || fillStr === 'transparent';
+          var fg = parseRgba((!hasZeroFill && fillStr) ? fillStr : tcs.color);
+          var effBg = getEffectiveBg(tel);
+          var lFg = lum(fg);
+          var lBg = lum(effBg.rgb);
+          var ratio = (Math.max(lFg, lBg) + 0.05) / (Math.min(lFg, lBg) + 0.05);
+
+          if (hasZeroFill || ratio < 3.8) {
+            if (!tel.hasAttribute('data-mohami-lm-fixed')) {
+              tel.setAttribute('data-mohami-orig-style', tel.getAttribute('style') || '__EMPTY__');
+              tel.setAttribute('data-mohami-lm-fixed', '1');
+            }
+            if (effBg.vibrant) {
+              tel.style.setProperty('color', '#ffffff', 'important');
+              tel.style.setProperty('-webkit-text-fill-color', '#ffffff', 'important');
+            } else {
+              var newCol = mapToDarkAccent(fg);
+              tel.style.setProperty('color', newCol, 'important');
+              tel.style.setProperty('-webkit-text-fill-color', newCol, 'important');
+              if (hasZeroFill) {
+                tel.style.setProperty('background', 'none', 'important');
+              }
+            }
+            tel.style.setProperty('text-shadow', 'none', 'important');
+          }
+        }
+      }
+    } finally {
+      document.documentElement.classList.remove('mohami-no-transitions');
+    }
+  }
+
+  function applyTheme(mode) {
+    if (mode === 'light') {
+      document.documentElement.classList.add('public-theme-light');
+    } else {
+      document.documentElement.classList.remove('public-theme-light');
+    }
+    try { localStorage.setItem(THEME_KEY, mode); } catch (e) {}
+    syncLightModeDOM();
+    updateThemeButtonsUI();
+  }
+
+  function toggleTheme() {
+    applyTheme(isLightMode() ? 'dark' : 'light');
+  }
+
+  function updateThemeButtonsUI() {
+    var light = isLightMode();
+    document.querySelectorAll('.mohami-theme-toggle-btn').forEach(function(btn) {
+      btn.innerHTML = light ? '🌙 <span>ليلي</span>' : '☀️ <span>نهاري</span>';
+      btn.title = light ? 'التبديل إلى الوضع الليلي الفخم' : 'التبديل إلى الوضع النهاري الورقي المريح للقراءة';
+      btn.style.background = light ? '#0f172a' : 'rgba(245, 158, 11, 0.18)';
+      btn.style.color = light ? '#ffffff' : '#fde68a';
+      btn.style.borderColor = light ? '#334155' : 'rgba(245, 158, 11, 0.45)';
+    });
+    var qBtn = document.getElementById('mohamiQuickSearchBtn');
+    if (qBtn) {
+      qBtn.style.background = light ? '#f1f5f9' : 'rgba(99, 102, 241, 0.16)';
+      qBtn.style.color = light ? '#1e293b' : '#e0e7ff';
+      qBtn.style.borderColor = light ? '#cbd5e1' : 'rgba(99, 102, 241, 0.4)';
+    }
+  }
+
+  function changeFontScale(delta) {
+    var current = 100;
+    try {
+      current = parseInt(localStorage.getItem(FONT_KEY) || '100', 10);
+    } catch (e) {}
+    var next = delta === 0 ? 100 : Math.min(125, Math.max(85, current + delta));
+    if (next === 100) {
+      document.documentElement.style.removeProperty('font-size');
+    } else {
+      document.documentElement.style.fontSize = next + '%';
+    }
+    try { localStorage.setItem(FONT_KEY, String(next)); } catch (e) {}
+  }
+
+  function mountProgressAndBackToTop() {
+    if (!document.getElementById('mohamiReadingProgressBar')) {
+      var bar = document.createElement('div');
+      bar.id = 'mohamiReadingProgressBar';
+      bar.className = 'no-print';
+      document.body.appendChild(bar);
+    }
+
+    if (!document.getElementById('mohamiBackToTopBtn')) {
+      var upBtn = document.createElement('button');
+      upBtn.id = 'mohamiBackToTopBtn';
+      upBtn.type = 'button';
+      upBtn.className = 'no-print';
+      upBtn.title = 'العودة إلى أعلى الصفحة';
+      upBtn.setAttribute('aria-label', 'العودة إلى أعلى الصفحة');
+      upBtn.style.cssText = 'position:fixed; bottom:24px; left:24px; z-index:999989; width:42px; height:42px; border-radius:12px; background:#4f46e5; border:1px solid rgba(255,255,255,0.25); color:#fff; font-size:18px; font-weight:900; cursor:pointer; display:none; align-items:center; justify-content:center; box-shadow:0 8px 24px rgba(0,0,0,0.35); transition:all 0.25s ease;';
+      upBtn.innerHTML = '↑';
+      upBtn.onclick = function() { window.scrollTo({ top: 0, behavior: 'smooth' }); };
+      document.body.appendChild(upBtn);
+    }
+
+    window.addEventListener('scroll', function() {
+      var docEl = document.documentElement;
+      var scrollTop = window.scrollY || docEl.scrollTop;
+      var scrollHeight = (docEl.scrollHeight - docEl.clientHeight) || 1;
+      var pct = Math.min(100, Math.max(0, (scrollTop / scrollHeight) * 100));
+      var bar = document.getElementById('mohamiReadingProgressBar');
+      if (bar) bar.style.width = pct + '%';
+
+      var upBtn = document.getElementById('mohamiBackToTopBtn');
+      if (upBtn) {
+        upBtn.style.display = scrollTop > 380 ? 'flex' : 'none';
+        var navWrap = document.getElementById('global-nav-floating-wrap');
+        var hasLeftNeighbor = navWrap && window.getComputedStyle(navWrap).display !== 'none';
+        if (window.innerWidth <= 768) {
+          upBtn.style.setProperty('bottom', (hasLeftNeighbor ? '138px' : '84px'), 'important');
+          upBtn.style.setProperty('left', '14px', 'important');
+        } else {
+          upBtn.style.setProperty('bottom', (hasLeftNeighbor ? '82px' : '24px'), 'important');
+          upBtn.style.setProperty('left', '24px', 'important');
+        }
+      }
+    }, { passive: true });
+  }
+
+  function mountHeaderControls() {
+    if (document.getElementById('mohamiHeaderThemeBtn')) return;
+
+    var targetContainer =
+      document.querySelector('.uh-actions') ||
+      document.querySelector('.uh-bar .uh-inner') ||
+      document.querySelector('.unified-header nav') ||
+      document.querySelector('.unified-header .uh-inner') ||
+      document.querySelector('.header-nav .nav-container') ||
+      document.querySelector('.site-header .header-inner');
+
+    var toolsWrap = document.createElement('div');
+    toolsWrap.className = 'no-print';
+    toolsWrap.style.cssText = 'display:inline-flex; align-items:center; gap:6px; flex-shrink:0;';
+
+    var searchBtn = document.createElement('button');
+    searchBtn.type = 'button';
+    searchBtn.id = 'mohamiQuickSearchBtn';
+    searchBtn.title = 'بحث فوري في المنصة (Ctrl+K)';
+    searchBtn.style.cssText = 'padding:6px 11px; border-radius:10px; border:1px solid rgba(99,102,241,0.35); font-family:Cairo,sans-serif; font-size:12px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:5px;';
+    searchBtn.innerHTML = '🔍 <span>بحث</span>';
+    searchBtn.onclick = openSpotlightSearch;
+
+    var themeBtn = document.createElement('button');
+    themeBtn.type = 'button';
+    themeBtn.id = 'mohamiHeaderThemeBtn';
+    themeBtn.className = 'mohami-theme-toggle-btn';
+    themeBtn.style.cssText = 'padding:6px 11px; border-radius:10px; border:1px solid rgba(245,158,11,0.45); font-family:Cairo,sans-serif; font-size:12px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:5px;';
+    themeBtn.onclick = toggleTheme;
+
+    toolsWrap.appendChild(searchBtn);
+    toolsWrap.appendChild(themeBtn);
+
+    if (targetContainer) {
+      if (targetContainer.classList.contains('uh-actions')) {
+        targetContainer.insertBefore(toolsWrap, targetContainer.firstChild);
+      } else {
+        targetContainer.appendChild(toolsWrap);
+      }
+    } else {
+      toolsWrap.style.cssText = 'position:fixed; top:16px; left:16px; z-index:999995; display:inline-flex; align-items:center; gap:8px;';
+      document.body.appendChild(toolsWrap);
+    }
+
+    var gsBody = document.querySelector('#gs-drawer .gs-body');
+    if (gsBody && !document.getElementById('gsReadingToolsCard')) {
+      var rtCard = document.createElement('div');
+      rtCard.id = 'gsReadingToolsCard';
+      rtCard.style.cssText = 'padding:10px 12px; border-radius:12px; background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.3); display:flex; align-items:center; justify-content:space-between; gap:8px; flex-shrink:0;';
+      rtCard.innerHTML =
+        '<button type="button" class="mohami-theme-toggle-btn" style="padding:6px 12px; border-radius:8px; border:1px solid rgba(245,158,11,0.45); font-family:Cairo,sans-serif; font-weight:800; font-size:12px; cursor:pointer;"></button>' +
+        '<div style="display:flex; gap:4px; align-items:center;">' +
+          '<span style="font-size:11px; opacity:0.85; margin-left:4px;">حجم الخط:</span>' +
+          '<button type="button" id="gsFontPlus" style="padding:4px 8px; border-radius:6px; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.35); color:inherit; font-weight:800; font-size:11px; cursor:pointer;">A+</button>' +
+          '<button type="button" id="gsFontReset" style="padding:4px 8px; border-radius:6px; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.35); color:inherit; font-weight:700; font-size:11px; cursor:pointer;">100%</button>' +
+          '<button type="button" id="gsFontMinus" style="padding:4px 8px; border-radius:6px; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.35); color:inherit; font-weight:800; font-size:11px; cursor:pointer;">A-</button>' +
+        '</div>';
+      gsBody.insertBefore(rtCard, gsBody.firstChild);
+      rtCard.querySelector('.mohami-theme-toggle-btn').onclick = toggleTheme;
+      document.getElementById('gsFontPlus').onclick = function() { changeFontScale(8); };
+      document.getElementById('gsFontReset').onclick = function() { changeFontScale(0); };
+      document.getElementById('gsFontMinus').onclick = function() { changeFontScale(-8); };
+    }
+
+    updateThemeButtonsUI();
+  }
+
+  function openSpotlightSearch() {
+    var existing = document.getElementById('mohamiSpotlightModal');
+    if (existing) {
+      existing.style.display = 'flex';
+      var inp = document.getElementById('mohamiSpotlightInput');
+      if (inp) inp.focus();
+      return;
+    }
+
+    var modal = document.createElement('div');
+    modal.id = 'mohamiSpotlightModal';
+    modal.className = 'no-print';
+    modal.style.cssText = 'position:fixed; inset:0; background:rgba(15,23,42,0.72); backdrop-filter:blur(8px); z-index:1000002; display:flex; align-items:flex-start; justify-content:center; padding:60px 16px 20px; direction:rtl; font-family:Cairo,sans-serif;';
+    modal.innerHTML =
+      '<div style="background:var(--card, #0f172a); border:1px solid rgba(99,102,241,0.45); border-radius:20px; max-width:680px; width:100%; overflow:hidden; box-shadow:0 24px 60px rgba(0,0,0,0.45);">' +
+        '<div style="padding:14px 18px; border-bottom:1px solid var(--border, rgba(148,163,184,0.2)); display:flex; align-items:center; gap:10px;">' +
+          '<span style="font-size:18px;">🔍</span>' +
+          '<input type="text" id="mohamiSpotlightInput" placeholder="ابحث فوراً في الـ 16 حاسبة، صيغ العقود، المحاكم، المعجم، والمقالات..." style="flex:1; border:none !important; outline:none; background:transparent !important; color:var(--text, #fff) !important; font-family:Cairo,sans-serif; font-size:15px; font-weight:700;" />' +
+          '<button type="button" id="mohamiSpotlightClose" style="padding:4px 10px; border-radius:8px; background:rgba(148,163,184,0.2); border:none; color:var(--text, #94a3b8); font-family:Cairo,sans-serif; font-size:12px; font-weight:700; cursor:pointer;">ESC ✕</button>' +
+        '</div>' +
+        '<div id="mohamiSpotlightResults" style="max-height:62vh; overflow-y:auto; padding:12px;">' +
+          '<div style="padding:8px 10px; font-size:12px; font-weight:800; color:var(--indigo, #6366f1);">⚡ أدوات الوصول الفوري السريع:</div>' +
+          '<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:8px; padding:4px;">' +
+            '<a href="/legal-consultations.html" style="padding:10px 12px; border-radius:10px; background:rgba(16,185,129,0.12); color:var(--text, #fff); text-decoration:none; font-size:13px; font-weight:700;">💬 استشارة قانونية فورية</a>' +
+            '<a href="/contract-generator.html" style="padding:10px 12px; border-radius:10px; background:rgba(99,102,241,0.12); color:var(--text, #fff); text-decoration:none; font-size:13px; font-weight:700;">📝 مولد العقود وحوافظ المستندات</a>' +
+            '<a href="/legal-calculators.html" style="padding:10px 12px; border-radius:10px; background:rgba(245,158,11,0.12); color:var(--text, #fff); text-decoration:none; font-size:13px; font-weight:700;">🧮 الحاسبات القانونية الـ 16</a>' +
+            '<a href="/lawyers-directory.html" style="padding:10px 12px; border-radius:10px; background:rgba(56,189,248,0.12); color:var(--text, #fff); text-decoration:none; font-size:13px; font-weight:700;">👨‍⚖️ دليل المحامين والإنابات</a>' +
+            '<a href="/courts-directory.html" style="padding:10px 12px; border-radius:10px; background:rgba(167,139,250,0.12); color:var(--text, #fff); text-decoration:none; font-size:13px; font-weight:700;">🏛️ دليل المحاكم والشهر العقاري</a>' +
+            '<a href="/legal-glossary.html" style="padding:10px 12px; border-radius:10px; background:rgba(244,114,182,0.12); color:var(--text, #fff); text-decoration:none; font-size:13px; font-weight:700;">📖 المعجم القانوني التفاعلي</a>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+    document.body.appendChild(modal);
+
+    var closeModal = function() { modal.style.display = 'none'; };
+    document.getElementById('mohamiSpotlightClose').onclick = closeModal;
+    modal.onclick = function(e) { if (e.target === modal) closeModal(); };
+
+    var inputEl = document.getElementById('mohamiSpotlightInput');
+    inputEl.focus();
+
+    if (!searchIndexCache) {
+      fetch('/search-index.json?v=20261017v9')
+        .then(function(r) { return r.json(); })
+        .then(function(data) { searchIndexCache = (data && data.items) || []; })
+        .catch(function() { searchIndexCache = []; });
+    }
+
+    inputEl.oninput = function() {
+      var q = (inputEl.value || '').trim().toLowerCase();
+      var resBox = document.getElementById('mohamiSpotlightResults');
+      if (!q || !searchIndexCache) return;
+      var matches = searchIndexCache.filter(function(it) {
+        return (it.title && it.title.toLowerCase().includes(q)) ||
+               (it.description && it.description.toLowerCase().includes(q)) ||
+               (it.keywords && it.keywords.toLowerCase().includes(q));
+      }).slice(0, 8);
+
+      if (matches.length === 0) {
+        resBox.innerHTML = '<div style="padding:24px; text-align:center; color:var(--muted, #64748b); font-size:13.5px;">لم يتم العثور على نتائج مطابقة. <a href="/search.html?q=' + encodeURIComponent(q) + '" style="color:#4f46e5; font-weight:800;">ابحث في الفهرس الكامل ←</a></div>';
+        return;
+      }
+
+      resBox.innerHTML = matches.map(function(m) {
+        return '<a href="' + m.id + '" style="display:block; padding:10px 14px; border-radius:12px; margin-bottom:6px; background:rgba(99,102,241,0.08); border:1px solid rgba(148,163,184,0.2); text-decoration:none; color:var(--text, #0f172a);">' +
+          '<div style="font-size:13.5px; font-weight:800; color:#4f46e5;">' + m.title + '</div>' +
+          '<div style="font-size:11.5px; color:var(--muted, #475569); margin-top:2px;">' + (m.description || '').slice(0, 110) + '...</div>' +
+        '</a>';
+      }).join('');
+    };
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      openSpotlightSearch();
+    } else if (e.key === 'Escape') {
+      var m = document.getElementById('mohamiSpotlightModal');
+      if (m) m.style.display = 'none';
+    }
+  });
+
+  function mountAutoTOC() {
+    var articleContainer = document.querySelector('.article-card') || document.querySelector('.topic-page-body') || document.querySelector('article.content');
+    if (!articleContainer || document.getElementById('mohamiAutoTOC')) return;
+    var headings = articleContainer.querySelectorAll('h2');
+    if (headings.length < 3) return;
+
+    var toc = document.createElement('nav');
+    toc.id = 'mohamiAutoTOC';
+    toc.className = 'no-print';
+    toc.setAttribute('aria-label', 'فهرس محتويات المقال');
+    toc.style.cssText = 'margin:20px 0 28px; padding:18px 22px; border-radius:16px; background:rgba(99,102,241,0.08); border:1px solid rgba(99,102,241,0.3); font-family:Cairo,sans-serif;';
+
+    var listHtml = '';
+    headings.forEach(function(h, idx) {
+      if (!h.id) h.id = 'sec-heading-' + (idx + 1);
+      listHtml += '<li style="margin-bottom:6px;"><a href="#' + h.id + '" style="color:inherit; text-decoration:none; font-size:13.5px; font-weight:700;">' + (idx + 1) + '. ' + h.innerText + '</a></li>';
+    });
+
+    toc.innerHTML =
+      '<div style="font-size:14.5px; font-weight:900; color:#4f46e5; margin-bottom:10px;">📑 فهرس محتويات الدليل القانوني السريع:</div>' +
+      '<ul style="list-style:none; padding:0; margin:0; columns:2; column-gap:24px;">' + listHtml + '</ul>';
+
+    var firstH2 = headings[0];
+    firstH2.parentNode.insertBefore(toc, firstH2);
+  }
+
+  function initV9UI() {
+    mountProgressAndBackToTop();
+    mountHeaderControls();
+    mountAutoTOC();
+    syncLightModeDOM();
+
+    var debounceTimer = null;
+    if (window.MutationObserver && document.body) {
+      var obs = new MutationObserver(function(mutations) {
+        if (!isLightMode()) return;
+        var hasNewNodes = false;
+        for (var i = 0; i < mutations.length; i++) {
+          if (mutations[i].addedNodes && mutations[i].addedNodes.length > 0) {
+            hasNewNodes = true;
+            break;
+          }
+        }
+        if (hasNewNodes) {
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(syncLightModeDOM, 30);
+        }
+      });
+      obs.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+
+  window.toggleMohamiTheme = toggleTheme;
+  window.syncMohamiLightMode = syncLightModeDOM;
+  window.openMohamiSpotlightSearch = openSpotlightSearch;
+
+  if (document.body) {
+    initV9UI();
+  }
+  document.addEventListener('DOMContentLoaded', initV9UI);
+})();
+
+
+// ── [v18 Fix] Dynamic Floating Icons Collision Resolver ──
+(function() {
+  if (window.__MOHAMI_FLOATING_FIX_V18__) return;
+  window.__MOHAMI_FLOATING_FIX_V18__ = true;
+
+  function resolveFloatingCollisions() {
+    var isMobile = window.innerWidth <= 768;
+    var dock = document.getElementById('siteMobileDock') || document.querySelector('.site-mobile-dock');
+    var cookieBanner = document.getElementById('mohami-cookie-banner');
+    var appWrap = document.getElementById('app-workspace-wrapper');
+    var sbTrigger = document.getElementById('global-sidebar-trigger');
+
+    // 1. Hide public sidebar trigger if React App workspace is currently active on screen
+    if (sbTrigger && appWrap) {
+      var appVisible = window.getComputedStyle(appWrap).display !== 'none';
+      sbTrigger.style.setProperty('display', appVisible ? 'none' : 'flex', 'important');
+    }
+
+    // 2. Calculate base bottom offset (above mobile dock & cookie banner if visible)
+    var baseBottom = isMobile ? 84 : 24;
+    if (dock && isMobile && window.getComputedStyle(dock).display !== 'none') {
+      var dockRect = dock.getBoundingClientRect();
+      if (dockRect.height > 0) {
+        baseBottom = Math.max(84, Math.round(window.innerHeight - dockRect.top + 12));
+      }
+    }
+    if (cookieBanner && window.getComputedStyle(cookieBanner).display !== 'none') {
+      if (isMobile) {
+        cookieBanner.style.setProperty('bottom', baseBottom + 'px', 'important');
+      }
+      var cbRect = cookieBanner.getBoundingClientRect();
+      if (cbRect.height > 0) {
+        baseBottom = Math.max(baseBottom, Math.round(window.innerHeight - cbRect.top + 12));
+      }
+    }
+
+    // 3. Stack Right-Side Floating Buttons cleanly from bottom to top
+    var rightSelectors = [
+      '#global-sidebar-trigger',
+      '[data-ai-advisor]',
+      '.floating-action-bar',
+      '.whatsapp-float',
+      '#whatsapp-floating-btn'
+    ];
+    var rightOffset = baseBottom;
+    var seenRight = [];
+    rightSelectors.forEach(function(sel) {
+      var els = document.querySelectorAll(sel);
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (seenRight.indexOf(el) !== -1) continue;
+        seenRight.push(el);
+        var cs = window.getComputedStyle(el);
+        if (cs.display === 'none' || cs.visibility === 'hidden' || cs.opacity === '0') continue;
+        el.style.setProperty('bottom', rightOffset + 'px', 'important');
+        el.style.setProperty('right', (isMobile ? 14 : 24) + 'px', 'important');
+        el.style.setProperty('left', 'auto', 'important');
+        var h = el.getBoundingClientRect().height || 46;
+        rightOffset += Math.round(h + 10);
+      }
+    });
+
+    // 4. Stack Left-Side Floating Buttons cleanly from bottom to top
+    var leftSelectors = [
+      '#global-nav-floating-wrap',
+      '#mohamiBackToTopBtn'
+    ];
+    var leftOffset = baseBottom;
+    var seenLeft = [];
+    leftSelectors.forEach(function(sel) {
+      var els = document.querySelectorAll(sel);
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (seenLeft.indexOf(el) !== -1) continue;
+        seenLeft.push(el);
+        var cs = window.getComputedStyle(el);
+        if (cs.display === 'none' || cs.visibility === 'hidden' || cs.opacity === '0') continue;
+        el.style.setProperty('bottom', leftOffset + 'px', 'important');
+        el.style.setProperty('left', (isMobile ? 14 : 24) + 'px', 'important');
+        el.style.setProperty('right', 'auto', 'important');
+        var h = el.getBoundingClientRect().height || 42;
+        leftOffset += Math.round(h + 10);
+      }
+    });
+  }
+
+  window.addEventListener('scroll', resolveFloatingCollisions, { passive: true });
+  window.addEventListener('resize', resolveFloatingCollisions, { passive: true });
+  document.addEventListener('DOMContentLoaded', function() {
+    resolveFloatingCollisions();
+    setTimeout(resolveFloatingCollisions, 300);
+    setTimeout(resolveFloatingCollisions, 1200);
+  });
+  if (document.body) {
+    resolveFloatingCollisions();
+    var obs = new MutationObserver(function() { resolveFloatingCollisions(); });
+    obs.observe(document.body, { childList: true, subtree: false, attributes: true, attributeFilter: ['style', 'class'] });
   }
 })();

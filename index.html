@@ -49,7 +49,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/header.css?v=20261015" />
+    <link rel="stylesheet" href="/header.css?v=20261113v18" />
 
     <!-- Google AdSense -->
     <meta name="google-adsense-account" content="ca-pub-7725405859334364" />
@@ -364,7 +364,7 @@
 
     <!-- React Application Styles (Non-blocking load; JS bundle loads on-demand when lawyer opens workspace) -->
     
-    <script src="/sw-register.js?v=20261030v15" defer></script>
+    <script src="/sw-register.js?v=20261106v24" defer></script>
 
     <style>
       .portal-shell {
@@ -1438,7 +1438,98 @@
       }
 
     </style>
-  </head>
+  <style id="floating-collision-v18">
+
+/* ── [v18 Fix] منع تداخل الأيقونات العائمة أسفل الصفحة نهائياً ── */
+/* 1. الكمبيوتر والشاشات الكبيرة */
+@media (min-width: 769px) {
+  #global-sidebar-trigger {
+    bottom: 24px !important;
+    right: 24px !important;
+    left: auto !important;
+    z-index: 999990 !important;
+  }
+  #global-nav-floating-wrap {
+    bottom: 24px !important;
+    left: 24px !important;
+    right: auto !important;
+    z-index: 999990 !important;
+  }
+  /* رفع زر الصعود للأعلى وزر المستشار الذكي ليكونا فوق الأزرار السفلية بدون تداخل */
+  #mohamiBackToTopBtn {
+    bottom: 82px !important;
+    left: 24px !important;
+    right: auto !important;
+    z-index: 999989 !important;
+  }
+  [data-ai-advisor],
+  .floating-action-bar {
+    bottom: 86px !important;
+    right: 24px !important;
+    z-index: 999988 !important;
+  }
+  .back-to-portal-btn,
+  #backToPortalBtn {
+    bottom: 24px !important;
+    right: 175px !important;
+    left: auto !important;
+    z-index: 999991 !important;
+  }
+}
+
+/* 2. الهواتف والشاشات الصغيرة (فوق الشريط السفلي .site-mobile-dock ذي الارتفاع 64px) */
+@media (max-width: 768px) {
+  .site-mobile-dock,
+  #siteMobileDock {
+    bottom: 10px !important;
+    left: 10px !important;
+    right: 10px !important;
+    z-index: 999999 !important;
+  }
+  #global-sidebar-trigger {
+    bottom: 84px !important;
+    right: 14px !important;
+    left: auto !important;
+    z-index: 999990 !important;
+  }
+  #global-nav-floating-wrap {
+    bottom: 84px !important;
+    left: 14px !important;
+    right: auto !important;
+    z-index: 999990 !important;
+  }
+  /* رفع زر السهم للأعلى على الموبايل ليكون في الطابق الثاني فوق أزرار اليسار فلا يصطدم بها */
+  #mohamiBackToTopBtn {
+    bottom: 138px !important;
+    left: 14px !important;
+    right: auto !important;
+    z-index: 999989 !important;
+  }
+  /* رفع أيقونة المستشار الذكي لتكون في الطابق الثاني فوق زر الفهرس يميناً */
+  [data-ai-advisor],
+  .floating-action-bar {
+    bottom: 142px !important;
+    right: 14px !important;
+    z-index: 999988 !important;
+  }
+  /* رفع إشعار الكوكيز على الموبايل ليظهر فوق شريط التنقل السفلي وليس تحته */
+  #mohami-cookie-banner {
+    bottom: 82px !important;
+    left: 10px !important;
+    right: 10px !important;
+    z-index: 9999995 !important;
+  }
+  .back-to-portal-btn,
+  #backToPortalBtn {
+    bottom: 84px !important;
+    right: 70px !important;
+    left: auto !important;
+    z-index: 999991 !important;
+  }
+}
+
+</style>
+</head>
   <body class="bg-slate-900 font-sans antialiased text-slate-100 selection:bg-indigo-500 selection:text-white">
 
     <!-- 1. PUBLIC SEO PORTAL (Visible by default to Visitors, Googlebot & AdSense) -->
@@ -2342,8 +2433,6 @@
         } catch (e) {}
       })();
     </script>
-    <script src="/sidebar.js?v=20261016" defer></script>
-    <script src="/mobile-dock.js?v=20261016" defer></script>
   <script type="module" src="/src/main.tsx"></script>
   
     <!-- سكربت التحكم في سلايدر الموضوعات الأكثر تداولاً 2026 -->
@@ -2512,5 +2601,108 @@
     })();
     </script>
 
+  <script id="floating-resolver-v18">
+
+// ── [v18 Fix] Dynamic Floating Icons Collision Resolver ──
+(function() {
+  if (window.__MOHAMI_FLOATING_FIX_V18__) return;
+  window.__MOHAMI_FLOATING_FIX_V18__ = true;
+
+  function resolveFloatingCollisions() {
+    var isMobile = window.innerWidth <= 768;
+    var dock = document.getElementById('siteMobileDock') || document.querySelector('.site-mobile-dock');
+    var cookieBanner = document.getElementById('mohami-cookie-banner');
+    var appWrap = document.getElementById('app-workspace-wrapper');
+    var sbTrigger = document.getElementById('global-sidebar-trigger');
+
+    // 1. Hide public sidebar trigger if React App workspace is currently active on screen
+    if (sbTrigger && appWrap) {
+      var appVisible = window.getComputedStyle(appWrap).display !== 'none';
+      sbTrigger.style.setProperty('display', appVisible ? 'none' : 'flex', 'important');
+    }
+
+    // 2. Calculate base bottom offset (above mobile dock & cookie banner if visible)
+    var baseBottom = isMobile ? 84 : 24;
+    if (dock && isMobile && window.getComputedStyle(dock).display !== 'none') {
+      var dockRect = dock.getBoundingClientRect();
+      if (dockRect.height > 0) {
+        baseBottom = Math.max(84, Math.round(window.innerHeight - dockRect.top + 12));
+      }
+    }
+    if (cookieBanner && window.getComputedStyle(cookieBanner).display !== 'none') {
+      if (isMobile) {
+        cookieBanner.style.setProperty('bottom', baseBottom + 'px', 'important');
+      }
+      var cbRect = cookieBanner.getBoundingClientRect();
+      if (cbRect.height > 0) {
+        baseBottom = Math.max(baseBottom, Math.round(window.innerHeight - cbRect.top + 12));
+      }
+    }
+
+    // 3. Stack Right-Side Floating Buttons cleanly from bottom to top
+    var rightSelectors = [
+      '#global-sidebar-trigger',
+      '[data-ai-advisor]',
+      '.floating-action-bar',
+      '.whatsapp-float',
+      '#whatsapp-floating-btn'
+    ];
+    var rightOffset = baseBottom;
+    var seenRight = [];
+    rightSelectors.forEach(function(sel) {
+      var els = document.querySelectorAll(sel);
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (seenRight.indexOf(el) !== -1) continue;
+        seenRight.push(el);
+        var cs = window.getComputedStyle(el);
+        if (cs.display === 'none' || cs.visibility === 'hidden' || cs.opacity === '0') continue;
+        el.style.setProperty('bottom', rightOffset + 'px', 'important');
+        el.style.setProperty('right', (isMobile ? 14 : 24) + 'px', 'important');
+        el.style.setProperty('left', 'auto', 'important');
+        var h = el.getBoundingClientRect().height || 46;
+        rightOffset += Math.round(h + 10);
+      }
+    });
+
+    // 4. Stack Left-Side Floating Buttons cleanly from bottom to top
+    var leftSelectors = [
+      '#global-nav-floating-wrap',
+      '#mohamiBackToTopBtn'
+    ];
+    var leftOffset = baseBottom;
+    var seenLeft = [];
+    leftSelectors.forEach(function(sel) {
+      var els = document.querySelectorAll(sel);
+      for (var i = 0; i < els.length; i++) {
+        var el = els[i];
+        if (seenLeft.indexOf(el) !== -1) continue;
+        seenLeft.push(el);
+        var cs = window.getComputedStyle(el);
+        if (cs.display === 'none' || cs.visibility === 'hidden' || cs.opacity === '0') continue;
+        el.style.setProperty('bottom', leftOffset + 'px', 'important');
+        el.style.setProperty('left', (isMobile ? 14 : 24) + 'px', 'important');
+        el.style.setProperty('right', 'auto', 'important');
+        var h = el.getBoundingClientRect().height || 42;
+        leftOffset += Math.round(h + 10);
+      }
+    });
+  }
+
+  window.addEventListener('scroll', resolveFloatingCollisions, { passive: true });
+  window.addEventListener('resize', resolveFloatingCollisions, { passive: true });
+  document.addEventListener('DOMContentLoaded', function() {
+    resolveFloatingCollisions();
+    setTimeout(resolveFloatingCollisions, 300);
+    setTimeout(resolveFloatingCollisions, 1200);
+  });
+  if (document.body) {
+    resolveFloatingCollisions();
+    var obs = new MutationObserver(function() { resolveFloatingCollisions(); });
+    obs.observe(document.body, { childList: true, subtree: false, attributes: true, attributeFilter: ['style', 'class'] });
+  }
+})();
+
+  </script>
 </body>
 </html>
