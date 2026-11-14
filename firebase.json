@@ -626,6 +626,10 @@
       ],
       "rewrites": [
         {
+          "source": "/courts-session-rolls",
+          "destination": "/courts-session-rolls.html"
+        },
+        {
           "source": "/lawyers-data.json",
           "destination": "/data/lawyers-data.json"
         },
