@@ -3977,6 +3977,27 @@
       "duration": "56ث",
       "size": 28466734,
       "publishedAt": "2026-11-13T21:26:42.163Z"
+    },
+    {
+      "topicId": "trend-cyber-extortion-and-social-media-penalties-egypt",
+      "title": "الجرائم الإلكترونية وعقوبة ابتزاز الأشخاص على وسائل التواصل الاجتماعي في مصر",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#جرائم تقنية المعلومات",
+        "#قانون جرائم الإنترنت",
+        "#ابتزاز إلكتروني"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cyber-extortion-and-social-media-penalties-egypt.mp4",
+      "videoId": "1160774679729997",
+      "permalink": "https://www.facebook.com/reel/1160774679729997",
+      "source": "trending-topics.json",
+      "duration": "1د 1ث",
+      "size": 26528429,
+      "publishedAt": "2026-11-14T13:25:58.410Z"
     }
   ]
 }
