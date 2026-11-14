@@ -2709,6 +2709,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1160774679729997",
       "publishedAt": "2026-11-14T13:26:26.601Z"
+    },
+    {
+      "topicId": "trend-family-court-alimony-and-custody-expenses-law-egypt",
+      "kind": "short",
+      "videoId": "AboDVIrT-i8",
+      "url": "https://www.youtube.com/watch?v=AboDVIrT-i8",
+      "fbPermalink": "https://www.facebook.com/reel/2398763650928037",
+      "publishedAt": "2026-11-14T19:55:20.039Z"
+    },
+    {
+      "topicId": "trend-family-court-alimony-and-custody-expenses-law-egypt",
+      "title": "إجراءات رفع قضايا النفقات وأجور الحضانة في محاكم الأسرة المصرية — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-family-court-alimony-and-custody-expenses-law-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "1JTv7K97fl0",
+      "url": "https://www.youtube.com/watch?v=1JTv7K97fl0",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2398763650928037",
+      "publishedAt": "2026-11-14T19:55:47.354Z"
     }
   ]
 }

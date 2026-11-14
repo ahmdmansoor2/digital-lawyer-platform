@@ -3998,6 +3998,27 @@
       "duration": "1د 1ث",
       "size": 26528429,
       "publishedAt": "2026-11-14T13:25:58.410Z"
+    },
+    {
+      "topicId": "trend-family-court-alimony-and-custody-expenses-law-egypt",
+      "title": "إجراءات رفع قضايا النفقات وأجور الحضانة في محاكم الأسرة المصرية",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون الأحوال الشخصية",
+        "#محكمة الأسرة",
+        "#نفقة الزوجة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-family-court-alimony-and-custody-expenses-law-egypt.mp4",
+      "videoId": "2398763650928037",
+      "permalink": "https://www.facebook.com/reel/2398763650928037",
+      "source": "trending-topics.json",
+      "duration": "55ث",
+      "size": 17858323,
+      "publishedAt": "2026-11-14T19:55:18.275Z"
     }
   ]
 }
