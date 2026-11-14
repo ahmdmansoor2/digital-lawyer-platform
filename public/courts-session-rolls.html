@@ -73,25 +73,99 @@
 
     /* TOP HEADER */
     .portal-nav {
-      background: rgba(15,23,42,0.92);
+      background: rgba(15, 23, 42, 0.94);
       border-bottom: 1px solid var(--border);
-      padding: 14px 24px;
+      padding: 12px 24px;
       backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       position: sticky; top: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    }
+    .portal-nav-top {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
     }
     .portal-brand {
-      display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; font-weight: 900; font-size: 1.15rem;
+      display: flex; align-items: center; gap: 8px; text-decoration: none; color: #fff; font-weight: 900; font-size: 1.15rem; white-space: nowrap;
     }
     .portal-brand-badge {
       background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      color: #fff; font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 6px;
+      color: #fff; font-size: 0.7rem; font-weight: 800; padding: 2px 7px; border-radius: 6px;
     }
-    .portal-links { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .portal-home-quick-btn {
+      display: none;
+      align-items: center; gap: 5px; background: rgba(99, 102, 241, 0.18); border: 1px solid rgba(99, 102, 241, 0.35);
+      color: #c7d2fe; font-size: 0.8rem; font-weight: 800; padding: 5px 12px; border-radius: 8px; text-decoration: none; white-space: nowrap;
+    }
+    .portal-home-quick-btn:hover { background: #4f46e5; color: #fff; }
+    .portal-links {
+      display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+    }
     .portal-link-btn {
-      color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 700; padding: 6px 12px; border-radius: 8px; transition: all 0.2s;
+      color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 700; padding: 6px 12px; border-radius: 8px; transition: all 0.2s; white-space: nowrap;
     }
     .portal-link-btn:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .portal-link-highlight {
+      background: rgba(56, 189, 248, 0.12); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.25);
+    }
+    .portal-link-highlight:hover { background: rgba(56, 189, 248, 0.22); color: #fff; }
+
+    /* MOBILE NAVIGATION & RESPONSIVE ENHANCEMENTS */
+    @media (max-width: 768px) {
+      .portal-nav {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px 14px 8px;
+        gap: 8px;
+      }
+      .portal-nav-top {
+        width: 100%;
+      }
+      .portal-brand {
+        font-size: 1.05rem;
+      }
+      .portal-home-quick-btn {
+        display: inline-flex;
+      }
+      .portal-links {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 6px;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .portal-links::-webkit-scrollbar {
+        display: none;
+      }
+      .portal-link-btn {
+        font-size: 0.78rem;
+        padding: 5px 11px;
+        background: rgba(30, 41, 59, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+        flex-shrink: 0;
+      }
+      .hero {
+        padding: 24px 14px 18px;
+      }
+      .hero h1 {
+        font-size: 1.45rem;
+      }
+      .decoder-box {
+        padding: 16px;
+        border-radius: 16px;
+      }
+      .grid-container {
+        grid-template-columns: 1fr;
+        padding: 0 12px;
+      }
+      .stat-pill {
+        font-size: 0.78rem;
+        padding: 8px 12px;
+      }
+    }
 
     /* HERO */
     .hero {
@@ -254,17 +328,21 @@
 
   <!-- PORTAL NAV -->
   <header class="portal-nav">
-    <a href="/" class="portal-brand">
-      <span>⚖️ المحامي الرقمي</span>
-      <span class="portal-brand-badge">2026</span>
-    </a>
-    <div class="portal-links">
+    <div class="portal-nav-top">
+      <a href="/" class="portal-brand">
+        <span>⚖️ المحامي الرقمي</span>
+        <span class="portal-brand-badge">2026</span>
+      </a>
+      <a href="/" class="portal-home-quick-btn">🏠 الرئيسية</a>
+    </div>
+    <nav class="portal-links" aria-label="أقسام الموقع">
       <a href="/" class="portal-link-btn">🏠 الرئيسية</a>
       <a href="/courts-directory.html" class="portal-link-btn">🏛️ دليل المحاكم</a>
       <a href="/legal-calculators.html" class="portal-link-btn">🧮 الحاسبات</a>
       <a href="/court-precedents.html" class="portal-link-btn">⚖️ أحكام النقض</a>
       <a href="/legal-library.html" class="portal-link-btn">📚 المكتبة</a>
-    </div>
+      <a href="#qrScannerCard" class="portal-link-btn portal-link-highlight">📷 ماسح الباركود</a>
+    </nav>
   </header>
 
   <!-- HERO -->
@@ -285,7 +363,7 @@
     </section>
 
     <!-- QR DECODER TOOL -->
-    <section class="decoder-box">
+    <section class="decoder-box" id="qrScannerCard">
       <div class="decoder-header">
         <div class="decoder-title">
           <span>📷 ماسح وفك شفرة باركود الجلسات من الصور والمنشورات</span>
