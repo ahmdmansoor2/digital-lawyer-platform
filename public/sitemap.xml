@@ -3546,10 +3546,4 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://mohamidigital.online/courts-session-rolls.html</loc>
-    <lastmod>2026-11-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-  </url>
 </urlset>
