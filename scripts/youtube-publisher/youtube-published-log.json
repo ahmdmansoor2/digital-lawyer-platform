@@ -2728,6 +2728,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2398763650928037",
       "publishedAt": "2026-11-14T19:55:47.354Z"
+    },
+    {
+      "topicId": "trend-shahr-aqary-property-registration-steps-egypt",
+      "kind": "short",
+      "videoId": "m95soemLdS4",
+      "url": "https://www.youtube.com/watch?v=m95soemLdS4",
+      "fbPermalink": "https://www.facebook.com/reel/2165786140698492",
+      "publishedAt": "2026-11-15T13:54:30.790Z"
+    },
+    {
+      "topicId": "trend-shahr-aqary-property-registration-steps-egypt",
+      "title": "المستندات والخطوات القانونية لإشهار وتوثيق عقود البيع في الشهر العقاري بعد التعد — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-shahr-aqary-property-registration-steps-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "CoxqitquvkU",
+      "url": "https://www.youtube.com/watch?v=CoxqitquvkU",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2165786140698492",
+      "publishedAt": "2026-11-15T13:55:06.912Z"
     }
   ]
 }
