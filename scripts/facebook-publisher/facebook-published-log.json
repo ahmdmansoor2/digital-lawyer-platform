@@ -4040,6 +4040,27 @@
       "duration": "1د 1ث",
       "size": 22997413,
       "publishedAt": "2026-11-15T13:54:29.221Z"
+    },
+    {
+      "topicId": "trend-private-sector-overtime-and-end-of-service-calculation-egypt",
+      "title": "كيفية حساب مكافأة الأجر الأساسي وبدل الساعات الإضافية للعاملين بالقطاع الخاص في مصر",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون العمل",
+        "#قانون العمل للقطاع الخاص",
+        "#الساعات الإضافية"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-private-sector-overtime-and-end-of-service-calculation-egypt.mp4",
+      "videoId": "1016995524001473",
+      "permalink": "https://www.facebook.com/reel/1016995524001473",
+      "source": "trending-topics.json",
+      "duration": "51ث",
+      "size": 14314078,
+      "publishedAt": "2026-11-15T20:21:51.289Z"
     }
   ]
 }
