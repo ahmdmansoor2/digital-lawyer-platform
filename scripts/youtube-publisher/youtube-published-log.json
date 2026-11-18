@@ -2823,6 +2823,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1135818876001760",
       "publishedAt": "2026-11-18T00:57:46.024Z"
+    },
+    {
+      "topicId": "trend-late-tenant-payment",
+      "kind": "short",
+      "videoId": "k9xIwRvwk7w",
+      "url": "https://www.youtube.com/watch?v=k9xIwRvwk7w",
+      "fbPermalink": "https://www.facebook.com/reel/2703712786732704",
+      "publishedAt": "2026-11-18T15:34:58.501Z"
+    },
+    {
+      "topicId": "trend-late-tenant-payment",
+      "title": "ماذا لو تأخر المستأجر عن سداد الإيجار؟ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-late-tenant-payment-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "bxGrj_psXFY",
+      "url": "https://www.youtube.com/watch?v=bxGrj_psXFY",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2703712786732704",
+      "publishedAt": "2026-11-18T15:35:32.917Z"
     }
   ]
 }

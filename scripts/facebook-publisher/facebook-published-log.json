@@ -4124,6 +4124,27 @@
       "duration": "57ث",
       "size": 26279712,
       "publishedAt": "2026-11-18T00:57:12.825Z"
+    },
+    {
+      "topicId": "trend-late-tenant-payment",
+      "title": "ماذا لو تأخر المستأجر عن سداد الإيجار؟",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون الإيجارات",
+        "#إيجار",
+        "#إيجار قديم"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-late-tenant-payment.mp4",
+      "videoId": "2703712786732704",
+      "permalink": "https://www.facebook.com/reel/2703712786732704",
+      "source": "trending-topics.json",
+      "duration": "58ث",
+      "size": 17415425,
+      "publishedAt": "2026-11-18T15:34:56.691Z"
     }
   ]
 }
