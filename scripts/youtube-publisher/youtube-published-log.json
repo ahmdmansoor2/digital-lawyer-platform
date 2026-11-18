@@ -2804,6 +2804,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1155444890322361",
       "publishedAt": "2026-11-17T01:54:53.548Z"
+    },
+    {
+      "topicId": "trend-old-rent-law-164-2025-increase",
+      "kind": "short",
+      "videoId": "22m8Fx0ohJw",
+      "url": "https://www.youtube.com/watch?v=22m8Fx0ohJw",
+      "fbPermalink": "https://www.facebook.com/reel/1135818876001760",
+      "publishedAt": "2026-11-18T00:57:14.750Z"
+    },
+    {
+      "topicId": "trend-old-rent-law-164-2025-increase",
+      "title": "الدليل التشريعي الشامل للزيادة السنوية 15% لقانون الإيجار القديم وحالات الإخلاء — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-old-rent-law-164-2025-increase-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "QonQDJ3mxns",
+      "url": "https://www.youtube.com/watch?v=QonQDJ3mxns",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1135818876001760",
+      "publishedAt": "2026-11-18T00:57:46.024Z"
     }
   ]
 }
