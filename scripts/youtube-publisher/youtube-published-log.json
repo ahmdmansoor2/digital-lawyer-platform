@@ -2842,6 +2842,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2703712786732704",
       "publishedAt": "2026-11-18T15:35:32.917Z"
+    },
+    {
+      "topicId": "trend-inheritance-shares-egypt",
+      "kind": "short",
+      "videoId": "DsN1FxqDDLw",
+      "url": "https://www.youtube.com/watch?v=DsN1FxqDDLw",
+      "fbPermalink": "https://www.facebook.com/reel/28916914108008138",
+      "publishedAt": "2026-11-19T15:49:55.462Z"
+    },
+    {
+      "topicId": "trend-inheritance-shares-egypt",
+      "title": "دليل بسيط لفهم الميراث في القانون المصري — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-inheritance-shares-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "8FmAkziNFBM",
+      "url": "https://www.youtube.com/watch?v=8FmAkziNFBM",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/28916914108008138",
+      "publishedAt": "2026-11-19T15:50:24.758Z"
     }
   ]
 }

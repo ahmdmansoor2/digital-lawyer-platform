@@ -4145,6 +4145,27 @@
       "duration": "58ث",
       "size": 17415425,
       "publishedAt": "2026-11-18T15:34:56.691Z"
+    },
+    {
+      "topicId": "trend-inheritance-shares-egypt",
+      "title": "دليل بسيط لفهم الميراث في القانون المصري",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الميراث",
+        "#ميراث",
+        "#ميراث الزوجة من زوجها"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-inheritance-shares-egypt.mp4",
+      "videoId": "28916914108008138",
+      "permalink": "https://www.facebook.com/reel/28916914108008138",
+      "source": "trending-topics.json",
+      "duration": "60ث",
+      "size": 30289663,
+      "publishedAt": "2026-11-19T15:49:53.559Z"
     }
   ]
 }
