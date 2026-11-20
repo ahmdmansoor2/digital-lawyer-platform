@@ -1,11 +1,11 @@
 {
   "date": "2026-11-20",
-  "generatedAt": "2026-11-20T00:27:45.482Z",
+  "generatedAt": "2026-11-20T15:08:40.437Z",
   "status": "error",
   "blogArticles": 405,
-  "fbPosts": 0,
-  "reels": 0,
-  "ghRuns": 13,
+  "fbPosts": 1,
+  "reels": 1,
+  "ghRuns": 16,
   "checks": [
     {
       "name": "site_root",
@@ -46,8 +46,8 @@
     {
       "name": "facebook",
       "label": "فيسبوك: منشورات اليوم والصور والريلز",
-      "status": "warn",
-      "findings": 2
+      "status": "ok",
+      "findings": 0
     },
     {
       "name": "github_runs",
