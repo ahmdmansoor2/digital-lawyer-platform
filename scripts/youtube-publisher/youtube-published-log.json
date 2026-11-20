@@ -2861,6 +2861,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/28916914108008138",
       "publishedAt": "2026-11-19T15:50:24.758Z"
+    },
+    {
+      "topicId": "trend-divorce-procedures-egypt",
+      "kind": "short",
+      "videoId": "TNDRnRETrUI",
+      "url": "https://www.youtube.com/watch?v=TNDRnRETrUI",
+      "fbPermalink": "https://www.facebook.com/reel/1809599710297745",
+      "publishedAt": "2026-11-20T00:36:45.377Z"
+    },
+    {
+      "topicId": "trend-divorce-procedures-egypt",
+      "title": "إجراءات الطلاق في مصر: دليلك خطوة بخطوة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-divorce-procedures-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "d76tLM8z-ck",
+      "url": "https://www.youtube.com/watch?v=d76tLM8z-ck",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1809599710297745",
+      "publishedAt": "2026-11-20T00:37:15.072Z"
     }
   ]
 }
