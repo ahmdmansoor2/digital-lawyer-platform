@@ -4208,6 +4208,27 @@
       "duration": "1د 8ث",
       "size": 18129806,
       "publishedAt": "2026-11-20T15:26:08.352Z"
+    },
+    {
+      "topicId": "trend-consumer-rights-egypt",
+      "title": "حقوقك كمستهلك في مصر: ماذا تفعل عند شراء سلعة معيبة؟",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#حقوق المستهلك",
+        "#جهاز حماية المستهلك",
+        "#سلعة معيبة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-consumer-rights-egypt.mp4",
+      "videoId": "1893647435411587",
+      "permalink": "https://www.facebook.com/reel/1893647435411587",
+      "source": "trending-topics.json",
+      "duration": "58ث",
+      "size": 27626951,
+      "publishedAt": "2026-11-20T23:59:20.334Z"
     }
   ]
 }
