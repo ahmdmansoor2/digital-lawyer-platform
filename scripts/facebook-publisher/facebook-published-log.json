@@ -4187,6 +4187,27 @@
       "duration": "44ث",
       "size": 16882745,
       "publishedAt": "2026-11-20T00:36:42.942Z"
+    },
+    {
+      "topicId": "trend-employment-contract-termination",
+      "title": "إنهاء عقد العمل في القانون المصري: حقوقك وواجباتك",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون العمل",
+        "#عقد عمل",
+        "#عقد عمل محدد المدة"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-employment-contract-termination.mp4",
+      "videoId": "2393799544767364",
+      "permalink": "https://www.facebook.com/reel/2393799544767364",
+      "source": "trending-topics.json",
+      "duration": "1د 8ث",
+      "size": 18129806,
+      "publishedAt": "2026-11-20T15:26:08.352Z"
     }
   ]
 }

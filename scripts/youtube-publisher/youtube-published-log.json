@@ -2880,6 +2880,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1809599710297745",
       "publishedAt": "2026-11-20T00:37:15.072Z"
+    },
+    {
+      "topicId": "trend-employment-contract-termination",
+      "kind": "short",
+      "videoId": "8P8xmBY9O7Y",
+      "url": "https://www.youtube.com/watch?v=8P8xmBY9O7Y",
+      "fbPermalink": "https://www.facebook.com/reel/2393799544767364",
+      "publishedAt": "2026-11-20T15:26:10.430Z"
+    },
+    {
+      "topicId": "trend-employment-contract-termination",
+      "title": "إنهاء عقد العمل في القانون المصري: حقوقك وواجباتك — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-employment-contract-termination-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "9JaS0AQPylM",
+      "url": "https://www.youtube.com/watch?v=9JaS0AQPylM",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2393799544767364",
+      "publishedAt": "2026-11-20T15:26:40.631Z"
     }
   ]
 }
