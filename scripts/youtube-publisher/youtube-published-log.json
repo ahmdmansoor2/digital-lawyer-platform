@@ -2937,6 +2937,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1461325018845890",
       "publishedAt": "2026-11-21T14:37:18.715Z"
+    },
+    {
+      "topicId": "trend-execution-judgments-egypt",
+      "kind": "short",
+      "videoId": "A0DkGOBcYy8",
+      "url": "https://www.youtube.com/watch?v=A0DkGOBcYy8",
+      "fbPermalink": "https://www.facebook.com/reel/1949701953067172",
+      "publishedAt": "2026-11-21T20:55:34.039Z"
+    },
+    {
+      "topicId": "trend-execution-judgments-egypt",
+      "title": "التنفيذ الجبري للأحكام في مصر: كيف تستوفي حقك بعد الحكم؟ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-execution-judgments-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "rAOpOcaEgT0",
+      "url": "https://www.youtube.com/watch?v=rAOpOcaEgT0",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1949701953067172",
+      "publishedAt": "2026-11-21T20:56:04.086Z"
     }
   ]
 }
