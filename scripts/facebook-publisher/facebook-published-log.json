@@ -4229,6 +4229,27 @@
       "duration": "58ث",
       "size": 27626951,
       "publishedAt": "2026-11-20T23:59:20.334Z"
+    },
+    {
+      "topicId": "trend-company-formation-egypt",
+      "title": "كيف تؤسس شركة في مصر: الأنواع والإجراءات والأوراق المطلوبة",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#الشركات",
+        "#تأسيس شركة",
+        "#تأسيس شركة في مصر"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-company-formation-egypt.mp4",
+      "videoId": "1461325018845890",
+      "permalink": "https://www.facebook.com/reel/1461325018845890",
+      "source": "trending-topics.json",
+      "duration": "57ث",
+      "size": 24815702,
+      "publishedAt": "2026-11-21T14:36:36.672Z"
     }
   ]
 }

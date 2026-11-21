@@ -2918,6 +2918,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1893647435411587",
       "publishedAt": "2026-11-20T23:59:55.764Z"
+    },
+    {
+      "topicId": "trend-company-formation-egypt",
+      "kind": "short",
+      "videoId": "IxUp0SIkhlk",
+      "url": "https://www.youtube.com/watch?v=IxUp0SIkhlk",
+      "fbPermalink": "https://www.facebook.com/reel/1461325018845890",
+      "publishedAt": "2026-11-21T14:36:38.877Z"
+    },
+    {
+      "topicId": "trend-company-formation-egypt",
+      "title": "كيف تؤسس شركة في مصر: الأنواع والإجراءات والأوراق المطلوبة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-company-formation-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "JFebA9iPhBY",
+      "url": "https://www.youtube.com/watch?v=JFebA9iPhBY",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1461325018845890",
+      "publishedAt": "2026-11-21T14:37:18.715Z"
     }
   ]
 }
