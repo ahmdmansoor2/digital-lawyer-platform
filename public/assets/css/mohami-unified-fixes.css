@@ -1,0 +1,297 @@
+/* ==========================================================================
+   Mohami Digital (mohamidigital.online) — Phase 1 Critical Fixes Stylesheet
+   Fixes:
+   1. Unified responsive RTL header & footer (no horizontal overflow)
+   2. Arabic BiDi formatting for phone numbers & hours
+   3. High-contrast instant calculator results (no dark-on-dark or fade lag)
+   4. Contract generator Arabic font stack & input padding (fixes □□□□ & clipping)
+   5. AdSense unfilled ad container collapse (protects CLS)
+   ========================================================================== */
+
+:root {
+  --md-bg: #0f172a;
+  --md-surface: #1e293b;
+  --md-border: #334155;
+  --md-text: #f8fafc;
+  --md-text-muted: #cbd5e1;
+  --md-accent: #38bdf8;
+  --md-accent-hover: #7dd3fc;
+  --md-font-ar: 'Cairo', 'IBM Plex Sans Arabic', 'Tajawal', system-ui, -apple-system, sans-serif;
+}
+
+[data-theme="light"] {
+  --md-bg: #ffffff;
+  --md-surface: #f8fafc;
+  --md-border: #cbd5e1;
+  --md-text: #0f172a;
+  --md-text-muted: #334155;
+  --md-accent: #1d4ed8;
+  --md-accent-hover: #1e40af;
+}
+
+/* 1. Prevent Horizontal Overflow Across All Pages */
+html, body {
+  max-width: 100%;
+  overflow-x: clip;
+  font-family: var(--md-font-ar);
+}
+
+/* 2. BiDi / RTL Numeric & Phone Protection */
+.ltr-num,
+[dir="ltr"] {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+
+/* 3. Unified Responsive Header */
+.md-header {
+  width: 100%;
+  background: var(--md-bg);
+  border-bottom: 1px solid var(--md-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.md-header-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+}
+
+.md-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--md-text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.15rem;
+  white-space: nowrap;
+}
+
+.md-nav {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.md-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 18px;
+}
+
+.md-nav-list a {
+  color: var(--md-text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 6px 4px;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.md-nav-list a:hover,
+.md-nav-list a:focus-visible {
+  color: var(--md-accent);
+}
+
+.md-header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.md-search-link,
+.md-theme-toggle {
+  font-family: var(--md-font-ar);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--md-text);
+  background: var(--md-surface);
+  border: 1px solid var(--md-border);
+  border-radius: 8px;
+  padding: 6px 14px;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.md-search-link:hover,
+.md-theme-toggle:hover {
+  border-color: var(--md-accent);
+  color: var(--md-accent);
+}
+
+/* 4. Unified Footer */
+.md-footer {
+  width: 100%;
+  background: var(--md-surface);
+  color: var(--md-text);
+  border-top: 1px solid var(--md-border);
+  margin-top: 48px;
+}
+
+.md-footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 40px 20px 28px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+}
+
+.md-footer h3 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+  color: var(--md-text);
+}
+
+.md-footer p,
+.md-footer-links li {
+  color: var(--md-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.md-footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.md-footer-links a {
+  color: var(--md-text-muted);
+  text-decoration: none;
+}
+
+.md-footer-links a:hover {
+  color: var(--md-accent);
+  text-decoration: underline;
+}
+
+.md-footer-bottom {
+  border-top: 1px solid var(--md-border);
+  padding: 16px 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--md-text-muted);
+}
+
+/* 5. Legal Calculators Contrast, Instant Visibility & RTL Select Fix */
+.result-box,
+.results-container,
+#results,
+#resultCard,
+.calc-result {
+  opacity: 1 !important;
+  animation: none !important;
+  transition: none !important;
+  color: #f8fafc !important;
+  background-color: #1e293b !important;
+  border: 1px solid #475569 !important;
+}
+
+[data-theme="light"] .result-box,
+[data-theme="light"] .results-container,
+[data-theme="light"] #results,
+[data-theme="light"] #resultCard,
+[data-theme="light"] .calc-result {
+  color: #0f172a !important;
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+.result-box *,
+.results-container *,
+#results *,
+#resultCard *,
+.calc-result * {
+  color: inherit;
+}
+
+select,
+input[type="text"],
+input[type="number"],
+input[type="email"],
+textarea {
+  font-family: var(--md-font-ar) !important;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding-inline: 14px;
+  text-overflow: ellipsis;
+}
+
+/* Fix RTL <select> left-side clipping in Alimony Calculator */
+select {
+  padding-inline-end: 36px !important;
+  padding-inline-start: 14px !important;
+  line-height: 1.5;
+  min-height: 44px;
+}
+
+/* 6. Contract Generator Font & Tab Fix (prevents □□□□ glyphs) */
+.tab-btn,
+.category-btn,
+.contract-tab,
+[role="tab"],
+button {
+  font-family: var(--md-font-ar) !important;
+}
+
+/* 7. AdSense Unfilled Container Collapse (prevents 250-300px blank gaps & CLS) */
+ins.adsbygoogle[data-ad-status="unfilled"] {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ad-container:has(ins.adsbygoogle[data-ad-status="unfilled"]),
+.ad-slot:has(ins.adsbygoogle[data-ad-status="unfilled"]) {
+  display: none !important;
+}
+
+.ad-container,
+.ad-slot {
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+/* 8. Homepage Carousel Right Arrow Fallback */
+.carousel-next:empty::after,
+.slider-next:empty::after,
+[data-carousel-next]:empty::after {
+  content: "→";
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* 9. Zero Floating Ban - Absolute Enforcement */
+#whatsapp-floating-btn,
+.floating-whatsapp,
+.floating-cta,
+[id*="floating-whatsapp"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}

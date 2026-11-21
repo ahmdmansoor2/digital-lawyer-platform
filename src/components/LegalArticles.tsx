@@ -1285,7 +1285,7 @@ const articles: Article[] = [
     id: 'labor-4',
     title: 'قانون العمل المصري الشامل: العقود وأسعار العمل والحماية الاجتماعية',
     category: 'قانون عمل',
-    readTime: '12 دقائق',
+    readTime: '12 دقيقة',
     icon: <Briefcase className="w-5 h-5" />,
     content: (
       <div className="space-y-4 text-slate-700 leading-relaxed text-right" dir="rtl">
@@ -1559,7 +1559,7 @@ const articles: Article[] = [
     id: 'real-estate-3',
     title: 'المعاملات العقارية في القانون المصري: التسجيل والرهن والإيجار',
     category: 'قانون عقاري',
-    readTime: '13 دقائق',
+    readTime: '13 دقيقة',
     icon: <Landmark className="w-5 h-5" />,
     content: (
       <div className="space-y-4 text-slate-700 leading-relaxed text-right" dir="rtl">
@@ -1766,7 +1766,7 @@ const articles: Article[] = [
     id: 'commercial-3',
     title: 'تأسيس الشركات في القانون المصري: الأنواع والإجراءات والالتزامات القانونية',
     category: 'قانون تجاري',
-    readTime: '13 دقائق',
+    readTime: '13 دقيقة',
     icon: <Users className="w-5 h-5" />,
     content: (
       <div className="space-y-4 text-slate-700 leading-relaxed text-right" dir="rtl">
@@ -2003,7 +2003,7 @@ const articles: Article[] = [
     id: 'tax-1',
     title: 'الأساسيات الضريبية في القانون المصري: الضرائب والإقرار والجزاءات',
     category: 'قانون ضريبي',
-    readTime: '13 دقائق',
+    readTime: '13 دقيقة',
     icon: <FileText className="w-5 h-5" />,
     content: (
       <div className="space-y-4 text-slate-700 leading-relaxed text-right" dir="rtl">
