@@ -4270,6 +4270,27 @@
       "duration": "1د 13ث",
       "size": 26963902,
       "publishedAt": "2026-11-21T20:55:31.901Z"
+    },
+    {
+      "topicId": "trend-civil-marriage-contract",
+      "title": "عقد الزواج المدني وخلافاته: ما الذي يجب أن تعرفه؟",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون الأسرة",
+        "#قانون الزواج الجديد",
+        "#دعوى اثبات زواج"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-civil-marriage-contract.mp4",
+      "videoId": "5120899488136397",
+      "permalink": "https://www.facebook.com/reel/5120899488136397",
+      "source": "trending-topics.json",
+      "duration": "59ث",
+      "size": 22881570,
+      "publishedAt": "2026-11-22T14:34:51.901Z"
     }
   ]
 }

@@ -2956,6 +2956,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1949701953067172",
       "publishedAt": "2026-11-21T20:56:04.086Z"
+    },
+    {
+      "topicId": "trend-civil-marriage-contract",
+      "kind": "short",
+      "videoId": "UeHgzK6--Ok",
+      "url": "https://www.youtube.com/watch?v=UeHgzK6--Ok",
+      "fbPermalink": "https://www.facebook.com/reel/5120899488136397",
+      "publishedAt": "2026-11-22T14:34:54.255Z"
+    },
+    {
+      "topicId": "trend-civil-marriage-contract",
+      "title": "عقد الزواج المدني وخلافاته: ما الذي يجب أن تعرفه؟ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-civil-marriage-contract-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "UQirBxnowok",
+      "url": "https://www.youtube.com/watch?v=UQirBxnowok",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/5120899488136397",
+      "publishedAt": "2026-11-22T14:35:23.219Z"
     }
   ]
 }
