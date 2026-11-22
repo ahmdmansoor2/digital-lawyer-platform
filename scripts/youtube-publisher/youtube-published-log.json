@@ -2975,6 +2975,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/5120899488136397",
       "publishedAt": "2026-11-22T14:35:23.219Z"
+    },
+    {
+      "topicId": "trend-cheque-return-egypt",
+      "kind": "short",
+      "videoId": "k0kC5jgh_nk",
+      "url": "https://www.youtube.com/watch?v=k0kC5jgh_nk",
+      "fbPermalink": "https://www.facebook.com/reel/1190582450589669",
+      "publishedAt": "2026-11-22T21:04:29.952Z"
+    },
+    {
+      "topicId": "trend-cheque-return-egypt",
+      "title": "ماذا يحدث عند رجوع الشيك في مصر؟ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cheque-return-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "yjqak-BLIb0",
+      "url": "https://www.youtube.com/watch?v=yjqak-BLIb0",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1190582450589669",
+      "publishedAt": "2026-11-22T21:05:10.026Z"
     }
   ]
 }

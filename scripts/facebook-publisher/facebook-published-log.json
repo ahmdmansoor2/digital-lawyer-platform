@@ -4291,6 +4291,27 @@
       "duration": "59ث",
       "size": 22881570,
       "publishedAt": "2026-11-22T14:34:51.901Z"
+    },
+    {
+      "topicId": "trend-cheque-return-egypt",
+      "title": "ماذا يحدث عند رجوع الشيك في مصر؟",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون التجاري",
+        "#شيك بدون رصيد",
+        "#شيك بدون رصيد ماذا افعل في مصر"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-cheque-return-egypt.mp4",
+      "videoId": "1190582450589669",
+      "permalink": "https://www.facebook.com/reel/1190582450589669",
+      "source": "trending-topics.json",
+      "duration": "1د 24ث",
+      "size": 31438397,
+      "publishedAt": "2026-11-22T21:04:28.017Z"
     }
   ]
 }
