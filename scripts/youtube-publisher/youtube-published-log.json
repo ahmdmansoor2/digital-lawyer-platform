@@ -2994,6 +2994,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1190582450589669",
       "publishedAt": "2026-11-22T21:05:10.026Z"
+    },
+    {
+      "topicId": "blog-child-custody-egypt",
+      "kind": "short",
+      "videoId": "K6Pe7u35q-w",
+      "url": "https://www.youtube.com/watch?v=K6Pe7u35q-w",
+      "fbPermalink": "https://www.facebook.com/reel/2264309330800599",
+      "publishedAt": "2026-11-24T03:58:31.235Z"
+    },
+    {
+      "topicId": "blog-child-custody-egypt",
+      "title": "الحضانة في مصر: الدليل القانوني الشامل للأم والأب في ضوء أحكام محكمة الأسرة — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-blog-child-custody-egypt-wide.mp4",
+      "source": "blog",
+      "videoId": "Y0rnhR-y7n4",
+      "url": "https://www.youtube.com/watch?v=Y0rnhR-y7n4",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2264309330800599",
+      "publishedAt": "2026-11-24T03:58:49.071Z"
     }
   ]
 }
