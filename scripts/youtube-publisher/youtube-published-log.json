@@ -3013,6 +3013,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2264309330800599",
       "publishedAt": "2026-11-24T03:58:49.071Z"
+    },
+    {
+      "topicId": "trend-power-of-attorney-egypt",
+      "kind": "short",
+      "videoId": "UOTxq_Fo95Q",
+      "url": "https://www.youtube.com/watch?v=UOTxq_Fo95Q",
+      "fbPermalink": "https://www.facebook.com/reel/2541192199617818",
+      "publishedAt": "2026-11-25T02:20:28.794Z"
+    },
+    {
+      "topicId": "trend-power-of-attorney-egypt",
+      "title": "التوكيل الرسمي في مصر: أنواعه وشروطه ومخاطره — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-power-of-attorney-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "ji8vfYAPpvU",
+      "url": "https://www.youtube.com/watch?v=ji8vfYAPpvU",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2541192199617818",
+      "publishedAt": "2026-11-25T02:21:06.598Z"
     }
   ]
 }

@@ -4333,6 +4333,27 @@
       "duration": "50ث",
       "size": 13856338,
       "publishedAt": "2026-11-24T03:58:27.129Z"
+    },
+    {
+      "topicId": "trend-power-of-attorney-egypt",
+      "title": "التوكيل الرسمي في مصر: أنواعه وشروطه ومخاطره",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#العقود",
+        "#توكيل رسمي",
+        "#توكيل رسمي عام"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-power-of-attorney-egypt.mp4",
+      "videoId": "2541192199617818",
+      "permalink": "https://www.facebook.com/reel/2541192199617818",
+      "source": "trending-topics.json",
+      "duration": "1د 24ث",
+      "size": 30083276,
+      "publishedAt": "2026-11-25T02:20:25.746Z"
     }
   ]
 }
