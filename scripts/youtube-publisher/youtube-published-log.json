@@ -3032,6 +3032,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2541192199617818",
       "publishedAt": "2026-11-25T02:21:06.598Z"
+    },
+    {
+      "topicId": "trend-child-custody-egypt",
+      "kind": "short",
+      "videoId": "86Tp6QyoppU",
+      "url": "https://www.youtube.com/watch?v=86Tp6QyoppU",
+      "fbPermalink": "https://www.facebook.com/reel/2290075435124554",
+      "publishedAt": "2026-11-25T17:07:30.357Z"
+    },
+    {
+      "topicId": "trend-child-custody-egypt",
+      "title": "الحضانة في القانون المصري: دليل شامل للأم والأب — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-child-custody-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "hDueJwtdzwc",
+      "url": "https://www.youtube.com/watch?v=hDueJwtdzwc",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2290075435124554",
+      "publishedAt": "2026-11-25T17:07:57.778Z"
     }
   ]
 }

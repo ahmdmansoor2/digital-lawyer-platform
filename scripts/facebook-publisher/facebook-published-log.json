@@ -4354,6 +4354,27 @@
       "duration": "1د 24ث",
       "size": 30083276,
       "publishedAt": "2026-11-25T02:20:25.746Z"
+    },
+    {
+      "topicId": "trend-child-custody-egypt",
+      "title": "الحضانة في القانون المصري: دليل شامل للأم والأب",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون الأسرة",
+        "#حضانة",
+        "#حضانة الطفل"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-child-custody-egypt.mp4",
+      "videoId": "2290075435124554",
+      "permalink": "https://www.facebook.com/reel/2290075435124554",
+      "source": "trending-topics.json",
+      "duration": "1د 4ث",
+      "size": 22621682,
+      "publishedAt": "2026-11-25T17:07:27.391Z"
     }
   ]
 }
