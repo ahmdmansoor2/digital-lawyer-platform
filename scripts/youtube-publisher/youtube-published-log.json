@@ -3070,6 +3070,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2333434517416135",
       "publishedAt": "2026-11-26T01:48:35.892Z"
+    },
+    {
+      "topicId": "trend-trial-period-rights",
+      "kind": "short",
+      "videoId": "pd2D0FlmwMk",
+      "url": "https://www.youtube.com/watch?v=pd2D0FlmwMk",
+      "fbPermalink": "https://www.facebook.com/reel/3175953979462922",
+      "publishedAt": "2026-11-26T16:48:19.371Z"
+    },
+    {
+      "topicId": "trend-trial-period-rights",
+      "title": "حقوق الموظف في فترة التجربة: ما الذي يحميه القانون؟ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-trial-period-rights-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "n66-bIIAFt4",
+      "url": "https://www.youtube.com/watch?v=n66-bIIAFt4",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/3175953979462922",
+      "publishedAt": "2026-11-26T16:48:41.087Z"
     }
   ]
 }
