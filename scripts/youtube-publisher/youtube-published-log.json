@@ -3051,6 +3051,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/2290075435124554",
       "publishedAt": "2026-11-25T17:07:57.778Z"
+    },
+    {
+      "topicId": "trend-rent-increase-egypt",
+      "kind": "short",
+      "videoId": "g1_HRa6OW50",
+      "url": "https://www.youtube.com/watch?v=g1_HRa6OW50",
+      "fbPermalink": "https://www.facebook.com/reel/2333434517416135",
+      "publishedAt": "2026-11-26T01:48:12.211Z"
+    },
+    {
+      "topicId": "trend-rent-increase-egypt",
+      "title": "زيادة الأجرة: القواعد الجديدة وما يعنيه للمستأجر والمالك — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-rent-increase-egypt-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "u44-JewuEHw",
+      "url": "https://www.youtube.com/watch?v=u44-JewuEHw",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/2333434517416135",
+      "publishedAt": "2026-11-26T01:48:35.892Z"
     }
   ]
 }
