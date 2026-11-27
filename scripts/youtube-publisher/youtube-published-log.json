@@ -3108,6 +3108,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1900614777963634",
       "publishedAt": "2026-11-27T01:44:00.024Z"
+    },
+    {
+      "topicId": "trend-administrative-grievance",
+      "kind": "short",
+      "videoId": "U1zDjZgeuqY",
+      "url": "https://www.youtube.com/watch?v=U1zDjZgeuqY",
+      "fbPermalink": "https://www.facebook.com/reel/1337751038422397",
+      "publishedAt": "2026-11-27T16:34:55.444Z"
+    },
+    {
+      "topicId": "trend-administrative-grievance",
+      "title": "التظلم من قرارات الجهاز الإداري: متى وكيف ترفع التظلم؟ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-administrative-grievance-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "QbTvcsrT2yo",
+      "url": "https://www.youtube.com/watch?v=QbTvcsrT2yo",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1337751038422397",
+      "publishedAt": "2026-11-27T16:35:28.455Z"
     }
   ]
 }
