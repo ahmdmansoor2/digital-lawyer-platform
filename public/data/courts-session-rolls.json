@@ -1,5 +1,70 @@
 [
   {
+    "id": "roll-sov-moj",
+    "title": "بوابة وزارة العدل الرسمية — الاستعلام الموحد عن رول الجلسات (جميع محاكم مصر: نقض، استئناف، ابتدائي، جزئي)",
+    "govCode": "cairo",
+    "govName": "القاهرة",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-sov-cassation",
+    "title": "محكمة النقض المصرية — جدول الجلسات والدوائر الجنائية والمدنية والطعون الرسمية",
+    "govCode": "cairo",
+    "govName": "القاهرة",
+    "catCode": "felony",
+    "catName": "الجنايات والاستئناف",
+    "refUrl": "https://www.cc.gov.eg/",
+    "directUrl": "https://www.cc.gov.eg/",
+    "allDirectUrls": [
+      "https://www.cc.gov.eg/"
+    ]
+  },
+  {
+    "id": "roll-sov-state-council",
+    "title": "مجلس الدولة المصري — بوابة جدول جلسات القضاء الإداري والمحكمة الإدارية العليا والمحاكم التأديبية",
+    "govCode": "cairo",
+    "govName": "القاهرة",
+    "catCode": "state_council",
+    "catName": "مجلس الدولة والقضاء الإداري",
+    "refUrl": "https://www.statecouncil.gov.eg/",
+    "directUrl": "https://www.statecouncil.gov.eg/",
+    "allDirectUrls": [
+      "https://www.statecouncil.gov.eg/"
+    ]
+  },
+  {
+    "id": "roll-sov-economic",
+    "title": "منظومة المحاكم الاقتصادية المصرية — الاستعلام الإلكتروني عن رول الدعاوى الاقتصادية والاستئنافية",
+    "govCode": "cairo",
+    "govName": "القاهرة",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-sov-ppo",
+    "title": "بوابة النيابة العامة المصرية — خدمات نيابات الأسرة والمرور والنيابات الكلية والجزئية",
+    "govCode": "cairo",
+    "govName": "القاهرة",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
+    "refUrl": "https://ppo.gov.eg/",
+    "directUrl": "https://ppo.gov.eg/",
+    "allDirectUrls": [
+      "https://ppo.gov.eg/"
+    ]
+  },
+  {
     "id": "roll-4",
     "title": "مدنى كلى و جزئى محكمة شرق طنطا",
     "govCode": "gharbia",
@@ -30,8 +95,8 @@
     "title": "اسرة بورسعيد – اجندة جلسات اسرة بورسعيد",
     "govCode": "portsaid",
     "govName": "بورسعيد",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=15389",
     "directUrl": "https://t.me/portsaid_D4",
     "allDirectUrls": [
@@ -82,8 +147,8 @@
     "title": "اسرة المينا بورسعيد – اجندة جلسات اسرة المينا بورسعيد",
     "govCode": "portsaid",
     "govName": "بورسعيد",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=15386",
     "directUrl": "https://t.me/osraalmenaa",
     "allDirectUrls": [
@@ -95,8 +160,8 @@
     "title": "اسرة الضواحي بورسعيد – اجندة جلسات اسرة الضواحي بورسعيد",
     "govCode": "portsaid",
     "govName": "بورسعيد",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=15384",
     "directUrl": "https://t.me/arbdwhyosra",
     "allDirectUrls": [
@@ -237,8 +302,8 @@
     "title": "اسرة الدلنجات– اجندة جلسات اسرة الدلنجات",
     "govCode": "beheira",
     "govName": "البحيرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=10901",
     "directUrl": "https://drive.google.com/drive/folders/1-FTEZ__680-3h1HXQNAV5XtjtQwpMAvu",
     "allDirectUrls": [
@@ -289,8 +354,8 @@
     "title": "اسرة الشهداء – اجندة جلسات اسرة الشهداء",
     "govCode": "monufia",
     "govName": "المنوفية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=5004",
     "directUrl": "https://t.me/elsohadaosra",
     "allDirectUrls": [
@@ -302,8 +367,8 @@
     "title": "اسرة ايتاي البارود – اجندة جلسات اسرة ايتاي البارود",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=5028",
     "directUrl": "https://drive.google.com/drive/folders/1XLfWlFUDmIaUZUQSZjNbH5EznB8bURS7",
     "allDirectUrls": [
@@ -317,8 +382,8 @@
     "title": "اسرة السادات – اجندة جلسات اسرة السادات",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=5005",
     "directUrl": "https://t.me/sadatosra",
     "allDirectUrls": [
@@ -330,8 +395,8 @@
     "title": "اسرة تلا – اجندة جلسات اسرة تلا",
     "govCode": "monufia",
     "govName": "المنوفية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4998",
     "directUrl": "https://t.me/talaosra_777",
     "allDirectUrls": [
@@ -343,8 +408,8 @@
     "title": "اسرة بركة السبع – اجندة جلسات اسرة بركة السبع",
     "govCode": "monufia",
     "govName": "المنوفية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=5003",
     "directUrl": "https://t.me/brketsabaosra",
     "allDirectUrls": [
@@ -356,8 +421,8 @@
     "title": "اسرة قويسنا – اجندة جلسات اسرة قويسنا",
     "govCode": "monufia",
     "govName": "المنوفية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=5002",
     "directUrl": "https://t.me/quesnaosra",
     "allDirectUrls": [
@@ -369,8 +434,8 @@
     "title": "اسرة مركز شبين الكوم – اجندة جلسات اسرة مركز شبين الكوم",
     "govCode": "monufia",
     "govName": "المنوفية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4999",
     "directUrl": "https://t.me/mrkazshbeenosra_777",
     "allDirectUrls": [
@@ -382,8 +447,8 @@
     "title": "اسرة منوف – اجندة جلسات اسرة منوف",
     "govCode": "monufia",
     "govName": "المنوفية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=5001",
     "directUrl": "https://t.me/menoufosra0_777",
     "allDirectUrls": [
@@ -395,8 +460,8 @@
     "title": "اسرة اشمون – اجندة جلسات اسرة اشمون",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=5000",
     "directUrl": "https://t.me/ashmonosra_777",
     "allDirectUrls": [
@@ -408,8 +473,8 @@
     "title": "اسرة قسم شبين الكوم – اجندة جلسات اسرة قسم شبين الكوم",
     "govCode": "monufia",
     "govName": "المنوفية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=5007",
     "directUrl": "https://t.me/qsmshbeenosra_777",
     "allDirectUrls": [
@@ -421,8 +486,8 @@
     "title": "اسرة الباجور – اجندة جلسات اسرة الباجور",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=5006",
     "directUrl": "https://t.me/elbagorosra_777",
     "allDirectUrls": [
@@ -621,8 +686,8 @@
     "title": "اسرة مينا البصل – اجندة جلسات اسرة مينا البصل",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4848",
     "directUrl": "https://t.me/MinaAlBasalOsra",
     "allDirectUrls": [
@@ -635,8 +700,8 @@
     "title": "اسرة كرموز – اجندة جلسات اسرة كرموز",
     "govCode": "alex",
     "govName": "الإسكندرية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4847",
     "directUrl": "https://t.me/asrakarmoze",
     "allDirectUrls": [
@@ -649,8 +714,8 @@
     "title": "اسرة برج العرب – اجندة جلسات اسرة برج العرب",
     "govCode": "alex",
     "govName": "الإسكندرية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4846",
     "directUrl": "https://t.me/BurjElArabOsra",
     "allDirectUrls": [
@@ -663,8 +728,8 @@
     "title": "اسرة المنشية – اجندة جلسات اسرة المنشية",
     "govCode": "alex",
     "govName": "الإسكندرية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4844",
     "directUrl": "https://t.me/OsraAlManshey",
     "allDirectUrls": [
@@ -676,8 +741,8 @@
     "title": "اسرة باب شرق – اجندة جلسات اسرة باب شرق",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4845",
     "directUrl": "https://t.me/BabSharqOsra",
     "allDirectUrls": [
@@ -690,8 +755,8 @@
     "title": "اسرة المنتزه – اجندة جلسات اسرة المنتزة",
     "govCode": "alex",
     "govName": "الإسكندرية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4843",
     "directUrl": "https://t.me/MontazahOsra",
     "allDirectUrls": [
@@ -711,8 +776,8 @@
     "title": "اسرة اللبان – اجندة جلسات اسرة اللبان",
     "govCode": "alex",
     "govName": "الإسكندرية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4831",
     "directUrl": "https://t.me/osraellaban",
     "allDirectUrls": [
@@ -725,8 +790,8 @@
     "title": "اسرة العامرية – اجندة جلسات اسرة العامرية",
     "govCode": "alex",
     "govName": "الإسكندرية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4829",
     "directUrl": "https://t.me/ElAmeriyaOsra",
     "allDirectUrls": [
@@ -739,8 +804,8 @@
     "title": "اسرة العطارين – اجندة جلسات اسرة العطارين",
     "govCode": "alex",
     "govName": "الإسكندرية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4830",
     "directUrl": "https://t.me/osraelatareen1",
     "allDirectUrls": [
@@ -752,8 +817,8 @@
     "title": "اسرة الجمرك – اجندة جلسات اسرة الجمرك",
     "govCode": "alex",
     "govName": "الإسكندرية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4827",
     "directUrl": "https://t.me/osragomrok",
     "allDirectUrls": [
@@ -765,8 +830,8 @@
     "title": "اسرة الرمل – اجندة جلسات اسرة الرمل",
     "govCode": "alex",
     "govName": "الإسكندرية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4828",
     "directUrl": "https://t.me/osraRaml",
     "allDirectUrls": [
@@ -783,8 +848,8 @@
     "title": "اسرة الدخيلة – اجندة جلسات اسرة الدخيلة",
     "govCode": "alex",
     "govName": "الإسكندرية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4819",
     "directUrl": "https://t.me/AlDakhilaOsra",
     "allDirectUrls": [
@@ -797,8 +862,8 @@
     "title": "اسرة اوسيم – اجندة جلسات اسرة اوسيم",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4814",
     "directUrl": "https://t.me/wrak_awsem_2023",
     "allDirectUrls": [
@@ -1044,8 +1109,8 @@
     "title": "اسرة مركز امبابة – اجندة جلسات اسرة مركز امبابة",
     "govCode": "giza",
     "govName": "الجيزة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4755",
     "directUrl": "https://t.me/nyabaambaba",
     "allDirectUrls": [
@@ -1057,8 +1122,8 @@
     "title": "اسرة العجوزة – اجندة جلسات اسرة العجوزة",
     "govCode": "giza",
     "govName": "الجيزة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4752",
     "directUrl": "https://t.me/a3agoza_2023",
     "allDirectUrls": [
@@ -1098,8 +1163,8 @@
     "title": "اسرة محرم بك – اجندة جلسات اسرة محرم بك",
     "govCode": "alex",
     "govName": "الإسكندرية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4737",
     "directUrl": "https://t.me/MoharramBekOsra",
     "allDirectUrls": [
@@ -1125,8 +1190,8 @@
     "title": "اسرة الوراق– اجندة جلسات اسرة الوراق",
     "govCode": "giza",
     "govName": "الجيزة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4734",
     "directUrl": "https://t.me/warq_2023",
     "allDirectUrls": [
@@ -1151,8 +1216,8 @@
     "title": "اسرة سيدي جابر – اجندة جلسات اسرة سيدي جابر",
     "govCode": "alex",
     "govName": "الإسكندرية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4720",
     "directUrl": "https://t.me/osrasidegaber",
     "allDirectUrls": [
@@ -1164,8 +1229,8 @@
     "title": "اسرة السويس – اجندة جلسات اسرة السويس",
     "govCode": "suez",
     "govName": "السويس",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4715",
     "directUrl": "https://drive.google.com/drive/folders/1-INayLx1dn1SJexTDiv6eLEC6gtEmaTV",
     "allDirectUrls": [
@@ -1177,8 +1242,8 @@
     "title": "اسرة امبابة – اجندة جلسات اسرة امبابة",
     "govCode": "giza",
     "govName": "الجيزة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4708",
     "directUrl": "https://t.me/embaba_2023",
     "allDirectUrls": [
@@ -1324,8 +1389,8 @@
     "title": "اسرة الازبكية – اجندة جلسات اسرة الازبكية",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4595",
     "directUrl": "https://t.me/NyabetElAzbakia",
     "allDirectUrls": [
@@ -1351,8 +1416,8 @@
     "title": "اسرة الجمالية – اجندة جلسات اسرة الجمالية",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4592",
     "directUrl": "https://t.me/gamaleyaosra",
     "allDirectUrls": [
@@ -1364,8 +1429,8 @@
     "title": "اسرة الدقي – اجندة جلسات اسرة الدقي",
     "govCode": "giza",
     "govName": "الجيزة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4497",
     "directUrl": "https://t.me/dookyosra",
     "allDirectUrls": [
@@ -1377,8 +1442,8 @@
     "title": "اسرة الوايلي – اجندة جلسات اسرة الوايلي",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=4482",
     "directUrl": "https://t.me/alwail0",
     "allDirectUrls": [
@@ -1487,8 +1552,8 @@
     "title": "اسرة العمرانية – اجندة جلسات اسرة العمرانية",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=2306",
     "directUrl": "https://drive.google.com/drive/u/0/folders/1-xlMN1MJ8rPGAhZ0WC-SEtvgh-Na8sFw",
     "allDirectUrls": [
@@ -1526,8 +1591,8 @@
     "title": "اسرة روض الفرج – اجندة جلسات اسرة روض الفرج",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=2235",
     "directUrl": "https://t.me/rawdalfarag0",
     "allDirectUrls": [
@@ -1540,8 +1605,8 @@
     "title": "اسرة الاقصر – اجندة جلسات اسرة الاقصر",
     "govCode": "luxor",
     "govName": "الأقصر",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=2232",
     "directUrl": "https://t.me/hggi2021",
     "allDirectUrls": [
@@ -1553,8 +1618,8 @@
     "title": "اسرة البدرشين – اجندة جلسات اسرة البدرشين",
     "govCode": "giza",
     "govName": "الجيزة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=2229",
     "directUrl": "https://t.me/elbadrashinagenda",
     "allDirectUrls": [
@@ -1579,8 +1644,8 @@
     "title": "اسرة عين شمس – اجندة جلسات اسرة عين شمس",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=2221",
     "directUrl": "https://t.me/AinShamsAgenda",
     "allDirectUrls": [
@@ -1592,8 +1657,8 @@
     "title": "اسرة مدينة نصر ثان – اجندة جلسات اسرة ثان مدينة نصر",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=2218",
     "directUrl": "https://t.me/NasrCity2Agenda",
     "allDirectUrls": [
@@ -1618,8 +1683,8 @@
     "title": "اسرة كفر شكر – اجندة جلسات اسرة كفر شكر",
     "govCode": "qalyubia",
     "govName": "القليوبية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1712",
     "directUrl": "https://t.me/+P2CqxL-osrpmODVk",
     "allDirectUrls": [
@@ -1631,8 +1696,8 @@
     "title": "اسرة طوخ – اجندة جلسات اسرة طوخ",
     "govCode": "qalyubia",
     "govName": "القليوبية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1713",
     "directUrl": "https://t.me/+Dkr4doV5froyNWY0",
     "allDirectUrls": [
@@ -1644,8 +1709,8 @@
     "title": "اسرة بنها – اجندة جلسات اسرة بنها",
     "govCode": "qalyubia",
     "govName": "القليوبية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1715",
     "directUrl": "https://t.me/+sSgzieal9GMxZGFk",
     "allDirectUrls": [
@@ -1657,8 +1722,8 @@
     "title": "اسرة شبين القناطر – اجندة جلسات اسرة شبين القناطر",
     "govCode": "qalyubia",
     "govName": "القليوبية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1714",
     "directUrl": "https://t.me/+DLf2sEDtdRkzNWVk",
     "allDirectUrls": [
@@ -1670,8 +1735,8 @@
     "title": "اسرة قسم الجيزة – اجندة جلسات اسرة قسم الجيزة",
     "govCode": "giza",
     "govName": "الجيزة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1706",
     "directUrl": "https://drive.google.com/drive/folders/1-CJ4WpPgLBhkCMLLnr1FHGyHzwnpDKRB",
     "allDirectUrls": [
@@ -1943,8 +2008,8 @@
     "title": "اسرة مركز بنها – اجندة جلسات اسرة مركز بنها",
     "govCode": "qalyubia",
     "govName": "القليوبية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1593",
     "directUrl": "https://t.me/+CcsMVRkjnjdkMWRk",
     "allDirectUrls": [
@@ -1956,8 +2021,8 @@
     "title": "اسرة مدينة نصر أول – اجندة جلسات اسرة أول مدينة نصر",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1585",
     "directUrl": "https://t.me/NasrCity1Agenda",
     "allDirectUrls": [
@@ -1969,8 +2034,8 @@
     "title": "اسرة دار السلام البساتين – اجندة جلسات اسرة دار السلام البساتين",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1589",
     "directUrl": "https://t.me/basatinosra",
     "allDirectUrls": [
@@ -1982,8 +2047,8 @@
     "title": "اسرة مصر الجديدة – اجندة جلسات اسرة مصر الجديدة",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1581",
     "directUrl": "https://t.me/MasrElgdedaAgenda",
     "allDirectUrls": [
@@ -1995,8 +2060,8 @@
     "title": "اسرة قصر النيل – اجندة جلسات اسرة قصر النيل",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1577",
     "directUrl": "https://t.me/qasrelnil",
     "allDirectUrls": [
@@ -2008,8 +2073,8 @@
     "title": "اسرة الاميرية – اجندة جلسات اسرة الاميرية",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1573",
     "directUrl": "https://t.me/alwail0",
     "allDirectUrls": [
@@ -2022,8 +2087,8 @@
     "title": "اسرة الخصوص – اجندة جلسات اسرة الخصوص",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1569",
     "directUrl": "https://t.me/+nll1AoWgMdowMDk0",
     "allDirectUrls": [
@@ -2036,8 +2101,8 @@
     "title": "اسرة شبراخيت – اجندة جلسات اسرة شبراخيت",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1554",
     "directUrl": "https://drive.google.com/drive/folders/1dY3M-J10pCawcQ1ycFZaUMk4nkFHtk4X",
     "allDirectUrls": [
@@ -2049,8 +2114,8 @@
     "title": "اسرة الخانكة – اجندة جلسات اسرة الخانكة",
     "govCode": "qalyubia",
     "govName": "القليوبية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1559",
     "directUrl": "https://t.me/+W7AD6aKuYoY4OWY0",
     "allDirectUrls": [
@@ -2062,8 +2127,8 @@
     "title": "اسرة المرج – اجندة جلسات اسرة المرج",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1564",
     "directUrl": "https://t.me/al_marg0",
     "allDirectUrls": [
@@ -2194,8 +2259,8 @@
     "title": "اسرة باب الشعرية – اجندة جلسات اسرة باب الشعرية",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1442",
     "directUrl": "https://t.me/babsherya",
     "allDirectUrls": [
@@ -2207,8 +2272,8 @@
     "title": "اسرة الساحل – اجندة جلسات اسرة الساحل",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1448",
     "directUrl": "https://t.me/alsahil0",
     "allDirectUrls": [
@@ -2221,8 +2286,8 @@
     "title": "اسرة مركز الجيزة – اجندة جلسات اسرة مركز الجيزة",
     "govCode": "giza",
     "govName": "الجيزة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1439",
     "directUrl": "https://drive.google.com/drive/folders/1-am5rdt0rV_aCVwqMHgdyps08TkjZWFu",
     "allDirectUrls": [
@@ -2234,8 +2299,8 @@
     "title": "اسرة الشرابية – اجندة جلسات اسرة الشرابية",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1436",
     "directUrl": "https://t.me/alsharabiya0",
     "allDirectUrls": [
@@ -2248,8 +2313,8 @@
     "title": "اسرة الزاوية – اجندة جلسات اسرة الزاوية",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1433",
     "directUrl": "https://t.me/NyabetElZawya",
     "allDirectUrls": [
@@ -2261,8 +2326,8 @@
     "title": "اسرة مصر القديمة – اجندة جلسات اسرة مصر القديمة",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1430",
     "directUrl": "https://t.me/Masrelqadeema",
     "allDirectUrls": [
@@ -2274,8 +2339,8 @@
     "title": "اسرة شبرا مصر – اجندة جلسات اسرة شبرا",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1427",
     "directUrl": "https://t.me/shobraosra",
     "allDirectUrls": [
@@ -2287,8 +2352,8 @@
     "title": "اسرة السلام – اجندة جلسات اسرة السلام",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1410",
     "directUrl": "https://t.me/alsalm0",
     "allDirectUrls": [
@@ -2301,8 +2366,8 @@
     "title": "اسرة البساتين – اجندة جلسات اسرة البساتين",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1414",
     "directUrl": "https://t.me/basatinosra",
     "allDirectUrls": [
@@ -2314,8 +2379,8 @@
     "title": "اسرة بولاق ابو العلا – اجندة جلسات اسرة بولاق ابو العلا",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1406",
     "directUrl": "https://t.me/Bulaq0",
     "allDirectUrls": [
@@ -2328,8 +2393,8 @@
     "title": "اسرة حلوان – اجندة جلسات اسرة حلوان",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1403",
     "directUrl": "https://t.me/Agendethelwan",
     "allDirectUrls": [
@@ -2341,8 +2406,8 @@
     "title": "اسرة المعادي – اجندة جلسات اسرة المعادي",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1400",
     "directUrl": "https://t.me/MaadyOsra",
     "allDirectUrls": [
@@ -2354,8 +2419,8 @@
     "title": "اسرة مايو و التبين – اجندة جلسات",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1397",
     "directUrl": "https://t.me/mayoweltbeen",
     "allDirectUrls": [
@@ -2367,8 +2432,8 @@
     "title": "اسرة القاهرة الجديدة – اجندة جلسات اسرة القاهرة الجديدة",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1394",
     "directUrl": "https://t.me/NewCairoAgenda",
     "allDirectUrls": [
@@ -2380,8 +2445,8 @@
     "title": "اسرة الخليفة – اجندة جلسات اسرة الخليفة",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1389",
     "directUrl": "https://t.me/Khaleefaosra",
     "allDirectUrls": [
@@ -2393,8 +2458,8 @@
     "title": "اسرة الدرب الاحمر – اجندة جلسات اسرة الدرب الاحمر",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1386",
     "directUrl": "https://t.me/darbahmar",
     "allDirectUrls": [
@@ -2406,8 +2471,8 @@
     "title": "اسرة الموسكي – اجندة جلسات",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1383",
     "directUrl": "https://t.me/moskyosra",
     "allDirectUrls": [
@@ -2419,8 +2484,8 @@
     "title": "محكمة اسرة عابدين – اجندة جلسات اسرة عابدين",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1370",
     "directUrl": "https://t.me/abdeenosra",
     "allDirectUrls": [
@@ -2432,8 +2497,8 @@
     "title": "اسرة المطرية – اجندة جلسات وقرارات اسرة المطرية",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1362",
     "directUrl": "https://t.me/ElmataryaAgenga",
     "allDirectUrls": [
@@ -2462,8 +2527,8 @@
     "title": "اسرة الهرم – اجندة جلسات وقرارات اسرة الهرم",
     "govCode": "giza",
     "govName": "الجيزة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1358",
     "directUrl": "https://t.me/osaraelharam",
     "allDirectUrls": [
@@ -2490,8 +2555,8 @@
     "title": "اسرة الزيتون – اجندة جلسات نيابة الزيتون لشئون الاسرة – اجندة جلسات وقرارات اسرة الزيتون",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1132",
     "directUrl": "https://t.me/alzaton0",
     "allDirectUrls": [
@@ -2518,8 +2583,8 @@
     "title": "اسرة النزهة – اجندة جلسات وقرارات اسرة النزهة",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=1129",
     "directUrl": "https://t.me/ElNozhaAgenda",
     "allDirectUrls": [
@@ -2624,8 +2689,8 @@
     "title": "نيابة قليوب الجزئية لشئون الاسرة – اجندة جلسات وقرارات اسرة قليوب",
     "govCode": "qalyubia",
     "govName": "القليوبية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=859",
     "directUrl": "https://t.me/+yZx5XCvfTck5MWM8",
     "allDirectUrls": [
@@ -2637,8 +2702,8 @@
     "title": "اسرة بولاق الدكرور – اجندة جلسات وقرارات اسرة بولاق الدكرور",
     "govCode": "giza",
     "govName": "الجيزة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=889",
     "directUrl": "https://drive.google.com/drive/folders/1-qbzCx8S3QokJoehc_eq421K6XcqH0KD",
     "allDirectUrls": [
@@ -2650,8 +2715,8 @@
     "title": "نيابة الخصوص الجزئية لشئون الاسرة – اجندة جلسات اسرة الخصوص",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=856",
     "directUrl": "https://t.me/+FitrB_QndsxiZjFk",
     "allDirectUrls": [
@@ -2663,8 +2728,8 @@
     "title": "نيابة القناطر الخيرية الجزئية لشئون الاسرة – اجندة جلسات اسرة القناطر الخيرية",
     "govCode": "qalyubia",
     "govName": "القليوبية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=853",
     "directUrl": "https://t.me/myglx54T3TRlMjU0",
     "allDirectUrls": [
@@ -2676,8 +2741,8 @@
     "title": "نيابة العبور الجزئية لشئون الاسرة – اجندة جلسات اسرة العبور",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=850",
     "directUrl": "https://t.me/+jKNX27tXxX9lNjY0",
     "allDirectUrls": [
@@ -2689,8 +2754,8 @@
     "title": "نيابة شبرا الخيمة ثان الجزئية لشئون الاسرة – اجندة جلسات اسرة شبرا الخيمة ثان",
     "govCode": "qalyubia",
     "govName": "القليوبية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=847",
     "directUrl": "https://t.me/+02VuzaF4GxY1MzA0",
     "allDirectUrls": [
@@ -2702,8 +2767,8 @@
     "title": "جلسات اسرة اكتوبر والشيخ زايد – دائرة 9",
     "govCode": "giza",
     "govName": "الجيزة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=839",
     "directUrl": "https://t.me/AGosraoctopr9",
     "allDirectUrls": [
@@ -2715,8 +2780,8 @@
     "title": "نيابة شبرا الخيمة اول الجزئية لشئون الاسرة – اجندة جلسات اسرة شبرا الخيمة اول",
     "govCode": "qalyubia",
     "govName": "القليوبية",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=843",
     "directUrl": "https://t.me/shoubraawal",
     "allDirectUrls": [
@@ -2728,8 +2793,8 @@
     "title": "جلسات اسرة اكتوبر والشيخ زايد – دائرة 8",
     "govCode": "giza",
     "govName": "الجيزة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=836",
     "directUrl": "https://t.me/agendafarde8",
     "allDirectUrls": [
@@ -2846,8 +2911,8 @@
     "title": "محكمة اسرة السيدة زينب – اجندة جلسات",
     "govCode": "cairo",
     "govName": "القاهرة",
-    "catCode": "misdemeanor",
-    "catName": "جنح وجنح مستأنف",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
     "refUrl": "https://lawhub.info/eg/?p=786",
     "directUrl": "https://t.me/sayedazainb",
     "allDirectUrls": [
@@ -2865,6 +2930,240 @@
     "directUrl": "https://t.me/+Mf11SVjJzy82MTVk",
     "allDirectUrls": [
       "https://t.me/+Mf11SVjJzy82MTVk"
+    ]
+  },
+  {
+    "id": "roll-gov-mansoura",
+    "title": "محكمة المنصورة الابتدائية ومأمورياتها (طلخا، ميت غمر، دكرنس، بلقاس، السنبلاوين) — الاستعلام الرسمي عن رول الجلسات",
+    "govCode": "dakahlia",
+    "govName": "الدقهلية",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-tanta",
+    "title": "محكمة غرب طنطا والمحلة الكبرى الابتدائية وجزئياتها (زفتى، كفر الزيات، سمنود) — رول الجلسات الرسمي",
+    "govCode": "gharbia",
+    "govName": "الغربية",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-zagazig",
+    "title": "محكمة الزقازيق وشمال وجنوب الشرقية الابتدائية (العاشر، بلبيس، فاقوس، منيا القمح) — رول الجلسات الرسمي",
+    "govCode": "sharqia",
+    "govName": "الشرقية",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-kafr",
+    "title": "محكمة كفر الشيخ الابتدائية ومأمورياتها (دسوق، فوه، بيلا، الحامول، بلطيم) — رول الجلسات الرسمي",
+    "govCode": "kafr-elsheikh",
+    "govName": "كفر الشيخ",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-damietta",
+    "title": "محكمة دمياط الابتدائية وجزئياتها (فارسكور، الزرقا، كفر سعد، دمياط الجديدة) — رول الجلسات الرسمي",
+    "govCode": "damietta",
+    "govName": "دمياط",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-ismailia",
+    "title": "محكمة الإسماعيلية الابتدائية ومأمورياتها (التل الكبير، فايد، القنطرة) — رول الجلسات الرسمي",
+    "govCode": "ismailia",
+    "govName": "الإسماعيلية",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-fayoum",
+    "title": "محكمة الفيوم الابتدائية وجزئياتها (سنورس، إطسا، طامية، أبشواي) — رول الجلسات الرسمي",
+    "govCode": "fayoum",
+    "govName": "الفيوم",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-benisuef",
+    "title": "محكمة بني سويف الابتدائية وجزئياتها (الواسطى، ناصر، ببا، الفشن) — رول الجلسات الرسمي",
+    "govCode": "beni-suef",
+    "govName": "بني سويف",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-minya",
+    "title": "محكمة المنيا الابتدائية وجزئياتها (ملوي، مغاغة، بني مزار، سمالوط، أبو قرقاص) — رول الجلسات الرسمي",
+    "govCode": "minya",
+    "govName": "المنيا",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-assiut",
+    "title": "محكمة أسيوط الابتدائية واستئناف أسيوط وجزئياتها (ديروط، القوصية، منفلوط، أبنوب) — رول الجلسات الرسمي",
+    "govCode": "assiut",
+    "govName": "أسيوط",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-sohag",
+    "title": "محكمة سوهاج الابتدائية وجزئياتها (طهطا، جرجا، أخميم، المراغة، البلينا) — رول الجلسات الرسمي",
+    "govCode": "sohag",
+    "govName": "سوهاج",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-qena",
+    "title": "محكمة قنا الابتدائية واستئناف قنا وجزئياتها (نجع حمادي، قوص، دشنا، فرشوط) — رول الجلسات الرسمي",
+    "govCode": "qena",
+    "govName": "قنا",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-luxor",
+    "title": "محكمة الأقصر الابتدائية ومأمورياتها (إسنا، أرمنت، طيبة) — رول الجلسات الرسمي",
+    "govCode": "luxor",
+    "govName": "الأقصر",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-aswan",
+    "title": "محكمة أسوان الابتدائية ومأمورياتها (إدفو، كوم أمبو، نصر النوبة) — رول الجلسات الرسمي",
+    "govCode": "aswan",
+    "govName": "أسوان",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-matrouh",
+    "title": "محكمة مطروح الابتدائية وجزئياتها (مرسى مطروح، العلمين، الحمام، الضبعة) — رول الجلسات الرسمي",
+    "govCode": "matrouh",
+    "govName": "مطروح",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-redsea",
+    "title": "محكمة البحر الأحمر الابتدائية وجزئياتها (الغردقة، سفاجا، القصير، رأس غارب) — رول الجلسات الرسمي",
+    "govCode": "red-sea",
+    "govName": "البحر الأحمر",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-sinai",
+    "title": "محكمتا شمال وجنوب سيناء الابتدائيتان (العريش، الطور، شرم الشيخ، بئر العبد) — رول الجلسات الرسمي",
+    "govCode": "sinai",
+    "govName": "سيناء",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
+    ]
+  },
+  {
+    "id": "roll-gov-newvalley",
+    "title": "محكمة الوادي الجديد الابتدائية وجزئياتها (الخارجة، الداخلة، الفرافرة) — رول الجلسات الرسمي",
+    "govCode": "new-valley",
+    "govName": "الوادي الجديد",
+    "catCode": "civil",
+    "catName": "مدني ومحاكم اقتصادية",
+    "refUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "directUrl": "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx",
+    "allDirectUrls": [
+      "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
     ]
   }
 ]

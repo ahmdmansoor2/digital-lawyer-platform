@@ -622,6 +622,16 @@
           "source": "/blog/medical-liability-law-egypt",
           "destination": "/blog/medical-malpractice-lawsuits-egypt.html",
           "type": 301
+        },
+        {
+          "source": "/blog/cybercrime-defamation-laws-egypt.html",
+          "destination": "/blog/cyber-defamation-slander-laws-egypt.html",
+          "type": 301
+        },
+        {
+          "source": "/blog/foreign-currency-laws-egypt.html",
+          "destination": "/blog/foreign-currency-illegal-trading-egypt.html",
+          "type": 301
         }
       ],
       "rewrites": [
