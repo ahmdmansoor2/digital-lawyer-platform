@@ -3165,5 +3165,57 @@
     "allDirectUrls": [
       "https://moj.gov.eg/ar/Pages/Services/SessionRoll.aspx"
     ]
+  },
+  {
+    "id": "roll-new-bolaq-osra",
+    "title": "أسرة بولاق الدكرور (نفس) — أجندة وجلسات أسرة بولاق الدكرور",
+    "govCode": "giza",
+    "govName": "الجيزة",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
+    "refUrl": "https://t.me/galsabolakeldakrornfs",
+    "directUrl": "https://t.me/galsabolakeldakrornfs",
+    "allDirectUrls": [
+      "https://t.me/galsabolakeldakrornfs"
+    ]
+  },
+  {
+    "id": "roll-new-markaz-giza-osra",
+    "title": "أسرة مركز الجيزة — أجندة وجلسات أسرة مركز الجيزة",
+    "govCode": "giza",
+    "govName": "الجيزة",
+    "catCode": "family",
+    "catName": "محاكم ونيابات الأسرة",
+    "refUrl": "https://t.me/galsamarkzelgiza",
+    "directUrl": "https://t.me/galsamarkzelgiza",
+    "allDirectUrls": [
+      "https://t.me/galsamarkzelgiza"
+    ]
+  },
+  {
+    "id": "roll-new-benha-felony",
+    "title": "محكمة جنايات جنوب بنها — رول جلسات جنايات جنوب بنها",
+    "govCode": "qalyubia",
+    "govName": "القليوبية",
+    "catCode": "felony",
+    "catName": "الجنايات والاستئناف",
+    "refUrl": "https://lawhub.info/eg/?p=15013",
+    "directUrl": "https://drive.google.com/file/d/1DnTqwM1TJYr7ZGZwkDm6Kj1vWLeFo8hs/preview",
+    "allDirectUrls": [
+      "https://drive.google.com/file/d/1DnTqwM1TJYr7ZGZwkDm6Kj1vWLeFo8hs/preview"
+    ]
+  },
+  {
+    "id": "roll-new-benha-appeal-felony",
+    "title": "محكمة جنايات مستأنف جنوب بنها — رول جلسات جنايات مستأنف جنوب بنها",
+    "govCode": "qalyubia",
+    "govName": "القليوبية",
+    "catCode": "felony",
+    "catName": "الجنايات والاستئناف",
+    "refUrl": "https://lawhub.info/eg/?p=15015",
+    "directUrl": "https://drive.google.com/file/d/1DnTqwM1TJYr7ZGZwkDm6Kj1vWLeFo8hs/preview",
+    "allDirectUrls": [
+      "https://drive.google.com/file/d/1DnTqwM1TJYr7ZGZwkDm6Kj1vWLeFo8hs/preview"
+    ]
   }
 ]
