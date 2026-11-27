@@ -4417,6 +4417,27 @@
       "duration": "45ث",
       "size": 13928931,
       "publishedAt": "2026-11-26T16:48:17.468Z"
+    },
+    {
+      "topicId": "trend-debt-statute-limitations",
+      "title": "تقادم الديون في القانون المصري: متى يسقط حق المطالبة؟",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#القانون المدني",
+        "#تقادم الديون",
+        "#سقوط الحق"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-debt-statute-limitations.mp4",
+      "videoId": "1900614777963634",
+      "permalink": "https://www.facebook.com/reel/1900614777963634",
+      "source": "trending-topics.json",
+      "duration": "55ث",
+      "size": 17786183,
+      "publishedAt": "2026-11-27T01:43:22.870Z"
     }
   ]
 }
