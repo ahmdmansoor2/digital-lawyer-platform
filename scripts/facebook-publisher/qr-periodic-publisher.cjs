@@ -27,6 +27,7 @@ const FB_PAGE_ID = process.env.FB_PAGE_ID;
 const FB_PAGE_TOKEN = process.env.FB_PAGE_TOKEN;
 const TG_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TG_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+const TG_PUBLIC_CHANNEL = process.env.TELEGRAM_PUBLIC_CHANNEL_ID || '@MohamiDigital';
 
 const ASSETS_DIR = path.join(__dirname, 'assets', 'qr');
 const ROLLS_QR_PATH = path.join(ASSETS_DIR, 'qr-courts-rolls.png');
@@ -201,28 +202,42 @@ async function publishToFacebook(imagePath, caption) {
 }
 
 async function sendToTelegram(imagePath, caption) {
-  if (!TG_TOKEN || !TG_CHAT_ID) {
-    console.log('ℹ️ Telegram غير مضبوط في البيئة — سيتم تخطي إرسال تيليجرام.');
+  if (!TG_TOKEN) {
+    console.log('ℹ️ Telegram Token غير مضبوط — سيتم تخطي إرسال تيليجرام.');
     return null;
   }
-  const buf = fs.readFileSync(imagePath);
-  const blob = new Blob([buf], { type: 'image/png' });
-  const form = new FormData();
-  form.append('chat_id', TG_CHAT_ID);
-  form.append('photo', blob, path.basename(imagePath));
-  // Telegram caption limit is 1024 chars
-  form.append('caption', caption.slice(0, 1020));
 
-  const resp = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendPhoto`, {
-    method: 'POST',
-    body: form,
-  });
-  const data = await resp.json();
-  if (!resp.ok || !data.ok) {
-    console.warn('⚠️ Telegram warning:', JSON.stringify(data));
-    return null;
+  let publicResult = null;
+  if (TG_PUBLIC_CHANNEL) {
+    const buf = fs.readFileSync(imagePath);
+    const blob = new Blob([buf], { type: 'image/png' });
+    const form = new FormData();
+    form.append('chat_id', TG_PUBLIC_CHANNEL);
+    form.append('photo', blob, path.basename(imagePath));
+    form.append('caption', caption.slice(0, 1020));
+
+    const resp = await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendPhoto`, {
+      method: 'POST',
+      body: form,
+    });
+    const data = await resp.json();
+    if (!resp.ok || !data.ok) {
+      console.warn('⚠️ Telegram Channel warning:', JSON.stringify(data));
+    } else {
+      publicResult = data.result;
+    }
   }
-  return data.result;
+
+  if (TG_CHAT_ID && String(TG_CHAT_ID) !== String(TG_PUBLIC_CHANNEL)) {
+    const notifyText = `✅ تم النشر الدوري التلقائي بنجاح على صفحة فيسبوك (العدالة القانونية) وقناة ${TG_PUBLIC_CHANNEL}.`;
+    await fetch(`https://api.telegram.org/bot${TG_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: TG_CHAT_ID, text: notifyText }),
+    }).catch(() => {});
+  }
+
+  return publicResult;
 }
 
 async function main() {
