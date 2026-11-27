@@ -1,0 +1,43 @@
+name: 📱 النشر الدوري لباركود رول الجلسات والمنصة (فيسبوك + تيليجرام)
+
+on:
+  schedule:
+    # السبت والأربعاء الساعة 08:30 ص بتوقيت القاهرة (06:30 UTC) — باركود رول الجلسات
+    - cron: '30 6 * * 3,6'
+    # الاثنين الساعة 07:00 م بتوقيت القاهرة (17:00 UTC) — باركود المنصة الرئيسية والأدوات
+    - cron: '0 17 * * 1'
+  workflow_dispatch:
+    inputs:
+      target_type:
+        description: 'نوع الباركود المراد نشره (auto / rolls / site)'
+        required: false
+        default: 'auto'
+
+jobs:
+  publish-qr-periodic:
+    name: نشر دوري للباركود على صفحة العدالة القانونية وتيليجرام
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish QR Post (Facebook + Telegram)
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          TYPE="${{ github.event.inputs.target_type }}"
+          if [ "$TYPE" = "rolls" ] || [ "$TYPE" = "site" ]; then
+            node scripts/facebook-publisher/qr-periodic-publisher.cjs --type="$TYPE"
+          else
+            node scripts/facebook-publisher/qr-periodic-publisher.cjs --auto
+          fi
