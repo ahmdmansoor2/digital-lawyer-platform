@@ -4459,6 +4459,27 @@
       "duration": "58ث",
       "size": 19621638,
       "publishedAt": "2026-11-27T16:34:52.625Z"
+    },
+    {
+      "topicId": "trend-khul-divorce-procedure",
+      "title": "الطلاق للشقاق والخلع: كيف تحصل عليه الزوجة في أسرع وقت؟",
+      "hashtags": [
+        "#قانون",
+        "#محكمة",
+        "#محامي",
+        "#القانون_المصري",
+        "#قضايا",
+        "#قانون الأسرة",
+        "#خلع",
+        "#محامي خلع"
+      ],
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-khul-divorce-procedure.mp4",
+      "videoId": "1694714005341661",
+      "permalink": "https://www.facebook.com/reel/1694714005341661",
+      "source": "trending-topics.json",
+      "duration": "50ث",
+      "size": 12607844,
+      "publishedAt": "2026-11-28T01:23:46.302Z"
     }
   ]
 }

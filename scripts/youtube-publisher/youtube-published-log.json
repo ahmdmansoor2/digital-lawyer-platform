@@ -3127,6 +3127,25 @@
       "kind": "video",
       "fbPermalink": "https://www.facebook.com/reel/1337751038422397",
       "publishedAt": "2026-11-27T16:35:28.455Z"
+    },
+    {
+      "topicId": "trend-khul-divorce-procedure",
+      "kind": "short",
+      "videoId": "df7jL8w5ga8",
+      "url": "https://www.youtube.com/watch?v=df7jL8w5ga8",
+      "fbPermalink": "https://www.facebook.com/reel/1694714005341661",
+      "publishedAt": "2026-11-28T01:23:47.855Z"
+    },
+    {
+      "topicId": "trend-khul-divorce-procedure",
+      "title": "الطلاق للشقاق والخلع: كيف تحصل عليه الزوجة في أسرع وقت؟ — فيديو أفقي",
+      "videoPath": "/home/runner/work/digital-lawyer-platform/digital-lawyer-platform/scripts/facebook-publisher/output/fb-trend-khul-divorce-procedure-wide.mp4",
+      "source": "trending-topics.json",
+      "videoId": "ZJx1OI20c7M",
+      "url": "https://www.youtube.com/watch?v=ZJx1OI20c7M",
+      "kind": "video",
+      "fbPermalink": "https://www.facebook.com/reel/1694714005341661",
+      "publishedAt": "2026-11-28T01:24:06.209Z"
     }
   ]
 }
