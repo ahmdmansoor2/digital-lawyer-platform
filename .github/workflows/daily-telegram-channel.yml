@@ -1,0 +1,55 @@
+name: 📢 النشر اليومي لقناة تيليجرام الرسمية (@MohamiDigital)
+
+on:
+  schedule:
+    # 10:30 ص بتوقيت القاهرة (08:30 UTC) يومياً — مبدأ قضائي / قاعدة قانونية
+    - cron: '30 8 * * *'
+    # 03:00 ع بتوقيت القاهرة (13:00 UTC) يومياً — المقال التشريعي اليومي
+    - cron: '0 13 * * *'
+    # 08:00 م بتوقيت القاهرة (18:00 UTC) الثلاثاء والخميس — أداة الأسبوع القانونية
+    - cron: '0 18 * * 2,4'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'وضع النشر (auto / precedent / article / tool)'
+        required: false
+        default: 'auto'
+
+permissions:
+  contents: write
+
+jobs:
+  publish-telegram-channel:
+    name: نشر تلقائي في @MohamiDigital
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publish to @MohamiDigital
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_PUBLIC_CHANNEL_ID: '@MohamiDigital'
+        run: |
+          MODE="${{ github.event.inputs.mode }}"
+          if [ "$MODE" = "precedent" ] || [ "$MODE" = "article" ] || [ "$MODE" = "tool" ]; then
+            node scripts/blog-publisher/telegram-channel-publisher.cjs --mode="$MODE"
+          else
+            node scripts/blog-publisher/telegram-channel-publisher.cjs --auto
+          fi
+
+      - name: Save Telegram Channel Log
+        run: |
+          git config user.name "Mohami Telegram Bot 🤖"
+          git config user.email "bot@mohamidigital.online"
+          git add scripts/blog-publisher/telegram-channel-log.json
+          git diff --staged --quiet || git commit -m "chore(telegram): update @MohamiDigital channel publish log [skip ci]"
+          git pull --rebase origin main 2>/dev/null || true
+          git push
